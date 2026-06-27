@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>AURA | Bespoke IGI Certified Diamonds & Solid Gold Jewelry</title>
+    <meta name="description" content="Design your dream jewelry with Aura. Handcrafted in solid 10K, 14K, or 18K gold. Premium IGI certified diamonds, ethically sourced lab-grown diamonds, custom sizes, and complimentary engraving. Free insured US shipping.">
+    <meta name="keywords" content="IGI Certified Diamonds, Lab Grown Diamonds, Custom Engagement Rings, Solid 14K Gold, Solid 18K Gold, Bespoke Jewelry, US Jewelry Shop">
+    
+    <!-- OpenGraph/Social Meta Tags -->
+    <meta property="og:title" content="AURA | Bespoke Certified Jewelry">
+    <meta property="og:description" content="Design your dream ring with Aura. Masterfully crafted with solid gold and IGI certified diamonds.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts: Cormorant Garamond (Serif, Luxury) & Inter (Sans-Serif, Modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    
+    <!-- Glassmorphism Navigation Bar -->
+    <header class="main-header">
+        <div class="nav-container">
+            <a href="#/" class="logo-link">
+                <span class="logo-brand">A U R A</span>
+                <span class="logo-subtext">FINE JEWELRY</span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="#/" class="nav-item active" data-route="home">Home</a>
+                <a href="#/customizer" class="nav-item" data-route="customizer">Custom Workshop</a>
+                <a href="#/education" class="nav-item" data-route="education">Education Hub</a>
+                <a href="#/certificate" class="nav-item" data-route="certificate">Verify IGI</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <a href="#/customizer" class="btn-nav-action cta-nav-design">Design a Ring</a>
+                <button class="icon-btn cart-toggle-btn" aria-label="Open Shopping Cart">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+                <button class="icon-btn mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-menu hidden">
+            <a href="#/" class="mobile-nav-item" data-route="home">Home</a>
+            <a href="#/customizer" class="mobile-nav-item" data-route="customizer">Custom Workshop</a>
+            <a href="#/education" class="mobile-nav-item" data-route="education">Education Hub</a>
+            <a href="#/certificate" class="mobile-nav-item" data-route="certificate">Verify IGI</a>
+            <a href="#/customizer" class="mobile-nav-item cta-mobile-design">Design a Ring</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container (SPA views switch dynamically) -->
+    <main id="app-root">
+        
+        <!-- HOME VIEW -->
+        <section id="view-home" class="spa-view active">
+            <!-- Luxury Hero Banner -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <span class="hero-badge">THE APEX OF SUSTAINABLE LUXURY</span>
+                    <h1>Bespoke Jewelry Crafted for a Lifetime</h1>
+                    <p class="hero-lead">Handcrafted in Solid 10K, 14K, & 18K Gold. Certified IGI Lab-Grown Diamonds. Designed by you, perfected by our master jewelers in the USA.</p>
+                    <div class="hero-ctas">
+                        <a href="#/customizer" class="btn btn-primary">Start Customizing <i data-lucide="sparkles"></i></a>
+                        <a href="#/education" class="btn btn-secondary">Learn About Our Materials</a>
+                    </div>
+                    
+                    <!-- Trust Bullet Grid (Risk Reversal) -->
+                    <div class="hero-trust-bullets">
+                        <div class="trust-bullet">
+                            <i data-lucide="shield-check"></i>
+                            <span>IGI Certified Stones</span>
+                        </div>
+                        <div class="trust-bullet">
+                            <i data-lucide="truck"></i>
+                            <span>Free Insured Delivery</span>
+                        </div>
+                        <div class="trust-bullet">
+                            <i data-lucide="refresh-cw"></i>
+                            <span>30-Day Free Returns</span>
+                        </div>
+                        <div class="trust-bullet">
+                            <i data-lucide="gem"></i>
+                            <span>100% Conflict-Free</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-frame">
+                        <img src="hero_jewelry.png" alt="Exquisite Custom Designed Solitaire Diamond Ring in Solid Gold" class="hero-img">
+                        <div class="luxury-card-overlay">
+                            <div class="stars">★★★★★</div>
+                            <p class="overlay-quote">"The interactive builder let me craft the perfect custom engagement ring. Verified the IGI certificate instantly!"</p>
+                            <span class="overlay-author">— Sarah T., New York</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Pillars Banner (US Buying Psychology - Authority & Risk Reduction) -->
+            <div class="trust-pillars-banner">
+                <div class="pillar">
+                    <div class="pillar-icon"><i data-lucide="award"></i></div>
+                    <h3>IGI Diamond Certification</h3>
+                    <p>Every single diamond over 0.5 carats is certified by the International Gemological Institute, verifying its cut, color, clarity, and carat weight.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i data-lucide="gem"></i></div>
+                    <h3>Solid Karat Gold</h3>
+                    <p>We work exclusively in Solid 10K, 14K, and 18K gold. Absolutely no brass, vermeil, or plating. Your ring will never tarnish or turn skin green.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i data-lucide="plane-takeoff"></i></div>
+                    <h3>Free & Secure Shipping</h3>
+                    <p>Your creation is shipped via fully insured FedEx or UPS Priority with mandatory signature required. Free of charge, complete peace of mind.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i data-lucide="thumbs-up"></i></div>
+                    <h3>30-Day Return Guarantee</h3>
+                    <p>Not absolutely in love? Return it in its original condition within 30 days for a full refund or exchange. We cover the return shipping label.</p>
+                </div>
+            </div>
+
+            <!-- As Seen In (Social Proof & Authority) -->
+            <div class="press-section">
+                <h4 class="press-title">RECOGNIZED FOR CRAFTSMANSHIP & VALUE</h4>
+                <div class="press-logos">
+                    <span class="press-logo">V O G U E</span>
+                    <span class="press-logo">F O R B E S</span>
+                    <span class="press-logo">B R I D E S</span>
+                    <span class="press-logo">H A R P E R ' S</span>
+                    <span class="press-logo">G Q</span>
+                </div>
+            </div>
+
+            <!-- Signature Collections Showcase -->
+            <div class="collection-showcase-section">
+                <div class="section-header">
+                    <h2>Our Signature Custom Templates</h2>
+                    <p>Choose a canvas design below and enter our customization workshop to make it uniquely yours.</p>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="badge-trust">IGI CERTIFIED</span>
+                            <!-- SVG Render of Solitaire Ring -->
+                            <div class="product-svg-container">
+                                <svg viewBox="0 0 200 200" width="150" height="150">
+                                    <circle cx="100" cy="115" r="50" stroke="#D4AF37" stroke-width="8" fill="none" />
+                                    <!-- Prong and round stone -->
+                                    <path d="M 85 65 L 100 50 L 115 65 Z" fill="#E6C575" />
+                                    <polygon points="100,28 118,48 109,62 91,62 82,48" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1.5"/>
+                                    <!-- Facet details -->
+                                    <line x1="100" y1="28" x2="100" y2="62" stroke="#BAE6FD" stroke-width="1"/>
+                                    <line x1="82" y1="48" x2="118" y2="48" stroke="#BAE6FD" stroke-width="1"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>The Royal Solitaire</h3>
+                            <p class="product-desc">Timeless, elegant, and focused. The classic setting that showcases the diamond's fire above all else.</p>
+                            <div class="product-meta">
+                                <span class="price-from">Starting at $1,250</span>
+                                <span class="material-pills">Solid 10K-18K</span>
+                            </div>
+                            <a href="#/customizer?template=solitaire" class="btn btn-text">Customize This Setting <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="badge-trust">IGI CERTIFIED</span>
+                            <!-- SVG Render of Halo Ring -->
+                            <div class="product-svg-container">
+                                <svg viewBox="0 0 200 200" width="150" height="150">
+                                    <circle cx="100" cy="115" r="50" stroke="#D4AF37" stroke-width="8" fill="none" />
+                                    <path d="M 85 65 L 100 50 L 115 65 Z" fill="#E6C575" />
+                                    <!-- Halo outline -->
+                                    <circle cx="100" cy="45" r="23" fill="none" stroke="#BAE6FD" stroke-width="3" stroke-dasharray="3,1"/>
+                                    <!-- Diamond shape -->
+                                    <polygon points="100,32 114,45 100,58 86,45" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>The Divine Halo</h3>
+                            <p class="product-desc">A circle of brilliant micropavé diamonds envelopes your center stone, creating a breathtaking crown of light.</p>
+                            <div class="product-meta">
+                                <span class="price-from">Starting at $1,680</span>
+                                <span class="material-pills">Solid 10K-18K</span>
+                            </div>
+                            <a href="#/customizer?template=halo" class="btn btn-text">Customize This Setting <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="badge-trust">IGI CERTIFIED</span>
+                            <!-- SVG Render of Pavé Ring -->
+                            <div class="product-svg-container">
+                                <svg viewBox="0 0 200 200" width="150" height="150">
+                                    <!-- Shank with pavé dash effects -->
+                                    <circle cx="100" cy="115" r="50" stroke="#D4AF37" stroke-width="8" fill="none" />
+                                    <circle cx="100" cy="115" r="50" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-dasharray="2,3" />
+                                    <!-- Setting structure and Emerald Diamond -->
+                                    <path d="M 85 65 L 100 50 L 115 65 Z" fill="#E6C575" />
+                                    <polygon points="86,30 114,30 114,56 86,56" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1.5"/>
+                                    <!-- Emerald cut facet lines -->
+                                    <polygon points="92,35 108,35 108,51 92,51" fill="none" stroke="#BAE6FD" stroke-width="1"/>
+                                    <line x1="86" y1="30" x2="92" y2="35" stroke="#BAE6FD" stroke-width="1"/>
+                                    <line x1="114" y1="30" x2="108" y2="35" stroke="#BAE6FD" stroke-width="1"/>
+                                    <line x1="114" y1="56" x2="108" y2="51" stroke="#BAE6FD" stroke-width="1"/>
+                                    <line x1="86" y1="56" x2="92" y2="51" stroke="#BAE6FD" stroke-width="1"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>The Majestic Pavé</h3>
+                            <p class="product-desc">Adorned with hand-set solid diamonds extending halfway down the band, combining architectural lines with fire.</p>
+                            <div class="product-meta">
+                                <span class="price-from">Starting at $1,850</span>
+                                <span class="material-pills">Solid 10K-18K</span>
+                            </div>
+                            <a href="#/customizer?template=pave" class="btn btn-text">Customize This Setting <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Proof Section: Reviews Carousel (US buying psychology) -->
+            <div class="reviews-section">
+                <div class="section-header">
+                    <h2>What Our Customers Are Saying</h2>
+                    <div class="reviews-aggregate">
+                        <span class="stars-large">★★★★★</span>
+                        <span class="aggregate-text">4.9 / 5 Average Rating (Based on 1,480+ Reviews)</span>
+                    </div>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="review-stars">★★★★★</span>
+                            <span class="review-date">June 20, 2026</span>
+                        </div>
+                        <p class="review-text">"Buying jewelry online can feel risky, but the IGI certification and free returns gave me full confidence. The solid 18K yellow gold has a beautiful, rich color, and the lab diamond is indistinguishable from mined. Incredible price!"</p>
+                        <div class="review-user">
+                            <div class="user-avatar-initials">DJ</div>
+                            <div>
+                                <h4 class="user-name">David J. <span class="verified-purchaser"><i data-lucide="check-circle-2"></i> Verified Buyer</span></h4>
+                                <span class="user-spec">Customized Solitaire Ring (1.5ct, 18K Yellow Gold)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="review-stars">★★★★★</span>
+                            <span class="review-date">May 14, 2026</span>
+                        </div>
+                        <p class="review-text">"The live customizer and exact price breakdown were so helpful. Adding the engraving was a breeze. I looked up the IGI report number online when it arrived, and the specifications matched perfectly. Shipping was fast, insured, and required a signature."</p>
+                        <div class="review-user">
+                            <div class="user-avatar-initials">MR</div>
+                            <div>
+                                <h4 class="user-name">Megan R. <span class="verified-purchaser"><i data-lucide="check-circle-2"></i> Verified Buyer</span></h4>
+                                <span class="user-spec">Customized Halo Ring (2.0ct Oval, 14K Rose Gold)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="review-stars">★★★★★</span>
+                            <span class="review-date">April 02, 2026</span>
+                        </div>
+                        <p class="review-text">"I researched metals and stones for weeks. Aura's education section explained the karat differences and lab grown savings clearly. I went with 14K White Gold for durability and a 2.5ct Cushion Cut diamond. Saved over 40% compared to local shops!"</p>
+                        <div class="review-user">
+                            <div class="user-avatar-initials">BH</div>
+                            <div>
+                                <h4 class="user-name">Brian H. <span class="verified-purchaser"><i data-lucide="check-circle-2"></i> Verified Buyer</span></h4>
+                                <span class="user-spec">Customized Pavé Ring (2.5ct, 14K White Gold)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Trust Callout Banner -->
+            <div class="action-banner">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h2>Ready to Create Your Masterpiece?</h2>
+                    <p>All items are crafted individually by master artisans using premium sustainable materials. Each diamond is verified by IGI laboratories.</p>
+                    <a href="#/customizer" class="btn btn-primary btn-large">Open Custom Workshop <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CUSTOMIZER VIEW -->
+        <section id="view-customizer" class="spa-view hidden">
+            <div class="customizer-container">
+                
+                <!-- Left: Interactive Vector Ring Preview -->
+                <div class="customizer-preview-panel">
+                    <div class="preview-header-meta">
+                        <span class="live-tag"><span class="pulse-dot"></span> LIVE 2D PREVIEW</span>
+                        <button class="icon-btn tooltip-btn" aria-label="Explanation of preview scale">
+                            <i data-lucide="info"></i>
+                            <span class="tooltip-text">Vector representation based on selected karat and carat dimensions. Scale adjusts dynamically.</span>
+                        </button>
+                    </div>
+                    
+                    <div class="preview-canvas-wrapper">
+                        <!-- Dynamic SVG Ring (Manipulated by App.js) -->
+                        <svg id="customizer-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                            <defs>
+                                <!-- Metal Gradients -->
+                                <linearGradient id="yellow-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#E5C158" />
+                                    <stop offset="50%" stop-color="#F7E79B" />
+                                    <stop offset="100%" stop-color="#C6A23D" />
+                                </linearGradient>
+                                <linearGradient id="white-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#CCCCCC" />
+                                    <stop offset="50%" stop-color="#F2F2F2" />
+                                    <stop offset="100%" stop-color="#999999" />
+                                </linearGradient>
+                                <linearGradient id="rose-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EAA68E" />
+                                    <stop offset="50%" stop-color="#FED0C2" />
+                                    <stop offset="100%" stop-color="#C7816A" />
+                                </linearGradient>
+                                
+                                <!-- Diamond Sparkle/Shine -->
+                                <radialGradient id="diamond-glow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                                    <stop offset="40%" stop-color="#E0F2FE" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#0284C7" stop-opacity="0"/>
+                                </radialGradient>
+                                
+                                <!-- Drop Shadow -->
+                                <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                                    <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000000" flood-opacity="0.45"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Background Glow -->
+                            <circle cx="200" cy="180" r="140" fill="url(#diamond-glow)" opacity="0.3" id="sparkle-glow-bg"/>
+                            
+                            <g filter="url(#drop-shadow)">
+                                <!-- Ring Band (Shank) -->
+                                <circle id="ring-shank" cx="200" cy="235" r="95" stroke="url(#yellow-gold-grad)" stroke-width="16" fill="none" />
+                                
+                                <!-- Ring Band Inside Cut (Hole) -->
+                                <circle cx="200" cy="235" r="87" fill="#0B0B0C" id="ring-shank-inner"/>
+                                
+                                <!-- Pavé Stones (Only visible when template = pave) -->
+                                <g id="pave-stones" class="hidden">
+                                    <!-- Left side pave dots -->
+                                    <circle cx="112" cy="200" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="120" cy="180" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="132" cy="162" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="147" cy="147" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="165" cy="136" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    
+                                    <!-- Right side pave dots -->
+                                    <circle cx="288" cy="200" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="280" cy="180" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="268" cy="162" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="253" cy="147" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                    <circle cx="235" cy="136" r="3" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="0.5"/>
+                                </g>
+
+                                <!-- Crown / Prongs / Halo Base -->
+                                <g id="ring-prongs-halo">
+                                    <!-- Setting Prongs Base (Color matches metal) -->
+                                    <path id="prong-base" d="M 180 145 L 200 120 L 220 145 Z" fill="url(#yellow-gold-grad)" />
+                                    <!-- Halo Circle (Only visible when template = halo) -->
+                                    <circle id="halo-circle" cx="200" cy="120" r="38" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-dasharray="4,2" class="hidden"/>
+                                    <circle id="halo-ring-backing" cx="200" cy="120" r="41" fill="none" stroke="url(#yellow-gold-grad)" stroke-width="3" class="hidden"/>
+                                </g>
+                                
+                                <!-- The Main Diamond (Dynamic path and scale adjusted by js) -->
+                                <g id="diamond-gem-group" transform="translate(200, 115) scale(1)">
+                                    <!-- Primary Shape polygon (Round Default) -->
+                                    <polygon id="diamond-shape" points="0,-35 25,-12 18,15 -18,15 -25,-12" fill="#E0F2FE" stroke="#87CEEB" stroke-width="1.5"/>
+                                    
+                                    <!-- Diamond facets for extra sparkle realism -->
+                                    <g id="diamond-facets" stroke="#BAE6FD" stroke-width="0.75" fill="none">
+                                        <line x1="0" y1="-35" x2="0" y2="15" />
+                                        <line x1="-25" y1="-12" x2="25" y2="-12" />
+                                        <line x1="0" y1="-35" x2="-18" y2="15" />
+                                        <line x1="0" y1="-35" x2="18" y2="15" />
+                                        <line x1="-25" y1="-12" x2="0" y2="0" />
+                                        <line x1="25" y1="-12" x2="0" y2="0" />
+                                        <line x1="-18" y1="15" x2="0" y2="0" />
+                                        <line x1="18" y1="15" x2="0" y2="0" />
+                                    </g>
+                                </g>
+                                
+                                <!-- Little Prongs (Overlap Gem for realism) -->
+                                <g id="prongs-claws" fill="url(#yellow-gold-grad)">
+                                    <circle id="prong-left" cx="178" cy="115" r="4" />
+                                    <circle id="prong-right" cx="222" cy="115" r="4" />
+                                </g>
+                            </g>
+                            
+                            <!-- Engraving Text Overlay Inside Band -->
+                            <text id="preview-engraving" x="200" y="275" font-family="'Cormorant Garamond', serif" font-size="12" fill="#FFFFFF" text-anchor="middle" font-style="italic" opacity="0.65"></text>
+                        </svg>
+                    </div>
+                    
+                    <!-- Dynamic Spec Overview -->
+                    <div class="preview-spec-sheet">
+                        <div class="spec-row">
+                            <span class="spec-label">Metal Composition</span>
+                            <span class="spec-value" id="spec-metal-text">14K Yellow Gold (Solid)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Stone Details</span>
+                            <span class="spec-value" id="spec-stone-text">1.50 Ct Round Brilliant (Lab Grown)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Certification</span>
+                            <span class="spec-value badge-igi-label" id="spec-cert-text"><i data-lucide="shield-check"></i> IGI Certified (Report Included)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Safety Badges -->
+                    <div class="preview-safety-footer">
+                        <div class="safety-item">
+                            <i data-lucide="shield-alert"></i>
+                            <span>Secure SSL Checkout</span>
+                        </div>
+                        <div class="safety-item">
+                            <i data-lucide="truck"></i>
+                            <span>Free Insured Shipping</span>
+                        </div>
+                        <div class="safety-item">
+                            <i data-lucide="refresh-cw"></i>
+                            <span>30-Day Returns</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Customizer Controls Panel -->
+                <div class="customizer-options-panel">
+                    <h2 class="panel-main-title">Customize Your Creation</h2>
+                    <p class="panel-subtitle">Handcrafted in solid gold, configured to your exact specifications.</p>
+                    
+                    <!-- Section 1: Setting Style -->
+                    <div class="control-group">
+                        <label class="control-label">1. Choose Ring Canvas Setting</label>
+                        <div class="customizer-cards-grid">
+                            <label class="card-radio-label">
+                                <input type="radio" name="setting-template" value="solitaire" checked>
+                                <div class="card-radio-box">
+                                    <span class="card-title">Solitaire</span>
+                                    <span class="card-price-mod">Base setting: $950</span>
+                                </div>
+                            </label>
+                            <label class="card-radio-label">
+                                <input type="radio" name="setting-template" value="halo">
+                                <div class="card-radio-box">
+                                    <span class="card-title">Halo</span>
+                                    <span class="card-price-mod">Base setting: $1,380</span>
+                                </div>
+                            </label>
+                            <label class="card-radio-label">
+                                <input type="radio" name="setting-template" value="pave">
+                                <div class="card-radio-box">
+                                    <span class="card-title">Pavé Band</span>
+                                    <span class="card-price-mod">Base setting: $1,550</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Metal Quality (10k, 14k, 18k) -->
+                    <div class="control-group">
+                        <label class="control-label">
+                            2. Select Gold Purity (Solid Gold Only)
+                            <button class="info-inline-btn" data-modal="modal-gold-purity" type="button">Why Solid Gold?</button>
+                        </label>
+                        <div class="customizer-cards-grid column-3">
+                            <label class="card-radio-label">
+                                <input type="radio" name="metal-purity" value="10k">
+                                <div class="card-radio-box">
+                                    <span class="card-title">Solid 10K</span>
+                                    <span class="card-desc">Extremely durable</span>
+                                </div>
+                            </label>
+                            <label class="card-radio-label">
+                                <input type="radio" name="metal-purity" value="14k" checked>
+                                <div class="card-radio-box">
+                                    <span class="card-title">Solid 14K</span>
+                                    <span class="card-desc">Perfect Balance</span>
+                                </div>
+                            </label>
+                            <label class="card-radio-label">
+                                <input type="radio" name="metal-purity" value="18k">
+                                <div class="card-radio-box">
+                                    <span class="card-title">Solid 18K</span>
+                                    <span class="card-desc">Rich Luxury Hue</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Metal Color (Yellow, White, Rose) -->
+                    <div class="control-group">
+                        <label class="control-label">3. Select Gold Color</label>
+                        <div class="color-picker-grid">
+                            <label class="color-radio-label">
+                                <input type="radio" name="metal-color" value="yellow" checked>
+                                <div class="color-radio-box yellow-gold-box" title="Yellow Gold">
+                                    <span class="color-dot yellow-gold-dot"></span>
+                                    <span>Yellow</span>
+                                </div>
+                            </label>
+                            <label class="color-radio-label">
+                                <input type="radio" name="metal-color" value="white">
+                                <div class="color-radio-box white-gold-box" title="White Gold">
+                                    <span class="color-dot white-gold-dot"></span>
+                                    <span>White</span>
+                                </div>
+                            </label>
+                            <label class="color-radio-label">
+                                <input type="radio" name="metal-color" value="rose">
+                                <div class="color-radio-box rose-gold-box" title="Rose Gold">
+                                    <span class="color-dot rose-gold-dot"></span>
+                                    <span>Rose</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Diamond Origin (Lab Grown vs Natural) -->
+                    <div class="control-group">
+                        <label class="control-label">
+                            4. Select Diamond Origin (Ethical & conflict-free)
+                            <button class="info-inline-btn" data-modal="modal-diamond-origin" type="button">Compare Origins</button>
+                        </label>
+                        <div class="customizer-cards-grid">
+                            <label class="card-radio-label">
+                                <input type="radio" name="stone-origin" value="lab" checked>
+                                <div class="card-radio-box">
+                                    <span class="card-title">Lab-Grown Diamond</span>
+                                    <span class="card-desc">Chemically Identical. Saves 40%</span>
+                                </div>
+                            </label>
+                            <label class="card-radio-label">
+                                <input type="radio" name="stone-origin" value="natural">
+                                <div class="card-radio-box">
+                                    <span class="card-title">Natural Diamond</span>
+                                    <span class="card-desc">Earth-Mined. Classic Value</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Stone Shape -->
+                    <div class="control-group">
+                        <label class="control-label">5. Select Diamond Shape</label>
+                        <div class="shape-selector-grid">
+                            <label class="shape-radio-label">
+                                <input type="radio" name="stone-shape" value="round" checked>
+                                <div class="shape-radio-box">
+                                    <span class="shape-icon">◯</span>
+                                    <span>Round</span>
+                                </div>
+                            </label>
+                            <label class="shape-radio-label">
+                                <input type="radio" name="stone-shape" value="oval">
+                                <div class="shape-radio-box">
+                                    <span class="shape-icon">⬭</span>
+                                    <span>Oval</span>
+                                </div>
+                            </label>
+                            <label class="shape-radio-label">
+                                <input type="radio" name="stone-shape" value="emerald">
+                                <div class="shape-radio-box">
+                                    <span class="shape-icon">▭</span>
+                                    <span>Emerald</span>
+                                </div>
+                            </label>
+                            <label class="shape-radio-label">
+                                <input type="radio" name="stone-shape" value="princess">
+                                <div class="shape-radio-box">
+                                    <span class="shape-icon">▢</span>
+                                    <span>Princess</span>
+                                </div>
+                            </label>
+                            <label class="shape-radio-label">
+                                <input type="radio" name="stone-shape" value="pear">
+                                <div class="shape-radio-box">
+                                    <span class="shape-icon">💧</span>
+                                    <span>Pear</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Carat Weight Slider -->
+                    <div class="control-group">
+                        <div class="slider-header-row">
+                            <label class="control-label" for="carat-slider">6. Select Center Stone Carat</label>
+                            <span class="slider-value-display" id="carat-value-text">1.50 Ct</span>
+                        </div>
+                        <input type="range" id="carat-slider" class="luxury-range" min="0.5" max="5.0" step="0.1" value="1.5">
+                        <div class="slider-ticks-labels">
+                            <span>0.5 Ct</span>
+                            <span>1.5 Ct</span>
+                            <span>2.5 Ct</span>
+                            <span>3.5 Ct</span>
+                            <span>5.0 Ct</span>
+                        </div>
+                    </div>
+
+                    <!-- Section 7: Ring Size -->
+                    <div class="control-group">
+                        <label class="control-label" for="ring-size-select">7. Select Ring Size (US Standard)</label>
+                        <select id="ring-size-select" class="luxury-select">
+                            <option value="4">Size 4 (14.9 mm)</option>
+                            <option value="5">Size 5 (15.7 mm)</option>
+                            <option value="6">Size 6 (16.5 mm)</option>
+                            <option value="7" selected>Size 7 (17.3 mm) - Average Size</option>
+                            <option value="8">Size 8 (18.1 mm)</option>
+                            <option value="9">Size 9 (19.0 mm)</option>
+                            <option value="10">Size 10 (19.8 mm)</option>
+                            <option value="11">Size 11 (20.6 mm)</option>
+                            <option value="12">Size 12 (21.4 mm)</option>
+                        </select>
+                    </div>
+
+                    <!-- Section 8: Free Custom Engraving -->
+                    <div class="control-group">
+                        <div class="slider-header-row">
+                            <label class="control-label" for="engraving-input">8. Add Free Custom Engraving</label>
+                            <span class="char-count" id="engraving-count-text">0 / 20</span>
+                        </div>
+                        <input type="text" id="engraving-input" class="luxury-text-input" placeholder="e.g. Forever Yours 2026" maxlength="20">
+                    </div>
+                    
+                    <!-- Pricing and Checkout Callout -->
+                    <div class="checkout-callout-box">
+                        <div class="price-row">
+                            <span class="price-title">Your Spec Price</span>
+                            <div class="price-val-container">
+                                <span class="price-number" id="calculated-price">$3,420</span>
+                                <span class="free-shipping-tag">FREE INSURED SHIPPING</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Financing (US consumer psychology) -->
+                        <div class="financing-row">
+                            <span class="financing-tag">FINANCING AVAILABLE</span>
+                            <span class="financing-detail">Or pay as low as <strong id="financing-price">$114/month</strong> with <strong class="affirm-brand">Affirm</strong>. <button type="button" class="info-link-text">Learn More</button></span>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="customizer-actions">
+                            <button id="btn-add-to-cart" class="btn btn-primary btn-large btn-block">Add Custom Creation to Bag <i data-lucide="shopping-bag"></i></button>
+                        </div>
+                        
+                        <!-- Trust reassurance directly under CTA -->
+                        <div class="customizer-trust-reassurance">
+                            <div class="reassure-item"><i data-lucide="check-circle"></i> Solid Karat Certified Gold</div>
+                            <div class="reassure-item"><i data-lucide="check-circle"></i> Free Fully Insured FedEx Delivery</div>
+                            <div class="reassure-item"><i data-lucide="check-circle"></i> Signature Required Upon Delivery</div>
+                            <div class="reassure-item"><i data-lucide="check-circle"></i> Includes IGI Gemological Certificate</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- EDUCATION VIEW -->
+        <section id="view-education" class="spa-view hidden">
+            <div class="education-container">
+                <div class="education-header">
+                    <span class="section-tag">AURA RESOURCE CENTER</span>
+                    <h2>Gemological & Material Intelligence</h2>
+                    <p>US buyers invest in transparency. Below we break down gold purities, diamond origins, and IGI certification metrics, giving you absolute confidence in your purchase.</p>
+                </div>
+                
+                <!-- Gold Education Panel -->
+                <div class="edu-card-split">
+                    <div class="edu-card-info">
+                        <div class="edu-card-icon"><i data-lucide="flame"></i></div>
+                        <h2>Understanding Gold Karats (10K vs 14K vs 18K)</h2>
+                        <p>We work exclusively in **Solid Karat Gold**. Pure gold is 24K, but is too soft for jewelry, bending and scratching easily. By alloying gold with high-quality metals, we produce durable, stunning rings for everyday wear.</p>
+                        
+                        <div class="gold-stats-grid">
+                            <div class="gold-stat">
+                                <span class="gold-stat-title">18K Solid Gold</span>
+                                <p class="gold-stat-desc">75.0% Pure Gold. Offers a deep, rich yellow tone. The standard for premium European luxury. Slightly softer but highly prestigious.</p>
+                            </div>
+                            <div class="gold-stat">
+                                <span class="gold-stat-title">14K Solid Gold</span>
+                                <p class="gold-stat-desc">58.3% Pure Gold. The absolute sweet spot for engagement rings in the USA. Offers beautiful luster combined with high structural durability.</p>
+                            </div>
+                            <div class="gold-stat">
+                                <span class="gold-stat-title">10K Solid Gold</span>
+                                <p class="gold-stat-desc">41.7% Pure Gold. Incredibly robust and resistant to scratching. Perfect for active lifestyles and budget-conscious buyers seeking solid gold value.</p>
+                            </div>
+                        </div>
+                        
+                        <blockquote>
+                            <span class="quote-symbol">“</span>
+                            Many online jewelers sell <strong>gold-plated</strong> or <strong>gold-vermeil</strong> jewelry, which tarnish or chip away within a year. Aura guarantees <strong>Solid Karat Gold</strong> that retains its metal purity and structural integrity forever.
+                        </blockquote>
+                    </div>
+                    <div class="edu-card-visual">
+                        <table class="edu-comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>10K Gold</th>
+                                    <th>14K Gold</th>
+                                    <th>18K Gold</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Pure Gold Content</strong></td>
+                                    <td>41.7%</td>
+                                    <td>58.3%</td>
+                                    <td>75.0%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Durability Score</strong></td>
+                                    <td>Excellent</td>
+                                    <td>Very High</td>
+                                    <td>High</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Color Richness</strong></td>
+                                    <td>Warm Champagne</td>
+                                    <td>Classic Luster</td>
+                                    <td>Deep Golden Glow</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skin Sensitivity</strong></td>
+                                    <td>Hypoallergenic</td>
+                                    <td>Hypoallergenic</td>
+                                    <td>Hypoallergenic</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Aura Pricing Rate</strong></td>
+                                    <td>$ (Budget Friendly)</td>
+                                    <td>$$ (Popular Pick)</td>
+                                    <td>$$$ (Elite Rank)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Diamond Education Panel -->
+                <div class="edu-card-split reverse">
+                    <div class="edu-card-visual">
+                        <div class="fact-callout-grid">
+                            <div class="fact-box">
+                                <h3>Chemical Match</h3>
+                                <p>Lab diamonds have the exact same crystalline carbon structures and atomic lattice as mined diamonds. They are 100% genuine diamonds.</p>
+                            </div>
+                            <div class="fact-box">
+                                <h3>Eco & Ethical</h3>
+                                <p>No destructive land-mining or ecosystem displacement. Conflict-free origin guaranteed by chemical tracking.</p>
+                            </div>
+                            <div class="fact-box">
+                                <h3>Value Arbitrage</h3>
+                                <p>Lab-grown diamonds cost 30% to 50% less than mined diamonds of the same quality because of simplified supply chains.</p>
+                            </div>
+                            <div class="fact-box">
+                                <h3>Lab Inscription</h3>
+                                <p>Every lab diamond over 0.5ct has a microscopic laser inscription on the girdle reading "LABGROWN IGI", linking it to its report.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="edu-card-info">
+                        <div class="edu-card-icon"><i data-lucide="gem"></i></div>
+                        <h2>Mined vs. Lab-Grown Diamonds</h2>
+                        <p>A common misconception in the US market is that lab-grown diamonds are "fake" like cubic zirconia or moissanite. In reality, **they are real diamonds** grown in controlled, high-tech chambers that replicate the extreme heat and pressure of the Earth's mantle.</p>
+                        <p>Because they are created in controlled environments, lab-grown diamonds are often of higher average purity (Type IIa) than natural diamonds, which are prone to nitrogen inclusions.</p>
+                        
+                        <div class="diamond-truth-bullet">
+                            <i data-lucide="check"></i>
+                            <div>
+                                <strong>Optically Identical:</strong> They reflect, refract, and disperse light exactly the same, carrying the same brilliance and sparkle (fire).
+                            </div>
+                        </div>
+                        <div class="diamond-truth-bullet">
+                            <i data-lucide="check"></i>
+                            <div>
+                                <strong>Physically Identical:</strong> They register a perfect 10 on the Mohs hardness scale. Only another diamond can scratch them.
+                            </div>
+                        </div>
+                        <div class="diamond-truth-bullet">
+                            <i data-lucide="check"></i>
+                            <div>
+                                <strong>IGI Certified:</strong> Independent gemologists grade both mined and lab diamonds on the exact same 4Cs criteria (Cut, Color, Clarity, Carat).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IGI Certification Section -->
+                <div class="igi-details-card">
+                    <div class="igi-logo-badge">IGI CERTIFICATION STANDARDS</div>
+                    <h2>The Importance of Independent Verification</h2>
+                    <p>The International Gemological Institute (IGI) is one of the world's most trusted diamond grading authorities. Every diamond we offer is sent to an independent IGI laboratory, where a team of gemologists analyzes it using spectroscopic and microscopic analysis before generating an official certificate.</p>
+                    
+                    <div class="four-cs-grid">
+                        <div class="four-c-card">
+                            <h3>CARAT</h3>
+                            <p>The precise weight of the diamond. 1 carat equals 200 milligrams. Even minor differences in weight can alter pricing significantly.</p>
+                        </div>
+                        <div class="four-c-card">
+                            <h3>COLOR</h3>
+                            <p>Grades the lack of color in a diamond. Ranging from D (completely colorless and rarest) to Z (noticeable yellow tint). We only use D-F (Colorless) or G-H (Near Colorless) diamonds.</p>
+                        </div>
+                        <div class="four-c-card">
+                            <h3>CLARITY</h3>
+                            <p>Grades the microscopic natural characteristics inside the diamond (inclusions) and on its surface (blemishes). We source VVS1-VS2 stones, which are 100% eye-clean.</p>
+                        </div>
+                        <div class="four-c-card">
+                            <h3>CUT</h3>
+                            <p>The most critical of the 4Cs. The cut determines how effectively the diamond reflects light. A perfect cut creates maximum fire. We use **Excellent** or **Ideal** cut grades exclusively.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="igi-edu-action">
+                        <p>Have an Aura diamond? You can verify its certificate instantly in our registry.</p>
+                        <a href="#/certificate" class="btn btn-secondary">Open Certificate Registry <i data-lucide="shield-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CERTIFICATE REGISTRY VIEW -->
+        <section id="view-certificate" class="spa-view hidden">
+            <div class="certificate-container">
+                <div class="cert-header">
+                    <span class="cert-badge-tag"><i data-lucide="shield"></i> IGI REGISTRY DATABASE</span>
+                    <h2>Aura Diamond Authentication Portal</h2>
+                    <p>To eliminate purchase anxiety, US consumers can verify their specific IGI Gemological Report details. Enter your report number below to fetch the authentic official certificate specifications from our database.</p>
+                </div>
+                
+                <div class="cert-lookup-box">
+                    <div class="lookup-form">
+                        <label for="cert-number-input" class="lookup-label">Enter IGI Report Number</label>
+                        <div class="lookup-input-row">
+                            <input type="text" id="cert-number-input" class="lookup-input" placeholder="e.g. IGI-582940294" value="IGI-582940294">
+                            <button id="btn-lookup-cert" class="btn btn-primary">Retrieve Report <i data-lucide="search"></i></button>
+                        </div>
+                        <p class="lookup-hint">Sample valid numbers in database: <strong>IGI-582940294</strong>, <strong>IGI-601938592</strong>, <strong>IGI-482049102</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Dynamic Certificate Display Area -->
+                <div id="cert-display-card" class="cert-report-card hidden">
+                    <!-- Certificate Watermark & Header -->
+                    <div class="cert-card-header">
+                        <div class="cert-brand">
+                            <span class="cert-authority-title">INTERNATIONAL GEMOLOGICAL INSTITUTE</span>
+                            <span class="cert-doc-type">GEMOLOGICAL REPORT</span>
+                        </div>
+                        <div class="cert-logo-seal">IGI</div>
+                    </div>
+                    
+                    <div class="cert-card-body">
+                        <!-- Left Panel: General Report Info -->
+                        <div class="cert-info-panel">
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Report Date</span>
+                                <span class="cert-f-val" id="cert-date-val">April 12, 2026</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Report Number</span>
+                                <span class="cert-f-val cert-highlight" id="cert-num-val">IGI-582940294</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Description</span>
+                                <span class="cert-f-val" id="cert-desc-val">LABORATORY GROWN DIAMOND</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Shape and Cutting Style</span>
+                                <span class="cert-f-val" id="cert-shape-val">ROUND BRILLIANT</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Measurements</span>
+                                <span class="cert-f-val" id="cert-measure-val">7.34 x 7.38 x 4.52 mm</span>
+                            </div>
+                            
+                            <hr class="cert-divider">
+                            
+                            <div class="cert-sub-heading">GRADING RESULTS</div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Carat Weight</span>
+                                <span class="cert-f-val" id="cert-carat-val">1.50 Carat</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Color Grade</span>
+                                <span class="cert-f-val" id="cert-color-val">D (Colorless)</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Clarity Grade</span>
+                                <span class="cert-f-val" id="cert-clarity-val">VVS2 (Very Very Slightly Included)</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Cut Grade</span>
+                                <span class="cert-f-val cert-highlight" id="cert-cut-val">EXCELLENT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Panel: Micro-engravings & Plot Map -->
+                        <div class="cert-map-panel">
+                            <div class="cert-sub-heading">ADDITIONAL GRADING INFORMATION</div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Polish</span>
+                                <span class="cert-f-val" id="cert-polish-val">EXCELLENT</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Symmetry</span>
+                                <span class="cert-f-val" id="cert-symm-val">EXCELLENT</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Fluorescence</span>
+                                <span class="cert-f-val" id="cert-fluor-val">NONE</span>
+                            </div>
+                            <div class="cert-field-row">
+                                <span class="cert-f-label">Inscription(s)</span>
+                                <span class="cert-f-val" id="cert-inscr-val">LABGROWN IGI LG582940294</span>
+                            </div>
+                            
+                            <!-- Plot Diagram Mock -->
+                            <div class="cert-plot-container">
+                                <div class="plot-box">
+                                    <svg viewBox="0 0 100 100" width="80" height="80">
+                                        <!-- Facet diagram top down -->
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#64748B" stroke-width="1"/>
+                                        <polygon points="50,5 95,50 50,95 5,50" fill="none" stroke="#64748B" stroke-width="0.75"/>
+                                        <polygon points="50,20 80,50 50,80 20,50" fill="none" stroke="#64748B" stroke-width="0.75"/>
+                                        <circle cx="50" cy="50" r="15" fill="none" stroke="#64748B" stroke-width="0.75"/>
+                                    </svg>
+                                    <span class="plot-label">Facet Diagram (Top)</span>
+                                </div>
+                                <div class="plot-box">
+                                    <div class="cert-security-seal">
+                                        <i data-lucide="shield-check"></i>
+                                        <span>OFFICIAL SEAL<br>SECURE DOCUMENT</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-card-footer">
+                        <p>This gemological report is a digital replica of the physical paper certificate. The laboratory certificate has advanced security markers, holograms, and micro-text lines that verify its origin.</p>
+                        <span class="cert-signature-line">Grader Signature: <em>M. Van Der Kaap</em></span>
+                    </div>
+                </div>
+                
+                <!-- Error State -->
+                <div id="cert-error-box" class="cert-error-box hidden">
+                    <i data-lucide="alert-triangle"></i>
+                    <div>
+                        <h3>Report Number Not Found</h3>
+                        <p>The report number entered could not be resolved. Please verify the number on your jewelry documents and try again, or check the sample numbers listed above.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Slide-in Shopping Cart Drawer -->
+    <div class="cart-overlay-backdrop hidden"></div>
+    <div class="cart-drawer-container hidden">
+        <div class="cart-drawer-header">
+            <div class="cart-title-row">
+                <h2>Your Design Bag</h2>
+                <span class="cart-item-count-pill" id="cart-drawer-count">0 items</span>
+            </div>
+            <button class="icon-btn close-cart-btn" aria-label="Close Shopping Cart">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        
+        <!-- Cart Items List -->
+        <div class="cart-drawer-items-list" id="cart-items-list">
+            <!-- Dynamic Cart Items Rendered Here -->
+            <div class="empty-cart-state">
+                <i data-lucide="shopping-bag" class="empty-cart-icon"></i>
+                <p>Your bag is currently empty.</p>
+                <a href="#/customizer" class="btn btn-secondary close-cart-btn-link">Explore Custom Workshop</a>
+            </div>
+        </div>
+        
+        <!-- Cart Drawer Footer (Pricing and Guarantees) -->
+        <div class="cart-drawer-footer">
+            <div class="summary-details">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Insured FedEx Shipping</span>
+                    <span class="free-text">FREE</span>
+                </div>
+                <div class="summary-row font-bold">
+                    <span>Total Estimate</span>
+                    <span id="cart-total">$0</span>
+                </div>
+            </div>
+            
+            <button id="btn-begin-checkout" class="btn btn-primary btn-large btn-block">Proceed to Secure Checkout <i data-lucide="lock"></i></button>
+            
+            <!-- Cart Trust Signals -->
+            <div class="cart-trust-signals">
+                <div class="cart-trust-item">
+                    <i data-lucide="shield-check"></i>
+                    <span>30-Day Money Back Guarantee</span>
+                </div>
+                <div class="cart-trust-item">
+                    <i data-lucide="key-round"></i>
+                    <span>256-bit Encrypted Transaction</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Secure Checkout Overlay (Mock) -->
+    <div id="checkout-modal" class="modal-overlay hidden">
+        <div class="modal-content checkout-modal-content">
+            <div class="modal-header">
+                <h2>Secure Sandbox Checkout</h2>
+                <button class="icon-btn" id="btn-close-checkout"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-split-layout">
+                    <!-- Checkout form -->
+                    <div class="checkout-form-side">
+                        <div class="checkout-security-indicator">
+                            <i data-lucide="shield-check" class="sec-icon"></i>
+                            <div>
+                                <strong>Secure SSL Checkout Active</strong>
+                                <span class="sec-desc">All connections are encrypted. No actual payment will be processed.</span>
+                            </div>
+                        </div>
+                        
+                        <form id="mock-checkout-form" class="checkout-form-inputs">
+                            <div class="form-section-title">1. Shipping Address</div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label for="chk-first">First Name</label>
+                                    <input type="text" id="chk-first" required placeholder="John">
+                                </div>
+                                <div class="form-col">
+                                    <label for="chk-last">Last Name</label>
+                                    <input type="text" id="chk-last" required placeholder="Doe">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <label for="chk-address">Street Address (FedEx/UPS Insured, Signature Required)</label>
+                                <input type="text" id="chk-address" required placeholder="123 Luxury Ln, Apt 4B">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label for="chk-city">City</label>
+                                    <input type="text" id="chk-city" required placeholder="New York">
+                                </div>
+                                <div class="form-col">
+                                    <label for="chk-state">State</label>
+                                    <select id="chk-state" required>
+                                        <option value="NY">NY - New York</option>
+                                        <option value="CA">CA - California</option>
+                                        <option value="TX">TX - Texas</option>
+                                        <option value="FL">FL - Florida</option>
+                                        <option value="IL">IL - Illinois</option>
+                                    </select>
+                                </div>
+                                <div class="form-col">
+                                    <label for="chk-zip">ZIP Code</label>
+                                    <input type="text" id="chk-zip" required placeholder="10001">
+                                </div>
+                            </div>
+                            
+                            <div class="form-section-title">2. Select Flexible Payment Option</div>
+                            <div class="payment-method-choices">
+                                <label class="payment-choice-label">
+                                    <input type="radio" name="payment-method" value="credit" checked>
+                                    <div class="payment-choice-box">
+                                        <span class="pay-method-title"><i data-lucide="credit-card"></i> Credit Card</span>
+                                        <span class="pay-method-desc">Secure checkout</span>
+                                    </div>
+                                </label>
+                                <label class="payment-choice-label">
+                                    <input type="radio" name="payment-method" value="affirm">
+                                    <div class="payment-choice-box">
+                                        <span class="pay-method-title"><i data-lucide="calendar"></i> Affirm Financing</span>
+                                        <span class="pay-method-desc">As low as $114/mo</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <!-- Credit Card fields -->
+                            <div id="credit-card-fields" class="form-group-fields">
+                                <div class="form-col">
+                                    <label for="chk-card-num">Card Number</label>
+                                    <input type="text" id="chk-card-num" placeholder="4111 2222 3333 4444" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-col">
+                                        <label for="chk-card-exp">Expiration</label>
+                                        <input type="text" id="chk-card-exp" placeholder="MM/YY" required>
+                                    </div>
+                                    <div class="form-col">
+                                        <label for="chk-card-cvc">CVC</label>
+                                        <input type="text" id="chk-card-cvc" placeholder="123" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Affirm fields -->
+                            <div id="affirm-fields" class="form-group-fields hidden">
+                                <p class="payment-hint-alert"><i data-lucide="info"></i> Affirm financing will prompt your login to check qualification rate. Your monthly estimate is based on a 15% APR over 36 months.</p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-large btn-block" id="btn-submit-order">Place Your Secure Order <i data-lucide="check"></i></button>
+                        </form>
+                    </div>
+                    
+                    <!-- Checkout summary side -->
+                    <div class="checkout-summary-side">
+                        <h3>Order Summary</h3>
+                        <div class="checkout-summary-items-list" id="checkout-summary-items">
+                            <!-- Items list populated by JS -->
+                        </div>
+                        <hr class="summary-line">
+                        <div class="summary-item-total">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">$0</span>
+                        </div>
+                        <div class="summary-item-total">
+                            <span>Fully Insured Shipping</span>
+                            <span class="free-text">FREE</span>
+                        </div>
+                        <div class="summary-item-total grand-total-row">
+                            <span>Total Due</span>
+                            <span id="checkout-total">$0</span>
+                        </div>
+                        
+                        <div class="summary-guarantees">
+                            <h4>Aura Quality Promise</h4>
+                            <ul>
+                                <li><i data-lucide="shield-check"></i> Solid certified metals & verified stones only.</li>
+                                <li><i data-lucide="truck"></i> Priority insured transport with security tag seals.</li>
+                                <li><i data-lucide="calendar"></i> 30 days to return or replace your order.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Order Confirmation Success Modal -->
+    <div id="success-modal" class="modal-overlay hidden">
+        <div class="modal-content success-modal-content">
+            <div class="modal-body text-center">
+                <div class="success-icon-badge"><i data-lucide="check"></i></div>
+                <h2>Your Order Has Been Placed!</h2>
+                <p class="success-order-num">Order Reference: <strong id="success-ref-num">#AU-918239</strong></p>
+                
+                <div class="success-steps-box">
+                    <div class="success-step">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h4>Order Confirmed</h4>
+                            <p>We are verifying your transaction and setting aside your IGI certified stones.</p>
+                        </div>
+                    </div>
+                    <div class="success-step">
+                        <div class="step-num">2</div>
+                        <div>
+                            <h4>Master Artisan Handcrafting</h4>
+                            <p>Our US bench jewelers will hand-set your customized diamond, polish the solid gold shank, and finish any custom engraving requests (3-5 days).</p>
+                        </div>
+                    </div>
+                    <div class="success-step">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h4>Insured Shipment Dispatch</h4>
+                            <p>We will package your creation with its physical IGI certificate and dispatch via insured FedEx. We will email tracking. A signature is required upon delivery.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="btn-success-close">Return to Workshop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modals (Triggered in Customizer controls) -->
+    <!-- Gold Purity Modal -->
+    <div id="modal-gold-purity" class="modal-overlay hidden">
+        <div class="modal-content info-modal-content">
+            <div class="modal-header">
+                <h2>Solid Gold vs. Gold Plated</h2>
+                <button class="icon-btn close-modal-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Aura Fine Jewelry exclusively uses solid gold.</strong> Here is why it matters:</p>
+                <div class="comparison-cards">
+                    <div class="comp-card highlight-aura">
+                        <h4>Aura Solid Gold</h4>
+                        <p>Gold is mixed with strong alloys all the way through. It never chips, flakes, or rubs off. It holds its value and can be polished for generations.</p>
+                    </div>
+                    <div class="comp-card">
+                        <h4>Plated / Vermeil Gold</h4>
+                        <p>A base metal (like brass or silver) dipped in a microscopic layer of gold. The gold wears off rapidly, exposing the dark metal underneath, turning skin green.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diamond Origin Modal -->
+    <div id="modal-diamond-origin" class="modal-overlay hidden">
+        <div class="modal-content info-modal-content">
+            <div class="modal-header">
+                <h2>Lab-Grown vs. Earth-Mined Diamonds</h2>
+                <button class="icon-btn close-modal-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>The Federal Trade Commission (FTC) classification states that a diamond is pure crystalline carbon, regardless of whether it is mined from the ground or grown in a laboratory.</p>
+                
+                <div class="comparison-cards">
+                    <div class="comp-card">
+                        <h4>Lab Grown (CVD/HPHT)</h4>
+                        <ul>
+                            <li><strong>Chemistry:</strong> 100% Crystalline Carbon</li>
+                            <li><strong>Refractive Index:</strong> 2.42 (Identical Brilliance)</li>
+                            <li><strong>Ethics:</strong> No land mining, zero carbon footprint</li>
+                            <li><strong>Cost:</strong> 30% - 50% lower price</li>
+                            <li><strong>Grading:</strong> Official IGI Certificate</li>
+                        </ul>
+                    </div>
+                    <div class="comp-card">
+                        <h4>Natural Mined</h4>
+                        <ul>
+                            <li><strong>Chemistry:</strong> 100% Crystalline Carbon</li>
+                            <li><strong>Refractive Index:</strong> 2.42 (Identical Brilliance)</li>
+                            <li><strong>Ethics:</strong> Traditional mining practices</li>
+                            <li><strong>Cost:</strong> Premium rarity markup</li>
+                            <li><strong>Grading:</strong> Official IGI Certificate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo-brand">A U R A</div>
+                <p class="brand-bio">Ethical laboratory-grown diamonds set in solid precious gold. Designed in New York, handcrafted in Los Angeles. Quality that lives for generations.</p>
+                <div class="footer-seals">
+                    <span class="seal-logo">IGI Certified</span>
+                    <span class="seal-logo">Responsible Jewellery Council</span>
+                </div>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Collections</h4>
+                <a href="#/customizer?template=solitaire">Solitaire Rings</a>
+                <a href="#/customizer?template=halo">Halo Settings</a>
+                <a href="#/customizer?template=pave">Pavé Bands</a>
+                <a href="#/customizer">Custom Workshop</a>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Education & Trust</h4>
+                <a href="#/education">Material Ethics</a>
+                <a href="#/education">Gold Purities Guide</a>
+                <a href="#/certificate">Verify IGI Diamond</a>
+                <a href="#/education">Diamond 4Cs Guide</a>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Guarantees</h4>
+                <span class="footer-info-item"><i data-lucide="shield-check"></i> Lifetime Craftsmanship Warranty</span>
+                <span class="footer-info-item"><i data-lucide="truck"></i> Free Signature Insured FedEx Shipping</span>
+                <span class="footer-info-item"><i data-lucide="refresh-cw"></i> 30-Day Hassle-Free Returns</span>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 Aura Fine Jewelry LLC. All Rights Reserved. Sandbox Demo for Custom Jewelry Builder.
+            </div>
+            <div class="checkout-trust-icons">
+                <span class="pay-icon">Visa</span>
+                <span class="pay-icon">Mastercard</span>
+                <span class="pay-icon">Amex</span>
+                <span class="pay-icon">Affirm</span>
+                <span class="pay-icon">Apple Pay</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>
