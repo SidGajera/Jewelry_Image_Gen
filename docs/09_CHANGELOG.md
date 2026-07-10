@@ -2,7 +2,7 @@
 
 ## v1.1.0 — 2026-07-10 (STABLE MILESTONE: portable export + printed-logo policy)
 - **Logo policy finalized → PRINTED-ON-CLOTH.** The logo must always appear, composited from the locked asset to look physically printed on the fabric (follows folds/perspective/lighting, partial crop/occlusion OK, off-center). Supersedes the interim "generate clean cloth, no logo at all" idea — the logo is NOT removed, it is composited.
-- **Locked brand logo asset added** (`logo_official.png`, exact user upload, 1,079,081 bytes; Drive id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) + transparent derivative (`logo_official_transparent.png`, background-keyed, ink pixels preserved).
+- **Locked brand logo asset added** (`assets/logo/logo_official.png`, exact user upload, 1,079,081 bytes; Drive id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) + transparent derivative (`assets/logo/logo_official_transparent.png`, background-keyed, ink pixels preserved).
 - **`scripts/print_logo_on_cloth.py`** added — multiply-blend + brightness-modulation + optional fold displacement so the logo reads as printed, not pasted.
 - **MASTER BACKGROUND STANDARD locked** — cloth material + neutral-white color + texture/fold style are canonical and consistent across all catalogs.
 - **All images standardized to 1:1 / 2K** (previously 4:5 for lifestyle).

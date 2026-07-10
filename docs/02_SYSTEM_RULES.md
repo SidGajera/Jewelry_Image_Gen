@@ -5,7 +5,7 @@ Every permanent rule currently in force, in **priority order**. Higher number on
 ## PRIORITY ORDER
 
 ### P0 — BRAND LOGO PRESERVATION (overrides everything)
-- The official logo is a LOCKED ASSET (`logo_official.png`). Never regenerate, redraw, interpret, verify-by-reading, enhance, vectorize, recreate, OCR, "fix", or hallucinate it.
+- The official logo is a LOCKED ASSET (`assets/logo/logo_official.png`). Never regenerate, redraw, interpret, verify-by-reading, enhance, vectorize, recreate, OCR, "fix", or hallucinate it.
 - The logo is NEVER rendered by the AI model. It is composited from the locked file AFTER generation.
 - The logo must ALWAYS appear on studio cloth, looking **physically printed** (not a watermark/sticker/overlay). Partial crop / fold distortion / jewelry occlusion (60–90 % visible) is acceptable and preferred.
 - Never ask the user to verify whether the logo is correct.

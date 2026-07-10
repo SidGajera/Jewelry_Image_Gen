@@ -67,7 +67,7 @@ Final catalog images → Drive Output folder + tracking log
 ## 6. SUCCESS CRITERIA (an image PASSES only if ALL are true)
 1. Ring is indistinguishable in design from the source (stones, count, cut, setting, prongs, band, metal).
 2. Center + accent stones render as real diamonds/gems (no doubled facets, no glassy dots, no recolor — e.g. green emeralds stay green).
-3. Studio shots: locked white cloth, neutral white, printed logo pixel-identical to `logo_official.png` (no "ELLYREID"-type hallucination).
+3. Studio shots: locked white cloth, neutral white, printed logo pixel-identical to `assets/logo/logo_official.png` (no "ELLYREID"-type hallucination).
 4. Lifestyle/closeups: cozy warm US-home, natural five-finger hand, no laptop/desk, no invented logo.
 5. 1:1, 2K, tack-sharp ring.
 6. Consistency: looks like the same cloth/studio/lighting/camera/white-balance as every other catalog image.

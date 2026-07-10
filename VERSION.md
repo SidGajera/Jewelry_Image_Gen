@@ -6,7 +6,7 @@
 - **Repo:** https://github.com/SidGajera/Claude_Lucent_Image_Gen (private, branch `main`)
 
 ## Major improvements in 1.1.0
-- Logo policy finalized: **printed-on-cloth** compositing from a LOCKED asset (`logo_official.png`); AI never renders the logo. Added `scripts/print_logo_on_cloth.py` + `logo_official_transparent.png`.
+- Logo policy finalized: **printed-on-cloth** compositing from a LOCKED asset (`assets/logo/logo_official.png`); AI never renders the logo. Added `scripts/print_logo_on_cloth.py` + `assets/logo/logo_official_transparent.png`.
 - **Master Background Standard** locked (cloth material + neutral-white color + fold/texture consistency).
 - Output standardized to **1:1 / 2K** for all images.
 - Canonical base prompt + 10 token-optimization rules locked.

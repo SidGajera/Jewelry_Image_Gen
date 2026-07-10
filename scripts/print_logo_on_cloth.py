@@ -18,12 +18,12 @@ How it stays "printed, not pasted":
 
 USAGE:
   pip install pillow numpy
-  python print_logo_on_cloth.py --image studio.png --logo logo_official_transparent.png \
+  python print_logo_on_cloth.py --image studio.png --logo assets/logo/logo_official_transparent.png \
          --scale 0.42 --pos lower-right --opacity 0.9 --displace 6
   # -> writes PRINTED_studio.png
 
   # regenerate the transparent logo from the original (non-destructive key):
-  python print_logo_on_cloth.py --make-transparent --logo logo_official.png --out logo_official_transparent.png
+  python print_logo_on_cloth.py --make-transparent --logo assets/logo/logo_official.png --out assets/logo/logo_official_transparent.png
 """
 import argparse, os
 import numpy as np
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     args = ap.parse_args()
 
     if args.make_transparent:
-        make_transparent(args.logo, args.out or "logo_official_transparent.png")
+        make_transparent(args.logo, args.out or "assets/logo/logo_official_transparent.png")
     else:
         if not args.image:
             ap.error("--image is required unless --make-transparent")

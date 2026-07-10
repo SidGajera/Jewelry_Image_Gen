@@ -63,7 +63,7 @@ Take a product's SOURCE images and generate **12 marketing photos per product**,
 ## 6. STUDIO CLOTH + LOGO
 
 ### 6.0 BRAND LOGO PRESERVATION — ABSOLUTE PRIORITY (user-locked 2026-07-10, higher than EVERY other rule)
-The official Lucent Carat Lab logo is a protected brand asset. It must NEVER be regenerated, redrawn, interpreted, enhanced, vectorized, recreated, OCR'd, or "fixed" by AI. Treat it as a LOCKED LAYER — pixel-identical to the uploaded original (`logo_official.png`).
+The official Lucent Carat Lab logo is a protected brand asset. It must NEVER be regenerated, redrawn, interpreted, enhanced, vectorized, recreated, OCR'd, or "fixed" by AI. Treat it as a LOCKED LAYER — pixel-identical to the uploaded original (`assets/logo/logo_official.png`).
 - Preserve without ANY change: diamond-icon geometry, gold gradients, all typography (font family/weight, letter+line spacing, kerning, alignment), decorative lines, star symbols, the words LUCENT / CARAT / LAB / FUTURE OF FINE JEWELRY, colors, metallic finish, proportions.
 - NEVER: rewrite text, replace fonts, generate similar letters, correct spelling, improve/simplify/stylize, hallucinate missing parts, or make a new version.
 - The generative model CANNOT reproduce the logo (garbles it into fake logos e.g. "ELLYREID"). Therefore the logo is **NEVER rendered by nano_banana** — it is composited from the locked asset AFTER generation.
