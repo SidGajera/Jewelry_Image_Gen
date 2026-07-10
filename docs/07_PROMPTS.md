@@ -1,0 +1,41 @@
+# 07 — PROMPTS (reusable, export)
+
+All prompts run on `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, SOURCE]`. The logo is NEVER prompted to be drawn — studio prompts force clean cloth; the logo is composited locally afterward.
+
+## CANONICAL BASE PROMPT (user-locked 2026-07-10) — core of every shot
+> Preserve the exact ring design, stone shape, stone count, setting, prongs, band proportions and metal details from the source image.
+> Use realistic VVS-quality lab-grown diamonds, accurate refraction, natural faceting, premium polished metal, luxury jewellery photography, sharp focus, clean background and commercial product-image quality.
+> Do not redesign, simplify, add stones, remove stones, alter proportions, change the setting or modify the band.
+
+Per shot, prepend an ANGLE/scene tag and append the group wrapper + the DESIGN string for the specific SKU. Keep the no-doubled-diamond clause. Everything 1:1, 2K.
+
+## DESIGN STRING (fill per SKU — examples)
+- **Generic three-stone:** "three-stone ring: [CENTER cut] diamond center held by [prong desc]; TWO [side stone] side stones ([color/cut, exact size/position]); [band] 18K yellow-gold band."
+- **LR-0136:** "OVAL brilliant diamond center with double-claw prongs; TWO emerald-cut GREEN EMERALD side stones (keep GREEN, step cut, exact size/position, NOT diamonds); plain thin tapering 18K yellow-gold band, open cathedral gallery."
+- **LR-0137:** "OVAL brilliant diamond center with double-claw prongs; TWO tapered BAGUETTE side diamonds (colorless, step-cut, horizontal, exact size/position); plain thin tapering 18K yellow-gold band."
+Always add: "Preserve exact design, stone shape/count, setting, prongs, band proportions and metal; do not add/remove stones or alter proportions. Center diamond one natural facet pattern, no doubled/mirrored/CGI facets; every small stone crisp real facets, natural realistic light, no over-sparkle. Design 100% identical to source."
+
+## STUDIO WRAPPER (clean cloth, NO logo — logo composited locally later)
+> [ANGLE] studio product shot on plain pure-white cotton cloth, soft draping. IMPORTANT: absolutely NO logo, emblem, monogram, text or watermark anywhere on the cloth — clean plain white fabric only. Use the first image only for cloth and lighting; replace the ring with the second reference. [DESIGN STRING] Ring tack-sharp, clean neutral-white background. 2K.
+
+**Studio ANGLE tags:** Front top-down · Macro close-up · Side profile · Held on a soft cloth fold · Three-quarter rest.
+
+## LIFESTYLE WRAPPER (wider, worn)
+> [ANGLE]. Cozy warm US-home scene from reference, natural hand five fingers natural skin wearing the ring. NO laptop, desk or office; NO logo or watermark anywhere; soft blurred home background. Replace the ring with the second reference. [DESIGN STRING] Ring tack-sharp, only background blurs. 2K.
+
+**Lifestyle ANGLE tags:** Back of hand · On a cozy cream knit · On a light marble surface · Hand raised softly near face · Side of finger.
+
+## CLOSE-UP WRAPPER (macro, cozy home)
+> Macro close-up [angle], cozy warm US-home setting, soft blurred home background. NO logo, emblem or watermark; plain home setting. Replace the ring with the second reference. [DESIGN STRING] Ring tack-sharp. 2K.
+
+**Close-up ANGLE tags:** Top-down detail · From the side of the finger · Held in fingertips.
+
+## MEDIAS ORDER
+`medias: [ { value: <pose/studio reference media_id>, role: "image" }, { value: <SOURCE ring media_id>, role: "image" } ]`
+Prompt phrasing "Use the first image for cloth/scene; replace the ring with the second reference" matches this order.
+
+## HARD DON'TS IN EVERY PROMPT
+- Never instruct the model to render/keep/redraw the logo.
+- Never allow laptop/desk/office in lifestyle.
+- Never allow doubled/CGI/over-sparkle diamonds.
+- Never change stone color/count/cut/setting from source.
