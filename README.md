@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Current Stable Version** | 1.1.0 (stable build ✅) |
-| **Latest Commit** | `__COMMIT_HASH__` (`main`, __COMMIT_DATE__) |
+| **Latest Commit** | `1928b89cbeac792b67f19e8f63208810c91930b4` (`main`, 2026-07-10T10:06:07+00:00) |
 | **Setup File** | [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) — single entry point |
 | **Recovery File** | [`RECOVERY.md`](RECOVERY.md) · machine-readable: [`config/VERSION.json`](config/VERSION.json) |
 | **Repository** | [SidGajera/Jewelery-Website](https://github.com/SidGajera/Jewelery-Website) |
