@@ -1,5 +1,26 @@
 # Lucent Carat Lab — AI Catalog Image Generation
 
+| | |
+|---|---|
+| **Current Stable Version** | 1.1.0 (stable build ✅) |
+| **Latest Commit** | `__COMMIT_HASH__` (`main`, __COMMIT_DATE__) |
+| **Setup File** | [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) — single entry point |
+| **Recovery File** | [`RECOVERY.md`](RECOVERY.md) · machine-readable: [`config/VERSION.json`](config/VERSION.json) |
+| **Repository** | [SidGajera/Jewelery-Website](https://github.com/SidGajera/Jewelery-Website) |
+
+### Repository Structure
+```
+CLAUDE_SETUP.md            # SINGLE ENTRY POINT
+README.md                  # this file
+NEW_PROJECT.md RECOVERY.md VERSION.md LUCENT_MASTER.md
+config/  VERSION.json  project_manifest.json
+docs/    01..06, 08..11 (spec, rules, image rules, logo, tokens, cache, structure, changelog, current state, background)
+prompts/ 07_PROMPTS.md
+scripts/ print_logo_on_cloth.py
+assets/  logo/  background/  references/
+whiten_cloth.py
+```
+
 > **Start here: open `CLAUDE_SETUP.md`** — the single entry point. A new Claude session reads that one file, then the ordered list it points to, and can reproduce the entire approved workflow.
 
 Portable, reproducible system for generating **12 marketing photos per jewelry SKU** (5 studio + 4 lifestyle + 3 close-up, all 1:1 / 2K) that keep the jewelry 100% identical to the source, on the brand's locked white studio cloth with the **printed** Lucent Carat Lab logo.
