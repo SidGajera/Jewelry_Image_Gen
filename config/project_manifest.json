@@ -1,7 +1,7 @@
 {
   "project_name": "Lucent Carat Lab \u2014 Claude Catalog Image Generation Automation",
   "current_version": "1.2.1",
-  "latest_stable_commit": "cc9b3ad61395de9177c5acdbb9e073b183c1272a",
+  "latest_stable_commit": "402c88f070e1f0c626fdab10a31b0f141020d0ff",
   "stable_tag": "claude-automation-stable-v1",
   "entry_file": "CLAUDE_SETUP.md",
   "single_source_of_truth": true,
