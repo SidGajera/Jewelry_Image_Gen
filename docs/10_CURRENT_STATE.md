@@ -18,7 +18,7 @@ As of 2026-07-10 (v1.1.0). This is precisely what happens for a new SKU today.
 9. **Deliver** to Drive Output folder; update tracking log.
 
 ## KEY DECISIONS IN FORCE
-- Logo: NEVER AI-rendered; ALWAYS composited from `logo_official.png` to look printed on cloth (P0).
+- Logo: NEVER AI-rendered; ALWAYS composited from `assets/logo/logo_official.png` to look printed on cloth (P0).
 - Cloth: locked material + neutral white; consistent every image (P3).
 - Jewelry: 100 % identical to source (P1). Diamonds: single facet pattern, no doubling (P2).
 - Format: 1:1, 2K always (P5).

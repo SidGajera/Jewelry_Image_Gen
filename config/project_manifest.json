@@ -1,0 +1,95 @@
+{
+  "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
+  "current_version": "1.1.0",
+  "latest_stable_commit": "3a5bc666518850e00eb030507e91fe21c55a1b52",
+  "stable_tag": "claude-automation-stable-v1",
+  "entry_file": "CLAUDE_SETUP.md",
+  "single_source_of_truth": true,
+  "operator_account": "lucentcaratlab@gmail.com",
+  "setup_order": [
+    "CLAUDE_SETUP.md",
+    "docs/01_MASTER_SPECIFICATION.md",
+    "docs/02_SYSTEM_RULES.md",
+    "docs/03_IMAGE_GENERATION_RULES.md",
+    "docs/04_LOGO_WORKFLOW.md",
+    "docs/11_BACKGROUND_STANDARD.md",
+    "docs/05_TOKEN_OPTIMIZATION.md",
+    "docs/06_CACHE.md",
+    "prompts/07_PROMPTS.md",
+    "docs/10_CURRENT_STATE.md"
+  ],
+  "required_files": [
+    "CLAUDE_SETUP.md",
+    "README.md",
+    "NEW_PROJECT.md",
+    "RECOVERY.md",
+    "VERSION.md",
+    "LUCENT_MASTER.md",
+    "docs/01_MASTER_SPECIFICATION.md",
+    "docs/02_SYSTEM_RULES.md",
+    "docs/03_IMAGE_GENERATION_RULES.md",
+    "docs/04_LOGO_WORKFLOW.md",
+    "docs/05_TOKEN_OPTIMIZATION.md",
+    "docs/06_CACHE.md",
+    "docs/08_PROJECT_STRUCTURE.md",
+    "docs/09_CHANGELOG.md",
+    "docs/10_CURRENT_STATE.md",
+    "docs/11_BACKGROUND_STANDARD.md",
+    "prompts/07_PROMPTS.md",
+    "config/project_manifest.json"
+  ],
+  "required_assets": {
+    "logo": [
+      "assets/logo/logo_official.png",
+      "assets/logo/logo_official_transparent.png"
+    ],
+    "background": [
+      "assets/background/sample_studio_background_with_logo.png"
+    ],
+    "references": [
+      "assets/references/README.md"
+    ]
+  },
+  "locked_asset_checksums": {
+    "assets/logo/logo_official.png": {
+      "sha256": "2e022162b5ff7b21ef30129cc4fac157a25e33464a4b6cf1f4f497f36a40f34f",
+      "bytes": 1079081,
+      "drive_file_id": "1QZgjplaFWenZHt048tzQntk-L-Ezy_qH"
+    },
+    "assets/logo/logo_official_transparent.png": {
+      "sha256": "1b8dc7c37b9385f07efd589899483131beea2346b7f0386b3e4b5dd742aa1982",
+      "bytes": 1174590
+    }
+  },
+  "script_paths": {
+    "print_logo_on_cloth": "scripts/print_logo_on_cloth.py",
+    "whiten_cloth": "whiten_cloth.py"
+  },
+  "generation_settings": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "count": 1,
+    "credits_per_image": 2,
+    "medias_order": ["reference", "source"],
+    "images_per_catalog": { "studio": 5, "lifestyle": 4, "closeup": 3 }
+  },
+  "drive_folders": {
+    "lucent_parent": "17fxsv1hJXoDm0vRgDOAm_YfNgG1xnLKv",
+    "source_parent": "1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy",
+    "studio_references": "1A9UJJcnlVA1Tvohd6Wa8O57eenCb7sQ2",
+    "lifestyle_references": "1GFwd4SHSPuCoaQj2WHYJWb7nTsvFUPzi",
+    "output": "1NGoqWNTGX4SxPNyQkL_6ZU1jnuqpB5_2"
+  },
+  "workflow_status": "stable",
+  "workflow_behavior": {
+    "logo": "locked asset, never AI-rendered, composited to look printed on cloth",
+    "background": "locked white cloth material, neutral white, consistent",
+    "jewelry": "100% identical to source",
+    "diamonds": "single real facet pattern, no doubling/CGI, gems keep color",
+    "verification": "one verification image, then approved batch without repeated permission",
+    "execution": "silent, low-token, reuse cache, batch, no preview tools"
+  },
+  "last_skus": ["LR-0156", "LR-0136", "LR-0137"],
+  "date": "2026-07-10"
+}

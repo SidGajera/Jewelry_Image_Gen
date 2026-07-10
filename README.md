@@ -1,10 +1,14 @@
 # Lucent Carat Lab — AI Catalog Image Generation
 
+> **Start here: open `CLAUDE_SETUP.md`** — the single entry point. A new Claude session reads that one file, then the ordered list it points to, and can reproduce the entire approved workflow.
+
 Portable, reproducible system for generating **12 marketing photos per jewelry SKU** (5 studio + 4 lifestyle + 3 close-up, all 1:1 / 2K) that keep the jewelry 100% identical to the source, on the brand's locked white studio cloth with the **printed** Lucent Carat Lab logo.
 
-## Start here
-- **`LUCENT_MASTER.md`** — canonical merged spec (single source of truth).
-- **`NEW_PROJECT.md`** — bootstrap a brand-new Claude project to reproduce this exactly.
+## Entry & recovery
+- **`CLAUDE_SETUP.md`** — SINGLE ENTRY POINT (read first).
+- **`config/project_manifest.json`** — manifest (version, commit, files, assets, checksums, setup order).
+- **`LUCENT_MASTER.md`** — canonical merged spec.
+- **`NEW_PROJECT.md`** — bootstrap a brand-new Claude project.
 - **`RECOVERY.md`** — restore/continue after cloning.
 - **`VERSION.md`** — version, commit, date, improvements.
 
@@ -24,8 +28,8 @@ Portable, reproducible system for generating **12 marketing photos per jewelry S
 | `11_BACKGROUND_STANDARD.md` | Locked cloth standard |
 
 ## Assets & scripts
-- `logo_official.png` — LOCKED brand logo (exact upload; never modify).
-- `logo_official_transparent.png` — background-keyed logo for compositing.
+- `assets/logo/logo_official.png` — LOCKED brand logo (exact upload; never modify).
+- `assets/logo/logo_official_transparent.png` — background-keyed logo for compositing.
 - `scripts/print_logo_on_cloth.py` — print the logo onto a studio shot (0 credits).
 - `whiten_cloth.py` — force pure neutral-white cloth (0 credits).
 

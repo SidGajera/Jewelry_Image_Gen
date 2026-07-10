@@ -10,13 +10,13 @@ cd Claude_Lucent_Image_Gen
 
 ## 2. VERIFY THE LOCKED ASSETS ARE PRESENT
 ```
-ls -la logo_official.png logo_official_transparent.png whiten_cloth.py scripts/print_logo_on_cloth.py
+ls -la assets/logo/logo_official.png assets/logo/logo_official_transparent.png whiten_cloth.py scripts/print_logo_on_cloth.py
 ```
-- `logo_official.png` must be **1079081 bytes** (the exact official upload). If it differs, re-download from Drive id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH` — do NOT recreate it.
-- If `logo_official_transparent.png` is missing/wrong, regenerate it (non-destructive key):
+- `assets/logo/logo_official.png` must be **1079081 bytes** (the exact official upload). If it differs, re-download from Drive id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH` — do NOT recreate it.
+- If `assets/logo/logo_official_transparent.png` is missing/wrong, regenerate it (non-destructive key):
   ```
   pip install pillow numpy
-  python scripts/print_logo_on_cloth.py --make-transparent --logo logo_official.png --out logo_official_transparent.png
+  python scripts/print_logo_on_cloth.py --make-transparent --logo assets/logo/logo_official.png --out assets/logo/logo_official_transparent.png
   ```
 
 ## 3. RE-READ THE RULES

@@ -1,18 +1,15 @@
 # 08 — PROJECT STRUCTURE
 
-## REPOSITORY (github.com/SidGajera/Claude_Lucent_Image_Gen)
+## REPOSITORY (github.com/SidGajera/Jewelery-Website — portable template)
 ```
 /
-├── LUCENT_MASTER.md              # Canonical merged master spec (single source of truth, §0–§14)
-├── README.md                     # Index + quick start
-├── NEW_PROJECT.md                # How to bootstrap a brand-new Claude project to reproduce this
-├── RECOVERY.md                   # How to restore/continue after cloning the repo
+├── CLAUDE_SETUP.md               # SINGLE ENTRY POINT — a new Claude session reads this first
+├── README.md                     # Index ("Start here: open CLAUDE_SETUP.md")
+├── NEW_PROJECT.md                # Bootstrap a brand-new Claude project to reproduce this
+├── RECOVERY.md                   # Restore/continue after cloning the repo
 ├── VERSION.md                    # Version number, commit hash, date, major improvements
-├── logo_official.png             # LOCKED brand logo — exact user upload (never modify)
-├── logo_official_transparent.png # Background-keyed logo for compositing (ink pixels preserved)
+├── LUCENT_MASTER.md              # Canonical merged master spec (§0–§14)
 ├── whiten_cloth.py               # 0-credit local script: force pure neutral-white cloth
-├── scripts/
-│   └── print_logo_on_cloth.py    # 0-credit local script: print the logo onto the cloth
 ├── docs/
 │   ├── 01_MASTER_SPECIFICATION.md
 │   ├── 02_SYSTEM_RULES.md
@@ -20,11 +17,26 @@
 │   ├── 04_LOGO_WORKFLOW.md
 │   ├── 05_TOKEN_OPTIMIZATION.md
 │   ├── 06_CACHE.md
-│   ├── 07_PROMPTS.md
 │   ├── 08_PROJECT_STRUCTURE.md   # (this file)
 │   ├── 09_CHANGELOG.md
 │   ├── 10_CURRENT_STATE.md
 │   └── 11_BACKGROUND_STANDARD.md
+├── prompts/
+│   └── 07_PROMPTS.md             # reusable prompts
+├── scripts/
+│   └── print_logo_on_cloth.py    # 0-credit local script: print the logo onto the cloth
+├── assets/
+│   ├── logo/
+│   │   ├── logo_official.png             # LOCKED brand logo — exact upload (never modify)
+│   │   ├── logo_official_transparent.png # Background-keyed logo for compositing
+│   │   └── README.md                     # checksums + Drive origin
+│   ├── background/
+│   │   ├── sample_studio_background_with_logo.png
+│   │   └── README.md                     # locked cloth standard + Drive refs
+│   └── references/
+│       └── README.md                     # pose/source reference index (Drive IDs)
+├── config/
+│   └── project_manifest.json     # machine-readable manifest (version, files, assets, checksums, setup order)
 ├── index.html / app.js / styles.css / hero_jewelry.png  # (pre-existing website files; not part of the image pipeline)
 └── .gitignore
 ```

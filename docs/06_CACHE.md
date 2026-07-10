@@ -17,8 +17,8 @@
 ## LOGO ASSET (locked, P0)
 | File | Drive file ID | Repo path |
 |---|---|---|
-| Lucent Carat Lab Logo.png (official) | `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH` | `/logo_official.png` |
-| Transparent-ink derivative | (derived locally) | `/logo_official_transparent.png` |
+| Lucent Carat Lab Logo.png (official) | `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH` | `/assets/logo/logo_official.png` |
+| Transparent-ink derivative | (derived locally) | `/assets/logo/logo_official_transparent.png` |
 
 Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a studio reference that CONTAINS the correct printed logo (useful as a placement/scale reference).
 
