@@ -1,0 +1,17 @@
+{
+  "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
+  "fixes": [
+    {"id":"logo-garble","problem":"AI renders a fake/garbled logo (e.g. 'ELLYREID', gray/wrong font, missing elements)","root_cause":"nano_banana cannot reproduce fine logo typography","fix":"NEVER let AI render/approximate the logo. Use exact asset (local composite) or OMIT. Missing OK; incorrect NOT OK.","refs":["docs/04 §11"]},
+    {"id":"doubled-diamond","problem":"center stone shows doubled/mirrored ghost facet mesh (worst on large worn angles)","root_cause":"AI invents a kaleidoscope facet pattern","fix":"one real single-table brilliant facet pattern identical to source; no doubling/CGI symmetry","refs":["docs/03 B"]},
+    {"id":"artificial-white-diamond","problem":"overexposed/glowing pure-white diamond, blown highlights, plastic/milky","root_cause":"over-enhancement","fix":"natural brilliance only; visible facets; no artificial whitening/sparkle; no solid white areas","refs":["docs/03 L"]},
+    {"id":"side-stone-blobs","problem":"pave/side stones become white dots/glass beads/blurry blobs","root_cause":"small-stone under-rendering","fix":"every side stone individually faceted, real light behaviour, exact count/size/spacing","refs":["docs/03 B"]},
+    {"id":"wrong-prong-count","problem":"LR-0141 rendered 8-prong crown vs source 4 pointed claws","root_cause":"AI redesigned the head","fix":"lock EXACT prong count/shape/position from source in the prompt; treat any construction change as failure","refs":["docs/02 P1","docs/03 A"]},
+    {"id":"laptop-lifestyle","problem":"lifestyle shot placed hand on a laptop/desk","root_cause":"wrong reference/theme","fix":"cozy warm US-home only; forbid laptop/desk/office","refs":["docs/03 F"]},
+    {"id":"warm-cloth","problem":"cloth drifts cream/ivory/warm","root_cause":"warm lighting/white balance","fix":"neutral pure white; fix locally with whiten_cloth.py (0 credits), never regenerate for color","refs":["docs/11"]},
+    {"id":"wrong-source-file","problem":"used a stray/mislabeled source image (e.g. LR-0167 'Copy of 7/4')","root_cause":"folder had strays from another ring","fix":"verify + use the correct source file; ignore strays","refs":["docs/01","LUCENT_MASTER §0"]},
+    {"id":"model-res-coercion","problem":"generation ran 1k / flash instead of 2K","root_cause":"defaults; params echo","fix":"always set params.model=nano_banana_2 AND params.resolution=2k; server may label edit path 'nano_banana_flash' (fine)","refs":["docs/10"]},
+    {"id":"media-id-expiry","problem":"generate rejects a media_id ('Media input not found' / truncated id)","root_cause":"media_ids are session-ephemeral","fix":"re-import from the durable Drive file IDs in docs/06_CACHE.md; never pass truncated ids or https URLs","refs":["docs/06"]},
+    {"id":"cdn-download-blocked","problem":"cannot download Higgsfield render to composite the logo","root_cause":"egress proxy 403 on CDN host","fix":"composite runs where the render is downloadable (user side); do not claim completion if blocked; never ship raw approximated logo","refs":["docs/04 §6-7"]},
+    {"id":"physics-floating","problem":"ring floats / impossible balance / cloth penetration","root_cause":"no physical grounding","fix":"real contact points, believable supporting fold, correct contact shadows; regenerate impossible poses","refs":["docs/12 B"]}
+  ]
+}

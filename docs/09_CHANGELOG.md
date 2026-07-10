@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.0 — 2026-07-10 (safe low-token runtime)
+- **Modified/added:** prompts/07_PROMPTS.md (RUNTIME RULES compact authoritative section), config/QUALITY_MEMORY.json (new, 12 verified fixes), config/project_manifest.json (runtime_files + runtime_pointers), config/VERSION.json.
+- **Summary:** Enabled low-token loading (manifest + 07_PROMPTS + QUALITY_MEMORY). All active production rules + pointers + verified error fixes compiled into the 3 runtime files. Coverage comparison test PASS (all rules/pointers/fixes present) — behavior unchanged.
+- **Reason:** User safe low-token loading policy.
+- **Impact:** Fewer files read per generation; zero change to jewelry/diamond/cloth/lighting/physics/camera/logo behavior. Long docs still authoritative for edits/recovery/audit.
+
 ## v1.2.1 — 2026-07-10 (logo: omit-over-approximate)
 - **Modified:** docs/04_LOGO_WORKFLOW.md (new §11 governing rule), config/VERSION.json, config/project_manifest.json.
 - **Summary:** Logo governing rule locked — AI must never approximate the logo; use the exact preserved asset or OMIT it. Missing logo acceptable; incorrect logo unacceptable. Studio default reverts to clean cloth + exact-asset composite (or absent). In-model logo-reference path allowed only when verified pixel-identical.
