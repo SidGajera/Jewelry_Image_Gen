@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.2.1 — 2026-07-10 (logo: omit-over-approximate)
+- **Modified:** docs/04_LOGO_WORKFLOW.md (new §11 governing rule), config/VERSION.json, config/project_manifest.json.
+- **Summary:** Logo governing rule locked — AI must never approximate the logo; use the exact preserved asset or OMIT it. Missing logo acceptable; incorrect logo unacceptable. Studio default reverts to clean cloth + exact-asset composite (or absent). In-model logo-reference path allowed only when verified pixel-identical.
+- **Reason:** User CRITICAL directive prioritizing brand-logo integrity over presence.
+- **Impact:** Prevents AI-drawn/garbled logos in deliverables. No change to jewelry/diamond fidelity, cloth, format, or token rules.
+
 ## v1.2.0 — 2026-07-10 (studio standards consolidation)
 - **Version:** 1.2.0  **Date:** 2026-07-10
 - **Modified files:** docs/03_IMAGE_GENERATION_RULES.md, docs/04_LOGO_WORKFLOW.md, prompts/07_PROMPTS.md, docs/06_CACHE.md, docs/12_STUDIO_ANGLES_STANDARD.md (renamed from 12_STUDIO_ANGLES_AND_PHYSICS.md), docs/10_CURRENT_STATE.md, config/project_manifest.json, config/VERSION.json.

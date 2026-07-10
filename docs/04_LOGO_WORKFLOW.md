@@ -69,3 +69,10 @@ The whole frame is one continuous physical scene: the logo exists as metallic go
 
 ## 10. LOGO-AS-GENERATION-REFERENCE (in-model path, when CDN composite unavailable)
 When the local composite cannot run (render not downloadable), pass the official logo as an extra generation reference so the model copies the exact artwork instead of re-inventing it. Studio medias order: [branded-cloth reference, SOURCE ring, OFFICIAL logo]. Prompt: keep cloth+ring; print the logo to MATCH the official reference exactly (metallic gold, all elements). Discard and re-fire any render whose logo drifts. Official logo Higgsfield import is session-ephemeral — re-import from Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH` each session.
+
+## 11. GOVERNING RULE — OMIT OVER APPROXIMATE (user-locked 2026-07-10, supersedes §10 in-model path)
+The AI must NEVER recreate, redraw, infer or approximate the logo. Priority:
+1. If the exact preserved asset can be applied (local composite `print_logo_on_cloth.py`, or a render whose in-model logo is provably pixel-identical to `assets/logo/logo_official.png`), use it unchanged.
+2. If the exact asset cannot be applied, OMIT the logo entirely — generate on clean cloth.
+**A MISSING logo is ACCEPTABLE. An INCORRECT / AI-approximated logo is UNACCEPTABLE.** Under no circumstance may AI-generated text/branding replace the official logo.
+- Practical default here (CDN download blocked): studio shots are generated on CLEAN white cloth with NO logo; the exact logo is added by the local composite from the preserved asset, or left absent. The §10 "logo-as-generation-reference" path is allowed ONLY when the rendered logo is verified pixel-identical; if it drifts (gray/wrong font/missing elements), discard and fall back to clean cloth (omit) — never ship the approximation.
