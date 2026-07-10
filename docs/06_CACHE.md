@@ -63,3 +63,6 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 - Model: `nano_banana_2` · `resolution:"2k"` · `aspect_ratio:"1:1"` · `count:1`
 - medias order: `[ pose/studio reference , SOURCE ring ]`
 - Import URL form: `https://drive.google.com/uc?id=<FILE_ID>&export=download`
+
+## OFFICIAL LOGO — GENERATION REFERENCE (session-ephemeral)
+Import `assets/logo/logo_official.png` (Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) via `media_import_url` each session to get a media_id, then pass it as the 3rd studio reference so the printed logo matches the official artwork exactly. media_ids expire across sessions — re-import when needed.
