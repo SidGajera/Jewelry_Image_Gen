@@ -2,6 +2,14 @@
 
 You are a new Claude session bootstrapping the **Lucent Carat Lab** catalog image-generation automation. This repository is the **single source of truth**. Follow this file first, then read the rest in the exact order below.
 
+## 0. VERSIONING & BOOTSTRAP (do this before anything else)
+Every new Claude project MUST:
+1. **Read `config/VERSION.json` first** — it declares the current version, latest commit hash/date, branch, entry file, and `minimum_required_files`. (Git tags are NOT the recovery method — this environment cannot push tags; the repo is self-describing instead.)
+2. **Verify the required files exist** — every path in `config/VERSION.json → minimum_required_files` and in `config/project_manifest.json → required_files/required_assets`. If any are missing, STOP and tell the user; do not proceed with a broken checkout.
+3. **Read the files in the documented order** (section 1 below).
+4. **Treat the repository as the single source of truth** — all rules/workflow come from these files.
+5. **Never depend on previous conversation history** — assume none exists; everything needed is in the repo.
+
 ## 1. READ THESE FILES IN THIS EXACT ORDER
 1. `CLAUDE_SETUP.md` (this file)
 2. `docs/01_MASTER_SPECIFICATION.md`

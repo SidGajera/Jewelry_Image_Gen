@@ -1,5 +1,5 @@
 {
-  "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
+  "project_name": "Lucent Carat Lab \u2014 Claude Catalog Image Generation Automation",
   "current_version": "1.1.0",
   "latest_stable_commit": "aca56c9fc2e6c41a0a1bc51df47b9a6994b2121d",
   "stable_tag": "claude-automation-stable-v1",
@@ -36,6 +36,7 @@
     "docs/10_CURRENT_STATE.md",
     "docs/11_BACKGROUND_STANDARD.md",
     "prompts/07_PROMPTS.md",
+    "config/VERSION.json",
     "config/project_manifest.json"
   ],
   "required_assets": {
@@ -71,8 +72,15 @@
     "aspect_ratio": "1:1",
     "count": 1,
     "credits_per_image": 2,
-    "medias_order": ["reference", "source"],
-    "images_per_catalog": { "studio": 5, "lifestyle": 4, "closeup": 3 }
+    "medias_order": [
+      "reference",
+      "source"
+    ],
+    "images_per_catalog": {
+      "studio": 5,
+      "lifestyle": 4,
+      "closeup": 3
+    }
   },
   "drive_folders": {
     "lucent_parent": "17fxsv1hJXoDm0vRgDOAm_YfNgG1xnLKv",
@@ -90,6 +98,14 @@
     "verification": "one verification image, then approved batch without repeated permission",
     "execution": "silent, low-token, reuse cache, batch, no preview tools"
   },
-  "last_skus": ["LR-0156", "LR-0136", "LR-0137"],
-  "date": "2026-07-10"
+  "last_skus": [
+    "LR-0156",
+    "LR-0136",
+    "LR-0137"
+  ],
+  "date": "2026-07-10",
+  "version_file": "config/VERSION.json",
+  "repository_name": "Jewelery-Website",
+  "repository_url": "https://github.com/SidGajera/Jewelery-Website",
+  "branch": "main"
 }
