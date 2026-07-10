@@ -2,7 +2,7 @@
 
 - **Version:** 1.1.0 — "Stable Milestone: Portable Export + Printed-Logo Policy"
 - **Date:** 2026-07-10
-- **Commit:** `00fbe1f017f5b9f00d8d0001d74198d7e6c50c1a` (docs export finalized; VERSION bump commit follows)
+- **Commit:** `ec4c8658782d0789fad0d8df60e50313f5336a9f` (v1.1.0 docs on top of website base 97a701d)
 - **Repo:** https://github.com/SidGajera/Claude_Lucent_Image_Gen (private, branch `main`)
 
 ## Major improvements in 1.1.0
@@ -15,4 +15,4 @@
 
 ## Version history
 - **1.1.0** (2026-07-10) — this milestone.
-- **1.0.0** — initial repo checkpoint; `LUCENT_MASTER.md` + `whiten_cloth.py`; commit `9324d96` (initial), logo asset added `08eb177`.
+- **1.0.0** — initial repo checkpoint; `LUCENT_MASTER.md` + `whiten_cloth.py`; website base initial commit `97a701d`.
