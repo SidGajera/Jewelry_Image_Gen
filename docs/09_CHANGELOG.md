@@ -10,7 +10,7 @@
 - **Token-optimization rules (10)** locked as highest-priority efficiency layer; cache of Drive IDs documented.
 - **Full portable documentation exported** to `docs/` + `NEW_PROJECT.md`, `RECOVERY.md`, `VERSION.md`, `README.md`.
 - **Catalogs generated this session:** LR-0156 (round solitaire, bead-set shoulders), LR-0136 (oval + green emeralds), LR-0137 (oval + tapered baguettes).
-- **Repo created & pushed:** `SidGajera/Jewelery-Website` (private, branch `main`).
+- **Repo created & pushed:** `SidGajera/Claude_Lucent_Image_Gen` (private, branch `main`).
 
 ## Earlier learnings folded in (2026-07-08/09/10)
 - **Diamond doubling fix:** enforce single real facet pattern; no CGI kaleidoscope. Benchmark = LR-0156 studio shot.

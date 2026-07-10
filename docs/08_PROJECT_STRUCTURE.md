@@ -1,6 +1,6 @@
 # 08 — PROJECT STRUCTURE
 
-## REPOSITORY (github.com/SidGajera/Jewelery-Website — portable template)
+## REPOSITORY (github.com/SidGajera/Claude_Lucent_Image_Gen — portable template)
 ```
 /
 ├── CLAUDE_SETUP.md               # SINGLE ENTRY POINT — a new Claude session reads this first
@@ -56,7 +56,7 @@ Lucent (parent)
 ## EXTERNAL SERVICES
 - **Higgsfield MCP** — image generation (`generate_image`, `media_import_url`, `balance`, `transactions`). Model `nano_banana_2`, 2 credits / 2K image.
 - **Google Drive MCP** — `search_files`, `download_file_content`, `read_file_content`, `create_file` (READ/SEARCH/CREATE only; cannot edit/delete).
-- **GitHub MCP / git** — repo `SidGajera/Jewelery-Website` (private).
+- **GitHub MCP / git** — repo `SidGajera/Claude_Lucent_Image_Gen` (private).
 
 ## SESSION-EPHEMERAL (not durable)
 - Higgsfield `media_id`s (re-import from Drive IDs when expired).
