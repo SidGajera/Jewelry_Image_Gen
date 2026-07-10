@@ -32,7 +32,7 @@ As of 2026-07-10 (v1.1.0). This is precisely what happens for a new SKU today.
 - `media_id`s expire across sessions → re-import from Drive IDs.
 
 ## PROGRESS
-- Repo `SidGajera/Jewelery-Website` live (private, `main`), documentation exported.
+- Repo `SidGajera/Claude_Lucent_Image_Gen` live (private, `main`), documentation exported.
 - Latest SKUs: LR-0156, LR-0136, LR-0137. (Full history in `LUCENT_MASTER.md`.)
 
 ## OPEN / NEXT

@@ -6,7 +6,7 @@
 | **Latest Commit** | `1928b89cbeac792b67f19e8f63208810c91930b4` (`main`, 2026-07-10T10:06:07+00:00) |
 | **Setup File** | [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) — single entry point |
 | **Recovery File** | [`RECOVERY.md`](RECOVERY.md) · machine-readable: [`config/VERSION.json`](config/VERSION.json) |
-| **Repository** | [SidGajera/Jewelery-Website](https://github.com/SidGajera/Jewelery-Website) |
+| **Repository** | [SidGajera/Claude_Lucent_Image_Gen](https://github.com/SidGajera/Claude_Lucent_Image_Gen) |
 
 ### Repository Structure
 ```

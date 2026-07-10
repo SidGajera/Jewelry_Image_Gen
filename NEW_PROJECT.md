@@ -5,7 +5,7 @@ Follow these steps to recreate identical behavior, quality, workflow, and output
 ## STEP 0 — CONNECTORS / TOOLS REQUIRED
 - **Higgsfield MCP** (image generation): model `nano_banana_2`, 2 credits / 2K image. Needs `generate_image`, `media_import_url`, `balance`, `transactions`.
 - **Google Drive MCP** (READ/SEARCH/CREATE): `search_files`, `download_file_content`, `read_file_content`, `create_file`.
-- **GitHub MCP or git** with access to `SidGajera/Jewelery-Website`.
+- **GitHub MCP or git** with access to `SidGajera/Claude_Lucent_Image_Gen`.
 - Local Python 3 with `pillow` + `numpy` (for the 0-credit local scripts).
 - Operate ONLY as `lucentcaratlab@gmail.com`.
 

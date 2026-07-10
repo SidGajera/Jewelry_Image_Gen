@@ -3,7 +3,7 @@
 - **Version:** 1.1.0 — "Stable Milestone: Portable Export + Printed-Logo Policy"
 - **Date:** 2026-07-10
 - **Commit:** `aca56c9fc2e6c41a0a1bc51df47b9a6994b2121d` (portable template packaging)
-- **Repo:** https://github.com/SidGajera/Jewelery-Website (private, branch `main`)
+- **Repo:** https://github.com/SidGajera/Claude_Lucent_Image_Gen (private, branch `main`)
 
 ## Major improvements in 1.1.0
 - Logo policy finalized: **printed-on-cloth** compositing from a LOCKED asset (`assets/logo/logo_official.png`); AI never renders the logo. Added `scripts/print_logo_on_cloth.py` + `assets/logo/logo_official_transparent.png`.
