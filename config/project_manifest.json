@@ -16,7 +16,8 @@
     "docs/05_TOKEN_OPTIMIZATION.md",
     "docs/06_CACHE.md",
     "prompts/07_PROMPTS.md",
-    "docs/10_CURRENT_STATE.md"
+    "docs/10_CURRENT_STATE.md",
+    "docs/12_STUDIO_ANGLES_AND_PHYSICS.md"
   ],
   "required_files": [
     "CLAUDE_SETUP.md",
@@ -37,7 +38,8 @@
     "docs/11_BACKGROUND_STANDARD.md",
     "prompts/07_PROMPTS.md",
     "config/VERSION.json",
-    "config/project_manifest.json"
+    "config/project_manifest.json",
+    "docs/12_STUDIO_ANGLES_AND_PHYSICS.md"
   ],
   "required_assets": {
     "logo": [
