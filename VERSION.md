@@ -2,7 +2,7 @@
 
 - **Version:** 1.1.0 — "Stable Milestone: Portable Export + Printed-Logo Policy"
 - **Date:** 2026-07-10
-- **Commit:** `ec4c8658782d0789fad0d8df60e50313f5336a9f` (v1.1.0 docs on top of website base 97a701d)
+- **Commit:** `aca56c9fc2e6c41a0a1bc51df47b9a6994b2121d` (portable template packaging)
 - **Repo:** https://github.com/SidGajera/Claude_Lucent_Image_Gen (private, branch `main`)
 
 ## Major improvements in 1.1.0
