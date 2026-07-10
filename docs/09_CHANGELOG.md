@@ -1,5 +1,12 @@
 # 09 — CHANGELOG
 
+## v1.2.0 — 2026-07-10 (studio standards consolidation)
+- **Version:** 1.2.0  **Date:** 2026-07-10
+- **Modified files:** docs/03_IMAGE_GENERATION_RULES.md, docs/04_LOGO_WORKFLOW.md, prompts/07_PROMPTS.md, docs/06_CACHE.md, docs/12_STUDIO_ANGLES_STANDARD.md (renamed from 12_STUDIO_ANGLES_AND_PHYSICS.md), docs/10_CURRENT_STATE.md, config/project_manifest.json, config/VERSION.json.
+- **Summary:** Folded the recently locked standards into their owner files (no new duplicate docs): diamond realism, photography/reference consistency, natural per-shot variation (03); pixel-identical logo policy, logo-as-metallic-ink-into-cloth, logo-as-generation-reference (04); logo-preserving studio prompt v2 + logo-correction edit prompt (07); official-logo generation-reference cache note (06); renamed the studio-angles file to the policy-owned name (12).
+- **Reason:** User locked diamond-realism, reference-consistency, physical-scene, absolute-logo, and repository-maintenance policies; consolidate per file-ownership rules.
+- **Impact:** Studio images now generated with the printed logo preserved in-model (3-reference path) or corrected via the logo-edit prompt; local composite remains the pixel-perfect fallback when the render is downloadable. No change to jewelry-fidelity, cloth, format (1:1/2K), or token rules.
+
 ## v1.1.0 — 2026-07-10 (STABLE MILESTONE: portable export + printed-logo policy)
 - **Logo policy finalized → PRINTED-ON-CLOTH.** The logo must always appear, composited from the locked asset to look physically printed on the fabric (follows folds/perspective/lighting, partial crop/occlusion OK, off-center). Supersedes the interim "generate clean cloth, no logo at all" idea — the logo is NOT removed, it is composited.
 - **Locked brand logo asset added** (`assets/logo/logo_official.png`, exact user upload, 1,079,081 bytes; Drive id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) + transparent derivative (`assets/logo/logo_official_transparent.png`, background-keyed, ink pixels preserved).

@@ -38,3 +38,9 @@ As of 2026-07-10 (v1.1.0). This is precisely what happens for a new SKU today.
 ## OPEN / NEXT
 - Continue new SKUs on request ("go for 0XXX folder").
 - For studio shots, apply the printed-logo composite locally after download (the 5 studio shots of LR-0137 were generated logo-free and await the local logo print).
+
+
+## v1.2.0 UPDATE (2026-07-10)
+- Studio logo path in practice: because Claude cannot download Higgsfield CDN renders here, studio shots are generated with the branded reference's printed logo PRESERVED in-model, optionally passing `assets/logo/logo_official.png` as a 3rd reference for pixel-exact match; drifted logos are fixed with the logo-correction edit prompt (prompts/07). The local `print_logo_on_cloth.py` composite stays the pixel-perfect route wherever the render is downloadable.
+- Locked this cycle: diamond realism, photography/reference consistency (fixed camera height/distance/lens/exposure/WB), plain-or-folded cloth, natural per-shot variation, pixel-identical logo, physical-scene consistency, repository-maintenance/file-ownership.
+- LR-0137 office set (5 angles) generated with logo preserved on cloth.

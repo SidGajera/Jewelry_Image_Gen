@@ -56,3 +56,15 @@ Complete rules for every generated image.
 
 ## K. HANDS (lifestyle)
 - Exactly five natural fingers, natural skin tone/texture, neutral manicure. No extra/missing/warped fingers.
+
+## L. DIAMOND REALISM (locked 2026-07-10)
+Diamonds must look like a real professionally photographed natural gemstone under luxury studio light — bright, crisp, clean, transparent, highly reflective, naturally brilliant, but NEVER artificially white.
+- FORBIDDEN: overexposed/pure-white "glowing" stones, artificial whitening, burnt/clipped highlights, flat white reflections, plastic/milky/cloudy look, AI glow, unrealistically perfect reflection symmetry, fake sparkle, CGI lighting, exaggerated fire/rainbow, excessive contrast, artificial sharpening.
+- REQUIRED: natural brilliance, realistic scintillation, natural fire, realistic contrast, visible facet structure, correct internal reflections, accurate light return, natural transparency, proper depth, realistic crown/pavilion reflections. Highlights controlled — no part of the stone becomes a solid white area; the facet pattern stays clearly visible.
+- Use the reference's existing bright studio light; do NOT increase brightness/sparkle/whiteness. Beauty comes from correct optics, not enhancement.
+
+## M. PHOTOGRAPHY / REFERENCE CONSISTENCY (locked 2026-07-10)
+Every image matches the approved master reference: identical camera height, camera distance (framing/crop), lens perspective, field of view, image scale, lighting intensity, bright exposure, white balance, lighting direction, soft-shadow quality, and locked cloth. The existing lighting is correct — do NOT brighten/darken/warm/cool. Jewelry appears at a consistent size across the whole catalog. No zoom in/out; no significant camera height/distance change.
+
+## N. NATURAL VARIATION (locked 2026-07-10)
+Do not repeat the same composition. Keeping camera height + distance fixed, naturally vary only what a real photographer changes between shots: ring rotation/orientation/placement, camera left/right position, yaw around the piece (slight pitch when needed), cloth draping/folds (plain OR folded — whichever looks natural, don't force folds), logo visibility, and composition. Each image = another photograph from the same shoot; unique yet fully consistent.

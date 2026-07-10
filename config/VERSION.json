@@ -1,6 +1,6 @@
 {
   "project_name": "Lucent Carat Lab \u2014 Claude Catalog Image Generation Automation",
-  "current_version": "1.1.0",
+  "current_version": "1.2.0",
   "latest_commit_hash": "fd9643f6b29ca5e437b54faadc458789ca533a97",
   "latest_commit_date": "2026-07-10T10:18:39+00:00",
   "repository_name": "Claude_Lucent_Image_Gen",
@@ -27,7 +27,7 @@
     "assets/logo/logo_official.png",
     "assets/logo/logo_official_transparent.png",
     "assets/background/sample_studio_background_with_logo.png",
-    "docs/12_STUDIO_ANGLES_AND_PHYSICS.md"
+    "docs/12_STUDIO_ANGLES_STANDARD.md"
   ],
   "backup_created_at": "2026-07-10T10:18:39+00:00",
   "backup_type": "Full Portable Backup",

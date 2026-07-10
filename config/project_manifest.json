@@ -1,6 +1,6 @@
 {
   "project_name": "Lucent Carat Lab \u2014 Claude Catalog Image Generation Automation",
-  "current_version": "1.1.0",
+  "current_version": "1.2.0",
   "latest_stable_commit": "fd9643f6b29ca5e437b54faadc458789ca533a97",
   "stable_tag": "claude-automation-stable-v1",
   "entry_file": "CLAUDE_SETUP.md",
@@ -17,7 +17,7 @@
     "docs/06_CACHE.md",
     "prompts/07_PROMPTS.md",
     "docs/10_CURRENT_STATE.md",
-    "docs/12_STUDIO_ANGLES_AND_PHYSICS.md"
+    "docs/12_STUDIO_ANGLES_STANDARD.md"
   ],
   "required_files": [
     "CLAUDE_SETUP.md",
@@ -39,7 +39,7 @@
     "prompts/07_PROMPTS.md",
     "config/VERSION.json",
     "config/project_manifest.json",
-    "docs/12_STUDIO_ANGLES_AND_PHYSICS.md"
+    "docs/12_STUDIO_ANGLES_STANDARD.md"
   ],
   "required_assets": {
     "logo": [
