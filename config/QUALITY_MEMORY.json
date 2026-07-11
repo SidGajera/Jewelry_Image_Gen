@@ -177,6 +177,16 @@
       "refs": [
         "docs/03 A"
       ]
+    },
+    {
+      "id": "gem-geometry-lock",
+      "problem": "gemstone proportions/outline/table/depth change between angles; AI reconstructs a different-looking stone per shot",
+      "root_cause": "model re-estimates the gem geometry instead of reusing the exact stone",
+      "fix": "gem = exact physical stone; preserve identical across ALL angles: shape, outline, length-to-width ratio, table size, crown height, pavilion depth, girdle thickness, culet position, symmetry, profile, silhouette, apparent size, orientation, optical proportions. Rotating the camera reveals the same stone from a new view (only facet light/brilliance changes per real optics); never modify proportions or create a new gem.",
+      "refs": [
+        "docs/03 A",
+        "docs/03 L"
+      ]
     }
   ]
 }

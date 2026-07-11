@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.14 — 2026-07-11 (gem geometry lock)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A GEM GEOMETRY LOCK), prompts/07_PROMPTS.md (gem-geometry runtime bullet), config/QUALITY_MEMORY.json (gem-geometry-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked the GEM GEOMETRY LOCK: the gemstone is the exact physical stone (never estimate/reconstruct/reinterpret/recreate). Preserve identical across every camera angle: shape, outline, length-to-width ratio, table size, crown height, pavilion depth, girdle thickness, culet position, symmetry, profile, silhouette, apparent size, orientation, optical proportions. Rotating the camera reveals the same stone from a new view (only facet light/brilliance changes per real optics); proportions never change.
+- **Reason:** User GEM GEOMETRY LOCK directive (absolute priority).
+- **Impact:** Extends P1 geometry lock to the gemstone itself for cross-angle consistency. No change to format/camera/color/token rules.
+
 ## v1.3.13 — 2026-07-11 (same-physical-ring mental model)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A mental model), prompts/07_PROMPTS.md (mental-model note), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked the "same physical ring moved to another photoshoot, never a new ring" mental model onto the Product Geometry Lock: only photography changes; the ring is the identical object in every studio AND lifestyle image. If two catalog shots could be two different rings (e.g. full symmetric halo vs open/asymmetric bypass halo), the jewelry drifted -> regenerate all shots to the single source geometry.
