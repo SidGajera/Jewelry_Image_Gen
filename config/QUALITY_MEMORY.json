@@ -1,23 +1,182 @@
 {
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
-    {"id":"logo-garble","problem":"AI renders a fake/garbled logo (e.g. 'ELLYREID', gray/wrong font, missing elements)","root_cause":"nano_banana cannot reproduce fine logo typography","fix":"NEVER let AI render/approximate the logo. Use exact asset (local composite) or OMIT. Missing OK; incorrect NOT OK.","refs":["docs/04 §11"]},
-    {"id":"ai-generated-logo-or-cloth","problem":"logo drawn/altered by AI (inaccurate vs preserved asset); or cloth freely invented by AI","root_cause":"model given freedom to generate brand surfaces","fix":"NEVER AI-generate the logo OR the background cloth. Logo = exact preserved assets/logo/logo_official.png via local composite, or omit. Cloth = approved premium white cotton reproduced faithfully, never a new AI fabric.","refs":["docs/04 §12","docs/11"]},
-    {"id":"logo-not-merging","problem":"logo looks pasted/floating/flat on top of the cloth, not printed in","root_cause":"overlay instead of print-into-fabric blend","fix":"logo must read as metallic ink printed INTO the cloth (multiply-blend, texture shows through, follows weave/folds/light/shadow); a pasted look = FAIL, re-composite tuning --displace/--opacity/--scale/--pos","refs":["docs/04 §12","docs/04 §9"]},
-    {"id":"yellowish-simple-cloth","problem":"cloth rendered yellowish/warm, or plain/flat/cheap and simple","root_cause":"warm white balance / AI substituting a cheaper flat fabric","fix":"cloth must be premium white COTTON with natural soft draping and fine grain, pure neutral white; never yellow/warm (fix with whiten_cloth.py, 0 credits), never flat/simple/blank","refs":["docs/11"]},
-    {"id":"color-fidelity","problem":"AI applies color grading / warm-tone or creative white balance; image drifts to a pink/yellow/red/cream/beige/warm (or cool) cast vs the neutral source","root_cause":"model auto-grades / shifts white balance for 'style'","fix":"source is the master for ALL colors; preserve palette + neutral WB exactly, no grading/LUT/warm enhancement; no tint or warm/cool cast; keep lighting neutral (no added warmth/saturation/contrast/HDR); metal+diamonds keep natural color; cloth stays source neutral white. FINAL VALIDATION each image: colors/WB match source, no tint, neutral light, premium neutral-white cloth, natural jewelry → fix locally (whiten_cloth.py, 0 credits) or regenerate before returning. Color fidelity > artistic styling.","refs":["docs/03 O","docs/11"]},
-    {"id":"logo-cloth-failure-policy","problem":"need a hard reject gate for logo/cloth defects + safe cross-device caching","root_cause":"defects slipped through without an explicit reject rule","fix":"REJECT/redo if: logo differs from preserved asset, logo looks AI-generated, logo not merged naturally, cloth material changes, cloth yellowish/non-white, or cloth flat/cheap/artificial/simple. Logo+cloth are preserved ASSETS (never AI-generated). Cache/reuse across devices+sessions byte-preserving only; verify against manifest locked_asset_checksums; never alter quality/fidelity.","refs":["docs/11","docs/04 §13"]},
-    {"id":"doubled-diamond","problem":"center stone shows doubled/mirrored ghost facet mesh (worst on large worn angles)","root_cause":"AI invents a kaleidoscope facet pattern","fix":"one real single-table brilliant facet pattern identical to source; no doubling/CGI symmetry","refs":["docs/03 B"]},
-    {"id":"artificial-white-diamond","problem":"overexposed/glowing pure-white diamond, blown highlights, plastic/milky","root_cause":"over-enhancement","fix":"natural brilliance only; visible facets; no artificial whitening/sparkle; no solid white areas","refs":["docs/03 L"]},
-    {"id":"diamond-optical-realism","problem":"diamond looks AI-enhanced/CGI/plastic/glass, milky/cloudy, bloomed, washed-out, over-sharpened, or fake-sparkly rather than professionally photographed","root_cause":"model stylizes/over-enhances the gem instead of matching real optics","fix":"match reference optical quality: crystal-clear water-like transparency, razor-sharp facet definition, excellent light return, high bright/dark facet contrast, natural white brilliance, small fire only where physically correct, accurate crown/table/pavilion/girdle geometry, crisp per-facet reflections. No milky/cloudy/washed-out/glow/bloom/fake-sparkle/overexposure/over-sharpen/plastic/glass/CGI. Reads as real VVS/IF macro studio photo; brilliance never boosted artificially.","refs":["docs/03 L"]},
-    {"id":"side-stone-blobs","problem":"pave/side stones become white dots/glass beads/blurry blobs","root_cause":"small-stone under-rendering","fix":"every side stone individually faceted, real light behaviour, exact count/size/spacing","refs":["docs/03 B"]},
-    {"id":"wrong-prong-count","problem":"LR-0141 rendered 8-prong crown vs source 4 pointed claws","root_cause":"AI redesigned the head","fix":"lock EXACT prong count/shape/position from source in the prompt; treat any construction change as failure","refs":["docs/02 P1","docs/03 A"]},
-    {"id":"laptop-lifestyle","problem":"lifestyle shot placed hand on a laptop/desk","root_cause":"wrong reference/theme","fix":"cozy warm US-home only; forbid laptop/desk/office","refs":["docs/03 F"]},
-    {"id":"warm-cloth","problem":"cloth drifts cream/ivory/warm","root_cause":"warm lighting/white balance","fix":"neutral pure white; fix locally with whiten_cloth.py (0 credits), never regenerate for color","refs":["docs/11"]},
-    {"id":"wrong-source-file","problem":"used a stray/mislabeled source image (e.g. LR-0167 'Copy of 7/4')","root_cause":"folder had strays from another ring","fix":"verify + use the correct source file; ignore strays","refs":["docs/01","LUCENT_MASTER §0"]},
-    {"id":"model-res-coercion","problem":"generation ran 1k / flash instead of 2K","root_cause":"defaults; params echo","fix":"always set params.model=nano_banana_2 AND params.resolution=2k; server may label edit path 'nano_banana_flash' (fine)","refs":["docs/10"]},
-    {"id":"media-id-expiry","problem":"generate rejects a media_id ('Media input not found' / truncated id)","root_cause":"media_ids are session-ephemeral","fix":"re-import from the durable Drive file IDs in docs/06_CACHE.md; never pass truncated ids or https URLs","refs":["docs/06"]},
-    {"id":"cdn-download-blocked","problem":"cannot download Higgsfield render to composite the logo","root_cause":"egress proxy 403 on CDN host","fix":"composite runs where the render is downloadable (user side); do not claim completion if blocked; never ship raw approximated logo","refs":["docs/04 §6-7"]},
-    {"id":"physics-floating","problem":"ring floats / impossible balance / cloth penetration","root_cause":"no physical grounding","fix":"real contact points, believable supporting fold, correct contact shadows; regenerate impossible poses","refs":["docs/12 B"]}
+    {
+      "id": "logo-garble",
+      "problem": "AI renders a fake/garbled logo (e.g. 'ELLYREID', gray/wrong font, missing elements)",
+      "root_cause": "nano_banana cannot reproduce fine logo typography",
+      "fix": "NEVER let AI render/approximate the logo. Use exact asset (local composite) or OMIT. Missing OK; incorrect NOT OK.",
+      "refs": [
+        "docs/04 §11"
+      ]
+    },
+    {
+      "id": "ai-generated-logo-or-cloth",
+      "problem": "logo drawn/altered by AI (inaccurate vs preserved asset); or cloth freely invented by AI",
+      "root_cause": "model given freedom to generate brand surfaces",
+      "fix": "NEVER AI-generate the logo OR the background cloth. Logo = exact preserved assets/logo/logo_official.png via local composite, or omit. Cloth = approved premium white cotton reproduced faithfully, never a new AI fabric.",
+      "refs": [
+        "docs/04 §12",
+        "docs/11"
+      ]
+    },
+    {
+      "id": "logo-not-merging",
+      "problem": "logo looks pasted/floating/flat on top of the cloth, not printed in",
+      "root_cause": "overlay instead of print-into-fabric blend",
+      "fix": "logo must read as metallic ink printed INTO the cloth (multiply-blend, texture shows through, follows weave/folds/light/shadow); a pasted look = FAIL, re-composite tuning --displace/--opacity/--scale/--pos",
+      "refs": [
+        "docs/04 §12",
+        "docs/04 §9"
+      ]
+    },
+    {
+      "id": "yellowish-simple-cloth",
+      "problem": "cloth rendered yellowish/warm, or plain/flat/cheap and simple",
+      "root_cause": "warm white balance / AI substituting a cheaper flat fabric",
+      "fix": "cloth must be premium white COTTON with natural soft draping and fine grain, pure neutral white; never yellow/warm (fix with whiten_cloth.py, 0 credits), never flat/simple/blank",
+      "refs": [
+        "docs/11"
+      ]
+    },
+    {
+      "id": "color-fidelity",
+      "problem": "AI applies color grading / warm-tone or creative white balance; image drifts to a pink/yellow/red/cream/beige/warm (or cool) cast vs the neutral source",
+      "root_cause": "model auto-grades / shifts white balance for 'style'",
+      "fix": "source is the master for ALL colors; preserve palette + neutral WB exactly, no grading/LUT/warm enhancement; no tint or warm/cool cast; keep lighting neutral (no added warmth/saturation/contrast/HDR); metal+diamonds keep natural color; cloth stays source neutral white. FINAL VALIDATION each image: colors/WB match source, no tint, neutral light, premium neutral-white cloth, natural jewelry → fix locally (whiten_cloth.py, 0 credits) or regenerate before returning. Color fidelity > artistic styling.",
+      "refs": [
+        "docs/03 O",
+        "docs/11"
+      ]
+    },
+    {
+      "id": "logo-cloth-failure-policy",
+      "problem": "need a hard reject gate for logo/cloth defects + safe cross-device caching",
+      "root_cause": "defects slipped through without an explicit reject rule",
+      "fix": "REJECT/redo if: logo differs from preserved asset, logo looks AI-generated, logo not merged naturally, cloth material changes, cloth yellowish/non-white, or cloth flat/cheap/artificial/simple. Logo+cloth are preserved ASSETS (never AI-generated). Cache/reuse across devices+sessions byte-preserving only; verify against manifest locked_asset_checksums; never alter quality/fidelity.",
+      "refs": [
+        "docs/11",
+        "docs/04 §13"
+      ]
+    },
+    {
+      "id": "doubled-diamond",
+      "problem": "center stone shows doubled/mirrored ghost facet mesh (worst on large worn angles)",
+      "root_cause": "AI invents a kaleidoscope facet pattern",
+      "fix": "one real single-table brilliant facet pattern identical to source; no doubling/CGI symmetry",
+      "refs": [
+        "docs/03 B"
+      ]
+    },
+    {
+      "id": "artificial-white-diamond",
+      "problem": "overexposed/glowing pure-white diamond, blown highlights, plastic/milky",
+      "root_cause": "over-enhancement",
+      "fix": "natural brilliance only; visible facets; no artificial whitening/sparkle; no solid white areas",
+      "refs": [
+        "docs/03 L"
+      ]
+    },
+    {
+      "id": "diamond-optical-realism",
+      "problem": "diamond looks AI-enhanced/CGI/plastic/glass, milky/cloudy, bloomed, washed-out, over-sharpened, or fake-sparkly rather than professionally photographed",
+      "root_cause": "model stylizes/over-enhances the gem instead of matching real optics",
+      "fix": "match reference optical quality: crystal-clear water-like transparency, razor-sharp facet definition, excellent light return, high bright/dark facet contrast, natural white brilliance, small fire only where physically correct, accurate crown/table/pavilion/girdle geometry, crisp per-facet reflections. No milky/cloudy/washed-out/glow/bloom/fake-sparkle/overexposure/over-sharpen/plastic/glass/CGI. Reads as real VVS/IF macro studio photo; brilliance never boosted artificially.",
+      "refs": [
+        "docs/03 L"
+      ]
+    },
+    {
+      "id": "side-stone-blobs",
+      "problem": "pave/side stones become white dots/glass beads/blurry blobs",
+      "root_cause": "small-stone under-rendering",
+      "fix": "every side stone individually faceted, real light behaviour, exact count/size/spacing",
+      "refs": [
+        "docs/03 B"
+      ]
+    },
+    {
+      "id": "wrong-prong-count",
+      "problem": "LR-0141 rendered 8-prong crown vs source 4 pointed claws",
+      "root_cause": "AI redesigned the head",
+      "fix": "lock EXACT prong count/shape/position from source in the prompt; treat any construction change as failure",
+      "refs": [
+        "docs/02 P1",
+        "docs/03 A"
+      ]
+    },
+    {
+      "id": "laptop-lifestyle",
+      "problem": "lifestyle shot placed hand on a laptop/desk",
+      "root_cause": "wrong reference/theme",
+      "fix": "cozy warm US-home only; forbid laptop/desk/office",
+      "refs": [
+        "docs/03 F"
+      ]
+    },
+    {
+      "id": "warm-cloth",
+      "problem": "cloth drifts cream/ivory/warm",
+      "root_cause": "warm lighting/white balance",
+      "fix": "neutral pure white; fix locally with whiten_cloth.py (0 credits), never regenerate for color",
+      "refs": [
+        "docs/11"
+      ]
+    },
+    {
+      "id": "wrong-source-file",
+      "problem": "used a stray/mislabeled source image (e.g. LR-0167 'Copy of 7/4')",
+      "root_cause": "folder had strays from another ring",
+      "fix": "verify + use the correct source file; ignore strays",
+      "refs": [
+        "docs/01",
+        "LUCENT_MASTER §0"
+      ]
+    },
+    {
+      "id": "model-res-coercion",
+      "problem": "generation ran 1k / flash instead of 2K",
+      "root_cause": "defaults; params echo",
+      "fix": "always set params.model=nano_banana_2 AND params.resolution=2k; server may label edit path 'nano_banana_flash' (fine)",
+      "refs": [
+        "docs/10"
+      ]
+    },
+    {
+      "id": "media-id-expiry",
+      "problem": "generate rejects a media_id ('Media input not found' / truncated id)",
+      "root_cause": "media_ids are session-ephemeral",
+      "fix": "re-import from the durable Drive file IDs in docs/06_CACHE.md; never pass truncated ids or https URLs",
+      "refs": [
+        "docs/06"
+      ]
+    },
+    {
+      "id": "cdn-download-blocked",
+      "problem": "cannot download Higgsfield render to composite the logo",
+      "root_cause": "egress proxy 403 on CDN host",
+      "fix": "composite runs where the render is downloadable (user side); do not claim completion if blocked; never ship raw approximated logo",
+      "refs": [
+        "docs/04 §6-7"
+      ]
+    },
+    {
+      "id": "physics-floating",
+      "problem": "ring floats / impossible balance / cloth penetration",
+      "root_cause": "no physical grounding",
+      "fix": "real contact points, believable supporting fold, correct contact shadows; regenerate impossible poses",
+      "refs": [
+        "docs/12 B"
+      ]
+    },
+    {
+      "id": "product-geometry-lock",
+      "problem": "AI redesigns/beautifies/simplifies jewelry geometry vs the reference (wrong halo diameter, prong count, split-shank/crossover geometry, component spacing)",
+      "root_cause": "model treats the reference as inspiration, not the exact product",
+      "fix": "reference = MASTER PRODUCT, exact reproduction. Preserve every component AND the relative distances between them (silhouette, proportions, head/gallery/basket, prongs count/position/shape/thickness, center+side stone size/count/spacing, halo diameter+geometry, crossover, split-shank, band width/thickness/curvature, shoulder, setting, metal coverage, placement). Every visible pixel = ground truth. Only change camera/environment/lighting/background/composition. Any component differs -> regenerate.",
+      "refs": [
+        "docs/03 A"
+      ]
+    }
   ]
 }
