@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.9 — 2026-07-11 (execution-optimization details locked)
+- **Modified:** docs/05_TOKEN_OPTIMIZATION.md (EXECUTION-OPTIMIZATION DETAILS), prompts/07_PROMPTS.md (execution-opt runtime bullet), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked the detailed token-optimization execution policy (identical output; execution-only): checksum/version-aware loading (reload only modified files); base64 source images never enter context/cache (download→temp file→Read→drop→use temp file only); analyze each SKU source ONCE and cache a lightweight structured design profile in docs/06_CACHE.md for reuse; import media once/session and reuse media_id; reuse cached studio cloth/camera/lighting/WB/logo/runtime-prompt/params/media_ids/design-profile; load only task-relevant QUALITY_MEMORY fixes; one canonical base prompt + minimum delta; verification split (global assets once/session, per-image only jewelry/physics/angle/diamond/cloth); internal reasoning, return only required output; always pick the lowest-token path that yields identical output.
+- **Reason:** User TOKEN OPTIMIZATION POLICY (mandatory).
+- **Impact:** Lower token consumption; ZERO change to image quality/design/logo/cloth/realism or any locked rule.
+
 ## v1.3.8 — 2026-07-11 (runtime token-optimization policy locked)
 - **Modified:** docs/05_TOKEN_OPTIMIZATION.md (new RUNTIME POLICY), prompts/07_PROMPTS.md (runtime bullet), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked aggressive runtime token optimization with zero output change: load only required files; never reload unchanged files (reuse session memory); reload only modified files; reuse cached studio assets (cloth, preserved logo, lighting, camera, white balance); do not summarize loaded files or explain reasoning; think internally and return only the final result. Guarded by output-quality-is-#1 (skip any optimization that could alter output).
