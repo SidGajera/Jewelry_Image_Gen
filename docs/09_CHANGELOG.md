@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.2 — 2026-07-11 (safe low-token loading finalized + README rewrite)
+- **Modified:** README.md (full rewrite), config/VERSION.json, config/project_manifest.json, docs/10_CURRENT_STATE.md.
+- **Summary:** Finalized the safe low-token loading policy (startup = CLAUDE_SETUP.md only; lazy-load one file per task; normal generation = runtime trio manifest+07_PROMPTS+QUALITY_MEMORY) and rewrote README to document it: project purpose, current workflow, Higgsfield+Claude MCP primary / Python zero-credit fallback, startup entry file, low-token loading policy, output-compatibility guarantee, required files/assets, new-project setup, git sync, recovery, current stable version + latest commit, "Git is the source of truth." Added config/QUALITY_MEMORY.json to VERSION.minimum_required_files and manifest.required_files.
+- **Reason:** User task — implement safe low-token loading without changing output behavior + update README.
+- **Impact:** Documentation/metadata only. Zero change to generation quality or any jewelry/diamond/cloth/lighting/physics/camera/logo/format/token rule. Loading policy was already active (v1.3.0/v1.3.1); this release documents and locks it.
+
 ## v1.3.1 — 2026-07-11 (context lazy-loading policy)
 - **Modified:** CLAUDE_SETUP.md (startup loads only this file; §1 replaced with lazy-loading map), docs/05_TOKEN_OPTIMIZATION.md (policy note), config/VERSION.json, config/project_manifest.json.
 - **Summary:** Startup context reduced to CLAUDE_SETUP.md only; all other files lazy-loaded per task. Normal generation loads the runtime trio. Hard rules/env/loop kept inline in CLAUDE_SETUP so quality is unaffected.
