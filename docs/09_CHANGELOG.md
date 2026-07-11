@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.10 — 2026-07-11 (diamond optical-realism spec locked)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L OPTICAL SPEC), prompts/07_PROMPTS.md (DIAMONDS runtime bullet), config/QUALITY_MEMORY.json (diamond-optical-realism fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked a detailed diamond optical-realism standard: match the reference's optics as a professionally macro-photographed premium lab-grown VVS/IF diamond (not AI-enhanced) — crystal-clear water-like transparency, razor-sharp facet definition, excellent light return, high bright/dark facet contrast, natural white brilliance, small fire only where physically correct, accurate crown/table/pavilion/girdle geometry, crisp per-facet reflections; forbid milky/cloudy/washed-out/glow/bloom/fake-sparkle/overexposure/over-sharpening/plastic/glass/CGI; brilliance never boosted artificially.
+- **Reason:** User DIAMOND REALISM directive (mandatory).
+- **Impact:** Strengthens P2 diamond realism. No change to jewelry geometry/format/camera/color/token rules.
+
 ## v1.3.9 — 2026-07-11 (execution-optimization details locked)
 - **Modified:** docs/05_TOKEN_OPTIMIZATION.md (EXECUTION-OPTIMIZATION DETAILS), prompts/07_PROMPTS.md (execution-opt runtime bullet), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked the detailed token-optimization execution policy (identical output; execution-only): checksum/version-aware loading (reload only modified files); base64 source images never enter context/cache (download→temp file→Read→drop→use temp file only); analyze each SKU source ONCE and cache a lightweight structured design profile in docs/06_CACHE.md for reuse; import media once/session and reuse media_id; reuse cached studio cloth/camera/lighting/WB/logo/runtime-prompt/params/media_ids/design-profile; load only task-relevant QUALITY_MEMORY fixes; one canonical base prompt + minimum delta; verification split (global assets once/session, per-image only jewelry/physics/angle/diamond/cloth); internal reasoning, return only required output; always pick the lowest-token path that yields identical output.
