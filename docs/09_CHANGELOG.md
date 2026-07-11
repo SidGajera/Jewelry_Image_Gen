@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.13 — 2026-07-11 (same-physical-ring mental model)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A mental model), prompts/07_PROMPTS.md (mental-model note), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked the "same physical ring moved to another photoshoot, never a new ring" mental model onto the Product Geometry Lock: only photography changes; the ring is the identical object in every studio AND lifestyle image. If two catalog shots could be two different rings (e.g. full symmetric halo vs open/asymmetric bypass halo), the jewelry drifted -> regenerate all shots to the single source geometry.
+- **Reason:** User reinforcement of PRODUCT GEOMETRY LOCK with the same-physical-ring framing.
+- **Impact:** Strengthens P1 cross-shot consistency (studio vs lifestyle must match). No change to any other rule.
+
 ## v1.3.12 — 2026-07-11 (product geometry lock)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A PRODUCT GEOMETRY LOCK), prompts/07_PROMPTS.md (geometry-lock runtime bullet), config/QUALITY_MEMORY.json (product-geometry-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked the PRODUCT GEOMETRY LOCK standard: the reference image is the exact master product (not inspiration/style). Preserve every listed geometry component AND the relative distances between them (silhouette, proportions, head/gallery/basket, prongs count/position/shape/thickness, center+side stone size/count/spacing, halo diameter+geometry, crossover, split-shank, band width/thickness/curvature, shoulder, setting, metal coverage, placement). Every visible pixel of the reference jewelry = ground truth; only camera/environment/lighting/background/composition may change; any component differing triggers regeneration.
