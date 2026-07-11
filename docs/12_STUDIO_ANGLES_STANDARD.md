@@ -1,6 +1,15 @@
 # 12 — STUDIO ANGLES + PHYSICAL REALISM (MANDATORY)
 
-Two locked standards (user-locked 2026-07-10). Apply to EVERY catalog's studio set. These add to — never override — P0–P8 in `docs/02_SYSTEM_RULES.md`.
+Locked standards (user-locked 2026-07-10/11). Apply to EVERY catalog's studio set. These add to — never override — P0–P8 in `docs/02_SYSTEM_RULES.md`.
+
+## 0. STUDIO STARTING-POINT SEQUENCE (ABSOLUTE PRIORITY — locked 2026-07-11)
+Every office/studio photoshoot MUST begin from the same approved studio setup, built in this exact order. This layered build order is the default starting scene for every studio image — the scene is prepared cloth→logo→jewelry, THEN photographed.
+1. **BACKGROUND first — approved premium white cotton cloth** (permanent studio asset; never replaced, never AI-generated as a different fabric). Plain / naturally folded / softly draped — whichever looks most natural. Identical material, texture, weave, softness, finish, neutral premium-white color. Never yellow/cream/beige/pink/red/gray/blue tint or any warm cast. (docs/11)
+2. **LOGO second — apply the preserved official logo AFTER the cloth is placed.** Never AI-generate/redraw/recreate/approximate; always the preserved asset, composited to look permanently printed INTO the cloth before the jewelry was photographed — following texture/weave/folds/perspective/lighting/shadows. May be fully visible / partially cropped / partly hidden by folds; never a watermark/floating overlay/sticker/AI text/digital graphic. (docs/04)
+3. **JEWELRY third — place the ring only AFTER cloth + printed logo are correctly prepared.** The jewelry is the primary subject; cloth + logo are supporting branding. Ring 100% identical to source.
+4. **PHOTOGRAPH last — shoot the completed scene with the approved studio setup.** Same camera height, distance, lens perspective, bright neutral lighting, luxury studio quality. Vary ONLY ring orientation, camera viewing angle, composition, and natural cloth folds.
+
+**FINAL VALIDATION (every studio image):** ✓ approved premium white cloth used ✓ preserved official logo used ✓ logo naturally printed into cloth ✓ jewelry placed after background prep ✓ physics correct ✓ neutral white balance ✓ NO AI-generated logo ✓ NO AI-generated cloth. This sequence is mandatory for every office/studio photoshoot. (Practical pipeline: the Higgsfield render delivers the clean-cloth+ring intermediate; the preserved logo is composited locally per `docs/04` — the build ORDER and validation still govern the final deliverable.)
 
 ## A. STUDIO PHOTOSHOOT — THE 5 REQUIRED ANGLES
 Every SKU's 5 studio images must be exactly these angles, so a customer can inspect the piece from every important side. Same locked white cloth + printed logo + identical lighting/exposure/white-balance across all five.
