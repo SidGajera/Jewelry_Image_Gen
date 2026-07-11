@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.8 — 2026-07-11 (runtime token-optimization policy locked)
+- **Modified:** docs/05_TOKEN_OPTIMIZATION.md (new RUNTIME POLICY), prompts/07_PROMPTS.md (runtime bullet), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked aggressive runtime token optimization with zero output change: load only required files; never reload unchanged files (reuse session memory); reload only modified files; reuse cached studio assets (cloth, preserved logo, lighting, camera, white balance); do not summarize loaded files or explain reasoning; think internally and return only the final result. Guarded by output-quality-is-#1 (skip any optimization that could alter output).
+- **Reason:** User Runtime Policy directive.
+- **Impact:** Fewer tokens per session; zero change to image quality/behavior or any locked rule.
+
 ## v1.3.7 — 2026-07-11 (studio starting-point build sequence locked)
 - **Modified:** docs/12_STUDIO_ANGLES_STANDARD.md (new §0 STUDIO STARTING-POINT SEQUENCE), prompts/07_PROMPTS.md (runtime build-order bullet), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked the mandatory build order for every office/studio photoshoot: (1) approved premium white cotton cloth first → (2) preserved official logo printed INTO the cloth (never AI) → (3) place the jewelry only after cloth+logo are prepared → (4) photograph the completed scene with the fixed approved studio setup, varying only ring orientation/camera angle/composition/natural folds. Added the per-image FINAL VALIDATION gate (approved cloth, preserved logo, printed-in, jewelry-after-prep, physics, neutral WB, no AI logo, no AI cloth). Noted the practical pipeline (render = clean-cloth+ring intermediate; logo composited locally per docs/04) while the build order + validation still govern the deliverable.

@@ -39,5 +39,13 @@ Objective: minimize input + output tokens while producing IDENTICAL image qualit
 ## TRUE ZERO-TOKEN GENERATION (optional)
 Generation through chat has an unavoidable floor (~450 tokens/image echoed by the tool). The only 0-token path is to hand the user the ready-to-paste prompt pack + settings (model `nano_banana_2`, 2K, 1:1, which source + pose per shot) and have them run the 12 generations in the Higgsfield app directly.
 
+## RUNTIME POLICY (user-locked 2026-07-11)
+Aggressive token optimization with ZERO change to output quality or behavior.
+- **Load only required files.** Never reload a file that is unchanged; reuse it from session memory. Reload ONLY files modified since last read.
+- **Reuse cached studio assets** every shot: premium white cloth, preserved logo, lighting, camera, white balance (plus media_ids/presets/poses/verified sources). Never re-import/re-analyze unless the asset changed.
+- **Do not summarize loaded files** back to the user; **do not explain reasoning**; think internally.
+- **Return only the final result** (report count/IDs only — no narration, no re-printing prompts/URLs/schemas).
+- This is an efficiency layer only: if any optimization could change the output in ANY way, do NOT apply it (output quality is #1).
+
 ## CONTEXT-LOADING / LAZY-LOADING POLICY (locked 2026-07-10)
 Startup loads ONLY `CLAUDE_SETUP.md`. Never preload docs/prompts/cache/changelog/master-spec. Lazy-load exactly one relevant file per task (see the CLAUDE_SETUP §1 map); for normal generation load the runtime trio (`config/project_manifest.json` + `prompts/07_PROMPTS.md` + `config/QUALITY_MEMORY.json`). Load `docs/06_CACHE.md`/`QUALITY_MEMORY.json` only to prevent/learn failures, then unload. Load `docs/09_CHANGELOG.md` only for history/rollback/version-compare; `docs/01_MASTER_SPECIFICATION.md` only for architecture/global-standard changes. After extracting rules from a file, discard unused sections. Reduced context must never reduce output quality — load one more small file if needed, never the whole repo.
