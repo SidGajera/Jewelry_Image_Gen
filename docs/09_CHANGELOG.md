@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.4 — 2026-07-11 (locked logo+cloth assets: failure policy + cross-device caching)
+- **Modified:** docs/11_BACKGROUND_STANDARD.md (cloth-as-preserved-asset + FAILURE POLICY + caching), docs/04_LOGO_WORKFLOW.md (§13 failure policy & caching), prompts/07_PROMPTS.md (failure-policy runtime bullet), config/QUALITY_MEMORY.json (logo-cloth-failure-policy fix), config/project_manifest.json (cloth asset checksum + asset_caching), config/VERSION.json, README (version).
+- **Summary:** Formalized the user's LOCKED LOGO & CLOTH ASSETS spec: both logo and cloth are preserved ASSETS, never AI-generated; added an explicit reject-the-image FAILURE POLICY (logo differs/AI-looking/not-merged; cloth material-change/yellowish/flat-cheap); registered the cloth asset in locked_asset_checksums; added a byte-preserving cross-device/session caching rule that must never alter quality or fidelity.
+- **Reason:** User LOCKED LOGO & CLOTH ASSETS directive (asset-only, failure policy, caching).
+- **Impact:** Adds a hard quality gate + cache-integrity contract. No change to jewelry/diamond/format/camera/physics/token rules; no workflow restructuring.
+
 ## v1.3.3 — 2026-07-11 (logo + cloth integrity rules locked)
 - **Modified:** docs/04_LOGO_WORKFLOW.md (new §12), docs/11_BACKGROUND_STANDARD.md (never-AI-invent-cloth + premium cotton), prompts/07_PROMPTS.md (CLOTH + LOGO runtime bullets), config/QUALITY_MEMORY.json (3 new fixes), CLAUDE_SETUP.md (P3), config/project_manifest.json (workflow_behavior), config/VERSION.json.
 - **Summary:** Locked three reported quality failures as permanent rules: (1) NEVER AI-generate the logo OR the background cloth — logo = exact preserved asset via local composite or omit; cloth = approved premium white cotton reproduced faithfully, never a new AI fabric; (2) the logo must MERGE NATURALLY as ink printed into the cloth (multiply-blend, texture shows through, follows folds/light) — a pasted/floating look is a FAIL; (3) cloth must be premium white cotton with natural soft draping — never yellowish (fix with whiten_cloth.py) and never flat/simple/cheap.
