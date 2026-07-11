@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.6 — 2026-07-11 (official logo policy consolidated + scoped)
+- **Modified:** docs/04_LOGO_WORKFLOW.md (§2 exhaustive forbidden-AI verb list; scope+remedy note), docs/11_BACKGROUND_STANDARD.md (FAILURE POLICY remedy), prompts/07_PROMPTS.md (LOGO runtime scope+remedy), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Reinforced the OFFICIAL LOGO POLICY as permanent for EVERY office/studio photoshoot: exhaustive list of forbidden AI operations on the logo (generate/recreate/redraw/interpret/complete/repair/restyle/enhance/approximate/regenerate — none allowed); logo must be the preserved asset with only cloth-caused transformations (perspective/folds/curvature/lighting/shadows/crop/occlusion); cloth stays the approved premium neutral-white cotton (never AI-invented/tinted); explicit remedy — reject and automatically regenerate until satisfied, and NEVER return a studio image with an AI-generated logo.
+- **Reason:** User OFFICIAL LOGO POLICY (absolute priority). Mostly consolidates v1.3.2–v1.3.4 with added verb-list exhaustiveness, studio scope, and regenerate-until-satisfied remedy.
+- **Impact:** No new workflow; strengthens P0 logo + P3 cloth enforcement and the reject/regenerate gate. Jewelry/color/format/camera/physics/token rules unchanged.
+
 ## v1.3.5 — 2026-07-11 (color fidelity standard locked)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (new §O COLOR FIDELITY), prompts/07_PROMPTS.md (color-fidelity runtime bullet), config/QUALITY_MEMORY.json (color-fidelity fix), config/project_manifest.json (workflow_behavior.color), config/VERSION.json, README (version).
 - **Summary:** Locked an absolute COLOR FIDELITY standard: the source image is the master for all colors; preserve its palette and neutral white balance exactly; forbid all color grading / artistic-cinematic styling / warm-tone enhancement / creative white balance and any pink/yellow/red/orange/beige/cream/ivory/gray/blue/purple/green tint or warm/cool cast; keep lighting neutral (no added warmth/saturation/contrast/HDR/exposure); metal+diamonds keep natural color with no contamination; cloth stays source neutral white. Added a per-image FINAL VALIDATION gate (correct with whiten_cloth.py or regenerate on any shift). Color fidelity outranks artistic styling.

@@ -41,7 +41,7 @@ An image is INVALID and must be rejected/re-done if ANY of these is true:
 - cloth material changes (not the approved premium white cotton);
 - cloth becomes yellowish or non-white (any warm/color cast);
 - cloth looks flat, cheap, artificial, or overly simple.
-Remedy: omit the logo rather than ship an inaccurate one; re-composite the exact logo to merge naturally; fix warm casts with `whiten_cloth.py` (0 credits); regenerate the render only if the cloth itself is unusable.
+Remedy: omit the logo rather than ship an inaccurate one; re-composite the exact logo to merge naturally; fix warm casts with `whiten_cloth.py` (0 credits); **automatically regenerate until all requirements are satisfied. NEVER return a studio image with an AI-generated logo** — the preserved official logo is the only acceptable logo for office/studio photoshoots.
 
 ## CACHING (cross-device / cross-session)
 Cache and reuse these locked assets (logo + premium cotton cloth) across devices and sessions. Caching is byte-preserving only — it MUST NEVER alter image quality or asset fidelity. Verify against the manifest `locked_asset_checksums` before use; if a cached copy's checksum differs, discard it and restore from the repo.
