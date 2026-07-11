@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.3 — 2026-07-11 (logo + cloth integrity rules locked)
+- **Modified:** docs/04_LOGO_WORKFLOW.md (new §12), docs/11_BACKGROUND_STANDARD.md (never-AI-invent-cloth + premium cotton), prompts/07_PROMPTS.md (CLOTH + LOGO runtime bullets), config/QUALITY_MEMORY.json (3 new fixes), CLAUDE_SETUP.md (P3), config/project_manifest.json (workflow_behavior), config/VERSION.json.
+- **Summary:** Locked three reported quality failures as permanent rules: (1) NEVER AI-generate the logo OR the background cloth — logo = exact preserved asset via local composite or omit; cloth = approved premium white cotton reproduced faithfully, never a new AI fabric; (2) the logo must MERGE NATURALLY as ink printed into the cloth (multiply-blend, texture shows through, follows folds/light) — a pasted/floating look is a FAIL; (3) cloth must be premium white cotton with natural soft draping — never yellowish (fix with whiten_cloth.py) and never flat/simple/cheap.
+- **Reason:** User reported inaccurate/AI-generated logos, logos not merging with cloth, and yellowish/simple cloth.
+- **Impact:** Reinforces P0 logo + P3 background integrity. No change to jewelry/diamond fidelity, format (1:1/2K), camera, physics, or token rules; no workflow restructuring.
+
 ## v1.3.2 — 2026-07-11 (safe low-token loading finalized + README rewrite)
 - **Modified:** README.md (full rewrite), config/VERSION.json, config/project_manifest.json, docs/10_CURRENT_STATE.md.
 - **Summary:** Finalized the safe low-token loading policy (startup = CLAUDE_SETUP.md only; lazy-load one file per task; normal generation = runtime trio manifest+07_PROMPTS+QUALITY_MEMORY) and rewrote README to document it: project purpose, current workflow, Higgsfield+Claude MCP primary / Python zero-credit fallback, startup entry file, low-token loading policy, output-compatibility guarantee, required files/assets, new-project setup, git sync, recovery, current stable version + latest commit, "Git is the source of truth." Added config/QUALITY_MEMORY.json to VERSION.minimum_required_files and manifest.required_files.
