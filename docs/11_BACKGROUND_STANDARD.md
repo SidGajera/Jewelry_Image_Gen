@@ -30,5 +30,21 @@ The official logo must always appear as a realistic PRINT on the cloth (see docs
 ## CONSISTENCY (applies to EVERY catalog image)
 Every image must look photographed on the same cloth, in the same studio, with the same lighting, the same camera, the same white balance, and the same printed logo. There should be no visible difference in cloth material, cloth color, logo color, lighting, or premium appearance between catalog images.
 
+## LOCKED CLOTH ASSET — ASSET-ONLY, NEVER AI-GENERATED (user-locked 2026-07-11)
+The premium white cotton cloth is a **preserved asset**, exactly like the logo — it is NEVER generated anew by AI. Reuse only the approved cloth asset (`assets/background/sample_studio_background_with_logo.png`, sha256 `4cc10d33…`, and the `Offie_photoshoot 1–5` Drive references that embody the same cloth). Preserve its material, texture, softness, weave, fine grain, and natural draping; keep neutral pure-white balance; cloth may be plain or naturally folded but must always look premium and physically realistic. The AI's only job is to keep this approved cloth faithful under the ring — never to invent a substitute fabric.
+
+## FAILURE POLICY — REJECT THE IMAGE IF (user-locked 2026-07-11, applies to logo + cloth)
+An image is INVALID and must be rejected/re-done if ANY of these is true:
+- logo design differs from the preserved asset;
+- logo looks AI-generated;
+- logo does not merge naturally with the cloth (floating / pasted / flat on top);
+- cloth material changes (not the approved premium white cotton);
+- cloth becomes yellowish or non-white (any warm/color cast);
+- cloth looks flat, cheap, artificial, or overly simple.
+Remedy: omit the logo rather than ship an inaccurate one; re-composite the exact logo to merge naturally; fix warm casts with `whiten_cloth.py` (0 credits); regenerate the render only if the cloth itself is unusable.
+
+## CACHING (cross-device / cross-session)
+Cache and reuse these locked assets (logo + premium cotton cloth) across devices and sessions. Caching is byte-preserving only — it MUST NEVER alter image quality or asset fidelity. Verify against the manifest `locked_asset_checksums` before use; if a cached copy's checksum differs, discard it and restore from the repo.
+
 ## REFERENCE IMAGES
 The user-provided reference set (round solitaire + pavé-shoulder solitaires on white cloth with printed logo, 2026-07-10) is the master background reference. The studio pose references in Drive (`Offie_photoshoot 1–5`, folder `1A9UJJcnlVA1Tvohd6Wa8O57eenCb7sQ2`) embody this standard and are used as the cloth/lighting base for studio generations. `Offie_photoshoot (1)` also shows the correct printed-logo placement/scale.

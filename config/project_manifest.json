@@ -1,7 +1,7 @@
 {
   "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
-  "current_version": "1.3.3",
-  "latest_stable_commit": "2d039cfa55b92e019b3dfcb144d4683c1d6fbe65",
+  "current_version": "1.3.4",
+  "latest_stable_commit": "ef28d4e6a6bd25793468ebe5db6598aef50b5058",
   "stable_tag": "claude-automation-stable-v1",
   "entry_file": "CLAUDE_SETUP.md",
   "single_source_of_truth": true,
@@ -63,8 +63,13 @@
     "assets/logo/logo_official_transparent.png": {
       "sha256": "1b8dc7c37b9385f07efd589899483131beea2346b7f0386b3e4b5dd742aa1982",
       "bytes": 1174590
+    },
+    "assets/background/sample_studio_background_with_logo.png": {
+      "sha256": "4cc10d3355f5d9a8d948172f28429ce0f64466ab53339ee52c1eed044875b69c",
+      "bytes": 2178396
     }
   },
+  "asset_caching": "Cache and reuse the locked logo + premium white cotton cloth assets across devices/sessions. Byte-preserving only; caching must never alter image quality or asset fidelity. Verify against locked_asset_checksums before use; if a cached copy mismatches, discard and restore from repo.",
   "script_paths": {
     "print_logo_on_cloth": "scripts/print_logo_on_cloth.py",
     "whiten_cloth": "whiten_cloth.py"
