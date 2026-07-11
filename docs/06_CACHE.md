@@ -76,3 +76,12 @@ Import `assets/logo/logo_official.png` (Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH
 - **Side stones:** single row of small round bead-set pavé diamonds down each shoulder (match count/size/spacing).
 - **Metal:** 18K yellow gold, high polish.
 - Reuse this profile for all LR-0140 generations; re-analyze only if the reference changes.
+
+## DESIGN PROFILE — LR-0138 (swirl/bypass halo, split bypass pavé shank; analyzed 2026-07-11)
+- **Source folder:** `102POdl0d8VpHR-wgiMaCt255LkXDJGi_` (source parent). Studied: `Copy of 57 (4)` (side), `Copy of 57 (5)` id `158gSTsW3FI5D9nKOOf0OG_TDi1mMW03e` (top, used as ring source).
+- **Shape/center:** round brilliant center diamond, 4 slender claw prongs.
+- **Halo:** ASYMMETRIC SWIRLING / BYPASS pavé halo of small round bead-set diamonds wrapping around the center (NOT a plain concentric halo; spirals to one side). Do not straighten into a symmetric halo; do not add a second full halo.
+- **Shank:** SPLIT BYPASS pavé shank — band divides into TWO round-diamond pavé strands that curve up and around/past the center (bypass), French/bead-set pavé along the shoulders.
+- **Metal:** 18K yellow gold, high polish.
+- **AI risk:** model tends to simplify the swirl/bypass into a plain concentric halo — lock the swirl + split bypass explicitly every shot.
+- Reuse this profile for all LR-0138 generations; re-analyze only if the reference changes.
