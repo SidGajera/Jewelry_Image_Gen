@@ -1,29 +1,32 @@
 # CLAUDE_SETUP.md — SINGLE ENTRY POINT
 
-You are a new Claude session bootstrapping the **Lucent Carat Lab** catalog image-generation automation. This repository is the **single source of truth**. Follow this file first, then read the rest in the exact order below.
+You are a new Claude session bootstrapping the **Lucent Carat Lab** catalog image-generation automation. This repository is the **single source of truth**. The repo is intentionally modular to minimize context — **at startup load ONLY this file**, then lazy-load exactly one relevant file per task (section 1).
 
 ## 0. VERSIONING & BOOTSTRAP (do this before anything else)
-Every new Claude project MUST:
-1. **Read `config/VERSION.json` first** — it declares the current version, latest commit hash/date, branch, entry file, and `minimum_required_files`. (Git tags are NOT the recovery method — this environment cannot push tags; the repo is self-describing instead.)
-2. **Verify the required files exist** — every path in `config/VERSION.json → minimum_required_files` and in `config/project_manifest.json → required_files/required_assets`. If any are missing, STOP and tell the user; do not proceed with a broken checkout.
-3. **Read the files in the documented order** (section 1 below).
-4. **Treat the repository as the single source of truth** — all rules/workflow come from these files.
-5. **Never depend on previous conversation history** — assume none exists; everything needed is in the repo.
+Every new Claude session MUST:
+1. **Load ONLY `CLAUDE_SETUP.md` (this file) at startup.** Do NOT preload docs, prompts, cache, changelog, or the master spec.
+2. **Treat the repository as the single source of truth**; never depend on previous conversation history (assume none exists).
+3. This file already carries the hard rules (§3), environment (§4), and per-SKU loop (§5) needed to start. Pull any deeper file only when the task actually needs it (§1).
+4. (Only when explicitly verifying/recovering) check `config/VERSION.json` for version/commit and `minimum_required_files`, and `config/project_manifest.json` for `required_files/required_assets`.
 
-## 1. READ THESE FILES IN THIS EXACT ORDER
-1. `CLAUDE_SETUP.md` (this file)
-2. `docs/01_MASTER_SPECIFICATION.md`
-3. `docs/02_SYSTEM_RULES.md`
-4. `docs/03_IMAGE_GENERATION_RULES.md`
-4b. `docs/12_STUDIO_ANGLES_STANDARD.md`
-5. `docs/04_LOGO_WORKFLOW.md`
-6. `docs/11_BACKGROUND_STANDARD.md`
-7. `docs/05_TOKEN_OPTIMIZATION.md`
-8. `docs/06_CACHE.md`
-9. `prompts/07_PROMPTS.md`
-10. `docs/10_CURRENT_STATE.md`
+## 1. LAZY-LOADING MAP (load only what the current task needs; unload after extracting the rules)
+| Task | Load ONLY |
+|---|---|
+| **Normal image generation** | `config/project_manifest.json` + `prompts/07_PROMPTS.md` + `config/QUALITY_MEMORY.json` (the runtime trio — self-sufficient for generation) |
+| Image-generation rule detail | `docs/03_IMAGE_GENERATION_RULES.md` |
+| Logo issue | `docs/04_LOGO_WORKFLOW.md` |
+| Studio camera angles | `docs/12_STUDIO_ANGLES_STANDARD.md` |
+| Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
+| Prompt writing/editing | `prompts/07_PROMPTS.md` |
+| Prevent past failures / update learning | `config/QUALITY_MEMORY.json` (+ `docs/06_CACHE.md` for Drive IDs) — do not keep permanently in context |
+| Version info | `config/VERSION.json` |
+| Current status | `docs/10_CURRENT_STATE.md` |
+| Project history / rollback / version compare | `docs/09_CHANGELOG.md` |
+| New workflow / architecture / global standard change | `docs/01_MASTER_SPECIFICATION.md` (+ `docs/02_SYSTEM_RULES.md`) |
+| Project recovery | `RECOVERY.md` |
+| Folder structure | `docs/08_PROJECT_STRUCTURE.md` |
 
-(Also available: `docs/08_PROJECT_STRUCTURE.md`, `docs/09_CHANGELOG.md`, `NEW_PROJECT.md`, `RECOVERY.md`, `VERSION.md`, `LUCENT_MASTER.md` — the full canonical merged spec.)
+Rules: never load the whole repository; load the **smallest** relevant file; after extracting the needed rules, discard unused sections from working memory. Reducing loaded context must NEVER reduce output quality — if you need more, load one more small file, never the whole repo. Never preload documentation, history, or archived files.
 
 ## 2. OPERATING PRINCIPLES (mandatory)
 1. **The repository is the single source of truth.** Behavior comes from these files, not from memory of any prior chat.
@@ -53,4 +56,4 @@ Every new Claude project MUST:
 Search source → study the ring (verify correct file) → import source → reuse studio refs, import fresh lifestyle/closeup poses → **1 verification image → user confirms → generate the rest in one batch** (studio on clean cloth, NO logo) → report count → user downloads → run `print_logo_on_cloth.py` + `whiten_cloth.py` locally → update docs + commit.
 
 ## 6. START
-After reading the files above in order, confirm you have read them and are operating from the repository as the single source of truth, then wait for the user's SKU instruction (e.g. "go for 0XXX folder").
+Operating from this file as the entry point (single source of truth), lazy-load per §1 only when a task needs it, then wait for the user's instruction (e.g. "go for 0XXX folder"). Do not preload the rest of the repo.
