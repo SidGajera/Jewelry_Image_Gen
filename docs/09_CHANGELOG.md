@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.12 — 2026-07-11 (product geometry lock)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A PRODUCT GEOMETRY LOCK), prompts/07_PROMPTS.md (geometry-lock runtime bullet), config/QUALITY_MEMORY.json (product-geometry-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked the PRODUCT GEOMETRY LOCK standard: the reference image is the exact master product (not inspiration/style). Preserve every listed geometry component AND the relative distances between them (silhouette, proportions, head/gallery/basket, prongs count/position/shape/thickness, center+side stone size/count/spacing, halo diameter+geometry, crossover, split-shank, band width/thickness/curvature, shoulder, setting, metal coverage, placement). Every visible pixel of the reference jewelry = ground truth; only camera/environment/lighting/background/composition may change; any component differing triggers regeneration.
+- **Reason:** User PRODUCT GEOMETRY LOCK directive (absolute priority).
+- **Impact:** Strengthens P1 jewelry fidelity with an exhaustive component + relative-distance lock. No change to format/camera/color/token rules.
+
 ## v1.3.11 — 2026-07-11 (diamond standard scoped to all environments + all stones)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L SCOPE note), prompts/07_PROMPTS.md (DIAMONDS scope), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Extended the diamond realism standard to EVERY environment (office studio, home lifestyle, indoor, outdoor, editorial, luxury product, macro, any future scene) and EVERY stone (center + all side/accent stones) across all shapes/cuts/carats: auto-preserve correct proportions/facet-pattern/optics per shape; lighting follows the actual environment while optics stay physically accurate; every stone indistinguishable from a real VVS/IF lab-grown diamond; natural realism outranks enhancement.
