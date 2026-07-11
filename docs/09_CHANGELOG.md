@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.20 — 2026-07-11 (fake-gem + moody-lighting guard)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L fake-gem forbidden list, §E lighting character), config/QUALITY_MEMORY.json (fake-gem-and-moody-lighting fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Captured the net-new bits of the LUXURY JEWELRY PRODUCT LOCK not already covered: every stone must read as a premium natural-looking lab-grown diamond, never CZ/moissanite/glass/plastic/acrylic/artificial-crystal/CGI-gem; lighting must be neutral daylight/luxury studio (soft shadows, clean highlights, neutral WB), never yellow/orange/blue/blackish/dark/warm-indoor/cinematic/dramatic/moody; white fabric pure neutral white, gold natural yellow, diamonds colorless. The rest of the directive (product/geometry/metal/lifestyle/photography locks) was already covered by v1.3.5-v1.3.19.
+- **Reason:** User LUXURY JEWELRY PRODUCT LOCK directive.
+- **Impact:** Names two failure modes (fake-gem look, moody/cinematic lighting) under existing P2/color rules. No change to format/camera/token rules.
+
 ## v1.3.19 — 2026-07-11 (oval + tapered-baguette shape lock)
 - **Modified:** config/QUALITY_MEMORY.json (oval-baguette-shape-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Added a shape-substitution guard for oval+tapered-baguette SKUs: elongated oval center must stay a true elongated oval in every view (never round/cushion/pear/wider/shorter/deeper/flatter/thicker/differently-faceted); tapered baguette side stones preserved exactly (shape/taper/size/length/width/facets/angle/placement/setting/metal border) - never reshaped/swapped/simplified. Reference image is the sole source of truth; only camera/scene/background/composition/lighting change; reject+regenerate on any geometry drift. Verified against a consistent 6-image oval+baguette catalog.

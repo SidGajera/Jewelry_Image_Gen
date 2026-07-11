@@ -237,6 +237,17 @@
         "docs/03 L",
         "docs/06"
       ]
+    },
+    {
+      "id": "fake-gem-and-moody-lighting",
+      "problem": "diamonds render with a CZ/moissanite/glass/plastic/acrylic/crystal fake-gem look; or scene uses moody/dramatic/cinematic/blackish/warm-indoor lighting that darkens or tints the shot",
+      "root_cause": "model substitutes a cheaper gem look or a stylized lighting mood",
+      "fix": "every stone (center + side) = premium natural-looking lab-grown diamond; NEVER CZ/moissanite(over-dispersive rainbow)/glass/plastic/acrylic/artificial-crystal/CGI-gem. LIGHTING = neutral daylight / luxury studio, soft shadows, clean highlights, neutral white balance; NEVER yellow/orange/blue/blackish/dark/warm-indoor/cinematic/dramatic/moody. White fabric stays pure neutral white, gold natural yellow, diamonds colorless. Lighting may change by scene but keeps the reference's calibration.",
+      "refs": [
+        "docs/03 L",
+        "docs/03 E",
+        "docs/03 O"
+      ]
     }
   ]
 }
