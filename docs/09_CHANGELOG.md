@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.18 — 2026-07-11 (diamond geometry + physical optics lock)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L geometry+optics+side-view+accent locks), prompts/07_PROMPTS.md (cut-anatomy runtime detail), config/QUALITY_MEMORY.json (diamond-geometry-optics-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked full diamond cut anatomy (dimensions, L:W, table, crown angle+height, pavilion depth, girdle, culet, facet layout/count/proportions, star/bezel/upper+lower-girdle facets, pavilion mains, symmetry, polish, optical symmetry) as identical across every camera angle; physical optics constant (facet pattern/brilliance/scintillation/fire/contrast/transparency/light-return/depth) with no invented reflections/facets/pavilion/crown, no melted facets/blurry junctions; side-view lock (never thinner/thicker/longer/shorter etc; pavilion+crown+girdle consistent with front; looks like the same ring rotated 20/45/60/90); accent-quality lock (side/baguette/pave get center-grade macro quality+exact geometry, never simplified/blurred/replaced with glass). IGI-grade from every angle.
+- **Reason:** User DIAMOND GEOMETRY LOCK + PHYSICAL OPTICS LOCK + SIDE VIEW + SIDE DIAMOND QUALITY directive (highest priority).
+- **Impact:** Deepens P2 to full cut-anatomy + cross-angle optics constancy. No change to format/camera/color/token rules.
+
 ## v1.3.17 — 2026-07-11 (side stone & band lock)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A SIDE STONE & BAND LOCK), prompts/07_PROMPTS.md (side-stone/band runtime bullet), config/QUALITY_MEMORY.json (side-stone-band-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked side/band diamonds and the band: preserve exactly each accent stone (shape,size,count,proportions,position,spacing,orientation,alignment,setting,prongs/beads,metal coverage) and the band (width,thickness,shoulder width,taper,curvature,cross-section,metal volume,polish,proportions); never redesign/resize/replace/reinterpret. Side+band stones must show the same center-grade optics (no glow/over-whitening/blur/plastic/painted highlights). Every diamond reads as a real pro-photographed stone; only camera/environment/lighting change.

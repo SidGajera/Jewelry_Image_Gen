@@ -216,6 +216,16 @@
         "docs/03 A",
         "docs/03 L"
       ]
+    },
+    {
+      "id": "diamond-geometry-optics-lock",
+      "problem": "diamond cut anatomy/optics drift between angles; accents simplified/blurred or baguettes rendered as generic glass",
+      "root_cause": "model re-generates the stone per view instead of revealing the one existing stone",
+      "fix": "diamond geometry already exists in the reference; every view = same physical stone from another camera. Preserve full cut anatomy exactly (dimensions, L:W, table, crown angle+height, pavilion depth, girdle, culet, facet layout/count/proportions, star/bezel/upper+lower-girdle facets, pavilion mains, symmetry, polish, optical symmetry). Camera change never alters thickness/volume/silhouette/optical pattern; every angle keeps identical facet pattern/brilliance/scintillation/fire/contrast/transparency/light-return/depth (no invented reflections/facets/pavilion/crown, no fake sparkle/glow/overexposure/melted facets/blurry junctions/plastic). Side views never make the stone thinner/thicker/longer/shorter/flatter/deeper/wider/narrower; pavilion+crown+girdle stay consistent with front. Accents (side/baguette/pave/halo) get same macro-lens quality+exact geometry as center; never simplify/blur/replace-with-glass. IGI-grade from every angle.",
+      "refs": [
+        "docs/03 L",
+        "docs/03 A"
+      ]
     }
   ]
 }
