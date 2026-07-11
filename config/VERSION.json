@@ -1,8 +1,8 @@
 {
   "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
-  "current_version": "1.3.14",
-  "latest_commit_hash": "1e51414f91638283b7ba7b1cc020c0a7a860b1af",
-  "latest_commit_date": "2026-07-11T12:40:18+00:00",
+  "current_version": "1.3.15",
+  "latest_commit_hash": "fcd9ddd0e4621f0e4cdca70c12946c9745dd9458",
+  "latest_commit_date": "2026-07-11T12:42:15+00:00",
   "repository_name": "Claude_Lucent_Image_Gen",
   "repository_url": "https://github.com/SidGajera/Claude_Lucent_Image_Gen",
   "branch": "main",
@@ -34,5 +34,5 @@
   "backup_type": "Full Portable Backup",
   "compatibility": "Claude Code",
   "notes": "Self-describing recovery: Git tags cannot be pushed from the generating environment (proxy denies refs/tags/* with 403). Do NOT rely on tags. Recover using this file: read CLAUDE_SETUP.md -> config/VERSION.json -> the documented file order. The repository is the single source of truth. Image-generation, logo (locked, printed-on-cloth), background (locked white cloth), and token-optimization rules are unchanged.",
-  "last_synced": "2026-07-11T12:40:18Z"
+  "last_synced": "2026-07-11T12:42:15Z"
 }
