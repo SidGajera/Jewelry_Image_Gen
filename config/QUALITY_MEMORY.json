@@ -197,6 +197,15 @@
         "docs/03 A",
         "docs/03 L"
       ]
+    },
+    {
+      "id": "studio-angle-distinctness",
+      "problem": "the 5 studio angles come out too similar — hero/45L/45R all near-front, so 3+ shots look like the same view",
+      "root_cause": "model renders small yaw changes as near-identical front views",
+      "fix": "the five studio shots must be VISIBLY different camera positions (>=30-40 deg yaw/pitch apart): hero straight-on at ring height; 45L yaw ~45 left + raised ~30-35; 45R yaw ~45 right + raised ~30-35; side true 90 deg at ring height (stone top not a face); three-quarter high ~60 top-down at ~30 yaw. If two read as the same angle -> regenerate the duplicate at the correct distinct position. Camera changes only; ring stays identical.",
+      "refs": [
+        "docs/12 A"
+      ]
     }
   ]
 }

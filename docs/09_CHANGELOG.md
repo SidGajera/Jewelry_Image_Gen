@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.16 — 2026-07-11 (studio angle distinctness)
+- **Modified:** docs/12_STUDIO_ANGLES_STANDARD.md (§A ANGLE DISTINCTNESS), prompts/07_PROMPTS.md (STUDIO 5 ANGLES bullet), config/QUALITY_MEMORY.json (studio-angle-distinctness fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked mandatory angle distinctness for the 5 studio shots so they are visibly different camera positions (>=30-40 deg yaw/pitch apart), not near-identical front views. Defined explicit camera geometry per angle (hero straight-on; 45L/45R yawed ~45 + raised ~30-35; side true 90; three-quarter high ~60 top-down at ~30 yaw). If two read as the same angle, regenerate the duplicate. Camera-only; ring stays byte-identical.
+- **Reason:** User reported 3 of 4 studio angles were the same position.
+- **Impact:** Fixes duplicate-looking studio angles across catalogs. No change to jewelry geometry/logo/cloth/color/token rules.
+
 ## v1.3.15 — 2026-07-11 (side-profile consistency)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A side-profile consistency), prompts/07_PROMPTS.md (gem-geometry runtime bullet), config/QUALITY_MEMORY.json (side-profile-consistency fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked side-profile consistency for the gemstone: from any side angle preserve the reference's exact profile — never deepen the pavilion, increase crown height, shorten/widen the outline, or let an oval appear rounder. Apparent proportions across front/30/45/60/side/rear views equal those of the one physical ring (L:W + crown/pavilion profile constant; only real-perspective foreshortening changes).

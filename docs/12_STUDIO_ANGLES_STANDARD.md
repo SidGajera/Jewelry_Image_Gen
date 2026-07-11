@@ -22,6 +22,14 @@ Every SKU's 5 studio images must be exactly these angles, so a customer can insp
 
 **General:** every important design detail must be visible across the five; never hide structural features; preserve exact geometry; no design modifications; identical lighting quality, exposure, reflections and white balance across all five; luxury e-commerce style.
 
+**ANGLE DISTINCTNESS (MANDATORY — user-locked 2026-07-11):** the five studio shots must be FIVE VISIBLY DIFFERENT camera positions — no two may look like the same view. A recurring failure: hero, 45° left and 45° right all come out as near-identical near-front views. To prevent it, separate them by real camera geometry:
+- **Hero front:** camera at ring height, straight-on, 0° yaw, ~0–5° top tilt.
+- **45° left:** camera yawed ~45° to the LEFT of front AND raised to ~30–35° top-down — the setting clearly seen from the left-front above.
+- **45° right:** camera yawed ~45° to the RIGHT AND raised ~30–35° — mirror of the left, clearly the other side.
+- **Side profile:** true 90° side, camera at ring height — band/gallery/basket in pure silhouette, top of the stone NOT visible as a face.
+- **Three-quarter:** high ~60° top-down at ~30° yaw — top and one side seen together.
+Target ≥30–40° of yaw and/or pitch separation between any two studio shots. If two of the five read as the same angle, they are FAILED → regenerate the duplicate(s) at the correct distinct camera position. Distinctness applies to the CAMERA only; the ring itself stays byte-identical (see docs/03 §A).
+
 ## B. PHYSICALLY ACCURATE RING + CLOTH POSITIONING
 Every pose, fold, wrinkle, shadow and contact point must be physically realistic and achievable in a real studio — not CGI, not an impossible AI composition.
 
