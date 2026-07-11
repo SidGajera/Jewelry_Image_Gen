@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.5 — 2026-07-11 (color fidelity standard locked)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (new §O COLOR FIDELITY), prompts/07_PROMPTS.md (color-fidelity runtime bullet), config/QUALITY_MEMORY.json (color-fidelity fix), config/project_manifest.json (workflow_behavior.color), config/VERSION.json, README (version).
+- **Summary:** Locked an absolute COLOR FIDELITY standard: the source image is the master for all colors; preserve its palette and neutral white balance exactly; forbid all color grading / artistic-cinematic styling / warm-tone enhancement / creative white balance and any pink/yellow/red/orange/beige/cream/ivory/gray/blue/purple/green tint or warm/cool cast; keep lighting neutral (no added warmth/saturation/contrast/HDR/exposure); metal+diamonds keep natural color with no contamination; cloth stays source neutral white. Added a per-image FINAL VALIDATION gate (correct with whiten_cloth.py or regenerate on any shift). Color fidelity outranks artistic styling.
+- **Reason:** User COLOR FIDELITY STANDARD (absolute priority).
+- **Impact:** Strengthens neutral-color/white-balance enforcement across studio + lifestyle + close-up. No change to jewelry geometry/format/camera/physics/token rules; complements docs/11 FAILURE POLICY.
+
 ## v1.3.4 — 2026-07-11 (locked logo+cloth assets: failure policy + cross-device caching)
 - **Modified:** docs/11_BACKGROUND_STANDARD.md (cloth-as-preserved-asset + FAILURE POLICY + caching), docs/04_LOGO_WORKFLOW.md (§13 failure policy & caching), prompts/07_PROMPTS.md (failure-policy runtime bullet), config/QUALITY_MEMORY.json (logo-cloth-failure-policy fix), config/project_manifest.json (cloth asset checksum + asset_caching), config/VERSION.json, README (version).
 - **Summary:** Formalized the user's LOCKED LOGO & CLOTH ASSETS spec: both logo and cloth are preserved ASSETS, never AI-generated; added an explicit reject-the-image FAILURE POLICY (logo differs/AI-looking/not-merged; cloth material-change/yellowish/flat-cheap); registered the cloth asset in locked_asset_checksums; added a byte-preserving cross-device/session caching rule that must never alter quality or fidelity.

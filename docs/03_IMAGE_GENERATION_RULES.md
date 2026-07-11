@@ -68,3 +68,12 @@ Every image matches the approved master reference: identical camera height, came
 
 ## N. NATURAL VARIATION (locked 2026-07-10)
 Do not repeat the same composition. Keeping camera height + distance fixed, naturally vary only what a real photographer changes between shots: ring rotation/orientation/placement, camera left/right position, yaw around the piece (slight pitch when needed), cloth draping/folds (plain OR folded — whichever looks natural, don't force folds), logo visibility, and composition. Each image = another photograph from the same shoot; unique yet fully consistent.
+
+## O. COLOR FIDELITY (ABSOLUTE PRIORITY — locked 2026-07-11; color fidelity > artistic styling)
+The SOURCE image is the master reference for ALL colors. Preserve its original color palette and neutral white balance EXACTLY. Color fidelity to the source outranks any artistic/stylistic consideration.
+- **No color grading of any kind:** never apply automatic color grading, artistic/cinematic color styling, warm-tone "enhancement," creative white-balance, teal-orange, film looks, or any stylized LUT.
+- **White balance = source, neutral:** never introduce a pink, yellow, red, orange, beige, cream, ivory, gray, blue, purple, or green tint, and no warm OR cool color cast. The generated image must match the source's neutral color balance.
+- **Lighting:** preserve the existing bright neutral studio lighting. Do NOT increase warmth, saturation, or contrast unnaturally; no HDR-like effects; no unnecessary exposure change. Bright, neutral, consistent with the source.
+- **Metal & diamonds:** preserve natural metal color and diamond appearance; never inject artificial colored reflections or color contamination into the jewelry.
+- **Cloth:** the approved premium white cotton stays the same neutral white as the source — never yellowish/pinkish/reddish/creamish/beige/off-white.
+- **FINAL VALIDATION (run before returning EVERY image):** ✓ colors match source ✓ white balance matches source ✓ no pink/yellow/red/cream/beige/warm tint ✓ lighting neutral ✓ cloth premium neutral white ✓ jewelry colors natural. If ANY color shift is detected → correct locally (`whiten_cloth.py`, 0 credits) or regenerate BEFORE returning. A warm/tinted cast is a hard FAIL (see docs/11 FAILURE POLICY).

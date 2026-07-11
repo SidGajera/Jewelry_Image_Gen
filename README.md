@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Current Stable Version** | 1.3.4 (stable build ✅) |
+| **Current Stable Version** | 1.3.5 (stable build ✅) |
 | **Latest Commit** | see [`config/VERSION.json`](config/VERSION.json) → `latest_commit_hash` |
 | **Startup / Entry File** | [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) — the ONLY file loaded at startup |
 | **Recovery** | [`RECOVERY.md`](RECOVERY.md) · machine-readable [`config/VERSION.json`](config/VERSION.json) |
