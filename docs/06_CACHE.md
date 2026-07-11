@@ -66,3 +66,13 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 
 ## OFFICIAL LOGO — GENERATION REFERENCE (session-ephemeral)
 Import `assets/logo/logo_official.png` (Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) via `media_import_url` each session to get a media_id, then pass it as the 3rd studio reference so the printed logo matches the official artwork exactly. media_ids expire across sessions — re-import when needed.
+
+## DESIGN PROFILE — LR-0140 (round halo, cathedral split-shoulder pavé; analyzed 2026-07-11)
+- **Source folder:** `1XhWzf5tB_0L8wtRaI7LfawqLbgL35vnI` (source parent). Studied files: `Copy of 1 (3)` (three-quarter), `Copy of 1 (7)` id `1I6ewzdn4Z1fTyPB-WombIp2fm8r1735a` (front elevation, used as ring source).
+- **Shape/center:** round brilliant center diamond.
+- **Prongs:** FOUR (4) slender claw prongs on the center.
+- **Halo:** SINGLE round pavé halo (bead-set small round diamonds) sitting on a smooth polished 18K yellow-gold rim. Do NOT add a second halo.
+- **Gallery/shoulders:** cathedral SPLIT shoulders (band splits in two rising to the halo; open under-gallery).
+- **Side stones:** single row of small round bead-set pavé diamonds down each shoulder (match count/size/spacing).
+- **Metal:** 18K yellow gold, high polish.
+- Reuse this profile for all LR-0140 generations; re-analyze only if the reference changes.
