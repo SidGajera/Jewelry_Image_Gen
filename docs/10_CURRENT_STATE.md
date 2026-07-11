@@ -1,6 +1,8 @@
 # 10 — CURRENT STATE (exact current workflow)
 
-As of 2026-07-10 (v1.1.0). This is precisely what happens for a new SKU today.
+As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
+
+**Context loading:** startup loads ONLY `CLAUDE_SETUP.md`; lazy-load one file per task (§1 map). Normal generation loads the runtime trio (`config/project_manifest.json` + `prompts/07_PROMPTS.md` + `config/QUALITY_MEMORY.json`) — self-sufficient, identical output.
 
 ## PER-SKU WORKFLOW (current, exact)
 1. **Locate source:** `search_files` in source parent `1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy` for `title contains '<SKU#>'` → get the SKU folder → `search_files` for its images.
