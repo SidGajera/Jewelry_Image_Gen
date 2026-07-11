@@ -206,6 +206,16 @@
       "refs": [
         "docs/12 A"
       ]
+    },
+    {
+      "id": "side-stone-band-lock",
+      "problem": "side/band diamonds or the band get redesigned/resized/respaced, or accent stones render with worse optics than the center",
+      "root_cause": "model treats accents/band as filler and re-invents them",
+      "fix": "preserve EXACTLY every side/band diamond (shape,size,count,proportions,position,spacing,orientation,alignment,setting,prongs/beads,metal coverage) and the band (width,thickness,shoulder width,taper,curvature,cross-section,metal volume,polish,proportions). Never redesign/resize/replace/reinterpret. Side+band stones get the SAME center-grade optics (natural facets/junctions/scintillation/fire/contrast/transparency/depth; no glow/over-whitening/blur/plastic/painted highlights). Every diamond = real pro-photographed stone. Only camera/environment/lighting change.",
+      "refs": [
+        "docs/03 A",
+        "docs/03 L"
+      ]
     }
   ]
 }
