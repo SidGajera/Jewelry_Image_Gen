@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.1 — 2026-07-11 (context lazy-loading policy)
+- **Modified:** CLAUDE_SETUP.md (startup loads only this file; §1 replaced with lazy-loading map), docs/05_TOKEN_OPTIMIZATION.md (policy note), config/VERSION.json, config/project_manifest.json.
+- **Summary:** Startup context reduced to CLAUDE_SETUP.md only; all other files lazy-loaded per task. Normal generation loads the runtime trio. Hard rules/env/loop kept inline in CLAUDE_SETUP so quality is unaffected.
+- **Reason:** User CONTEXT LOADING POLICY (modular, fast startup, minimum tokens, identical quality).
+- **Impact:** Lower per-session token load; zero change to generation quality/rules.
+
 ## v1.3.0 — 2026-07-10 (safe low-token runtime)
 - **Modified/added:** prompts/07_PROMPTS.md (RUNTIME RULES compact authoritative section), config/QUALITY_MEMORY.json (new, 12 verified fixes), config/project_manifest.json (runtime_files + runtime_pointers), config/VERSION.json.
 - **Summary:** Enabled low-token loading (manifest + 07_PROMPTS + QUALITY_MEMORY). All active production rules + pointers + verified error fixes compiled into the 3 runtime files. Coverage comparison test PASS (all rules/pointers/fixes present) — behavior unchanged.
