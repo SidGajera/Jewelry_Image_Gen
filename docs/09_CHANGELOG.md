@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.7 — 2026-07-11 (studio starting-point build sequence locked)
+- **Modified:** docs/12_STUDIO_ANGLES_STANDARD.md (new §0 STUDIO STARTING-POINT SEQUENCE), prompts/07_PROMPTS.md (runtime build-order bullet), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked the mandatory build order for every office/studio photoshoot: (1) approved premium white cotton cloth first → (2) preserved official logo printed INTO the cloth (never AI) → (3) place the jewelry only after cloth+logo are prepared → (4) photograph the completed scene with the fixed approved studio setup, varying only ring orientation/camera angle/composition/natural folds. Added the per-image FINAL VALIDATION gate (approved cloth, preserved logo, printed-in, jewelry-after-prep, physics, neutral WB, no AI logo, no AI cloth). Noted the practical pipeline (render = clean-cloth+ring intermediate; logo composited locally per docs/04) while the build order + validation still govern the deliverable.
+- **Reason:** User STUDIO IMAGE GENERATION STARTING POINT directive (absolute priority).
+- **Impact:** Organizes existing cloth/logo/jewelry/color/physics rules into one mandatory sequence + checklist. No change to jewelry geometry/format/camera/token rules; no new assets.
+
 ## v1.3.6 — 2026-07-11 (official logo policy consolidated + scoped)
 - **Modified:** docs/04_LOGO_WORKFLOW.md (§2 exhaustive forbidden-AI verb list; scope+remedy note), docs/11_BACKGROUND_STANDARD.md (FAILURE POLICY remedy), prompts/07_PROMPTS.md (LOGO runtime scope+remedy), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Reinforced the OFFICIAL LOGO POLICY as permanent for EVERY office/studio photoshoot: exhaustive list of forbidden AI operations on the logo (generate/recreate/redraw/interpret/complete/repair/restyle/enhance/approximate/regenerate — none allowed); logo must be the preserved asset with only cloth-caused transformations (perspective/folds/curvature/lighting/shadows/crop/occlusion); cloth stays the approved premium neutral-white cotton (never AI-invented/tinted); explicit remedy — reject and automatically regenerate until satisfied, and NEVER return a studio image with an AI-generated logo.
