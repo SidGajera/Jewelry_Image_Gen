@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.15 — 2026-07-11 (side-profile consistency)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A side-profile consistency), prompts/07_PROMPTS.md (gem-geometry runtime bullet), config/QUALITY_MEMORY.json (side-profile-consistency fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked side-profile consistency for the gemstone: from any side angle preserve the reference's exact profile — never deepen the pavilion, increase crown height, shorten/widen the outline, or let an oval appear rounder. Apparent proportions across front/30/45/60/side/rear views equal those of the one physical ring (L:W + crown/pavilion profile constant; only real-perspective foreshortening changes).
+- **Reason:** User SIDE PROFILE CONSISTENCY directive.
+- **Impact:** Sharpens the Gem Geometry Lock for multi-angle/oval cases. No change to other rules.
+
 ## v1.3.14 — 2026-07-11 (gem geometry lock)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A GEM GEOMETRY LOCK), prompts/07_PROMPTS.md (gem-geometry runtime bullet), config/QUALITY_MEMORY.json (gem-geometry-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked the GEM GEOMETRY LOCK: the gemstone is the exact physical stone (never estimate/reconstruct/reinterpret/recreate). Preserve identical across every camera angle: shape, outline, length-to-width ratio, table size, crown height, pavilion depth, girdle thickness, culet position, symmetry, profile, silhouette, apparent size, orientation, optical proportions. Rotating the camera reveals the same stone from a new view (only facet light/brilliance changes per real optics); proportions never change.

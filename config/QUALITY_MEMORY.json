@@ -187,6 +187,16 @@
         "docs/03 A",
         "docs/03 L"
       ]
+    },
+    {
+      "id": "side-profile-consistency",
+      "problem": "side/angled views change the stone's profile — deepened pavilion, taller crown, or an oval rendered rounder/wider than the reference",
+      "root_cause": "model re-guesses the cut profile per angle instead of foreshortening the one stone",
+      "fix": "from any side angle keep the reference's exact side profile; never deepen pavilion, increase crown height, shorten/widen the outline, or make an oval appear rounder. Apparent proportions across front/30/45/60/side/rear = those of the ONE physical ring (length-to-width ratio + crown/pavilion profile constant; only real-perspective foreshortening changes).",
+      "refs": [
+        "docs/03 A",
+        "docs/03 L"
+      ]
     }
   ]
 }
