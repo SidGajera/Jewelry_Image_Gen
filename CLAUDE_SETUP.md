@@ -40,7 +40,7 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 - **P0 Logo:** locked asset; never regenerate/redraw/verify-read/recolor; always composited to look printed on cloth (never a floating overlay/sticker; partial crop/occlusion OK; off-center).
 - **P1 Jewelry:** 100% identical to the correct source; never add/remove/resize/recolor stones or alter setting/band/metal.
 - **P2 Diamonds:** single real facet pattern, natural bright+dark mix, no doubling/CGI; gems keep exact color/cut.
-- **P3 Background:** locked white cloth material + neutral white; consistent every image.
+- **P3 Background:** never AI-invent the cloth — locked premium white COTTON with natural soft draping, pure neutral white (never yellowish/flat/simple); consistent every image.
 - **P4 Light:** natural/realistic only; no over-lighting/CGI glow/starburst.
 - **P5 Output:** always 1:1 and 2K.
 - **P6 Lifestyle:** cozy warm US-home; five-finger natural hand; no laptop/desk; no invented logo.

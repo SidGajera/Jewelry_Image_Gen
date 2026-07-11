@@ -1,7 +1,7 @@
 {
   "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
-  "current_version": "1.3.2",
-  "latest_stable_commit": "6342865c79e039caaee3023b9cbf2e723b86d927",
+  "current_version": "1.3.3",
+  "latest_stable_commit": "2d039cfa55b92e019b3dfcb144d4683c1d6fbe65",
   "stable_tag": "claude-automation-stable-v1",
   "entry_file": "CLAUDE_SETUP.md",
   "single_source_of_truth": true,
@@ -94,8 +94,8 @@
   },
   "workflow_status": "stable",
   "workflow_behavior": {
-    "logo": "locked asset, never AI-rendered, composited to look printed on cloth",
-    "background": "locked white cloth material, neutral white, consistent",
+    "logo": "locked asset, never AI-rendered/AI-generated, composited to merge naturally as ink printed into the cloth",
+    "background": "never AI-invented; premium white cotton with natural soft draping, neutral white (never yellowish/flat/simple), consistent",
     "jewelry": "100% identical to source",
     "diamonds": "single real facet pattern, no doubling/CGI, gems keep color",
     "verification": "one verification image, then approved batch without repeated permission",
