@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.17 — 2026-07-11 (side stone & band lock)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§A SIDE STONE & BAND LOCK), prompts/07_PROMPTS.md (side-stone/band runtime bullet), config/QUALITY_MEMORY.json (side-stone-band-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Locked side/band diamonds and the band: preserve exactly each accent stone (shape,size,count,proportions,position,spacing,orientation,alignment,setting,prongs/beads,metal coverage) and the band (width,thickness,shoulder width,taper,curvature,cross-section,metal volume,polish,proportions); never redesign/resize/replace/reinterpret. Side+band stones must show the same center-grade optics (no glow/over-whitening/blur/plastic/painted highlights). Every diamond reads as a real pro-photographed stone; only camera/environment/lighting change.
+- **Reason:** User SIDE STONE & BAND LOCK directive (absolute priority).
+- **Impact:** Extends P1/P2 to accents + band. No change to format/camera/color/token rules.
+
 ## v1.3.16 — 2026-07-11 (studio angle distinctness)
 - **Modified:** docs/12_STUDIO_ANGLES_STANDARD.md (§A ANGLE DISTINCTNESS), prompts/07_PROMPTS.md (STUDIO 5 ANGLES bullet), config/QUALITY_MEMORY.json (studio-angle-distinctness fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked mandatory angle distinctness for the 5 studio shots so they are visibly different camera positions (>=30-40 deg yaw/pitch apart), not near-identical front views. Defined explicit camera geometry per angle (hero straight-on; 45L/45R yawed ~45 + raised ~30-35; side true 90; three-quarter high ~60 top-down at ~30 yaw). If two read as the same angle, regenerate the duplicate. Camera-only; ring stays byte-identical.
