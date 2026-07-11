@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.11 — 2026-07-11 (diamond standard scoped to all environments + all stones)
+- **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L SCOPE note), prompts/07_PROMPTS.md (DIAMONDS scope), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Extended the diamond realism standard to EVERY environment (office studio, home lifestyle, indoor, outdoor, editorial, luxury product, macro, any future scene) and EVERY stone (center + all side/accent stones) across all shapes/cuts/carats: auto-preserve correct proportions/facet-pattern/optics per shape; lighting follows the actual environment while optics stay physically accurate; every stone indistinguishable from a real VVS/IF lab-grown diamond; natural realism outranks enhancement.
+- **Reason:** User NATURAL DIAMOND STANDARD (absolute priority, all environments).
+- **Impact:** Broadens P2 diamond realism from studio to all scenes and all stones. No change to jewelry geometry/format/camera/color/token rules.
+
 ## v1.3.10 — 2026-07-11 (diamond optical-realism spec locked)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L OPTICAL SPEC), prompts/07_PROMPTS.md (DIAMONDS runtime bullet), config/QUALITY_MEMORY.json (diamond-optical-realism fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked a detailed diamond optical-realism standard: match the reference's optics as a professionally macro-photographed premium lab-grown VVS/IF diamond (not AI-enhanced) — crystal-clear water-like transparency, razor-sharp facet definition, excellent light return, high bright/dark facet contrast, natural white brilliance, small fire only where physically correct, accurate crown/table/pavilion/girdle geometry, crisp per-facet reflections; forbid milky/cloudy/washed-out/glow/bloom/fake-sparkle/overexposure/over-sharpening/plastic/glass/CGI; brilliance never boosted artificially.
