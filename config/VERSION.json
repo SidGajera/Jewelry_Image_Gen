@@ -32,5 +32,6 @@
   "backup_created_at": "2026-07-10T10:18:39+00:00",
   "backup_type": "Full Portable Backup",
   "compatibility": "Claude Code",
-  "notes": "Self-describing recovery: Git tags cannot be pushed from the generating environment (proxy denies refs/tags/* with 403). Do NOT rely on tags. Recover using this file: read CLAUDE_SETUP.md -> config/VERSION.json -> the documented file order. The repository is the single source of truth. Image-generation, logo (locked, printed-on-cloth), background (locked white cloth), and token-optimization rules are unchanged."
+  "notes": "Self-describing recovery: Git tags cannot be pushed from the generating environment (proxy denies refs/tags/* with 403). Do NOT rely on tags. Recover using this file: read CLAUDE_SETUP.md -> config/VERSION.json -> the documented file order. The repository is the single source of truth. Image-generation, logo (locked, printed-on-cloth), background (locked white cloth), and token-optimization rules are unchanged.",
+  "last_synced": "2026-07-11T02:25:46Z"
 }
