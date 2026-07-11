@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.19 — 2026-07-11 (oval + tapered-baguette shape lock)
+- **Modified:** config/QUALITY_MEMORY.json (oval-baguette-shape-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Added a shape-substitution guard for oval+tapered-baguette SKUs: elongated oval center must stay a true elongated oval in every view (never round/cushion/pear/wider/shorter/deeper/flatter/thicker/differently-faceted); tapered baguette side stones preserved exactly (shape/taper/size/length/width/facets/angle/placement/setting/metal border) - never reshaped/swapped/simplified. Reference image is the sole source of truth; only camera/scene/background/composition/lighting change; reject+regenerate on any geometry drift. Verified against a consistent 6-image oval+baguette catalog.
+- **Reason:** User EXACT PRODUCT LOCK (oval center + tapered baguettes) for a catalog + all upcoming images.
+- **Impact:** Names the oval/baguette drift failure mode under the existing geometry locks. No change to format/camera/color/token rules.
+
 ## v1.3.18 — 2026-07-11 (diamond geometry + physical optics lock)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L geometry+optics+side-view+accent locks), prompts/07_PROMPTS.md (cut-anatomy runtime detail), config/QUALITY_MEMORY.json (diamond-geometry-optics-lock fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Locked full diamond cut anatomy (dimensions, L:W, table, crown angle+height, pavilion depth, girdle, culet, facet layout/count/proportions, star/bezel/upper+lower-girdle facets, pavilion mains, symmetry, polish, optical symmetry) as identical across every camera angle; physical optics constant (facet pattern/brilliance/scintillation/fire/contrast/transparency/light-return/depth) with no invented reflections/facets/pavilion/crown, no melted facets/blurry junctions; side-view lock (never thinner/thicker/longer/shorter etc; pavilion+crown+girdle consistent with front; looks like the same ring rotated 20/45/60/90); accent-quality lock (side/baguette/pave get center-grade macro quality+exact geometry, never simplified/blurred/replaced with glass). IGI-grade from every angle.

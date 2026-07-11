@@ -226,6 +226,17 @@
         "docs/03 L",
         "docs/03 A"
       ]
+    },
+    {
+      "id": "oval-baguette-shape-lock",
+      "problem": "elongated oval center drifts toward round/cushion/pear across angles/scenes; tapered baguette side stones get reshaped/swapped/simplified",
+      "root_cause": "model substitutes a more common shape when the cut is elongated or the accents are baguettes",
+      "fix": "ELONGATED OVAL center stays a true elongated oval in EVERY view (front/side/30/45/60/top/rear/lifestyle/studio) - never round, cushion-like, pear-like, wider, shorter, deeper, flatter, thicker, or differently faceted; preserve oval outline, L:W ratio, table/crown/pavilion/girdle, facet pattern, optical symmetry, size, depth, orientation. TAPERED BAGUETTE side stones preserved exactly - shape, taper, size, length, width, facet structure, angle, placement, setting, metal border; never reshaped/swapped/simplified/blurred. Reference image 1 is the sole source of truth; only camera/scene/background/composition/natural-lighting change. Reject+regenerate if shape/prongs/sides/band/setting/proportions differ.",
+      "refs": [
+        "docs/03 A",
+        "docs/03 L",
+        "docs/06"
+      ]
     }
   ]
 }
