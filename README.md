@@ -4,7 +4,7 @@
 |---|---|
 | **Current Stable Version** | 1.3.22 (stable build ✅) |
 | **Latest Commit** | see [`config/VERSION.json`](config/VERSION.json) → `latest_commit_hash` |
-| **Startup / Entry File** | [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) — the ONLY file loaded at startup |
+| **Startup / Entry File** | [`config/runtime.json`](config/runtime.json) (clean-session startup) → then [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) rules entry |
 | **Recovery** | [`RECOVERY.md`](RECOVERY.md) · machine-readable [`config/VERSION.json`](config/VERSION.json) |
 | **Repository** | [SidGajera/Claude_Lucent_Image_Gen](https://github.com/SidGajera/Claude_Lucent_Image_Gen) (`main`) |
 
@@ -25,6 +25,11 @@ Per SKU: find source → study the ring (verify correct file) → import source 
 - **Lazy-load exactly one relevant file per task** using the map in `CLAUDE_SETUP.md` §1; discard unused sections after extracting the rules.
 - **Normal generation loads the runtime trio only:** [`config/project_manifest.json`](config/project_manifest.json) + [`prompts/07_PROMPTS.md`](prompts/07_PROMPTS.md) + [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json). These three restate every active production rule, pointer, and verified fix — self-sufficient for a full catalog.
 - **Output-compatibility guarantee:** this policy changes only *how much context is loaded*, never *what is produced*. Every jewelry-fidelity, diamond, cloth, lighting, physics, camera, logo, format (1:1/2K), and token rule is unchanged. Reducing loaded context must never reduce output quality — if you need more, load one more small file, never the whole repo.
+
+## Runtime policy & QC (v1.3.22)
+- **Clean-session startup:** a new session reads ONLY [`config/runtime.json`](config/runtime.json), replies `READY — 0 ACTIVE PROCESSES`, and waits — no repo scan, no resuming/polling old jobs.
+- **Token-safe execution:** no commits/version bumps until the user approves a full catalog; fire each generation once (no polling); read each source once and reuse the cached design profile; load only the current SKU; short replies.
+- **Geometry+lighting QC (Drive read-back):** the sandbox cannot download Higgsfield's CDN output (403), so renders are routed through Drive folder `LR_Verify_Inbox` (`1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0`). Each is downloaded, verified vs source (prong count/placement, center shape/proportions, head/basket/gallery, halo/bezel/milgrain, pavé/side layout, band/shank/metal geometry, lighting = neutral daylight), and **auto-rejected + regenerated until 100%** — a shot that can't pass is failed, never shipped as a redesign.
 
 ## Required files & assets
 **Config:** [`config/VERSION.json`](config/VERSION.json) (version, commit, `minimum_required_files`) · [`config/project_manifest.json`](config/project_manifest.json) (files, assets, checksums, runtime trio, pointers) · [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (verified error fixes).
