@@ -1,0 +1,29 @@
+{
+  "sku": "LR-0142",
+  "status": "approved",
+  "approved_date": "2026-07-12",
+  "design": {
+    "center": "round brilliant",
+    "prongs": "4 slim claw at ~10/2/5/7",
+    "halo": "single cushion-shaped pave halo (one row, no bezel/milgrain)",
+    "shoulders": "single-row French pave both sides",
+    "band": "thin 18K yellow gold"
+  },
+  "catalog": {
+    "studio": {
+      "hero": "05afef70",
+      "yaw_45_right": "e8e64680",
+      "three_quarter": "97014d41",
+      "yaw_45_left": "3ce2157d",
+      "side": "c9bf27ed"
+    },
+    "lifestyle": ["4f14177d", "c1339026", "797f249e", "fe5568bd"],
+    "closeup": ["82b66a24", "4bf94602", "28dc0aa3"]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "source_media_id": "9dfd65d0-6b23-45ba-9272-2f1fe2be802b"
+  }
+}
