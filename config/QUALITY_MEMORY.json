@@ -251,13 +251,14 @@
     },
     {
       "id": "lifestyle-prong-and-bezel-drift",
-      "problem": "in worn/lifestyle shots the model multiplies prongs (4->6/8), rounds/shrinks the center stone, and INVENTS a milgrain/bezel rim border around the stone; band bulks up or thins, pave spacing changes",
-      "root_cause": "small ring in a hand scene -> pose reference dominates and the model treats the ring as inspiration, adding common setting cliches (extra claws, milgrain bezel)",
-      "fix": "lock the exact prong COUNT+positions from source (e.g. LR-0141 = EXACTLY 4 slim claws at ~10/2/5/7; never 6/8, never double into 8 tips); NO milgrain, NO bezel, NO rim/under-bezel border around the stone unless in source; keep the center stone the same size/roundness; thin plain band with the source's single micro-pave row (don't thicken/thin or re-space). VERIFY prong count matches source before returning; if any differs, reject+regenerate. Same-physical-ring: only camera/scene/pose/background change.",
+      "problem": "in worn/lifestyle shots the model multiplies prongs (4->6/8), rounds/shrinks the center stone, and INVENTS a milgrain/bezel rim border around the stone; band bulks up or thins, pave spacing changes; RECURRED WORSE on LR-0141 (2026-07-12): full round bezel/rim border invented AND the band's pave diamonds were entirely REMOVED (not just drifted) AND the band's cross-section/shape itself changed",
+      "root_cause": "small ring in a hand scene -> pose reference dominates and the model treats the ring as inspiration, adding common setting cliches (extra claws, milgrain bezel) and, in worse cases, silently drops small accent stones + reshapes the shank when the hand pose foreshortens the band",
+      "fix": "lock the exact prong COUNT+positions from source (e.g. LR-0141 = EXACTLY 4 slim claws at ~10/2/5/7; never 6/8, never double into 8 tips); NO milgrain, NO bezel, NO rim/under-bezel border around the stone unless in source; keep the center stone the same size/roundness; band must keep its EXACT source cross-section/profile/width/taper (never flatten/round/thicken/thin into a different shank shape) AND every pave diamond along the band at its source position/count/spacing — a plain/bare stretch of band where the source had pave = FAIL, same severity as an invented bezel. VERIFY prong count + band pave count + band shape all match source before returning; if any differs, reject+regenerate. Same-physical-ring: only camera/scene/pose/background change.",
       "refs": [
         "docs/03 A",
         "docs/12",
-        "docs/02 P1"
+        "docs/02 P1",
+        "docs/03 A side-stone-band-lock"
       ]
     },
     {
