@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.22 — 2026-07-12 (Drive read-back verify loop + auto QC)
+- **Modified:** config/QUALITY_MEMORY.json (drive-readback-verify-loop fix), config/project_manifest.json (drive_folders.verify_inbox), config/VERSION.json, README (version).
+- **Summary:** Established the enforcement mechanism the geometry locks were missing: sandbox cannot download Higgsfield's CDN output (403 both ways), so renders are routed through Drive folder LR_Verify_Inbox (1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0). Claude downloads each, verifies vs source (prong count/placement/size/angle, center shape/proportions/orientation/facets, head/basket/gallery/cathedral, halo/hidden-halo/bezel/milgrain add-or-remove, pave/baguette/side layout, band/shank/metal geometry, metal color/finish/texture, overall geometry) AND lighting (bright neutral daylight only, no warm/colored/moody, consistent exposure, neutral WB). Auto-reject+regenerate on any fail until 100%; fail the shot rather than ship a redesigned ring; deliver only verified passes.
+- **Reason:** User chose Option 1 (Drive read-back verify loop with automatic QC) after geometry drift kept reaching delivery.
+- **Impact:** Adds real post-generation enforcement. No change to generation rules; ring = locked CAD model, only camera/pose/composition/background/DoF change.
+
 ## v1.3.21 — 2026-07-11 (lifestyle prong-multiplication + milgrain-bezel drift)
 - **Modified:** config/QUALITY_MEMORY.json (lifestyle-prong-and-bezel-drift fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Captured a verified lifestyle-shot failure: worn/hand scenes multiplied prongs (4->6/8), rounded/shrank the center stone, and invented a milgrain/bezel rim border; band/pave drifted. Fix: lock exact prong count+positions from source, forbid invented milgrain/bezel/rim, keep stone size, keep thin band + source pave; verify prong count before returning, reject+regenerate on mismatch. Observed on LR-0141 lifestyle outputs.

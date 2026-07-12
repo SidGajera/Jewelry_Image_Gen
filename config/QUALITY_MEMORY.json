@@ -259,6 +259,17 @@
         "docs/12",
         "docs/02 P1"
       ]
+    },
+    {
+      "id": "drive-readback-verify-loop",
+      "problem": "generative model drifts geometry; sandbox cannot download Higgsfield CDN output to auto-verify (403 both ways), so failures reach the user",
+      "root_cause": "CDN egress blocked; text prompts only bias, never guarantee, geometry",
+      "fix": "Enforce via Drive read-back QC: user (or Higgsfield save-to-Drive) drops renders into LR_Verify_Inbox (Drive id 1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0); Claude downloads each, views, and verifies vs source: prong count/placement/size/angle; center shape/proportions/orientation/facets; head/basket/gallery/cathedral/setting; halo/hidden-halo/bezel/milgrain added-or-removed; pave/baguette/side-stone layout; band width/thickness/taper/shank/metal geometry; metal color/finish/texture; overall geometry; LIGHTING = bright neutral daylight only, no warm/yellow/orange/blue/green/colored/moody/dramatic, consistent exposure, neutral WB, true-to-life. Auto-reject+regenerate any fail until 100% pass; if a shot cannot pass, FAIL it (report) rather than ship a redesigned ring. Deliver only verified passes. Ring = locked CAD model; only camera/pose/composition/background/DoF change.",
+      "refs": [
+        "docs/06",
+        "docs/03 A",
+        "docs/03 E"
+      ]
     }
   ]
 }
