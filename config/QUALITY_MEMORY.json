@@ -248,6 +248,17 @@
         "docs/03 E",
         "docs/03 O"
       ]
+    },
+    {
+      "id": "lifestyle-prong-and-bezel-drift",
+      "problem": "in worn/lifestyle shots the model multiplies prongs (4->6/8), rounds/shrinks the center stone, and INVENTS a milgrain/bezel rim border around the stone; band bulks up or thins, pave spacing changes",
+      "root_cause": "small ring in a hand scene -> pose reference dominates and the model treats the ring as inspiration, adding common setting cliches (extra claws, milgrain bezel)",
+      "fix": "lock the exact prong COUNT+positions from source (e.g. LR-0141 = EXACTLY 4 slim claws at ~10/2/5/7; never 6/8, never double into 8 tips); NO milgrain, NO bezel, NO rim/under-bezel border around the stone unless in source; keep the center stone the same size/roundness; thin plain band with the source's single micro-pave row (don't thicken/thin or re-space). VERIFY prong count matches source before returning; if any differs, reject+regenerate. Same-physical-ring: only camera/scene/pose/background change.",
+      "refs": [
+        "docs/03 A",
+        "docs/12",
+        "docs/02 P1"
+      ]
     }
   ]
 }
