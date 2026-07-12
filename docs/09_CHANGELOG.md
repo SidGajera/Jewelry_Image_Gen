@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.21 — 2026-07-11 (lifestyle prong-multiplication + milgrain-bezel drift)
+- **Modified:** config/QUALITY_MEMORY.json (lifestyle-prong-and-bezel-drift fix), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** Captured a verified lifestyle-shot failure: worn/hand scenes multiplied prongs (4->6/8), rounded/shrank the center stone, and invented a milgrain/bezel rim border; band/pave drifted. Fix: lock exact prong count+positions from source, forbid invented milgrain/bezel/rim, keep stone size, keep thin band + source pave; verify prong count before returning, reject+regenerate on mismatch. Observed on LR-0141 lifestyle outputs.
+- **Reason:** User flagged 4->8 prongs + added milgrain bezel on LR-0141 lifestyle images.
+- **Impact:** Strengthens P1 prong/setting fidelity in lifestyle scenes. No change to other rules.
+
 ## v1.3.20 — 2026-07-11 (fake-gem + moody-lighting guard)
 - **Modified:** docs/03_IMAGE_GENERATION_RULES.md (§L fake-gem forbidden list, §E lighting character), config/QUALITY_MEMORY.json (fake-gem-and-moody-lighting fix), config/VERSION.json, config/project_manifest.json, README (version).
 - **Summary:** Captured the net-new bits of the LUXURY JEWELRY PRODUCT LOCK not already covered: every stone must read as a premium natural-looking lab-grown diamond, never CZ/moissanite/glass/plastic/acrylic/artificial-crystal/CGI-gem; lighting must be neutral daylight/luxury studio (soft shadows, clean highlights, neutral WB), never yellow/orange/blue/blackish/dark/warm-indoor/cinematic/dramatic/moody; white fabric pure neutral white, gold natural yellow, diamonds colorless. The rest of the directive (product/geometry/metal/lifestyle/photography locks) was already covered by v1.3.5-v1.3.19.
