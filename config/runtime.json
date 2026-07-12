@@ -1,0 +1,37 @@
+{
+  "purpose": "SINGLE startup file. On a new session read ONLY this file, then reply 'READY — 0 ACTIVE PROCESSES'. Do not scan/preload the repo; load another file only when a task needs it.",
+  "clean_session_start": {
+    "cancel_previous": "cancel/ignore all prior image-gen jobs, retries, polling/verify loops, downloads, uploads, background tasks",
+    "do_not_resume": true,
+    "do_not_poll_old_jobs": true,
+    "do_not_restore": "old history, temp data, base64, media previews, logs, tool outputs",
+    "clear_runtime_state_only": "never delete approved assets, rules, source images, SKU records, approved catalog results",
+    "active_processes_at_start": 0
+  },
+  "token_safe_execution": {
+    "no_action_until_task": "do not generate/verify/poll/commit/call tools until the user submits a task",
+    "never_reload_unchanged_files": true,
+    "never_reopen_approved_images": true,
+    "never_repeat_established_rules": true,
+    "max_response_lines": 10,
+    "one_tool_call_when_possible": true,
+    "no_parallel_jobs_unless_requested": true,
+    "no_silent_retries": true,
+    "stop_when_task_done": true
+  },
+  "commit_policy": {
+    "during_generation": "no commits",
+    "during_corrections": "no commits",
+    "on_explicit_catalog_approval": "exactly ONE commit of approved catalog files + compact approval record",
+    "commit_message": "Approve catalog <SKU>",
+    "no_readme_changelog_version_doc_updates_unless_requested": true
+  },
+  "output_lock": "token optimization must never alter jewelry geometry, diamonds, prongs, settings, lighting, logo, cloth, physics, or image quality",
+  "pointers": {
+    "rules_entry": "CLAUDE_SETUP.md",
+    "runtime_trio": ["config/project_manifest.json", "prompts/07_PROMPTS.md", "config/QUALITY_MEMORY.json"],
+    "verify_inbox_drive_id": "1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0",
+    "repository": "https://github.com/SidGajera/Claude_Lucent_Image_Gen"
+  },
+  "load_rule": "Load a file only when runtime.json or the current task explicitly requires it. Reuse asset paths/checksums without opening assets until needed."
+}
