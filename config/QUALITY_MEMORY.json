@@ -270,6 +270,17 @@
         "docs/03 A",
         "docs/03 E"
       ]
+    },
+    {
+      "id": "printed-logo-fabric-realism",
+      "problem": "logo looks like a flat vector sticker floating on the cloth: it ignores the fabric folds, is razor-crisp with no edge softening, shows no cloth weave through the gold, sits above the cloth with no embedded depth, has its own highlights that don't match the cloth lighting, and lacks the tiny ink-diffusion imperfections of a real fabric print",
+      "root_cause": "letting the diffusion model draw the logo in-frame always yields a clean vector overlay; a diffusion model cannot inherit fold displacement, weave-through, embedded depth, or the cloth's own light/shadow. Prompt wording only biases, never guarantees, a physical print.",
+      "fix": "Do NOT render the logo in-model. Generate studio shots on CLEAN white cloth (no logo), then composite the LOCKED official logo LOCALLY (0 credits, logo pixels never repainted) via scripts/print_logo_on_cloth.py, which enforces the six-point fabric-print realism standard: (1) FABRIC INTERACTION - displacement warps ink along the fold map; (2) SOFT EDGES - ink alpha blurred, no razor-crisp line; (3) WEAVE-THROUGH - cloth high-frequency texture added back over the ink so grain runs through the gold; (4) EDGE INK ABSORPTION - a tiny DARKEN-ONLY halo where foil meets fibre so the print reads as settled IN the weave (NO bright bevel, NO relief); (5) MATCHED LIGHTING - ink modulated by local cloth brightness AND clamped so a printed pixel is never brighter than the cloth beneath it (shares the cloth's highlights/shadows/curvature, never its own independent lighting); (6) INK DIFFUSION - subtle deterministic grain + soft edges for real-print imperfections. FINISH = flat metallic GOLD-FOIL integrated into the textile, as if professionally HOT-FOIL STAMPED onto premium fabric; the foil follows every fold/wrinkle/curvature via displacement (macro deformation) but stays FLAT - explicitly NO floating/sticker effect, NO embossing, NO 3D extrusion, NO bevel/raised relief, NO independent light source on the logo. Logo stays pixel-identical to assets/logo/logo_official.png. OMIT OVER APPROXIMATE still holds: a missing logo is acceptable, an incorrect/floating one is not.",
+      "refs": [
+        "docs/04",
+        "scripts/print_logo_on_cloth.py",
+        "docs/02 P0"
+      ]
     }
   ]
 }
