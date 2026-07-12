@@ -33,7 +33,11 @@ The logo must look **physically printed onto the fabric**, not a floating overla
 
 Plus placement rules: natural and OFF-CENTER (typically lower / lower-center / lower-right), never perfectly centered; partial visibility preferred (~60–90 % — cropped by frame, hidden behind the jewelry, or interrupted by a fold); and logo pixels remain identical (only blended into the cloth lighting, never repainted).
 
-**Why in-model logos fail these:** a diffusion model always draws the logo as a clean vector overlay — it cannot inherit fold displacement, weave-through, embedded depth, or the cloth's own light/shadow. Prompt wording only biases, never guarantees. Therefore the logo is NEVER rendered in-model; studio shots are generated on clean cloth and the logo is printed on by the local composite.
+**USER MANDATE (2026-07-12) — LOGO IS A REQUIRED PART OF THE SCENE.** Every studio shot MUST contain the Lucent Carat Lab logo physically printed on the white fabric beneath the ring. Never remove, fade, blur, crop or replace it. A clean-cloth-only studio shot is INVALID. If the logo cannot be reproduced correctly, **reject the generation** — never remove or alter it.
+
+**PRIMARY method (mandated): generate the logo IN-SCENE.** Feed the model the official logo artwork (`assets/logo/logo_official.png`) *and* a branded-cloth reference as media inputs, and instruct it to reproduce the EXACT logo as premium metallic gold **hot-foil stamping printed into** the fabric, satisfying all six points above plus the flat-foil rule, at reference scale/position with exact typography. Then **verify every render vs the official artwork** and **reject + regenerate** any where the logo drifts, floats, embosses, or is missing.
+
+**FALLBACK (only if in-model cannot reproduce the exact logo after retries):** generate on clean cloth and composite the locked logo locally via `scripts/print_logo_on_cloth.py` (pixel-exact, enforces the same six points). Use this when nano_banana garbles the fine typography — the composite guarantees exact letterforms. Either path must end with the exact logo permanently printed into the fabric; neither may ship a missing or approximated logo.
 
 ### Script usage (run locally by the user, 0 credits)
 ```
