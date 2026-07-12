@@ -21,13 +21,19 @@ Higgsfield `nano_banana_2` CANNOT reproduce the fine logo typography. Whenever i
 ## 4. PRINTED-ON-CLOTH COMPOSITE (the new default, user-locked 2026-07-10)
 The logo must look **physically printed onto the fabric**, not a floating overlay/sticker/watermark. Use `scripts/print_logo_on_cloth.py`.
 
-Requirements the composite must satisfy:
-1. Fabric texture shows THROUGH the print (use multiply / linear-burn style blend for the gold+dark ink, so the weave and grain remain visible). Not a flat opaque patch.
-2. The print follows the cloth's perspective and subtle surface deformation (optional light displacement by the cloth's own luminance/fold map).
-3. It sits under the fabric's shadows and highlights (folds and shadows pass over it).
-4. Placement is natural and OFF-CENTER (typically lower / lower-right), never perfectly centered.
-5. Partial visibility is acceptable and preferred: slightly cropped by the frame, partly hidden behind the jewelry, or interrupted by a fold — ~60–90 % visible.
-6. Logo pixels remain identical (only blended into the cloth lighting; never repainted).
+**SIX-POINT FABRIC-PRINT REALISM STANDARD (locked 2026-07-12).** A logo that fails ANY of these reads as a flat floating sticker and is INVALID. The composite must satisfy all six, and `scripts/print_logo_on_cloth.py` now enforces them:
+1. **FABRIC INTERACTION** — the print follows the cloth folds; displacement warps the ink along the fold map so lines bend over folds instead of ignoring them. Never a rigid flat patch.
+2. **SOFT EDGES** — no razor-crisp line; the ink alpha is slightly blurred because a real print softens where ink meets the fabric texture.
+3. **WEAVE-THROUGH** — the cloth's high-frequency weave is added back ON TOP of the ink, so the fabric grain visibly runs through the gold lines; the gold is never flat.
+4. **EDGE INK ABSORPTION** — a *tiny darken-only* halo where foil meets fibre so the print reads as settled IN the weave. This is NOT relief: no bright bevel, no raised edge — see the FLAT-FOIL rule below.
+5. **MATCHED LIGHTING** — the ink is modulated by local cloth brightness AND clamped so a printed pixel is never brighter than the cloth beneath it; the logo shares the cloth's own highlights, shadows and curvature and never carries its own independent lighting.
+6. **INK DIFFUSION** — subtle deterministic per-pixel grain + soft edges reproduce the tiny imperfections/edge bleed of real fabric printing.
+
+**FLAT HOT-FOIL FINISH (locked 2026-07-12).** The result must look like a flat metallic **gold-foil** print **professionally hot-foil stamped** into premium fabric — the foil is integrated into the textile, not a flat graphic sitting on it. The foil follows every fold, wrinkle and curvature (via displacement, macro deformation) but stays **FLAT**: explicitly **NO** floating/sticker effect, **NO** embossing, **NO** 3D extrusion, **NO** bevel or raised relief, **NO** independent light source on the logo. Point 4's edge treatment is darken-only ink absorption and must never become a 3D emboss.
+
+Plus placement rules: natural and OFF-CENTER (typically lower / lower-center / lower-right), never perfectly centered; partial visibility preferred (~60–90 % — cropped by frame, hidden behind the jewelry, or interrupted by a fold); and logo pixels remain identical (only blended into the cloth lighting, never repainted).
+
+**Why in-model logos fail these:** a diffusion model always draws the logo as a clean vector overlay — it cannot inherit fold displacement, weave-through, embedded depth, or the cloth's own light/shadow. Prompt wording only biases, never guarantees. Therefore the logo is NEVER rendered in-model; studio shots are generated on clean cloth and the logo is printed on by the local composite.
 
 ### Script usage (run locally by the user, 0 credits)
 ```
@@ -38,10 +44,12 @@ python scripts/print_logo_on_cloth.py \
     --scale  0.42 \
     --pos    lower-right \
     --opacity 0.9 \
-    --displace 6
+    --displace 6 \
+    --soften 1.0 \
+    --grain  0.06
 # outputs PRINTED_studio_shot.png
 ```
-Parameters: `--scale` logo width as fraction of image; `--pos` one of lower-right/lower-center/lower-left (or `x,y` fraction); `--opacity` ink strength; `--displace` fold-warp strength (px). The script multiplies the ink into the cloth and modulates it by the cloth's local brightness so it reads as printed.
+Parameters: `--scale` logo width as fraction of image; `--pos` one of lower-right/lower-center/lower-left (or `x,y` fraction); `--opacity` ink strength; `--displace` fold-warp strength (px, point 1); `--soften` ink-edge blur radius in px (points 2 & 6); `--grain` ink-diffusion imperfection 0..1 (point 6). The script warps the ink along the fold map, multiplies it into the cloth modulated by local brightness, clamps it so it never out-brightens the cloth, adds the weave back over the ink, and rings the edges with a faint embed shadow — satisfying all six realism points.
 
 ## 5. RULES THAT PREVENT AI FROM RECREATING LOGOS
 - Studio generation prompts explicitly say: "plain pure-white cloth, absolutely NO logo/emblem/text/watermark anywhere — clean fabric only" so the model leaves the cloth clean.
