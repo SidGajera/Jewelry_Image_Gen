@@ -9,6 +9,16 @@ Every new Claude session MUST:
 3. This file already carries the hard rules (§3), environment (§4), and per-SKU loop (§5) needed to start. Pull any deeper file only when the task actually needs it (§1).
 4. (Only when explicitly verifying/recovering) check `config/VERSION.json` for version/commit and `minimum_required_files`, and `config/project_manifest.json` for `required_files/required_assets`.
 
+## 0.5 GIT WORKFLOW — MAIN ONLY (permanent policy, user-locked 2026-07-13)
+This is the permanent Git workflow. It overrides any prior branch instruction.
+- **`main` is the only branch.** All development, fixes, commits, and pushes go **directly to `main`**.
+- **Never** create a feature branch, sub-branch, or worktree without the user's **explicit** permission.
+- **No PR workflow.** Never ask whether to merge or open a PR; do not open PRs unless the user explicitly requests one. Never ask the user where to commit — the answer is always `main`.
+- **Before every new task, verify you are on `main`** (`git branch --show-current`); if not, switch to `main` first.
+- **If a branch ever exists:** merge it into `main` immediately, resolve any conflicts, push `main`, then delete the merged branch **locally and on GitHub**. Never leave code stranded on a feature branch — `main` must always hold the latest approved code.
+- **Remote:** `origin` = `https://github.com/SidGajera/Claude_Lucent_Image_Gen.git`. The GitHub rename redirect can rewrite origin to `Jewelery-Website`; if a push 404s, run `git remote set-url origin https://github.com/SidGajera/Claude_Lucent_Image_Gen.git` and retry.
+- Commit trailers (Co-Authored-By + Claude-Session) still apply. Nothing is git-ignored (per user request; still never commit real secrets/.env).
+
 ## 1. LAZY-LOADING MAP (load only what the current task needs; unload after extracting the rules)
 | Task | Load ONLY |
 |---|---|
