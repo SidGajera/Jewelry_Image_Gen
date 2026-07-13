@@ -272,6 +272,17 @@
       ]
     },
     {
+      "id": "jewelry-is-always-the-hero",
+      "problem": "the ring is not instantly the focal point: eye is pulled to cloth/props/flowers/books/furniture/hands/scenery; background too busy or sharper than the ring; ring framed small with large empty negative space; wide environmental or portrait-style hand shots where the hand is the subject",
+      "root_cause": "composition treats the scene/hand as the subject and the jewelry as one element among many, instead of the single hero",
+      "fix": "Jewelry is ALWAYS the hero in every studio/lifestyle/closeup shot; the viewer's eye must land on the ring within the first second. The jewelry occupies 70-90% of visual attention; focus locks on the center stone + ring. Frame the ring LARGE and prominent without cropping key design details (prongs/gallery/side stones/band) - never shrink it. Background is support only: minimal, premium, softly blurred, with blur increasing away from the jewelry (real macro shallow DoF); background must NEVER be sharper than the ring. Camera priority: 1 jewelry, 2 diamond brilliance, 3 metal finish, 4 ring geometry, 5 background. In lifestyle shots the hand/skin is a STAND, not the subject - ring stays hero, framed large, NOT portrait-style hand photography. FORBIDDEN: busy backgrounds, distracting props, strong competing textures, large empty negative space, wide environmental shots, portrait framing with the hand as subject, background sharper than the ring, any composition where the jewelry is not instantly the focal point. Reconciles with natural-photography-angle-variety: off-center/rule-of-thirds framing still keeps the ring large and dominant - never creates empty space or reduces the 70-90% attention share. Every shot must read as luxury jewelry product photography; if the eye goes anywhere but the ring first, or the background competes/out-sharpens it -> regenerate.",
+      "refs": [
+        "docs/12 A2",
+        "docs/12 A1",
+        "docs/03 A"
+      ]
+    },
+    {
       "id": "natural-photography-angle-variety",
       "problem": "catalogs look templated, repetitive and AI-generated: the same fixed 5 camera setups every SKU, dead-center symmetrical framing, everything uniformly in focus, flat clinical lighting, waxy over-smooth surfaces — the shots read as artificial renders, not real photography",
       "root_cause": "reusing one canonical angle set for every catalog and defaulting to symmetrical, uniformly-sharp, clinically-even compositions that trigger the 'AI look'",
