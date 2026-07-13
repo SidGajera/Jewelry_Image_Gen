@@ -1,9 +1,2 @@
-# Local Environment / Sandbox Files
-.DS_Store
-Thumbs.db
-node_modules/
-dist/
-.env
-.idea/
-.vscode/
-*.log
+# No ignore rules — everything in the working tree is tracked and pushed (per user request).
+# NOTE: if a real .env with API keys/secrets is ever added, do NOT commit it — flag it first.
