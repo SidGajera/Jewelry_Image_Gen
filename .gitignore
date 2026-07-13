@@ -1,2 +1,6 @@
-# No ignore rules — everything in the working tree is tracked and pushed (per user request).
-# NOTE: if a real .env with API keys/secrets is ever added, do NOT commit it — flag it first.
+# Nearly nothing is ignored (per user request) — repo tracks everything EXCEPT real secrets.
+# The tool needs live API keys / a Google service-account; committing those would leak them.
+tool/.env
+tool/backend/.env
+tool/backend/service-account.json
+tool/backend/.venv/
