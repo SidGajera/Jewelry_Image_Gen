@@ -306,6 +306,16 @@
       ]
     },
     {
+      "id": "logo-tagline-color-drift",
+      "problem": "in-scene (in-model) logo renders the whole logo in GOLD, recoloring the tagline 'FUTURE OF FINE JEWELRY' to gold. On the official artwork that tagline is BLACK/dark - only the diamond emblem + 'LUCENT CARAT LAB' are gold. Observed across a full catalog's studio shots.",
+      "root_cause": "the diffusion model reproduces the logo as a single-color gold hot-foil and cannot reliably hold the official two-tone (gold emblem/wordmark + dark tagline).",
+      "fix": "The logo is TWO-TONE and must stay exact: diamond emblem + 'LUCENT CARAT LAB' = metallic GOLD; 'FUTURE OF FINE JEWELRY' tagline = BLACK/dark (as in assets/logo/logo_official.png). NEVER recolor the tagline to gold. In-model prompts must state the tagline color explicitly; VERIFY it on every studio render. If the model still gold-ifies the tagline (it usually will), that is a logo-fidelity failure -> fall through to the exact-logo LOCAL COMPOSITE (scripts/print_logo_on_cloth.py from the pixel-exact two-tone asset), which preserves the black tagline. Exact logo color/typography > in-model convenience.",
+      "refs": [
+        "docs/04",
+        "scripts/print_logo_on_cloth.py"
+      ]
+    },
+    {
       "id": "printed-logo-fabric-realism",
       "problem": "studio logo either (a) missing because the shot was left on clean cloth, or (b) present but looking like a flat vector sticker floating on the cloth - ignoring folds, razor-crisp, no weave showing through, own lighting, no embed. USER MANDATE (2026-07-12): the Lucent Carat Lab logo is a REQUIRED part of every studio scene, physically printed on the white fabric beneath the ring; never remove/fade/blur/crop/replace it.",
       "root_cause": "clean-cloth-only shots drop a required element; naive in-model logos come out as flat overlays because a diffusion model tends to draw a clean vector on top instead of a print integrated into the weave.",
