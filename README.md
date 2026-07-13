@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Current Stable Version** | 1.3.22 (stable build ✅) |
+| **Current Stable Version** | 1.3.23 (stable build ✅) |
 | **Latest Commit** | see [`config/VERSION.json`](config/VERSION.json) → `latest_commit_hash` |
 | **Startup / Entry File** | [`config/runtime.json`](config/runtime.json) (clean-session startup) → then [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) rules entry |
 | **Recovery** | [`RECOVERY.md`](RECOVERY.md) · machine-readable [`config/VERSION.json`](config/VERSION.json) |
