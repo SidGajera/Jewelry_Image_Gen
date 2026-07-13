@@ -1,0 +1,31 @@
+{
+  "sku": "LR-0144",
+  "status": "approved",
+  "approved_date": "2026-07-12",
+  "design": {
+    "type": "classic round-brilliant solitaire",
+    "center": "round brilliant colorless diamond",
+    "prongs": "exactly 4 slim rounded claw prongs (compass-set)",
+    "band": "plain highly-polished thin 18K yellow gold, cathedral shoulders",
+    "accents": "none — no side stones, pave, halo, bezel, or milgrain"
+  },
+  "studio_logo": "hot-foil printed in-scene into the fabric (official logo + branded cloth references)",
+  "catalog": {
+    "studio": {
+      "hero": "fd8364db",
+      "yaw_45_right": "f149eb25",
+      "yaw_45_left": "6664fbcf",
+      "side": "5281c914",
+      "three_quarter": "d0bc0ebc"
+    },
+    "lifestyle": ["0aac53cb", "5a53a166", "5d253f46", "8d0931c2"],
+    "closeup": ["ef88e5b8", "1eaf9354", "bcd90f88"]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "source_folder_id": "1I6eUIFRFB7cwgKxahgzPZx-ZmjdzFq5D",
+    "source_media_ids": ["27eddd8e-624b-432f-8442-7b2fa0561d05", "10f0e557-b447-4886-9641-c46e042afefb"]
+  }
+}
