@@ -1,5 +1,11 @@
 # 09 — CHANGELOG
 
+## v1.3.23 — 2026-07-12 (LR-0141 band-diamond removal + band-shape drift, recurrence)
+- **Modified:** config/QUALITY_MEMORY.json (lifestyle-prong-and-bezel-drift fix strengthened), config/VERSION.json, config/project_manifest.json, README (version).
+- **Summary:** User flagged a fresh LR-0141 lifestyle output where the previously-logged milgrain/bezel drift recurred and worsened: a full round bezel/rim border was invented around the center stone, the band's pavé diamonds were entirely REMOVED (bare metal instead of drift/re-spacing), and the band's cross-section/shape itself changed vs the source. Strengthened the `lifestyle-prong-and-bezel-drift` fix to explicitly treat a bare/pave-missing band stretch as equally severe as an invented bezel, and to require the band's exact source cross-section/profile/width/taper alongside prong count as pre-return verification checks.
+- **Reason:** User-submitted side-by-side (source vs. generated output) showing added round border, removed band diamonds, changed band shape.
+- **Impact:** Strengthens P1/P2 fidelity enforcement for LR-0141 and any SKU with a plain pavé shank in lifestyle/worn scenes. No change to other rules. Regeneration of the flagged shot pending Google Drive MCP re-authorization (calls currently fail with "requires approval" in this session).
+
 ## v1.3.22 — 2026-07-12 (Drive read-back verify loop + auto QC)
 - **Modified:** config/QUALITY_MEMORY.json (drive-readback-verify-loop fix), config/project_manifest.json (drive_folders.verify_inbox), config/VERSION.json, README (version).
 - **Summary:** Established the enforcement mechanism the geometry locks were missing: sandbox cannot download Higgsfield's CDN output (403 both ways), so renders are routed through Drive folder LR_Verify_Inbox (1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0). Claude downloads each, verifies vs source (prong count/placement/size/angle, center shape/proportions/orientation/facets, head/basket/gallery/cathedral, halo/hidden-halo/bezel/milgrain add-or-remove, pave/baguette/side layout, band/shank/metal geometry, metal color/finish/texture, overall geometry) AND lighting (bright neutral daylight only, no warm/colored/moody, consistent exposure, neutral WB). Auto-reject+regenerate on any fail until 100%; fail the shot rather than ship a redesigned ring; deliver only verified passes.
