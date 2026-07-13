@@ -17,7 +17,17 @@
     "one_tool_call_when_possible": true,
     "no_parallel_jobs_unless_requested": true,
     "no_silent_retries": true,
-    "stop_when_task_done": true
+    "stop_when_task_done": true,
+    "output_must_not_change": "OPTIMIZE TOKENS ONLY. Output stays visually+functionally identical: jewelry geometry/proportions, diamond shape/facets/brilliance, prong count/setting/basket/gallery/band, logo accuracy+cloth integration, bright neutral-white light, camera-angle quality+per-catalog variety, physics/shadows/product focus, Higgsfield quality (2k/model/reference strength), Drive+verification depth, approval+direct-to-main workflow. Never drop a QC step or lower resolution/model/reference/verification. Priority: 1 exact output, 2 exact jewelry identity, 3 full verification, 4 tokens. If a saving could change output or reliability, do not use it.",
+    "cache_drive_ids_after_first_lookup": true,
+    "read_each_source_image_once_per_sku": true,
+    "reuse_approved_design_profile": true,
+    "never_relist_unchanged_folders": true,
+    "never_echo_full_prompts_urls_schemas_metadata_or_tool_results_in_chat": true,
+    "avoid_polling_and_duplicate_tool_calls": true,
+    "batch_equivalent_operations_when_output_identical": true,
+    "never_reload_unchanged_tool_schemas": true,
+    "github_only_after_catalog_approval": true
   },
   "commit_policy": {
     "during_generation": "no commits",
