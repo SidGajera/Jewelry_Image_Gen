@@ -272,6 +272,17 @@
       ]
     },
     {
+      "id": "natural-photography-angle-variety",
+      "problem": "catalogs look templated, repetitive and AI-generated: the same fixed 5 camera setups every SKU, dead-center symmetrical framing, everything uniformly in focus, flat clinical lighting, waxy over-smooth surfaces — the shots read as artificial renders, not real photography",
+      "root_cause": "reusing one canonical angle set for every catalog and defaulting to symmetrical, uniformly-sharp, clinically-even compositions that trigger the 'AI look'",
+      "fix": "ROTATE the camera geometry per catalog — do NOT reuse the previous SKU's exact setups. §A's five roles still define coverage, but each catalog draws a DIFFERENT combination and includes 1-2 harder/dynamic angles (bird's-eye ~75-85° top-down; low near-table worm's-eye ~10-15°; over-the-shoulder three-quarter; raked oblique macro; off-center third-of-frame crop; gentle natural handheld tilt; profile at slight 10-15° yaw). Keep the five mutually distinct (≥ 30-40° separation). Make every frame read as REAL macro photography: genuine shallow depth of field with a real focal plane and soft falloff (not everything razor-sharp); slightly off-center / rule-of-thirds framing (never dead-center specimen-on-axis); organic gravity-driven cloth folds; real-lens character (edge falloff, believable speculars, soft shadow gradients, faint natural imperfection); avoid AI tells = perfect bilateral symmetry, unnaturally even lighting, all-in-focus, plastic/waxy surfaces, ring floating dead-center on flawless fabric. Bright neutral-white daylight and byte-identical ring geometry are unchanged — this varies only camera craft and composition. If a shot looks artificial/rendered → regenerate with a more natural camera, focal plane, and composition.",
+      "refs": [
+        "docs/12 A1",
+        "docs/12 A",
+        "docs/03 E"
+      ]
+    },
+    {
       "id": "printed-logo-fabric-realism",
       "problem": "studio logo either (a) missing because the shot was left on clean cloth, or (b) present but looking like a flat vector sticker floating on the cloth - ignoring folds, razor-crisp, no weave showing through, own lighting, no embed. USER MANDATE (2026-07-12): the Lucent Carat Lab logo is a REQUIRED part of every studio scene, physically printed on the white fabric beneath the ring; never remove/fade/blur/crop/replace it.",
       "root_cause": "clean-cloth-only shots drop a required element; naive in-model logos come out as flat overlays because a diffusion model tends to draw a clean vector on top instead of a print integrated into the weave.",

@@ -30,6 +30,28 @@ Every SKU's 5 studio images must be exactly these angles, so a customer can insp
 - **Three-quarter:** high ~60° top-down at ~30° yaw — top and one side seen together.
 Target ≥30–40° of yaw and/or pitch separation between any two studio shots. If two of the five read as the same angle, they are FAILED → regenerate the duplicate(s) at the correct distinct camera position. Distinctness applies to the CAMERA only; the ring itself stays byte-identical (see docs/03 §A).
 
+## A1. PER-CATALOG ANGLE ROTATION + NATURAL-PHOTOGRAPHY REALISM (user-locked 2026-07-13)
+Every catalog must look **freshly, naturally photographed** — never the same templated set, never "AI-generated / artificial." Two rules:
+
+**(1) Vary the angles per catalog — don't reuse the previous SKU's exact camera setups.** §A's five roles (hero / two three-quarters / side / high three-quarter) still define WHAT must be covered, but the SPECIFIC camera geometry must ROTATE from one catalog to the next, and should include at least one or two *harder, more dynamic* angles so no two catalogs feel identical. Draw a different combination each SKU from a pool such as:
+- steep bird's-eye ~75–85° straight down onto the table
+- low near-table hero ~10–15° (worm's-eye), stone towering over the band
+- over-the-shoulder three-quarter from behind the head looking forward
+- raked/oblique macro with light skimming across the facets
+- tight off-center crop with the ring in one third of the frame
+- gentle natural camera tilt (a believable handheld feel, not a rigid dutch angle)
+- profile with a slight 10–15° yaw (not a dead-flat 90°)
+- high three-quarter from the opposite corner to the last catalog's
+Keep the five mutually distinct (§A ANGLE DISTINCTNESS still applies: ≥30–40° separation). Rotating the set is what stops catalogs looking mass-produced. Track which setups the previous SKU used and deliberately pick different ones.
+
+**(2) Make each frame read as REAL photography, not a render.** Emulate a human macro photographer, not a symmetrical CGI turntable:
+- Natural, believable perspective and a real focal plane — genuine shallow depth of field with a soft, gradual falloff (a real point of focus, not everything uniformly razor-sharp).
+- Slightly off-center / rule-of-thirds composition; avoid dead-center, perfectly symmetrical, "specimen on axis" framing.
+- Organic cloth arrangement — folds fall where gravity would really put them, never a tidy repeating pattern.
+- Real-lens character: gentle light falloff toward the edges, believable specular highlights and soft shadow gradients, faint natural imperfection — not clinical, flat, plastic, over-even studio sterility.
+- Bright neutral-white daylight still governs (docs/03 §E); this rule changes only the *camera craft and composition*, never white balance, and never the ring geometry (byte-identical per docs/03 §A).
+Avoid the AI tells: perfect bilateral symmetry, unnaturally even lighting, everything in focus, waxy over-smooth surfaces, a ring floating dead-center on flawless fabric. If a shot looks artificial/rendered → regenerate with a more natural camera, focal plane, and composition.
+
 ## B. PHYSICALLY ACCURATE RING + CLOTH POSITIONING
 Every pose, fold, wrinkle, shadow and contact point must be physically realistic and achievable in a real studio — not CGI, not an impossible AI composition.
 
