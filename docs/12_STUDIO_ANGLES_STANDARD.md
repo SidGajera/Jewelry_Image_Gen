@@ -63,6 +63,21 @@ The jewelry is the subject of every shot — studio, lifestyle and close-up. The
 - **Reconciles A1:** the "slightly off-center / rule-of-thirds" framing in §A1 still keeps the ring LARGE and dominant — off-center placement must never create large empty negative space or reduce the jewelry's 70–90% attention share. Natural photography + hero-dominant framing together, never traded against each other.
 - Every shot must immediately read as **"luxury jewelry product photography."** If the eye goes anywhere but the ring first, or the background competes/out-sharpens the ring → regenerate.
 
+## A3. GEOMETRY IS IMMUTABLE — AUTOMATIC FALLBACK WORKFLOW (user-locked 2026-07-13)
+The final objective is **EXACT jewelry geometry with realistic luxury photography**. Jewelry geometry is immutable; AI may only change camera angle, composition, cloth, background, lighting, reflections, shadows, and depth of field. Never redesign, reinterpret, optimize, smooth, or reconstruct the ring. **Never ask the user which method to use — the fallback is automatic.**
+
+Per SKU, per shot, run this ladder and stop at the first method that passes QC:
+1. **AI generation, strict locked-geometry.** Feed the source images FIRST at max weight; prompt the hard CAD lock (only camera/scene changes). This is the default because it gives natural relighting and any camera angle.
+2. **AUTO-QC vs source** (do not deliver until it passes): head; halo outer diameter + rim thickness; center-stone diameter + center-to-halo ratio; 4-prong positions/angles/size; halo stone count/spacing/diameter; shank width/thickness; shoulder→head transition; cathedral/gallery architecture; metal thickness; diamond proportions; every contour/silhouette.
+3. **If ANY geometry differs → do NOT deliver; fall through automatically:**
+   - **Fallback 1 — composite the real ring.** Preserve the ORIGINAL jewelry exactly: cut the source-ring pixels and composite them into the AI-generated scene (`scripts/composite_ring_into_scene.py`), matching lighting, shadows, reflections, perspective, DoF and color. Geometry is then 100% identical (they are the source pixels). Limited to the angles the source provides; best for studio (flat) shots.
+   - **Fallback 2 — render from CAD.** If compositing cannot achieve the requested camera angle, render the exact geometry at that angle from the original CAD model (only when the CAD file is available), then composite onto cloth.
+   - Never deliver a regenerated ring whose geometry changed.
+
+**QC pass bar (all must hold):** ✔ 100% geometry match ✔ natural macro photography ✔ bright neutral-white daylight ✔ physically realistic reflections ✔ logo physically printed into the fabric ✔ camera angles varied across catalogs ✔ focus always on the jewelry.
+
+> Honest note kept in-repo: nano_banana biases toward the CAD but cannot guarantee <1% geometry; that is *why* the fallback ladder exists. Compositing (Fallback 1) is the in-pipeline route to true 0% drift.
+
 ## B. PHYSICALLY ACCURATE RING + CLOTH POSITIONING
 Every pose, fold, wrinkle, shadow and contact point must be physically realistic and achievable in a real studio — not CGI, not an impossible AI composition.
 

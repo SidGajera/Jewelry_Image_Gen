@@ -2,6 +2,17 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "geometry-immutable-auto-fallback",
+      "problem": "AI generation drifts jewelry geometry (head, halo outer diameter + rim thickness, center-stone diameter + center-to-halo ratio, 4-prong positions/angles/size, halo stone count/spacing/diameter, shank width/thickness, shoulder->head transition, cathedral/gallery architecture, metal thickness, pave layout, stone proportions, silhouette). User requires a 100% geometry match, which nano_banana cannot guarantee. Never ship a redesigned ring; never ask the user which fallback to use.",
+      "root_cause": "a diffusion model re-synthesizes the ring on every new camera angle; sub-1% CAD fidelity is impossible by generation alone, so an 'auto-regenerate until identical' loop never converges and only burns credits.",
+      "fix": "PERMANENT AUTO-FALLBACK WORKFLOW (user-locked 2026-07-13; NEVER ask the user to choose - switch automatically): (1) ATTEMPT AI generation with the strict locked-geometry prompt - source images fed FIRST at max weight; only camera angle/position/lens/perspective/composition/cloth/background/lighting/reflections/shadows/DoF may change; never redesign/reinterpret/optimize/smooth/reconstruct the ring. (2) AUTO-QC every output vs the source images across: head; halo outer diameter + metal rim thickness; center-stone diameter + center-to-halo ratio; 4-prong positions/angles/size/orientation; halo diamond count/spacing/diameter; shank width/thickness; shoulder-to-head transition; cathedral/gallery architecture; metal thickness everywhere; diamond proportions; every contour/silhouette. (3) If ANY geometry differs, DO NOT deliver. (4) AUTOMATICALLY switch to the next fallback without asking: FALLBACK 1 = preserve the ORIGINAL jewelry exactly and composite the real source-ring pixels into the AI-generated scene via scripts/composite_ring_into_scene.py, matching lighting/shadows/reflections/perspective/DoF/color; FALLBACK 2 = if compositing cannot achieve the requested camera angle, render the exact geometry at that angle from the original CAD model (only if the CAD file is available), then composite onto cloth. Never deliver a regenerated ring whose geometry changed. QC PASS BAR: 100% geometry match + natural macro photography + bright neutral-white daylight + physically realistic reflections + logo physically printed into the fabric + camera angles varied across catalogs + focus always on the jewelry.",
+      "refs": [
+        "docs/12 A3",
+        "scripts/composite_ring_into_scene.py",
+        "docs/03 A"
+      ]
+    },
+    {
       "id": "logo-garble",
       "problem": "AI renders a fake/garbled logo (e.g. 'ELLYREID', gray/wrong font, missing elements)",
       "root_cause": "nano_banana cannot reproduce fine logo typography",
