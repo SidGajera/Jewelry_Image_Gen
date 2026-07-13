@@ -1,0 +1,32 @@
+{
+  "sku": "LR-0148",
+  "status": "approved",
+  "approved_date": "2026-07-13",
+  "design": {
+    "type": "6-prong round-brilliant plain solitaire",
+    "center": "round brilliant colorless diamond",
+    "prongs": "EXACTLY 6 slim claw prongs (classic crown, no halo)",
+    "band": "plain highly-polished thin 18K yellow gold, tapered, small collar under the basket",
+    "accents": "none — no pave, no side stones, no halo"
+  },
+  "studio_logo": "hot-foil printed in-scene, two-tone (gold emblem/wordmark, BLACK tagline)",
+  "workflow": "geometry-immutable auto-fallback (AI strict-lock step 1; composite source ring on any drift)",
+  "catalog": {
+    "studio": {
+      "hero": "3d392941",
+      "yaw_45_left": "9c9092a2",
+      "birds_eye": "c15d73de",
+      "three_quarter_high": "00f5896a",
+      "side": "e71ad7e2"
+    },
+    "lifestyle": ["e5ae71ba", "89ca7d06", "1b548d3e", "745c5343"],
+    "closeup": ["33628637", "91fdaae0", "5d03fa6f"]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "source_folder_id": "1WboQOH6K7NQ-fNoNj-H7VvHfC2V3yS2R",
+    "source_media_ids": ["afa8673d-13bc-4540-8249-da3120e731be", "665683e6-1889-4c4c-9785-b57fc7836159"]
+  }
+}
