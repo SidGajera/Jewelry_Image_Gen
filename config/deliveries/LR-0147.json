@@ -1,0 +1,32 @@
+{
+  "sku": "LR-0147",
+  "status": "approved",
+  "approved_date": "2026-07-13",
+  "design": {
+    "type": "6-prong round-brilliant solitaire, bead-set pave band",
+    "center": "round brilliant colorless diamond",
+    "prongs": "EXACTLY 6 slim claw prongs (classic crown, no halo)",
+    "band": "thin 18K yellow gold, cathedral shoulders + V-gallery, single-row bead/grain-set pave down both shoulders",
+    "accents": "shoulder pave only — no halo, no additional side stones"
+  },
+  "studio_logo": "hot-foil printed in-scene (official logo + branded cloth references)",
+  "workflow": "geometry-immutable auto-fallback (AI strict-lock step 1; composite source ring on any drift)",
+  "catalog": {
+    "studio": {
+      "hero": "4a513d12",
+      "yaw_45_right": "75fc8769",
+      "worms_eye": "fe36af68",
+      "three_quarter_topdown": "80d121cf",
+      "yawed_side": "5f3c3b2c"
+    },
+    "lifestyle": ["bbb95f99", "df2a5cc9", "d2f2e3e9", "985d1e1f"],
+    "closeup": ["c54140e1", "ddc9ecfb", "c298a864"]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "source_folder_id": "1BNlYp9Dsob7c8YvWIl3R0Y6dC6njyvi3",
+    "source_media_ids": ["54c21ea9-0c40-4dbf-b81f-b929a4c43adf", "ba4d0531-6ca7-4b31-9d4b-72527ba0a1c8"]
+  }
+}
