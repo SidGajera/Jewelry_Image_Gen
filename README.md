@@ -45,6 +45,14 @@ All development, fixes, commits, and pushes go **directly to `main`**. No featur
 ## Deliveries
 Approved catalogs are recorded in [`config/deliveries/`](config/deliveries) as `LR-XXXX.json` (SKU, locked design, all 12 job IDs, source folder). Committed only on explicit "Approve catalog LR-XXXX".
 
+**Approved catalogs to date:**
+| SKU | Design |
+|---|---|
+| [LR-0142](config/deliveries/LR-0142.json) | Round brilliant, 4-prong, cushion pavé halo, French-pavé shoulders, 18K YG |
+| [LR-0144](config/deliveries/LR-0144.json) | Round brilliant solitaire, 4-prong, plain 18K YG cathedral band |
+| [LR-0147](config/deliveries/LR-0147.json) | Round brilliant, 6-prong, bead-set pavé band, 18K YG |
+| [LR-0148](config/deliveries/LR-0148.json) | Round brilliant, 6-prong plain solitaire, 18K YG |
+
 ## Repository layout
 - **Config:** [`config/VERSION.json`](config/VERSION.json) · [`config/project_manifest.json`](config/project_manifest.json) · [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (verified fixes, auto-applied) · [`config/runtime.json`](config/runtime.json) · [`config/deliveries/`](config/deliveries).
 - **Docs (`docs/`):** `01_MASTER_SPECIFICATION` · `02_SYSTEM_RULES` · `03_IMAGE_GENERATION_RULES` · `04_LOGO_WORKFLOW` · `05_TOKEN_OPTIMIZATION` · `06_CACHE` (Drive IDs) · `08_PROJECT_STRUCTURE` · `09_CHANGELOG` · `10_CURRENT_STATE` · `11_BACKGROUND_STANDARD` · `12_STUDIO_ANGLES_STANDARD`. Prompts: [`prompts/07_PROMPTS.md`](prompts/07_PROMPTS.md).
