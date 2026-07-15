@@ -8,7 +8,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-REPO_ROOT = Path(__file__).resolve().parents[2]      # .../Jewelery-Website
+from lib.config.paths import PATHS, REPO_ROOT
+
 load_dotenv(REPO_ROOT / "tool" / ".env")
 
 
@@ -28,7 +29,7 @@ SCRIPTS = {
     "composite_ring": REPO_ROOT / "scripts" / "composite_ring_into_scene.py",
     "print_logo":     REPO_ROOT / "scripts" / "print_logo_on_cloth.py",
 }
-LOGO_ASSET = REPO_ROOT / "assets" / "logo" / "logo_official.png"
+LOGO_ASSET = PATHS.logo_dir / "logo_official.png"
 
 # secrets
 HIGGSFIELD_API_KEY = os.getenv("HIGGSFIELD_API_KEY")

@@ -46,22 +46,23 @@ Keep the five mutually distinct (§A ANGLE DISTINCTNESS still applies: ≥30–4
 
 **(2) Make each frame read as REAL photography, not a render.** Emulate a human macro photographer, not a symmetrical CGI turntable:
 - Natural, believable perspective and a real focal plane — genuine shallow depth of field with a soft, gradual falloff (a real point of focus, not everything uniformly razor-sharp).
-- Slightly off-center / rule-of-thirds composition; avoid dead-center, perfectly symmetrical, "specimen on axis" framing.
+- Centered, visually balanced composition — the ring sits centered horizontally and vertically (see §A2; supersedes the earlier off-center/rule-of-thirds guidance, user-locked 2026-07-15).
 - Organic cloth arrangement — folds fall where gravity would really put them, never a tidy repeating pattern.
 - Real-lens character: gentle light falloff toward the edges, believable specular highlights and soft shadow gradients, faint natural imperfection — not clinical, flat, plastic, over-even studio sterility.
-- Bright neutral-white daylight still governs (docs/03 §E); this rule changes only the *camera craft and composition*, never white balance, and never the ring geometry (byte-identical per docs/03 §A).
-Avoid the AI tells: perfect bilateral symmetry, unnaturally even lighting, everything in focus, waxy over-smooth surfaces, a ring floating dead-center on flawless fabric. If a shot looks artificial/rendered → regenerate with a more natural camera, focal plane, and composition.
+- Bright neutral-white daylight still governs (docs/03 §E); this rule changes only the *camera craft*, never white balance, and never the ring geometry (byte-identical per docs/03 §A).
+Avoid the AI tells: unnaturally even lighting, everything in focus, waxy over-smooth surfaces. If a shot looks artificial/rendered → regenerate with a more natural camera, focal plane, and composition. (Perfect centering is now REQUIRED, not an AI tell to avoid — see §A2.)
 
-## A2. JEWELRY IS ALWAYS THE HERO (user-locked 2026-07-13)
+## A2. JEWELRY IS ALWAYS THE HERO (user-locked 2026-07-15, supersedes 2026-07-13 version)
 The jewelry is the subject of every shot — studio, lifestyle and close-up. The viewer's eye must land on the ring within the first second.
-- **Attention share:** the jewelry occupies **70–90%** of the viewer's visual attention; focus locks on the **center stone and ring**. Everything else is secondary support.
-- **Frame it large:** the ring fills the composition prominently WITHOUT cropping important design details (prongs, gallery, side stones, band). No shrinking the ring into the frame.
+- **Attention share:** the jewelry occupies **55–70%** of the viewer's visual attention; focus locks on the **center stone and ring**. Everything else is secondary support.
+- **Position — CENTERED:** the ring is placed centered horizontally, centered vertically, and visually balanced in the frame. Never place it near the edges. (This replaces the earlier off-center/rule-of-thirds requirement.)
+- **Frame it large:** the ring fills the composition prominently WITHOUT cropping important design details (prongs, gallery, side stones, band). No shrinking the ring into the frame; keep balanced margins and comfortable breathing room (professional luxury composition, not cropped tight).
 - **Background is support only, softly blurred:** minimal and premium; background blur increases naturally with distance from the jewelry (real macro shallow DoF). The background must NEVER be sharper than the ring.
 - **Camera priority order:** 1) jewelry, 2) diamond brilliance, 3) metal finish, 4) ring geometry, 5) background (lowest).
 - **Never let the eye be pulled** to cloth, props, flowers, books, furniture, hands, or scenery. In lifestyle shots the hand/skin is a *stand*, not the subject — the ring stays the hero, framed large; NOT portrait-style hand photography.
-- **Forbidden:** busy backgrounds; distracting props; strong textures competing with the ring; large empty negative space; wide environmental shots; portrait-style framing where the hand is the subject; background sharper than the ring; any composition where the jewelry is not instantly the focal point.
-- **Reconciles A1:** the "slightly off-center / rule-of-thirds" framing in §A1 still keeps the ring LARGE and dominant — off-center placement must never create large empty negative space or reduce the jewelry's 70–90% attention share. Natural photography + hero-dominant framing together, never traded against each other.
-- Every shot must immediately read as **"luxury jewelry product photography."** If the eye goes anywhere but the ring first, or the background competes/out-sharpens the ring → regenerate.
+- **Logo stays supporting:** the logo occupies only supporting space (see docs/04, position roughly consistent shot-to-shot; small camera-perspective drift OK, large position changes not) and must never approach the ring's visual dominance.
+- **Forbidden:** busy backgrounds; distracting props; strong textures competing with the ring; large empty negative space; wide environmental shots; portrait-style framing where the hand is the subject; background sharper than the ring; off-center/edge-placed jewelry; any composition where the jewelry is not instantly the focal point.
+- Every shot must immediately read as **"luxury jewelry product photography."** If the eye goes anywhere but the ring first, the ring isn't centered, or the background competes/out-sharpens the ring → regenerate.
 
 ## A3. GEOMETRY IS IMMUTABLE — AUTOMATIC FALLBACK WORKFLOW (user-locked 2026-07-13)
 The final objective is **EXACT jewelry geometry with realistic luxury photography**. Jewelry geometry is immutable; AI may only change camera angle, composition, cloth, background, lighting, reflections, shadows, and depth of field. Never redesign, reinterpret, optimize, smooth, or reconstruct the ring. **Never ask the user which method to use — the fallback is automatic.**
