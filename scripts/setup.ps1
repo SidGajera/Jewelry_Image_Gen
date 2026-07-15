@@ -9,10 +9,29 @@ $Missing = @()
 Write-Host "== Lucent Carat Lab setup =="
 
 # 1. Required software
-$python = Get-Command python -ErrorAction SilentlyContinue
-if (-not $python) { $python = Get-Command py -ErrorAction SilentlyContinue }
-if (-not $python) {
-    $Missing += "Python (>=3.10) - install it, then re-run this script"
+# A name being on PATH is not enough: Windows ships non-functional python/python3
+# Microsoft Store alias stubs that resolve via Get-Command but fail when run.
+# Actually invoke each candidate and require real version output.
+function Test-RealPython($exe) {
+    try {
+        $out = & $exe -c "import sys; print('%d.%d' % sys.version_info[:2])" 2>$null
+        if ($LASTEXITCODE -eq 0 -and $out -match '^\d+\.\d+$') { return $out }
+    } catch {}
+    return $null
+}
+
+$pythonExe = $null
+$pyVer = $null
+foreach ($candidate in @("python", "py", "python3")) {
+    $cmd = Get-Command $candidate -ErrorAction SilentlyContinue
+    if ($cmd) {
+        $ver = Test-RealPython $cmd.Source
+        if ($ver) { $pythonExe = $cmd.Source; $pyVer = $ver; break }
+    }
+}
+
+if (-not $pythonExe) {
+    $Missing += "Python (>=3.10) - install a real interpreter from python.org (not the Store alias), then re-run this script"
 }
 
 if ($Missing.Count -gt 0) {
@@ -21,8 +40,7 @@ if ($Missing.Count -gt 0) {
     exit 1
 }
 
-$pythonExe = $python.Source
-Write-Host "Using $pythonExe"
+Write-Host "Using $pythonExe (python $pyVer)"
 
 # 2. Virtualenv + dependencies
 $venvDir = Join-Path $Backend ".venv"
