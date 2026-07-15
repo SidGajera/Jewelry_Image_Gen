@@ -10,8 +10,15 @@ MISSING=()
 echo "== Lucent Carat Lab setup =="
 
 # 1. Required software
-if ! command -v python3 >/dev/null 2>&1; then
-  MISSING+=("python3 (>=3.10) — install it, then re-run this script")
+# `command -v` alone is not enough: on Windows, python3/python can exist in PATH
+# as a non-functional Microsoft Store alias that passes this check but fails to
+# run. Actually invoke it and check the output.
+PY_VER=""
+if command -v python3 >/dev/null 2>&1; then
+  PY_VER="$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])' 2>/dev/null || true)"
+fi
+if [ -z "$PY_VER" ]; then
+  MISSING+=("python3 (>=3.10) — install a real interpreter from python.org (not a store alias), then re-run this script")
 fi
 
 if [ ${#MISSING[@]} -ne 0 ]; then
@@ -20,7 +27,6 @@ if [ ${#MISSING[@]} -ne 0 ]; then
   exit 1
 fi
 
-PY_VER="$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
 echo "Using python3 $PY_VER"
 
 # 2. Virtualenv + dependencies
