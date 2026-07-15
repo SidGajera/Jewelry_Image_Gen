@@ -7,11 +7,14 @@ from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
 import config  # loads repo config + secrets
+from lib.config.paths import PATHS
 
 app = FastAPI(title="Lucent Carat Lab — Catalog Generator")
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
 )
+
+PATHS.ensure_dirs()
 
 # in-memory job registry (swap for tool/backend/jobs/<sku>.json persistence)
 JOBS: dict[str, dict] = {}
@@ -24,6 +27,8 @@ def health():
         "model": config.GEN["model"],
         "images_per_catalog": config.IMAGES_PER_CATALOG,
         "source_parent": config.DRIVE_FOLDERS["source_parent"],
+        "paths": PATHS.as_dict(),
+        "logo_asset_exists": config.LOGO_ASSET.exists(),
     }
 
 

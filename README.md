@@ -29,8 +29,8 @@ Honest limit: `nano_banana` biases toward the CAD but cannot guarantee <1% geome
 
 ## Locked standards (this repo enforces, auto-applied from `QUALITY_MEMORY.json`)
 - **Logo — required, in-scene, two-tone:** every studio shot carries the logo, hot-foil printed *into* the fabric (follows folds, weave shows through, matched lighting, no float/emboss). It is **two-tone**: emblem + "LUCENT CARAT LAB" gold, **"FUTURE OF FINE JEWELRY" black** — never gold-ified. Exact-typography fallback = local composite ([`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py)).
-- **Jewelry is always the hero:** ring = 70–90% of visual attention, framed large, background soft-blurred and never sharper than the ring; lifestyle hand is a stand, not the subject.
-- **Per-catalog angle rotation + natural photography:** rotate camera geometry each SKU (incl. harder angles); real macro look (shallow DoF, off-center-yet-dominant framing, real-lens character); no AI tells.
+- **Jewelry is always the hero:** ring = 55–70% of visual attention, CENTERED horizontally+vertically with balanced margins (user-locked 2026-07-15, supersedes the earlier 70–90%/off-center rule), framed large, background soft-blurred and never sharper than the ring; lifestyle hand is a stand, not the subject.
+- **Per-catalog angle rotation + natural photography:** rotate camera geometry each SKU (incl. harder angles); real macro look (shallow DoF, centered dominant framing, real-lens character); no AI tells.
 - **Color/diamond/cloth fidelity:** source is master for all color; neutral-white daylight; single real facet pattern; premium neutral-white cloth.
 
 ## Runtime & token policy
@@ -57,8 +57,8 @@ Approved catalogs are recorded in [`config/deliveries/`](config/deliveries) as `
 - **Config:** [`config/VERSION.json`](config/VERSION.json) · [`config/project_manifest.json`](config/project_manifest.json) · [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (verified fixes, auto-applied) · [`config/runtime.json`](config/runtime.json) · [`config/deliveries/`](config/deliveries).
 - **Docs (`docs/`):** `01_MASTER_SPECIFICATION` · `02_SYSTEM_RULES` · `03_IMAGE_GENERATION_RULES` · `04_LOGO_WORKFLOW` · `05_TOKEN_OPTIMIZATION` · `06_CACHE` (Drive IDs) · `08_PROJECT_STRUCTURE` · `09_CHANGELOG` · `10_CURRENT_STATE` · `11_BACKGROUND_STANDARD` · `12_STUDIO_ANGLES_STANDARD`. Prompts: [`prompts/07_PROMPTS.md`](prompts/07_PROMPTS.md).
 - **Assets:** `assets/logo/logo_official.png` (LOCKED two-tone) · `assets/logo/logo_official_transparent.png` · `assets/background/sample_studio_background_with_logo.png`.
-- **Scripts:** [`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py) (hot-foil two-tone logo composite) · [`scripts/composite_ring_into_scene.py`](scripts/composite_ring_into_scene.py) (exact-ring fallback) · `whiten_cloth.py`.
-- **Tool (`tool/`):** web-app scaffold to run the whole pipeline with auto-QC + approval gate — see [`tool/README.md`](tool/README.md).
+- **Scripts:** [`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py) (hot-foil two-tone logo composite) · [`scripts/composite_ring_into_scene.py`](scripts/composite_ring_into_scene.py) (exact-ring fallback) · `whiten_cloth.py` · [`scripts/setup.sh`](scripts/setup.sh)/[`.ps1`](scripts/setup.ps1), [`scripts/start.sh`](scripts/start.sh)/[`.ps1`](scripts/start.ps1), [`scripts/health-check.sh`](scripts/health-check.sh)/[`.ps1`](scripts/health-check.ps1) (portable one-command setup for the web tool below).
+- **Tool (`tool/`):** web-app scaffold to run the whole pipeline with auto-QC + approval gate — portable, one-command setup; see [`tool/README.md`](tool/README.md) Quick Start.
 
 ## New-project setup
 1. `git clone https://github.com/SidGajera/Claude_Lucent_Image_Gen.git`

@@ -43,9 +43,9 @@ Complete rules for every generated image.
 - Lifestyle/closeup: cozy warm US-home scene (soft knit, marble, warm window light); soft blurred background; NO desks/laptops/offices; NO logo.
 
 ## G. COMPOSITION
-- Studio: ring as hero, elegant natural cloth drape, logo in a natural off-center branding position (never dead-center).
+- Studio: ring as hero, CENTERED horizontally+vertically, occupying ~55-70% of visual attention with balanced margins (user-locked 2026-07-15; see docs/12 §A2); elegant natural cloth drape; logo stays a secondary, naturally off-center branding mark (never dead-center itself, never competing with the ring — this off-center guidance applies to the LOGO only, the ring is always centered).
 - Lifestyle: natural hand pose, five fingers, natural skin, neutral manicure; ring prominent and sharp.
-- Vary pose every image and every catalog (looks like a real photoshoot, not a template).
+- Vary pose every image and every catalog (looks like a real photoshoot, not a template) — vary angle/pose, never the ring's centered position.
 
 ## H. CROPPING
 - Ring fully visible and sharp.
