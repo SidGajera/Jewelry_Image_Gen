@@ -9,13 +9,14 @@ Flow per shot:
   4. Never mark deliverable unless geometry is guaranteed AND sanity passes.
   5. Record which pipeline actually produced the delivered image.
 
-Direction note (docs/15 §5): fallback is bidirectional, each version naming its
-safety net. legacy.fallback_to=composite-v1 (a raw render failing the geometry
-gate is rescued by compositing the real ring). composite-v1.fallback_to=legacy
-(if composite cannot produce a valid image — sanity fail/crash, never geometry —
-fall back to the STABLE pipeline; that legacy render is geometry-unverified, so it
-is NOT auto-certified — it routes to the human approval gate, never auto-shipped).
-Single hop, no loop.
+HYBRID POLICY (user-locked 2026-07-16, docs/15 §5): composite-v1 is the DEFAULT.
+Legacy is NEVER used automatically (manual experimentation only) — so no version
+sets fallback_to any more (both null). If composite cannot produce a shot
+faithfully (e.g. a worn angle unavailable from the 2D CAD, or a geometry/integrity
+QC fail), the pipeline SKIPS that shot and requests more source material (more CAD
+angles / a 3D model) — it never lets AI redraw the jewelry. Missing an image is
+preferable to a geometrically incorrect product. `deliverable=False` with
+`action_required` set means: do not ship, get more source, do NOT auto-run legacy.
 
 Legacy generation itself happens upstream in the MCP session; for a legacy shot
 the caller passes the already-rendered image as `scene_or_render`. A composite
@@ -41,6 +42,7 @@ class DispatchResult:
     deliverable: bool
     out_path: Optional[str]
     verdict: dict
+    action_required: Optional[str] = None   # set when skipped: what to do (never auto-legacy)
     trail: list[dict] = field(default_factory=list)   # every attempt, for the record
 
     def as_dict(self) -> dict:
@@ -48,7 +50,8 @@ class DispatchResult:
             "sku": self.sku, "shot_type": self.shot_type,
             "requested_mode": self.requested_mode, "delivered_by": self.delivered_by,
             "fallback_used": self.fallback_used, "deliverable": self.deliverable,
-            "out_path": self.out_path, "verdict": self.verdict, "trail": self.trail,
+            "out_path": self.out_path, "verdict": self.verdict,
+            "action_required": self.action_required, "trail": self.trail,
         }
 
 
@@ -89,11 +92,12 @@ def generate(
 
     delivered_by = requested if deliverable else None
     fallback_used = False
+    action_required = None
 
     if not deliverable:
         fb = modemod.get_version(requested).get("fallback_to")
         if fb:
-            # geometry rescue: composite the real source ring into the scene/render
+            # (only if a version still declares a fallback_to; hybrid policy sets none)
             v2, out_path, prov2 = _run_one(fb, shot_type, scene_or_render, source_ring, out, sku, **kw)
             deliverable = bool(v2["passed"] and v2["geometry_guaranteed"])
             fallback_used = True
@@ -101,12 +105,19 @@ def generate(
                           "provenance": prov2})
             if deliverable:
                 delivered_by, verdict = fb, v2
+        if not deliverable:
+            # SKIP, don't invent: never auto-run legacy; get more source material.
+            action_required = (
+                "SKIP this shot — do NOT ship and do NOT auto-run legacy. Composite could "
+                "not produce it faithfully; request more source (additional CAD angles / a 3D "
+                "model) or omit the shot. Missing an image is preferable to an incorrect ring."
+            )
 
     return DispatchResult(
         sku=sku, shot_type=shot_type, requested_mode=requested,
         delivered_by=delivered_by, fallback_used=fallback_used,
         deliverable=deliverable, out_path=out_path if deliverable else None,
-        verdict=verdict, trail=trail,
+        verdict=verdict, action_required=action_required, trail=trail,
     )
 
 

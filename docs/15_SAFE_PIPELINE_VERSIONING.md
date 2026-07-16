@@ -9,8 +9,8 @@ User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — i
 
 ## 2. VERSIONED PIPELINES
 `config/pipeline_versions.json` registers named versions:
-- **`legacy`** — the incumbent prompt-based MCP workflow (full-AI scene + ring; geometry may drift). Current **stable default**.
-- **`composite-v1`** — AI generates only the scene; the real source-CAD ring is composited in → geometry identical by construction. **Experimental** until it wins shadow testing (§4).
+- **`composite-v1`** — **the DEFAULT** (user-locked 2026-07-16). AI generates only the scene; the real source-CAD ring is composited in → geometry identical by construction. Studio: always composite. Lifestyle/close-up: composite when the worn angle is achievable from source; else request more source or SKIP (§5).
+- **`legacy`** — prompt-based MCP workflow (full-AI scene + ring; geometry may drift). **Retained for manual experimentation ONLY — never selected automatically, never a fallback.** Available via the one-command switch for experimentation.
 - Future: `composite-v2`, … (add a version block; never edit an existing one in place).
 
 Select the active pipeline with **one value** — no source edits:
@@ -32,12 +32,13 @@ The new pipeline is **not** the default on arrival. For the same source, run bot
 - Scene-family categories return **needs_human** — promotion requires that sign-off; the harness never auto-promotes on aesthetics.
 - **composite-v1 may become `stable` only when it is equal-or-better in EVERY critical product-fidelity category.** If worse in any, keep `legacy` active.
 
-## 5. AUTOMATIC FALLBACK
-`dispatch.generate` (`POST /generate`) per shot: run the selected pipeline → QC → if it fails, fall back once to the version's `fallback_to` (single hop, no loop). Fallback is **bidirectional**, each version naming its safety net:
-- `legacy.fallback_to = composite-v1` — a raw legacy render that fails the geometry gate is rescued by compositing the real source ring (the repo's geometry-immutable-auto-fallback). This is the common, high-value case while `legacy` is the default.
-- `composite-v1.fallback_to = legacy` — if `composite-v1` cannot produce a valid image (a sanity failure or crash — its geometry never fails, being source pixels), it falls back to the **stable** pipeline. Honest consequence: a legacy fallback render is geometry-UNVERIFIED, so it is NOT auto-certified — it routes to the human approval gate rather than shipping. `delivered_by`/`deliverable` record this.
+## 5. NO AUTOMATIC LEGACY — SKIP, DON'T INVENT (user-locked 2026-07-16)
+**Accuracy over completeness.** `dispatch.generate` (`POST /generate`) runs composite-v1 → geometry + integrity QC. Legacy is **never** auto-run (both versions have `fallback_to: null`). If composite cannot produce a shot faithfully — a worn angle the 2D CAD can't cover, or a geometry/integrity QC fail — the pipeline does NOT fall back to AI generation. Order of preference (docs/16, hybrid policy):
+1. Composite the preserved jewelry into the scene (studio, and any lifestyle angle the source supports).
+2. If the angle can't be achieved faithfully → **request more source material** (additional CAD angles / a 3D CAD model → render the worn angle via FALLBACK 2, docs/13 §6).
+3. If neither is possible → **SKIP that shot**. A missing image is preferable to a geometrically incorrect ring.
 
-Never deliver below the approved baseline (§8). Every attempt + the delivering pipeline are recorded in the result `trail`.
+`deliverable=False` with `action_required` set means: do not ship, get more source, do NOT auto-run legacy. Every output must pass automatic geometry QC before delivery (§2 metrics). This reverses the earlier composite↔legacy auto-fallback — legacy redrawing the jewelry violates the ABSOLUTE jewelry-preservation rule (docs/02).
 
 ## 6. LEARNING MUST NEVER BE LOST (shared, versioned store)
 Learning is kept **separate from pipeline code** so rolling back code never rolls back learning:

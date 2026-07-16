@@ -434,6 +434,18 @@
       ]
     },
     {
+      "id": "hybrid-composite-default",
+      "problem": "need one pipeline policy that guarantees 100% jewelry geometry across a full catalog. Composite-v1 from 2D CAD guarantees studio geometry but cannot faithfully produce worn lifestyle/closeup shots (top-down CAD onto an angled finger = pasted); legacy AI redraws the ring (violates jewelry preservation).",
+      "root_cause": "2D CAD renders lack worn-angle coverage; only a 3D CAD model (render the worn angle) or a real worn photo can keep lifestyle geometry-perfect.",
+      "fix": "HYBRID POLICY, composite-v1 = DEFAULT (user-locked 2026-07-16, docs/15). Geometry is the highest priority (docs/02). STUDIO: always composite (AI never regenerates jewelry/logo). LIFESTYLE/CLOSEUP: composite whenever the worn angle is achievable from source; if not achievable faithfully, (1) composite the preserved jewelry, else (2) REQUEST more source (more CAD angles / a 3D model -> FALLBACK 2 render, docs/13 6), else (3) SKIP the shot. NEVER auto-run legacy / never let AI redraw the jewelry - missing an image is preferable to a geometrically incorrect product. Legacy retained for MANUAL experimentation only (one-command switch), never automatic, never a fallback (both fallback_to=null; dispatch sets action_required + skips instead). Every output must pass automatic geometry QC before delivery. Modular: pipeline chosen by one value (env PIPELINE_MODE / registry active); all prompts/QC/learning reusable across pipelines; validated learning kept separate from implementation (docs/15 6-7). Do NOT switch the default away from composite-v1 without explicit instruction.",
+      "refs": [
+        "docs/15 SAFE PIPELINE VERSIONING",
+        "docs/02 ABSOLUTE JEWELRY PRESERVATION",
+        "docs/13 FALLBACK 2",
+        "config/pipeline_versions.json"
+      ]
+    },
+    {
       "id": "composite-integrity",
       "problem": "a composite preserved geometry perfectly (ring = source pixels) but was still a FAILED image: composited onto a scene that already had a ring (double ring / original halo peeking behind the inserted solitaire), with the source drop-shadow left un-keyed as a white mask/segmentation-residue patch, and mismatched contact lighting. qc_final false-PASSED it on geometry provenance alone.",
       "root_cause": "geometry provenance != deliverable. The failure came from a DIRTY (ring-bearing) scene + loose keying; QC only checked that ring pixels were from source, not composite integration.",
