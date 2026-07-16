@@ -381,6 +381,17 @@
         "scripts/print_logo_on_cloth.py",
         "docs/02 P0"
       ]
+    },
+    {
+      "id": "preview-optimization-no-drafts",
+      "problem": "credits/tokens wasted on throwaway artifacts: preview images, draft renders, thumbnails, comparison collages, intermediate/work-in-progress outputs, low-quality test images, or preview versions made 'for confirmation'; regenerations that accumulate multiple preview copies of the same shot instead of replacing; extra images beyond the requested count; verbose reasoning / repeated image analysis / preview widgets.",
+      "root_cause": "generating anything other than the final full-quality deliverable burns credits and tokens with zero delivery value.",
+      "fix": "GENERATE ONLY FINAL FULL-QUALITY OUTPUT (user-locked 2026-07-16). Never generate previews/drafts/thumbnails/collages/intermediate/WIP/low-quality-test images; never display intermediate processing results; never create a preview version for confirmation. If a shot must be redone, REPLACE the previous image - do not produce multiple preview versions. Generate EXACTLY the number of final images requested - no extras. Minimize API calls, image uploads, logging, repeated image analysis, and verbose reasoning; think internally; return only the final completed output ready for review. NO conflict with the 'ONE verification image, then batch' step: that single image is a full-quality 2K FINAL (first of the requested set, counts toward the total), not a draft/preview - this rule forbids only extra/quality-reduced/throwaway renders. Preview widgets show_generations/job_display remain BANNED (docs/05).",
+      "refs": [
+        "docs/05",
+        "CLAUDE_SETUP.md 2.6",
+        "docs/02 P7"
+      ]
     }
   ]
 }

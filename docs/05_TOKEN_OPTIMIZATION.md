@@ -36,6 +36,15 @@ Objective: minimize input + output tokens while producing IDENTICAL image qualit
 - Report count only ("LR-XXXX done: 5 studio + 4 lifestyle + 3 closeup"). No preview widgets, no narration of each image, no re-printing of prompts/URLs.
 - Take permission once per batch, then run the whole batch.
 
+## PREVIEW OPTIMIZATION RULE (user-locked 2026-07-16)
+Generate ONLY final, full-quality output. Never spend credits/tokens on throwaway artifacts.
+- **Never generate:** preview images, draft renders, thumbnails, comparison collages, intermediate/"work in progress" outputs, or low-quality test images. Only generate the final requested image(s).
+- **Never display intermediate processing results** or create a preview version "for confirmation."
+- **Regeneration = replace, not accumulate:** if a shot must be redone, replace the previous image — never produce multiple preview versions of the same shot.
+- **Exact count:** generate exactly the number of FINAL images requested — no extras.
+- **Cut waste to the floor:** minimize API calls, image uploads, logging, repeated image analysis, and verbose reasoning. Reuse cached assets; think internally; return only the final completed output ready for review.
+- **Interaction with the "ONE verification image, then batch" step (CLAUDE_SETUP §2.5/§5) — NO conflict:** that verification image is a FULL-QUALITY 2K FINAL deliverable (the first of the requested set, kept in the final batch), NOT a draft/preview/thumbnail/low-quality test. It is the only pre-batch image and it counts toward the requested total. This rule forbids *extra, quality-reduced, or throwaway* renders — it does not remove the single full-quality verification image.
+
 ## TRUE ZERO-TOKEN GENERATION (optional)
 Generation through chat has an unavoidable floor (~450 tokens/image echoed by the tool). The only 0-token path is to hand the user the ready-to-paste prompt pack + settings (model `nano_banana_2`, 2K, 1:1, which source + pose per shot) and have them run the 12 generations in the Higgsfield app directly.
 
