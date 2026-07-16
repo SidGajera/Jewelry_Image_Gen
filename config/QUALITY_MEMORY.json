@@ -468,6 +468,17 @@
       ]
     },
     {
+      "id": "silent-source-verification",
+      "problem": "describing/analyzing the source geometry in text before generating wastes tokens and reinterprets the source; the user wants verification to be internal + silent, not a narrated geometry report.",
+      "root_cause": "'look carefully at source' was taken as view + describe; the real purpose of looking is silent verification against the generation.",
+      "fix": "SOURCE VERIFICATION POLICY (silent, user-locked 2026-07-16, docs/05). Before generating ANY image, verify the source SILENTLY + internally. NEVER describe/analyze/explain the jewelry, preview/read the source, print observations, or produce a geometry report (no 'I'm checking/I observed/The ring has/I can see'). Internally compare source vs generation on: head, gallery, prongs, cathedral, hidden halo, bridge, side diamonds, pave, band thickness, metal thickness, diamond count, diamond positions, stone size, stone shape, silhouette, open/closed areas, proportions. Source = ONLY ground truth: never improve/redesign/simplify/correct/reconstruct/infer/invent/hallucinate; if unclear, copy exactly (zero reconstruction - not 1%, not one prong/diamond/gallery bar/support/bridge/hidden-halo/cathedral/basket/head/shank). Only output 'Source verified.' then 'Generating...'. If the generated jewelry differs in any way, discard + regenerate; never deliver a modified design.",
+      "refs": [
+        "docs/05 SOURCE VERIFICATION POLICY",
+        "config/QUALITY_MEMORY.json no-image-preview-mode",
+        "docs/02 ABSOLUTE JEWELRY PRESERVATION"
+      ]
+    },
+    {
       "id": "no-image-preview-mode",
       "problem": "displaying/opening images in chat during processing (to 'verify' visually, or as thumbnails/markdown previews) burns tokens, bloats context, and slows the conversation.",
       "root_cause": "rendering images in chat is unnecessary for processing — inspection can be done in code and reported as text.",

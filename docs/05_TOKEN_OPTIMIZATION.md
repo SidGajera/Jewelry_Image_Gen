@@ -55,6 +55,14 @@ Never display images in chat during processing — previews burn tokens, bloat c
 - **Only show images when** the user types `preview`, `show image`, or `compare images`, or at **final approved catalog delivery**. Otherwise zero previews.
 - This complements the PREVIEW OPTIMIZATION RULE (don't *generate* throwaway previews) — this rule is about not *displaying* images in chat. QC still runs (via code); it just returns text.
 
+## SOURCE VERIFICATION POLICY (silent, user-locked 2026-07-16)
+Before generating ANY image, verify the source SILENTLY and internally. This supersedes "look carefully" — the purpose of looking is verification, not description.
+- **Never** describe the jewelry, analyze/explain the design in text, preview or "read" the source, print observations, or produce a geometry report. No "I'm checking…/I observed…/The ring has…/I can see…" — zero geometry descriptions or design summaries.
+- **Verify internally only** — compare source vs generation on: head, gallery, prongs, cathedral, hidden halo, bridge, side diamonds, pavé, band thickness, metal thickness, diamond count, diamond positions, stone size, stone shape, silhouette, open/closed areas, proportions.
+- **Source = the only ground truth:** never improve, redesign, simplify, "correct", reconstruct, infer hidden geometry, invent unseen geometry, or hallucinate missing parts. If any part is unclear, copy it exactly as it appears (zero reconstruction — not 1%, not one prong/diamond/gallery bar/support/bridge/hidden-halo/cathedral/basket/head/shank).
+- **Only output:** `Source verified.` then `Generating…` — nothing else about the source.
+- If the generated jewelry differs from the source in any way → discard automatically and regenerate; never deliver a modified design.
+
 ## TRUE ZERO-TOKEN GENERATION (optional)
 Generation through chat has an unavoidable floor (~450 tokens/image echoed by the tool). The only 0-token path is to hand the user the ready-to-paste prompt pack + settings (model `nano_banana_2`, 2K, 1:1, which source + pose per shot) and have them run the 12 generations in the Higgsfield app directly.
 

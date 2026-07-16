@@ -97,7 +97,8 @@
       "Bash(./.venv/Scripts/python.exe -c ' *)",
       "Bash(git commit -q -m 'Strengthen ABSOLUTE jewelry rule: read-only asset, whole-asset transforms only *)",
       "Bash(git commit -q -m 'Source = SKU main folder only; no subfolders without permission *)",
-      "Bash(git commit -q -m 'Source metal default = GOLD for multi-metal SKUs *)"
+      "Bash(git commit -q -m 'Source metal default = GOLD for multi-metal SKUs *)",
+      "Bash(git commit -q -m 'Silent source verification policy: verify internally, no geometry narration *)"
     ]
   }
 }
