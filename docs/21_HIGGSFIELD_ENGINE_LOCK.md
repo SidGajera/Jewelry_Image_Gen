@@ -9,6 +9,22 @@
 
 Always execute generation through the existing Higgsfield MCP integration that produced the previously approved catalogs. **That workflow is the production baseline.**
 
+## 1a. AUTHORIZATION PHRASE + FULL NEVER-AUTO LIST (user-locked 2026-07-16)
+
+**The image generation pipeline may change ONLY on the explicit instruction:**
+
+> **"Change the image generation pipeline."**
+
+**No other instruction authorizes it.** Not a bug report, not a quality complaint, not a geometry failure, not a timeout, not an internal recommendation, not an optimization goal. If an instruction seems to imply a pipeline change without that sentence, it does not authorize one - stop and ask.
+
+**Never automatically switch to:** Nano Banana · Nano Banana 2 · Nano Banana Flash · **Composite-v1** · Hybrid Composite · Local Composite · Manual Composite · Upload Widget · Media Upload Workflow · Browser Upload Workflow · Alternative MCP · Alternative Provider · Experimental Pipeline · any future image generation pipeline.
+
+**"Local/Manual Composite" in that list means a composite GENERATION pipeline** (composite-v1: the ring composited instead of generated). It does **NOT** mean the logo composite, which is a mandatory production stage in every pipeline (`docs/04` §8, P0) and is not generation (§2 below).
+
+**On ANY Higgsfield failure - generation, timeout, API, connector, quality, geometry - the pipeline does NOT change.** Retry within the Higgsfield workflow, recover the session, repair execution, resume from the failed step, preserve the pipeline. Pipeline replacement is prohibited as a remedy for anything. A geometry-drift rejection is a QC outcome (`docs/18`), never a reason to switch.
+
+**This policy overrides** automatic recovery logic, optimization logic, provider selection logic, fallback logic, experimental features, and future migrations.
+
 ## 2. WHAT "GENERATION" MEANS HERE (binding, resolves an apparent conflict)
 "Generate" = **synthesise new image content**. Only Higgsfield may do that.
 
@@ -19,7 +35,7 @@ Therefore the ban on "PIL/OpenCV rendering" targets **synthesis** engines, never
 ## 3. MODEL vs PROVIDER (binding)
 `nano_banana_2` is **Higgsfield's own model** and is the locked production model (`config/project_manifest.json` → `generation_settings.model`, `CLAUDE_SETUP.md` §4). The §1 ban list means **alternate providers**; it does NOT ban Higgsfield's own model. Selecting `nano_banana_2` inside Higgsfield is compliance, not a switch.
 
-> **KNOWN DEFECT (open, 2026-07-16):** every `generate_image` request specifying `nano_banana_2` has been executed by the server as `nano_banana_flash`. The model ID is valid in the catalog, so this is server-side routing, not a bad request. Production is therefore NOT currently on the locked model. Do not "fix" this by switching providers.
+> **KNOWN DEFECT (open, 2026-07-16):** every `generate_image` request specifying `nano_banana_2` has been executed by the server as `nano_banana_flash`. This is NOT a pipeline switch and must not be "fixed" by changing pipelines or providers - it is server-side routing inside Higgsfield, outside our control. The model ID is valid in the catalog, so this is server-side routing, not a bad request. Production is therefore NOT currently on the locked model. Do not "fix" this by switching providers.
 
 ## 4. SOURCE LOADING — NEVER ASK THE USER
 Always use the existing local source images already stored in the project (`workspace/golden/**`, `assets/**`) and the durable Drive IDs in `docs/06_CACHE.md`.
