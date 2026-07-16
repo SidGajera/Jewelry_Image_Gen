@@ -92,6 +92,7 @@ or any state that isn't in this Git repo.
 | `lib/pipeline/qc.py`       | Provenance-first geometry gate (composite = guaranteed; raw render = unverified) + optional vision hook | **built** |
 | `lib/pipeline/fallback.py` | Composite engine: wraps composite_ring_into_scene.py / print_logo_on_cloth.py as importable fns + debug CLI | **built** |
 | `lib/pipeline/pipeline.py` | Default-composite policy: `process_shot()` composites the real source ring into the AI scene, then QC | **built** |
+| `lib/pipeline/regression.py` | Golden no-regression harness: runs the pipeline over `config/golden_catalog.json`, compares success rate to `config/golden_baseline.json`, exits non-zero on regression (docs/14) | **built** |
 | `server.py`                | FastAPI app: REST + WebSocket; `POST /composite` live | `/health` + `/composite` live |
 
 All path-bearing modules above must import `PATHS` from `lib.config.paths` rather

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "note": "Golden regression catalog (docs/14 §4). Every pipeline change must pass all entries whose source images are present. Operator adds real CAD source + AI scene per row under workspace/golden/<id>/ (source.png, scene.png) — never fabricated. Rows with missing images are SKIPPED (not failed) until provided. The SMOKE row uses repo assets so the harness runs out of the box.",
+  "baseline_results": "config/golden_baseline.json",
+  "entries": [
+    {
+      "id": "SMOKE-halo-yg",
+      "design": "halo",
+      "metal": "yellow",
+      "shot_type": "lifestyle",
+      "scene": "assets/background/sample_studio_background_with_logo.png",
+      "source_ring": "hero_jewelry.png",
+      "require_logo": false,
+      "smoke": true
+    },
+    { "id": "halo-yg",            "design": "halo",            "metal": "yellow", "shot_type": "studio",    "require_logo": true  },
+    { "id": "solitaire-wg",       "design": "solitaire",       "metal": "white",  "shot_type": "studio",    "require_logo": true  },
+    { "id": "infinity-twist-yg",  "design": "infinity-twist",  "metal": "yellow", "shot_type": "lifestyle", "require_logo": false },
+    { "id": "emerald-eternity-wg","design": "emerald-eternity","metal": "white",  "shot_type": "studio",    "require_logo": true  },
+    { "id": "pave-rg",            "design": "pave",            "metal": "rose",   "shot_type": "studio",    "require_logo": true  },
+    { "id": "three-stone-yg",     "design": "three-stone",     "metal": "yellow", "shot_type": "lifestyle", "require_logo": false },
+    { "id": "hidden-halo-wg",     "design": "hidden-halo",     "metal": "white",  "shot_type": "closeup",   "require_logo": false }
+  ]
+}

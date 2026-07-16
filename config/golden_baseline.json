@@ -1,0 +1,13 @@
+{
+  "success_rate": 1.0,
+  "entries": {
+    "SMOKE-halo-yg": "pass",
+    "halo-yg": "skipped",
+    "solitaire-wg": "skipped",
+    "infinity-twist-yg": "skipped",
+    "emerald-eternity-wg": "skipped",
+    "pave-rg": "skipped",
+    "three-stone-yg": "skipped",
+    "hidden-halo-wg": "skipped"
+  }
+}
