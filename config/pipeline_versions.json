@@ -1,0 +1,66 @@
+{
+  "note": "Versioned pipeline registry (safe-versioning policy, docs/15). Select the active pipeline with ONE value \u2014 env PIPELINE_MODE overrides `active` here \u2014 never by editing source. Rollback = set `active` back to a proven version (scripts/rollback-pipeline.*). 'stable' is the last proven-good version; never overwrite/delete a version's config.",
+  "active": "legacy",
+  "stable": "legacy",
+  "stable_commit": "a58f7d2cd99e853b8fcb7ff469b3ae6d0a64cc75",
+  "stable_tag": "pipeline-stable",
+  "versions": {
+    "legacy": {
+      "description": "Prompt-based MCP generation workflow \u2014 the incumbent, proven default. Full-AI photoreal scene + ring; geometry may drift (no guarantee).",
+      "kind": "prompt",
+      "status": "stable",
+      "prompt_file": "prompts/07_PROMPTS.md",
+      "system_prompt": "prompts/00_MASTER_SYSTEM_PROMPT.md",
+      "provider": {
+        "model": "nano_banana_2",
+        "route": "mcp:higgsfield",
+        "resolution": "2k",
+        "aspect_ratio": "1:1",
+        "count": 1
+      },
+      "qc": {
+        "module": "lib.pipeline.qc",
+        "geometry": "vision-or-manual",
+        "min_edge_px": 1600
+      },
+      "geometry": {
+        "guarantee": "none",
+        "note": "generation-only; may redesign the ring"
+      },
+      "compositing": {
+        "enabled": false
+      }
+    },
+    "composite-v1": {
+      "description": "Composite pipeline \u2014 AI generates only the scene; the REAL source-CAD ring pixels are composited in. Geometry identical to source by construction. Experimental until it wins shadow testing (docs/15 \u00a74).",
+      "kind": "composite",
+      "status": "experimental",
+      "module": "lib.pipeline.pipeline",
+      "entrypoint": "process_shot",
+      "provider": {
+        "scene_route": "mcp:higgsfield",
+        "model": "nano_banana_2",
+        "resolution": "2k",
+        "aspect_ratio": "1:1",
+        "count": 1
+      },
+      "qc": {
+        "module": "lib.pipeline.qc",
+        "geometry": "provenance-guaranteed",
+        "min_edge_px": 1600
+      },
+      "geometry": {
+        "guarantee": "identical-by-construction",
+        "note": "ring = source pixels; never re-synthesized"
+      },
+      "compositing": {
+        "enabled": true,
+        "placement_defaults": "lib.pipeline.pipeline.PLACEMENT_DEFAULTS",
+        "always_composite": [
+          "lifestyle",
+          "closeup"
+        ]
+      }
+    }
+  }
+}
