@@ -33,7 +33,11 @@ The new pipeline is **not** the default on arrival. For the same source, run bot
 - **composite-v1 may become `stable` only when it is equal-or-better in EVERY critical product-fidelity category.** If worse in any, keep `legacy` active.
 
 ## 5. AUTOMATIC FALLBACK
-`dispatch.generate` (`POST /generate`) per shot: run the selected pipeline → QC → if it fails the geometry gate, fall back to the version's `fallback_to`. Direction is toward the **geometry-safe** pipeline (`legacy` raw render → `composite-v1` rescues the real ring); `composite-v1.fallback_to = null` (geometry already guaranteed). Never deliver below the approved baseline (§8). The delivering pipeline is recorded in the result trail.
+`dispatch.generate` (`POST /generate`) per shot: run the selected pipeline → QC → if it fails, fall back once to the version's `fallback_to` (single hop, no loop). Fallback is **bidirectional**, each version naming its safety net:
+- `legacy.fallback_to = composite-v1` — a raw legacy render that fails the geometry gate is rescued by compositing the real source ring (the repo's geometry-immutable-auto-fallback). This is the common, high-value case while `legacy` is the default.
+- `composite-v1.fallback_to = legacy` — if `composite-v1` cannot produce a valid image (a sanity failure or crash — its geometry never fails, being source pixels), it falls back to the **stable** pipeline. Honest consequence: a legacy fallback render is geometry-UNVERIFIED, so it is NOT auto-certified — it routes to the human approval gate rather than shipping. `delivered_by`/`deliverable` record this.
+
+Never deliver below the approved baseline (§8). Every attempt + the delivering pipeline are recorded in the result `trail`.
 
 ## 6. LEARNING MUST NEVER BE LOST (shared, versioned store)
 Learning is kept **separate from pipeline code** so rolling back code never rolls back learning:
