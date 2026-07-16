@@ -515,6 +515,18 @@
         "scripts/_recut_and_composite_0151.py",
         "workspace/output/LR-0151_studio_side_profile.png"
       ]
+    },
+    {
+      "id": "lr0151-higgsfield-render-geometry-drift",
+      "problem": "LR-0151 true-side Higgsfield render (nano_banana_2/flash, 2k, full geometry-lock prompt + source + logo refs) drifted geometry vs source: basket thicker, gallery shape changed, support bars changed, shoulder angle changed, prong thickness changed, diamond pavilion angle changed, overall proportions changed, camera not exactly 90deg. User rejected. Confirms prompt-based diffusion cannot lock CAD geometry — 'do not change' prose has diminishing returns; the model synthesizes a NEW ring conditioned on refs.",
+      "root_cause": "Diffusion image models generate a new image conditioned on prompt+refs; they do not truly lock object geometry. More prose does not fix it.",
+      "fix": "PRIMARY studio pipeline (user-locked 2026-07-16): DO NOT regenerate the ring. (1) lock the jewelry = immutable source pixels; (2) generate/prepare ONLY the environment (cloth/background/lighting/shadows); (3) composite the exact source ring into the scene (scripts/composite_ring_into_scene.py — match perspective/lighting/contact-shadow/reflections); (4) color/shadow harmonize only. Geometry then = source pixels (zero drift). This promotes the docs/12 A3 composite from 'fallback' to the DEFAULT for studio product shots. Higgsfield remains the engine for SCENE generation + lifestyle; it is NOT used to render the ring. Not a provider switch. NOTE: Higgsfield output CDN is egress-blocked in-sandbox (403), so composite uses LOCAL cloth plates + LOCAL source ring; Higgsfield-generated scenes can't be pulled back for local compositing unless routed via Drive.",
+      "refs": [
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "scripts/composite_ring_into_scene.py",
+        "scripts/_recut_and_composite_0151.py",
+        "config/QUALITY_MEMORY.json#higgsfield-production-generator-lock"
+      ]
     }
   ]
 }
