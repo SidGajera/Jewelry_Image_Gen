@@ -33,6 +33,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
 | Confirmation / auto-selection / when to ask the user | `docs/19_ZERO_CONFIRMATION_POLICY.md` |
 | Production output / silence / no preview (governs all output) | `docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md` |
+| Image generation ENGINE lock / provider policy / source loading / retry | `docs/21_HIGGSFIELD_ENGINE_LOCK.md` |
 | Jewelry QC / reject-on-drift / zero-tolerance review | `docs/18_ZERO_TOLERANCE_QC_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
