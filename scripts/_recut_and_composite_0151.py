@@ -140,5 +140,15 @@ ring_45.save(f'{OUT}/_ring_45_cut.png')
 composite(plate, ring_side, scale=0.46, pos=(0.40, 0.42), shadow=0.30, out_path=f'{OUT}/LR-0151_studio_side_profile.png')
 # r97_4 is a tall/narrow standing view (aspect ~1.87); scale smaller so the hero stone
 # is fully in-frame and the ring stays clear of the hot-foil logo.
-composite(plate, ring_45,   scale=0.32, pos=(0.34, 0.44), shadow=0.30, out_path=f'{OUT}/LR-0151_studio_45.png')
+composite(plate, ring_45,   scale=0.32, pos=(0.34, 0.44), shadow=0.30, out_path=f'{OUT}/LR-0151_studio_45L.png')
+
+# Hero front (r97_1). Face-on: minimal finger-hole, seeds low-centre.
+ring_front = recut(f'{GOLD}/r97_1.jpg', hole_seeds=[(0.50, 0.86), (0.50, 0.80), (0.50, 0.92)])
+ring_front.save(f'{OUT}/_ring_front_cut.png')
+composite(plate, ring_front, scale=0.50, pos=(0.42, 0.42), shadow=0.30, out_path=f'{OUT}/LR-0151_studio_hero_front.png')
+
+# 45 right = mirror of the 45 left (symmetric round solitaire -> geometry preserved,
+# same physical ring seen from the opposite side; not a redesign).
+ring_45R = ring_45.transpose(Image.FLIP_LEFT_RIGHT)
+composite(plate, ring_45R, scale=0.32, pos=(0.40, 0.44), shadow=0.30, out_path=f'{OUT}/LR-0151_studio_45R.png')
 print('DONE')
