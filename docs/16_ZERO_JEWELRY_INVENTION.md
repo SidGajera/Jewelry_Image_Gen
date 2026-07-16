@@ -38,5 +38,13 @@ The center-stone assembly is the single most-invented region (added girdle/suppo
 ### HEAD GEOMETRY QC (dedicated check group)
 The Jewelry Difference Detector inspects the head separately (`HEAD_GEOMETRY_CHECKS`, surfaced as `head:*` keys in `qc_final`): prong_count · prong_thickness · prong_angle · prong_position · basket_shape · gallery_shape · bridge_geometry · under_gallery · head_height · head_width · head_thickness · metal_volume · no_added_support_ring · no_added_gallery_rail · no_extra_bridge. Any mismatch → reject before delivery. Composite render = all pass (head is source pixels, invention impossible); raw render = UNVERIFIED until a vision diff runs (never a fabricated pass).
 
+## COMPOSITE INTEGRITY (user-locked 2026-07-16)
+Geometry preservation is necessary but NOT sufficient: a composite can carry the exact source ring (geometry_guaranteed=True) yet still be a failed image. Observed: compositing the source solitaire onto a studio scene that ALREADY contained a halo ring, with the source's soft drop-shadow left un-keyed — result read as failed AI inpainting: white mask/segmentation residue around the ring, the original halo ring peeking out behind the inserted solitaire (two rings), mismatched contact lighting/shadows.
+
+**A composite must also pass these checks (reject immediately if any fails):**
+- original_object_removed · single_ring_present · no_segmentation_artifacts · no_white_mask_residue · consistent_lighting_shadows · natural_background_integration.
+
+**Root cause + fix (enforced, not detected after):** the failure comes from a DIRTY scene (already had a ring) + loose keying — so the guarantee is at the INPUT: composite ONLY into a **clean, ring-free scene** (empty cloth / bare finger), and key the source with a clean alpha (drop its background shadow). `qc.composite_integrity` HARD-FAILS `original_object_removed` + `single_ring_present` unless the caller asserts `scene_is_clean=True`; segmentation/residue/lighting/integration are vision/manual ("unverified" — classical CV can't reliably spot a soft white-mask patch; it reads like cloth highlights, so no pixel-detector is claimed). `qc_final` therefore no longer auto-passes a composite on geometry provenance alone — it stays geometry_guaranteed but `passed=False` until integrity is satisfied. The geometry regression suite (docs/14) still asserts the geometry invariant only; composite integrity is checked per-shot / shadow-test.
+
 ## RELATED
 `docs/13_JEWELRY_PRESERVATION_SPEC.md` (Geometry Lock + QA checklist) · `docs/03 §A` (Design Preservation) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`zero-jewelry-invention`, `geometry-immutable-auto-fallback`) · `lib/pipeline/qc.py`.

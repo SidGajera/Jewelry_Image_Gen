@@ -62,6 +62,7 @@ def process_shot(
     pos: Optional[str] = None,
     shadow: Optional[float] = None,
     match_white: bool = True,
+    scene_is_clean: bool = False,
     print_studio_logo: bool = False,
     logo_scale: float = 0.42,
     logo_pos: str = "lower-right",
@@ -93,7 +94,7 @@ def process_shot(
 
     verdict = qc.qc_final(
         out, shot_type=shot_type, from_composite=True,
-        geometry_source=comp.geometry_source,
+        geometry_source=comp.geometry_source, scene_is_clean=scene_is_clean,
     )
 
     provenance = {

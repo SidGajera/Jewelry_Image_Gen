@@ -89,6 +89,46 @@ HEAD_GEOMETRY_CHECKS = [
 ]
 
 
+# Composite Integrity (docs/16). A composite can preserve geometry PERFECTLY yet
+# still be a failed image: the scene already contained a ring (double-ring), the
+# cutout left a white mask/segmentation residue, or lighting/shadows don't match.
+# geometry_guaranteed=True does NOT imply the composite is deliverable.
+COMPOSITE_INTEGRITY_CHECKS = [
+    "original_object_removed", "single_ring_present", "no_segmentation_artifacts",
+    "no_white_mask_residue", "consistent_lighting_shadows", "natural_background_integration",
+]
+
+
+def composite_integrity(image: str | Path, *, scene_is_clean: bool) -> dict:
+    """Gate composite-integration artifacts (root cause: dirty scene + loose keying).
+
+    The only deterministic guarantee is at the INPUT: a scene asserted ring-free
+    cannot leave a leftover ring or a double-ring. If the scene is NOT asserted
+    clean, original_object_removed + single_ring_present HARD-FAIL (this is what
+    the double-ring failure must trip). Segmentation/residue/lighting/integration
+    need a vision or human check — reported 'unverified', never a fabricated pass.
+    Classical CV cannot reliably spot a soft white-mask patch (it reads like cloth
+    highlights), so no pixel-detector is claimed here.
+    """
+    checks: dict[str, str] = {}
+    if scene_is_clean:
+        checks["original_object_removed"] = "pass"   # no original object existed
+        checks["single_ring_present"] = "pass"        # only the composited ring
+    else:
+        checks["original_object_removed"] = "fail"    # scene may hold another ring
+        checks["single_ring_present"] = "fail"
+    for k in ("no_segmentation_artifacts", "no_white_mask_residue",
+              "consistent_lighting_shadows", "natural_background_integration"):
+        checks[k] = "unverified"
+    failed = any(v == "fail" for v in checks.values())
+    reason = ("scene NOT asserted ring-free — may leave the original object / a "
+              "double ring; composite only into a clean ring-free scene"
+              if not scene_is_clean else
+              "clean scene asserted; keying residue + lighting/integration need a "
+              "vision or human check before delivery")
+    return {"checks": checks, "failed": failed, "reason": reason}
+
+
 def jewelry_difference_detector(
     render: str | Path,
     source: Optional[str | Path],
@@ -142,6 +182,7 @@ def qc_final(
     from_composite: bool,
     geometry_source: Optional[str | Path] = None,
     source: Optional[str | Path] = None,
+    scene_is_clean: bool = False,
 ) -> QCVerdict:
     """Verdict for a finished image.
 
@@ -189,7 +230,19 @@ def qc_final(
     elif diff["invented"] is None:
         reasons.append("jewelry-difference detector UNVERIFIED (" + diff["method"] + ")")
 
-    passed = geometry_ok and not fails and not invention_reject
+    # Composite Integrity — geometry can be perfect yet the composite still failed
+    # (double ring, white-mask residue, mismatched lighting). Only for composite path.
+    composite_reject = False
+    if from_composite:
+        ci = composite_integrity(image, scene_is_clean=scene_is_clean)
+        checklist = {**checklist, **{f"composite:{k}": v for k, v in ci["checks"].items()}}
+        composite_reject = ci["failed"]
+        if composite_reject:
+            reasons.append("COMPOSITE INTEGRITY fail: " + ci["reason"])
+        else:
+            reasons.append("composite-integrity: " + ci["reason"])
+
+    passed = geometry_ok and not fails and not invention_reject and not composite_reject
     return QCVerdict(
         passed=passed,
         geometry_guaranteed=geometry_ok,

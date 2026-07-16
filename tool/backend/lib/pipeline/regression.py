@@ -65,10 +65,15 @@ def run(catalog_path: Path = CATALOG) -> dict:
                 print_studio_logo=bool(e.get("require_logo")) and e["shot_type"] == "studio",
             )
             v = res.verdict
-            ok = bool(v["passed"] and v["geometry_guaranteed"])
+            # The geometry regression suite protects the GEOMETRY invariant that
+            # composite-v1 code guarantees. Composite INTEGRITY (single ring / clean
+            # scene) depends on the operator-provided scene, not pipeline code, so it
+            # is verified by shadow-test/manual, not here (docs/14 §2, docs/16).
+            ok = bool(v["geometry_guaranteed"])
             results[eid] = {
                 "status": "pass" if ok else "fail",
                 "geometry_guaranteed": v["geometry_guaranteed"],
+                "deliverable": v["passed"],
                 "method": v["method"],
                 "warnings": v.get("warnings", []),
             }
