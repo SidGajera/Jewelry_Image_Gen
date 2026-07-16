@@ -3,11 +3,15 @@
 Skeleton only — wire the pipeline stages (see tool/README.md) into these routes.
 Run: uvicorn server:app --reload
 """
+from pathlib import Path
+
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 import config  # loads repo config + secrets
 from lib.config.paths import PATHS
+from lib.pipeline import pipeline
 
 app = FastAPI(title="Lucent Carat Lab — Catalog Generator")
 app.add_middleware(
@@ -30,6 +34,33 @@ def health():
         "paths": PATHS.as_dict(),
         "logo_asset_exists": config.LOGO_ASSET.exists(),
     }
+
+
+class CompositeRequest(BaseModel):
+    scene: str                      # path to the AI scene (cloth/hand/environment)
+    source_ring: str                # path to the source-CAD ring image
+    out: str                        # output path
+    shot_type: str                  # studio | lifestyle | closeup
+    sku: str | None = None
+    scale: float | None = None
+    pos: str | None = None
+    shadow: float | None = None
+    match_white: bool = True
+    print_studio_logo: bool = False
+
+
+@app.post("/composite")
+def composite(req: CompositeRequest):
+    """Default geometry-safe path: composite the real source ring into an AI scene
+    and return the provenance QC verdict. This is what makes the ring identical to
+    source — the pipeline, not a prompt."""
+    res = pipeline.process_shot(
+        req.scene, req.source_ring, req.out,
+        shot_type=req.shot_type, sku=req.sku,
+        scale=req.scale, pos=req.pos, shadow=req.shadow,
+        match_white=req.match_white, print_studio_logo=req.print_studio_logo,
+    )
+    return res.as_dict()
 
 
 @app.post("/jobs/{sku}")
