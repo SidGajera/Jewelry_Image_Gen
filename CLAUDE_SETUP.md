@@ -27,6 +27,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Logo issue | `docs/04_LOGO_WORKFLOW.md` |
 | Studio camera angles | `docs/12_STUDIO_ANGLES_STANDARD.md` |
 | Jewelry geometry preservation / CAD fidelity / QA checklist | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
+| No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
