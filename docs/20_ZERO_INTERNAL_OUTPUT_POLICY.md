@@ -9,17 +9,25 @@ image previews · "Generating..." · live rendering window · intermediate image
 
 Do not explain what happened internally. Do not describe which model was selected. Do not explain pipeline decisions. Do not expose implementation details.
 
-## 2. THE ONLY ALLOWED OUTPUTS
+## 2. THE ONLY ALLOWED OUTPUTS (user-locked 2026-07-16)
+
 ```
-SUCCESS
-Image generated.
+Done.
 ```
 or
 ```
-STOPPED
-<verified final error>
+Stopped: <verified concise error>
 ```
-Nothing else.
+Nothing else. No previews, no technical detail, no job ids, no model names, no narration.
+
+**`Done.` may only be reported after ALL of:**
+1. Higgsfield render completed (`docs/21` §8 - visible and retrievable, not merely submitted).
+2. Official preserved logo printed naturally on the cloth (`docs/04` §7, §8).
+3. Jewelry unchanged (`docs/18` reject-on-drift).
+4. Final QC passed.
+5. Final image saved.
+
+A Higgsfield render finishing is **not** job completion. The job completes only when the delivered file carries exactly one official preserved logo printed on the cloth.
 
 ## 3. NO PREVIEW
 Never call preview/display tools (`show_generations`, `job_display`) as part of normal generation. Reinforces `CLAUDE_SETUP.md` §2.6.
