@@ -86,3 +86,18 @@ Only these may change: camera angle · camera distance · camera rotation · lig
 Therefore **this policy cannot be satisfied by any pipeline in which the model draws the ring.** "Reproduce the existing ring in a different scene" has exactly one implementation: the source-CAD pixels are **composited** into a generated scene (`composite-v1`, `scripts/composite_ring_into_scene.py`), where geometry is identical *by construction* rather than by instruction.
 
 Because this policy overrides workflow, it and `active: legacy` (`docs/15` §0) are incompatible. Resolving that requires the explicit authorization sentence in `docs/21` §1a — this file does not switch the pipeline by itself, but it makes clear that the current pipeline cannot honour it.
+
+## PRE-GENERATION GATE (mandatory, user-locked 2026-07-17)
+
+**This file is the ONLY authoritative policy for image generation. No generation may begin until it has been loaded and enforced.**
+
+Before EVERY generation, in order:
+1. Load and validate this policy.
+2. Load all recorded Failure Memory (`config/QUALITY_MEMORY.json` → `failure_memory` + `fixes`).
+3. Apply every applicable rule and corrective instruction **before** the request is sent.
+4. Reject any generation that violates this policy — internally, before delivery.
+5. Learn every approved/rejected result automatically: record it, increment repeat counts, never re-record duplicates, never repeat a known mistake.
+
+Mandatory for **every image, every SKU, every session, every device.** Never bypass, ignore, replace or partially apply it. Partial application is a violation.
+
+**Enforcement note.** Step 4 is not discretionary QC (which `docs/18` suspends) — it is policy enforcement, and it stays active. Step 3 constrains the *request*; it cannot constrain what the renderer returns. Where the model reconstructs geometry despite a compliant request, step 4 rejects the output — that is the gate working, and the reject is not a prompt defect to be re-tried indefinitely. See the recorded structural finding above.
