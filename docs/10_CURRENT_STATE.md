@@ -5,7 +5,7 @@ As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
 **Context loading:** startup loads ONLY `CLAUDE_SETUP.md`; lazy-load one file per task (§1 map). Normal generation loads the runtime trio (`config/project_manifest.json` + `prompts/07_PROMPTS.md` + `config/QUALITY_MEMORY.json`) — self-sufficient, identical output.
 
 ## PER-SKU WORKFLOW (current, exact)
-1. **Locate source:** `search_files` in source parent `1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy` for `title contains '<SKU#>'` → get the SKU folder → `search_files` for its images.
+1. **Locate source:** `search_files` in source parent for `title contains '<SKU#>'` → get the SKU folder → list its images. **MAIN FOLDER ONLY (user-locked 2026-07-16):** use only the images directly in the SKU's main folder; NEVER descend into subfolders (e.g. a "photo and video" subfolder) for source images without the user's explicit permission.
 2. **Study the ring:** `download_file_content` on the top view (and one side view) → decode base64 to PNG locally → view. Identify: center cut, side stones (type/color/cut/count), prongs, band, metal, gallery. Use the CORRECT file; ignore strays.
 3. **Log the design** in `LUCENT_MASTER.md` (§14 product codes) + `docs/06_CACHE.md`.
 4. **Import source** once: `media_import_url("https://drive.google.com/uc?id=<SRC_ID>&export=download")` → source media_id.
