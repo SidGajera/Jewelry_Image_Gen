@@ -17,7 +17,9 @@ Always execute generation through the existing Higgsfield MCP integration that p
 
 **No other instruction authorizes it.** Not a bug report, not a quality complaint, not a geometry failure, not a timeout, not an internal recommendation, not an optimization goal. If an instruction seems to imply a pipeline change without that sentence, it does not authorize one - stop and ask.
 
-**Never automatically switch to:** Nano Banana · Nano Banana 2 · Nano Banana Flash · **Composite-v1** · Hybrid Composite · Local Composite · Manual Composite · Upload Widget · Media Upload Workflow · Browser Upload Workflow · Alternative MCP · Alternative Provider · Experimental Pipeline · any future image generation pipeline.
+**Never automatically switch to:** another connector · another provider · another image generation workflow · **Composite-v1** · Hybrid Composite · Local Composite · Manual Composite · Upload Widget · Media Upload Workflow · Browser Upload Workflow · Alternative MCP · Experimental Pipeline · any future image generation pipeline.
+
+**Model names are NOT in that list** (user-locked 2026-07-16). Do not hard-code model names and do not permanently ban internal model names - they are Higgsfield MCP internals, not providers. See §3.
 
 **"Local/Manual Composite" in that list means a composite GENERATION pipeline** (composite-v1: the ring composited instead of generated). It does **NOT** mean the logo composite, which is a mandatory production stage in every pipeline (`docs/04` §8, P0) and is not generation (§2 below).
 
@@ -32,10 +34,17 @@ Always execute generation through the existing Higgsfield MCP integration that p
 
 Therefore the ban on "PIL/OpenCV rendering" targets **synthesis** engines, never the composite/QC/cut steps. Python may: manage files, cut/key source assets, composite preserved assets, validate, QC, crop, resize, rename, log, automate. Python may **never synthesise image content**.
 
-## 3. MODEL vs PROVIDER (binding)
-`nano_banana_2` is **Higgsfield's own model** and is the locked production model (`config/project_manifest.json` → `generation_settings.model`, `CLAUDE_SETUP.md` §4). The §1 ban list means **alternate providers**; it does NOT ban Higgsfield's own model. Selecting `nano_banana_2` inside Higgsfield is compliance, not a switch.
+## 3. MODEL POLICY — BACKWARD COMPATIBILITY DECIDES (user-locked 2026-07-16)
 
-> **KNOWN DEFECT (open, 2026-07-16):** every `generate_image` request specifying `nano_banana_2` has been executed by the server as `nano_banana_flash`. This is NOT a pipeline switch and must not be "fixed" by changing pipelines or providers - it is server-side routing inside Higgsfield, outside our control. The model ID is valid in the catalog, so this is server-side routing, not a bad request. Production is therefore NOT currently on the locked model. Do not "fix" this by switching providers.
+**Do NOT hard-code model names. Do NOT permanently ban internal model names.** Models are Higgsfield MCP internals; naming one is not a provider switch, and banning one is not provider hygiene.
+
+**The rule:** select the model inside Higgsfield MCP that **preserves backward compatibility with the previously approved catalogs**. Today that is **`nano_banana_2`** (`config/project_manifest.json` -> `generation_settings.model`, `CLAUDE_SETUP.md` §4) - the model that produced them.
+
+**If Higgsfield internally updates model names or routing, continue with the equivalent production model** that preserves the same workflow and output characteristics. Internal renames/reroutes are not migrations and require no authorization.
+
+> **Observed routing (2026-07-16):** requests specifying `nano_banana_2` are executed by the server as `nano_banana_flash`. This is Higgsfield-internal routing, outside our control. Per the rule above this is **not** a provider switch, **not** a defect to "fix" by changing providers or pipelines, and **not** grounds to stop. Continue; the workflow is unchanged.
+
+**Backward compatibility with previously approved catalogs outranks experimental pipeline changes.** A different model - even a Higgsfield-native one such as `marketing_studio_image` - would restart geometry tuning from zero and break that compatibility. It requires explicit authorization.
 
 ## 4. SOURCE LOADING — NEVER ASK THE USER
 Always use the existing local source images already stored in the project (`workspace/golden/**`, `assets/**`) and the durable Drive IDs in `docs/06_CACHE.md`.
