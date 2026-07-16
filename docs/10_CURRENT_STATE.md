@@ -86,3 +86,17 @@ Steps 3 and 8 are unsatisfiable while the model draws the ring. Step 3 locks geo
 Step 3 becomes a real lock — rather than a request — only when the source-CAD pixels are composited into the generated scene. Same for step 4: the approved logo benchmark (`docs/04` §9) is reproduced by the local composite at `--scale 0.28-0.34 --opacity 0.45-0.6 --displace 6-8 --soften 1.0`; an in-model logo has never passed it.
 
 The flow above is correct and stays as written. What it needs is a pipeline in which steps 3 and 4 are enforceable by construction (`docs/15` §0, `docs/21` §1a).
+
+### GOLDEN RULE (user-locked 2026-07-17)
+
+> **Policies → Validation → Generation → Verification → Learning → Delivery**
+>
+> **Never: Prompt → Generate → Hope it matches.**
+
+That is the difference between a reliable production workflow and one that repeatedly produces regressions.
+
+Two steps the 8-step flow above folds in explicitly:
+- **Step 3 — Build the locked design profile** before prompting: diamond geometry and proportions, prong geometry, gallery, cathedral, pavé, band width, metal thickness, ring proportions, and every recorded approved feature. Cached per SKU (`QUALITY_MEMORY` → `lr0151-design-profile`), never re-derived per shot.
+- **Step 8 — Update Failure Memory automatically** with every approved AND rejected result, before delivery closes. Approved patterns are recorded too, not only failures (`docs/04` §9 is the first).
+
+**Honest note, recorded 2026-07-17.** "Prompt → Generate → Hope it matches" is precisely what this session did: seven prompt formulations against a renderer that re-synthesises the ring each time, each one hoping different wording would hold the geometry. The policies were loaded and correct throughout. Hope was the mechanism, and the golden rule names why it failed — verification cannot rescue a step that had no lock in it. Enforcement has to be structural, not textual.
