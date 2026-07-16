@@ -11,7 +11,8 @@ from pydantic import BaseModel
 
 import config  # loads repo config + secrets
 from lib.config.paths import PATHS
-from lib.pipeline import pipeline
+from lib.pipeline import pipeline, dispatch
+from lib.pipeline import mode as modemod
 
 app = FastAPI(title="Lucent Carat Lab — Catalog Generator")
 app.add_middleware(
@@ -51,7 +52,7 @@ class CompositeRequest(BaseModel):
 
 @app.post("/composite")
 def composite(req: CompositeRequest):
-    """Default geometry-safe path: composite the real source ring into an AI scene
+    """Direct composite (composite-v1): drop the real source ring into an AI scene
     and return the provenance QC verdict. This is what makes the ring identical to
     source — the pipeline, not a prompt."""
     res = pipeline.process_shot(
@@ -61,6 +62,50 @@ def composite(req: CompositeRequest):
         match_white=req.match_white, print_studio_logo=req.print_studio_logo,
     )
     return res.as_dict()
+
+
+class GenerateRequest(BaseModel):
+    scene_or_render: str            # AI scene (composite) OR an existing legacy render
+    source_ring: str
+    out: str
+    shot_type: str
+    sku: str | None = None
+    mode: str | None = None         # override the active pipeline (else registry active)
+
+
+@app.post("/generate")
+def generate(req: GenerateRequest):
+    """Route through the active pipeline with automatic geometry-safe fallback and
+    provenance (safe-versioning rules 4-5)."""
+    res = dispatch.generate(
+        req.scene_or_render, req.source_ring, req.out,
+        shot_type=req.shot_type, sku=req.sku, mode=req.mode,
+    )
+    return res.as_dict()
+
+
+class ShadowTestRequest(BaseModel):
+    source_ring: str
+    scene_for_composite: str
+    legacy_render: str
+    out_dir: str
+    shot_type: str
+    sku: str | None = None
+
+
+@app.post("/shadow-test")
+def shadow_test(req: ShadowTestRequest):
+    """Compare legacy vs composite-v1 on the same source before any promotion (rule 4)."""
+    return dispatch.shadow_test(
+        req.source_ring, req.scene_for_composite, req.legacy_render, req.out_dir,
+        shot_type=req.shot_type, sku=req.sku,
+    )
+
+
+@app.get("/pipeline")
+def pipeline_mode():
+    """Current pipeline selection (safe-versioning rules 2-3)."""
+    return modemod.summary()
 
 
 @app.post("/jobs/{sku}")
