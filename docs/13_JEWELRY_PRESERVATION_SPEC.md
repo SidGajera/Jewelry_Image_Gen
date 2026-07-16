@@ -42,6 +42,7 @@ Compare the render to the source, feature by feature. Any ✗ = FAIL → do not 
 - [ ] Pavé: same count, size, spacing, start/end positions
 - [ ] Every stone: count/size/orientation match; diamonds are real-optics VVS/IF (no CGI/doubling/over-whitening)
 - [ ] Gallery/basket/metal thickness match
+- [ ] NO invented components (docs/16 detector): diamond_count, diamond_locations, gallery_structure, prong_count, hidden_halo_presence, pave_bridge_presence, metal_silhouette all match source — no added pavé bridge / hidden halo / gallery diamonds / extra prongs
 - [ ] Only background/lighting/camera/focus/shadows/reflections changed — nothing structural
 - [ ] Cloth = locked neutral-white cotton; logo (studio) physically printed, not an overlay
 - [ ] 1:1, 2K

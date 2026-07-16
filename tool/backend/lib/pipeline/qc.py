@@ -71,6 +71,58 @@ _GEOMETRY_ITEMS = [
     "symmetry", "worn_scale",
 ]
 
+# Jewelry Difference Detector (ZERO JEWELRY INVENTION POLICY, docs/16). The specific
+# invention/omission failure modes to compare render-vs-source before acceptance.
+JEWELRY_DIFF_CHECKS = [
+    "diamond_count", "diamond_locations", "gallery_structure", "prong_count",
+    "hidden_halo_presence", "pave_bridge_presence", "metal_silhouette",
+]
+
+
+def jewelry_difference_detector(
+    render: str | Path,
+    source: Optional[str | Path],
+    *,
+    from_composite: bool,
+) -> dict:
+    """Compare the rendered jewelry to the source for INVENTED/removed components
+    (added accent diamonds, hidden halo, pavé/diamond bridge, gallery diamonds,
+    extra prongs, changed stone count, redesigned basket, changed metal silhouette).
+    Any difference = reject before acceptance (docs/16 ZERO JEWELRY INVENTION).
+
+    - Composite render: invention is IMPOSSIBLE (the ring is source pixels) → pass.
+    - Raw render: needs a VISION diff vs source (Claude vision in-session, or
+      ANTHROPIC_API_KEY). When no vision is available it returns invented=None
+      (UNVERIFIED) — never a silent pass; the raw render must not be auto-accepted.
+    Never fabricates a verdict.
+    """
+    if from_composite:
+        return {
+            "available": True, "method": "provenance", "invented": False,
+            "checks": {c: "pass" for c in JEWELRY_DIFF_CHECKS},
+            "reason": "ring is source pixels — no component can be added, removed, or modified",
+        }
+    if source is None:
+        return {
+            "available": False, "method": "no-source", "invented": None,
+            "checks": {c: "unverified" for c in JEWELRY_DIFF_CHECKS},
+            "reason": "no source provided to diff against — cannot certify; do not auto-accept",
+        }
+    v = vision_geometry_verdict(render, source)
+    if not v.get("available"):
+        return {
+            "available": False, "method": "vision-unavailable", "invented": None,
+            "checks": {c: "unverified" for c in JEWELRY_DIFF_CHECKS},
+            "reason": ("raw render needs a jewelry diff vs source (Claude vision in-session "
+                       "or ANTHROPIC_API_KEY). Until run, treat as UNVERIFIED — do not "
+                       "auto-accept; prefer the composite pipeline (invention impossible)."),
+        }
+    # vision available: expect it to return per-check verdicts + an `invented` bool
+    checks = v.get("checks", {c: "unverified" for c in JEWELRY_DIFF_CHECKS})
+    invented = any(checks.get(c) == "fail" for c in JEWELRY_DIFF_CHECKS)
+    return {"available": True, "method": "vision", "invented": invented,
+            "checks": checks, "reason": v.get("reason", "vision jewelry diff")}
+
 
 def qc_final(
     image: str | Path,
@@ -78,6 +130,7 @@ def qc_final(
     shot_type: str,
     from_composite: bool,
     geometry_source: Optional[str | Path] = None,
+    source: Optional[str | Path] = None,
 ) -> QCVerdict:
     """Verdict for a finished image.
 
@@ -85,6 +138,10 @@ def qc_final(
     (geometry_source = the source-CAD file used) → geometry guaranteed.
     from_composite=False (raw AI render) → geometry UNVERIFIED; the gate fails on
     geometry so the pipeline composites instead of shipping the redesign.
+
+    `source` (the source-CAD image) enables the Jewelry Difference Detector
+    (docs/16). If the detector finds an invented/removed component, the image is
+    rejected even if sanity passes.
     """
     image = Path(image)
     fails, warns = _image_sanity(image)
@@ -107,7 +164,18 @@ def qc_final(
         ]
         checklist = {k: "unverified" for k in _GEOMETRY_ITEMS}
 
-    passed = geometry_ok and not fails
+    # Jewelry Difference Detector — invented/removed components (docs/16).
+    diff = jewelry_difference_detector(image, geometry_source or source,
+                                       from_composite=from_composite)
+    checklist = {**checklist, **{f"invention:{k}": v for k, v in diff["checks"].items()}}
+    invention_reject = diff["invented"] is True
+    if invention_reject:
+        reasons.append("ZERO JEWELRY INVENTION: detector found invented/removed "
+                       "component(s) vs source — rejected (docs/16)")
+    elif diff["invented"] is None:
+        reasons.append("jewelry-difference detector UNVERIFIED (" + diff["method"] + ")")
+
+    passed = geometry_ok and not fails and not invention_reject
     return QCVerdict(
         passed=passed,
         geometry_guaranteed=geometry_ok,

@@ -422,6 +422,18 @@
       ]
     },
     {
+      "id": "zero-jewelry-invention",
+      "problem": "raw AI render INVENTS jewelry components absent from the source: added a pavé/diamond bridge + gallery diamonds beneath the center stone, redesigned the open cathedral basket, changed prong shape/angle/thickness, altered basket height + head-to-shank relation, flattened/widened the center stone. Source had a plain open basket with no accent row. Invention subtype of geometry drift.",
+      "root_cause": "the diffusion model adds statistically-common luxury details (hidden halo, pave bridge, gallery diamonds) that the prompt does not forbid explicitly; generation invents where the source is plain.",
+      "fix": "ZERO JEWELRY INVENTION POLICY (user-locked 2026-07-16, docs/16). NEVER add/remove/modify any component not in the source: no added accent diamonds, hidden halo, pave/diamond bridge, gallery/surprise diamonds, extra prongs/galleries, added metal supports, filigree, split shank, cathedral conversion, basket redesign, or stone-count change. If a feature is not visible in the source, DO NOT create it - missing stays missing; never improve/add luxury details. Only environment/lighting/camera/perspective/hand/DoF/shadows/reflections may change. GATE: the JEWELRY DIFFERENCE DETECTOR (lib/pipeline/qc.jewelry_difference_detector, folded into qc_final) checks render-vs-source for diamond_count, diamond_locations, gallery_structure, prong_count, hidden_halo_presence, pave_bridge_presence, metal_silhouette; ANY difference = auto-reject before delivery. Composite render (composite-v1) = invention IMPOSSIBLE (ring is source pixels), auto-pass - the reliable fix. Raw render (legacy) = needs a vision diff (Claude vision in-session or ANTHROPIC_API_KEY); until run it is UNVERIFIED and must NOT be auto-accepted (classical CV cannot count stones/spot a bridge - never fabricate a pass).",
+      "refs": [
+        "docs/16 ZERO JEWELRY INVENTION",
+        "tool/backend/lib/pipeline/qc.py",
+        "docs/13 JEWELRY PRESERVATION SPECIFICATION",
+        "prompts/07 GEOMETRY LOCK header"
+      ]
+    },
+    {
       "id": "safe-pipeline-versioning",
       "problem": "a new pipeline could silently replace the working one, a rollback could lose validated learning, or an unproven change could become default before proving equal-or-better.",
       "root_cause": "no versioned pipelines, no one-value switch, no shadow-test gate, and learning tied to pipeline implementation.",
