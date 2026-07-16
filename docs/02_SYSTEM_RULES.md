@@ -46,7 +46,7 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 - Cozy warm US-home; consistent theme; different pose each shot; natural hand with exactly five fingers, natural skin, neutral manicure. NO laptops/desks/offices. No invented logo in lifestyle/closeups.
 
 ### P7 — TOKEN OPTIMIZATION (never at the cost of P0–P6 quality)
-- Reuse cached assets; no duplicate work; batch generations; no preview tools; compact full-quality prompts. See `docs/05_TOKEN_OPTIMIZATION.md`.
+- Reuse cached assets; no duplicate work; batch generations; no preview tools; compact full-quality prompts. Governed by `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` (the single token policy).
 
 ### P8 — COMMUNICATION / CREDITS
 - Never use preview tools (`show_generations`, `job_display`). User reviews in Higgsfield.

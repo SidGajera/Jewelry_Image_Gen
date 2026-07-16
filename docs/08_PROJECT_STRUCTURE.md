@@ -15,8 +15,9 @@
 │   ├── 02_SYSTEM_RULES.md
 │   ├── 03_IMAGE_GENERATION_RULES.md
 │   ├── 04_LOGO_WORKFLOW.md
-│   ├── 05_TOKEN_OPTIMIZATION.md
+│   ├── 05_TOKEN_OPTIMIZATION.md   # deprecated stub → 17
 │   ├── 06_CACHE.md
+│   ├── 17_MASTER_TOKEN_OPTIMIZATION_POLICY.md  # single token policy
 │   ├── 08_PROJECT_STRUCTURE.md   # (this file)
 │   ├── 09_CHANGELOG.md
 │   ├── 10_CURRENT_STATE.md

@@ -30,7 +30,7 @@ Each catalog is independent. A catalog begins whenever a new jewelry design (new
 
 **STEP 4 — NEW CATALOG.** When a different jewelry design / SKU is loaded, RESET this workflow: generate only Image 1 for the new catalog, wait for approval, then auto-generate the rest.
 
-**MANDATORY:** exactly ONE approval image per catalog. Never require approval for every image. Never generate the remaining catalog before Image 1 is approved. The approved Image 1 is the permanent reference standard for every remaining image in that catalog. (Consistent with CLAUDE_SETUP §2.5/§5 "one verification image, then batch" and docs/05 preview-optimization — the verification image is a full-quality final, not a draft.)
+**MANDATORY:** exactly ONE approval image per catalog. Never require approval for every image. Never generate the remaining catalog before Image 1 is approved. The approved Image 1 is the permanent reference standard for every remaining image in that catalog. (Consistent with CLAUDE_SETUP §2.5/§5 "one verification image, then batch" and docs/17 Master Token Policy — the verification image is a full-quality final, not a draft.)
 
 ## KEY DECISIONS IN FORCE
 - Logo: NEVER AI-rendered; ALWAYS composited from `assets/logo/logo_official.png` to look printed on cloth (P0).
