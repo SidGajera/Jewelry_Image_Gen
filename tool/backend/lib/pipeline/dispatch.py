@@ -9,10 +9,13 @@ Flow per shot:
   4. Never mark deliverable unless geometry is guaranteed AND sanity passes.
   5. Record which pipeline actually produced the delivered image.
 
-Direction note (docs/15 §5): fallback targets the GEOMETRY-SAFE pipeline, not
-blindly "legacy" — falling back to a drift-prone pipeline on a geometry failure
-would ship the very defect we prevent. composite-v1 has fallback_to=null because
-its geometry is already guaranteed.
+Direction note (docs/15 §5): fallback is bidirectional, each version naming its
+safety net. legacy.fallback_to=composite-v1 (a raw render failing the geometry
+gate is rescued by compositing the real ring). composite-v1.fallback_to=legacy
+(if composite cannot produce a valid image — sanity fail/crash, never geometry —
+fall back to the STABLE pipeline; that legacy render is geometry-unverified, so it
+is NOT auto-certified — it routes to the human approval gate, never auto-shipped).
+Single hop, no loop.
 
 Legacy generation itself happens upstream in the MCP session; for a legacy shot
 the caller passes the already-rendered image as `scene_or_render`. A composite

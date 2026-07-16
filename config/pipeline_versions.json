@@ -36,7 +36,7 @@
       "description": "Composite pipeline \u2014 AI generates only the scene; the REAL source-CAD ring pixels are composited in. Geometry identical to source by construction. Experimental until it wins shadow testing (docs/15 \u00a74).",
       "kind": "composite",
       "status": "experimental",
-      "fallback_to": null,
+      "fallback_to": "legacy",
       "module": "lib.pipeline.pipeline",
       "entrypoint": "process_shot",
       "provider": {
