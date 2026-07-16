@@ -12,12 +12,25 @@ As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
 5. **References:**
    - Studio: reuse the 5 branded `Offie_photoshoot` refs (re-import from Drive IDs if media_ids expired).
    - Lifestyle + closeup: import DIFFERENT pose files than the previous SKU (from `Reference_US_Ring` + `Closup_houselifestyle`).
-6. **Generate all 12 in ONE batch** — `generate_image`, `model:"nano_banana_2"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio prompts force clean cloth with NO logo.**
+6. **Two-phase catalog approval (user-locked 2026-07-16 — see "CATALOG APPROVAL WORKFLOW" below):** generate ONLY Image 1 first → user reviews → collect corrections → regenerate Image 1 → repeat until the user EXPLICITLY approves Image 1. Then generate ALL remaining images for that catalog in ONE automatic batch under the Image-1 lock — no further approval per image. `generate_image`, `model:"nano_banana_2"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio prompts force clean cloth with NO logo.**
 7. **Report count only.** No preview tools.
 8. **Local post-processing (user runs on downloaded outputs, 0 credits):**
    - `whiten_cloth.py` if any cloth drifted warm.
    - `scripts/print_logo_on_cloth.py` on the 5 studio shots to print the locked logo onto the cloth.
 9. **Deliver** to Drive Output folder; update tracking log.
+
+## CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16 — MANDATORY)
+Each catalog is independent. A catalog begins whenever a new jewelry design (new SKU / source ring) is loaded.
+
+**STEP 1 — FIRST IMAGE.** Generate ONLY Image 1 for the current catalog. Wait for the user's review. Collect every correction, regenerate Image 1, and repeat until the user EXPLICITLY approves Image 1. Do NOT generate any other image for this catalog until Image 1 is approved.
+
+**STEP 2 — CATALOG LOCK.** Once Image 1 is approved, treat it as the MASTER QUALITY STANDARD for this catalog. Freeze every approved property: jewelry geometry, diamond size/orientation/position, stone count, stone shape, prongs, halo, gallery, band width, metal thickness, camera quality, lighting, cloth, logo placement, logo print quality, and the QC rules. These are locked for the rest of the catalog.
+
+**STEP 3 — AUTOMATIC GENERATION.** Automatically generate all remaining required images for the same catalog in one run. Do NOT stop after each image. Do NOT ask for approval again unless a CRITICAL error is detected. Apply every correction learned from the approved Image 1; never repeat a mistake already corrected.
+
+**STEP 4 — NEW CATALOG.** When a different jewelry design / SKU is loaded, RESET this workflow: generate only Image 1 for the new catalog, wait for approval, then auto-generate the rest.
+
+**MANDATORY:** exactly ONE approval image per catalog. Never require approval for every image. Never generate the remaining catalog before Image 1 is approved. The approved Image 1 is the permanent reference standard for every remaining image in that catalog. (Consistent with CLAUDE_SETUP §2.5/§5 "one verification image, then batch" and docs/05 preview-optimization — the verification image is a full-quality final, not a draft.)
 
 ## KEY DECISIONS IN FORCE
 - Logo: NEVER AI-rendered; ALWAYS composited from `assets/logo/logo_official.png` to look printed on cloth (P0).
