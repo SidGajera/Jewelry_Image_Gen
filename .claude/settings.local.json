@@ -94,7 +94,8 @@
       "Bash(cd \"D:/Lucent Image generation\" && echo \"=== all images in repo root + workspace \\(any date\\) ===\" && find . -maxdepth 3 -type f \\\\\\( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \\\\\\) -not -path './tool/*' -not -path './.git/*' -not -path './assets/*' 2>/dev/null && echo \"=== D: root & Downloads for 0151 ===\" && find /d/ -maxdepth 2 -iname '*0151*' 2>/dev/null | head; find \"$HOME/Downloads\" -iname '*0151*' 2>/dev/null | head)",
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);print\\('valid'\\)\")",
       "Bash(git commit -q -m 'Jewelry Preservation Rule as ABSOLUTE highest-priority system rule *)",
-      "Bash(./.venv/Scripts/python.exe -c ' *)"
+      "Bash(./.venv/Scripts/python.exe -c ' *)",
+      "Bash(git commit -q -m 'Strengthen ABSOLUTE jewelry rule: read-only asset, whole-asset transforms only *)"
     ]
   }
 }
