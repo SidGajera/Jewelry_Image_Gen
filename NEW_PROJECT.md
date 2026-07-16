@@ -15,7 +15,7 @@ Read and internalize, in priority order:
 2. `docs/02_SYSTEM_RULES.md` — permanent rules + priority order (P0–P8).
 3. `docs/04_LOGO_WORKFLOW.md` — the locked logo + printed-on-cloth policy (P0).
 4. `docs/11_BACKGROUND_STANDARD.md` — locked cloth.
-5. `docs/03_IMAGE_GENERATION_RULES.md`, `prompts/07_PROMPTS.md`, `docs/05_TOKEN_OPTIMIZATION.md`, `docs/06_CACHE.md`.
+5. `docs/03_IMAGE_GENERATION_RULES.md`, `prompts/07_PROMPTS.md`, `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` (single token policy), `docs/06_CACHE.md`.
 
 ## STEP 2 — KICKOFF MESSAGE (paste to the new Claude)
 > Continuing Lucent Carat Lab catalog image generation. Read this repo's `LUCENT_MASTER.md` and `docs/` fully and follow every rule in priority order. Account: `lucentcaratlab@gmail.com`. Tool: Higgsfield `nano_banana_2`, 2K, 1:1, 2 credits/image. Source SKU parent `1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy`; studio refs `1A9UJJcnlVA1Tvohd6Wa8O57eenCb7sQ2`; lifestyle refs `1GFwd4SHSPuCoaQj2WHYJWb7nTsvFUPzi`; logo asset `assets/logo/logo_official.png` (Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`). 12 images per SKU = 5 studio + 4 lifestyle + 3 closeup, all 1:1/2K. HARD RULES: (P0) logo is a LOCKED asset, NEVER AI-rendered — generate studio on clean white cloth then composite the printed logo locally with `scripts/print_logo_on_cloth.py`; (P1) ring 100% identical to the correct source; (P2) diamonds single real facet pattern, no doubling/CGI, gems keep their color; (P3) locked white cloth, neutral white; natural light; (P7) reuse cache, batch, no preview tools. media_ids expire → re-import from the Drive file IDs in `docs/06_CACHE.md`. Confirm you've read it, then wait for the next SKU ("go for 0XXX folder").

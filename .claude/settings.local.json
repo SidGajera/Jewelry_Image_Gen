@@ -98,7 +98,10 @@
       "Bash(git commit -q -m 'Strengthen ABSOLUTE jewelry rule: read-only asset, whole-asset transforms only *)",
       "Bash(git commit -q -m 'Source = SKU main folder only; no subfolders without permission *)",
       "Bash(git commit -q -m 'Source metal default = GOLD for multi-metal SKUs *)",
-      "Bash(git commit -q -m 'Silent source verification policy: verify internally, no geometry narration *)"
+      "Bash(git commit -q -m 'Silent source verification policy: verify internally, no geometry narration *)",
+      "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);print\\('ok'\\)\")",
+      "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/VERSION.json'\\)\\);json.load\\(open\\('config/project_manifest.json'\\)\\);print\\('JSON all valid'\\)\")",
+      "Bash(git commit -q -m 'Consolidate token rules into single Master Token Optimization Policy \\(docs/17\\) *)"
     ]
   }
 }

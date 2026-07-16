@@ -30,6 +30,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Invented components (pavé bridge / hidden halo / gallery diamonds) / difference detector | `docs/16_ZERO_JEWELRY_INVENTION.md` |
 | No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Pipeline versioning / mode switch / rollback / shadow test / fallback / learning store | `docs/15_SAFE_PIPELINE_VERSIONING.md` (+ `config/pipeline_versions.json`) |
+| Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
@@ -49,7 +50,7 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 3. **Preserve the exact approved image-generation workflow.** Do not change image-quality rules, logo rules, background rules, or workflow behavior.
 4. **Use the locked logo and approved white-cloth assets** in `assets/logo/` and `assets/background/`. The logo is NEVER AI-rendered — it is composited from `assets/logo/logo_official.png` to look printed on the cloth (see `docs/04_LOGO_WORKFLOW.md`).
 5. **One approval image per catalog, then auto-batch (user-locked 2026-07-16).** Each catalog (new SKU / source ring) is independent. Generate ONLY Image 1; collect corrections and regenerate Image 1 until the user EXPLICITLY approves it — generate nothing else for the catalog until then. On approval, LOCK Image 1 as the master standard (freeze geometry, stones, prongs, halo, gallery, band, metal thickness, camera, lighting, cloth, logo placement + print quality, QC rules) and AUTOMATICALLY generate all remaining images in one run, applying every learned correction — never re-ask per image unless a CRITICAL error appears. A new SKU RESETS the workflow. Exactly ONE approval per catalog; never approval-per-image; never batch before Image 1 is approved. Full detail: `docs/10_CURRENT_STATE.md` "CATALOG APPROVAL WORKFLOW".
-6. **Silent, low-token execution.** No preview tools (`show_generations`/`job_display`), no narration per image, compact full-quality prompts, reuse cached assets, batch generations, report count only. See `docs/05_TOKEN_OPTIMIZATION.md`.
+6. **Silent, low-token execution.** No preview tools (`show_generations`/`job_display`), no narration per image, compact full-quality prompts, reuse cached assets, batch generations, report count only. Governed by `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` (the single token-optimization policy).
 
 ## 3. HARD RULES (never break — priority order in `docs/02_SYSTEM_RULES.md`)
 - **P0 Logo:** locked asset; never regenerate/redraw/verify-read/recolor; always composited to look printed on cloth (never a floating overlay/sticker; partial crop/occlusion OK; off-center).

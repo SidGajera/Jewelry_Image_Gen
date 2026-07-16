@@ -389,25 +389,14 @@
       ]
     },
     {
-      "id": "preview-optimization-no-drafts",
-      "problem": "credits/tokens wasted on throwaway artifacts: preview images, draft renders, thumbnails, comparison collages, intermediate/work-in-progress outputs, low-quality test images, or preview versions made 'for confirmation'; regenerations that accumulate multiple preview copies of the same shot instead of replacing; extra images beyond the requested count; verbose reasoning / repeated image analysis / preview widgets.",
-      "root_cause": "generating anything other than the final full-quality deliverable burns credits and tokens with zero delivery value.",
-      "fix": "GENERATE ONLY FINAL FULL-QUALITY OUTPUT (user-locked 2026-07-16). Never generate previews/drafts/thumbnails/collages/intermediate/WIP/low-quality-test images; never display intermediate processing results; never create a preview version for confirmation. If a shot must be redone, REPLACE the previous image - do not produce multiple preview versions. Generate EXACTLY the number of final images requested - no extras. Minimize API calls, image uploads, logging, repeated image analysis, and verbose reasoning; think internally; return only the final completed output ready for review. NO conflict with the 'ONE verification image, then batch' step: that single image is a full-quality 2K FINAL (first of the requested set, counts toward the total), not a draft/preview - this rule forbids only extra/quality-reduced/throwaway renders. Preview widgets show_generations/job_display remain BANNED (docs/05).",
-      "refs": [
-        "docs/05",
-        "CLAUDE_SETUP.md 2.6",
-        "docs/02 P7"
-      ]
-    },
-    {
       "id": "catalog-approval-workflow",
       "problem": "unclear when to ask for approval: asking per image wastes turns/credits, while auto-batching before the user has approved the look ships a whole catalog off a wrong standard.",
       "root_cause": "no single locked gate defining exactly one approval per catalog and freezing the approved image as the master standard.",
-      "fix": "CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16). Each catalog (new SKU/source ring) is independent. STEP 1: generate ONLY Image 1; collect every correction; regenerate Image 1; repeat until the user EXPLICITLY approves it; generate nothing else for the catalog until then. STEP 2 (LOCK): treat approved Image 1 as the MASTER QUALITY STANDARD and freeze jewelry geometry, diamond size/orientation/position, stone count, stone shape, prongs, halo, gallery, band width, metal thickness, camera quality, lighting, cloth, logo placement, logo print quality, QC rules for the rest of the catalog. STEP 3: AUTOMATICALLY generate all remaining images in one run - do not stop after each, do not re-ask approval unless a CRITICAL error is detected, apply every correction learned from Image 1, never repeat a corrected mistake. STEP 4: a different design/SKU RESETS the workflow (Image 1 -> approve -> auto-batch the rest). MANDATORY: exactly ONE approval image per catalog; never require approval per image; never generate the remaining catalog before Image 1 is approved; approved Image 1 is the permanent reference standard for every remaining image. Consistent with CLAUDE_SETUP 2.5/5 and docs/05 preview-optimization: the verification/approval image is a full-quality final, not a draft.",
+      "fix": "CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16). Each catalog (new SKU/source ring) is independent. STEP 1: generate ONLY Image 1; collect every correction; regenerate Image 1; repeat until the user EXPLICITLY approves it; generate nothing else for the catalog until then. STEP 2 (LOCK): treat approved Image 1 as the MASTER QUALITY STANDARD and freeze jewelry geometry, diamond size/orientation/position, stone count, stone shape, prongs, halo, gallery, band width, metal thickness, camera quality, lighting, cloth, logo placement, logo print quality, QC rules for the rest of the catalog. STEP 3: AUTOMATICALLY generate all remaining images in one run - do not stop after each, do not re-ask approval unless a CRITICAL error is detected, apply every correction learned from Image 1, never repeat a corrected mistake. STEP 4: a different design/SKU RESETS the workflow (Image 1 -> approve -> auto-batch the rest). MANDATORY: exactly ONE approval image per catalog; never require approval per image; never generate the remaining catalog before Image 1 is approved; approved Image 1 is the permanent reference standard for every remaining image. Consistent with CLAUDE_SETUP 2.5/5 and docs/17 Master Token Policy: the verification/approval image is a full-quality final, not a draft.",
       "refs": [
         "docs/10 CATALOG APPROVAL WORKFLOW",
         "CLAUDE_SETUP.md 2.5",
-        "docs/05"
+        "docs/17 MASTER TOKEN OPTIMIZATION POLICY"
       ]
     },
     {
@@ -468,24 +457,13 @@
       ]
     },
     {
-      "id": "silent-source-verification",
-      "problem": "describing/analyzing the source geometry in text before generating wastes tokens and reinterprets the source; the user wants verification to be internal + silent, not a narrated geometry report.",
-      "root_cause": "'look carefully at source' was taken as view + describe; the real purpose of looking is silent verification against the generation.",
-      "fix": "SOURCE VERIFICATION POLICY (silent, user-locked 2026-07-16, docs/05). Before generating ANY image, verify the source SILENTLY + internally. NEVER describe/analyze/explain the jewelry, preview/read the source, print observations, or produce a geometry report (no 'I'm checking/I observed/The ring has/I can see'). Internally compare source vs generation on: head, gallery, prongs, cathedral, hidden halo, bridge, side diamonds, pave, band thickness, metal thickness, diamond count, diamond positions, stone size, stone shape, silhouette, open/closed areas, proportions. Source = ONLY ground truth: never improve/redesign/simplify/correct/reconstruct/infer/invent/hallucinate; if unclear, copy exactly (zero reconstruction - not 1%, not one prong/diamond/gallery bar/support/bridge/hidden-halo/cathedral/basket/head/shank). Only output 'Source verified.' then 'Generating...'. If the generated jewelry differs in any way, discard + regenerate; never deliver a modified design.",
+      "id": "master-token-optimization-policy",
+      "problem": "dozens of overlapping token/preview/commit/reasoning rules force reasoning about which wins, causing conflicts.",
+      "root_cause": "no single overriding precedence policy.",
+      "fix": "MASTER TOKEN OPTIMIZATION POLICY (HIGHEST PRIORITY, user-locked 2026-07-16, docs/17). OVERRIDES every prior token-saving/workflow/preview/commit/reasoning/memory/QC-narration/generation-narration rule; if any conflicts, THIS wins (the scattered token entries remain as subordinate detail). Does NOT override the ABSOLUTE jewelry/geometry/logo/QC-fidelity rules (docs/02,13,16). Objective: max quality, min tokens - every token must improve the result. SILENT execution (no reasoning/CoT/planning/narration/descriptions/previews/verbose logs); DIFFERENTIAL (reuse cache, process only changed, never re-read unchanged source); NO PREVIEW unless asked; SOURCE IMMUTABLE (only environments change); INTERNAL silent QC (report only failures/final); responses 3-5 lines (expand only if asked); GENERATION Image-1-then-approve; CORRECTION current image only; FAILURE auto-reject on geometry change + retry; MEMORY never repeat known; PORTABLE configurable paths; COMMIT never without explicit approval; DECISION RULE order = fewest tokens > quality > geometry > prior-good-behavior > one-command rollback; ROLLBACK keep prior pipeline, revert if worse without losing learnings. FINAL: Quality first, geometry second to none, token efficiency everywhere else.",
       "refs": [
-        "docs/05 SOURCE VERIFICATION POLICY",
-        "config/QUALITY_MEMORY.json no-image-preview-mode",
+        "docs/17 MASTER TOKEN OPTIMIZATION POLICY",
         "docs/02 ABSOLUTE JEWELRY PRESERVATION"
-      ]
-    },
-    {
-      "id": "no-image-preview-mode",
-      "problem": "displaying/opening images in chat during processing (to 'verify' visually, or as thumbnails/markdown previews) burns tokens, bloats context, and slows the conversation.",
-      "root_cause": "rendering images in chat is unnecessary for processing — inspection can be done in code and reported as text.",
-      "fix": "NO IMAGE PREVIEW MODE (default, user-locked 2026-07-16, docs/05). Never display generated/downloaded images, never open/Read an image to verify it visually, never embed thumbnails/previews, never send image markdown. If an image must be inspected, do it IN CODE (dimensions, checksums, the jewelry difference detector) and return TEXT ONLY (e.g. checkmark lines: downloaded / resolution / format / geometry check passed / ready, or a failure reason). Show images ONLY when the user types 'preview', 'show image', or 'compare images', or at final approved catalog delivery. Complements preview-optimization (don't generate throwaway previews); this is about not DISPLAYING images. QC still runs via code, returning text.",
-      "refs": [
-        "docs/05 NO IMAGE PREVIEW MODE",
-        "config/QUALITY_MEMORY.json preview-optimization-no-drafts"
       ]
     },
     {
