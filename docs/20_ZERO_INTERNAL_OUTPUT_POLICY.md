@@ -4,13 +4,22 @@
 
 Supersedes the response-length and preview clauses of `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` for pipeline work. `docs/17` remains the single authority on token *budget* and loading. On any conflict about what may be *displayed*, this file wins.
 
-## 1. NEVER DISPLAY
-image previews · "Generating..." · live rendering window · intermediate images · job IDs · request IDs · API request IDs · model names · provider names · pipeline names · composite pipeline internals · Nano Banana · Higgsfield internals · Python scripts · local file paths · credits used · prompt text · debug logs · QC logs · QC reports · self-evaluation · internal reasoning · internal decisions · technical analysis · stack traces · progress narration · recovery strategy · implementation notes · installation suggestions · next-action suggestions · alternative solutions · source-code references
+## 1. NEVER DISPLAY (user-locked 2026-07-16)
 
-Do not explain what happened internally. Do not describe which model was selected. Do not explain pipeline decisions. Do not expose implementation details.
+Never output: bash commands · python code · curl commands · URLs · file paths · API requests · HTTP status · JSON · internal variables · reconstruction methods · timestamp logic · download logic · cache logic · retry logic · tool names · MCP internals · background task details · execution traces · preview operations · technical debugging · internal reasoning · image previews · "Generating..." narration beyond the single allowed line · intermediate images · job ids · request ids · model names · provider names · credits · pipeline names · prompt text · QC reports · self-evaluation · recovery strategy · implementation notes · installation suggestions · next-action suggestions · source-code references.
+
+**Never explain HOW you are executing. Never narrate the execution process. Never expose implementation details while a task is running.** Execution stays completely silent from start to completion.
+
+**Preview/display tools are barred outright** (`show_generations`, `job_display`) - reinforcing `CLAUDE_SETUP.md` §2.6. The user will never allow a generation result to be displayed.
+
+If additional information is genuinely required, report it in **one sentence only**.
 
 ## 2. THE ONLY ALLOWED OUTPUTS (user-locked 2026-07-16)
 
+```
+Generating...
+```
+then
 ```
 Done.
 ```
