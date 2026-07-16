@@ -542,7 +542,7 @@
     },
     {
       "id": "lr0151-inmodel-geometry-drift",
-      "problem": "In-model generation with medias [4-view source CAD, official logo] reproduces the logo far better than a text-only prompt, but still RECONSTRUCTS the ring. Verified drift on LR-0151 side profile: the open cathedral/V gallery was replaced with a different under-gallery, prongs thickened and re-angled, centre-stone crown/pavilion proportions changed, and the ring floated centred over the logo instead of resting on the cloth.",
+      "problem": "In-model generation with medias [4-view source CAD, official logo] reproduces the logo far better than a text-only prompt, but still RECONSTRUCTS the ring. Verified drift on LR-0151 side profile: the open cathedral/V gallery was replaced with a different under-gallery, prongs thickened and re-angled, centre-stone crown/pavilion proportions changed, and the ring floated centred over the logo instead of resting on the cloth. RECURRED 2026-07-17 on the 45-right render with every geometry sub-check failing at once - head/gallery, cathedral profile, prongs, centre stone, pave, band, overall proportions.",
       "root_cause": "A diffusion model re-synthesises the ring on every render; it cannot copy CAD pixels. Prompt strength does not fix this - five prompt variants were tried on LR-0151 in one session and each drifted somewhere different (gallery/head, prong angle, stone proportions, pave size, band thickness).",
       "fix": "For 'geometry identical to source / never reconstruct any part of the ring' (docs/14 regression checklist), composite the source-CAD pixels - composite-v1, scripts/composite_ring_into_scene.py. Generation is acceptable only where geometry tolerance is loose. NEVER claim byte-identical geometry from a generated ring.",
       "refs": [
@@ -560,16 +560,17 @@
       "date_recorded": "2026-07-16",
       "status": "unresolved",
       "scope": "global",
-      "repeat_count": 5,
+      "repeat_count": 6,
       "occurrences": [
         "LR-0151 hero front x3",
         "LR-0151 side profile",
-        "LR-0141 8-prong crown vs source 4 claws"
+        "LR-0141 8-prong crown vs source 4 claws",
+        "LR-0151 45-right, 2026-07-17: head/gallery geometry, cathedral profile, prong thickness+angle, centre-stone proportions, pave spacing/count, band thickness/profile, overall ring proportions ALL changed vs 97.png"
       ]
     },
     {
       "id": "lr0151-inmodel-logo-flat-overlay",
-      "problem": "Logo generated in-model (official logo passed as 2nd reference) reads as a flat graphic layered ABOVE the fabric: cloth weave does not continue through the ink, the print does not deform with folds, edges are too clean and uniform, the gold has a different lighting response from the cloth, and the icon stays fully visible where the ring should occlude it. It also came out oversized, dominating the frame instead of acting as secondary branding.",
+      "problem": "Logo generated in-model (official logo passed as 2nd reference) reads as a flat graphic layered ABOVE the fabric: cloth weave does not continue through the ink, the print does not deform with folds, edges are too clean and uniform, the gold has a different lighting response from the cloth, and the icon stays fully visible where the ring should occlude it. It also came out oversized, dominating the frame instead of acting as secondary branding. RECURRED 2026-07-17: icon geometry distorted in addition to the flat-overlay behaviour.",
       "root_cause": "The model paints the logo as a separate bright asset instead of modulating it by local cloth luminance and warping it along the cloth's fold map.",
       "fix": "Composite the logo locally with scripts/print_logo_on_cloth.py. Its six-point standard - fabric interaction via displacement, soft edges, weave-through, embedded depth, matched lighting with a brighter-than-cloth clamp, ink diffusion - is exactly the user's stated target, item for item. Never AI-render the logo (docs/04 P0).",
       "refs": [
@@ -587,10 +588,11 @@
       "date_recorded": "2026-07-16",
       "status": "unresolved",
       "scope": "global",
-      "repeat_count": 2,
+      "repeat_count": 3,
       "occurrences": [
         "LR-0151 in-model wrapper v2 (icon overlapped LUCENT)",
-        "LR-0151 side profile (flat overlay, oversized)"
+        "LR-0151 side profile (flat overlay, oversized)",
+        "LR-0151 45-right, 2026-07-17: logo oversized, diamond icon distorted, print over the fabric not inside it, does not follow folds, ring overlaps logo unnaturally"
       ]
     },
     {
@@ -639,6 +641,30 @@
       "repeat_count": 1,
       "occurrences": [
         "LR-0151"
+      ]
+    },
+    {
+      "id": "lr0151-inmodel-composition-drift",
+      "sku": "LR-0151",
+      "image_number": 3,
+      "camera_angle": "45R",
+      "source_files": "97.png (4-view CAD) + logo_official.png",
+      "problem": "In-model render changed the SCENE as well as the ring: camera angle differs from the source, ring orientation changed, scale changed, cloth fold pattern differs from the approved catalog style, and the cloth perspective does not support the ring naturally.",
+      "affected_area": "composition, cloth, scale",
+      "root_cause": "With the ring generated rather than composited, the model re-stages the whole scene; camera, orientation, scale and drape are re-invented per render, so nothing is stable across a catalog.",
+      "correct_result": "Camera per the requested angle only; ring orientation and scale constant across the catalog; cloth folds in the approved style with perspective that physically supports the ring.",
+      "rejected_output_ref": "LR-0151 45-right, rejected by user 2026-07-17",
+      "fix": "Compositing the source ring at a fixed scale/orientation onto a generated cloth plate is the only way to hold scale and orientation constant across a 12-image catalog. Generation cannot.",
+      "date_recorded": "2026-07-17",
+      "status": "unresolved",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151 45R"
+      ],
+      "refs": [
+        "docs/14 REGRESSION PREVENTION - SCENE",
+        "docs/12"
       ]
     }
   ],
