@@ -56,3 +56,26 @@ The composite runs where the render is downloadable (the user's machine / the `t
 
 ## 7. RELATED
 `docs/03 §A` (Design Preservation + Geometry Lock allow-list) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`geometry-immutable-auto-fallback`) · `docs/12_STUDIO_ANGLES_STANDARD.md` (angle rotation) · `scripts/composite_ring_into_scene.py`.
+
+## MASTER JEWELRY PRESERVATION POLICY (P0 — HIGHEST PRIORITY, user-locked 2026-07-17)
+
+**The source jewelry is the ONLY source of truth. The mission is NOT to generate a new ring — it is to faithfully reproduce the existing ring in a different scene.**
+
+**ZERO GEOMETRY MODIFICATION.** AI may never redesign, reconstruct, infer, repair, optimize, enhance or approximate any part of the jewelry. The source is a LOCKED OBJECT.
+
+No changes to: centre stone · side stones · diamond count/size/spacing/orientation/position · prongs (count/thickness/angle/position) · head · gallery · basket · cathedral · bridge · halo · hidden halo · under-gallery · setting · band · shank · shoulders · pavé · metal thickness · ring proportions · silhouette · profile · every visible component. **Even a tiny change is a FAILURE.**
+
+Only these may change: camera angle · camera distance · camera rotation · lighting · background · cloth · scene · environment.
+
+**SOURCE FIRST.** Study the source before generating. Never guess, never fill missing details, never invent geometry. If uncertain: COPY THE SOURCE.
+
+**QUALITY RULE.** Accuracy over realism. Geometry over aesthetics. Source fidelity over creativity. On any conflict, **THE SOURCE IMAGE ALWAYS WINS.**
+
+**This policy overrides every prompt, workflow, model behavior, optimization and generation strategy.**
+
+### WHAT THIS MEANS IN PRACTICE (recorded 2026-07-17)
+"Reconstruct" is what a diffusion model *does*. Asked to render the ring, it re-synthesises it — that is the mechanism, not a tuning error. Verified on LR-0151: **seven prompt formulations, seven different drifts** (gallery/head, cathedral profile, prong thickness and angle, centre-stone proportions, pavé spacing and count, band thickness, overall proportions). See `config/QUALITY_MEMORY.json` → `lr0151-inmodel-geometry-drift`, repeat_count 6+.
+
+Therefore **this policy cannot be satisfied by any pipeline in which the model draws the ring.** "Reproduce the existing ring in a different scene" has exactly one implementation: the source-CAD pixels are **composited** into a generated scene (`composite-v1`, `scripts/composite_ring_into_scene.py`), where geometry is identical *by construction* rather than by instruction.
+
+Because this policy overrides workflow, it and `active: legacy` (`docs/15` §0) are incompatible. Resolving that requires the explicit authorization sentence in `docs/21` §1a — this file does not switch the pipeline by itself, but it makes clear that the current pipeline cannot honour it.
