@@ -408,6 +408,18 @@
         "CLAUDE_SETUP.md 2.5",
         "docs/05"
       ]
+    },
+    {
+      "id": "no-regression-policy",
+      "problem": "quality can silently degrade: a change to the prompt/pipeline/compositing/logo/QC improves one thing but regresses fidelity, realism, or consistency vs a previously approved output, and ships unnoticed.",
+      "root_cause": "no fixed baseline + regression suite, and multiple variables changed at once, so a degradation is neither detected nor attributable.",
+      "fix": "NO-REGRESSION POLICY (user-locked 2026-07-16, docs/14). Quality only ratchets UP. (1) NEVER REGRESS: the last approved pipeline+config is the baseline; every change runs the golden regression suite and is compared to the previous version; if even one critical metric gets worse, reject + roll back. (2) PASS/FAIL METRICS before delivery - ring geometry/stone shape/orientation/size/metal thickness are GUARANTEED by composite provenance (real source pixels); ring worn-scale, logo-printed, cloth realism, lighting consistency, no-AI-artifacts are verified per-shot/approval; any fail = do NOT deliver. (3) ONE CHANGE AT A TIME: never modify prompt+pipeline+preprocessing+compositing+logo+masking+QC together; change one, test, keep only if it improves and regresses nothing. (4) GOLDEN CATALOG: permanent regression set (halo, solitaire, infinity/twist, emerald eternity, pave, three-stone, hidden halo x yellow/white/rose gold; 10-20 SKUs) in config/golden_catalog.json + workspace/golden/ (operator-provided, never fabricated); harness lib/pipeline/regression.py runs the pipeline over all. (5) ROLLBACK on success-rate drop: revert + restore previous config + investigate in isolation; revert is a GATED human/agent step, never an autonomous git history rewrite; main always holds the last non-regressing version. (6) quality-first per-catalog approval unchanged (catalog-approval-workflow). (7) main always runnable (clone -> .env -> setup -> start).",
+      "refs": [
+        "docs/14 NO-REGRESSION POLICY",
+        "tool/backend/lib/pipeline/regression.py",
+        "config/golden_catalog.json",
+        "config/QUALITY_MEMORY.json catalog-approval-workflow"
+      ]
     }
   ]
 }
