@@ -539,6 +539,48 @@
         "docs/16_ZERO_JEWELRY_INVENTION.md",
         "config/QUALITY_MEMORY.json#drive-readback-verify-loop"
       ]
+    },
+    {
+      "id": "lr0151-inmodel-geometry-drift",
+      "problem": "In-model generation with medias [4-view source CAD, official logo] reproduces the logo far better than a text-only prompt, but still RECONSTRUCTS the ring. Verified drift on LR-0151 side profile: the open cathedral/V gallery was replaced with a different under-gallery, prongs thickened and re-angled, centre-stone crown/pavilion proportions changed, and the ring floated centred over the logo instead of resting on the cloth.",
+      "root_cause": "A diffusion model re-synthesises the ring on every render; it cannot copy CAD pixels. Prompt strength does not fix this - five prompt variants were tried on LR-0151 in one session and each drifted somewhere different (gallery/head, prong angle, stone proportions, pave size, band thickness).",
+      "fix": "For 'geometry identical to source / never reconstruct any part of the ring' (docs/14 regression checklist), composite the source-CAD pixels - composite-v1, scripts/composite_ring_into_scene.py. Generation is acceptable only where geometry tolerance is loose. NEVER claim byte-identical geometry from a generated ring.",
+      "refs": [
+        "docs/14 REGRESSION PREVENTION",
+        "docs/15",
+        "scripts/composite_ring_into_scene.py"
+      ]
+    },
+    {
+      "id": "lr0151-inmodel-logo-flat-overlay",
+      "problem": "Logo generated in-model (official logo passed as 2nd reference) reads as a flat graphic layered ABOVE the fabric: cloth weave does not continue through the ink, the print does not deform with folds, edges are too clean and uniform, the gold has a different lighting response from the cloth, and the icon stays fully visible where the ring should occlude it. It also came out oversized, dominating the frame instead of acting as secondary branding.",
+      "root_cause": "The model paints the logo as a separate bright asset instead of modulating it by local cloth luminance and warping it along the cloth's fold map.",
+      "fix": "Composite the logo locally with scripts/print_logo_on_cloth.py. Its six-point standard - fabric interaction via displacement, soft edges, weave-through, embedded depth, matched lighting with a brighter-than-cloth clamp, ink diffusion - is exactly the user's stated target, item for item. Never AI-render the logo (docs/04 P0).",
+      "refs": [
+        "docs/04 P0",
+        "docs/04 8",
+        "docs/14 REGRESSION PREVENTION - CLOTH"
+      ]
+    },
+    {
+      "id": "lr0151-source-file-selection",
+      "problem": "Auto-selecting the SKU source by file size picked 97 Model G.jpg (1.8MB) - a hand-model lifestyle photograph, not a CAD render. The single-view CAD JPGs give the model too little geometry to reproduce the ring.",
+      "root_cause": "Rank-by-size is a tie-breaker, not a content test. 'Model G' names a model wearing the ring, not a master CAD model.",
+      "fix": "LR-0151 source = 97.png, Drive id 1sJB95ohfZI3JLUfftNgUdiu8KXbz5nlt, in 'LR- 0151 (Round)/photo and video'. It is a SINGLE sheet holding FOUR views of the ring. Prefer a multi-view CAD sheet as reference image 1. Verify content, never filename or file size.",
+      "refs": [
+        "docs/19 2",
+        "docs/06_CACHE.md"
+      ]
+    },
+    {
+      "id": "lr0151-design-profile",
+      "problem": "Prompts described LR-0151 as a thin tapering band with pave stopping short of the head. Wrong - the shoulders are CATHEDRAL. Mis-described geometry invites drift.",
+      "root_cause": "The design profile was inferred from a single view instead of the 4-view CAD sheet.",
+      "fix": "LR-0151 (r97) DESIGN PROFILE - round brilliant colorless centre (~2ct); EXACTLY 4 slim claw prongs, compass-set; single-row micro-pave round accents down BOTH CATHEDRAL shoulders, front ~two-thirds, plain at back; thin 18K yellow-gold band; open cathedral/V gallery; NO halo; no side stones beyond the shoulder pave; colorless diamonds, single true facet pattern. Reuse this profile; do not re-derive it.",
+      "refs": [
+        "docs/06_CACHE.md",
+        "prompts/07_PROMPTS.md"
+      ]
     }
   ]
 }
