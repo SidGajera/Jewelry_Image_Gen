@@ -420,6 +420,20 @@
         "config/golden_catalog.json",
         "config/QUALITY_MEMORY.json catalog-approval-workflow"
       ]
+    },
+    {
+      "id": "safe-pipeline-versioning",
+      "problem": "a new pipeline could silently replace the working one, a rollback could lose validated learning, or an unproven change could become default before proving equal-or-better.",
+      "root_cause": "no versioned pipelines, no one-value switch, no shadow-test gate, and learning tied to pipeline implementation.",
+      "fix": "SAFE PIPELINE VERSIONING + ZERO-LOSS LEARNING (user-locked 2026-07-16, docs/15). (1) PRESERVE: git tag pipeline-stable marks last proven commit; config/pipeline_versions.json snapshots each version's prompt/provider/QC/geometry/compositing profile; legacy stays runnable, never deleted. (2) VERSIONED: legacy (stable default, prompt-based) + composite-v1 (experimental, geometry guaranteed by compositing real source pixels); select via ONE value (env PIPELINE_MODE overrides registry active) - resolver lib/pipeline/mode.py; no source edits. (3) ROLLBACK: scripts/rollback-pipeline.ps1|.sh <mode> restores that version's profile + verifies imports. (4) SHADOW TEST before replacement (dispatch.shadow_test, POST /shadow-test): geometry categories auto-decided (composite guaranteed vs legacy unverified), scene categories = needs_human; promote composite-v1 to stable ONLY when equal-or-better in EVERY critical fidelity category. (5) AUTO-FALLBACK (dispatch.generate, POST /generate): run selected pipeline -> QC -> on geometry fail, fall back toward the GEOMETRY-SAFE version (legacy raw -> composite-v1), record which pipeline delivered, never deliver below the approved baseline. (6) LEARNING separate from code: QUALITY_MEMORY.json = validated shared store (both pipelines read); config/learning_candidates.json = candidate store; rolling back code never deletes validated learning. (7) PROMOTION: candidate -> validated only after it improves output or user approves; a bad candidate is disabled WITH failure evidence, never deleted. (8) APPROVED BASELINE per SKU in config/deliveries/LR-XXXX.json (source, approved first image, pipeline version, prompt hash, provider/model/seed, geometry+camera/lighting/cloth/logo profiles, corrections, QC report); never deliver below it. (9) GIT SAFETY: main stays stable; risky work isolated by the PIPELINE_MODE flag + versioned modules (not branches); before promotion commit+tag+regression+test-rollback+verify-both+push. (10) improvements reversible, validated learning permanent, failed experiments recorded not repeated, stable pipeline always available.",
+      "refs": [
+        "docs/15 SAFE PIPELINE VERSIONING",
+        "config/pipeline_versions.json",
+        "tool/backend/lib/pipeline/mode.py",
+        "tool/backend/lib/pipeline/dispatch.py",
+        "scripts/rollback-pipeline.ps1",
+        "config/learning_candidates.json"
+      ]
     }
   ]
 }
