@@ -88,7 +88,10 @@
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/pipeline_versions.json'\\)\\);print\\('JSON valid'\\)\")",
       "Bash(git commit -q -m 'safe-versioning: composite-v1 falls back to stable legacy on QC failure *)",
       "Bash(git rev-list *)",
-      "Bash(git rebase *)"
+      "Bash(git rebase *)",
+      "mcp__cf4128a6-0ed6-4c72-b888-5877cbf61e2f__search_files",
+      "mcp__cf4128a6-0ed6-4c72-b888-5877cbf61e2f__get_file_metadata",
+      "Bash(cd \"D:/Lucent Image generation\" && echo \"=== all images in repo root + workspace \\(any date\\) ===\" && find . -maxdepth 3 -type f \\\\\\( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \\\\\\) -not -path './tool/*' -not -path './.git/*' -not -path './assets/*' 2>/dev/null && echo \"=== D: root & Downloads for 0151 ===\" && find /d/ -maxdepth 2 -iname '*0151*' 2>/dev/null | head; find \"$HOME/Downloads\" -iname '*0151*' 2>/dev/null | head)"
     ]
   }
 }
