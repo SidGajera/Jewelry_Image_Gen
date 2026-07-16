@@ -422,6 +422,16 @@
       ]
     },
     {
+      "id": "no-image-preview-mode",
+      "problem": "displaying/opening images in chat during processing (to 'verify' visually, or as thumbnails/markdown previews) burns tokens, bloats context, and slows the conversation.",
+      "root_cause": "rendering images in chat is unnecessary for processing — inspection can be done in code and reported as text.",
+      "fix": "NO IMAGE PREVIEW MODE (default, user-locked 2026-07-16, docs/05). Never display generated/downloaded images, never open/Read an image to verify it visually, never embed thumbnails/previews, never send image markdown. If an image must be inspected, do it IN CODE (dimensions, checksums, the jewelry difference detector) and return TEXT ONLY (e.g. checkmark lines: downloaded / resolution / format / geometry check passed / ready, or a failure reason). Show images ONLY when the user types 'preview', 'show image', or 'compare images', or at final approved catalog delivery. Complements preview-optimization (don't generate throwaway previews); this is about not DISPLAYING images. QC still runs via code, returning text.",
+      "refs": [
+        "docs/05 NO IMAGE PREVIEW MODE",
+        "config/QUALITY_MEMORY.json preview-optimization-no-drafts"
+      ]
+    },
+    {
       "id": "zero-jewelry-invention",
       "problem": "raw AI render INVENTS jewelry components absent from the source: added a pavé/diamond bridge + gallery diamonds beneath the center stone, redesigned the open cathedral basket, changed prong shape/angle/thickness, altered basket height + head-to-shank relation, flattened/widened the center stone. Source had a plain open basket with no accent row. Invention subtype of geometry drift.",
       "root_cause": "the diffusion model adds statistically-common luxury details (hidden halo, pave bridge, gallery diamonds) that the prompt does not forbid explicitly; generation invents where the source is plain.",
