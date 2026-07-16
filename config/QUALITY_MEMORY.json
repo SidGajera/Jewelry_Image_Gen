@@ -434,6 +434,17 @@
       ]
     },
     {
+      "id": "composite-integrity",
+      "problem": "a composite preserved geometry perfectly (ring = source pixels) but was still a FAILED image: composited onto a scene that already had a ring (double ring / original halo peeking behind the inserted solitaire), with the source drop-shadow left un-keyed as a white mask/segmentation-residue patch, and mismatched contact lighting. qc_final false-PASSED it on geometry provenance alone.",
+      "root_cause": "geometry provenance != deliverable. The failure came from a DIRTY (ring-bearing) scene + loose keying; QC only checked that ring pixels were from source, not composite integration.",
+      "fix": "COMPOSITE INTEGRITY (user-locked 2026-07-16, docs/16). Checks (reject if any fail): original_object_removed, single_ring_present, no_segmentation_artifacts, no_white_mask_residue, consistent_lighting_shadows, natural_background_integration. Guarantee at the INPUT: composite ONLY into a clean ring-free scene (empty cloth / bare finger) and key the source with a clean alpha (drop its shadow). qc.composite_integrity HARD-FAILS original_object_removed + single_ring_present unless caller asserts scene_is_clean=True; segmentation/residue/lighting/integration are vision/manual 'unverified' (classical CV can't reliably detect a soft white-mask patch - reads like cloth highlights; no pixel-detector claimed). qc_final no longer auto-passes a composite on geometry alone: stays geometry_guaranteed but passed=False until integrity satisfied. Geometry regression suite asserts geometry_guaranteed only; integrity checked per-shot/shadow-test.",
+      "refs": [
+        "docs/16 COMPOSITE INTEGRITY",
+        "tool/backend/lib/pipeline/qc.py",
+        "config/QUALITY_MEMORY.json jewelry-preservation-absolute"
+      ]
+    },
+    {
       "id": "no-image-preview-mode",
       "problem": "displaying/opening images in chat during processing (to 'verify' visually, or as thumbnails/markdown previews) burns tokens, bloats context, and slows the conversation.",
       "root_cause": "rendering images in chat is unnecessary for processing — inspection can be done in code and reported as text.",
