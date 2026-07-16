@@ -1,5 +1,7 @@
 # VERSION
 
+
+> **Status:** historical milestone record. The authoritative version history is [`docs/09_CHANGELOG.md`](docs/09_CHANGELOG.md); the machine-readable current version is `current_version` in [`config/project_manifest.json`](config/project_manifest.json) and [`config/VERSION.json`](config/VERSION.json). This file is not updated per release and its "Version" below refers to the 1.1.0 milestone only.
 - **Version:** 1.1.0 — "Stable Milestone: Portable Export + Printed-Logo Policy"
 - **Date:** 2026-07-10
 - **Commit:** `aca56c9fc2e6c41a0a1bc51df47b9a6994b2121d` (portable template packaging)

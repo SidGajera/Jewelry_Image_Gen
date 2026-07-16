@@ -33,6 +33,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
 | Confirmation / auto-selection / when to ask the user | `docs/19_ZERO_CONFIRMATION_POLICY.md` |
 | Production output / silence / no preview (governs all output) | `docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md` |
+| Jewelry QC / reject-on-drift / zero-tolerance review | `docs/18_ZERO_TOLERANCE_QC_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
@@ -62,7 +63,7 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 - **P4 Light:** natural/realistic only; no over-lighting/CGI glow/starburst.
 - **P5 Output:** always 1:1 and 2K.
 - **P6 Lifestyle:** cozy warm US-home; five-finger natural hand; no laptop/desk; no invented logo.
-- **P7 Tokens / P8 Communication:** as in docs 05; fix our own mistakes locally (0 credits), never burn credits on them.
+- **P7 Tokens / P8 Communication:** as in `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md`; fix our own mistakes locally (0 credits), never burn credits on them.
 
 ## 4. ENVIRONMENT
 - Higgsfield MCP: `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
