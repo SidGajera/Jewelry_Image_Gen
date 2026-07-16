@@ -76,3 +76,18 @@ If any change produces worse image quality or different generation behavior: imm
 
 ## FINAL PRINCIPLE
 Use Higgsfield MCP for 100% of production image generation. Improve everything around it, but never replace or redesign the Higgsfield MCP generation workflow without explicit user approval.
+
+## 8. SUCCESS VALIDATION — THE GALLERY IS THE ONLY PROOF (user-locked 2026-07-16)
+
+A generation is successful **only** when the image is visible in the official Higgsfield website/gallery.
+
+**None of these is success.** API accepted · job submitted · job queued · job running · background task completed · request ID returned · local preview · temporary cache · MCP success message · internal completion message.
+
+**Success requires all three:**
+1. The image is visible in the Higgsfield website/gallery.
+2. The image can be opened/downloaded from Higgsfield.
+3. The image passes production QC (`docs/18`).
+
+If the image is not visible on the Higgsfield website, **treat the generation as FAILED** and recover inside the Higgsfield workflow (§1a) — never by switching provider, model or pipeline.
+
+**Never report success before verifying the image exists on Higgsfield.** A `status: "pending"` response, or a job id with no retrievable asset, is not a delivered image. Verify by confirming the job appears in the gallery listing with a retrievable `rawUrl`, and by fetching that asset successfully. Only then may `SUCCESS` be reported (`docs/20`).
