@@ -527,6 +527,18 @@
         "scripts/_recut_and_composite_0151.py",
         "config/QUALITY_MEMORY.json#higgsfield-production-generator-lock"
       ]
+    },
+    {
+      "id": "zero-tolerance-qc-inspector",
+      "problem": "Agent drifted toward 'being helpful' (accepting/softening a changed ring) instead of rejecting geometry drift.",
+      "root_cause": "No explicit review-first gate; relied on prompt wording alone to preserve geometry.",
+      "fix": "Adopt docs/18 ZERO-TOLERANCE QC POLICY: behave as a QC inspector who REJECTS any generation that changes the jewelry. Every request follows the review-first workflow (analyze source -> list critical geometry -> lock it with short measurable OBJECT-LOCK constraints -> generate scene only -> compare output vs source on every locked item -> deliver ONLY if it passes, else regenerate). Camera lock (match reference angle exactly, never rotate unless requested) + structural lock (ring rigid; only background/cloth/lighting/reflection/contact-shadow/environment/DoF may change). Verification runs via the Drive read-back loop or user approval (sandbox can't fetch Higgsfield CDN, 403) — never mark 'passed' without an actual comparison. Regenerate on any drift; a rejected image is acceptable, a redesigned ring is not.",
+      "refs": [
+        "docs/18_ZERO_TOLERANCE_QC_POLICY.md",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md",
+        "docs/16_ZERO_JEWELRY_INVENTION.md",
+        "config/QUALITY_MEMORY.json#drive-readback-verify-loop"
+      ]
     }
   ]
 }
