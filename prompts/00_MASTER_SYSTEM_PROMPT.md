@@ -3,7 +3,7 @@
 **Purpose (user-locked 2026-07-16).** A single, stable master system prompt reused for EVERY generation. Per image you supply only: (1) the source jewelry image (the locked reference, fed as the SOURCE media), and (2) the desired background/scene. The master prompt below does not change catalog-to-catalog; only the source + scene tag vary. **v2.0 (2026-07-16): rewritten leaner — rules defined once, priority-ordered — replacing the verbose v1.0 (kept in git history). No change to generation behavior or output; long docs still govern on any conflict.**
 
 **How it fits the pipeline (reconciliation — read once, does NOT edit the master text):**
-- **Model/output:** Higgsfield `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1` (P5). "Ultra sharp / photorealistic" are quality descriptors, not resolution params.
+- **Model/output:** the Higgsfield production model, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1` (P5). "Ultra sharp / photorealistic" are quality descriptors, not resolution params.
 - **Studio cloth / logo / white balance:** premium white COTTON cloth (`docs/11`); the official logo physically printed INTO the cloth from the preserved asset, never AI-drawn (`docs/04`, P0); neutral source white balance (`docs/03 §O`).
 - **Camera angle:** the lean prompt says "only if requested" — studio work REQUESTS the five required angles + per-catalog rotation (`docs/12`); the long docs define what is requested.
 - **Precedence:** if the master prompt ever conflicts with the long docs, the long docs win. This file is the reusable *system* layer; `prompts/07` supplies per-shot wrappers + the SKU DESIGN string; `docs/13_JEWELRY_PRESERVATION_SPEC.md` is the geometry + QA authority.

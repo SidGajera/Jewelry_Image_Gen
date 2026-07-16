@@ -48,7 +48,7 @@ Compare the render to the source, feature by feature. Any ✗ = FAIL → do not 
 - [ ] 1:1, 2K
 
 ## 6. FAILURE → AUTO-FALLBACK (never ship a redesign)
-Pure generation cannot guarantee 99.9% CAD fidelity — `nano_banana` biases toward the reference but re-synthesizes geometry. On ANY ✗, do not deliver and switch automatically (never ask which method), per `config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`:
+Pure generation cannot guarantee 99.9% CAD fidelity — the production model biases toward the reference but re-synthesizes geometry. On ANY ✗, do not deliver and switch automatically (never ask which method), per `config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`:
 1. **FALLBACK 1** — composite the real source-ring pixels into the AI scene: `scripts/composite_ring_into_scene.py` (matches lighting/shadows/reflections/perspective/DoF). Pixel-exact geometry, 0 credits.
 2. **FALLBACK 2** — if the requested camera angle is unreachable by compositing, render the exact geometry at that angle from the CAD file (when available), then composite onto cloth.
 

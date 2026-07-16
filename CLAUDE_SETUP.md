@@ -67,7 +67,7 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 - **P7 Tokens / P8 Communication:** as in `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md`; fix our own mistakes locally (0 credits), never burn credits on them.
 
 ## 4. ENVIRONMENT
-- Higgsfield MCP: `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
+- Higgsfield MCP: the production model (`config/project_manifest.json` -> `generation_settings.model`), `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
 - Google Drive MCP: READ/SEARCH/CREATE. Operate ONLY as `lucentcaratlab@gmail.com`.
 - Local Python (Pillow+NumPy) for 0-credit post: `scripts/print_logo_on_cloth.py` (print logo) and `whiten_cloth.py` (neutral-white cloth).
 - `media_id`s expire across sessions → re-import from the Drive file IDs in `docs/06_CACHE.md`.

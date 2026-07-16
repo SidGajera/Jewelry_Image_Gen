@@ -44,7 +44,7 @@ Non-negotiable commitments. Execution detail lives in the owning docs (§5).
 ```
 Drive source (SKU CAD)  ─┐
                          ├─→ media_import_url ─→ Higgsfield generate_image ─→ clean-cloth render
-Drive pose reference   ──┘        (nano_banana_2, 1:1, 2K)                          │
+Drive pose reference   ──┘        (production model, 1:1, 2K)                          │
                                                                                     ▼
                                                             local composite (0 credits, Pillow)
                                                             print_logo_on_cloth.py → whiten_cloth.py

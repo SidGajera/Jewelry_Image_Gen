@@ -12,7 +12,7 @@ As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
 5. **References:**
    - Studio: reuse the 5 branded `Offie_photoshoot` refs (re-import from Drive IDs if media_ids expired).
    - Lifestyle + closeup: import DIFFERENT pose files than the previous SKU (from `Reference_US_Ring` + `Closup_houselifestyle`).
-6. **Two-phase catalog approval (user-locked 2026-07-16 — see "CATALOG APPROVAL WORKFLOW" below):** generate ONLY Image 1 first → user reviews → collect corrections → regenerate Image 1 → repeat until the user EXPLICITLY approves Image 1. Then generate ALL remaining images for that catalog in ONE automatic batch under the Image-1 lock — no further approval per image. `generate_image`, `model:"nano_banana_2"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio prompts force clean cloth with NO logo.**
+6. **Two-phase catalog approval (user-locked 2026-07-16 — see "CATALOG APPROVAL WORKFLOW" below):** generate ONLY Image 1 first → user reviews → collect corrections → regenerate Image 1 → repeat until the user EXPLICITLY approves Image 1. Then generate ALL remaining images for that catalog in ONE automatic batch under the Image-1 lock — no further approval per image. `generate_image`, `model:"the production model"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio prompts force clean cloth with NO logo.**
 7. **Report count only.** No preview tools.
 8. **Local post-processing (user runs on downloaded outputs, 0 credits):**
    - `whiten_cloth.py` if any cloth drifted warm.
@@ -42,7 +42,7 @@ Each catalog is independent. A catalog begins whenever a new jewelry design (new
 
 ## GENERATION MECHANICS / GOTCHAS
 - `generate_image` requires `params.model` and (for 2K) explicit `params.resolution:"2k"` — default is 1k.
-- Response may show `model:"nano_banana_flash"` for the multi-image edit path; that is expected — `resolution:"2k"` is what governs quality/credits.
+- Response may show an internal routing alias for the multi-image edit path; that is expected — `resolution:"2k"` is what governs quality/credits.
 - Higgsfield outputs live on CloudFront and are network-blocked for us to download; the user downloads them and runs the local scripts.
 - `media_id`s expire across sessions → re-import from Drive IDs.
 

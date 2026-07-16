@@ -72,7 +72,7 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 (Earlier SKUs LR-0156/0160/0162/0164/0165/0166/0167/0168/0190/0191/0192 processed in prior sessions — see `LUCENT_MASTER.md` §14.)
 
 ## MODEL / GENERATION SETTINGS (constant)
-- Model: `nano_banana_2` · `resolution:"2k"` · `aspect_ratio:"1:1"` · `count:1`
+- Model: the production model (`config/project_manifest.json`) · `resolution:"2k"` · `aspect_ratio:"1:1"` · `count:1`
 - medias order: `[ pose/studio reference , SOURCE ring ]`
 - Import URL form: `https://drive.google.com/uc?id=<FILE_ID>&export=download`
 

@@ -52,7 +52,7 @@ or any state that isn't in this Git repo.
    band, metal, gallery). Editable by the operator before generation.
 3. **IMPORT** — Higgsfield: source + branded cloth + logo + lifestyle/close-up poses
    (rotate poses vs the previous SKU).
-4. **GENERATE** — `nano_banana_2`, 2K, 1:1, 5 studio + 4 lifestyle + 3 close-up,
+4. **GENERATE** — the production model, 2K, 1:1, 5 studio + 4 lifestyle + 3 close-up,
    using the locked prompt templates + design profile + rotated camera angles.
 5. **DOWNLOAD** — pull every render locally (no CDN block here).
 6. **AUTO-QC** — Claude vision compares each render to the source across the

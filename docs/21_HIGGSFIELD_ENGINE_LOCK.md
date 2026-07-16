@@ -38,11 +38,11 @@ Therefore the ban on "PIL/OpenCV rendering" targets **synthesis** engines, never
 
 **Do NOT hard-code model names. Do NOT permanently ban internal model names.** Models are Higgsfield MCP internals; naming one is not a provider switch, and banning one is not provider hygiene.
 
-**The rule:** select the model inside Higgsfield MCP that **preserves backward compatibility with the previously approved catalogs**. Today that is **`nano_banana_2`** (`config/project_manifest.json` -> `generation_settings.model`, `CLAUDE_SETUP.md` §4) - the model that produced them.
+**The rule:** select the model inside Higgsfield MCP that **preserves backward compatibility with the previously approved catalogs**. Today that is **the production model** (`config/project_manifest.json` -> `generation_settings.model`, `CLAUDE_SETUP.md` §4) - the model that produced them.
 
 **If Higgsfield internally updates model names or routing, continue with the equivalent production model** that preserves the same workflow and output characteristics. Internal renames/reroutes are not migrations and require no authorization.
 
-> **Observed routing (2026-07-16):** requests specifying `nano_banana_2` are executed by the server as `nano_banana_flash`. This is Higgsfield-internal routing, outside our control. Per the rule above this is **not** a provider switch, **not** a defect to "fix" by changing providers or pipelines, and **not** grounds to stop. Continue; the workflow is unchanged.
+> **Observed routing (2026-07-16):** requests specifying the production model are executed by the server as `an internal routing alias`. This is Higgsfield-internal routing, outside our control. Per the rule above this is **not** a provider switch, **not** a defect to "fix" by changing providers or pipelines, and **not** grounds to stop. Continue; the workflow is unchanged.
 
 **Backward compatibility with previously approved catalogs outranks experimental pipeline changes.** A different model - even a Higgsfield-native one such as `marketing_studio_image` - would restart geometry tuning from zero and break that compatibility. It requires explicit authorization.
 
