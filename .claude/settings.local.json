@@ -80,7 +80,11 @@
       "PowerShell(Set-Location \"D:\\\\Lucent Image generation\"; Write-Host \"=== switch to composite-v1 ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 composite-v1; Write-Host \"exit=$LASTEXITCODE`n=== rollback to legacy ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 legacy; Write-Host \"exit=$LASTEXITCODE`n=== invalid rejected ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 nope; Write-Host \"exit=$LASTEXITCODE\")",
       "PowerShell(Set-Location \"D:\\\\Lucent Image generation\"; Write-Host \"=== composite-v1 ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 composite-v1; Write-Host \"exit=$LASTEXITCODE`n=== legacy ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 legacy; Write-Host \"exit=$LASTEXITCODE`n=== invalid ===\"; & .\\\\scripts\\\\rollback-pipeline.ps1 nope; Write-Host \"exit=$LASTEXITCODE\")",
       "PowerShell($py=\"C:\\\\Users\\\\A\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\"; & $py -c \"import json; [json.load\\(open\\(r'D:\\\\Lucent Image generation\\\\config\\\\'+f\\)\\) for f in ['QUALITY_MEMORY.json','pipeline_versions.json','learning_candidates.json','golden_catalog.json']]; import os; json.load\\(open\\(r'D:\\\\Lucent Image generation\\\\config\\\\deliveries\\\\_TEMPLATE.json'\\)\\); print\\('all config JSON valid'\\)\")",
-      "Bash(git commit -q -m 'Update local permission allowlist \\(session tool approvals\\) *)"
+      "Bash(git commit -q -m 'Update local permission allowlist \\(session tool approvals\\) *)",
+      "Bash(grep -iE '/\\\\.|^..\\\\.')",
+      "Bash(git check-ignore *)",
+      "Bash(echo \"check-ignore rc=$?\")",
+      "Bash(git commit -q -m 'Update local permission allowlist *)"
     ]
   }
 }
