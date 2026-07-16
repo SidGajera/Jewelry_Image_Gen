@@ -4,3 +4,7 @@ tool/.env
 tool/backend/.env
 tool/backend/service-account.json
 tool/backend/.venv/
+
+# Python build artifacts (regenerated; never reviewed) — not project content.
+__pycache__/
+*.pyc

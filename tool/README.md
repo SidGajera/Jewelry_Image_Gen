@@ -58,9 +58,13 @@ or any state that isn't in this Git repo.
 6. **AUTO-QC** — Claude vision compares each render to the source across the
    `geometry-immutable-auto-fallback` checklist (prong count, halo diameter+rim,
    center-to-halo ratio, shank, gallery, silhouette) + lighting + logo two-tone.
-7. **AUTO-FALLBACK** — on any drift, do NOT ship: run
-   `scripts/composite_ring_into_scene.py` (exact source ring) and
-   `scripts/print_logo_on_cloth.py` (two-tone logo, black tagline). Re-QC.
+7. **AUTO-FALLBACK / DEFAULT-COMPOSITE** — the composite path is the DEFAULT, not
+   only a drift fallback (user-locked 2026-07-16, after 5 rejected renders across 4
+   SKUs). `lib/pipeline/pipeline.process_shot()` composites the real source-CAD ring
+   into the AI scene so geometry is identical to source by construction; lifestyle +
+   close-up ALWAYS composite. Studio also stamps the two-tone logo
+   (`scripts/print_logo_on_cloth.py`). Reachable via `POST /composite`. Manual
+   `fallback.py` CLI is debug-only.
 8. **APPROVAL GATE** — dashboard shows the 12 with pass/fail badges; operator
    Approves / Rejects / Redoes per image.
 9. **DELIVER** — upload approved set to the Drive Output folder, write
@@ -85,10 +89,10 @@ or any state that isn't in this Git repo.
 | `higgsfield.py`         | Import media, generate, poll, DOWNLOAD renders (REST) | to build |
 | `study.py`              | Claude vision → design_profile (Anthropic SDK) | to build |
 | `prompts.py`            | Build the 12 prompts from templates + profile + angle rotation | to build |
-| `qc.py`                 | Claude vision render↔source geometry/logo/lighting verdict | to build |
-| `fallback.py`           | Invoke composite_ring_into_scene.py / print_logo_on_cloth.py | to build |
-| `pipeline.py`           | Orchestrate stages; emit progress; hold at approval gate | to build |
-| `server.py`             | FastAPI app: REST + WebSocket | skeleton (`/health` live) |
+| `lib/pipeline/qc.py`       | Provenance-first geometry gate (composite = guaranteed; raw render = unverified) + optional vision hook | **built** |
+| `lib/pipeline/fallback.py` | Composite engine: wraps composite_ring_into_scene.py / print_logo_on_cloth.py as importable fns + debug CLI | **built** |
+| `lib/pipeline/pipeline.py` | Default-composite policy: `process_shot()` composites the real source ring into the AI scene, then QC | **built** |
+| `server.py`                | FastAPI app: REST + WebSocket; `POST /composite` live | `/health` + `/composite` live |
 
 All path-bearing modules above must import `PATHS` from `lib.config.paths` rather
 than building a path independently — that's the one place folder locations live.
