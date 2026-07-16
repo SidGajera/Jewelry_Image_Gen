@@ -163,3 +163,23 @@ The user approved this treatment from an existing catalog (emerald-cut eternity 
 **Contrast with what was rejected (2026-07-16/17):** oversized and centred, ring overlapping it unnaturally, icon distorted, flat and uniformly sharp over the fabric, brighter than the cloth around it. See `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`.
 
 **Local composite parameters that reproduce this standard:** `--scale 0.28-0.34`, `--pos` lower-right or lower-centre, `--opacity 0.45-0.6`, `--displace 6-8`, `--soften 1.0`, `--grain 0.06`. (20% opacity was too faint and read as a ghost; 90% too assertive.)
+
+## 10. OFFICIAL LOGO PRINTING POLICY (mandatory, user-locked 2026-07-17)
+
+Print the official preserved logo as a **real physical print on premium plain white cotton** — never a digital overlay, watermark, sticker, emboss, engraving, projection or AI recreation.
+
+**The logo remains 100% identical to the official asset.** Never modify: shape · typography · diamond icon · colors · metallic gold finish · gradient · stroke thickness · letter spacing · alignment · opacity · texture. Print it exactly as a professional textile printer would onto white fabric.
+
+It must follow the cloth's folds, wrinkles, weave, perspective, lighting, shadows and depth naturally, without looking artificial. The print appears slightly **absorbed into the cotton fibres** with realistic ink interaction, while staying crisp and fully legible.
+
+Do not increase brightness, saturation, contrast, sharpness, metallic effect or gloss beyond the original asset. The cloth stays pure white. **Only the cloth may deform — the logo artwork itself is never redesigned or distorted.**
+
+> **STOP CONDITION (binding): if the logo cannot be reproduced pixel-identically, STOP GENERATION rather than approximate it.**
+
+### WHAT "ONLY THE CLOTH MAY DEFORM" MEANS
+The artwork is never *redesigned* — no re-lettering, no redrawn icon, no restyled strokes. It does *displace* with the substrate it is printed on, exactly as real ink on real fabric does. Warping along the fold map is the cloth deforming and carrying the ink with it; redrawing the letterforms is not. `scripts/print_logo_on_cloth.py` implements precisely this distinction: the asset's pixels are never repainted, only displaced, blended and modulated by the cloth beneath them.
+
+### THE STOP CONDITION IS ACTIVE FOR IN-MODEL GENERATION (recorded 2026-07-17)
+A generative model **cannot** reproduce the logo pixel-identically — it re-synthesises the artwork. Verified twice this session: the icon overlapped the wordmark and the layout changed; then the icon was distorted and the print sat flat on the fabric. `docs/04` §1 records the same failure from before ("ELLYREID" with a crown). `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`, repeat_count 3.
+
+Therefore, **under this policy, generating the logo in-model is a stop condition, not a retry condition.** Pixel-identity is available from exactly one source: the preserved asset, composited (§4, §8, §9). The stop condition does not forbid delivering images — it forbids asking the model to draw the logo.
