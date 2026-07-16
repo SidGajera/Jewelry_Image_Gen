@@ -549,6 +549,22 @@
         "docs/14 REGRESSION PREVENTION",
         "docs/15",
         "scripts/composite_ring_into_scene.py"
+      ],
+      "sku": "LR-0151",
+      "image_number": 4,
+      "camera_angle": "side-profile",
+      "source_files": "97.png (4-view CAD, Drive 1sJB95ohfZI3JLUfftNgUdiu8KXbz5nlt) + logo_official.png",
+      "affected_area": "jewelry, gallery, prong, diamond",
+      "correct_result": "Ring geometry identical to the source CAD: open cathedral/V gallery, 4 slim compass-set claws at source angles, unchanged crown/pavilion proportions, ring resting naturally on cloth.",
+      "rejected_output_ref": "LR-0151 side profile, in-model generation, rejected by user 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "unresolved",
+      "scope": "global",
+      "repeat_count": 5,
+      "occurrences": [
+        "LR-0151 hero front x3",
+        "LR-0151 side profile",
+        "LR-0141 8-prong crown vs source 4 claws"
       ]
     },
     {
@@ -560,6 +576,21 @@
         "docs/04 P0",
         "docs/04 8",
         "docs/14 REGRESSION PREVENTION - CLOTH"
+      ],
+      "sku": "LR-0151",
+      "image_number": 4,
+      "camera_angle": "side-profile",
+      "source_files": "97.png (4-view CAD) + logo_official.png as 2nd reference",
+      "affected_area": "logo, cloth",
+      "correct_result": "Logo printed INTO the fibres: weave visible through the ink, print deforms with folds and perspective, edges not uniform, lighting/shadow inherited from the cloth, naturally occluded where the ring covers it, secondary in the frame.",
+      "rejected_output_ref": "LR-0151 side profile + hero front, in-model logo, rejected by user 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "unresolved",
+      "scope": "global",
+      "repeat_count": 2,
+      "occurrences": [
+        "LR-0151 in-model wrapper v2 (icon overlapped LUCENT)",
+        "LR-0151 side profile (flat overlay, oversized)"
       ]
     },
     {
@@ -570,6 +601,20 @@
       "refs": [
         "docs/19 2",
         "docs/06_CACHE.md"
+      ],
+      "sku": "LR-0151",
+      "image_number": 1,
+      "camera_angle": "n/a",
+      "source_files": "incorrectly selected: 97 Model G.jpg",
+      "affected_area": "pipeline",
+      "correct_result": "Source = 97.png, the single sheet of four CAD views.",
+      "rejected_output_ref": "LR-0151 source selection, 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151"
       ]
     },
     {
@@ -580,7 +625,61 @@
       "refs": [
         "docs/06_CACHE.md",
         "prompts/07_PROMPTS.md"
+      ],
+      "sku": "LR-0151",
+      "image_number": null,
+      "camera_angle": "n/a",
+      "source_files": "97.png (4-view CAD)",
+      "affected_area": "jewelry, band",
+      "correct_result": "Cathedral shoulders with single-row micro-pave front ~two-thirds, plain at back; open cathedral/V gallery.",
+      "rejected_output_ref": "LR-0151 prompts describing a plain tapering band",
+      "date_recorded": "2026-07-16",
+      "status": "corrected",
+      "scope": "catalog-specific",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151"
       ]
     }
-  ]
+  ],
+  "failure_memory": {
+    "status": "ACTIVE — permanent production dependency (user-locked 2026-07-16)",
+    "store": "This file. There is exactly ONE Failure Memory. Never create a second store.",
+    "record_automatically": "When the user rejects an image or points out a mistake, record it here immediately. Never ask whether to save it.",
+    "schema": {
+      "id": "stable kebab-case slug",
+      "sku": "catalog / SKU, e.g. LR-0151",
+      "image_number": "image number in the catalog, or null",
+      "camera_angle": "hero-front | 45L | 45R | side-profile | three-quarter | lifestyle-* | closeup-* | n/a",
+      "source_files": "source/reference files used for the rejected render",
+      "problem": "the exact mistake, as observed",
+      "affected_area": "jewelry | diamond | prong | gallery | band | logo | cloth | lighting | composition | hand | scale | pipeline",
+      "root_cause": "why it happened",
+      "correct_result": "what the correct result should be",
+      "rejected_output_ref": "reference to the rejected output",
+      "fix": "corrective instruction to apply to future prompts/pipeline",
+      "date_recorded": "YYYY-MM-DD",
+      "status": "unresolved | corrected | validated",
+      "scope": "global | catalog-specific",
+      "repeat_count": "integer; increment on recurrence, never duplicate the record",
+      "occurrences": "array of catalog/image references where it recurred",
+      "refs": "owning docs"
+    },
+    "protocol_before_every_generation": [
+      "1. Load the Failure Memory once per session (it is part of the runtime trio; do not reload unchanged).",
+      "2. Check all failures whose scope is global, plus any whose sku matches the current catalog.",
+      "3. Add the applicable corrective instructions to the generation prompt.",
+      "4. Block any output that repeats a recorded mistake.",
+      "5. Do not deliver until all applicable regression checks pass (docs/14)."
+    ],
+    "protocol_on_approval": [
+      "Mark the failure validated.",
+      "Save the successful correction pattern in `fix`.",
+      "Reuse that pattern for future images.",
+      "NEVER delete the original failure record."
+    ],
+    "no_duplicates": "Never create a second record for the same mistake. Increment repeat_count and append the new catalog/image reference to occurrences.",
+    "historical_records": "The `fixes` array below is the pre-existing failure record and remains authoritative for every mistake logged before 2026-07-16 — logo pasted/floating, white patch behind logo, AI-drawn logo, cloth yellowish/flat, prong count drift, stone orientation, added gallery/halo/supports, masking remnants, and the rest. Do NOT re-record those under the new schema; that would duplicate. New failures use the schema above.",
+    "priority": "A previously rejected mistake is never new, forgotten, optional, or acceptable. On detection: reject internally, correct, regenerate. Regression prevention outranks prompt execution (docs/14)."
+  }
 }
