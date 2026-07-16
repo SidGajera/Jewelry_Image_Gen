@@ -6,7 +6,8 @@
 | Purpose | Folder ID |
 |---|---|
 | Parent "Lucent" | `17fxsv1hJXoDm0vRgDOAm_YfNgG1xnLKv` |
-| Source parent (SKU subfolders) | `1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy` |
+| Source parent (SKU subfolders) | `1QQwnUASQT9MzCme_H8kHp_9L9-Z_FkEC` |
+| Source parent (previous) | `1mKqVAi2iv_35zs12jn91UYaeX2vKGdyy` |
 | Studio / Office references | `1A9UJJcnlVA1Tvohd6Wa8O57eenCb7sQ2` |
 | Home Lifestyle references | `1GFwd4SHSPuCoaQj2WHYJWb7nTsvFUPzi` |
 | Output | `1NGoqWNTGX4SxPNyQkL_6ZU1jnuqpB5_2` |
