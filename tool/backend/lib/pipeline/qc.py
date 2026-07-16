@@ -83,9 +83,10 @@ JEWELRY_DIFF_CHECKS = [
 # rails, extra bridges, thicker heads). Any mismatch = reject before delivery.
 HEAD_GEOMETRY_CHECKS = [
     "prong_count", "prong_thickness", "prong_angle", "prong_position",
-    "basket_shape", "gallery_shape", "bridge_geometry", "under_gallery",
+    "basket_shape", "gallery_shape", "support_arms", "bridge_geometry", "under_gallery",
     "head_height", "head_width", "head_thickness", "metal_volume",
     "no_added_support_ring", "no_added_gallery_rail", "no_extra_bridge",
+    "no_invented_gallery", "open_spaces_preserved", "no_hidden_structures",
 ]
 
 
