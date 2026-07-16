@@ -120,3 +120,31 @@ The logo MUST:
 
 ## 13. FAILURE POLICY & ASSET CACHING (user-locked 2026-07-11)
 **Reject the image** if the logo design differs from the preserved asset, the logo looks AI-generated, the logo does not merge naturally (floating/pasted/flat), the cloth material changes, the cloth becomes yellowish/non-white, or the cloth looks flat/cheap/artificial/overly simple. Full policy + remedies in `docs/11_BACKGROUND_STANDARD.md` (FAILURE POLICY). **Caching:** cache and reuse the locked logo + premium cotton cloth assets across devices/sessions; caching is byte-preserving only and must never alter image quality or asset fidelity — verify against `config/project_manifest.json` `locked_asset_checksums` before use.
+
+## 8. COMPOSITING IS A MANDATORY, RETRYABLE STAGE — THE RENDER IS IMMUTABLE (user-locked 2026-07-16)
+
+**Higgsfield returning a clean-cloth render is SUCCESS, not failure.** The studio render is a logo-free intermediate by design (§4, `CLAUDE_SETUP.md` §72). A render with no logo has not failed — it has not yet been composited.
+
+Post-render sequence, every studio/office image:
+1. Detect the white cloth.
+2. Print the preserved logo physically onto it (`scripts/print_logo_on_cloth.py`).
+3. Preserve the original logo asset exactly — pixel-identical.
+4. Never redraw or regenerate the logo with AI (P0).
+5. Never overlay it as a watermark.
+6. **Never finish the pipeline until compositing succeeds.**
+
+**If the composite step fails or the result fails the §7 gate:**
+- Retry automatically.
+- Repair the compositing script if needed.
+- **Resume from the failed step only.**
+- **Do NOT regenerate the Higgsfield image. Do NOT ask the user to regenerate it.**
+
+**The Higgsfield render is IMMUTABLE.** Only the compositing stage is retried. A logo fault is never grounds for spending credits on a new render — the fault is downstream of generation, and re-rendering also risks fresh geometry drift under the `legacy` production pipeline (`docs/15` §0).
+
+**Never mark the job complete until the final image contains the preserved printed logo on the cloth.** Compositing is not optional post-processing; it is a production stage, and the deliverable does not exist until it has run.
+
+**Known composite failure modes and their fixes** (all resolved by parameters, never by re-rendering):
+- *White box / patch behind the logo* → the opaque `logo_official.png` was used. Use `logo_official_transparent.png`.
+- *Ink dissolves, tagline vanishes* → `--soften` too high and/or `--opacity` too low. The script's documented defaults (`--scale 0.42 --opacity 0.9 --displace 6 --soften 1.0 --grain 0.06`) are tuned; deviate deliberately, not by habit.
+- *Bright halo / emboss ring around strokes* → `--soften` above ~2. Reduce it.
+- *Logo cropped by the frame* → reduce `--scale` or move `--pos` so `x+lw <= W` and `y+lh <= H`. Partial crop is permitted by §7 but never accidental.

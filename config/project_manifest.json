@@ -111,7 +111,8 @@
     "diamonds": "single real facet pattern, no doubling/CGI, gems keep color",
     "color": "source is master for all colors; preserve palette + neutral white balance exactly; no color grading/warm tint/creative WB; final color-fidelity check every image; color fidelity > styling",
     "verification": "one verification image, then approved batch without repeated permission",
-    "execution": "silent, low-token, reuse cache, batch, no preview tools"
+    "execution": "silent, low-token, reuse cache, batch, no preview tools",
+    "logo_compositing": "MANDATORY production stage (docs/04 §8). The Higgsfield render is immutable: on a composite failure retry and repair the composite step only - never regenerate the render, never ask the user to. The job is not complete until the final image carries the preserved printed logo."
   },
   "last_skus": [
     "LR-0156",
