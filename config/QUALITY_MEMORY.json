@@ -491,6 +491,30 @@
         "scripts/rollback-pipeline.ps1",
         "config/learning_candidates.json"
       ]
+    },
+    {
+      "id": "higgsfield-production-generator-lock",
+      "problem": "Standing user lock (2026-07-16): the production image generator is Higgsfield (nano_banana_2, resolution 2k, aspect 1:1). It must NOT be redesigned, replaced, migrated, or switched to Nano Banana Pro or any other generator. Visual generation behavior (prompt quality, source fidelity, provider, settings, QC depth, output quality) must never change.",
+      "root_cause": "Provider/pipeline drift risk when a session lacks the Higgsfield tool or experiments with alternatives.",
+      "fix": "Higgsfield remains the sole production generator. Pipeline changes are permitted ONLY for token efficiency, output QC, caching, and failure prevention, and must not alter visual generation behavior. The local composite (scripts/composite_ring_into_scene.py, docs/12 A3 Fallback 1) is an in-pipeline geometry-preservation fallback, NOT a generator swap; use it when AI geometry drifts or when Higgsfield is unreachable, then reconcile on the normal Higgsfield path. No-regression: keep a change only if output is equal/better vs the Higgsfield baseline, else revert while keeping validated learning.",
+      "refs": [
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "docs/14_NO_REGRESSION_POLICY.md",
+        "docs/15_SAFE_PIPELINE_VERSIONING.md",
+        "prompts/07_PROMPTS.md"
+      ]
+    },
+    {
+      "id": "lr0151-side-angle-v-gallery-fix",
+      "problem": "LR-0151 (round solitaire pave YG), side-angle studio shots: AI output INVENTED a triangular/V-shaped gallery + support arms under the center stone. Source is an open low basket, 4 thin claw prongs, thin single-row micro-pave, NO gallery/under-gallery, clean open side profile. Failure category: head/gallery invention (added metal absent from source).",
+      "root_cause": "AI generator (side angle) added structural metal not present in the source; text-prompt geometry lock biases toward CAD but cannot guarantee <1% drift for the open basket.",
+      "fix": "Rejected the drifted render (no redesign shipped). Applied docs/12 A3 Fallback 1: clean re-cut of the exact source ring from CAD renders (r97_8 true side, r97_4 45deg; exterior + finger-hole + CAD drop-shadow removed, diamond preserved), rebuilt a ring-free branded-cloth plate (oval-halo sample ring removed via diffusion fill, logo protected), composited the real ring pixels centered with contact shadow + neutral white-match. Geometry then = source pixels (invention impossible). Corrective rule (block on all future SKUs): never add a V-shaped gallery, support rails/arms, under-gallery, or any metal under an open-basket stone; open negative space stays open. VALIDATED=yes (delivered 2048x2048, geometry/head/invention checks pass). Model/prompt version: Higgsfield nano_banana_2 2k 1:1; corrective path = composite fallback.",
+      "refs": [
+        "docs/16_ZERO_JEWELRY_INVENTION.md",
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "scripts/_recut_and_composite_0151.py",
+        "workspace/output/LR-0151_studio_side_profile.png"
+      ]
     }
   ]
 }
