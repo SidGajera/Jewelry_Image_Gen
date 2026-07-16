@@ -31,3 +31,17 @@ Same silhouette? · same gallery? · same basket? · same prongs? · same should
 The image model may still alter details; this review-first loop **catches obvious deviations and triggers another attempt** rather than shipping the first flawed output — over many SKUs it is far more reliable than prompt wording alone, but it is not a guarantee.
 - **Verification mechanism:** the sandbox cannot download Higgsfield's output CDN (403), so step 5 runs via the **Drive read-back verify loop** (`QUALITY_MEMORY#drive-readback-verify-loop`: render lands in `LR_Verify_Inbox`, Claude downloads + compares) **or**, for an approval-gated first image, the user's visual check. Never mark step 6 "passed" without one of these actually happening — do not assume a pass.
 - **Pipeline:** Higgsfield remains the active generator (`QUALITY_MEMORY#higgsfield-production-generator-lock`). Do not change the pipeline until the user instructs. On repeated drift, tighten the OBJECT-LOCK prompt and re-run on Higgsfield; the composite path is documented but not activated unless the user says so.
+
+## AUTOMATED QC — SUSPENDED BY USER INSTRUCTION (2026-07-16)
+
+**Do not run automated QC. Do not add it back until the user explicitly approves.** The user accepts/rejects every image manually.
+
+- Generate → composite the preserved logo → neutralise cloth → deliver. No QC gate, no automated reject, no drift analysis, no QC report.
+- Never withhold an image pending an internal check. Deliver it and let the user judge.
+- Do not narrate QC, do not mention QC, do not re-propose it.
+
+**Nothing in this file is deleted** — the standards below remain the record of what "correct" means and why. They are simply not enforced automatically. When the user says QC may return, this section is removed and the policy resumes unchanged.
+
+**Why:** the user is the inspector. Automated QC was rejecting images before the user could see them, and the user prefers to make that call. Manual acceptance is a legitimate QC role, not the absence of one.
+
+**Retained regardless** (these are not QC, they are hard rules): the logo is never AI-drawn (`docs/04` P0), and the preserved-logo composite remains a mandatory production stage (`docs/04` §8). Suspending QC does not authorise shipping a model-drawn logo.
