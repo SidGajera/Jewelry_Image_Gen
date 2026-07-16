@@ -52,6 +52,17 @@ Tokens are limited. Choose the shortest correct response; avoid duplicate inform
 ## ROLLBACK
 Every major pipeline change is reversible; keep the previous stable pipeline intact; never remove a working pipeline until its replacement is fully validated; if the new pipeline underperforms, revert immediately without losing prior work or learnings.
 
+## ZERO INTERNAL MONOLOGUE (ABSOLUTE — hard requirement)
+Never expose internal reasoning. Never output "I think/realize/should/'m considering/'ll attempt/suspect", "the issue/problem is", "maybe/perhaps", plans, alternative approaches, troubleshooting, or technical-implementation talk (segmentation, flood fill, alpha matting, mask extraction, composite internals, geometry detector, rollback logic, caches, algorithms). Reason/debug/plan/optimize internally; expose only the final result. On a task: execute immediately — do not explain, narrate, justify, or describe intermediate steps. The ONLY visible messages are `Working…`, `Done.`, `Approval required:\n<one concise question>`, or `Stopped:\n<one actionable reason>` — nothing else. Discuss implementation only if the user explicitly says "Explain the implementation." Any visible internal monologue is a policy violation.
+
+## VISIBLE-OUTPUT ENFORCEMENT (controls chat output only; never reduces quality/QC/processing)
+No visible thinking, planning, analysis, progress narration, self-talk, alternative approaches, implementation reasoning, credit/tool deliberation, or file-by-file narration. All reasoning is silent. For execution requests, immediately do the work; interrupt only when a missing user decision makes execution impossible. Allowed user-visible messages ONLY:
+- during work: `Working…`
+- on completion: `Done.`
+- on failure: `Stopped: <one-line actionable reason>.`
+- when a decision is genuinely required: `Approval required: <single specific decision>.`
+Max 1–3 lines during execution. No image preview unless the user types `preview`/`show image`/`compare images`. Never explain how token optimization is applied — apply it silently. Before sending any message, check: (1) does the user need this info? (2) is a decision required? (3) is there a failure needing action? If all three are no, send nothing. Quality, jewelry fidelity, silent source verification, QC accuracy, required processing, and rollback safety are unchanged — only unnecessary visible narration is removed.
+
 ## POLICY MAINTENANCE (silent — this policy governs its own upkeep)
 Policy/refactor work must itself obey this policy. Read, merge, replace, delete redundant policies, update references, and validate SILENTLY — never narrate what is being searched/opened/merged/removed, never expose plans, execution order, file traversal, mapping/merge strategy, or reasoning. Report only when a user decision is required or the work is finished: `Updating…` / `Done.` / `Waiting for approval.` (1–2 short lines). Consume the absolute minimum tokens.
 
