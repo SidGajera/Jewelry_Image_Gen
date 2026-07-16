@@ -423,6 +423,15 @@
       ]
     },
     {
+      "id": "source-main-folder-only",
+      "problem": "source fetch could pull from a subfolder (e.g. a SKU's 'photo and video' subfolder) that may hold non-source / lifestyle / video material, mixing wrong files into the source set.",
+      "root_cause": "SKU folders can contain subfolders; descending into them without confirmation risks using the wrong source images.",
+      "fix": "SOURCE = MAIN FOLDER ONLY (user-locked 2026-07-16). Use only the images directly in the SKU's MAIN folder as source. NEVER descend into any subfolder (e.g. 'photo and video') for source images without the user's explicit permission. If the main folder lacks a needed angle, ask before entering a subfolder.",
+      "refs": [
+        "docs/10 PER-SKU WORKFLOW step 1"
+      ]
+    },
+    {
       "id": "jewelry-preservation-absolute",
       "problem": "any AI regeneration of the jewelry (even one pixel) risks redesigning/inventing/altering geometry - the recurring failure across 6 SKUs.",
       "root_cause": "prompt-based generation re-synthesizes the ring; the only guarantee is to never let AI touch jewelry pixels at all.",
