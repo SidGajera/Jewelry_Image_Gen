@@ -32,6 +32,8 @@
     "docs/04_LOGO_WORKFLOW.md",
     "docs/05_TOKEN_OPTIMIZATION.md",
     "docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md",
+    "docs/19_ZERO_CONFIRMATION_POLICY.md",
+    "docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md",
     "docs/06_CACHE.md",
     "docs/08_PROJECT_STRUCTURE.md",
     "docs/09_CHANGELOG.md",
