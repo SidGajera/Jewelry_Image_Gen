@@ -1,11 +1,20 @@
 # 15 — SAFE PIPELINE VERSIONING + ZERO-LOSS LEARNING
 
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
+## 0. TERMINOLOGY (BINDING, user-locked 2026-07-16)
+
+These names mean exactly one thing each. Both pipelines call the same Higgsfield provider - **the provider is not the distinction, the RING is.**
+
+- **"Higgsfield"** = **`composite-v1`** = **the production pipeline**. Higgsfield generates ONLY the scene/background; the original source-CAD ring is composited in unchanged. Geometry identical by construction. A request to "generate with Higgsfield" ALWAYS means this, and must NEVER be read as a request for legacy.
+- **"Legacy"** = the **DEPRECATED** full-AI ring generation pipeline. Higgsfield renders the scene AND redraws the jewelry. No geometry guarantee. Never production, never automatic, never offered. It is activated only by an explicit user request naming **Legacy**.
+
+`composite-v1` is and remains the default production pipeline. Do not ask whether to activate legacy.
+
 
 ## 1. PRESERVE THE CURRENT PIPELINE
 - Git tag **`pipeline-stable`** marks the last proven-good commit (`config/pipeline_versions.json` → `stable_commit`).
 - Each version's full profile (prompts, provider routing, QC, geometry, compositing) is stored per-version in `config/pipeline_versions.json` — a complete, restorable snapshot.
-- The stable pipeline (`legacy`) always remains runnable and is never overwritten or deleted.
+- The deprecated pipeline (`legacy`) always remains runnable and is never overwritten or deleted - retained for manual experimentation only. The `stable` pointer is `composite-v1` (§0).
 
 ## 2. VERSIONED PIPELINES
 `config/pipeline_versions.json` registers named versions:
