@@ -28,5 +28,15 @@ Implemented as `lib/pipeline/qc.jewelry_difference_detector(render, source, from
 - **Composite render (composite-v1):** invention is IMPOSSIBLE — the ring is the real source pixels, so no component can be added/removed. Auto-pass. **This is the reliable fix: use the composite pipeline and invention cannot occur.**
 - **Raw render (legacy):** needs a VISION diff vs the source — run it via Claude vision in the generation session (the operator/agent comparing render↔source, exactly the manual check that caught this failure) or `ANTHROPIC_API_KEY` when set. Until the vision diff runs, the raw render is **UNVERIFIED** and must NOT be auto-accepted (`invented: None`). Classical CV cannot reliably count stones or spot a pavé bridge, so this never fabricates a pass.
 
+## HEAD & GALLERY GEOMETRY LOCK (user-locked 2026-07-16)
+The center-stone assembly is the single most-invented region (added girdle/support rings, gallery rails, extra bridges, thicker heads) and is inspected SEPARATELY. Observed failure: a raw render added a thick circular metal support ring below the center stone, reshaped the gallery support arms, increased head thickness + metal volume, and re-seated the diamond — the source had a plain clean open basket. Not lighting — a different setting.
+
+**The center-stone assembly is immutable. Preserve exactly:** prong count · prong thickness · prong angle · prong position · basket geometry · gallery geometry · bridge geometry · under-gallery · head height · head width · head thickness · metal volume · every opening and negative space.
+
+**Strictly forbidden — never ADD:** extra support ring · girdle rail · gallery rail · hidden support · metal collar · extra bridge · additional basket · thicker head · any additional structural metal. **If any metal appears that does not exist in the source, the render fails QC automatically.**
+
+### HEAD GEOMETRY QC (dedicated check group)
+The Jewelry Difference Detector inspects the head separately (`HEAD_GEOMETRY_CHECKS`, surfaced as `head:*` keys in `qc_final`): prong_count · prong_thickness · prong_angle · prong_position · basket_shape · gallery_shape · bridge_geometry · under_gallery · head_height · head_width · head_thickness · metal_volume · no_added_support_ring · no_added_gallery_rail · no_extra_bridge. Any mismatch → reject before delivery. Composite render = all pass (head is source pixels, invention impossible); raw render = UNVERIFIED until a vision diff runs (never a fabricated pass).
+
 ## RELATED
 `docs/13_JEWELRY_PRESERVATION_SPEC.md` (Geometry Lock + QA checklist) · `docs/03 §A` (Design Preservation) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`zero-jewelry-invention`, `geometry-immutable-auto-fallback`) · `lib/pipeline/qc.py`.
