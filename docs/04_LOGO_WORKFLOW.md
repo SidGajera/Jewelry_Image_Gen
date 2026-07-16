@@ -148,3 +148,18 @@ Post-render sequence, every studio/office image:
 - *Ink dissolves, tagline vanishes* → `--soften` too high and/or `--opacity` too low. The script's documented defaults (`--scale 0.42 --opacity 0.9 --displace 6 --soften 1.0 --grain 0.06`) are tuned; deviate deliberately, not by habit.
 - *Bright halo / emboss ring around strokes* → `--soften` above ~2. Reduce it.
 - *Logo cropped by the frame* → reduce `--scale` or move `--pos` so `x+lw <= W` and `y+lh <= H`. Partial crop is permitted by §7 but never accidental.
+
+## 9. APPROVED LOGO TREATMENT — REFERENCE STANDARD (user-approved 2026-07-17)
+
+The user approved this treatment from an existing catalog (emerald-cut eternity band, white metal, white cotton). **This is the benchmark every studio/office logo must match.** Observed properties:
+
+- **Scale:** the lockup spans roughly a quarter to a third of the frame width. Present and legible, never the subject.
+- **Placement:** lower area of the frame, offset from centre, clear of the ring. The ring occupies the upper/middle; the logo sits below and behind it in the visual hierarchy.
+- **Completeness:** the full lockup is readable — diamond icon, LUCENT / CARAT / LAB, both stars, both decorative rules, FUTURE OF FINE JEWELRY tagline. Not cropped, not truncated.
+- **Tone:** soft muted gold, tone-on-tone against the white cloth. Clearly visible but never bright, never competing with the metal or the diamonds. It reads as ink, not as foil.
+- **Integration:** the ink follows the fold contours; the cloth's own soft shading passes across it; it shares the scene's depth of field rather than being uniformly sharp against a soft background.
+- **Hierarchy:** jewelry first, cloth second, logo last. In a close-crop the logo may be the only element visible and that is still acceptable — the rule is that it never *competes* when the ring is in frame.
+
+**Contrast with what was rejected (2026-07-16/17):** oversized and centred, ring overlapping it unnaturally, icon distorted, flat and uniformly sharp over the fabric, brighter than the cloth around it. See `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`.
+
+**Local composite parameters that reproduce this standard:** `--scale 0.28-0.34`, `--pos` lower-right or lower-centre, `--opacity 0.45-0.6`, `--displace 6-8`, `--soften 1.0`, `--grain 0.06`. (20% opacity was too faint and read as a ghost; 90% too assertive.)

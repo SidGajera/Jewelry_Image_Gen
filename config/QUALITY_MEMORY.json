@@ -666,6 +666,27 @@
         "docs/14 REGRESSION PREVENTION - SCENE",
         "docs/12"
       ]
+    },
+    {
+      "id": "approved-logo-treatment-standard",
+      "sku": "reference (emerald eternity band catalog)",
+      "image_number": null,
+      "camera_angle": "studio - all",
+      "source_files": "approved catalog example supplied by user 2026-07-17",
+      "problem": "APPROVED PATTERN, not a failure. Recorded per the learning rule: save the successful correction pattern and reuse it.",
+      "affected_area": "logo",
+      "root_cause": "n/a",
+      "correct_result": "Lockup ~a quarter to a third of frame width, lower area offset from centre and clear of the ring, full lockup readable (icon, LUCENT/CARAT/LAB, stars, rules, tagline), soft muted tone-on-tone gold never brighter than the cloth, ink following fold contours and sharing the scene depth of field. Hierarchy: jewelry, cloth, logo.",
+      "rejected_output_ref": "n/a - approved reference",
+      "fix": "Match this treatment on every studio/office image. Local composite: --scale 0.28-0.34, --pos lower-right/lower-centre, --opacity 0.45-0.6, --displace 6-8, --soften 1.0, --grain 0.06.",
+      "date_recorded": "2026-07-17",
+      "status": "validated",
+      "scope": "global",
+      "repeat_count": 0,
+      "occurrences": [],
+      "refs": [
+        "docs/04 9"
+      ]
     }
   ],
   "failure_memory": {
