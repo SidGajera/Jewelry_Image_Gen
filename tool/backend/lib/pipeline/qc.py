@@ -78,6 +78,16 @@ JEWELRY_DIFF_CHECKS = [
     "hidden_halo_presence", "pave_bridge_presence", "metal_silhouette",
 ]
 
+# Head & Gallery Geometry Lock (docs/16). The center-stone assembly inspected
+# SEPARATELY — the head is the most-invented region (girdle/support rings, gallery
+# rails, extra bridges, thicker heads). Any mismatch = reject before delivery.
+HEAD_GEOMETRY_CHECKS = [
+    "prong_count", "prong_thickness", "prong_angle", "prong_position",
+    "basket_shape", "gallery_shape", "bridge_geometry", "under_gallery",
+    "head_height", "head_width", "head_thickness", "metal_volume",
+    "no_added_support_ring", "no_added_gallery_rail", "no_extra_bridge",
+]
+
 
 def jewelry_difference_detector(
     render: str | Path,
@@ -96,32 +106,33 @@ def jewelry_difference_detector(
       (UNVERIFIED) — never a silent pass; the raw render must not be auto-accepted.
     Never fabricates a verdict.
     """
+    all_checks = JEWELRY_DIFF_CHECKS + HEAD_GEOMETRY_CHECKS
     if from_composite:
         return {
             "available": True, "method": "provenance", "invented": False,
-            "checks": {c: "pass" for c in JEWELRY_DIFF_CHECKS},
-            "reason": "ring is source pixels — no component can be added, removed, or modified",
+            "checks": {c: "pass" for c in all_checks},
+            "reason": "ring is source pixels — no component (incl. head/gallery) can be added, removed, or modified",
         }
     if source is None:
         return {
             "available": False, "method": "no-source", "invented": None,
-            "checks": {c: "unverified" for c in JEWELRY_DIFF_CHECKS},
+            "checks": {c: "unverified" for c in all_checks},
             "reason": "no source provided to diff against — cannot certify; do not auto-accept",
         }
     v = vision_geometry_verdict(render, source)
     if not v.get("available"):
         return {
             "available": False, "method": "vision-unavailable", "invented": None,
-            "checks": {c: "unverified" for c in JEWELRY_DIFF_CHECKS},
-            "reason": ("raw render needs a jewelry diff vs source (Claude vision in-session "
+            "checks": {c: "unverified" for c in all_checks},
+            "reason": ("raw render needs a jewelry+head diff vs source (Claude vision in-session "
                        "or ANTHROPIC_API_KEY). Until run, treat as UNVERIFIED — do not "
                        "auto-accept; prefer the composite pipeline (invention impossible)."),
         }
     # vision available: expect it to return per-check verdicts + an `invented` bool
-    checks = v.get("checks", {c: "unverified" for c in JEWELRY_DIFF_CHECKS})
-    invented = any(checks.get(c) == "fail" for c in JEWELRY_DIFF_CHECKS)
+    checks = v.get("checks", {c: "unverified" for c in all_checks})
+    invented = any(checks.get(c) == "fail" for c in all_checks)
     return {"available": True, "method": "vision", "invented": invented,
-            "checks": checks, "reason": v.get("reason", "vision jewelry diff")}
+            "checks": checks, "reason": v.get("reason", "vision jewelry+head diff")}
 
 
 def qc_final(
@@ -164,10 +175,13 @@ def qc_final(
         ]
         checklist = {k: "unverified" for k in _GEOMETRY_ITEMS}
 
-    # Jewelry Difference Detector — invented/removed components (docs/16).
+    # Jewelry Difference Detector — invented/removed components + head assembly (docs/16).
     diff = jewelry_difference_detector(image, geometry_source or source,
                                        from_composite=from_composite)
-    checklist = {**checklist, **{f"invention:{k}": v for k, v in diff["checks"].items()}}
+    checklist = {**checklist, **{
+        f"{'head' if k in HEAD_GEOMETRY_CHECKS else 'invention'}:{k}": v
+        for k, v in diff["checks"].items()
+    }}
     invention_reject = diff["invented"] is True
     if invention_reject:
         reasons.append("ZERO JEWELRY INVENTION: detector found invented/removed "
