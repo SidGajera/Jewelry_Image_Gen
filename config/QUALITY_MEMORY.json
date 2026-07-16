@@ -392,6 +392,17 @@
         "CLAUDE_SETUP.md 2.6",
         "docs/02 P7"
       ]
+    },
+    {
+      "id": "catalog-approval-workflow",
+      "problem": "unclear when to ask for approval: asking per image wastes turns/credits, while auto-batching before the user has approved the look ships a whole catalog off a wrong standard.",
+      "root_cause": "no single locked gate defining exactly one approval per catalog and freezing the approved image as the master standard.",
+      "fix": "CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16). Each catalog (new SKU/source ring) is independent. STEP 1: generate ONLY Image 1; collect every correction; regenerate Image 1; repeat until the user EXPLICITLY approves it; generate nothing else for the catalog until then. STEP 2 (LOCK): treat approved Image 1 as the MASTER QUALITY STANDARD and freeze jewelry geometry, diamond size/orientation/position, stone count, stone shape, prongs, halo, gallery, band width, metal thickness, camera quality, lighting, cloth, logo placement, logo print quality, QC rules for the rest of the catalog. STEP 3: AUTOMATICALLY generate all remaining images in one run - do not stop after each, do not re-ask approval unless a CRITICAL error is detected, apply every correction learned from Image 1, never repeat a corrected mistake. STEP 4: a different design/SKU RESETS the workflow (Image 1 -> approve -> auto-batch the rest). MANDATORY: exactly ONE approval image per catalog; never require approval per image; never generate the remaining catalog before Image 1 is approved; approved Image 1 is the permanent reference standard for every remaining image. Consistent with CLAUDE_SETUP 2.5/5 and docs/05 preview-optimization: the verification/approval image is a full-quality final, not a draft.",
+      "refs": [
+        "docs/10 CATALOG APPROVAL WORKFLOW",
+        "CLAUDE_SETUP.md 2.5",
+        "docs/05"
+      ]
     }
   ]
 }
