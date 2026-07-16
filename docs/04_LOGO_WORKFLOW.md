@@ -98,5 +98,25 @@ Rule of thumb: AI renders the *ring on faithful approved cloth*; the *logo and t
 
 **Scope + remedy (user-locked 2026-07-11):** this applies to EVERY office/studio photoshoot, permanently. The only transformations the logo may show are those the cloth naturally causes (perspective, folds, curvature, lighting, shadows, partial crop, partial occlusion). If a studio image has an AI-generated/altered logo, a floating/pasted logo, a logo differing from the preserved artwork, or a replaced/recolored cloth → **reject and automatically regenerate until all requirements are satisfied. NEVER return a studio image with an AI-generated logo.** The preserved official logo is the ONLY acceptable logo for office/studio photoshoots.
 
+## 14. HARD RULE — LOGO MUST NEVER APPEAR AS A DIGITAL OVERLAY (user-locked 2026-07-16)
+Observed failure (LR studio render, prior session): the logo was unnaturally sharp while the cloth was softer; gold lines sat on top of the weave with no fabric-grain showing through; no fold deformation (stayed flat); no ink sink into fibres; uniform self-lighting instead of the cloth's light direction; not partly hidden by highlights/valleys. Net read = clean digital overlay / watermark. This is INVALID and must be rejected — it is the exact opposite of §4's six-point standard and §9 (metallic ink printed INTO the cloth).
+
+**LOGO MUST NEVER APPEAR AS A DIGITAL OVERLAY.** The Lucent Carat Lab logo must be physically printed on the cloth *before* the photograph is taken.
+
+Forbidden (any one of these = reject the image):
+- No background plate · no white patch · no shadow behind the logo · no glow · no outline
+- No opacity tricks · no compositing look · no watermark appearance · no post-production placement look
+
+The logo MUST:
+- Follow the cloth weave.
+- Warp with every fold.
+- Stretch naturally with the fabric.
+- Receive identical lighting as the cloth (same direction/intensity — no independent brightness).
+- Lose sharpness according to camera focus / depth of field (never sharper than the surrounding cloth).
+- Be partially hidden by folds / highlights / valleys if applicable.
+- Behave exactly like real metallic fabric printing (ink slightly sinks into the fibres).
+
+**If the logo looks digitally placed, reject the image** — regenerate in-scene or fall back to the local composite (§4 fallback / `scripts/print_logo_on_cloth.py`). Never ship an overlay-looking logo. Consistent with §4, §7, §9, §12: physically printed on cloth, no shadow behind, no white background behind, never a watermark/AI overlay.
+
 ## 13. FAILURE POLICY & ASSET CACHING (user-locked 2026-07-11)
 **Reject the image** if the logo design differs from the preserved asset, the logo looks AI-generated, the logo does not merge naturally (floating/pasted/flat), the cloth material changes, the cloth becomes yellowish/non-white, or the cloth looks flat/cheap/artificial/overly simple. Full policy + remedies in `docs/11_BACKGROUND_STANDARD.md` (FAILURE POLICY). **Caching:** cache and reuse the locked logo + premium cotton cloth assets across devices/sessions; caching is byte-preserving only and must never alter image quality or asset fidelity — verify against `config/project_manifest.json` `locked_asset_checksums` before use.
