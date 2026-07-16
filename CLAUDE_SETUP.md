@@ -31,6 +31,8 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Pipeline versioning / mode switch / rollback / shadow test / fallback / learning store | `docs/15_SAFE_PIPELINE_VERSIONING.md` (+ `config/pipeline_versions.json`) |
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
+| Confirmation / auto-selection / when to ask the user | `docs/19_ZERO_CONFIRMATION_POLICY.md` |
+| Production output / silence / no preview (governs all output) | `docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
