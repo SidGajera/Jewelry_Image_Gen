@@ -8,5 +8,14 @@
     "promoted_to": "config/QUALITY_MEMORY.json <id> (when validated)",
     "disabled_reason": "why it was turned off (when disabled) — evidence retained"
   },
-  "candidates": []
+  "candidates": [
+    {
+      "id": "composite-scope-2d-cad-limit",
+      "observation": "composite-v1 from 2D CAD renders can guarantee geometry for STUDIO/product shots at the angles the CAD provides (ring composited into a clean cloth scene = source pixels, all geometry/head/invention checks pass). It CANNOT reliably produce WORN LIFESTYLE / close-up shots: a top-down CAD ring composited onto an angled finger looks pasted (fails natural integration + correct-scale-on-hand). Worn geometry-perfect shots need FALLBACK 2 (render the worn angle from a 3D CAD model, docs/13 §6) or a real worn photograph (e.g. LR-0151 'Model G' is a real worn photo of the actual ring). Therefore a COMPLETE 12-image catalog (incl. 4 lifestyle + 3 closeup) cannot pass the full acceptance criteria from 2D CAD alone.",
+      "evidence": "LR-0151 proof: studio composite passed all 21 geometry/head/invention checks; the earlier worn-composite attempt + the angle mismatch show lifestyle is the gap. Composite integrity also requires a clean ring-free scene (composite-integrity fix).",
+      "status": "candidate",
+      "promoted_to": null,
+      "disabled_reason": null
+    }
+  ]
 }
