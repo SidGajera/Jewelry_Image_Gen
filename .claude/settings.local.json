@@ -86,7 +86,9 @@
       "Bash(echo \"check-ignore rc=$?\")",
       "Bash(git commit -q -m 'Update local permission allowlist *)",
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/pipeline_versions.json'\\)\\);print\\('JSON valid'\\)\")",
-      "Bash(git commit -q -m 'safe-versioning: composite-v1 falls back to stable legacy on QC failure *)"
+      "Bash(git commit -q -m 'safe-versioning: composite-v1 falls back to stable legacy on QC failure *)",
+      "Bash(git rev-list *)",
+      "Bash(git rebase *)"
     ]
   }
 }
