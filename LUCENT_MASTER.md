@@ -1,6 +1,6 @@
 # LUCENT CARAT LAB — MASTER IMAGE-GENERATION INSTRUCTIONS (COMPLETE)
 
-Single source of truth. Merged from all prior docs + every instruction through 2026-07-09.
+**Ownership:** this file owns **project architecture, business rules, folder structure and the high-level system overview**. It is NOT the runtime entry point and NOT a policy authority. Runtime startup, loading order, agent execution rules and token policy are owned by [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md); machine-readable runtime config by [`config/runtime.json`](config/runtime.json); folder detail by [`docs/08_PROJECT_STRUCTURE.md`](docs/08_PROJECT_STRUCTURE.md). The repository as a whole is the single source of truth — no individual file is. Sections below that restate image-generation rules are historical; the owning docs (`docs/03`, `docs/04`, `docs/11`, `docs/13`, `prompts/07_PROMPTS.md`) take precedence on any conflict.
 Operate ONLY as **lucentcaratlab@gmail.com** (never houseoflunivae@gmail.com).
 
 Google Doc copy: https://docs.google.com/document/d/1iaLoRk9NmWgg5_DZ_eYuZFAvKJ9OITLjjv6y4wjQAf0/edit

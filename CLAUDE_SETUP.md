@@ -75,4 +75,4 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 Search source → study the ring (verify correct file) → import source → reuse studio refs, import fresh lifestyle/closeup poses → **1 verification image → user confirms → generate the rest in one batch** (studio on clean cloth, NO logo) → report count → user downloads → run `print_logo_on_cloth.py` + `whiten_cloth.py` locally → update docs + commit.
 
 ## 6. START
-Operating from this file as the entry point (single source of truth), lazy-load per §1 only when a task needs it, then wait for the user's instruction (e.g. "go for 0XXX folder"). Do not preload the rest of the repo.
+Operating from this file as the **runtime entry point** (the repository, not this file, is the single source of truth), lazy-load per §1 only when a task needs it, then wait for the user's instruction (e.g. "go for 0XXX folder"). Do not preload the rest of the repo.
