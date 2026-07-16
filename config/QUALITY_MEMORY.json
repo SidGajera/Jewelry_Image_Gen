@@ -544,7 +544,7 @@
       "id": "lr0151-inmodel-geometry-drift",
       "problem": "In-model generation with medias [4-view source CAD, official logo] reproduces the logo far better than a text-only prompt, but still RECONSTRUCTS the ring. Verified drift on LR-0151 side profile: the open cathedral/V gallery was replaced with a different under-gallery, prongs thickened and re-angled, centre-stone crown/pavilion proportions changed, and the ring floated centred over the logo instead of resting on the cloth. RECURRED 2026-07-17 on the 45-right render with every geometry sub-check failing at once - head/gallery, cathedral profile, prongs, centre stone, pave, band, overall proportions.",
       "root_cause": "A diffusion model re-synthesises the ring on every render; it cannot copy CAD pixels. Prompt strength does not fix this - five prompt variants were tried on LR-0151 in one session and each drifted somewhere different (gallery/head, prong angle, stone proportions, pave size, band thickness).",
-      "fix": "For 'geometry identical to source / never reconstruct any part of the ring' (docs/14 regression checklist), composite the source-CAD pixels - composite-v1, scripts/composite_ring_into_scene.py. Generation is acceptable only where geometry tolerance is loose. NEVER claim byte-identical geometry from a generated ring.",
+      "fix": "For 'geometry identical to source / never reconstruct any part of the ring' (docs/14 regression checklist), composite the source-CAD pixels - composite-v1, scripts/composite_ring_into_scene.py. Generation is acceptable only where geometry tolerance is loose. NEVER claim byte-identical geometry from a generated ring. CONFIRMED ACROSS 10 ATTEMPTS with the preservation rule stated ever more explicitly each time - the rule is not the variable. Restating it a further time cannot change the outcome; only compositing the source pixels can.",
       "refs": [
         "docs/14 REGRESSION PREVENTION",
         "docs/15",
@@ -560,12 +560,13 @@
       "date_recorded": "2026-07-16",
       "status": "unresolved",
       "scope": "global",
-      "repeat_count": 6,
+      "repeat_count": 7,
       "occurrences": [
         "LR-0151 hero front x3",
         "LR-0151 side profile",
         "LR-0141 8-prong crown vs source 4 claws",
-        "LR-0151 45-right, 2026-07-17: head/gallery geometry, cathedral profile, prong thickness+angle, centre-stone proportions, pave spacing/count, band thickness/profile, overall ring proportions ALL changed vs 97.png"
+        "LR-0151 45-right, 2026-07-17: head/gallery geometry, cathedral profile, prong thickness+angle, centre-stone proportions, pave spacing/count, band thickness/profile, overall ring proportions ALL changed vs 97.png",
+        "LR-0151 side profile, 2026-07-17 (10th in-model attempt): gallery/basket structure, centre-stone profile, prongs, shoulder thickness, pave layout and proportions all differ from 97.png"
       ]
     },
     {
