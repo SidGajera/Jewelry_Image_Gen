@@ -1,22 +1,22 @@
 {
-  "note": "Versioned pipeline registry (safe-versioning policy, docs/15). Select the active pipeline with ONE value (env PIPELINE_MODE overrides `active`), never by editing source. TERMINOLOGY IS BINDING (see `terminology`): \"Higgsfield\" = composite-v1 = production. \"Legacy\" = deprecated full-AI ring generation. composite-v1 is the DEFAULT and the production pipeline (user-locked 2026-07-16); legacy is kept intact but is NEVER used automatically and is never offered. On any shot the composite cannot produce faithfully (e.g. a worn angle unavailable from the 2D CAD), SKIP and request more source material (more CAD angles / a 3D model) - never let AI redraw the jewelry. Missing an image is preferable to a geometrically incorrect product.",
-  "active": "composite-v1",
+  "note": "Versioned pipeline registry (safe-versioning policy, docs/15). Select the active pipeline with ONE value (env PIPELINE_MODE overrides `active`), never by editing source. PRODUCTION = `legacy`, the original Higgsfield lifecycle, restored by explicit user instruction 2026-07-16. `composite-v1` is retained intact for experimentation but is NOT production. Neither version may be switched automatically in either direction - only by explicit user instruction. Geometry is enforced by QC (docs/18): reject and regenerate any output whose jewelry differs from source; never approve or deliver it.",
+  "active": "legacy",
   "stable": "composite-v1",
   "stable_commit": "a58f7d2cd99e853b8fcb7ff469b3ae6d0a64cc75",
   "stable_tag": "pipeline-stable",
   "policy": {
-    "on_qc_fail": "skip",
-    "never_auto_legacy": true,
+    "on_qc_fail": "reject-and-regenerate",
+    "never_auto_legacy": false,
     "missing_over_incorrect": true,
     "request_more_source": true,
     "every_output_passes_geometry_qc": true,
-    "never_prompt_to_activate_legacy": "Do not ask whether to activate legacy. Only act on an explicit user request naming Legacy."
+    "legacy_activation": "ACTIVE BY EXPLICIT USER INSTRUCTION 2026-07-16 (restore-original-lifecycle). This is a deliberate, user-ordered production baseline - not an automatic fallback. Automatic switching between versions remains forbidden in both directions."
   },
   "versions": {
     "composite-v1": {
-      "description": "DEFAULT (user-locked 2026-07-16). AI generates only the scene; the REAL source-CAD ring pixels are composited in - geometry identical to source by construction. Studio: always composite. Lifestyle/closeup: composite when the worn angle is achievable from source; else request more source or SKIP - never invent geometry.",
+      "description": "RETAINED, NOT PRODUCTION (user-instructed 2026-07-16). Higgsfield renders only the scene; the real source-CAD ring is composited in - geometry identical by construction. Kept intact in the repository for future experimentation. Never part of the production workflow and never selected automatically.",
       "kind": "composite",
-      "status": "default",
+      "status": "retained-for-experimentation",
       "fallback_to": null,
       "on_unachievable": "skip-and-request-source",
       "module": "lib.pipeline.pipeline",
@@ -42,12 +42,12 @@
         "placement_defaults": "lib.pipeline.pipeline.PLACEMENT_DEFAULTS",
         "requires_clean_scene": true
       },
-      "aka": "Higgsfield (production)"
+      "aka": "Composite-first (non-production; retained)"
     },
     "legacy": {
-      "description": "DEPRECATED full-AI ring generation. Higgsfield renders the scene AND redraws the jewelry; geometry may drift (NO guarantee). Retained intact for manual experimentation ONLY - never production, never selected automatically, never a fallback. Activating it requires an explicit, unambiguous user request naming Legacy; a request for \"Higgsfield\" means composite-v1 and must NEVER be read as a request for legacy.",
+      "description": "PRODUCTION (user-restored 2026-07-16). The original Higgsfield MCP lifecycle that generated the previously approved catalogs: Higgsfield renders the scene AND the jewelry from the approved prompts; the preserved logo is composited locally afterwards (docs/04 P0 - AI never renders the logo). Geometry is NOT guaranteed by construction; it is enforced by QC - any output whose jewelry differs from source is REJECTED and regenerated, never delivered (docs/18).",
       "kind": "prompt",
-      "status": "deprecated",
+      "status": "production",
       "fallback_to": null,
       "prompt_file": "prompts/07_PROMPTS.md",
       "system_prompt": "prompts/00_MASTER_SYSTEM_PROMPT.md",
@@ -70,12 +70,13 @@
       "compositing": {
         "enabled": false
       },
-      "aka": "Legacy (deprecated)"
+      "aka": "Original Higgsfield lifecycle (production baseline)"
     }
   },
   "terminology": {
-    "Higgsfield": "ALWAYS means composite-v1, the production pipeline: Higgsfield generates ONLY the scene/background; the original source-CAD ring is composited in unchanged. Geometry identical by construction. This is what \"generate with Higgsfield\" means in this project.",
-    "Legacy": "ALWAYS means the DEPRECATED full-AI ring generation pipeline, in which Higgsfield renders the scene AND redraws the jewelry. No geometry guarantee. Never production, never automatic.",
-    "note": "Both versions route to the Higgsfield provider. The provider is NOT the distinction - the RING is. Naming the provider never implies legacy."
+    "Higgsfield": "The only production image generation engine (docs/21). The production pipeline is `legacy` - the original Higgsfield lifecycle in which Higgsfield generates the scene AND the jewelry.",
+    "Composite-first": "`composite-v1`. Higgsfield renders only the scene; the CAD ring is composited in. Retained for experimentation; NOT production.",
+    "Logo compositing": "NOT a pipeline. The preserved logo is composited locally in BOTH versions - required by docs/04 P0 in all cases and unaffected by this switch.",
+    "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = legacy = Higgsfield draws it, QC rejects drift."
   }
 }

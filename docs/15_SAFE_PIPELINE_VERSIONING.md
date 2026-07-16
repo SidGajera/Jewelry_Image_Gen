@@ -1,15 +1,19 @@
 # 15 — SAFE PIPELINE VERSIONING + ZERO-LOSS LEARNING
 
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
-## 0. TERMINOLOGY (BINDING, user-locked 2026-07-16)
+## 0. TERMINOLOGY + ACTIVE PRODUCTION PIPELINE (BINDING, user-restored 2026-07-16)
 
-These names mean exactly one thing each. Both pipelines call the same Higgsfield provider - **the provider is not the distinction, the RING is.**
+**PRODUCTION = `legacy` = the original Higgsfield lifecycle.** Restored by explicit user instruction (2026-07-16, "restore the original Higgsfield production lifecycle"). Higgsfield generates the scene AND the jewelry from the approved prompts; the preserved logo is composited locally afterwards.
 
-- **"Higgsfield"** = **`composite-v1`** = **the production pipeline**. Higgsfield generates ONLY the scene/background; the original source-CAD ring is composited in unchanged. Geometry identical by construction. A request to "generate with Higgsfield" ALWAYS means this, and must NEVER be read as a request for legacy.
-- **"Legacy"** = the **DEPRECATED** full-AI ring generation pipeline. Higgsfield renders the scene AND redraws the jewelry. No geometry guarantee. Never production, never automatic, never offered. It is activated only by an explicit user request naming **Legacy**.
+- **"Higgsfield"** = the only production generation engine (`docs/21`). The production pipeline is `legacy`.
+- **"Composite-first"** = `composite-v1`. Higgsfield renders only the scene; the CAD ring is composited in. **Retained intact for experimentation - NOT production.**
+- **Logo compositing is NOT a pipeline.** The preserved logo is composited locally in BOTH versions - required by `docs/04` P0 (AI never renders the logo) and unaffected by this switch.
 
-`composite-v1` is and remains the default production pipeline. Do not ask whether to activate legacy.
+Both versions call Higgsfield. The distinction is whether Higgsfield draws the **ring**.
 
+**Geometry under `legacy` is NOT guaranteed by construction - it is enforced by QC.** Any output whose jewelry differs from source is REJECTED and regenerated, never approved, never delivered (`docs/18`, `docs/13`, `docs/16`). This is the accepted trade: the original lifecycle, with drift caught by inspection rather than prevented by construction.
+
+**Neither version may be switched automatically, in either direction.** Only an explicit user instruction changes `active`.
 
 ## 1. PRESERVE THE CURRENT PIPELINE
 - Git tag **`pipeline-stable`** marks the last proven-good commit (`config/pipeline_versions.json` → `stable_commit`).
@@ -41,7 +45,7 @@ The new pipeline is **not** the default on arrival. For the same source, run bot
 - Scene-family categories return **needs_human** — promotion requires that sign-off; the harness never auto-promotes on aesthetics.
 - **composite-v1 may become `stable` only when it is equal-or-better in EVERY critical product-fidelity category.** If worse in any, keep `legacy` active.
 
-## 5. NO AUTOMATIC LEGACY — SKIP, DON'T INVENT (user-locked 2026-07-16)
+## 5. NO AUTOMATIC PIPELINE SWITCHING - QC GATES EVERY OUTPUT (superseded 2026-07-16 by §0)
 **Accuracy over completeness.** `dispatch.generate` (`POST /generate`) runs composite-v1 → geometry + integrity QC. Legacy is **never** auto-run (both versions have `fallback_to: null`). If composite cannot produce a shot faithfully — a worn angle the 2D CAD can't cover, or a geometry/integrity QC fail — the pipeline does NOT fall back to AI generation. Order of preference (docs/16, hybrid policy):
 1. Composite the preserved jewelry into the scene (studio, and any lifestyle angle the source supports).
 2. If the angle can't be achieved faithfully → **request more source material** (additional CAD angles / a 3D CAD model → render the worn angle via FALLBACK 2, docs/13 §6).

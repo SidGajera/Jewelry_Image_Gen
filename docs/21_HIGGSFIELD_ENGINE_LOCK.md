@@ -12,7 +12,7 @@ Always execute generation through the existing Higgsfield MCP integration that p
 ## 2. WHAT "GENERATION" MEANS HERE (binding, resolves an apparent conflict)
 "Generate" = **synthesise new image content**. Only Higgsfield may do that.
 
-**Compositing preserved pixels is NOT generation.** Placing the source-CAD ring (`scripts/composite_ring_into_scene.py`) and the locked logo (`scripts/print_logo_on_cloth.py`) into a Higgsfield-rendered scene invents nothing — every one of those pixels comes from a locked asset. These steps are REQUIRED by `docs/04` (P0: AI never renders the logo) and by `composite-v1`, the production pipeline (`docs/15` §0).
+**Compositing preserved pixels is NOT generation.** Placing the source-CAD ring (`scripts/composite_ring_into_scene.py`) and the locked logo (`scripts/print_logo_on_cloth.py`) into a Higgsfield-rendered scene invents nothing — every one of those pixels comes from a locked asset. The LOGO composite is REQUIRED by `docs/04` (P0: AI never renders the logo) in EVERY pipeline, including the restored `legacy` production baseline. The RING composite belongs to `composite-v1`, which is retained for experimentation and is NOT production (`docs/15` §0).
 
 Therefore the ban on "PIL/OpenCV rendering" targets **synthesis** engines, never the composite/QC/cut steps. Python may: manage files, cut/key source assets, composite preserved assets, validate, QC, crop, resize, rename, log, automate. Python may **never synthesise image content**.
 
@@ -44,7 +44,7 @@ On a Higgsfield MCP authentication or infrastructure error:
 
 **Never introduce:** pipeline selection dialogs · provider selection dialogs.
 
-**Relationship to `docs/15`:** this file fixes the ENGINE (always Higgsfield MCP). `docs/15` fixes the PIPELINE VERSION (`composite-v1` = production; `legacy` = deprecated, never automatic). Both are true simultaneously: composite-v1 *uses* Higgsfield MCP for the scene. A request for "Higgsfield" is a request for composite-v1 (`docs/15` §0) — never for legacy.
+**Relationship to `docs/15`:** this file fixes the ENGINE (always Higgsfield MCP). `docs/15` fixes the PIPELINE VERSION (`legacy` = production baseline, user-restored 2026-07-16; `composite-v1` = retained for experimentation, not production). Both are true simultaneously: legacy uses Higgsfield MCP for the scene and the jewelry; the preserved logo is still composited locally per `docs/04` P0. The production pipeline is `legacy`, the original Higgsfield lifecycle (`docs/15` §0, user-restored 2026-07-16); `composite-v1` is retained for experimentation only.
 
 ## 7. REGRESSION
 If any change produces worse image quality or different generation behavior: immediately revert to the last stable Higgsfield MCP workflow (`docs/15` §3, `scripts/rollback-pipeline.*`), preserve all validated learnings and corrections (`config/QUALITY_MEMORY.json`), and never lose previously approved capabilities. Backward compatibility is mandatory — every existing catalog must keep working exactly as before.
