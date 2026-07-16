@@ -26,6 +26,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Image-generation rule detail | `docs/03_IMAGE_GENERATION_RULES.md` |
 | Logo issue | `docs/04_LOGO_WORKFLOW.md` |
 | Studio camera angles | `docs/12_STUDIO_ANGLES_STANDARD.md` |
+| Jewelry geometry preservation / CAD fidelity / QA checklist | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` |
 | Prevent past failures / update learning | `config/QUALITY_MEMORY.json` (+ `docs/06_CACHE.md` for Drive IDs) — do not keep permanently in context |
