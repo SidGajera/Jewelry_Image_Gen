@@ -1,0 +1,12 @@
+{
+  "note": "Candidate learning store (safe-versioning rules 6-7, docs/15). New corrections/rules enter HERE first and do NOT modify global production rules. A candidate is promoted into config/QUALITY_MEMORY.json (validated) only after it improves an output or gets explicit user approval. A candidate that causes worse results is set status=disabled with its failure evidence — kept, never deleted, so it is not repeated. Both pipeline versions may read this; rolling back code never touches it.",
+  "schema": {
+    "id": "kebab-case",
+    "observation": "what was seen / the proposed rule",
+    "evidence": "SKU / image / correction that motivated it",
+    "status": "candidate | validated | disabled",
+    "promoted_to": "config/QUALITY_MEMORY.json <id> (when validated)",
+    "disabled_reason": "why it was turned off (when disabled) — evidence retained"
+  },
+  "candidates": []
+}
