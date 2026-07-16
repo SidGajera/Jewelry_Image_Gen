@@ -101,3 +101,24 @@ Before EVERY generation, in order:
 Mandatory for **every image, every SKU, every session, every device.** Never bypass, ignore, replace or partially apply it. Partial application is a violation.
 
 **Enforcement note.** Step 4 is not discretionary QC (which `docs/18` suspends) — it is policy enforcement, and it stays active. Step 3 constrains the *request*; it cannot constrain what the renderer returns. Where the model reconstructs geometry despite a compliant request, step 4 rejects the output — that is the gate working, and the reject is not a prompt defect to be re-tried indefinitely. See the recorded structural finding above.
+
+## RULES 31–40 — REAR / SIDE / PER-ANGLE STRUCTURE (user-locked 2026-07-17)
+
+Targets the failures still appearing in back and side views.
+
+31. **Back/profile view must exactly match the source CAD. Never reconstruct the rear geometry.**
+32. Preserve **basket height, gallery height and head proportions** exactly.
+33. Preserve the **cathedral shoulder angle and thickness** exactly.
+34. Preserve the **bridge geometry** exactly — never add, remove, thicken or simplify bridge supports.
+35. Preserve the **under-gallery opening and spacing** exactly.
+36. Preserve the **centre-stone seating height** exactly.
+37. Preserve the **ring silhouette from every viewing angle** — front, side, back, 45°, top.
+38. **Never mirror, symmetrize or "correct" the CAD geometry.**
+39. **Every generated angle must be verified against the corresponding source view before delivery.**
+40. If any structural detail differs from the source CAD: **automatically reject and regenerate** under this policy.
+
+**Rule 38 and the LR-0151 45R shot.** `scripts/_recut_and_composite_0151.py` builds 45R by horizontally mirroring the 45L cut. For a symmetric round solitaire that preserves geometry, but it IS a mirror — rule 38 forbids it. Produce 45R from its own source view, not by flipping.
+
+**Rule 31/39 and the source.** `97.png` carries four views. An angle with no corresponding source view cannot be verified under rule 39, and generating it would reconstruct rear geometry under rule 31. Where the catalog needs an angle the CAD does not cover, obtain that view (more CAD renders, or the 3D model — `97.3dm` / `97.stl` sit beside `97.png` in Drive) rather than letting the model invent it. A missing image is preferable to invented geometry.
+
+**Rule 40 and the recorded evidence.** Rules 31–37 all constrain geometry the model *re-synthesises* on every render. `QUALITY_MEMORY` → `lr0151-inmodel-geometry-drift` (repeat_count 6) records seven prompt formulations producing seven different drifts, several of them exactly these items — head/gallery proportions, cathedral profile, under-gallery structure. Rule 40 therefore rejects every in-model render by construction; it is satisfiable only by compositing the source pixels.
