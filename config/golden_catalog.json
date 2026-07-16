@@ -19,6 +19,7 @@
     { "id": "emerald-eternity-wg","design": "emerald-eternity","metal": "white",  "shot_type": "studio",    "require_logo": true  },
     { "id": "pave-rg",            "design": "pave",            "metal": "rose",   "shot_type": "studio",    "require_logo": true  },
     { "id": "three-stone-yg",     "design": "three-stone",     "metal": "yellow", "shot_type": "lifestyle", "require_logo": false },
-    { "id": "hidden-halo-wg",     "design": "hidden-halo",     "metal": "white",  "shot_type": "closeup",   "require_logo": false }
+    { "id": "hidden-halo-wg",     "design": "hidden-halo",     "metal": "white",  "shot_type": "closeup",   "require_logo": false },
+    { "id": "round-solitaire-pave-yg", "design": "round-solitaire-pave", "metal": "yellow", "shot_type": "lifestyle", "require_logo": false, "_proof": "the SKU from the 2026-07-16 head-invention failure; drop source.png (CAD on white) + scene.png (AI hand scene) under workspace/golden/round-solitaire-pave-yg/ to run the composite proof + shadow test" }
   ]
 }
