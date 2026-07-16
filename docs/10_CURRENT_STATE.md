@@ -59,3 +59,30 @@ Each catalog is independent. A catalog begins whenever a new jewelry design (new
 - Studio logo path in practice: because Claude cannot download Higgsfield CDN renders here, studio shots are generated with the branded reference's printed logo PRESERVED in-model, optionally passing `assets/logo/logo_official.png` as a 3rd reference for pixel-exact match; drifted logos are fixed with the logo-correction edit prompt (prompts/07). The local `print_logo_on_cloth.py` composite stays the pixel-perfect route wherever the render is downloadable.
 - Locked this cycle: diamond realism, photography/reference consistency (fixed camera height/distance/lens/exposure/WB), plain-or-folded cloth, natural per-shot variation, pixel-identical logo, physical-scene consistency, repository-maintenance/file-ownership.
 - LR-0137 office set (5 angles) generated with logo preserved on cloth.
+
+## MANDATORY IMAGE GENERATION FLOW (8 steps, user-locked 2026-07-17)
+
+The execution sequence for every image. Each step **references** its owning policy and never restates it.
+
+**1. POLICY LOAD (mandatory).** Load `docs/13` (Master Jewelry Preservation — single authority), `config/QUALITY_MEMORY.json` (all failures + approved patterns), `docs/14` (No Regression). **Abort generation if any policy fails to load.**
+
+**2. SOURCE VALIDATION.** Verify: correct 4-view CAD (`97.png` for LR-0151), official preserved logo, correct SKU, correct angle. **Never substitute another source.**
+
+**3. GEOMETRY LOCK** (per `docs/13`). Lock centre diamond · all side diamonds · prongs · basket/gallery · cathedral · bridge · band · proportions · silhouette. **Nothing may change except the camera.**
+
+**4. LOGO LOCK** (per `docs/04`, benchmark at §9). Official preserved logo only · printed into cloth · correct perspective · correct fold deformation · correct opacity · correct scale · entire logo visible.
+
+**5. CLOTH LOCK** (per `docs/11`). Approved white cloth · natural folds · logo integrated into the fabric · no blank cloth · no floating logo.
+
+**6. CAMERA LOCK.** Only camera angle, distance and rotation may change. Nothing else.
+
+**7. FAILURE MEMORY CHECK.** Compare against every recorded failure before generating: geometry drift · diamond drift · prong drift · band drift · cathedral drift · logo missing · logo floating · wrong cloth · wrong lighting · wrong proportions. If a known failure would recur, regenerate before delivery.
+
+**8. FINAL VERIFICATION.** Compare the output against: source CAD · Jewelry Preservation Policy · Failure Memory · approved logo benchmark (`docs/04` §9). **Deliver only if all pass.**
+
+### WHERE THIS FLOW CURRENTLY BREAKS (recorded 2026-07-17)
+Steps 3 and 8 are unsatisfiable while the model draws the ring. Step 3 locks geometry in the *request*; the renderer re-synthesises the ring regardless, so step 8 rejects the output. Verified: seven prompt formulations, seven distinct drifts (`QUALITY_MEMORY` → `lr0151-inmodel-geometry-drift`, repeat_count 6).
+
+Step 3 becomes a real lock — rather than a request — only when the source-CAD pixels are composited into the generated scene. Same for step 4: the approved logo benchmark (`docs/04` §9) is reproduced by the local composite at `--scale 0.28-0.34 --opacity 0.45-0.6 --displace 6-8 --soften 1.0`; an in-model logo has never passed it.
+
+The flow above is correct and stays as written. What it needs is a pipeline in which steps 3 and 4 are enforceable by construction (`docs/15` §0, `docs/21` §1a).
