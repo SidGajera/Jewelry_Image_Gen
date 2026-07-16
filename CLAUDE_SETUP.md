@@ -26,7 +26,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Image-generation rule detail | `docs/03_IMAGE_GENERATION_RULES.md` |
 | Logo issue | `docs/04_LOGO_WORKFLOW.md` |
 | Studio camera angles | `docs/12_STUDIO_ANGLES_STANDARD.md` |
-| Jewelry geometry preservation / CAD fidelity / QA checklist | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
+| **Jewelry preservation (SINGLE AUTHORITY — load before EVERY generation)** | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
 | Invented components (pavé bridge / hidden halo / gallery diamonds) / difference detector | `docs/16_ZERO_JEWELRY_INVENTION.md` |
 | No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Pipeline versioning / mode switch / rollback / shadow test / fallback / learning store | `docs/15_SAFE_PIPELINE_VERSIONING.md` (+ `config/pipeline_versions.json`) |

@@ -44,7 +44,8 @@
     "config/VERSION.json",
     "config/project_manifest.json",
     "config/QUALITY_MEMORY.json",
-    "docs/12_STUDIO_ANGLES_STANDARD.md"
+    "docs/12_STUDIO_ANGLES_STANDARD.md",
+    "docs/13_JEWELRY_PRESERVATION_SPEC.md"
   ],
   "required_assets": {
     "logo": [
@@ -112,7 +113,8 @@
     "color": "source is master for all colors; preserve palette + neutral white balance exactly; no color grading/warm tint/creative WB; final color-fidelity check every image; color fidelity > styling",
     "verification": "one verification image, then approved batch without repeated permission",
     "execution": "silent, low-token, reuse cache, batch, no preview tools",
-    "logo_compositing": "MANDATORY production stage (docs/04 §8). The Higgsfield render is immutable: on a composite failure retry and repair the composite step only - never regenerate the render, never ask the user to. The job is not complete until the final image carries the preserved printed logo."
+    "logo_compositing": "MANDATORY production stage (docs/04 §8). The Higgsfield render is immutable: on a composite failure retry and repair the composite step only - never regenerate the render, never ask the user to. The job is not complete until the final image carries the preserved printed logo.",
+    "jewelry_preservation": "docs/13 is the SINGLE Master Jewelry Preservation Policy (P0). MANDATORY: load it before EVERY image generation and verify the output against it before delivery. No other file may define or soften these rules."
   },
   "last_skus": [
     "LR-0156",
@@ -125,6 +127,7 @@
   "repository_url": "https://github.com/SidGajera/Claude_Lucent_Image_Gen",
   "branch": "main",
   "runtime_files": [
+    "docs/13_JEWELRY_PRESERVATION_SPEC.md",
     "config/project_manifest.json",
     "prompts/07_PROMPTS.md",
     "config/QUALITY_MEMORY.json"
@@ -155,6 +158,7 @@
       "aspect_ratio": "1:1",
       "resolution": "2k"
     },
-    "logo_behavior": "OMIT OVER APPROXIMATE: exact asset or omit; missing OK, incorrect NOT OK"
+    "logo_behavior": "OMIT OVER APPROXIMATE: exact asset or omit; missing OK, incorrect NOT OK",
+    "jewelry_preservation_policy": "docs/13_JEWELRY_PRESERVATION_SPEC.md"
   }
 }

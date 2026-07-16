@@ -1,5 +1,12 @@
 # 13 — JEWELRY PRESERVATION SPECIFICATION (single source for CAD-fidelity generation + QA)
 
+> **SINGLE AUTHORITY — MASTER JEWELRY PRESERVATION POLICY (user-locked 2026-07-17).**
+> This is the ONE file for jewelry preservation. Nothing else may define, restate or soften these rules.
+> **MANDATORY: load this file before EVERY image generation** and check the output against it before delivery.
+> Subordinate files that reference these rules but never redefine them: `docs/16` (zero invention — a subset of §MASTER),
+> `docs/02` P1/P2 (priority order only), `docs/14` (regression checklist — enforcement, not definition),
+> `prompts/07` (per-shot prompt text). On ANY conflict, THIS FILE WINS.
+
 User-locked 2026-07-16, after three consecutive SKUs (twist-halo split-shank; round-halo twist-shank ×2) generated attractive but **redesigned** rings. The prompt rules reduce drift; this spec + the composite fallback are what actually guarantee fidelity. This is the one place that consolidates the geometry-lock requirement and the pre-accept QA checklist — the generation prompt (`prompts/07`) and the auto-QC (`config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`) both point here.
 
 ## 1. PRINCIPLE

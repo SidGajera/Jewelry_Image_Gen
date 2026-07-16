@@ -1,5 +1,7 @@
 # 16 — ZERO JEWELRY INVENTION POLICY + JEWELRY DIFFERENCE DETECTOR
 
+> **SUBORDINATE to `docs/13` (user-locked 2026-07-17).** `docs/13` is the single Master Jewelry Preservation Policy. This file details one subset of it — never adding components absent from the source. It defines nothing on its own; on any conflict `docs/13` wins.
+
 User-locked 2026-07-16, after a raw render invented a pavé bridge + gallery diamonds and redesigned the basket beneath the center stone (source had a plain open cathedral basket). This is the **invention** subtype of geometry drift: the model ADDS luxury details that do not exist in the source. Sits under P1 / docs/13 Geometry Lock; this file names the specific failure and the QC gate that catches it.
 
 ## ZERO JEWELRY INVENTION POLICY
