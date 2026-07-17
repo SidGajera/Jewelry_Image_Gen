@@ -2,6 +2,18 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "ultimate-photographic-realism",
+      "problem": "Images read as AI-generated rather than as genuine luxury jewelry photographs: CGI look, AI rendering artifacts, plastic materials, artificial bloom, unrealistic HDR, over-sharpening, over-smoothed textures, repeating patterns, hallucinated geometry, impossible reflections or shadows, synthetic-looking diamonds or fabric.",
+      "root_cause": "Generation favoured artistic/AI-style rendering preferences over physical realism.",
+      "fix": "HIGHEST PRIORITY, NON-NEGOTIABLE (user-locked 2026-07-17) - overrides all artistic rendering preferences. Every image must be visually indistinguishable from a genuine luxury jewelry photograph captured with professional photographic equipment; every generation decision favours physical realism over AI-style rendering. REQUIRED: physically correct lighting, shadows and reflections; real camera optics; natural depth of field; natural lens perspective; realistic material behaviour; natural skin texture (if present); natural fabric texture; natural gold reflections; natural diamond optics; natural micro-details; professional photographic exposure; neutral white balance. VALIDATE before approval: matches professional luxury jewelry photography; materials behave realistically; lighting plausible; shadows plausible; jewelry appears physically manufactured; cloth appears physically photographed; logo appears physically printed; no obvious synthetic artifacts. Any failure -> reject internally, record here, regenerate. MASTER RULE: achieve genuine high-end commercial jewelry photography quality while preserving the jewelry exactly as defined by the source CAD and all locked preservation policies.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#ultimate-photographic-realism-standard",
+        "docs/02_SYSTEM_RULES.md",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md",
+        "docs/16_ZERO_JEWELRY_INVENTION.md"
+      ]
+    },
+    {
       "id": "master-diamond-preservation",
       "problem": "Secondary diamonds (halo, shoulder, pave, band, gallery, hidden halo, bridge, accent) rendered at lower quality than the centre stone - flat, white dots, plastic, painted, milky, cloudy, over/under-exposed, blurry, missing facets, artificial sparkle, different material response.",
       "root_cause": "Generation treated the centre diamond as the only optical reference; secondary stones degraded to AI approximations.",

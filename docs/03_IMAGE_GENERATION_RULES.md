@@ -19,8 +19,21 @@ Complete rules for every generated image.
 
 **MASTER PRIORITY RULE** — the primary objective of every generated image is to showcase the jewelry in the most natural, luxurious and believable way possible. Every catalog must establish a consistent premium visual identity unique to Lucent Carat Lab, so natural that the photographs are visually indistinguishable from genuine professional jewelry photography.
 
-### PHOTOGRAPHIC REALISM STANDARD (CRITICAL, user-locked 2026-07-17)
-Target the visual quality of genuine high-end luxury product photography. **The objective is never to look "AI-generated" — it is to look like a real photograph captured by a professional photographer in a controlled studio or authentic environment.**
+### ULTIMATE PHOTOGRAPHIC REALISM STANDARD (HIGHEST PRIORITY — NON-NEGOTIABLE, user-locked 2026-07-17)
+**This rule overrides all artistic rendering preferences.** Target the visual quality of genuine high-end luxury product photography. **The objective is never to look "AI-generated" — it is to be visually indistinguishable from a genuine luxury jewelry photograph captured with professional photographic equipment.** Every decision during generation must favour PHYSICAL REALISM over AI-style rendering.
+
+**REAL PHOTOGRAPH STANDARD — every image must exhibit:** physically correct lighting · physically correct shadows · physically correct reflections · real camera optics · natural depth of field · natural lens perspective · realistic material behaviour · natural skin texture (if present) · natural fabric texture · natural gold reflections · natural diamond optics · natural micro-details · professional photographic exposure · neutral white balance.
+
+**STRICTLY PROHIBITED — reject immediately if the image exhibits:** CGI appearance · AI-style rendering artifacts · plastic-looking materials · artificial bloom · unrealistic HDR · over-sharpening · over-smoothed textures · repeating patterns · hallucinated geometry · impossible reflections · impossible shadows · synthetic-looking diamonds · synthetic-looking fabric · any visually implausible artifact.
+
+**REALISM VALIDATION (before approval):**
+- [ ] Image matches professional luxury jewelry photography · [ ] materials behave realistically · [ ] lighting physically plausible · [ ] shadows physically plausible · [ ] jewelry appears physically manufactured · [ ] cloth appears physically photographed · [ ] logo appears physically printed · [ ] no obvious synthetic visual artifacts
+
+**Any validation failure → reject internally · record the failure in `07_QUALITY_MEMORY` · regenerate.**
+
+**MASTER RULE** — every delivered image must achieve the visual standard of genuine high-end commercial jewelry photography. The system must continuously optimise for photographic realism **while preserving the jewelry exactly as defined by the source CAD and all locked preservation policies** (`02`, `13`, `16`).
+
+**Detail (subordinate to the above):**
 
 **REAL CAMERA STANDARD** — every image must be consistent with a real camera capture: natural perspective · realistic lens behaviour · natural depth of field · correct optical focus falloff · real exposure · real white balance · natural dynamic range · realistic reflections · natural shadow transitions · real fabric interaction · real metal behaviour · real diamond light performance. **Never simulate unrealistic camera effects.**
 
