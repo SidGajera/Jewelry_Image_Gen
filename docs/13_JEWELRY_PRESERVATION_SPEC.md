@@ -27,6 +27,21 @@ The source render/CAD is the **master, immutable object**. The AI's only job is 
 - Metal thickness everywhere
 - Full diamond cut anatomy per stone (see `docs/03 §L` GEOMETRY LOCK): L:W ratio, table, crown, pavilion, girdle, culet, facet layout/count, symmetry — same physical stone from every angle.
 
+### 3.1 MASTER DIAMOND PRESERVATION (CRITICAL — user-locked 2026-07-17)
+Every diamond on the jewelry is a **locked asset**. The centre diamond is NOT the only reference — every diamond, regardless of position, preserves the same premium natural appearance.
+
+**Applies equally to ALL diamonds:** centre · halo · shoulder · pavé · band · gallery · hidden halo · bridge · accent · prong-set · basket-set · every other diamond on the ring. **No diamond category may receive lower rendering quality.**
+
+**Uniform diamond quality — every diamond preserves:** natural transparency · natural brilliance · natural scintillation · natural fire · natural facet definition · natural crown · natural table · natural girdle visibility · natural pavilion behaviour · correct optical depth · real diamond reflections. Every diamond must look like a real premium-cut laboratory-grown diamond photographed with a professional camera.
+
+**Strictly prohibited — reject immediately if ANY secondary diamond appears:** flat · white dot · plastic · painted · milky · cloudy · overexposed · underexposed · blurry · low resolution · missing facets · artificial sparkle · different optical quality than the centre diamond · different material appearance. **Secondary diamonds must never look inferior to the centre stone.**
+
+**Consistency:** all diamonds must appear to belong to the same ring and the same quality grade — consistent optical realism · brightness · contrast · facet sharpness · light return · reflection behaviour · diamond material response.
+
+**On failure:** reject internally → record the failure in QUALITY_MEMORY (`07`) → regenerate.
+
+**MASTER RULE:** a customer examining the image at 100% zoom must perceive EVERY visible diamond — centre, halo, shoulder, pavé, gallery, bridge or band — as a genuine premium-quality lab-grown diamond with the same natural realism and craftsmanship. **No diamond on the jewelry may appear to be a lower-quality AI approximation.**
+
 ## 4. GENERATION REQUIREMENT
 Every prompt LEADS with the `CRITICAL REQUIREMENT — GEOMETRY LOCK` header (`prompts/07` canonical base prompt) — it goes first, before the angle/scene tag, because the model weights the prompt opening most. Source images are fed FIRST at max weight, medias `[reference, SOURCE]`. If any feature cannot be held exactly, do NOT invent/redesign — preserve the original geometry even at the cost of less dramatic lighting.
 
@@ -41,6 +56,7 @@ Compare the render to the source, feature by feature. Any ✗ = FAIL → do not 
 - [ ] Shoulder→halo transition matches
 - [ ] Pavé: same count, size, spacing, start/end positions
 - [ ] Every stone: count/size/orientation match; diamonds are real-optics VVS/IF (no CGI/doubling/over-whitening)
+- [ ] MASTER DIAMOND PRESERVATION (§3.1) — centre natural · halo natural · shoulder natural · pavé natural · band natural · gallery natural · hidden-halo natural · every visible diamond has realistic facets · realistic brilliance · consistent optical quality with the centre stone (no flat/white-dot/plastic/milky/blown-out secondary stones)
 - [ ] Gallery/basket/metal thickness match
 - [ ] NO invented components (docs/16 detector): diamond_count, diamond_locations, gallery_structure, prong_count, hidden_halo_presence, pave_bridge_presence, metal_silhouette all match source — no added pavé bridge / hidden halo / gallery diamonds / extra prongs
 - [ ] Only background/lighting/camera/focus/shadows/reflections changed — nothing structural

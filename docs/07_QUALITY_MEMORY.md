@@ -18,6 +18,17 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 - Camera failures
 - Logo placement & catalog composition failures
 
+### Catalog 0150 — Head & Shank Geometry Drift — REJECTED (2026-07-17)
+**Reference:** approved Image 1 (hero front) = the locked jewelry benchmark for Catalog 0150.
+
+**Observed errors in the rejected output:** centre diamond enlarged · halo diameter enlarged · head wider and heavier · centre-stone-to-halo proportion differs · halo diamond size/spacing/arrangement altered · twisted split-shank geometry changed · shank crossing points don't match · open spaces inside the twisted shoulders differently shaped · left/right shoulder curves inconsistent · head-to-shank connection altered · ring balance and silhouette no longer match.
+
+**Locked approved benchmark** — every future 0150 image preserves exactly: centre diamond size and proportion · halo diameter and thickness · halo diamond count, size, spacing and placement · four-prong position and shape · twisted split-shank curves · shoulder crossing locations · open-space geometry within both shoulders · head-to-shank connection · overall silhouette and proportions. **Only camera angle, ring orientation and natural photographic composition may change.**
+
+**Prevention rule — before delivering every 0150 image:** (1) compare directly against approved Image 1 · (2) check centre-stone and halo scale · (3) trace BOTH twisted shoulders head→shank · (4) compare every crossing point and open space · (5) confirm the complete silhouette matches · (6) reject if any geometry is enlarged, simplified, shifted or reinterpreted. **The engine must PHOTOGRAPH the exact approved 0150 ring — never generate a similar twisted halo ring.**
+
+**No-repeat rule:** the enlarged centre stone, enlarged halo and modified twisted-shank geometry must never appear again; any future 0150 output repeating them is rejected automatically before delivery.
+
 ### Logo Placement & Catalog Composition — REJECTED (2026-07-17)
 **Observed failure:** the ring was positioned directly over the printed logo, hiding a significant portion of it; only the lower part of the logo remained visible, making the branding look incomplete.
 

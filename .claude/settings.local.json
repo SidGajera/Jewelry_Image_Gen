@@ -120,7 +120,8 @@
       "Bash(\"./tool/backend/.venv/Scripts/python.exe\" -)",
       "Bash(sed -i 's#| \\\\*\\\\*Generation workflow + mandatory pre-delivery validation \\(LOCKED\\)\\\\*\\\\* | `docs/18_LOCKED_GENERATION_WORKFLOW.md` |##; s#| Individual images only / no collage-grid-contact-sheet | `docs/20_NO_GROUP_GRID_VIEW.md` |##; s# \\(+ `docs/19_BACKGROUND_CONSISTENCY_POLICY.md` — catalog background lock\\)##' CLAUDE_SETUP.md)",
       "Bash(sed -i '/^$/N;/^\\\\n$/D' CLAUDE_SETUP.md)",
-      "Bash(git commit -q -m 'Catalog LR-0149 complete + policy consolidation *)"
+      "Bash(git commit -q -m 'Catalog LR-0149 complete + policy consolidation *)",
+      "Bash(git commit -m '@ *)"
     ]
   }
 }
