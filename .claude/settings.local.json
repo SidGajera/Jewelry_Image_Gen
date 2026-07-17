@@ -102,7 +102,16 @@
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);print\\('ok'\\)\")",
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/VERSION.json'\\)\\);json.load\\(open\\('config/project_manifest.json'\\)\\);print\\('JSON all valid'\\)\")",
       "Bash(git commit -q -m 'Consolidate token rules into single Master Token Optimization Policy \\(docs/17\\) *)",
-      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)"
+      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__generate_image",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__media_import_url",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__media_upload",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__media_confirm",
+      "Bash(curl -s -o \"LR-0151_studio_side_v1.png\" \"https://d8j0ntlcm91z4.cloudfront.net/user_3FfqWKRraOQL88xyOfgG5RzRvdz/hf_20260717_023328_3bc9cf22-180d-4d26-8aab-0cbb6b3d0aa4.png\")",
+      "Bash('D:/Lucent Image generation/tool/backend/.venv/Scripts/python.exe' -c ' *)",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__show_generations",
+      "Bash(git checkout *)",
+      "Bash(git commit -q -m 'LR-0151 studio side + 45L renders \\(desktop-pc\\) *)"
     ]
   }
 }
