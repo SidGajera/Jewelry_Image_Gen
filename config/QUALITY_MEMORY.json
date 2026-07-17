@@ -2,6 +2,76 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "d2d-side-angle-protocol",
+      "problem": "Side, rear-side and three-quarter-side renders drift most: the engine reconstructs the side profile from front views or learned priors, thickening the shank, rounding the crossover, raising the head, shrinking gallery openings and re-curving prongs.",
+      "root_cause": "Side geometry was inferred rather than taken from the matching CAD side view; the camera move was treated as licence to rebuild.",
+      "fix": "D2D SIDE-ANGLE PROTOCOL (user-locked 2026-07-17) for EVERY side, rear-side and three-quarter-side generation. The CAD SIDE VIEWS are the ONLY authority - never derive side geometry from front images, previous renders, approved lifestyle images, general jewelry knowledge or AI assumptions. SOURCE SELECTION: identify the nearest matching CAD view; use it as the PRIMARY reference; use other views only to confirm hidden structure; never reconstruct the side from a front source; if the requested angle is not supported by the available CAD views, STOP rather than invent. MAPPING: left profile -> left-side CAD; right profile -> right-side CAD; rear -> rear CAD; left/right three-quarter -> that side CAD + front/rear confirmation. CAMERA-ONLY TRANSFORMATION: only rigid camera movement around unchanged jewelry (yaw, pitch, height, distance, natural perspective, ring as ONE rigid object). FORBIDDEN: geometry warping, perspective-based redesign, AI reconstruction, mirroring an asymmetric side, compressing or stretching the head, rotating individual components, changing proportions for composition. SIDE SILHOUETTE LOCK: overall outline, shank outer and inner contour, band width, band thickness, shank taper, shoulder rise and curvature, head height and width, diamond height, tilt and orientation, crown exposure, pavilion exposure, setting projection, prong profile, gallery outline, basket outline, bridge position, every opening and negative space - overlaying source and output silhouettes must show no structural drift. HEAD ASSEMBLY LOCK: centre diamond + prongs + basket + gallery + bridge + shoulder junction is ONE locked CAD component; preserve prong count (per this SKU's CAD), position, spacing, height, thickness, curvature, girdle contact, diamond seating depth, head height, basket width, gallery supports, support angles, metal thickness and internal openings; visible prong count may change through occlusion but the true structure stays intact. LANDMARK VALIDATION: mark A top of centre diamond, B girdle line, C lowest pavilion point, D highest shoulder point, E head-to-shoulder junction, F gallery opening corners, G bridge centre, H widest shank point, I narrowest shoulder point, J bottom centre of shank; after generation compare relative positions and proportions; reject if any landmark moves due to reconstruction rather than camera projection. PHYSICAL VALIDATION: diamond seated, prongs contacting the girdle, nothing floating, gallery supports continuous, head connecting logically, no unsupported mass, manufacturable as shown. ZERO-TOLERANCE REJECTION on any change to side silhouette, head height/profile, prongs, diamond seating, basket, gallery, bridge, shoulder geometry, band width/thickness, open spaces, metal volume or any visible CAD contour - never accept a 'similar' ring, never grade by general appearance. MINIMUM LOADING: master jewelry preservation; QUALITY_MEMORY rules for geometry, side-angle drift, prongs and physical logic; studio/cloth/logo only if present; camera policy for the angle. FINAL: freeze the geometry, move only the camera; if the view cannot be produced without guessing geometry, STOP.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#34-d2d-side-angle-protocol",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#33-cad-lock-mode-highest-priority",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#32-prong-preservation-zero-tolerance",
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-policy-execution-zero-tolerance"
+      ]
+    },
+    {
+      "id": "policy-execution-engine",
+      "problem": "Loading every policy for every generation wastes processing and context, while skipping a required policy causes violations.",
+      "root_cause": "No context-aware loader defining which policies a given image type requires, or their precedence when several are active.",
+      "fix": "POLICY EXECUTION ENGINE (user-locked 2026-07-17) - the policy system is CONTEXT-AWARE: load ONLY the policies the current task requires, determined automatically from the requested image type. ALWAYS LOAD: MASTER JEWELRY PRESERVATION (docs/13 incl. CAD LOCK MODE and D2D, plus docs/16) and QUALITY_MEMORY (docs/07 + config/QUALITY_MEMORY.json - Approved Benchmarks + Failure Memory). CONDITIONAL: studio -> 12; house lifestyle -> 03 HOUSE LIFESTYLE; office lifestyle -> 11 OFFICE PHOTOSHOOT; white cloth scene -> 11 CLOTH; logo visible -> 04 LOGO; human model -> 03 MODEL REALISM; different camera angle -> 12 CAMERA/ANGLE DIVERSITY; multiple pieces -> MULTI-PRODUCT; packaging -> PACKAGING; video -> VIDEO. Do not load unrelated policies. PRIORITY: 1 MASTER JEWELRY PRESERVATION (highest), 2 QUALITY_MEMORY, 3 scene policy, 4 camera policy, 5 logo policy, 6 cloth policy, 7 model policy, 8 rendering guidelines - lower priority NEVER overrides higher. CONFLICTS: jewelry preservation always wins; QUALITY_MEMORY overrides previously failed behaviour; scene policies apply only after geometry is preserved. Generate only after all required policies are active; never skip a required policy; use the MINIMUM required set while holding 100% compliance with jewelry preservation and Failure Memory; the generator must FOLLOW every active policy during generation, not merely reference them beforehand.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-policy-execution-zero-tolerance",
+        "docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md#operational-notes",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md",
+        "docs/07_QUALITY_MEMORY.md"
+      ]
+    },
+    {
+      "id": "mandatory-policy-execution-zero-tolerance",
+      "problem": "Policies were treated as guidance the model could balance, simplify or override with learned priors, so violations reached delivery.",
+      "root_cause": "No zero-tolerance execution contract binding the renderer to the loaded policies as hard constraints.",
+      "fix": "MANDATORY POLICY EXECUTION (ZERO TOLERANCE, user-locked 2026-07-17). Before generating ANY image, ALL loaded policies are MANDATORY and OVERRIDE every default behaviour of the image model; the renderer must execute every policy exactly as written. NOT ALLOWED: ignore any policy; partially follow any policy; balance one policy against another; override a policy using learned priors; replace policy instructions with its own assumptions; simplify policy instructions; interpret policy instructions creatively. Every policy is a HARD CONSTRAINT - if any policy conflicts with learned behaviour, THE POLICY ALWAYS WINS. The renderer has NO authority to modify, reinterpret, optimise, redesign, beautify, reconstruct, hallucinate or substitute any part of the jewelry, logo, cloth, environment or approved workflow. Its authority is limited ONLY to: camera angle, camera distance, camera lens, camera height, camera rotation, studio lighting, exposure, focus, depth of field, environment lighting. Generation is NOT permitted until all required policies are loaded and validated. ORDER: 1 load every required policy, 2 validate every policy, 3 validate against Failure Memory, 4 validate against Approved Benchmarks, 5 build prompt, 6 generate, 7 post-generation validation, 8 reject immediately on ANY violation, 9 record every failure into Failure Memory, 10 regenerate until every policy passes. The image MUST NOT be delivered unless ALL policies pass 100%; failure of even ONE policy = automatic rejection.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-policy-execution-zero-tolerance",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#33-cad-lock-mode-highest-priority",
+        "docs/07_QUALITY_MEMORY.md",
+        "docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md"
+      ]
+    },
+    {
+      "id": "cad-lock-mode",
+      "problem": "REJECTED (LR-0152 side + rear views, 2026-07-17): source has a slim continuous shank, a SHARP V-shaped crossover beneath the head, long elegant prongs with specific curvature, fixed gallery-triangle proportions, the head at exact CAD height and a continuous flowing silhouette. Output thickened the shank, rounded the crossover, made the head taller, shrank the gallery openings, thickened and re-curved the prongs, smoothed the metal transitions and changed the silhouette - the head was REBUILT rather than preserved.",
+      "root_cause": "The AI reconstructs the head/gallery from learned solitaire knowledge whenever the camera moves, instead of photographing the fixed CAD object.",
+      "fix": "CAD LOCK MODE (HIGHEST PRIORITY, user-locked 2026-07-17). The uploaded CAD is the MASTER GEOMETRY. The AI is STRICTLY FORBIDDEN from rebuilding, beautifying, smoothing, optimising, interpreting or redesigning the jewelry. Treat the CAD as an ALREADY-MANUFACTURED physical ring and render a photograph of THAT ring. NEVER: generate a 'similar' ring; recreate the geometry; infer missing surfaces; improve proportions; optimise curves; smooth transitions; beautify intersections; redesign the head, gallery, basket, bridge, shoulders, shank, prongs or diamond seating. IDENTICAL to the CAD: every visible edge, every opening, every curve, every metal thickness, every intersection, every negative space, every silhouette. THE RENDERER HAS ZERO AUTHORITY OVER JEWELRY GEOMETRY - its only responsibilities are to change camera, lighting, environment and background. Nothing else.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#33-cad-lock-mode-highest-priority",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#40-d2d-geometry-preservation-absolute",
+        "docs/16_ZERO_JEWELRY_INVENTION.md"
+      ]
+    },
+    {
+      "id": "no-ai-design-interpretation",
+      "problem": "The renderer behaves like a jewelry designer, substituting a typical solitaire design or an AI approximation for the CAD's actual geometry.",
+      "root_cause": "Learned design priors override the supplied CAD when the view is unfamiliar.",
+      "fix": "NO AI DESIGN INTERPRETATION (user-locked 2026-07-17): the renderer must behave like a PROFESSIONAL PRODUCT PHOTOGRAPHER, not a jewelry designer. Assume the ring already exists; photograph it exactly. Do NOT reconstruct it from learned knowledge; do NOT substitute a typical solitaire design; do NOT replace CAD geometry with an AI approximation. EVERY RENDERED PIXEL OF THE JEWELRY MUST CORRESPOND TO THE UPLOADED CAD. VALIDATION GATE before accepting any render - all identical to the CAD: head geometry, gallery, basket, bridge, shoulder profile, band thickness, band width, metal volume, diamond position, diamond height, diamond orientation, prong count, prong spacing, prong curvature, prong thickness, negative spaces, overall silhouette. If ANY item differs -> reject and regenerate.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#33-cad-lock-mode-highest-priority",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#cad-lock-validation-gate-before-accepting-any-render",
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-pre-delivery-validation"
+      ]
+    },
+    {
+      "id": "d2d-geometry-preservation-absolute",
+      "problem": "REJECTED (LR-0152, 2026-07-17): the renderer changed the jewelry geometry rather than only the camera - head/prong assembly thicker and rounder than the CAD; gallery triangles with different proportions and connection points; prong curvature no longer following the CAD profile; shank-to-head transition curvature changed; upper shoulder metal thicker; centre stone seated differently relative to the prongs; overall side silhouette no longer identical to the source. This is a DESIGN PRESERVATION FAILURE, not a rendering difference.",
+      "root_cause": "The engine treats a new camera angle as licence to re-derive the head and gallery surfaces instead of photographing the fixed CAD object.",
+      "fix": "D2D GEOMETRY PRESERVATION (ABSOLUTE, user-locked 2026-07-17). The CAD is the MASTER DESIGN; the renderer may NOT redesign, reinterpret, optimise, beautify or reconstruct any part of the jewelry. The output is a Design-to-Design reproduction and ONLY THE CAMERA POSITION MAY CHANGE. Identical to the CAD: overall silhouette, head geometry, gallery geometry, basket geometry, bridge geometry, shoulder profile, shank curvature, band width, band thickness, metal volume, diamond seating, diamond height, diamond orientation, pavilion exposure, crown exposure, table angle, prong count, prong spacing, prong thickness, prong curvature, prong height, prong position, prong tips, all openings and negative spaces, every visible edge and contour. NEVER: round edges, sharpen edges, smooth transitions, change proportions, add thickness, remove thickness, stretch geometry, compress geometry, reconstruct the head, invent new surfaces, close openings, enlarge openings, modify the gallery, modify the basket, modify the bridge. If the rendered silhouette differs from the CAD at ANY point -> reject and regenerate. The CAD is the only authority; the render is a PHOTOGRAPH of the CAD, not a reinterpretation of it.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#40-d2d-geometry-preservation-absolute",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#32-prong-preservation-zero-tolerance",
+        "docs/16_ZERO_JEWELRY_INVENTION.md"
+      ]
+    },
+    {
       "id": "completed-catalogs-consolidated-learning",
       "problem": "Learnings from completed catalogs risk being lost or re-derived per SKU.",
       "root_cause": "Per-catalog rejections were recorded individually without a consolidated pass.",

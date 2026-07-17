@@ -63,6 +63,58 @@ The source CAD is the only authority. **Prong count is ABSOLUTELY LOCKED.**
 
 **CAD AUTHORITY: the CAD always overrides previous renders, prompts or assumptions.**
 
+## 3.3 CAD LOCK MODE (HIGHEST PRIORITY — user-locked 2026-07-17)
+The uploaded CAD is the **MASTER GEOMETRY**. The AI is **STRICTLY FORBIDDEN** from rebuilding, beautifying, smoothing, optimising, interpreting or redesigning the jewelry. Treat the CAD as an **already-manufactured physical ring** and render a photograph of THAT ring.
+
+**Never:** generate a "similar" ring · recreate the geometry · infer missing surfaces · improve proportions · optimise curves · smooth transitions · beautify intersections · redesign the head, gallery, basket, bridge, shoulders, shank, prongs or diamond seating.
+
+**Identical to the CAD:** every visible edge · every opening · every curve · every metal thickness · every intersection · every negative space · every silhouette.
+
+**The renderer has ZERO authority over jewelry geometry.** Its ONLY responsibilities: change camera · change lighting · change environment · change background. **Nothing else.**
+
+### NO AI DESIGN INTERPRETATION
+The renderer must behave like a **professional product photographer, NOT a jewelry designer**. Assume the ring already exists; photograph it exactly. Do NOT reconstruct it from learned knowledge · do NOT substitute a typical solitaire design · do NOT replace CAD geometry with an AI approximation. **Every rendered pixel of the jewelry must correspond to the uploaded CAD.**
+
+### CAD LOCK VALIDATION GATE (before accepting any render)
+- [ ] Head geometry identical · [ ] gallery identical · [ ] basket identical · [ ] bridge identical · [ ] shoulder profile identical · [ ] band thickness identical · [ ] band width identical · [ ] metal volume identical · [ ] diamond position identical · [ ] diamond height identical · [ ] diamond orientation identical · [ ] prong count identical · [ ] prong spacing identical · [ ] prong curvature identical · [ ] prong thickness identical · [ ] negative spaces identical · [ ] overall silhouette identical
+
+**If ANY item differs → reject the image and regenerate.**
+
+*Observed (LR-0152 side + rear, rejected 2026-07-17): shank thickened · sharp V crossover beneath the head rounded off · head taller · gallery openings smaller · prongs thicker and differently curved · metal transitions smoothed · silhouette changed. The head was **rebuilt rather than preserved** — a geometry modification, not a camera difference.*
+
+## 3.4 D2D SIDE-ANGLE PROTOCOL (user-locked 2026-07-17 — applies to EVERY side, rear-side and three-quarter-side generation)
+**The source CAD SIDE VIEWS are the ONLY authority.** Never derive side geometry from: front images · previous generated renders · approved lifestyle images · general jewelry knowledge · AI assumptions.
+
+**MANDATORY SOURCE SELECTION.** Before generating the requested angle: (1) identify the nearest matching CAD view · (2) use that side CAD as the PRIMARY geometry reference · (3) use the remaining CAD views only to confirm hidden structure · (4) never reconstruct the side profile from a front-facing source · (5) **if the requested angle is not supported by the available CAD views, STOP rather than inventing geometry.**
+**Angle mapping:** left profile → left-side CAD · right profile → right-side CAD · rear profile → rear CAD · left three-quarter → left-side CAD + front/rear confirmation · right three-quarter → right-side CAD + front/rear confirmation.
+
+**CAMERA-ONLY TRANSFORMATION.** The only permitted transformation is **rigid camera movement around unchanged jewelry**. Allowed: camera yaw · pitch · height · distance · natural perspective · ring orientation as ONE RIGID OBJECT. Forbidden: geometry warping · perspective-based redesign · AI reconstruction · **mirroring an asymmetric side** · compressing or stretching the head · rotating individual jewelry components · changing proportions to improve composition. **The jewelry stays geometrically FROZEN.**
+
+**SIDE SILHOUETTE LOCK — match the source side silhouette exactly:** overall ring outline · shank outer contour · shank inner contour · band width · band thickness · shank taper · shoulder rise · shoulder curvature · head height · head width · diamond height · diamond tilt and orientation · crown exposure · pavilion exposure · setting projection · prong profile · gallery outline · basket outline · bridge position · every opening and negative space. **Overlaying source and output silhouettes must show no structural drift.**
+
+**HEAD ASSEMBLY LOCK — treat the complete head as ONE locked CAD component** (centre diamond + prongs + basket + gallery + bridge + shoulder junction); never independently rebuild any part. Preserve exactly: prong count as defined by THIS SKU's CAD · prong position · spacing · height · thickness · curvature · girdle contact · diamond seating depth · head height · basket width · gallery supports · support angles · metal thickness · internal openings. **Visible prong count may change naturally through occlusion, but the true CAD prong structure stays intact.**
+
+**D2D LANDMARK VALIDATION.** Before generation, mark the fixed CAD landmarks: **A** top of centre diamond · **B** diamond girdle line · **C** lowest pavilion point · **D** highest shoulder point · **E** head-to-shoulder junction · **F** gallery opening corners · **G** bridge centre · **H** widest shank point · **I** narrowest shoulder point · **J** bottom centre of shank. After generation, compare the relative positions and proportions of all landmarks. **Reject if any landmark moves because of geometry reconstruction rather than camera projection.**
+
+**STRUCTURAL & PHYSICAL VALIDATION.** Confirm: the diamond is physically seated · prongs securely contact the girdle · no diamond floats · gallery supports connect continuously · the head connects logically to shoulders and shank · no unsupported metal or diamond mass · the ring could be manufactured exactly as shown.
+
+**ZERO-TOLERANCE REJECTION — reject and regenerate if the output changes:** side silhouette · head height or profile · prongs · diamond seating · basket · gallery · bridge · shoulder geometry · band width or thickness · open spaces · metal volume · any visible CAD contour. **Never accept a "similar" ring. Never grade by general appearance.** PASS only when the side angle is a D2D representation of the exact source CAD.
+
+**MINIMUM POLICY LOADING for these shots:** (1) master jewelry preservation (`13`, `16`) · (2) QUALITY_MEMORY rules relevant to geometry, side-angle drift, prongs and physical logic · (3) studio/cloth/logo policy only if those elements appear · (4) camera policy for the requested angle. Nothing unrelated.
+
+**FINAL COMMAND:** freeze the jewelry geometry from the source CAD, move only the camera, generate a photorealistic image of the exact manufactured ring. **If the requested side view cannot be produced without reconstructing or guessing geometry — STOP instead of generating.**
+
+## 4.0 D2D GEOMETRY PRESERVATION (ABSOLUTE — user-locked 2026-07-17)
+**The CAD is the MASTER DESIGN.** The renderer is NOT permitted to redesign, reinterpret, optimise, beautify or reconstruct any part of the jewelry. The output must be a **Design-to-Design (D2D) reproduction**. **Only the camera position may change.**
+
+**Everything else MUST remain identical to the CAD:** overall silhouette · head geometry · gallery geometry · basket geometry · bridge geometry · shoulder profile · shank curvature · band width · band thickness · metal volume · diamond seating · diamond height · diamond orientation · pavilion exposure · crown exposure · table angle · prong count · prong spacing · prong thickness · prong curvature · prong height · prong position · prong tips · **all openings and negative spaces** · every visible edge and contour.
+
+**The renderer must NEVER:** round edges · sharpen edges · smooth transitions · change proportions · add thickness · remove thickness · stretch geometry · compress geometry · reconstruct the head · invent new surfaces · close openings · enlarge openings · modify the gallery · modify the basket · modify the bridge.
+
+**If the rendered silhouette differs from the CAD at ANY point → reject the image and regenerate.** The CAD is the only authority. **The render is a photograph of the CAD — not a reinterpretation of it.**
+
+*Observed (LR-0152, rejected 2026-07-17): head assembly thicker and rounder than the CAD · gallery triangles with different proportions and connection points · prong curvature no longer following the CAD profile · different shank→head transition curvature · thicker upper shoulder · centre stone seated differently relative to the prongs · side silhouette no longer identical. That is a **design-preservation failure**, not a rendering difference.*
+
 ## 4.1 D2D (DESIGN-TO-DESIGN) ACCURACY MODE (user-locked 2026-07-17 — mandatory before AND after every generation)
 The source CAD is the ONLY MASTER; the generated jewelry must be an **exact geometric replica**. **Do not compare only visually — compare every structural component independently.**
 

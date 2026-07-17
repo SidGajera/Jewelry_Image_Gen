@@ -110,7 +110,34 @@ Once the user supplies the source files (CAD/references/logo/approved assets) an
 
 Any unchecked item → reject internally · record in `07_QUALITY_MEMORY` · regenerate. (Detail owners: cloth `11` · logo `04` · realism `03` ULTIMATE PHOTOGRAPHIC REALISM · diamonds `13 §3.1`.)
 
-### MANDATORY POLICY ENFORCEMENT (user-locked 2026-07-17)
+### MANDATORY POLICY EXECUTION (ZERO TOLERANCE — user-locked 2026-07-17)
+**Before generating ANY image, ALL loaded policies are MANDATORY and OVERRIDE every default behaviour of the image model.** The renderer MUST execute every policy exactly as written.
+
+**The renderer is NOT allowed to:** ignore any policy · partially follow any policy · balance one policy against another · override a policy using learned priors · replace policy instructions with its own assumptions · simplify policy instructions · interpret policy instructions creatively.
+
+**Every policy is a HARD CONSTRAINT. If ANY policy conflicts with the model's learned behaviour, the POLICY ALWAYS WINS.** The renderer has NO authority to modify, reinterpret, optimise, redesign, beautify, reconstruct, hallucinate or substitute any part of the **jewelry, logo, cloth, environment or approved workflow**.
+
+**The renderer's authority is LIMITED ONLY to:** camera angle · camera distance · camera lens · camera height · camera rotation · studio lighting · exposure · focus · depth of field · environment lighting. **Everything else stays exactly as the loaded policies define it.**
+
+**Generation is NOT permitted until ALL required policies are successfully loaded and validated.**
+
+**GENERATION ORDER:** (1) load every required policy · (2) validate every policy · (3) validate against **Failure Memory** · (4) validate against **Approved Benchmarks** · (5) build prompt · (6) generate image · (7) post-generation validation · (8) reject immediately if ANY policy is violated · (9) record every failure into Failure Memory · (10) regenerate until every policy passes.
+
+#### POLICY EXECUTION ENGINE (context-aware loading — user-locked 2026-07-17)
+The policy system is **context-aware**: do NOT load every policy for every generation. Load ONLY the policies the current task requires — the workflow determines them from the requested image type. This cuts processing without reducing quality (`17` lazy-load).
+
+**ALWAYS LOAD (mandatory for every jewelry generation):** MASTER JEWELRY PRESERVATION (`13` — incl. §3.3 CAD LOCK MODE, §4.0/§4.1 D2D) + `16` · **QUALITY_MEMORY** (`07` + `config/QUALITY_MEMORY.json` — Approved Benchmarks + Failure Memory).
+
+**LOAD CONDITIONALLY, only when applicable:** studio images → `12` STUDIO · house lifestyle → `03` HOUSE LIFESTYLE POLICY · office lifestyle → `11` OFFICE PHOTOSHOOT · white-cloth scene → `11` CLOTH · logo visible → `04` LOGO · human model appears → `03` MODEL REALISM · different camera angle → `12` CAMERA/ANGLE DIVERSITY · multiple jewelry pieces → MULTI-PRODUCT · packaging → PACKAGING · video generation → VIDEO. **Do NOT load policies unrelated to the requested output.**
+
+**POLICY PRIORITY when several are active:** 1. MASTER JEWELRY PRESERVATION (highest authority) · 2. QUALITY_MEMORY · 3. scene policy · 4. camera policy · 5. logo policy · 6. cloth policy · 7. model policy · 8. rendering guidelines. **A lower-priority policy may NEVER override a higher-priority one.**
+
+**CONFLICTS:** MASTER JEWELRY PRESERVATION always wins · QUALITY_MEMORY overrides previously failed behaviour · scene-specific policies apply **only after geometry is preserved**.
+
+**Generate only after all required policies are active. Never use unnecessary policies; never skip a required one. Use the MINIMUM required policy set while holding 100% compliance with jewelry preservation and Failure Memory. The generator must FOLLOW every active policy during generation — not merely reference them beforehand.**
+
+**The image MUST NOT be delivered unless ALL policies pass 100%. Failure of even ONE policy = automatic rejection.**
+
 Every generation MUST strictly enforce every loaded policy before, during and after generation. **Policy loading alone is not sufficient** — the system must actively VALIDATE every generated image against every applicable policy before delivery.
 
 **Sequence:** (1) load all required policies · (2) validate that all required policies loaded successfully · (3) generate · (4) execute EVERY validation defined in EACH loaded policy · (5) on any failure → reject internally, record in `07_QUALITY_MEMORY`, regenerate automatically · (6) repeat until every validation passes · (7) deliver only images that pass all policy validations.
