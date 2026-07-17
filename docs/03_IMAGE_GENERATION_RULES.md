@@ -33,6 +33,16 @@ Complete rules for every generated image.
 
 **MASTER RULE** — every delivered image must achieve the visual standard of genuine high-end commercial jewelry photography. The system must continuously optimise for photographic realism **while preserving the jewelry exactly as defined by the source CAD and all locked preservation policies** (`02`, `13`, `16`).
 
+**PHOTOREALISM POLICY (HIGHEST PRIORITY — user-locked 2026-07-17).** Every generated image must be **visually indistinguishable from a professional luxury jewelry photograph captured with a high-end full-frame camera and premium macro lens**. The objective is MAXIMUM PHOTOREALISM.
+
+*Every image must exhibit:* physically accurate lighting · natural global illumination · correct optical reflections · real lens behaviour · authentic depth of field · realistic micro-contrast · natural colour response · real fabric physics · real metal reflections · physically accurate diamond optics · **real-world imperfections** · subtle manufacturing tolerances · natural camera noise where appropriate.
+
+*Lifestyle images additionally:* natural skin texture · individual pores · fine peach fuzz · natural lip texture · realistic eyelashes · natural eyebrows · correct eye reflections · realistic hair strands · natural finger anatomy · authentic nail texture.
+
+*Never:* CGI appearance · over-sharpening · plastic surfaces · waxy skin · synthetic-looking diamonds · repetitive patterns · AI artifacts · unrealistic symmetry · hallucinated geometry.
+
+**Every model must look like a real luxury-campaign model photographed by a professional fashion photographer; every jewelry image must look like genuine commercial product photography from a luxury jewelry brand. Prioritise REALISM OVER STYLIZATION — if any rendering choice makes the image look synthetic, artificial or computer-generated, reject and regenerate.**
+
 **Detail (subordinate to the above):**
 
 **REAL CAMERA STANDARD** — every image must be consistent with a real camera capture: natural perspective · realistic lens behaviour · natural depth of field · correct optical focus falloff · real exposure · real white balance · natural dynamic range · realistic reflections · natural shadow transitions · real fabric interaction · real metal behaviour · real diamond light performance. **Never simulate unrealistic camera effects.**
@@ -69,12 +79,16 @@ The workflow, policies and validation sequence are **LOCKED**. Improve only by a
 ### ONE-TIME PERMISSION (user-locked 2026-07-17)
 Once the user supplies the source files (CAD/references/logo/approved assets) and requests generation, that is ONE-TIME authorization to complete the requested image set — never ask permission before each image or after each regeneration. During an active session: generate all requested images, validate every image, reject failures internally, regenerate automatically, update Failure Memory on each rejection, never interrupt unless input is genuinely required. Authorization ends when: the user changes the design · uploads a new CAD · uploads new references · changes workflow/policies · explicitly pauses/stops · the task completes. Ask ONLY when: a required source asset is missing · the CAD/reference is ambiguous · a requested change conflicts with locked policies · the user starts a different project. Scope: current task only.
 
+**PERMISSION POLICY — CONNECTORS & MEDIA (user-locked 2026-07-17).** Obtain all required connector permissions at the START of the session. **Never interrupt the workflow to request repeated permissions.** Reuse existing authenticated sessions (Higgsfield, Drive, GitHub). **Reuse uploaded media whenever possible — never re-upload identical source files**; reuse each `media_id` (cloth, logo, CAD, approved masters) until it expires (`06_CACHE`, `17` OPERATIONAL NOTES). Request additional permission ONLY when a completely new connector or a new permission scope is genuinely required. **The generation workflow must continue without repeated approval dialogs whenever technically possible.**
+
 ### MANDATORY PRE-DELIVERY VALIDATION
 **A. SOURCE CAD (only camera angle may change):** overall geometry · ring proportions · band width · band thickness · ring profile · head · gallery · basket · cathedral · bridge · setting · prongs · prong count · prong thickness · prong position · centre diamond · pavilion · crown · table · side diamonds · pavé · metal — ALL unchanged.
 
 **B. JEWELRY PRESERVATION (reject immediately on any):** geometry drift · invented geometry · missing metal · added metal · missing diamonds · added diamonds · wrong proportions · wrong setting · wrong head · wrong basket · wrong gallery · wrong bridge · wrong cathedral · wrong prongs · wrong diamond shape · wrong diamond orientation. (Owner: `docs/13`, `docs/16`.)
 
 **C. PHYSICS & LOGICAL.** *Head & stone support:* centre diamond physically supported; never floating; girdle visibly seated inside the setting; pavilion naturally supported by the head; crown/girdle/pavilion align with the setting. *Prongs:* every prong visibly contacts AND wraps over the girdle; no gaps; prongs originate naturally from the head; mechanically capable of retaining the stone. *Load path — visually continuous, no interruption or unsupported transition:* `Centre Diamond → Prongs → Setting Head → Basket → Gallery → Bridge → Shank`. *Manufacturing:* realistically manufacturable; stone retained after setting; metal thickness structurally believable; setting capable of supporting the shown diamond; no impossible/unstable geometry. *Visual physics:* gravity respected; no unsupported mass; no floating components; no impossible contact surfaces; metal↔diamond connections believable.
+**PHYSICAL CONTACT VALIDATION (user-locked 2026-07-17).** Every object must obey gravity and **physically interact with the cloth**. Always verify: the cloth **compresses under the ring** · fabric folds respond naturally to the ring's weight · contact shadows originate from the TRUE contact points and match the lighting direction · **ambient occlusion** appears beneath the ring · the ring never appears to float. **Reject and regenerate if the ring appears unsupported or the cloth lacks realistic deformation.** (Observed on LR-0156: the ring rested on the cloth with too little compression, too light a contact shadow and no local fabric deformation.)
+
 **MASTER PHYSICS QUESTION (before approving every image):** *"If this exact ring were manufactured in real gold using the shown geometry, would the centre diamond remain securely held under normal wear without relying on hidden or impossible support?"* Anything other than YES → reject internally · record the failure · regenerate.
 
 **D. LOGO (owner: `docs/04`):** official logo only · no AI recreation · correct typography · correct diamond icon · correct colours · correct gradients · correct spacing · correct alignment · correct perspective · correct opacity · naturally printed on premium white cotton · follows cloth folds · no sticker effect · no floating logo · no embossing · no white box.
@@ -82,6 +96,19 @@ Once the user supplies the source files (CAD/references/logo/approved assets) an
 **E. CLOTH / BACKGROUND (owner: `docs/11`):** premium plain white cotton · natural weave · natural folds · natural shadows · correct perspective · no artificial texture · no colour shift · **MASTER BACKGROUND LOCK + master validation question** per `docs/11`.
 
 **F. INDIVIDUAL IMAGES ONLY (user-locked 2026-07-17).** Each catalog image is an INDEPENDENT full-frame high-resolution render, exported independently, identical studio quality, locked background + locked logo. **Never generate** a contact sheet · thumbnail grid · gallery preview · multi-image board · collage · comparison board · batch overview · catalog sheet · mosaic · storyboard · composite image. **Reject immediately** if an output contains multiple rings in one image · multiple camera views in one image · thumbnail/gallery/grid layout · contact sheet · preview page · image board · composite render. Deliver only the requested individual images; never generate or display group previews unless the user explicitly requests a contact sheet or comparison board.
+
+**G. FINAL REALISM VALIDATION (user-locked 2026-07-17 — run last, before approving ANY render):**
+- [ ] Cloth is pure neutral white premium cotton
+- [ ] No warm, cream, beige, yellow, blue, grey or magenta colour cast
+- [ ] Logo is physically printed INTO the cotton fibres
+- [ ] Logo follows the fabric weave, folds, perspective and lighting
+- [ ] Logo edges inherit the same softness as the cloth
+- [ ] Logo never appears pasted, overlaid, floating or digitally composited
+- [ ] Gold reflects the real environment naturally, without artificial glow
+- [ ] Diamonds show physically accurate refraction and dispersion with realistic internal reflections
+- [ ] Every visible surface resembles a professionally photographed real ring rather than a CGI render
+
+Any unchecked item → reject internally · record in `07_QUALITY_MEMORY` · regenerate. (Detail owners: cloth `11` · logo `04` · realism `03` ULTIMATE PHOTOGRAPHIC REALISM · diamonds `13 §3.1`.)
 
 ### MANDATORY POLICY ENFORCEMENT (user-locked 2026-07-17)
 Every generation MUST strictly enforce every loaded policy before, during and after generation. **Policy loading alone is not sufficient** — the system must actively VALIDATE every generated image against every applicable policy before delivery.
@@ -149,6 +176,19 @@ Lifestyle (4): 1. Elegant living room / coffee table · 2. Luxury bedroom / vani
 Natural close-up (3): 5. Natural close-up beauty shot · 6. Natural close-up side angle · 7. Natural close-up artistic detail.
 Rules: preserve jewelry exactly · natural home environment · natural daylight · natural shadows · neutral colour balance · no artificial props · no AI-looking environment · no artificial colour grading · each image a unique composition.
 
+**HOUSE LIFESTYLE POLICY (LOCKED — user-locked 2026-07-17):**
+- **Every House Lifestyle catalog features a realistic HUMAN MODEL WEARING the jewelry.**
+- The **jewelry remains the primary subject**; the model supports the presentation rather than becoming the focus (`03` JEWELRY-FIRST).
+- **One consistent home environment across the entire lifestyle catalog** — never mix indoor/outdoor or different home styles (`03` CATALOG THEME CONSISTENCY).
+- Natural, high-end residential lighting and authentic poses.
+- **Preserve the jewelry D2D exactly** — no geometry, diamond, prong or setting changes (`13 §4.1`).
+- The overall result must look like a professional luxury jewelry photoshoot (`03` ULTIMATE PHOTOGRAPHIC REALISM). Hands/skin: natural pores and texture, realistic lighting response, correct anatomy — never waxy or over-smoothed.
+
+**LOCKED MODEL REALISM POLICY (user-locked 2026-07-17).** Use **100% photorealistic human models** in all lifestyle images — they must look captured in a professional luxury jewelry photoshoot.
+**Preserve:** natural skin texture and pores · realistic anatomy and proportions · natural facial expressions · realistic hands and fingers · natural hair · authentic clothing folds and fabric · soft, physically accurate lighting and shadows · natural depth of field.
+**Avoid any CGI or AI-looking characteristics:** overly smooth or plastic skin · unnatural eyes · incorrect finger anatomy · artificial poses · over-processed lighting or skin · any visual cue that makes the model read as computer-generated.
+**The jewelry remains the primary focus** — the model serves to showcase it naturally. Applies together with the locked standards for CAD fidelity (`13`), cloth (`11`), logo printing (`04`), consistent 18K gold (`03 §C`), catalog theme consistency and overall photographic realism. Any failure → reject internally · record in `07` · regenerate.
+
 **After each catalog:** validate every image · record user corrections · learn from approvals and failures · update `07_QUALITY_MEMORY` · preserve successful patterns · prevent repeated mistakes · commit the final approved catalog · push to Git · proceed to the next catalog.
 
 #### CATALOG THEME CONSISTENCY (user-locked 2026-07-17)
@@ -211,6 +251,9 @@ If an image appears to belong to a different environment than the first approved
 ## C. METAL RENDERING
 - Default 18K NATURAL YELLOW GOLD — warm yellow, premium polished finish. Never rose/white/silver/pale unless the source is that metal.
 - Match the source's exact metal color and finish. High polish; realistic gold reflections; no CGI shine.
+
+### LOCKED 18K GOLD CONSISTENCY POLICY (user-locked 2026-07-17)
+**Every image in a catalog must use the EXACT SAME 18K yellow gold colour** — the gold tone stays identical across all images, with **no variation in hue · warmth · saturation · brightness · reflectivity · finish**. Keep a consistent high-polish 18K yellow gold appearance throughout the entire catalog (office and lifestyle alike). **Only change the gold colour when the user explicitly requests another metal** (e.g. white gold or rose gold). Any image whose gold reads warmer, paler, duller, brassier or more/less polished than the approved master → reject before delivery and regenerate.
 
 ## D. CAMERA
 - Studio: straight product angles (front top-down, macro, side profile, three-quarter, held-on-fold). Real DSLR macro look.

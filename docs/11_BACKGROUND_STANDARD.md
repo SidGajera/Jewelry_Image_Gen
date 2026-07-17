@@ -130,6 +130,19 @@ Reject immediately if an image appears to come from a different studio setup or 
 
 **MASTER RULE** — a customer should believe every catalog image was photographed by the same photographer, on the same premium pure white cloth with the same naturally printed official logo, during ONE continuous professional office photoshoot.
 
+### OFFICE PHOTOSHOOT PRIORITY (user-locked 2026-07-17, after the LR-0154 Image 1 rejection)
+**The premium white cotton cloth is a LOCKED MASTER ASSET** — every office-photoshoot image uses the identical preserved cloth. **The official Lucent Carat Lab logo is a LOCKED PRINTED ASSET** — never recreate, redraw or overlay it; it must appear as physically printed ink on the preserved cloth, following the cloth's weave, folds, lighting, shadows and perspective exactly (detail: `04 §14`).
+
+**The cloth must remain:** 100% pure neutral white · premium cotton · soft natural sheen · no colour cast · no artificial tone · no AI texture · no background variation.
+
+**Rejected on LR-0154 Image 1:** grey/beige cast · flat appearance · visible canvas-like weave instead of premium cotton · insufficient soft sheen. **Never substitute a coarse canvas/linen for the approved fine premium cotton.**
+
+**CLOTH MASTER MUST PERSIST (LR-0154 v2/v3 rejections).** **Do NOT generate a new cloth texture, weave, sheen or fold style for each image.** The same master cloth persists across the ENTIRE catalog — identical weave at the identical fibre scale, identical sheen and light response, identical fold family. Only natural fold variation *within that same cloth* is allowed. Deviating weave / inconsistent sheen / a different fold pattern = reject.
+
+**NATURAL DAYLIGHT ONLY (LR-0154 v5 rejection — subtle warm cast).** Neutral white balance with **no warm tone, no cool tone, no cream/beige/ivory/yellow/blue/grey/magenta tint, no colour grading, no artificial highlights, no artificial shadows.** Even a *subtle* warm cast = reject.
+
+**If either the cloth or the logo deviates from the approved benchmark → reject the image before delivery and regenerate.**
+
 ## LOCKED CLOTH ASSET — ASSET-ONLY, NEVER AI-GENERATED (user-locked 2026-07-11)
 The premium white cotton cloth is a **preserved asset**, exactly like the logo — it is NEVER generated anew by AI. Reuse only the approved cloth asset (`assets/background/sample_studio_background_with_logo.png`, sha256 `4cc10d33…`, and the `Offie_photoshoot 1–5` Drive references that embody the same cloth). Preserve its material, texture, softness, weave, fine grain, and natural draping; keep neutral pure-white balance; cloth may be plain or naturally folded but must always look premium and physically realistic. The AI's only job is to keep this approved cloth faithful under the ring — never to invent a substitute fabric.
 

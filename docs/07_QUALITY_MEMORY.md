@@ -2,6 +2,21 @@
 
 Dedicated memory layer for continuous improvement. Machine-readable store: [`config/QUALITY_MEMORY.json`](../config/QUALITY_MEMORY.json) — this file is its structure and rules. Loaded before EVERY generation (docs/03 generation order, step 2).
 
+## COMPLETED CATALOGS — CONSOLIDATED LEARNING (2026-07-17)
+**Done:** LR-0151 · LR-0149 · LR-0154 · LR-0155 · LR-0156. **Parked:** LR-0150 (see its section below).
+
+**What made these catalogs pass — reuse it:**
+1. **Photograph, never rebuild.** Every prompt leads with FINAL CAD MATCH MODE: the CAD is an already-manufactured object; only camera, lighting, environment and composition may change. Concept-level similarity is a rejection (`13 §4.1`).
+2. **Component-by-component D2D, not a visual glance.** Build the master design profile, render, then compare overall / head / halo / centre stone / prongs / shoulders / pavé / band / gallery at **100% tolerance**. The last-mile drifts repeat on every SKU: shoulders left fuller, gallery lines thickened, prongs rounded and heavied, centre stone lifted, pavé rendered finer and brighter with the shared metal lost.
+3. **Prong count is the single most-broken lock** (`13 §3.2`). LR-0155 dropped 6→4 on the front view; side views hallucinate extra claw tips. Count them in the CAD, count them in the render, every image.
+4. **One approval per catalog works.** Iterate Image 1 until approved, lock it as the master theme, then auto-batch the rest against it — cloth, printed logo, lighting, white balance, exposure and 18K gold tone all inherited.
+5. **Cloth + logo are assets, not renders.** The master cotton persists across the whole catalog; the logo is small secondary branding printed INTO the weave (`04 §14.1`, `§14.2` benchmark, `11` OFFICE PHOTOSHOOT PRIORITY). Over-correcting the print into ragged edges is worse than a slightly clean one.
+6. **Realism is the acceptance bar, not a style** (`03` PHOTOREALISM POLICY): angle-dependent diamond optics with crisp facets and visible pavilion depth (`13 §3.1`), real cloth compression and ambient occlusion under the ring, real-world imperfections.
+7. **Lifestyle = one home, one model, jewelry first** (`03` HOUSE LIFESTYLE + MODEL REALISM).
+8. **Source discipline:** SKU main folder only, gold set by default, reuse `media_id`s, never re-upload (`03` PERMISSION POLICY). Golden CADs live in `workspace/golden/<SKU>/`.
+
+**Every rejection this round was geometry or asset fidelity — never composition or lighting.** That is where the next catalog's scrutiny belongs.
+
 ## Approved Benchmarks
 - Approved jewelry renders
 - Approved logo benchmark
@@ -28,6 +43,33 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 **Prevention rule — before delivering every 0150 image:** (1) compare directly against approved Image 1 · (2) check centre-stone and halo scale · (3) trace BOTH twisted shoulders head→shank · (4) compare every crossing point and open space · (5) confirm the complete silhouette matches · (6) reject if any geometry is enlarged, simplified, shifted or reinterpreted. **The engine must PHOTOGRAPH the exact approved 0150 ring — never generate a similar twisted halo ring.**
 
 **No-repeat rule:** the enlarged centre stone, enlarged halo and modified twisted-shank geometry must never appear again; any future 0150 output repeating them is rejected automatically before delivery.
+
+### Catalog 0154 — D2D Last-Mile Drift — REJECTED (2026-07-17, v3 → v5)
+The renders reached 9.2 → 9.7 → 9.9/10 and were still rejected. **A near-miss is a rejection.** The drifts the engine repeats on every pass, in the order they were caught:
+
+**v3 (9.2/10):** band width — shoulders slimmer than the CAD, especially the upper half · shoulder pavé — finer, more numerous and brighter than the CAD · cathedral curvature softened, head reads more open · head height marginally raised · gallery triangle corners rounded and the triangle widened · centre stone raised above the basket · faceting more stylised than the CAD.
+
+**v4 (9.7/10):** lower shank still thicker and rounder than the CAD cross-section · pavé still finer and brighter · cathedral→head transition still smoother than the CAD · centre stone still fractionally raised.
+
+**v5 (9.9/10):** cathedral shoulders still fuller — must taper more before the head · micro pavé still too bright and too uniformly white (CAD stones sit more recessed with more **visible shared metal**) · V-gallery beneath the centre stone still thicker than the CAD line · prongs still rounder and heavier than the CAD profile · centre diamond still seated a fraction high · cloth carried a subtle warm cast · the over-distressed logo print was *worse* than the previous cleaner one.
+
+**Prevention:** run `13 §4.1` D2D ACCURACY MODE → STRICT CAD MATCH → **FINAL CAD MATCH MODE** (the last-mile list) on every render, then `03 §G` FINAL REALISM VALIDATION. **Only the camera position may change. Jewelry accuracy outranks rendering quality.**
+
+### Catalog 0154 — Vector Logo · Logo Too Prominent · Cloth Master Changed — REJECTED (2026-07-17, v2)
+**Failure 1 — digital logo appearance.** *Cause:* logo rendered as a clean vector overlay (edges too sharp, gold lines too clean/uniform, ink not blending into the weave, uniform brightness). *Prevention:* treat the logo as **real screen-printed ink embedded into** the preserved premium white cotton — the ink inherits cloth weave · fiber texture · fold deformation · shadow density · highlight rolloff · slight ink diffusion, and its density varies subtly across highlights and shadows. **Never render the logo as a perfectly sharp vector graphic.**
+
+**Failure 2 — logo too prominent.** *Cause:* the logo competes with the jewelry. *Prevention:* **the jewelry is always the primary subject**; the printed logo is secondary branding — subtle, modest in scale, naturally integrated, never dominating the composition.
+
+**Failure 3 — cloth master changed.** *Cause:* the background cloth differs from the approved master (different weave, inconsistent sheen, different fold pattern). *Prevention:* office photoshoots **always reuse the exact preserved premium white cotton**. Do not generate a new cloth texture, weave, sheen or fold style per image — the same master cloth persists across the entire catalog.
+
+### Catalog 0154 — Artificial Logo + Cloth Deviation — REJECTED (2026-07-17)
+**Failure 1 — artificial logo appearance.** *Cause:* logo appears digitally overlaid instead of physically printed (unnaturally crisp edges, no interaction with the weave, flat uniform opacity, no inherited micro-shadows or lighting variation). *Prevention:* the official logo must behave as **real screen-printed ink on premium white cotton** — ink follows fabric weave, folds, wrinkles, stretching, shadows and highlights; micro fabric texture stays visible **through** the ink. **No overlay, sticker, floating, embossing or vector appearance.** (Owner: `04 §14`.)
+
+**Failure 2 — cloth inconsistency.** *Cause:* fabric deviates from the approved premium white cotton (grey/beige cast, flat appearance, canvas-like weave, insufficient sheen). *Prevention:* every office photoshoot uses the **exact same preserved premium white cotton**; colour stays pure neutral white — no beige, cream, grey, blue, pink, yellow or warm cast; weave, sheen and texture stay consistent across the catalog. (Owner: `11` OFFICE PHOTOSHOOT PRIORITY.)
+
+**Failure 3 — logo detached from fabric.** *Cause:* the logo does not inherit cloth physics. *Prevention:* the print must **deform with the cloth** — compress, stretch and bend with every fold; ink density varies naturally with the fabric surface.
+
+**Priority rule:** the cloth is a LOCKED MASTER ASSET and the logo is a LOCKED PRINTED ASSET. **If either deviates from the approved benchmark → reject before delivery and regenerate.**
 
 ### Catalog 0150 — PARKED (2026-07-17)
 **Status:** paused by the user after repeated geometry rejections — *"will start at the end of all catalog."* **Do not resume LR-0150 until every other catalog is complete.**

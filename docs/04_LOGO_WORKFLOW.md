@@ -118,6 +118,34 @@ The logo MUST:
 
 **If the logo looks digitally placed, reject the image** — regenerate in-scene or fall back to the local composite (§4 fallback / `scripts/print_logo_on_cloth.py`). Never ship an overlay-looking logo. Consistent with §4, §7, §9, §12: physically printed on cloth, no shadow behind, no white background behind, never a watermark/AI overlay.
 
+**RECURRENCE (LR-0154 Image 1, rejected 2026-07-17) — the same failure, now with named tells:** the logo had unnaturally crisp edges against a softer fabric; the ink did not interact with the weave; opacity was flat and uniform; it inherited none of the cloth's micro-shadows or lighting variation; it showed no fabric deformation and no ink diffusion. Net read = graphic overlay, independent of the cloth.
+
+**SECOND RECURRENCE (LR-0154 v2, rejected 2026-07-17) — rendered as a clean VECTOR overlay:** edges too sharp · gold lines too clean and uniform · ink not blending into the weave · brightness uniform. **Never render the logo as a perfectly sharp vector graphic.** The ink must inherit: cloth weave · fiber texture · fold deformation · shadow density · highlight rolloff · slight ink diffusion; **ink density must vary subtly across highlights and shadows.**
+
+**LOGO SCALE — SECONDARY BRANDING (user-locked 2026-07-17, LR-0154 v2 rejection).** The **jewelry is always the primary subject**. The printed logo is secondary branding: **small, understated, positioned below/beside the ring**, naturally integrated, complete and legible but visually quiet. **It must never dominate the composition or compete with the jewelry** (`03` JEWELRY-FIRST). A logo that draws the eye first = reject.
+
+**DO NOT OVER-CORRECT (user-locked 2026-07-17, LR-0154 v5 rejection).** Over-distressing the print — ragged, broken or eroded letterforms — is *worse* than a slightly clean one. Target: clean, elegant, correctly-shaped artwork whose **edges are as soft as the cloth** and whose texture shows the weave through it. Never sharpen, never emboss, never shred.
+
+**REQUIRED BEHAVIOUR — the logo must read as real SCREEN-PRINTED INK on premium white cotton:** ink sinks slightly into the cotton fibres · the cloth's micro-texture stays VISIBLE THROUGH the ink · the print follows every fold, wrinkle and stretch of the fabric · the print compresses and bends exactly with the cloth · ink density varies naturally with the fabric surface · the logo inherits the cloth's micro-shadows, highlights and lighting. **No overlay, sticker, floating, embossing or vector appearance is permitted.** The logo is a LOCKED PRINTED ASSET — never recreate, redraw or overlay it.
+
+## 14.1 LOGO PRINT POLICY (LOCKED — user-locked 2026-07-17)
+The official Lucent Carat Lab logo is a **preserved asset** and must be printed using the **exact official logo colours**.
+
+**Never change:** gold colour · black text colour · gradient · metallic finish · opacity · brightness · contrast · saturation · typography · diamond icon · line thickness · layout · spacing.
+
+**The logo must appear as a REAL PHYSICAL TEXTILE PRINT.** It must: be printed directly INTO the premium white cotton · follow the fabric weave · follow cloth folds · follow cloth perspective · follow natural cloth lighting · follow cloth shadows · **slightly diffuse into the fabric fibres like premium textile printing** · show natural ink absorption consistent with high-end fabric printing.
+
+**Never allow:** AI-recreated logo · redrawn logo · overlay · sticker appearance · floating logo · decal appearance · white outline · glow · drop shadow · extra-sharp edges · colour shift · yellow shift · brown shift · bronze shift · artificial metallic effect · a different gold shade · a different black shade.
+
+**MASTER RULE:** the printed logo's colour must remain **exactly identical to the approved official artwork** while naturally interacting with the fabric texture. Any deviation → reject before delivery and regenerate (or use the local composite, §4 fallback).
+
+### 14.2 APPROVED LOGO PRINT BENCHMARK (LOCKED — user-approved 2026-07-17)
+The LR-0154 office hero front is the **master benchmark for logo printing quality in every future office photoshoot catalog** (not just this SKU). What it establishes: the logo physically printed INTO the cotton · correct official gold · ink **absorbed into** the fabric rather than sitting on top · edges naturally softened by the weave · following the cloth folds and perspective · correct opacity (neither too dark nor too light) · no glow, outline, embossing, sticker effect or digital overlay. Cloth: premium white cotton · clean neutral white · soft natural folds · natural daylight · no yellow, blue, pink, grey or cream cast · consistent fabric texture.
+
+**Every office photoshoot image must match this printing quality:** same official logo colours · same premium textile-printing appearance · same ink absorption into cotton fibres · same natural edge softness · same perspective behaviour · same interaction with cloth folds · same lighting response · same opacity · same print realism.
+
+**Reject automatically if:** the logo looks digitally added · floats above the cloth · appears sharper than the fabric · has different gold or black colours · has glow, shadow, outline, embossing or a sticker appearance · does not follow the cloth weave and folds.
+
 ## 15. LOGO COMPLETENESS VALIDATION (user-locked 2026-07-17)
 The preserved logo must read as a logo **fully printed on the cloth BEFORE the ring was placed on top of it**. If the ring or the framing partially covers it, the visible portions must still look complete and naturally continue beyond the jewelry.
 

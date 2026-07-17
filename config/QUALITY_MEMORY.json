@@ -2,6 +2,222 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "completed-catalogs-consolidated-learning",
+      "problem": "Learnings from completed catalogs risk being lost or re-derived per SKU.",
+      "root_cause": "Per-catalog rejections were recorded individually without a consolidated pass.",
+      "fix": "FINAL CATALOG LEARNING (2026-07-17). DONE: LR-0151, LR-0149, LR-0154, LR-0155, LR-0156. PARKED: LR-0150. What works, reuse it: (1) PHOTOGRAPH, NEVER REBUILD - lead every prompt with FINAL CAD MATCH MODE; the CAD is an already-manufactured object; only camera, lighting, environment and composition change; concept-level similarity is a rejection. (2) COMPONENT-BY-COMPONENT D2D at 100% tolerance - the last-mile drifts repeat on every SKU: shoulders left fuller, gallery lines thickened, prongs rounded/heavied, centre stone lifted, pave rendered finer and brighter with shared metal lost. (3) PRONG COUNT is the most-broken lock - LR-0155 dropped 6 to 4 on the front view while side views hallucinate extra claw tips; count CAD prongs and rendered prongs on every image. (4) ONE APPROVAL PER CATALOG works - iterate Image 1, lock it as master theme, auto-batch the rest inheriting cloth, printed logo, lighting, white balance, exposure and 18K gold tone. (5) CLOTH AND LOGO ARE ASSETS, NOT RENDERS - master cotton persists catalog-wide; logo is small secondary branding printed INTO the weave; over-distressing the print is worse than slightly clean. (6) REALISM IS THE ACCEPTANCE BAR - angle-dependent diamond optics with crisp facets and visible pavilion depth, real cloth compression and ambient occlusion under the ring, real-world imperfections. (7) LIFESTYLE = one home, one model, jewelry first. (8) SOURCE DISCIPLINE - SKU main folder only, gold set by default, reuse media_ids, never re-upload; golden CADs in workspace/golden/<SKU>/. EVERY rejection this round was geometry or asset fidelity, never composition or lighting - that is where the next catalog's scrutiny belongs.",
+      "refs": [
+        "docs/07_QUALITY_MEMORY.md",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#32-prong-preservation-zero-tolerance",
+        "docs/03_IMAGE_GENERATION_RULES.md#catalog-image-standard",
+        "docs/04_LOGO_WORKFLOW.md#142-approved-logo-print-benchmark-locked",
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority"
+      ]
+    },
+    {
+      "id": "diamond-optical-realism-mandatory",
+      "problem": "REJECTED (LR-0156, 2026-07-17): the centre diamond is not optically convincing - facet pattern soft and partially washed out, table reflection lacks crisp definition, crown facets produce no realistic contrast, stone reads slightly milky/flat rather than transparent, fire and scintillation weak and uniform instead of angle-dependent, pavilion shows no convincing optical depth.",
+      "root_cause": "Diamond optics were approximated as generic sparkle rather than simulated as real light behaviour through a cut stone.",
+      "fix": "DIAMOND OPTICAL REALISM (MANDATORY, user-locked 2026-07-17): every diamond must behave like a real natural or lab-grown diamond at the given camera angle. NEVER generate: soft facets, milky appearance, plastic look, glass look, overexposed table, flat reflections, uniform sparkle, artificial white glow. ALWAYS generate: sharp table, crisp crown facets, visible pavilion depth, high micro-contrast, natural brilliance, natural scintillation, physically correct light return, accurate optical symmetry, clean facet edges, real diamond transparency. Brilliance and fire must be ANGLE-DEPENDENT, never uniform; balanced white brilliance with subtle spectral fire; sharp table and star facets; visible internal depth.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#31-master-diamond-preservation",
+        "docs/03_IMAGE_GENERATION_RULES.md#b-diamond-rendering-p2",
+        "docs/03_IMAGE_GENERATION_RULES.md#ultimate-photographic-realism-standard"
+      ]
+    },
+    {
+      "id": "physical-contact-validation",
+      "problem": "REJECTED (LR-0156, 2026-07-17): scene physics unconvincing - the ring rests on the cloth without enough compression, the contact shadow is too light, the fabric does not deform beneath the ring, and the fold does not visibly support the ring's weight.",
+      "root_cause": "The ring was composed onto the cloth as a graphic element rather than as a mass resting on fabric.",
+      "fix": "PHYSICAL CONTACT VALIDATION (user-locked 2026-07-17): every object must obey gravity and physically interact with the cloth. ALWAYS VERIFY: the cloth COMPRESSES under the ring; fabric folds respond naturally to the ring's weight; contact shadows originate from the TRUE contact points and match the lighting direction; AMBIENT OCCLUSION appears beneath the ring where metal meets cloth; the ring never appears to float. Reject and regenerate if the ring appears unsupported or the cloth lacks realistic local deformation.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-pre-delivery-validation",
+        "docs/03_IMAGE_GENERATION_RULES.md#j-shadow-rules",
+        "docs/11_BACKGROUND_STANDARD.md"
+      ]
+    },
+    {
+      "id": "prong-preservation-zero-tolerance",
+      "problem": "REJECTED (LR-0155 side profile, 2026-07-17): the renderer hallucinated EXTRA CLAW TIPS from the side view, so the head showed more support points than the CAD; basket/head geometry altered, prong spacing no longer identical, side profile no longer matching the CAD. CORRECTION (user-confirmed 2026-07-17): LR-0155's CAD head is SIX-PRONG. The front/hero render that showed only FOUR prongs was the real failure (prongs DROPPED), not the six-prong side view. Both directions are failures: never drop prongs, never invent extra claw tips.",
+      "root_cause": "Perspective views invite the model to invent additional claw tips and re-shape the basket; prong count was not treated as an absolute lock.",
+      "fix": "PRONG PRESERVATION (ZERO TOLERANCE, user-locked 2026-07-17). The source CAD is the only authority and PRONG COUNT IS ABSOLUTELY LOCKED. NEVER: add extra prongs, remove prongs, split prongs, merge prongs, duplicate claw tips, create hidden support claws, create optical fake prongs, invent structural supports, change prong spacing, prong height, prong thickness, claw shape, claw orientation, claw curvature, claw angle, prong seating or diamond contact points. The render MUST contain EXACTLY the same number of prongs as the CAD: 4 -> exactly 4; 6 -> exactly 6; double prongs -> exactly double; V prongs -> exactly V. Never reinterpret the setting; changing prongs is a COMPLETE DESIGN FAILURE. PRONG VALIDATION before approving any render: (1) count CAD prongs, (2) count rendered prongs, (3) counts must be identical, (4) verify every prong occupies the same CAD position, (5) verify no additional claw tips appear from perspective, (6) verify the basket/head has not been modified. Any mismatch -> REJECT and REGENERATE. LR-0155 SPECIFIC: the CAD head is SIX-PRONG - every LR-0155 image must show exactly six claw prongs from every angle. CAD AUTHORITY (user-locked 2026-07-17): the CAD ALWAYS OVERRIDES previous renders, prompts or assumptions. The renderer must never hide prongs due to an incorrect angle, merge two prongs into one, split one prong into two, invent additional claw tips, change head geometry, modify the basket or reposition prongs. Before approving any image: (1) count CAD prongs, (2) count rendered prongs, (3) verify EVERY CAD prong is present in its correct location, (4) verify head and basket match the CAD exactly, (5) if any prong is missing, added, merged or repositioned -> reject and regenerate. Preserve prong positions, spacing, height, thickness, claw shape, claw orientation, basket geometry, gallery and head structure.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#32-prong-preservation-zero-tolerance",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
+        "docs/16_ZERO_JEWELRY_INVENTION.md"
+      ]
+    },
+    {
+      "id": "photorealism-policy-highest-priority",
+      "problem": "Images still read as rendered rather than photographed: too clean, too symmetrical, no real-world imperfections, no camera noise, synthetic diamond optics, waxy skin, plastic surfaces, over-sharpening.",
+      "root_cause": "Realism was pursued as a style rather than enforced as the highest-priority acceptance bar.",
+      "fix": "PHOTOREALISM POLICY (HIGHEST PRIORITY, user-locked 2026-07-17): every generated image must be visually INDISTINGUISHABLE from a professional luxury jewelry photograph captured with a high-end full-frame camera and premium macro lens. REQUIRED: physically accurate lighting; natural global illumination; correct optical reflections; real lens behaviour; authentic depth of field; realistic micro-contrast; natural colour response; real fabric physics; real metal reflections; physically accurate diamond optics; REAL-WORLD IMPERFECTIONS; subtle manufacturing tolerances; natural camera noise where appropriate. LIFESTYLE additionally: natural skin texture, individual pores, fine peach fuzz, natural lip texture, realistic eyelashes, natural eyebrows, correct eye reflections, realistic hair strands, natural finger anatomy, authentic nail texture. NEVER: CGI appearance, over-sharpening, plastic surfaces, waxy skin, synthetic-looking diamonds, repetitive patterns, AI artifacts, unrealistic symmetry, hallucinated geometry. Every model must look like a real luxury-campaign model photographed by a professional fashion photographer; every jewelry image must look like genuine commercial product photography from a luxury jewelry brand. PRIORITISE REALISM OVER STYLIZATION - if any rendering choice makes the image appear synthetic, artificial or computer-generated, reject and regenerate.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#ultimate-photographic-realism-standard",
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-pre-delivery-validation",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#31-master-diamond-preservation"
+      ]
+    },
+    {
+      "id": "locked-model-realism",
+      "problem": "Lifestyle models can read as AI-generated: overly smooth or plastic skin, unnatural eyes, incorrect finger anatomy, artificial poses, over-processed lighting or skin.",
+      "root_cause": "Model realism was not locked to the same standard as jewelry, cloth and logo realism.",
+      "fix": "LOCKED MODEL REALISM POLICY (user-locked 2026-07-17): use 100% PHOTOREALISTIC human models in all lifestyle images; they must look captured in a professional luxury jewelry photoshoot. PRESERVE: natural skin texture and pores; realistic anatomy and proportions; natural facial expressions; realistic hands and fingers; natural hair; authentic clothing folds and fabric; soft physically accurate lighting and shadows; natural depth of field. AVOID any CGI/AI-looking characteristics: overly smooth or plastic skin, unnatural eyes, incorrect finger anatomy, artificial poses, over-processed lighting or skin, any visual cue that makes the model appear computer-generated. THE JEWELRY REMAINS THE PRIMARY FOCUS - the model serves to showcase it naturally. Applies together with the locked standards for CAD fidelity, cloth, logo printing, consistent 18K gold colour, catalog theme consistency and overall photographic realism. Any failure -> reject internally, record here, regenerate.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#catalog-image-standard",
+        "docs/03_IMAGE_GENERATION_RULES.md#ultimate-photographic-realism-standard",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode"
+      ]
+    },
+    {
+      "id": "permission-policy-connectors-media",
+      "problem": "Generation runs were interrupted by repeated permission/approval dialogs and by re-uploading source files that were already in Higgsfield storage.",
+      "root_cause": "Permissions were requested per action instead of once per session; media was re-imported instead of reusing existing media_ids.",
+      "fix": "PERMISSION POLICY (user-locked 2026-07-17): obtain all required connector permissions at the BEGINNING of the session. Never interrupt the workflow to request repeated permissions. Reuse existing authenticated sessions (Higgsfield, Drive, GitHub). Reuse uploaded media whenever possible - never re-upload identical source files; reuse each media_id (cloth, logo, CAD, approved masters) until it expires. Only request additional permission if a COMPLETELY NEW connector or a NEW permission scope is required. The generation workflow must continue without repeated approval dialogs whenever technically possible.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#one-time-permission",
+        "docs/06_CACHE.md",
+        "docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md#operational-notes"
+      ]
+    },
+    {
+      "id": "locked-18k-gold-consistency",
+      "problem": "Gold tone drifts between images in the same catalog - warmer or paler hue, different saturation, brightness, reflectivity or finish - so the images no longer read as one photoshoot of one physical ring.",
+      "root_cause": "Metal colour was re-derived per image instead of locked to the catalog master.",
+      "fix": "LOCKED 18K GOLD CONSISTENCY POLICY (user-locked 2026-07-17): every image in a catalog uses the EXACT SAME 18K yellow gold colour. The gold tone stays identical across all images with NO variation in hue, warmth, saturation, brightness, reflectivity or finish. Keep a consistent high-polish 18K yellow gold appearance throughout the entire catalog (office and lifestyle alike). Only change the gold colour if the user explicitly requests another metal (e.g. white gold or rose gold). Any image whose gold reads warmer, paler, duller, brassier or differently polished than the approved master -> reject before delivery and regenerate.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#c-metal-rendering",
+        "docs/03_IMAGE_GENERATION_RULES.md#catalog-theme-consistency",
+        "docs/11_BACKGROUND_STANDARD.md#master-white-balance-lock"
+      ]
+    },
+    {
+      "id": "house-lifestyle-policy-locked",
+      "problem": "House Lifestyle images were shot as product-on-surface scenes with no wearer, and environments varied image to image.",
+      "root_cause": "No locked rule required a human model or a single consistent home environment for the lifestyle catalog.",
+      "fix": "HOUSE LIFESTYLE POLICY (LOCKED, user-locked 2026-07-17): every House Lifestyle catalog features a REALISTIC HUMAN MODEL WEARING the jewelry. The jewelry remains the PRIMARY SUBJECT - the model supports the presentation and never becomes the focus. Maintain ONE consistent home environment throughout the entire lifestyle catalog: never mix indoor/outdoor or different home styles. Use natural, high-end residential lighting and authentic poses. Preserve the jewelry D2D exactly - no geometry, diamond, prong or setting changes. Skin and hands must be natural (real pores and texture, realistic lighting response, correct anatomy, never waxy or over-smoothed). The overall result must look like a professional luxury jewelry photoshoot.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#catalog-image-standard",
+        "docs/03_IMAGE_GENERATION_RULES.md#catalog-theme-consistency",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode"
+      ]
+    },
+    {
+      "id": "approved-logo-print-benchmark",
+      "problem": "No approved reference existed for what correct logo printing looks like, so each catalog re-argued it from prose.",
+      "root_cause": "Benchmark was described, never locked to an approved image.",
+      "fix": "APPROVED LOGO PRINT BENCHMARK (LOCKED, user-approved 2026-07-17) - the LR-0154 office hero front is the MASTER BENCHMARK for logo printing quality in EVERY future office photoshoot catalog. It establishes: logo physically printed INTO the cotton; correct official gold colour; ink absorbed into the fabric rather than sitting on top; edges naturally softened by the cloth weave; follows cloth folds and perspective; correct opacity (not too dark or too light); no glow, outline, embossing, sticker effect or digital overlay. Cloth: premium white cotton, clean neutral white, soft natural folds, natural daylight, no yellow/blue/pink/grey/cream cast, consistent fabric texture. REQUIRED in every office image: same official logo colours, same premium textile-printing appearance, same ink absorption into cotton fibres, same natural edge softness, same perspective behaviour, same interaction with cloth folds, same lighting response, same opacity, same print realism. REJECT AUTOMATICALLY if the logo looks digitally added, floats above the cloth, appears sharper than the fabric, has different gold or black colours, has glow/shadow/outline/embossing/sticker appearance, or does not follow the cloth weave and folds.",
+      "refs": [
+        "docs/04_LOGO_WORKFLOW.md#142-approved-logo-print-benchmark-locked",
+        "docs/04_LOGO_WORKFLOW.md#141-logo-print-policy-locked",
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority"
+      ]
+    },
+    {
+      "id": "logo-print-policy-locked",
+      "problem": "Printed logos drift from the official artwork - recreated or redrawn marks, colour/gold-shade shifts (yellow, brown, bronze), altered black, changed gradient, metallic finish, opacity, brightness, contrast, saturation, typography, diamond icon, line thickness, layout or spacing - and/or read as overlays, stickers, decals, floating marks with white outlines, glow, drop shadows or extra-sharp edges.",
+      "root_cause": "The logo was treated as a re-renderable graphic instead of a preserved asset physically printed into the cloth.",
+      "fix": "LOGO PRINT POLICY (LOCKED, user-locked 2026-07-17). The official Lucent Carat Lab logo is a PRESERVED ASSET and must be printed using the EXACT official logo colours. NEVER change: gold colour, black text colour, gradient, metallic finish, opacity, brightness, contrast, saturation, typography, diamond icon, line thickness, layout, spacing. The logo must appear as a REAL PHYSICAL TEXTILE PRINT: printed directly INTO the premium white cotton; following the fabric weave, cloth folds, cloth perspective, natural cloth lighting and cloth shadows; slightly diffusing into the fabric fibres like premium textile printing; with natural ink absorption consistent with high-end fabric printing. NEVER allow: AI-recreated logo, redrawn logo, overlay, sticker appearance, floating logo, decal appearance, white outline, glow, drop shadow, extra-sharp edges, colour shift, yellow shift, brown shift, bronze shift, artificial metallic effect, different gold shade, different black shade. MASTER RULE: the printed logo colour stays EXACTLY identical to the approved official artwork while naturally interacting with the fabric texture. Any deviation -> reject before delivery and regenerate, or use the local composite scripts/print_logo_on_cloth.py.",
+      "refs": [
+        "docs/04_LOGO_WORKFLOW.md#141-logo-print-policy-locked",
+        "docs/04_LOGO_WORKFLOW.md#14-hard-rule-logo-must-never-appear-as-a-digital-overlay",
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority"
+      ]
+    },
+    {
+      "id": "final-realism-validation",
+      "problem": "Renders were approved on geometry alone while cloth colour cast, pasted-looking logos, artificial gold glow and CGI-looking diamond optics slipped through.",
+      "root_cause": "No single last-mile realism gate ran immediately before approval.",
+      "fix": "FINAL REALISM VALIDATION (user-locked 2026-07-17) - run LAST, before approving ANY render. Verify: cloth is pure neutral white premium cotton; no warm, cream, beige, yellow, blue, grey or magenta colour cast; logo is physically printed INTO the cotton fibres; logo follows the fabric weave, folds, perspective and lighting; logo edges inherit the same softness as the cloth; logo never appears pasted, overlaid, floating or digitally composited; gold reflects the real environment naturally without artificial glow; diamonds exhibit physically accurate refraction and dispersion with realistic internal reflections; every visible surface resembles a professionally photographed real ring rather than a CGI render. Any failure -> reject internally, record here, regenerate.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#mandatory-pre-delivery-validation",
+        "docs/11_BACKGROUND_STANDARD.md",
+        "docs/04_LOGO_WORKFLOW.md",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#31-master-diamond-preservation"
+      ]
+    },
+    {
+      "id": "final-cad-match-mode",
+      "problem": "Near-1:1 renders (LR-0154 at 9.9/10) still fail on the last subtle drifts: cathedral shoulders fuller than the CAD (must taper more before the head); micro pave too bright and too uniformly white (CAD stones sit more recessed with more visible shared metal); V-shaped gallery beneath the centre stone slightly thicker than the CAD line; prongs rounder and heavier than the CAD profile; centre diamond seated a fraction higher than the CAD; cloth carries a subtle warm cast. Logo note: the OVER-DISTRESSED silkscreen treatment (ragged/broken lines) was WORSE - the earlier subtle embedded-ink treatment was better.",
+      "root_cause": "AI rendering re-thickens metal, brightens accent stones and lifts the centre stone by small amounts that survive coarse checks; over-correcting the logo print physics degrades it instead.",
+      "fix": "FINAL CAD MATCH MODE (user-locked 2026-07-17): render the identical physical object from a different camera angle ONLY; never redesign, reinterpret, beautify, optimise, smooth or restyle. Preserve 1:1: overall silhouette, band profile/thickness/width, shoulder thickness, shoulder taper, cathedral height, cathedral curvature, gallery geometry, gallery thickness, bridge geometry, head dimensions, basket dimensions, prong count/profile/thickness/position, centre diamond size, centre diamond seating depth, pavilion exposure, halo geometry (where present), pave count/diameter/spacing/depth, pave SHARED METAL, metal thickness, and every curve and transition. MICRO PAVE must appear like REAL FLUSH-SET diamonds with natural variation and VISIBLE SHARED METAL - never enlarged, brightened or artificially enhanced, never uniformly white. The centre diamond stays seated at the identical height as the CAD. Physically accurate metal reflections only. CLOTH identical in every catalog image: premium pure white cotton, neutral white balance, no warm tone, no cool tone, no colour grading, no artificial highlights, no artificial shadows, natural daylight only. LOGO: preserved original artwork, physically printed INTO the cotton fibres in metallic gold ink, following weave, folds, perspective and lighting naturally - never recreated, redrawn, sharpened, embossed or digitally overlaid, and never over-distressed into ragged/broken lines. Before delivering, compare against the CAD and reject if any geometry, proportion, stone placement or metal profile differs.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority",
+        "docs/04_LOGO_WORKFLOW.md#14-hard-rule-logo-must-never-appear-as-a-digital-overlay"
+      ]
+    },
+    {
+      "id": "lr-0154-d2d-drift",
+      "problem": "REJECTED (LR-0154 Image 1 v3, 2026-07-17) - D2D 9.2/10, silhouette preserved but detail drift: (1) BAND WIDTH: source shoulders slightly thicker transitioning smoothly to the shank; output shoulders slimmer, especially the upper half. (2) SHOULDER PAVE: source evenly recessed with consistent spacing; output finer, more numerous and brighter stones = different pave layout. (3) CATHEDRAL CURVATURE: source arms rise with a well-defined curve; output subtly softened, head reads more open. (4) HEAD HEIGHT: source head sits slightly lower relative to the cathedral; output marginally higher. (5) GALLERY TRIANGLE: source has sharper, more defined corners; output corners rounded and the triangle wider. (6) CENTRE STONE POSITION: source diamond sits deeper inside the head; output raised slightly above the basket. (7) FACETING more stylised than the CAD. Cloth still not the locked master; logo still reads as an overlay.",
+      "root_cause": "The renderer beautified/AI-interpreted the CAD at the detail level while holding the overall silhouette; near-misses were treated as acceptable.",
+      "fix": "STRICT D2D JEWELRY PRESERVATION - reproduce the CAD at absolute 1:1 geometry. Preserve exactly: overall silhouette, ring proportions, band width, band thickness, cathedral height, cathedral curvature, gallery triangle geometry, gallery dimensions, head height, head position, basket geometry, centre diamond position, diamond depth, pavilion visibility, crown height, table orientation, prong count/thickness/positions/curvature, pave start/end position, pave spacing, pave count, pave size, pave brightness, metal thickness, metal transitions. DO NOT: slim the band, thicken the band, move the centre stone, raise or lower the head, smooth the cathedral, modify gallery proportions, change diamond spacing, stylise faceting, invent geometry, beautify the CAD or replace CAD detail with AI interpretation. THE ONLY ALLOWED CHANGE IS THE CAMERA ANGLE. JEWELRY ACCURACY IS HIGHER PRIORITY THAN RENDERING QUALITY. If any CAD measurement differs visually from the source -> reject internally and regenerate until the jewelry is visually indistinguishable from the CAD. STRICT CAD MATCH MODE (user-locked 2026-07-17, v4 pass at 9.7/10 still rejected): the CAD is the ONLY geometry authority and EVERY rendered pixel of the jewelry must match it exactly - never reinterpret. Preserve 1:1: band profile, band thickness, band width, shoulder width, shoulder curvature, cathedral curvature, cathedral height, gallery triangle dimensions, head position, head height, basket geometry, diamond seating depth, pavilion exposure, prong geometry/thickness/length/orientation, pave count/diameter/spacing/depth/brightness, metal thickness, metal transitions. Persistent near-miss deviations to watch: lower shank rendered thicker and rounder than the CAD cross-section; pave stones finer and brighter than the CAD; cathedral-to-head transition smoother than the CAD; centre stone seated very slightly raised. THE ONLY PERMITTED CHANGE IS CAMERA POSITION. Before finalising, compare the rendered jewelry against the CAD and reject if any geometry, proportion or stone layout differs visually.",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
+        "docs/07_QUALITY_MEMORY.md"
+      ]
+    },
+    {
+      "id": "digital-logo-appearance-vector",
+      "problem": "REJECTED (LR-0154 Image 1 v2, 2026-07-17): logo still not physically printed - edges too sharp, gold lines too clean and uniform, ink does not blend into the cotton weave, brightness stays uniform; still reads as a digital overlay rather than screen-printed ink.",
+      "root_cause": "Logo rendered as a clean vector overlay.",
+      "fix": "Treat the official logo as REAL SCREEN-PRINTED INK EMBEDDED into the preserved premium white cotton. The ink must inherit: cloth weave; fiber texture; fold deformation; shadow density; highlight rolloff; slight ink diffusion. Ink density must subtly vary across highlights and shadows - never uniform brightness. NEVER render the logo as a perfectly sharp vector graphic. If in-model printing keeps failing, fall back to the local composite (scripts/print_logo_on_cloth.py) which enforces the six-point fabric-print realism standard.",
+      "refs": [
+        "docs/04_LOGO_WORKFLOW.md#14-hard-rule-logo-must-never-appear-as-a-digital-overlay",
+        "docs/04_LOGO_WORKFLOW.md#4-printed-on-cloth-composite"
+      ]
+    },
+    {
+      "id": "logo-too-prominent",
+      "problem": "REJECTED (LR-0154 Image 1 v2, 2026-07-17): logo scale too large - the logo dominates the composition and competes with the jewelry.",
+      "root_cause": "Logo competes with the jewelry.",
+      "fix": "The JEWELRY is always the primary subject. The printed logo is SECONDARY BRANDING: subtle, naturally integrated, modest in scale, positioned beneath/beside the ring, and must never dominate the composition or draw the eye first. Keep the logo complete and legible but visually quiet.",
+      "refs": [
+        "docs/03_IMAGE_GENERATION_RULES.md#high-priority-jewelry-first-photography-standard",
+        "docs/04_LOGO_WORKFLOW.md#15-logo-completeness-validation"
+      ]
+    },
+    {
+      "id": "cloth-master-changed",
+      "problem": "REJECTED (LR-0154 Image 1 v2, 2026-07-17): cloth still does not match the approved master - fabric weave differs from the approved premium white cloth, sheen is inconsistent, and the fold pattern differs from the preserved office cloth.",
+      "root_cause": "Background cloth differs from the approved master cloth.",
+      "fix": "Office Photoshoot must ALWAYS reuse the EXACT preserved premium white cotton cloth. Do NOT generate a new cloth texture, weave, sheen or fold style for each image. The same master cloth must persist throughout the entire catalog - identical weave, fibre scale, sheen and fold family; only natural fold variation within that same cloth is allowed.",
+      "refs": [
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority",
+        "docs/11_BACKGROUND_STANDARD.md#locked-cloth-asset-asset-only-never-ai-generated"
+      ]
+    },
+    {
+      "id": "artificial-logo-appearance",
+      "problem": "REJECTED (LR-0154 Image 1, 2026-07-17): artificial logo appearance - the logo reads as a digital overlay composited on top of the image: unnaturally crisp edges versus the softer fabric, ink not interacting with the cloth weave, flat uniform opacity, no inherited micro-shadows or lighting variation, no fabric deformation, no ink diffusion.",
+      "root_cause": "Logo appears digitally overlaid instead of physically printed.",
+      "fix": "The official Lucent Carat Lab logo must behave as REAL SCREEN-PRINTED INK on premium white cotton. Ink must follow the fabric weave, folds, wrinkles, stretching, shadows and highlights. Micro fabric texture must remain VISIBLE THROUGH the ink. No overlay, sticker, floating, embossing or vector appearance is permitted. The logo is a LOCKED PRINTED ASSET - never recreate, redraw or overlay it. If it looks digitally placed, reject before delivery and regenerate (or fall back to scripts/print_logo_on_cloth.py).",
+      "refs": [
+        "docs/04_LOGO_WORKFLOW.md#14-hard-rule-logo-must-never-appear-as-a-digital-overlay",
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority"
+      ]
+    },
+    {
+      "id": "cloth-inconsistency-canvas-cast",
+      "problem": "REJECTED (LR-0154 Image 1, 2026-07-17): cloth deviates from the approved premium white cotton - grey/beige cast, flat appearance, visible canvas-like texture rather than premium cotton, insufficient soft sheen.",
+      "root_cause": "Fabric was AI-substituted instead of preserving the approved locked cloth asset.",
+      "fix": "Every Office Photoshoot image must use the EXACT SAME preserved premium white cotton. Colour must remain 100% pure neutral white - no beige, cream, grey, blue, pink, yellow or warm cast. Fabric weave, sheen and texture must remain consistent throughout the catalog: fine premium cotton weave with soft natural sheen, never coarse canvas or linen, never flat. Deviation -> reject before delivery and regenerate.",
+      "refs": [
+        "docs/11_BACKGROUND_STANDARD.md#office-photoshoot-priority",
+        "docs/11_BACKGROUND_STANDARD.md#master-pure-white-cloth-lock"
+      ]
+    },
+    {
+      "id": "logo-detached-from-fabric",
+      "problem": "REJECTED (LR-0154 Image 1, 2026-07-17): the logo does not inherit cloth physics - it is too clean, lacks fabric deformation and natural ink diffusion, and is unaffected by the cloth's physical properties.",
+      "root_cause": "Logo does not inherit cloth physics.",
+      "fix": "The logo must DEFORM with the cloth: the print compresses, stretches and bends exactly with every fabric fold; ink density varies naturally according to the fabric surface; the print inherits the cloth's micro-shadows, highlights, lighting direction and depth of field, and is never sharper than the surrounding fabric.",
+      "refs": [
+        "docs/04_LOGO_WORKFLOW.md#14-hard-rule-logo-must-never-appear-as-a-digital-overlay"
+      ]
+    },
+    {
       "id": "catalog-lr-0150-parked",
       "problem": "Catalog LR-0150 (round halo + twisted infinity split shank) could not reach 100% D2D geometry on any image after the approved hero front; every front three-quarter and side-profile attempt was rejected for structural drift or outright design substitution.",
       "root_cause": "For this SKU the prompt path preserves the concept but re-synthesises the structure - head height, halo side profile, gallery window size, crossover curvature, pave scale and stone seating all drift. Prompt language alone cannot lock it.",
@@ -9,7 +225,7 @@
       "refs": [
         "docs/07_QUALITY_MEMORY.md",
         "docs/13_JEWELRY_PRESERVATION_SPEC.md#41-d2d-design-to-design-accuracy-mode",
-        "docs/15_PIPELINE_VERSIONING.md",
+        "docs/15_SAFE_PIPELINE_VERSIONING.md",
         "workspace/golden/LR-0150/"
       ]
     },

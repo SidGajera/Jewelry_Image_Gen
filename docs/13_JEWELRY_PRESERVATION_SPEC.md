@@ -38,12 +38,30 @@ Every diamond on the jewelry is a **locked asset**. The centre diamond is NOT th
 
 **Consistency:** all diamonds must appear to belong to the same ring and the same quality grade — consistent optical realism · brightness · contrast · facet sharpness · light return · reflection behaviour · diamond material response.
 
+**DIAMOND OPTICAL REALISM (MANDATORY — user-locked 2026-07-17).** Every diamond must behave like a real natural or lab-grown diamond under the given camera angle.
+**Never generate:** soft facets · milky appearance · plastic look · glass look · overexposed table · flat reflections · uniform sparkle · artificial white glow.
+**Always generate:** sharp table · crisp crown facets · visible pavilion depth · high micro-contrast · natural brilliance · natural scintillation · physically correct light return · accurate optical symmetry · clean facet edges · real diamond transparency.
+Brilliance and fire must be **angle-dependent**, never uniform; facet boundaries stay crisp; internal depth stays visible.
+
 **On failure:** reject internally → record the failure in QUALITY_MEMORY (`07`) → regenerate.
 
 **MASTER RULE:** a customer examining the image at 100% zoom must perceive EVERY visible diamond — centre, halo, shoulder, pavé, gallery, bridge or band — as a genuine premium-quality lab-grown diamond with the same natural realism and craftsmanship. **No diamond on the jewelry may appear to be a lower-quality AI approximation.**
 
 ## 4. GENERATION REQUIREMENT
 Every prompt LEADS with the `CRITICAL REQUIREMENT — GEOMETRY LOCK` header (`prompts/07` canonical base prompt) — it goes first, before the angle/scene tag, because the model weights the prompt opening most. Source images are fed FIRST at max weight, medias `[reference, SOURCE]`. If any feature cannot be held exactly, do NOT invent/redesign — preserve the original geometry even at the cost of less dramatic lighting.
+
+## 3.2 PRONG PRESERVATION (ZERO TOLERANCE — user-locked 2026-07-17)
+The source CAD is the only authority. **Prong count is ABSOLUTELY LOCKED.**
+
+**Never:** add extra prongs · remove prongs · split prongs · merge prongs · duplicate claw tips · create hidden support claws · create optical fake prongs · invent structural supports · change prong spacing · change prong height · change prong thickness · change claw shape · change claw orientation · change claw curvature · change claw angle · change prong seating · change diamond contact points.
+
+**The render MUST contain EXACTLY the same number of prongs as the CAD.** CAD has 4 prongs → render exactly 4 · 6 prongs → exactly 6 · double prongs → exactly double prongs · V prongs → exactly V prongs. **Never reinterpret the setting. Changing prongs is a COMPLETE DESIGN FAILURE → reject and regenerate immediately.**
+
+**Also preserved exactly:** prong positions · prong spacing · prong height · prong thickness · claw shape · claw orientation · basket geometry · gallery · head structure. **Never hide prongs due to an incorrect angle · merge two prongs into one · split one prong into two · invent additional claw tips · change the head geometry · modify the basket · reposition the prongs.**
+
+**PRONG VALIDATION (before approving any render):** (1) count CAD prongs · (2) count rendered prongs · (3) counts must be identical · (4) verify every CAD prong is present in its correct location · (5) verify **no additional claw tips appear from perspective** (the classic side-view hallucination) · (6) verify the head and basket match the CAD exactly. **Any prong missing, added, merged or repositioned → REJECT · REGENERATE.**
+
+**CAD AUTHORITY: the CAD always overrides previous renders, prompts or assumptions.**
 
 ## 4.1 D2D (DESIGN-TO-DESIGN) ACCURACY MODE (user-locked 2026-07-17 — mandatory before AND after every generation)
 The source CAD is the ONLY MASTER; the generated jewelry must be an **exact geometric replica**. **Do not compare only visually — compare every structural component independently.**
@@ -60,7 +78,13 @@ The source CAD is the ONLY MASTER; the generated jewelry must be an **exact geom
 - **Prongs:** count · thickness · length · shape · angle · position · curvature · tip.
 - **Metal:** gold volume · thickness · width · edges · curvature · transitions · polish.
 
-**ABSOLUTELY FORBIDDEN:** beautify the CAD · improve proportions · smooth geometry · rebuild the head · reconstruct the halo · simplify the basket · change the shoulder flow · modify the infinity crossover · adjust metal thickness · reinterpret any structural feature · hallucinate geometry · replace CAD detail with AI assumptions.
+**ABSOLUTELY FORBIDDEN:** beautify the CAD · improve proportions · smooth geometry · rebuild the head · reconstruct the halo · simplify the basket · change the shoulder flow · modify the infinity crossover · adjust metal thickness · reinterpret any structural feature · hallucinate geometry · replace CAD detail with AI assumptions · **slim or thicken the band · move the centre stone · raise or lower the head · smooth the cathedral · modify gallery proportions · change diamond spacing · stylise the faceting.**
+
+**ADDITIONAL LOCKS (user-locked 2026-07-17, from the LR-0154 D2D pass):** band width · band thickness · cathedral height · cathedral curvature · gallery triangle geometry (corner sharpness + width) · gallery dimensions · head height · head position · basket geometry · centre diamond position and depth in the head · pavilion visibility · crown height · table orientation · prong count/thickness/positions/curvature · pavé start and end positions · pavé spacing · pavé count · pavé size · **pavé brightness** (never finer, more numerous or brighter than the CAD) · metal thickness · metal transitions.
+
+**THE ONLY ALLOWED CHANGE IS THE CAMERA ANGLE** (plus lighting/background/environment/composition per the MASTER RULE below). **Jewelry accuracy outranks rendering quality.** If any CAD measurement differs visually from the source → reject the render internally and regenerate until the jewelry is visually indistinguishable from the CAD.
+
+**FINAL CAD MATCH MODE — the last-mile drifts (user-locked 2026-07-17, from LR-0154 at 9.9/10).** Renders that pass a coarse check still fail here; check each explicitly: **shoulder thickness + shoulder taper** (AI leaves the cathedral shoulders fuller — they must taper more before reaching the head) · **gallery thickness** (the V-gallery beneath the centre stone renders thicker than the CAD line) · **prong profile** (renders rounder and heavier than the CAD) · **centre diamond seating depth** (renders a fraction high) · **pavé shared metal** (the CAD stones sit more RECESSED with more VISIBLE SHARED METAL). **Micro pavé must read as real flush-set diamonds with natural variation and visible shared metal — never enlarged, brightened, artificially enhanced or uniformly white.** Use physically accurate metal reflections only. Also locked per image: bridge geometry · head dimensions · basket dimensions · every curve and transition.
 
 **STEP 3 — D2D COMPARISON (component-by-component against the CAD):**
 - **Overall:** silhouette · proportions · height · width · thickness
