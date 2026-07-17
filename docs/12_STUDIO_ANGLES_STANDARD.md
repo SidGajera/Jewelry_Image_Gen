@@ -22,7 +22,35 @@ Every SKU's 5 studio images must be exactly these angles, so a customer can insp
 
 **General:** every important design detail must be visible across the five; never hide structural features; preserve exact geometry; no design modifications; identical lighting quality, exposure, reflections and white balance across all five; luxury e-commerce style.
 
-## A1. CATALOG ANGLE DIVERSITY (user-locked 2026-07-17)
+## A1. CATALOG ANGLE DIVERSITY — ZERO TOLERANCE (user-locked 2026-07-17)
+**Every catalog image MUST provide a unique viewpoint.** Never generate two images with the same or nearly identical: camera angle · camera rotation · camera height · camera distance · perspective · lens composition · ring orientation · subject framing.
+
+**Before generating EACH image:** (1) compare against **every** image already generated in this catalog · (2) measure viewpoint uniqueness · (3) **if similarity exceeds 90% → reject internally** · (4) automatically choose a new camera position · (5) regenerate until the composition is clearly different.
+
+**Duplicate examples (all rejected):** ✗ front 3/4 left + front 3/4 left slightly zoomed · ✗ front view + front view minor rotation · ✗ side view + side view with a different crop.
+
+**A valid 12-image catalog maximises coverage, e.g.:** front · back · left profile · right profile · front-left 45° · front-right 45° · rear-left 45° · rear-right 45° · top detail · diamond close-up · hand lifestyle · additional lifestyle or detail.
+
+**Changing only crop, zoom, focal length or cloth folds does NOT create a new angle. ANGLE UNIQUENESS is a mandatory validation step before approving any image.** (Where a required angle isn't supported by the SKU's CAD views, `13 §3.4` wins: shoot the closest supported angle or drop the slot — never invent geometry to fill it.)
+
+### CAMERA VARIATION — ZERO TOLERANCE (user-locked 2026-07-17; applies to studio AND lifestyle)
+Every catalog image must be **compositionally unique**. Changing only the hand pose, finger position, wrist rotation, crop or zoom **does not create a new image**. Before generating, compare against every previously approved image in the catalog and **reject immediately if substantially similar**.
+
+**Must differ between every image:** camera height · camera distance · camera yaw · camera pitch · camera roll · lens focal length · subject framing · jewelry orientation · hand orientation · wrist orientation · finger arrangement · cloth folds (studio) · background composition · lighting direction · shadow pattern · depth of field · storytelling context.
+
+**INVALID variations:** ✗ same front-left angle with a different finger pose · ✗ same side angle with a different crop · ✗ same composition with a different hand position · ✗ same hero angle slightly zoomed · ✗ same wrist angle with different finger spacing.
+
+**VALID variations:** hero front (0°) · left three-quarter (35–45°) · right three-quarter (35–45°) · true profile (90°) · rear gallery · low-angle hero · high three-quarter hero · hand resting on sofa arm · hand holding a coffee mug · hand near face · hand on neck · hand holding a flower · hand holding a book · hand on a laptop · hand opening a door · hand by a window in natural light.
+
+**If composition similarity exceeds ~25%, reject and regenerate with a completely different camera setup.** (This 25% bar supersedes the earlier 90% threshold — the stricter rule wins, `17` POLICY MERGE RULE.)
+
+### CAMERA VALIDATION — ZERO TOLERANCE (user-locked 2026-07-17)
+**Never** position the camera directly above the ring (90° top-down) · never create an orthographic or CAD-style top view. Every camera angle must resemble a real professional jewelry photograph: the **diamond crown, prongs and band depth stay visible**, with realistic perspective and natural lens compression. **Prefer a slight front elevation (~15–35°) for hero images** unless the requested source angle specifically requires another viewpoint. Camera changes must never reduce visibility of the setting, gallery or diamond proportions.
+
+**Automatic rejection — reject any render where:** the image looks like a CAD screenshot · the ring loses visible depth · the diamond appears flattened · the viewing angle is unnaturally top-down · the ring reads as a perfect circle because of an overhead viewpoint · the band hides behind itself · the perspective does not resemble a real luxury jewelry studio photograph.
+
+*Observed (LR-0157, 2026-07-17): a 90° top-down flat-lay produced exactly this — unnaturally circular ring, flattened stone, setting depth gone, CAD-screenshot look. Angle uniqueness must be achieved with **yaw**, not by removing depth. Note: "top detail" in the coverage map means a HIGH ~60° three-quarter, never a 90° overhead.*
+
 Every catalog must resemble a real professional jewelry photoshoot: each image a unique perspective, same studio setup.
 
 **Unique camera angles — every image in a catalog has its own.** Never generate duplicate camera angles · nearly identical viewpoints · slightly rotated copies of the same shot · repeated compositions · repeated framing. Each image must contribute NEW visual information.

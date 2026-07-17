@@ -82,6 +82,32 @@ The renderer must behave like a **professional product photographer, NOT a jewel
 
 *Observed (LR-0152 side + rear, rejected 2026-07-17): shank thickened · sharp V crossover beneath the head rounded off · head taller · gallery openings smaller · prongs thicker and differently curved · metal transitions smoothed · silhouette changed. The head was **rebuilt rather than preserved** — a geometry modification, not a camera difference.*
 
+## 3.5 BAND CONTINUITY PRESERVATION (ZERO TOLERANCE — user-locked 2026-07-17)
+The band shown in the source CAD is the **only authoritative band geometry**. Never reinterpret, duplicate, split or stylise it.
+
+**Preserve exactly:** band count · band continuity · band cross-section · band width · band thickness · band curvature · band shoulders · band transition into the head · band profile · metal volume.
+
+**Strictly prohibited:** ✗ double band · ✗ split band · ✗ twisted band · ✗ bypass band · ✗ rope band · ✗ crossover band · ✗ parallel rails · ✗ secondary metal line · ✗ decorative shoulder line · ✗ extra metal strip · ✗ hidden duplicate band · ✗ invented structural support.
+
+**The render must contain EXACTLY the same number of metal bands as the source. One continuous band in → one continuous band out. Never create a second metal line under, beside or behind the original.**
+
+**Lifestyle images obey this too:** camera perspective may foreshorten or partially occlude the band, but must never create or invent additional metal rails.
+
+**Validate before delivery:** compare the band silhouette against the CAD · confirm band count is identical · confirm no secondary metal line exists · **reject immediately on any duplicate or split band.**
+
+### BAND SURFACE & SILHOUETTE LOCK (ZERO TOLERANCE — user-locked 2026-07-17)
+The CAD band silhouette is the single authority; the rendered band is a **direct photographic reproduction** of it.
+
+**Preserve exactly:** outer silhouette · inner silhouette · shoulder profile · shoulder transition · surface continuity · metal flow · surface curvature · cross-section · edge radius · reflection flow.
+
+**Strictly prohibited:** ✗ extra shoulder line · ✗ extra metal crease · ✗ secondary highlight ridge · ✗ artificial groove · ✗ decorative ridge · ✗ split-shoulder appearance · ✗ double metal rail · ✗ false seam · ✗ fake metal edge · ✗ additional contour · ✗ AI-invented surface transition · ✗ **any line not present in the CAD**.
+
+**Never create additional metal geometry because of perspective, reflections or lighting. A highlight may move. A reflection may move. THE METAL GEOMETRY MUST NEVER MOVE.** The shoulder stays ONE continuous smooth surface exactly matching the CAD.
+
+**Before approving every render:** (1) compare the complete outer silhouette with the CAD · (2) compare the shoulder transition · (3) compare every visible metal edge · (4) verify no additional contour lines exist · (5) **reject immediately if any new metal line, crease or shoulder ridge appears.** Only the camera position may change; the jewelry geometry stays mathematically identical to the CAD.
+
+*Observed (LR-0158, rejected 2026-07-17): the single continuous band rendered as TWO parallel rails in the studio and lifestyle frames. Contributing cause on our side: the prompt described the shoulders as a "twist/bypass" crossing, which invites a second rail — describe the band as ONE continuous strand that loops at the head, never as two arms.*
+
 ## 3.4 D2D SIDE-ANGLE PROTOCOL (user-locked 2026-07-17 — applies to EVERY side, rear-side and three-quarter-side generation)
 **The source CAD SIDE VIEWS are the ONLY authority.** Never derive side geometry from: front images · previous generated renders · approved lifestyle images · general jewelry knowledge · AI assumptions.
 

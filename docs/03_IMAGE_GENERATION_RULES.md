@@ -43,6 +43,21 @@ Complete rules for every generated image.
 
 **Every model must look like a real luxury-campaign model photographed by a professional fashion photographer; every jewelry image must look like genuine commercial product photography from a luxury jewelry brand. Prioritise REALISM OVER STYLIZATION — if any rendering choice makes the image look synthetic, artificial or computer-generated, reject and regenerate.**
 
+#### PHOTOREALISM POLICY — ZERO TOLERANCE (user-locked 2026-07-17): per-domain rules
+Simulate a real camera, real lighting, real optics, real materials. Never produce common AI-generated artifacts.
+
+- **CAMERA:** physically plausible optics · true macro product photography · natural depth of field · accurate focal plane · **no artificial background blur** · no impossible perspective · no warped geometry · realistic lens compression · accurate scale.
+- **LIGHTING:** large softboxes · natural bounce · physically correct reflections · **no glowing metal** · no fake bloom · no HDR over-processing · no clipped highlights · no crushed shadows · natural exposure.
+- **DIAMONDS:** never plastic, milky, white blobs, overexposed table, missing facets, random sparkle effects, artificial starbursts or fake rainbow dispersion. Always: crisp facet definition · crown facets · pavilion facets · table · girdle · real optical contrast · natural fire · natural brilliance · visible internal reflections.
+- **METAL:** never plastic metal, airbrushed gradients, flat reflections, CGI appearance, mirror-like perfection or a wax-like finish. Always: fine micro-reflections · real edge reflections · slight surface variation · accurate **Fresnel** reflections · high-polish finish · consistent 18K gold tone.
+- **FABRIC:** always natural weave · fibre texture · real folds · gravity · contact deformation · soft shadows. Never plastic cloth · satin (unless specified) · AI texture repetition · floating folds.
+- **LOGO:** physically printed — never an overlay, sticker, floating logo, recreated logo or artificial embossing. The print follows fabric weave · folds · perspective · lighting.
+- **CONTACT PHYSICS:** the jewelry has believable weight — contact shadow · cloth compression · correct balance · stable placement. Never floating rings, impossible support or incorrect gravity.
+
+**AI-ARTIFACT DETECTION — reject any render containing:** melting geometry · geometry drift · random bumps · double edges · asymmetry · inconsistent reflections · broken prongs · facet distortion · warped circles · hallucinated metal · texture repetition · painterly appearance · over-sharpening · excessive denoising · unrealistic skin (lifestyle) · anatomically incorrect fingers or hands.
+
+**FINAL QUALITY GATE:** reject if a professional jewelry photographer or CAD designer could reasonably identify the image as unrealistic due to rendering artifacts, material inaccuracies, geometry drift or lighting inconsistencies. **Approve only renders that are physically plausible and consistent with professional luxury jewelry photography.**
+
 **Detail (subordinate to the above):**
 
 **REAL CAMERA STANDARD** — every image must be consistent with a real camera capture: natural perspective · realistic lens behaviour · natural depth of field · correct optical focus falloff · real exposure · real white balance · natural dynamic range · realistic reflections · natural shadow transitions · real fabric interaction · real metal behaviour · real diamond light performance. **Never simulate unrealistic camera effects.**
@@ -122,6 +137,23 @@ Any unchecked item → reject internally · record in `07_QUALITY_MEMORY` · reg
 **Generation is NOT permitted until ALL required policies are successfully loaded and validated.**
 
 **GENERATION ORDER:** (1) load every required policy · (2) validate every policy · (3) validate against **Failure Memory** · (4) validate against **Approved Benchmarks** · (5) build prompt · (6) generate image · (7) post-generation validation · (8) reject immediately if ANY policy is violated · (9) record every failure into Failure Memory · (10) regenerate until every policy passes.
+
+#### IMAGE GENERATION EXECUTION POLICY (user-locked 2026-07-17)
+**Policies are NOT optional. They are the highest authority and override any prompt wording.** No generation begins until the required policies are loaded and validated.
+
+**Per generation:** (1) identify the requested image type · (2) load ONLY the policies that type needs · (3) validate every loaded policy · (4) generate · (5) validate the output against every loaded policy · (6) automatically reject any violation · (7) regenerate until every validation passes · (8) deliver only approved images. **Never skip policy validation.**
+
+**PRIORITY ORDER:** 1. jewelry preservation (highest) · 2. logo preservation · 3. camera validation · 4. cloth · 5. lighting · 6. diamond rendering · 7. lifestyle (lifestyle images only) · 8. QUALITY_MEMORY · 9. Failure Memory. **If a prompt conflicts with a policy, THE POLICY ALWAYS WINS.**
+
+**REQUIRED LOADING —** *studio:* jewelry preservation · logo preservation · cloth · camera validation · diamond rendering · lighting · QUALITY_MEMORY · Failure Memory. *Lifestyle:* jewelry preservation · lifestyle · human realism · camera validation · diamond rendering · lighting · QUALITY_MEMORY · Failure Memory. *Logo images:* logo preservation · cloth · lighting · QUALITY_MEMORY. *Jewelry validation:* jewelry preservation · QUALITY_MEMORY · Failure Memory.
+
+**VALIDATE BEFORE DELIVERY:** jewelry geometry · diamond · prongs · head · gallery · basket · cathedral · side profile · metal thickness · band width · diamond orientation · metal colour · camera · lighting · cloth · logo · fabric print · realism · Failure Memory · QUALITY_MEMORY. **Every validation must pass.**
+
+**AUTOMATIC REJECTION — no exceptions:** jewelry geometry changes · wrong head structure · wrong prong count · wrong prong placement · wrong gallery · wrong basket · wrong band · wrong thickness · wrong proportions · wrong side profile · wrong camera angle · CAD-style perspective · AI-invented geometry · wrong diamond proportions · wrong metal colour · wrong logo · AI-generated logo · logo redraw · wrong cloth · wrong lighting · AI artifacts · unrealistic human model · repeated catalog angle · any previously recorded failure.
+
+**FINAL DELIVERY GATE — never deliver unless:** all required policies loaded ✓ · all validations pass ✓ · no Failure Memory rule violated ✓ · QUALITY_MEMORY standards met ✓ · jewelry identical to the source design ✓ · logo is the preserved master asset ✓ · camera matches luxury studio photography ✓ · the render is indistinguishable from a real professional photograph ✓. Any failure → reject internally and regenerate until fully compliant.
+
+*Reconciliation with `17` rule 10 (final validation only): the delivery gate above runs per image on the checks the image's own angle/scene touches (delta validation); the FULL cross-catalog validation runs once at the end unless something fails.*
 
 #### POLICY EXECUTION ENGINE (context-aware loading — user-locked 2026-07-17)
 The policy system is **context-aware**: do NOT load every policy for every generation. Load ONLY the policies the current task requires — the workflow determines them from the requested image type. This cuts processing without reducing quality (`17` lazy-load).
@@ -210,6 +242,10 @@ Rules: preserve jewelry exactly · natural home environment · natural daylight 
 - Natural, high-end residential lighting and authentic poses.
 - **Preserve the jewelry D2D exactly** — no geometry, diamond, prong or setting changes (`13 §4.1`).
 - The overall result must look like a professional luxury jewelry photoshoot (`03` ULTIMATE PHOTOGRAPHIC REALISM). Hands/skin: natural pores and texture, realistic lighting response, correct anatomy — never waxy or over-smoothed.
+
+**LIFESTYLE GEOMETRY MATCH (ZERO TOLERANCE — user-locked 2026-07-17).** Every lifestyle image preserves the exact CAD geometry. Before approving, compare the visible ring against the source CAD and verify: band silhouette matches exactly · shoulder curvature matches exactly · the twist begins at the same location · twist width identical · metal thickness identical · **band remains ONE continuous ribbon** · no secondary band appearance · no duplicated metal edge · no invented contour · no invented shoulder ridge · no additional crossover line · head connection matches the CAD.
+**Reject immediately if the rendered ring shows:** ✗ double band · ✗ split shoulder · ✗ extra metal strip · ✗ additional contour · ✗ artificial groove · ✗ false seam · ✗ different twist profile · ✗ different shoulder geometry · ✗ different band flow.
+**Perspective and lighting may change. The jewelry geometry must never change. Only the camera position may change.** (Detail: `13 §3.5`.)
 
 **LOCKED MODEL REALISM POLICY (user-locked 2026-07-17).** Use **100% photorealistic human models** in all lifestyle images — they must look captured in a professional luxury jewelry photoshoot.
 **Preserve:** natural skin texture and pores · realistic anatomy and proportions · natural facial expressions · realistic hands and fingers · natural hair · authentic clothing folds and fabric · soft, physically accurate lighting and shadows · natural depth of field.

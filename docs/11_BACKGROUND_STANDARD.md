@@ -143,6 +143,24 @@ Reject immediately if an image appears to come from a different studio setup or 
 
 **If either the cloth or the logo deviates from the approved benchmark → reject the image before delivery and regenerate.**
 
+### APPROVED CLOTH LOCK (ZERO TOLERANCE — user-locked 2026-07-17)
+The approved premium white cotton is a **locked production asset**; every studio image must match it.
+
+**Preserve exactly:** white colour · fabric weave · cotton texture · soft sheen · thread density · surface roughness · fold behaviour · material thickness · lighting response · shadow softness.
+
+**Do not** generate a different fabric · invent another cloth · replace it with linen, satin, silk, canvas or synthetic fabric. **Every catalog image uses the same approved cloth benchmark. Reject any image where the cloth differs from the approved reference.**
+
+*Rejected on LR-0158 (2026-07-17): weave too coarse versus the approved cotton, missing the premium soft sheen, different fold geometry, lighting inconsistent with the benchmark, and the logo sitting on the surface instead of printed into the fibres.*
+
+### FABRIC LIGHTING & LUXURY APPEARANCE (user-locked 2026-07-17)
+The fabric must read as **premium luxury white cotton photographed under professional studio lighting**.
+
+**Always:** soft natural sheen from the weave · gentle light roll-off across folds · subtle highlights on raised areas · soft luminous appearance **without losing texture** · clean luxury-white appearance · fine cotton fibres remaining visible · realistic diffuse reflection · delicate silk-like visual elegance **while remaining cotton** · bright but natural studio illumination.
+
+**Never:** plastic shine · wet appearance · satin or silk material · metallic reflections · glossy coating · overexposed highlights · blown-out white areas · artificial glow · CGI shine · loss of cotton weave texture.
+
+**MASTER RULE:** the fabric looks expensive **because of the lighting, not because the material changed**. It stays unmistakably premium white cotton with a soft elegant sheen created only by natural studio light.
+
 ## LOCKED CLOTH ASSET — ASSET-ONLY, NEVER AI-GENERATED (user-locked 2026-07-11)
 The premium white cotton cloth is a **preserved asset**, exactly like the logo — it is NEVER generated anew by AI. Reuse only the approved cloth asset (`assets/background/sample_studio_background_with_logo.png`, sha256 `4cc10d33…`, and the `Offie_photoshoot 1–5` Drive references that embody the same cloth). Preserve its material, texture, softness, weave, fine grain, and natural draping; keep neutral pure-white balance; cloth may be plain or naturally folded but must always look premium and physically realistic. The AI's only job is to keep this approved cloth faithful under the ring — never to invent a substitute fabric.
 

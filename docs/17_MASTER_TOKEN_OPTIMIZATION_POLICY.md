@@ -64,6 +64,48 @@ No visible thinking, planning, analysis, progress narration, self-talk, alternat
 - when a decision is genuinely required: `Approval required: <single specific decision>.`
 Max 1–3 lines during execution. No image preview unless the user types `preview`/`show image`/`compare images`. Never explain how token optimization is applied — apply it silently. Before sending any message, check: (1) does the user need this info? (2) is a decision required? (3) is there a failure needing action? If all three are no, send nothing. Quality, jewelry fidelity, silent source verification, QC accuracy, required processing, and rollback safety are unchanged — only unnecessary visible narration is removed.
 
+## NEVER DISPLAY INTERNAL EXECUTION (user-locked 2026-07-17)
+**Never show or stream:** uploaded media · image-upload confirmations · downloaded files · Google Drive activity · shell commands · terminal output · Python execution · MCP calls · Higgsfield upload status · Higgsfield command logs · API requests · API responses · JSON payloads · execution traces · progress logs · edited-file messages · commit messages · PR creation · resource loading · policy loading · cache loading · validation steps · workflow execution · internal reasoning · debug information · process state · tool names · command history.
+
+**Never write lines like:** "Uploaded LR-0155 front CAD" · "Downloaded image…" · "Running command…" · "Edited a file…" · "Merged…" · "Using Higgsfield…" · "Using Google Drive…" · "Loading policy…" · "Reading QUALITY_MEMORY…" · "Executing…" · "Uploading media…" · "Confirm Upload…".
+
+**SILENT EXECUTION.** Perform every internal action silently. Present ONLY: the final result · a concise status line when genuinely needed (e.g. `Rendering complete.`) · an explicit question only when user input is truly required.
+
+**PRODUCTION PRINCIPLE.** Behave like a finished commercial application, not a development environment. Internal operations are completely hidden; only inputs and final outputs are visible.
+
+## TOKEN OPTIMIZATION TARGETS + EXECUTION RULES (user-locked 2026-07-17)
+**Targets:** <2,000 tokens per catalog · <300 tokens per image · load each policy ONCE per session unless it changes.
+
+1. **LOAD ONLY REQUIRED POLICIES** — never the whole library. Studio images → jewelry preservation + logo + cloth + studio lighting. Lifestyle → jewelry preservation + lifestyle + human model + logo. Nothing unrelated. (Loader map: `03` POLICY EXECUTION ENGINE.)
+2. **CACHE EVERYTHING** — load once, reuse for every image: source CAD · design profile · logo · cloth rules · Failure Memory · approved patterns. Never re-read unchanged files.
+3. **DELTA VALIDATION** — never re-compare the entire policy set per image; validate only what the requested camera angle changes and reuse previous validation results.
+4. **NO POLICY ECHO** — never repeat policy text inside prompts; reference the cached policy internally.
+5. **SILENT EXECUTION** — hide uploads, downloads, tool calls, shell, command logs, JSON, validation logs (see NEVER DISPLAY INTERNAL EXECUTION).
+6. **SINGLE COMPACT IMAGE PROMPT** — one prompt carrying only: camera angle · lighting · logo placement · cloth · geometry lock. Permanent rules are not restated.
+7. **INCREMENTAL CATALOG** — generate image 1, reuse all context, generate image 2, reuse … never restart the workflow.
+8. **FAILURE MEMORY** — check only the failures relevant to the current image; don't reload the whole history.
+9. **NO REPEATED CAD ANALYSIS** — analyse the CAD once per SKU; store geometry · prongs · gallery · dimensions · proportions; reuse for the rest of the catalog (`06_CACHE`).
+10. **FINAL VALIDATION ONLY** — one complete catalog validation after all images are generated; do not run a full validation after every image unless one fails.
+
+*Precedence note: this section governs HOW MUCH is loaded, echoed and re-validated. It does not weaken the CAD geometry locks themselves (`13 §3.3`, `§3.4`, `§4.0`) — those stay in force via the cached policy, not via prompt repetition.*
+
+### SILENT EXECUTION + TOKEN BUDGET (user-locked 2026-07-17)
+**Minimise orchestration tokens. Internal execution stays silent unless the user explicitly asks for technical detail.**
+
+**During generation:** read only the policies the task needs · use policies already cached this session · generate · validate internally · regenerate internally on failure · update Failure Memory silently · **never narrate internal execution**.
+
+**NEVER DISPLAY:** loaded policies · document reads · policy-merge logs · validation steps · internal reasoning · execution pipeline · shell commands · terminal output · Python output · uploaded-media lists · process IDs · file paths · JSON · API responses · MCP activity · Google Drive activity · Higgsfield upload logs · internal decisions · Failure Memory updates · QUALITY_MEMORY updates · token statistics · timing statistics.
+
+**USER-VISIBLE STATUS — only:** `Generating image…` · `✓ Image completed.` · `❌ Validation failed. Regenerating…`. No further explanation unless explicitly requested.
+
+**SESSION CACHE (load once, reload only on change):** jewelry preservation · logo · cloth · camera · QUALITY_MEMORY · Failure Memory.
+
+**INTERNAL VALIDATION:** reject internally · regenerate internally · update Failure Memory silently · never expose the validation process.
+
+**TOKEN BUDGET:** session init 300–500 · per-image orchestration 50–150 · 12-image catalog orchestration 600–1,200. Spend tokens on image quality, not execution logs.
+
+**ZERO-TOLERANCE:** never spend tokens explaining what the pipeline is doing unless asked. Priority order: **1. image quality · 2. geometry preservation · 3. silent execution · 4. token efficiency.**
+
 ## POLICY MERGE RULE (MANDATORY — one source of truth per category)
 Before creating ANY new policy, search all existing policy documents. If an appropriate policy exists: do NOT create a new one — merge the new requirements into it, preserve its structure, and strengthen its validation. If multiple policies contain related rules: consolidate into the most appropriate owner, remove duplicate/overlapping statements, resolve conflicts by keeping the STRICTEST applicable rule, and leave exactly one authoritative version of each rule. Create a new document ONLY when no existing policy covers the subject and the topic cannot logically belong to any current document. Every update must maintain: one source of truth · no duplicated validations · no contradictory instructions · clear ownership.
 **Owners:** jewelry geometry → `13` · image-generation workflow + validation gate → `03` · logo → `04` · background/studio consistency → `11` · camera angles → `12` · failure learning → `07` (+ `config/QUALITY_MEMORY.json`) · regression prevention → `14` · zero design invention → `16` · pipeline versioning → `15` · token/preview/commit/reasoning → `17` (this file).
