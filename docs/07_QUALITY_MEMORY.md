@@ -29,6 +29,38 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 
 **No-repeat rule:** the enlarged centre stone, enlarged halo and modified twisted-shank geometry must never appear again; any future 0150 output repeating them is rejected automatically before delivery.
 
+### Catalog 0150 — PARKED (2026-07-17)
+**Status:** paused by the user after repeated geometry rejections — *"will start at the end of all catalog."* **Do not resume LR-0150 until every other catalog is complete.**
+
+**Approved and locked:** Image 1 / hero front (job `ebdfc118-ca4a-4d62-80b7-c054b77f1f8c`) = the jewelry benchmark for this SKU. Source CAD: `workspace/golden/LR-0150/r91_2|4|8.jpg`.
+
+**Standing conclusion:** on this design the prompt path holds the concept but rebuilds the structure (head height, halo profile, gallery windows, crossover curvature, pavé scale, stone seating). All three failure sections below apply on resume; run `13 §4.1` D2D ACCURACY MODE at 100% tolerance, and prefer the composite pipeline (`15`) where geometry must be guaranteed by construction rather than by prompt.
+
+### Catalog 0150 — Side Profile Head & Gallery Reconstruction — REJECTED (2026-07-17)
+**Root cause:** the generator preserved the overall **concept** but **reinterpreted** the head assembly and shoulder structure instead of rendering the exact CAD geometry. **Concept-level similarity is not a pass.**
+
+**Observed errors:** **head assembly** — source has a taller head, more open gallery, greater halo↔shoulder distance and slimmer support members; output compressed the head vertically, compacted the gallery, lowered the halo and thickened the supports · **halo** — source thin profile with a distinct side profile and uniform outer edge; output thicker with a rounded side wall and larger visual mass · **gallery** — source long triangular supports with larger open triangular windows and thin members; output shorter supports, smaller openings, thicker metal · **shoulder** — source long flowing crossover with strong curvature and narrow metal between the pavé rows; output shortened the crossover, softened the curvature, thickened the metal · **pavé** — source smaller diamonds, more spacing, narrower path; output larger diamonds, wider path, changed gold borders · **centre stone** — source higher seating with more pavilion visible; output lower seating, less pavilion · **overall** — the side profile reads shorter and heavier than the source.
+
+**Prevention rule — before final approval preserve exactly:** overall silhouette · head height · halo height · halo thickness · halo diameter · gallery shape · gallery openings · support angles · basket geometry · stone seating height · pavilion visibility · shoulder curvature · shoulder crossover geometry · shoulder openings · metal thickness · pavé path · pavé count · pavé spacing · pavé diameter. **Any structural difference → reject immediately · update QUALITY_MEMORY · regenerate.**
+
+**MASTER RULE:** the source is a **finished manufactured product**; the renderer creates a photograph of that exact product and must **never reconstruct, reinterpret, optimise, beautify or approximate** the jewelry geometry. (See `13 §4.1` D2D ACCURACY MODE.)
+
+### Catalog 0150 — Side Angle Design Substitution — REJECTED (2026-07-17)
+**Observed failure:** the side-angle output abandoned the CAD entirely — the ring became an eternity-style twisted openwork band with the halo tipped flat toward the camera and the head/cathedral rise, gallery and split-shank structure gone. A total design substitution, not a drift.
+
+**Root cause:** the engine re-synthesised a "similar" ring for an unfamiliar viewpoint instead of photographing the locked CAD object; comparison was holistic rather than component-by-component.
+
+**Prevention:** run **D2D ACCURACY MODE** (`13 §4.1`) before and after every generation at **100% tolerance** — build the master design profile from the CAD, render only, then compare overall / head / halo / centre stone / prongs / shoulders / pavé / band / gallery component-by-component. Any deviation → reject · record · regenerate.
+
+### Catalog 0150 — CAD Structural Drift — REJECTED (2026-07-17)
+**Reference:** the source CAD (side profile). **Camera angle was acceptable — the failure is jewelry geometry, not viewpoint.**
+
+**Observed errors:** (1) **head height** — source head sits higher above the shoulder with more vertical clearance below the halo; output head sits lower, halo closer to the shoulders · (2) **halo profile** — source halo thinner with a flatter side profile; output thicker with a deeper side wall · (3) **shoulder connection** — source infinity shoulder meets the halo in a smooth flowing transition with a larger open space; output joins differently, open space reduced, transition thicker · (4) **pavé path** — source shoulder pavé follows the exact outer edge with uniform spacing; output path shifted, spacing differs, shoulder curvature differs · (5) **centre stone seating** — source diamond sits slightly higher with more pavilion visibility; output diamond sits deeper inside the halo · (6) **band profile** — source split shank has stronger curvature; output flatter.
+
+**Correction rule — before rendering, compare the generated jewelry against the CAD at the STRUCTURAL level and lock:** head height · halo thickness · halo diameter · halo profile (side-wall depth) · shoulder geometry · shoulder openings · shoulder curvature · shoulder-to-head connection · split-shank geometry · pavé path · pavé spacing · pavé count · stone seating depth · gallery height · basket profile · overall proportions. **Any difference → reject internally · update QUALITY_MEMORY · regenerate.**
+
+**MASTER RULE:** the renderer must treat the CAD as a **finished manufactured ring**. It may change ONLY camera angle · camera distance · lighting · background · environment. **It must never reinterpret or rebuild the jewelry geometry, even if the resulting render appears aesthetically pleasing.**
+
 ### Logo Placement & Catalog Composition — REJECTED (2026-07-17)
 **Observed failure:** the ring was positioned directly over the printed logo, hiding a significant portion of it; only the lower part of the logo remained visible, making the branding look incomplete.
 

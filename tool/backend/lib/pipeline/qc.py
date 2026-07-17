@@ -91,6 +91,13 @@ HEAD_GEOMETRY_CHECKS = [
     # larger halo stones, shallower stone seating, bulkier basket, taller profile.
     "halo_thickness", "halo_stone_size", "halo_height", "halo_diameter",
     "stone_seating_depth", "basket_height", "head_bulk", "overall_ring_height",
+    # CAD structural lock (docs/07 Catalog 0150 CAD Structural Drift) — the side-profile
+    # structure the renderer rebuilt: head sat lower, halo side wall deeper, shoulder
+    # transition thicker with a smaller opening, pavé path shifted, shank flatter.
+    "head_clearance_above_shoulder", "halo_side_wall_depth", "halo_profile_flatness",
+    "shoulder_to_head_connection", "shoulder_opening_size", "shoulder_curvature",
+    "pave_path_alignment", "pave_spacing_uniformity", "pave_count",
+    "pavilion_visibility", "gallery_height", "basket_profile", "split_shank_curvature",
 ]
 
 

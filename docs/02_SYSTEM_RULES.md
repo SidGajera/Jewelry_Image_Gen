@@ -62,6 +62,19 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 5. Operate only as `lucentcaratlab@gmail.com`.
 6. Local (0-credit) fixes are preferred over paid regeneration for cloth color and logo.
 
+## CONTINUOUS POLICY LEARNING (CRITICAL — user-locked 2026-07-17)
+The system must improve continuously throughout the project. **Every instruction, correction, approval, rejection, comparison and piece of feedback the user provides is learning.** Owner of the failure/learning store: `07_QUALITY_MEMORY` + `config/QUALITY_MEMORY.json`; owner of the merge rule: `17` POLICY MERGE RULE. This section is the system-level requirement that both are always exercised.
+
+**MANDATORY LEARNING** — whenever the user provides a correction · a comparison · a mistake · a preferred result · a better workflow · a better prompt · a new requirement · a design observation · a photography observation · a rendering improvement · a policy improvement, the system must: (1) understand the ROOT CAUSE · (2) determine whether an existing policy already covers it · (3) if covered → **strengthen the existing policy, never create a duplicate rule** · (4) if not covered → **merge the requirement into the most relevant existing policy** · (5) update QUALITY_MEMORY · (6) **apply the learning immediately to all future generations.**
+
+**NO DUPLICATE POLICIES** — never create multiple policies for the same topic. Always merge · refine · strengthen · consolidate. **The policy library must become smaller, stronger and easier to enforce over time.**
+
+**CONTINUOUS IMPROVEMENT** — every SUCCESSFUL image teaches approved geometry · approved photography · approved logo behaviour · approved cloth behaviour · approved lighting · approved realism. Every FAILED image teaches what failed · why it failed · how to prevent it · which policy must be strengthened. **Both successes and failures must improve future generations.**
+
+**PROJECT MEMORY** — learning persists for the whole project. **Previously approved corrections must never be forgotten; previously rejected mistakes must never reappear.** Every new catalog benefits from all earlier catalogs.
+
+**MASTER RULE** — the image generation system must become progressively more accurate over time. Each user instruction should strengthen existing policies and QUALITY_MEMORY so identical mistakes become increasingly unlikely.
+
 ## HARD-WON LESSONS (do not repeat)
 - Model garbles any logo it tries to render → "ELLYREID". Never let it render the logo.
 - Doubled center diamond appears on large worn/lifestyle angles → enforce single facet pattern.
