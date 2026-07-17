@@ -8,3 +8,6 @@ tool/backend/.venv/
 # Python build artifacts (regenerated; never reviewed) — not project content.
 __pycache__/
 *.pyc
+
+# CAD renders are large binaries; regenerate with scripts/cad_render.py
+workspace/cad_renders/

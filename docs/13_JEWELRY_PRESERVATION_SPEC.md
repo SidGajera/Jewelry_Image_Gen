@@ -102,7 +102,11 @@ The renderer must behave like a **professional product photographer, NOT a jewel
 
 **MINIMUM POLICY LOADING for these shots:** (1) master jewelry preservation (`13`, `16`) · (2) QUALITY_MEMORY rules relevant to geometry, side-angle drift, prongs and physical logic · (3) studio/cloth/logo policy only if those elements appear · (4) camera policy for the requested angle. Nothing unrelated.
 
-**FINAL COMMAND:** freeze the jewelry geometry from the source CAD, move only the camera, generate a photorealistic image of the exact manufactured ring. **If the requested side view cannot be produced without reconstructing or guessing geometry — STOP instead of generating.**
+**SUPPORTED-ANGLE RULE (user-locked 2026-07-17).** The requested output must stay **within the geometry supported by the source view**. Allowed: a very small natural camera shift · minor photographic perspective · different background and lighting. **Not allowed:** converting a strict side/rear profile into a materially different three-quarter design · revealing invented hidden geometry · reconstructing unseen components · changing the ring to make the angle more attractive. **If the requested camera position requires guessing hidden geometry → do NOT generate that angle; use the CLOSEST SUPPORTED CAD ANGLE instead.**
+
+**FINAL VALIDATION — compare source and output before delivery:** same outer silhouette · same inner silhouette · same head height · same head width · same prongs · same shoulder curves · same gallery · same negative spaces · same diamond seating · same band thickness · same metal volume. **Any difference → REJECT · RECORD FAILURE · REGENERATE.**
+
+**FINAL COMMAND:** act only as a product photographer — the ring already exists exactly as shown in the source CAD. Freeze the jewelry geometry, move only the camera, generate a photorealistic image of that exact manufactured ring. Never redesign, reconstruct or reinterpret the jewelry. **If the requested view cannot be produced without reconstructing or guessing geometry — STOP and shoot the closest supported CAD angle instead.**
 
 ## 4.0 D2D GEOMETRY PRESERVATION (ABSOLUTE — user-locked 2026-07-17)
 **The CAD is the MASTER DESIGN.** The renderer is NOT permitted to redesign, reinterpret, optimise, beautify or reconstruct any part of the jewelry. The output must be a **Design-to-Design (D2D) reproduction**. **Only the camera position may change.**

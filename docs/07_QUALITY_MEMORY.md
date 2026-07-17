@@ -2,6 +2,37 @@
 
 Dedicated memory layer for continuous improvement. Machine-readable store: [`config/QUALITY_MEMORY.json`](../config/QUALITY_MEMORY.json) — this file is its structure and rules. Loaded before EVERY generation (docs/03 generation order, step 2).
 
+## Catalog 0152 — COMPLETE REJECTION · FAILURE MEMORY 001–010 (2026-07-17)
+**Not an image-quality problem — a geometry-preservation problem.** Logo printing, cloth, lighting and realism all passed; **CAD preservation failed, and that alone is a zero-tolerance rejection.**
+
+| Category | Result |
+|---|---|
+| CAD preservation | ❌ Fail |
+| Geometry preservation | ❌ Fail |
+| Camera accuracy | ❌ Fail |
+| Side-angle accuracy | ❌ Fail |
+| Head preservation | ❌ Fail |
+| Diamond preservation | ⚠ Partial |
+| Lifestyle | ⚠ Acceptable, geometry still altered |
+| Logo printing | ✅ Good |
+| Cloth | ✅ Good |
+
+**Observed:** ring rebuilt (shoulders thicker/thinner, curvature changed, head wider and taller, shank profile changed, drifting cathedral, head transition changed) · **every** side angle reconstructed rather than rotated · rear view changed gallery, negative spaces, gallery/head thickness and prong merge points · prongs drifted in thickness, claw profile, tip size, curvature and merge position · the diamond moved (higher/lower, more/less crown and pavilion exposure) · the head was made "prettier" instead of preserved · **the camera rotated correctly but the jewelry changed too — two different things** · lifestyle rings not always identical to CAD · band thickness, shoulder width and metal volume varied.
+
+**Root cause:** the workflow still treats the CAD as a **reference image**. It must treat the CAD as the **master object**. Mental model for every render: *"The jewelry already exists. My only job is to move the camera, lighting, background and environment. I have zero permission to modify even one vertex of the jewelry."*
+
+**FAILURE MEMORY (locked):**
+- **001 Geometry reconstruction** — never reconstruct any portion of the ring; preserve exact CAD geometry.
+- **002 Side-view hallucination** — never invent hidden geometry for side/rear views; use only geometry proven by the source CAD.
+- **003 Head drift** — head geometry is locked: height, width, curvature, transition.
+- **004 Prong drift** — prong count, spacing, curvature, thickness, merge points and tip shape are immutable.
+- **005 Band drift** — band width, thickness, curvature and silhouette identical.
+- **006 Diamond drift** — never move, resize, rotate, expose or reposition the centre stone.
+- **007 Gallery drift** — gallery openings, bridges, baskets and negative spaces are locked.
+- **008 Camera-only rule** — changing viewpoint must never change the jewelry; only the virtual camera moves.
+- **009 CAD authority** — the CAD is the single source of truth; studio renders, previous outputs and AI assumptions never override it.
+- **010 Product-photographer mode** — behave as a photographer, not a designer; if preserving the CAD exactly is impossible for a requested angle, reject and shoot the nearest valid angle instead of inventing geometry.
+
 ## COMPLETED CATALOGS — CONSOLIDATED LEARNING (2026-07-17)
 **Done:** LR-0151 · LR-0149 · LR-0154 · LR-0155 · LR-0156. **Parked:** LR-0150 (see its section below).
 
