@@ -111,7 +111,16 @@
       "Bash('D:/Lucent Image generation/tool/backend/.venv/Scripts/python.exe' -c ' *)",
       "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__show_generations",
       "Bash(git checkout *)",
-      "Bash(git commit -q -m 'LR-0151 studio side + 45L renders \\(desktop-pc\\) *)"
+      "Bash(git commit -q -m 'LR-0151 studio side + 45L renders \\(desktop-pc\\) *)",
+      "Bash(curl -s -o \"LR-0151_studio_45R_v1.png\" \"https://d8j0ntlcm91z4.cloudfront.net/user_3FfqWKRraOQL88xyOfgG5RzRvdz/hf_20260717_030006_21128db5-2866-41ec-ae13-74dea4dbe504.png\")",
+      "Bash(curl -s -o \"LR-0151_studio_threequarter_v1.png\" \"https://d8j0ntlcm91z4.cloudfront.net/user_3FfqWKRraOQL88xyOfgG5RzRvdz/hf_20260717_030029_e900e117-5af6-476d-9ce2-0a166e470f22.png\")",
+      "Bash(curl -s -o \"LR-0151_studio_45R_v2.png\" -w \"%{http_code}\" \"https://d8j0ntlcm91z4.cloudfront.net/user_3FfqWKRraOQL88xyOfgG5RzRvdz/hf_20260717_$\\(date +%H%M%S\\)_a143be71-3fb2-4f1d-a91c-f3c557439ae0.png\")",
+      "Bash(curl -s -o \"LR-0151_studio_45R_v2.png\" \"https://d8j0ntlcm91z4.cloudfront.net/user_3FfqWKRraOQL88xyOfgG5RzRvdz/hf_20260717_030349_a143be71-3fb2-4f1d-a91c-f3c557439ae0.png\")",
+      "Bash(\"D:/Lucent Image generation/tool/backend/.venv/Scripts/python.exe\" -c \"from PIL import Image;print\\(Image.open\\('LR-0151_studio_45R_v2.png'\\).size\\)\")",
+      "Bash(\"./tool/backend/.venv/Scripts/python.exe\" -)",
+      "Bash(sed -i 's#| \\\\*\\\\*Generation workflow + mandatory pre-delivery validation \\(LOCKED\\)\\\\*\\\\* | `docs/18_LOCKED_GENERATION_WORKFLOW.md` |##; s#| Individual images only / no collage-grid-contact-sheet | `docs/20_NO_GROUP_GRID_VIEW.md` |##; s# \\(+ `docs/19_BACKGROUND_CONSISTENCY_POLICY.md` — catalog background lock\\)##' CLAUDE_SETUP.md)",
+      "Bash(sed -i '/^$/N;/^\\\\n$/D' CLAUDE_SETUP.md)",
+      "Bash(git commit -q -m 'Catalog LR-0149 complete + policy consolidation *)"
     ]
   }
 }

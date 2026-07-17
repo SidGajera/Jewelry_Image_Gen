@@ -31,10 +31,11 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Pipeline versioning / mode switch / rollback / shadow test / fallback / learning store | `docs/15_SAFE_PIPELINE_VERSIONING.md` (+ `config/pipeline_versions.json`) |
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
+
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
-| Prevent past failures / update learning | `config/QUALITY_MEMORY.json` (+ `docs/06_CACHE.md` for Drive IDs) — do not keep permanently in context |
+| Prevent past failures / update learning | `docs/07_QUALITY_MEMORY.md` (structure + learning rules) · `config/QUALITY_MEMORY.json` (store) (+ `docs/06_CACHE.md` for Drive IDs) — do not keep permanently in context |
 | Version info | `config/VERSION.json` |
 | Current status | `docs/10_CURRENT_STATE.md` |
 | Project history / rollback / version compare | `docs/09_CHANGELOG.md` |

@@ -37,6 +37,21 @@ The center-stone assembly is the single most-invented region (added girdle/suppo
 
 Second observed failure (2026-07-16): source = open basket with curved support arms, NO gallery directly beneath the center stone, clean open side profile. Legacy render INVENTED a triangular/V-shaped gallery + extra metal support under the stone, changed the head/basket architecture — "no longer the same ring." Trips `head:gallery_shape` · `head:support_arms` · `head:under_gallery` · `head:no_invented_gallery` · `head:open_spaces_preserved`.
 
+### HALO ASSEMBLY LOCK (user-locked 2026-07-17)
+Observed failure (LR-0149): halo rendered **thicker** with **larger/rounder** halo diamonds and **increased halo height**; centre stone sat **higher** with **more girdle visible** (shallower seating); head **taller and bulkier** with a different lower support; halo **wider**; overall ring **taller**. Shank was correct — the drift was entirely in the head assembly.
+
+**Lock each of these separately in every prompt (never as "the halo"/"the head"):**
+1. **Halo thickness** — thin and clean exactly as the CAD; never thicker.
+2. **Halo stone size + definition** — each halo diamond keeps the CAD's size and stays individually distinct; never larger, rounder or blobby.
+3. **Halo height above the shank** — identical; never raised.
+4. **Halo diameter / width** — identical; never wider.
+5. **Centre-stone seating depth** — the stone sits DEEP inside the halo exactly as the CAD, well integrated with the head, with the SAME small girdle exposure; never higher, never more girdle visible.
+6. **Basket height + head bulk** — compact exactly as the CAD; never taller or bulkier; basket-to-shank transition stays smooth and as-built; lower support structure identical.
+7. **Prong thickness + tip termination** — identical.
+8. **Overall ring height / profile** — identical; never taller.
+
+Treat all of these as **locked geometry rendered photorealistically without reinterpretation** (Source-Driven Rendering above). Validate each against the source before delivery; any deviation → reject · record · regenerate.
+
 ### HEAD GEOMETRY QC (dedicated check group)
 The Jewelry Difference Detector inspects the head separately (`HEAD_GEOMETRY_CHECKS`, surfaced as `head:*` keys in `qc_final`): prong_count · prong_thickness · prong_angle · prong_position · basket_shape · gallery_shape · bridge_geometry · under_gallery · head_height · head_width · head_thickness · metal_volume · no_added_support_ring · no_added_gallery_rail · no_extra_bridge. Any mismatch → reject before delivery. Composite render = all pass (head is source pixels, invention impossible); raw render = UNVERIFIED until a vision diff runs (never a fabricated pass).
 
@@ -47,6 +62,20 @@ Geometry preservation is necessary but NOT sufficient: a composite can carry the
 - original_object_removed · single_ring_present · no_segmentation_artifacts · no_white_mask_residue · consistent_lighting_shadows · natural_background_integration.
 
 **Root cause + fix (enforced, not detected after):** the failure comes from a DIRTY scene (already had a ring) + loose keying — so the guarantee is at the INPUT: composite ONLY into a **clean, ring-free scene** (empty cloth / bare finger), and key the source with a clean alpha (drop its background shadow). `qc.composite_integrity` HARD-FAILS `original_object_removed` + `single_ring_present` unless the caller asserts `scene_is_clean=True`; segmentation/residue/lighting/integration are vision/manual ("unverified" — classical CV can't reliably spot a soft white-mask patch; it reads like cloth highlights, so no pixel-detector is claimed). `qc_final` therefore no longer auto-passes a composite on geometry provenance alone — it stays geometry_guaranteed but `passed=False` until integrity is satisfied. The geometry regression suite (docs/14) still asserts the geometry invariant only; composite integrity is checked per-shot / shadow-test.
+
+## SOURCE-DRIVEN RENDERING (CRITICAL, user-locked 2026-07-17)
+The uploaded CAD / source image is the **ONLY authority** for the jewelry. The generation engine is NOT permitted to redesign, reinterpret, improve, beautify or invent any jewelry geometry. **Its role is ONLY to render the existing jewelry as a realistic photograph.**
+
+**Allowed — the engine may generate only:** photorealistic lighting · photorealistic materials · natural camera perspective · natural environment · natural reflections · natural shadows · natural depth of field · natural photographic effects. **These must never alter the jewelry itself.**
+
+**Strictly forbidden:** redesign the ring · improve the design · beautify the design · reconstruct the head · change prongs · change basket · change gallery · change halo · change pavé · change proportions · change stone seating · invent missing geometry · simplify geometry · replace CAD details with AI interpretation. **The generated jewelry must remain an exact visual representation of the source.**
+
+**Source comparison — before approving every image, compare directly with the source:**
+- [ ] Same geometry · [ ] same proportions · [ ] same head · [ ] same basket · [ ] same gallery · [ ] same halo · [ ] same pavé · [ ] same prongs · [ ] same diamond seating · [ ] same structural profile
+
+**Any geometric deviation is an automatic rejection.**
+
+**MASTER RULE** — treat the uploaded CAD as a **physical product that already exists**. The objective is NOT to generate a new ring; it is to produce a photorealistic photograph of that exact ring, preserving every structural detail exactly while changing only the photographic presentation (camera, lighting, environment, composition).
 
 ## RELATED
 `docs/13_JEWELRY_PRESERVATION_SPEC.md` (Geometry Lock + QA checklist) · `docs/03 §A` (Design Preservation) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`zero-jewelry-invention`, `geometry-immutable-auto-fallback`) · `lib/pipeline/qc.py`.

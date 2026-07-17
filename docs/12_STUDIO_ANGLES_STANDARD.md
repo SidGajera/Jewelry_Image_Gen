@@ -22,6 +22,24 @@ Every SKU's 5 studio images must be exactly these angles, so a customer can insp
 
 **General:** every important design detail must be visible across the five; never hide structural features; preserve exact geometry; no design modifications; identical lighting quality, exposure, reflections and white balance across all five; luxury e-commerce style.
 
+## A1. CATALOG ANGLE DIVERSITY (user-locked 2026-07-17)
+Every catalog must resemble a real professional jewelry photoshoot: each image a unique perspective, same studio setup.
+
+**Unique camera angles — every image in a catalog has its own.** Never generate duplicate camera angles · nearly identical viewpoints · slightly rotated copies of the same shot · repeated compositions · repeated framing. Each image must contribute NEW visual information.
+
+**Required catalog coverage** — collectively showcase the complete ring: front beauty · front three-quarter · left three-quarter · right three-quarter · left profile · right profile · head/top · gallery view · rear view · any additional unique artistic angle.
+
+**Complete jewelry visibility** — the whole ring stays visible. Avoid: cropped ring · cut-off prongs · missing shank · missing basket · missing gallery · head hidden by framing · camera too close · ring extending outside the frame. The jewelry fits comfortably in frame while remaining the primary subject.
+
+**Natural camera variation** — between images vary naturally: camera height · distance · yaw · pitch · roll (only if realistic) · ring orientation. No abrupt or unrealistic perspective jumps; transitions should feel like a photographer walking around the ring during the same session.
+
+**Catalog validation (before approving a catalog):**
+- [ ] No duplicated angle · [ ] no duplicated composition · [ ] every image contributes a new viewpoint · [ ] entire ring visible · [ ] jewelry is the primary subject · [ ] same studio setup · [ ] same background (docs/11 MASTER BACKGROUND LOCK) · [ ] same lighting · [ ] same logo placement rules (docs/04)
+
+Reject any image that is visually redundant or fails to show the complete jewelry.
+
+**MASTER RULE:** a customer should feel they are viewing ONE continuous professional photoshoot where every image reveals a different natural perspective of the same ring, without repetition.
+
 **ANGLE DISTINCTNESS (MANDATORY — user-locked 2026-07-11):** the five studio shots must be FIVE VISIBLY DIFFERENT camera positions — no two may look like the same view. A recurring failure: hero, 45° left and 45° right all come out as near-identical near-front views. To prevent it, separate them by real camera geometry:
 - **Hero front:** camera at ring height, straight-on, 0° yaw, ~0–5° top tilt.
 - **45° left:** camera yawed ~45° to the LEFT of front AND raised to ~30–35° top-down — the setting clearly seen from the left-front above.

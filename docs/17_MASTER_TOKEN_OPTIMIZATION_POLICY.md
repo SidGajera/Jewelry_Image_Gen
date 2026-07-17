@@ -42,6 +42,7 @@ Repository stays portable; all paths configurable (Input, Output, Source, Refere
 
 ## COMMIT
 Never commit, push, create branches, or modify Git history — unless the user explicitly approves.
+**Standing approval (user-locked 2026-07-17): commit + push automatically EVERY TIME a catalog is completed/approved** — no need to ask again. Still: never commit or push *during* generation (`03` GIT RULE), never push failed/temporary/unapproved images, never create a branch without permission, never rewrite history. Push to the current authorized branch.
 
 ## TOKEN BUDGET
 Tokens are limited. Choose the shortest correct response; avoid duplicate information, repeated instructions, and unnecessary acknowledgements.
@@ -62,6 +63,11 @@ No visible thinking, planning, analysis, progress narration, self-talk, alternat
 - on failure: `Stopped: <one-line actionable reason>.`
 - when a decision is genuinely required: `Approval required: <single specific decision>.`
 Max 1–3 lines during execution. No image preview unless the user types `preview`/`show image`/`compare images`. Never explain how token optimization is applied — apply it silently. Before sending any message, check: (1) does the user need this info? (2) is a decision required? (3) is there a failure needing action? If all three are no, send nothing. Quality, jewelry fidelity, silent source verification, QC accuracy, required processing, and rollback safety are unchanged — only unnecessary visible narration is removed.
+
+## POLICY MERGE RULE (MANDATORY — one source of truth per category)
+Before creating ANY new policy, search all existing policy documents. If an appropriate policy exists: do NOT create a new one — merge the new requirements into it, preserve its structure, and strengthen its validation. If multiple policies contain related rules: consolidate into the most appropriate owner, remove duplicate/overlapping statements, resolve conflicts by keeping the STRICTEST applicable rule, and leave exactly one authoritative version of each rule. Create a new document ONLY when no existing policy covers the subject and the topic cannot logically belong to any current document. Every update must maintain: one source of truth · no duplicated validations · no contradictory instructions · clear ownership.
+**Owners:** jewelry geometry → `13` · image-generation workflow + validation gate → `03` · logo → `04` · background/studio consistency → `11` · camera angles → `12` · failure learning → `07` (+ `config/QUALITY_MEMORY.json`) · regression prevention → `14` · zero design invention → `16` · pipeline versioning → `15` · token/preview/commit/reasoning → `17` (this file).
+**MASTER RULE: never increase the number of policy documents when an existing document can be improved. Always prefer merging over creating.**
 
 ## POLICY MAINTENANCE (silent — this policy governs its own upkeep)
 Policy/refactor work must itself obey this policy. Read, merge, replace, delete redundant policies, update references, and validate SILENTLY — never narrate what is being searched/opened/merged/removed, never expose plans, execution order, file traversal, mapping/merge strategy, or reasoning. Report only when a user decision is required or the work is finished: `Updating…` / `Done.` / `Waiting for approval.` (1–2 short lines). Consume the absolute minimum tokens.

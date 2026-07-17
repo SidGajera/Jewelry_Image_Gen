@@ -2,6 +2,175 @@
 
 Complete rules for every generated image.
 
+## HIGH PRIORITY — JEWELRY-FIRST PHOTOGRAPHY STANDARD (CRITICAL, user-locked 2026-07-17)
+**Priority: CRITICAL — higher than scene styling and artistic composition.** The jewelry is always the hero; the environment exists only to support it, never to compete with it. (Ranks below the ABSOLUTE jewelry-preservation rule, `docs/02`.)
+
+**UNIQUE BRAND IDENTITY** — do not imitate common Etsy, Pinterest, Amazon or competitor photography styles; avoid clichéd compositions widely used across online marketplaces. Establish a unique **Lucent Carat Lab** visual identity — recognisable premium photography rather than following trends.
+
+**JEWELRY IS THE HERO** — every composition must immediately draw the eye to the jewelry within the first glance. The environment complements, never becomes the focal point. Avoid: busy scenes · heavy decorations · large props · distracting backgrounds · visual clutter · oversized furniture · strong textures competing with the ring · lifestyle elements dominating the frame.
+
+**NATURAL PHOTOGRAPHY** — every image must resemble a genuine high-end luxury jewelry photograph. Maintain: real camera perspective · real optical behaviour · realistic depth of field · natural lens compression · natural shadows · natural reflections · natural fabric interaction · natural skin texture (when applicable) · natural diamond optics · real gold reflections. Avoid: AI artifacts · CGI appearance · plastic materials · unrealistic blur · artificial HDR · over-sharpening · excessive bloom · unrealistic symmetry · impossible lighting. **The final image must be indistinguishable from a professionally captured photograph.**
+
+**CATALOG THEME LOCK** — the first approved image defines the MASTER THEME; every remaining image preserves the same photography style · environment · mood · lighting · background family · prop family · colour neutrality · overall visual identity. Only viewpoint and composition may change naturally.
+
+**SUBTLE SCENE DESIGN** — scenes feel authentic and understated; props support the story while remaining visually secondary; the environment communicates luxury without distracting from the jewelry.
+
+**MASTER VALIDATION — before approving every image ask:** (1) Is the jewelry unquestionably the first thing the viewer notices? (2) Does the environment support rather than dominate it? (3) Does this avoid common marketplace clichés? (4) Does it look like a real luxury product photograph? (5) Would a professional photographer believe it was captured with a real camera rather than generated? (6) Does it maintain the approved catalog theme? **Any NO → reject internally · record in `07_QUALITY_MEMORY` · regenerate.**
+
+**MASTER PRIORITY RULE** — the primary objective of every generated image is to showcase the jewelry in the most natural, luxurious and believable way possible. Every catalog must establish a consistent premium visual identity unique to Lucent Carat Lab, so natural that the photographs are visually indistinguishable from genuine professional jewelry photography.
+
+### PHOTOGRAPHIC REALISM STANDARD (CRITICAL, user-locked 2026-07-17)
+Target the visual quality of genuine high-end luxury product photography. **The objective is never to look "AI-generated" — it is to look like a real photograph captured by a professional photographer in a controlled studio or authentic environment.**
+
+**REAL CAMERA STANDARD** — every image must be consistent with a real camera capture: natural perspective · realistic lens behaviour · natural depth of field · correct optical focus falloff · real exposure · real white balance · natural dynamic range · realistic reflections · natural shadow transitions · real fabric interaction · real metal behaviour · real diamond light performance. **Never simulate unrealistic camera effects.**
+
+**REAL MATERIAL STANDARD** —
+· **Gold:** natural reflections · correct polish · no plastic appearance · no artificial glow.
+· **Diamond:** realistic brilliance · natural fire and scintillation · correct transparency · no overexposed white areas · no unrealistic sparkle effects.
+· **Cloth:** premium cotton · natural weave · real fibre texture · soft natural sheen · physically correct folds.
+· **Skin (if present):** natural pores · natural texture · realistic lighting response · never waxy or over-smoothed.
+
+**NO ARTIFICIAL RENDERING — reject immediately on:** CGI appearance · plastic-looking materials · unrealistic reflections · impossible shadows · artificial bloom · excessive HDR · over-sharpening · over-smoothed surfaces · repeating texture artifacts · symmetry artifacts · distorted geometry · hallucinated details · any other visually implausible rendering artifact.
+
+**REAL PHOTOGRAPH VALIDATION (before approval):**
+- [ ] Lighting physically plausible · [ ] shadows physically plausible · [ ] material responses physically plausible · [ ] camera perspective physically plausible · [ ] jewelry interactions physically plausible · [ ] background interactions physically plausible · [ ] no obvious rendering artifacts · [ ] overall appearance matches professional luxury jewelry photography
+
+**MASTER RULE** — every delivered image must be indistinguishable, to a reasonable viewer, from a professionally captured luxury jewelry photograph taken with a real camera under controlled photographic conditions. If an image contains obvious synthetic or implausible artifacts → reject · record the specific failure in `07_QUALITY_MEMORY` · regenerate.
+
+## GENERATION ORDER (LOCKED — run for every image)
+1. Load `13_JEWELRY_PRESERVATION_SPEC`.
+2. Load `07_QUALITY_MEMORY` (Approved Benchmarks + Failure Memory; store = `config/QUALITY_MEMORY.json`).
+3. Load `04_LOGO_WORKFLOW`.
+4. Load `03_IMAGE_GENERATION_RULES`.
+5. Validate all loaded policies.
+6. Load 4-view CAD (single source of truth).
+7. Load cached Design Profile (`06_CACHE`).
+8. Generate image.
+9. Validate against: Source CAD · Jewelry Preservation Spec · Physics & Logical Validation · Failure Memory · Approved Benchmarks · Logo Workflow · Cloth Standard.
+10. Reject internally if any validation fails.
+11. Record every new failure in `07_QUALITY_MEMORY` (Failure + Cause + Prevention Rule).
+12. Deliver only after all validations pass.
+
+The workflow, policies and validation sequence are **LOCKED**. Improve only by adding new Failure Memory rules and enforcing these validations more strictly. All steps run silently (`docs/17`).
+
+### ONE-TIME PERMISSION (user-locked 2026-07-17)
+Once the user supplies the source files (CAD/references/logo/approved assets) and requests generation, that is ONE-TIME authorization to complete the requested image set — never ask permission before each image or after each regeneration. During an active session: generate all requested images, validate every image, reject failures internally, regenerate automatically, update Failure Memory on each rejection, never interrupt unless input is genuinely required. Authorization ends when: the user changes the design · uploads a new CAD · uploads new references · changes workflow/policies · explicitly pauses/stops · the task completes. Ask ONLY when: a required source asset is missing · the CAD/reference is ambiguous · a requested change conflicts with locked policies · the user starts a different project. Scope: current task only.
+
+### MANDATORY PRE-DELIVERY VALIDATION
+**A. SOURCE CAD (only camera angle may change):** overall geometry · ring proportions · band width · band thickness · ring profile · head · gallery · basket · cathedral · bridge · setting · prongs · prong count · prong thickness · prong position · centre diamond · pavilion · crown · table · side diamonds · pavé · metal — ALL unchanged.
+
+**B. JEWELRY PRESERVATION (reject immediately on any):** geometry drift · invented geometry · missing metal · added metal · missing diamonds · added diamonds · wrong proportions · wrong setting · wrong head · wrong basket · wrong gallery · wrong bridge · wrong cathedral · wrong prongs · wrong diamond shape · wrong diamond orientation. (Owner: `docs/13`, `docs/16`.)
+
+**C. PHYSICS & LOGICAL.** *Head & stone support:* centre diamond physically supported; never floating; girdle visibly seated inside the setting; pavilion naturally supported by the head; crown/girdle/pavilion align with the setting. *Prongs:* every prong visibly contacts AND wraps over the girdle; no gaps; prongs originate naturally from the head; mechanically capable of retaining the stone. *Load path — visually continuous, no interruption or unsupported transition:* `Centre Diamond → Prongs → Setting Head → Basket → Gallery → Bridge → Shank`. *Manufacturing:* realistically manufacturable; stone retained after setting; metal thickness structurally believable; setting capable of supporting the shown diamond; no impossible/unstable geometry. *Visual physics:* gravity respected; no unsupported mass; no floating components; no impossible contact surfaces; metal↔diamond connections believable.
+**MASTER PHYSICS QUESTION (before approving every image):** *"If this exact ring were manufactured in real gold using the shown geometry, would the centre diamond remain securely held under normal wear without relying on hidden or impossible support?"* Anything other than YES → reject internally · record the failure · regenerate.
+
+**D. LOGO (owner: `docs/04`):** official logo only · no AI recreation · correct typography · correct diamond icon · correct colours · correct gradients · correct spacing · correct alignment · correct perspective · correct opacity · naturally printed on premium white cotton · follows cloth folds · no sticker effect · no floating logo · no embossing · no white box.
+
+**E. CLOTH / BACKGROUND (owner: `docs/11`):** premium plain white cotton · natural weave · natural folds · natural shadows · correct perspective · no artificial texture · no colour shift · **MASTER BACKGROUND LOCK + master validation question** per `docs/11`.
+
+**F. INDIVIDUAL IMAGES ONLY (user-locked 2026-07-17).** Each catalog image is an INDEPENDENT full-frame high-resolution render, exported independently, identical studio quality, locked background + locked logo. **Never generate** a contact sheet · thumbnail grid · gallery preview · multi-image board · collage · comparison board · batch overview · catalog sheet · mosaic · storyboard · composite image. **Reject immediately** if an output contains multiple rings in one image · multiple camera views in one image · thumbnail/gallery/grid layout · contact sheet · preview page · image board · composite render. Deliver only the requested individual images; never generate or display group previews unless the user explicitly requests a contact sheet or comparison board.
+
+### MANDATORY POLICY ENFORCEMENT (user-locked 2026-07-17)
+Every generation MUST strictly enforce every loaded policy before, during and after generation. **Policy loading alone is not sufficient** — the system must actively VALIDATE every generated image against every applicable policy before delivery.
+
+**Sequence:** (1) load all required policies · (2) validate that all required policies loaded successfully · (3) generate · (4) execute EVERY validation defined in EACH loaded policy · (5) on any failure → reject internally, record in `07_QUALITY_MEMORY`, regenerate automatically · (6) repeat until every validation passes · (7) deliver only images that pass all policy validations.
+
+**Strict compliance:** no policy may be ignored · no validation may be skipped · no rule is optional. When multiple policies apply, ALL must pass simultaneously. Where two policies overlap, enforce the **stricter** requirement.
+
+**VALIDATION ORDER:**
+1. Jewelry Preservation Spec (`13`)
+2. Zero Jewelry Invention (`16`)
+3. Physics & Logical Validation (§C above)
+4. Background Standard (`11`)
+5. Studio Angles Standard (`12`)
+6. Logo Workflow (`04`)
+7. No Regression Policy (`14`)
+8. QUALITY_MEMORY — Failure Memory + Approved Benchmarks (`07`)
+9. Image Generation Rules (this file)
+
+Only if EVERY validation passes may the image proceed to delivery.
+
+**FINAL DELIVERY GATE:** deliver ONLY if ALL pass — Source CAD · Jewelry Preservation · Zero Invention · Physics & Logical · Background · Studio Angles · Logo · No-Regression · Failure Memory · Approved Benchmarks · Individual-image. Any single failure → reject internally · record in `07_QUALITY_MEMORY` (Failure + Cause + Prevention Rule) · regenerate. An image cannot be delivered if any policy reports a failure. **Never rely on manual review for failures already covered by an existing policy — all such failures must be detected automatically through policy validation.**
+
+**MASTER RULE: policy compliance is mandatory, not advisory. Every delivered image must satisfy 100% of all loaded policies.**
+
+### STRICT POLICY ENFORCEMENT ENGINE (user-locked 2026-07-17)
+**Policies are executable validation rules, not reference documents.** Every image must satisfy every applicable policy before it can be delivered.
+
+**Mandatory pre-generation check:** (1) load every required policy · (2) verify every required policy loaded successfully · (3) verify no policy is skipped · (4) load QUALITY_MEMORY · (5) load Approved Benchmarks · (6) load Failure Memory · (7) load Source CAD · (8) compare the generation request against every policy · (9) apply every recorded prevention rule. **If any required policy is unavailable or not validated → STOP generation immediately.**
+
+**Mandatory during generation:** continuously enforce every applicable policy · no policy ignored · no validation bypassed · **no conflicting instruction may override a locked policy.** When multiple policies apply: evaluate ALL of them · enforce the STRICTEST requirement · preserve all locked assets.
+
+**Mandatory post-generation validation:** run every validation defined by every active policy. Validation is complete only when EVERY policy returns PASS. If any policy returns FAIL: reject internally · do not deliver · identify the exact failed rule · record in `07_QUALITY_MEMORY` · strengthen the existing prevention rule if necessary · regenerate · repeat the COMPLETE validation cycle.
+
+**ZERO-TOLERANCE RULE:** a single failed validation is sufficient to reject the image. Never deliver an image that only partially complies. **PASS = every policy passes. FAIL = entire image rejected.**
+
+**Continuous learning:** every rejection updates QUALITY_MEMORY · strengthens future validation · prevents recurrence. Every approval reinforces Approved Benchmarks · preserves successful patterns · improves future generations.
+
+**MASTER RULE — enforcement stays active:** ✓ before generation ✓ during generation ✓ during validation ✓ during regeneration ✓ before delivery ✓ after user feedback ✓ throughout the entire catalog. **No image may bypass policy validation at any stage.**
+
+### BEFORE / DURING / AFTER ENFORCEMENT (user-locked 2026-07-17)
+Enforcement is CONTINUOUS and cannot be skipped at any stage: **before generation → during generation → after generation → during regeneration → before final delivery → after user feedback.**
+
+**BEFORE generation:** (1) load all required policies — `13`, `07`, `04`, `03` + every other applicable locked standard · (2) confirm every required policy is available and active · (3) load the 4-view source CAD, cached Design Profile, Failure Memory and Approved Benchmarks · (4) check the complete request against every policy · (5) apply every previously recorded prevention rule BEFORE generating · (6) **do NOT begin** if any required policy is missing · any source asset is missing · any instruction conflicts with locked policies · historical failure-prevention rules have not been applied.
+
+**DURING generation:** preserve the source jewelry exactly · enforce all active policies continuously · prevent every recorded historical failure · never invent or modify jewelry geometry · maintain locked logo, cloth, background, lighting and catalog standards · keep every catalog angle unique and physically realistic · do not ask repeated permission during the same approved task (one-time permission above).
+
+**AFTER generation:** immediately validate every output against — (1) Source CAD · (2) Master Jewelry Preservation · (3) Zero Jewelry Invention · (4) Physics & Logical · (5) Logo Workflow · (6) Background Standard · (7) Studio Angles Standard · (8) No Regression Policy · (9) Failure Memory · (10) Approved Benchmarks · (11) Image Generation Rules. If ANY single rule fails: reject internally · do not deliver · identify the exact failure · identify the root cause · add the learning to `07_QUALITY_MEMORY` · add or strengthen the appropriate prevention rule · regenerate automatically · **validate again from the beginning.**
+
+**USER FEEDBACK LEARNING:** every user correction/rejection after delivery is new learning. Record: what was wrong · which component failed · why it occurred · which EXISTING policy should contain the correction · the prevention rule · the expected correct output. **Do not create a duplicate policy** — merge the learning into the existing relevant policy and update `07_QUALITY_MEMORY` (see `17` POLICY MERGE RULE).
+
+**NO-REPEAT RULE:** before every future generation — load all recorded failures · compare the new generation against every past failure · prevent identical AND substantially similar mistakes · preserve all previously approved corrections. The same identified mistake must not be repeated.
+
+**FINAL DELIVERY GATE — deliver only when:** ✓ all policies checked before generation · ✓ all policies enforced during generation · ✓ all policies passed after generation · ✓ no recorded failure repeated · ✓ all new learnings recorded correctly. Otherwise: **Reject → Learn → Update QUALITY_MEMORY → Regenerate → Revalidate.**
+
+### CATALOG IMAGE STANDARD (user-locked 2026-07-17)
+Generate ONE catalog at a time: **Office Photoshoot (5) → House Lifestyle (7)**.
+
+**CATALOG 01 — OFFICE PHOTOSHOOT · 5 images.** Purpose: professional product photography for Etsy, website, marketing, brand identity.
+Required views (each unique): 1. Front Beauty (Hero) · 2. Front Three-Quarter · 3. Side Profile · 4. Rear / Gallery View · 5. Artistic Hero Angle.
+Rules: same premium pure white cotton cloth · same naturally printed preserved logo · same neutral lighting · same white balance · same exposure · same studio environment · same photographic theme · every angle unique · complete jewelry visible · no duplicated composition · natural professional photography only. (`11` background lock, `12` angle diversity, `04` logo.)
+
+**CATALOG 02 — HOUSE LIFESTYLE · 7 images.** Purpose: natural luxury lifestyle marketing.
+Lifestyle (4): 1. Elegant living room / coffee table · 2. Luxury bedroom / vanity setup · 3. Window daylight lifestyle · 4. Luxury home décor composition.
+Natural close-up (3): 5. Natural close-up beauty shot · 6. Natural close-up side angle · 7. Natural close-up artistic detail.
+Rules: preserve jewelry exactly · natural home environment · natural daylight · natural shadows · neutral colour balance · no artificial props · no AI-looking environment · no artificial colour grading · each image a unique composition.
+
+**After each catalog:** validate every image · record user corrections · learn from approvals and failures · update `07_QUALITY_MEMORY` · preserve successful patterns · prevent repeated mistakes · commit the final approved catalog · push to Git · proceed to the next catalog.
+
+#### CATALOG THEME CONSISTENCY (user-locked 2026-07-17)
+Every catalog represents ONE continuous professional photoshoot with a single visual theme. **A catalog must never mix environments or photography styles.**
+
+**THEME LOCK** — the first approved image defines the MASTER THEME for the entire catalog; it becomes a locked reference. Every remaining image preserves the same: environment · photography style · lighting style · background style · props · mood · white balance · colour tone · camera style. **Only camera angle, camera distance, ring orientation and composition may change naturally.**
+
+**Office photoshoot** — if the first image is an office photoshoot, every remaining image stays an office photoshoot. Never introduce: home environment · outdoor · garden · bedroom · kitchen · café · marble lifestyle · nature · any other lifestyle scene.
+
+**House lifestyle** — if the first image is a house lifestyle scene, every remaining image stays inside a residential home. Allowed: living room · coffee table · bedroom · vanity · dining area · window daylight · home décor. Never introduce: office · outdoor · commercial studio · café · restaurant · garden · hotel · street · any unrelated environment.
+
+**NO THEME MIXING** — within one catalog never mix home+office · home+outdoor · office+outdoor · luxury studio+home · indoor+outdoor. **One catalog = one continuous theme.**
+
+**Validation (before approving each image):**
+- [ ] Same environment · [ ] same photography style · [ ] same lighting style · [ ] same mood · [ ] same props · [ ] same background family · [ ] same studio/home setting
+
+If an image appears to belong to a different environment than the first approved image → reject internally · record the failure in `07_QUALITY_MEMORY` · regenerate.
+
+**MASTER RULE:** a customer viewing the complete catalog should believe every image was photographed during ONE uninterrupted professional photoshoot in the same location, with only the camera position changing naturally.
+
+### CATALOG APPROVAL & LEARNING WORKFLOW (user-locked 2026-07-17)
+1. Load and validate all locked policies. 2. Load the 4-view CAD, cached Design Profile, Failure Memory, Approved Benchmarks. 3. Generate only ONE image for a new catalog. 4. Validate it against every active policy. 5. Deliver it for user approval. 6. **Do not generate the remaining catalog images until the first is approved.** 7. Apply every requested correction to that first image.
+8. For every approval, correction or rejection, record in `07_QUALITY_MEMORY`: result (approved/rejected) · successful element · failure or requested change · root cause · prevention rule · correct expected result · applicable policy section.
+9. **Never create duplicate rules.** 10. Merge each learning into the existing relevant policy ONLY when it creates a permanent generation requirement (`17` POLICY MERGE RULE).
+11. **After the first image is approved:** lock its approved cloth · locked logo appearance · lighting + studio theme · photographic realism · preserve all approved jewelry corrections · generate the remaining catalog images automatically · **do not request repeated permission per image** (one-time permission above).
+12. Validate every remaining image separately. 13. Reject and regenerate automatically when any policy or recorded learning fails.
+14. Each subsequent image must learn from: successes of previously approved images · failures of rejected images · user corrections · existing Failure Memory · Approved Benchmarks.
+15. **Never repeat the same or substantially similar mistake.**
+
+**FINAL CATALOG LEARNING (after the complete catalog is approved):** review all successful images · review all rejected images · consolidate duplicate learnings · store final successes as Approved Benchmarks · store final failures + prevention rules in `07_QUALITY_MEMORY` · preserve only permanent, reusable learnings · never rewrite or duplicate locked policies.
+
+**GIT RULE:** do NOT commit or push during image generation. After the complete catalog is approved: (1) save all final policy + QUALITY_MEMORY updates · (2) commit the completed catalog changes · (3) push to the authorized repository and branch · (4) never create a new branch without permission · (5) never push failed, temporary or unapproved images. (Detail: `15`.)
+
+**WORKFLOW:** generate first image → validate → take approval + corrections → record learning → approve first image → generate remaining automatically → validate and learn continuously → complete catalog → store final learning → commit → push.
+
 ## A. JEWELRY PRESERVATION (P1)
 - 100 % identical to the correct SOURCE file. Verify design by viewing the source before generating.
 - Preserve: overall design/silhouette, stone SHAPE, stone COUNT, stone SIZE + spacing, SETTING type, PRONG count/shape/position, side/accent settings, gallery/trellis, band width + structure, metal type/color.

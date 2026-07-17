@@ -87,6 +87,10 @@ HEAD_GEOMETRY_CHECKS = [
     "head_height", "head_width", "head_thickness", "metal_volume",
     "no_added_support_ring", "no_added_gallery_rail", "no_extra_bridge",
     "no_invented_gallery", "open_spaces_preserved", "no_hidden_structures",
+    # Halo assembly lock (docs/16) — the LR-0149 drift: thicker/taller/wider halo,
+    # larger halo stones, shallower stone seating, bulkier basket, taller profile.
+    "halo_thickness", "halo_stone_size", "halo_height", "halo_diameter",
+    "stone_seating_depth", "basket_height", "head_bulk", "overall_ring_height",
 ]
 
 

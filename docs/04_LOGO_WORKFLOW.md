@@ -118,5 +118,23 @@ The logo MUST:
 
 **If the logo looks digitally placed, reject the image** — regenerate in-scene or fall back to the local composite (§4 fallback / `scripts/print_logo_on_cloth.py`). Never ship an overlay-looking logo. Consistent with §4, §7, §9, §12: physically printed on cloth, no shadow behind, no white background behind, never a watermark/AI overlay.
 
+## 15. LOGO COMPLETENESS VALIDATION (user-locked 2026-07-17)
+The preserved logo must read as a logo **fully printed on the cloth BEFORE the ring was placed on top of it**. If the ring or the framing partially covers it, the visible portions must still look complete and naturally continue beyond the jewelry.
+
+**Do NOT allow:** half logo ending abruptly · missing logo continuation · cropped logo with no remaining visible portions · logo "disappearing" beneath the ring · incomplete typography · missing diamond icon · missing lower text · broken horizontal lines · artificially cut logo.
+
+**Validation:**
+- [ ] Logo appears fully printed on the cloth
+- [ ] Visible logo portions continue naturally around the jewelry
+- [ ] Typography is not abruptly truncated
+- [ ] Diamond icon remains complete unless naturally hidden by the ring
+- [ ] Logo perspective follows the cloth
+- [ ] Logo follows the cloth folds
+- [ ] Logo maintains identical colour, opacity and print quality
+
+If the visible logo appears incomplete or artificially cut → reject internally · record the failure in `07_QUALITY_MEMORY` · regenerate.
+
+**MASTER RULE:** the logo must always look like a real physical print on the cloth. The ring may naturally cover part of it, but the remaining visible logo must clearly indicate that the FULL logo exists beneath the jewelry, exactly as in a professional studio photoshoot.
+
 ## 13. FAILURE POLICY & ASSET CACHING (user-locked 2026-07-11)
 **Reject the image** if the logo design differs from the preserved asset, the logo looks AI-generated, the logo does not merge naturally (floating/pasted/flat), the cloth material changes, the cloth becomes yellowish/non-white, or the cloth looks flat/cheap/artificial/overly simple. Full policy + remedies in `docs/11_BACKGROUND_STANDARD.md` (FAILURE POLICY). **Caching:** cache and reuse the locked logo + premium cotton cloth assets across devices/sessions; caching is byte-preserving only and must never alter image quality or asset fidelity — verify against `config/project_manifest.json` `locked_asset_checksums` before use.

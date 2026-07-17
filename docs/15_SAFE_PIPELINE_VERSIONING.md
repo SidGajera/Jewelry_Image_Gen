@@ -55,6 +55,9 @@ If a candidate causes worse results, **disable it but keep its history + failure
 ## 8. APPROVED BASELINE (per SKU/catalog)
 The approved first image is the catalog baseline. Each `config/deliveries/LR-XXXX.json` preserves: source files, approved first image, exact pipeline version, prompt hash, provider + model, seed (where supported), geometry profile, camera/lighting/cloth/logo profiles, user corrections, and the QC report. **Never deliver a later output that scores below this baseline on critical fidelity checks.** Schema template: `config/deliveries/_TEMPLATE.json`.
 
+## 8.5 CATALOG GIT RULE (user-locked 2026-07-17)
+**Do NOT commit or push during image generation.** Only after the complete catalog is approved: (1) save all final policy + `07_QUALITY_MEMORY` updates · (2) commit the completed catalog changes · (3) push to the authorized repository and branch · (4) **never create a new branch without permission** · (5) **never push failed, temporary or unapproved images.** Commit/push still require the user's explicit approval (`17` COMMIT). Full workflow in `docs/03` CATALOG APPROVAL & LEARNING WORKFLOW.
+
 ## 9. GIT SAFETY
 `main` stays production-stable (repo policy = main only; risky work is isolated by the `PIPELINE_MODE` feature flag + versioned modules, not branches — no destructive change to the stable implementation). Before activating a new pipeline as stable: commit the stable state, tag it, run the golden regression suite (`docs/14`, `lib/pipeline/regression.py`), test rollback, verify both pipelines import, push all non-secret files. The old implementation is never deleted after activation.
 

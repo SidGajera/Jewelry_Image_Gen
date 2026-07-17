@@ -1,0 +1,63 @@
+# 07 — QUALITY MEMORY
+
+Dedicated memory layer for continuous improvement. Machine-readable store: [`config/QUALITY_MEMORY.json`](../config/QUALITY_MEMORY.json) — this file is its structure and rules. Loaded before EVERY generation (docs/03 generation order, step 2).
+
+## Approved Benchmarks
+- Approved jewelry renders
+- Approved logo benchmark
+- Approved cloth benchmark
+- Approved lighting benchmark
+- Approved camera benchmark
+
+## Failure Memory
+- Jewelry failures
+- Physics & logical failures
+- Logo failures
+- Cloth failures
+- Lighting failures
+- Camera failures
+- Logo placement & catalog composition failures
+
+### Logo Placement & Catalog Composition — REJECTED (2026-07-17)
+**Observed failure:** the ring was positioned directly over the printed logo, hiding a significant portion of it; only the lower part of the logo remained visible, making the branding look incomplete.
+
+**Root cause:** the composition prioritised ring centring without validating complete logo visibility; the framing did not reserve sufficient space for the full printed logo beneath the jewelry.
+
+**Prevention rule (before finalising composition):** predict the ring footprint · predict the logo footprint · ensure the ring does NOT cover the primary logo · reposition the ring or camera if necessary · keep the complete printed logo naturally visible. **The logo may be partially cropped only by the IMAGE BOUNDARY, never by the jewelry itself.**
+
+**Composition validation (before approval):**
+- [ ] Complete logo visible · [ ] diamond icon visible · [ ] "LUCENT" fully visible · [ ] "CARAT LAB" fully visible · [ ] tagline visible unless intentionally cropped by the image edge · [ ] ring does not overlap the printed logo · [ ] logo remains naturally printed on the cloth · [ ] composition looks like a real product photoshoot
+
+**Expected result:** the jewelry remains the primary subject while the official printed logo is fully readable and naturally integrated into the same cloth — the logo enhances the composition without competing with, or being obscured by, the ring.
+
+**Learning:** future office photoshoots must automatically reserve adequate space for the complete printed logo during camera composition. If the logo is obscured by the ring → reject · record · regenerate with corrected framing. (Owner detail: `04` LOGO COMPLETENESS VALIDATION.)
+
+## Learning Rules
+- Every rejected image automatically records:
+  - Failure
+  - Cause
+  - Prevention Rule
+- Every future generation loads this file before generation.
+- Previously recorded failures must never repeat.
+- Approved benchmark images become the new reference standard.
+
+## Continuous Learning System (user-locked 2026-07-17)
+The system must continuously improve from every rejected image so that identical or substantially similar mistakes never recur.
+
+**Automatic failure recording** — whenever an image is rejected, automatically record: failure category · affected component · root cause · violated policy · prevention rule · validation rule · correct expected behaviour. **No rejected image is discarded without updating QUALITY_MEMORY.**
+
+**Pre-generation learning** — before EVERY new generation: load the complete QUALITY_MEMORY · apply every previously recorded prevention rule · validate the new image against every historical failure before delivery.
+
+**Duplicate failure prevention** — compare each new image against ALL previously recorded failures. If a similar failure is detected: reject immediately · do not deliver · apply the recorded prevention rule · regenerate automatically. **The same failure must never require manual reporting twice.**
+
+**Learning priority** — previously recorded failures outrank generation preferences. Proactively prevent known mistakes instead of repeating them.
+
+**Regression prevention** — every successful correction becomes part of QUALITY_MEMORY. Future generations preserve successful corrections while preventing previous failures. **No solved issue may reappear.** (See `14_NO_REGRESSION_POLICY`.)
+
+**Per-decision recording (user-locked 2026-07-17)** — for EVERY approval, correction or rejection record: result (Approved / Rejected) · successful element · failure or requested change · root cause · prevention rule · correct expected result · applicable policy section. Never create duplicate rules — merge a learning into the existing relevant policy only when it creates a permanent generation requirement (`17` POLICY MERGE RULE).
+
+**Per-catalog learning chain** — each subsequent image must learn from: successes of previously approved images · failures of rejected images · user corrections · existing Failure Memory · Approved Benchmarks.
+
+**FINAL CATALOG LEARNING (after a catalog is fully approved)** — review all successful images · review all rejected images · consolidate duplicate learnings · store final successes as **Approved Benchmarks** · store final failures + prevention rules here · preserve only permanent, reusable learnings · never rewrite or duplicate locked policies. Only then are commits/pushes made (`03` GIT RULE, `15`).
+
+**MASTER LEARNING RULE** — image quality must improve continuously throughout the project. Every rejection makes the system more accurate; every approved image strengthens the approved benchmark; every future generation must show measurable improvement by avoiding all previously solved mistakes. **A mistake already identified, corrected and recorded must not appear again unless the user explicitly changes the source design or requirements.**
