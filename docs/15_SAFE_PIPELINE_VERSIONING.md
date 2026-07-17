@@ -2,24 +2,18 @@
 
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
 
-## 0. NAMED PIPELINES — WHICH ONE RUNS (user-locked 2026-07-17)
+## 0. THE ONLY PIPELINE — HIGGSFIELD (ZERO TOLERANCE, user-locked 2026-07-17)
 
-| Name | What it is | When it runs |
-|---|---|---|
-| **HIGGSFIELD PIPELINE** | Higgsfield `nano_banana_2` generates the whole image from CAD reference photos + prompt locks. Fast (~450 tokens/image, 2 credits), no local render. Geometry is prompt-dependent and **can drift** (`07` FAILURE MEMORY 001–010). | **DEFAULT — always, unless the user names the CAD Pipeline.** |
-| **CAD PIPELINE** | `scripts/cad_render.py` renders the catalog angles from the SKU's master CAD in Blender (metal = exact `.stl` vertices; centre stone = standard round brilliant at the `.3dm` gem's diameter/height/centre). Camera-only movement, so geometry **cannot drift — it is exact by construction.** AI then supplies only cloth, logo, lighting and lifestyle scene. Slower (~1.5 min/angle at 2K) and needs the SKU's `.stl`/`.3dm`. | **ONLY when the user explicitly asks for it** (e.g. "use the CAD Pipeline"). |
+**HIGGSFIELD PIPELINE is the only pipeline. There is no second pipeline and no fallback.**
 
-**Run the CAD Pipeline:**
-```
-blender --background --factory-startup --python scripts/cad_render.py -- \
-  --stl workspace/golden/<SKU>/<file>.stl \
-  --gem <dia>,<height>,<cx>,<cy>,<cz> \
-  --out workspace/cad_renders/<SKU> \
-  --angles front,three_quarter,side,rear
-```
-Blender 4.5 LTS: `C:\Program Files\Blender Foundation\Blender 4.5\blender.exe`. Read the gem values from the SKU's `.3dm` gem layer with `rhino3dm` (bounding box → diameter, height, centre). Proven on **LR-0152** (2026-07-17): four angles at 2K, geometry exact including the three-quarter that the Higgsfield path never held.
+Higgsfield `nano_banana_2` generates every image from the SKU's CAD reference photos plus the prompt locks in `03`, `04`, `11`, `12` and `13`. Geometry fidelity is achieved by reference images + lock wording and by rejecting/regenerating drift — never by rendering locally.
 
-**Switching is the user's call, per task. Neither pipeline replaces the other; both stay runnable (§1).**
+**BANNED — never propose, build, run or reinstate:**
+- ✗ The CAD Pipeline (Blender / `scripts/cad_render.py` / `rhino3dm` / `.stl` / `.3dm` rendering). **Deleted 2026-07-17 on user instruction.**
+- ✗ Local Python image generation, rendering or compositing as a step in producing a catalog image.
+- ✗ Any pipeline switch, mode flag or "use the other pipeline" recommendation.
+
+The prior CAD Pipeline is history, not an option: do not offer it when geometry drifts. When an output drifts, **fix the reference set and the lock wording and regenerate through Higgsfield.**
 
 ## 1. PRESERVE THE CURRENT PIPELINE
 - Git tag **`pipeline-stable`** marks the last proven-good commit (`config/pipeline_versions.json` → `stable_commit`).

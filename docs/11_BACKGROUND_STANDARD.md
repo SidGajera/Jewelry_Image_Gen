@@ -164,6 +164,31 @@ The fabric must read as **premium luxury white cotton photographed under profess
 ## LOCKED CLOTH ASSET — ASSET-ONLY, NEVER AI-GENERATED (user-locked 2026-07-11)
 The premium white cotton cloth is a **preserved asset**, exactly like the logo — it is NEVER generated anew by AI. Reuse only the approved cloth asset (`assets/background/sample_studio_background_with_logo.png`, sha256 `4cc10d33…`, and the `Offie_photoshoot 1–5` Drive references that embody the same cloth). Preserve its material, texture, softness, weave, fine grain, and natural draping; keep neutral pure-white balance; cloth may be plain or naturally folded but must always look premium and physically realistic. The AI's only job is to keep this approved cloth faithful under the ring — never to invent a substitute fabric.
 
+## CLOTH & LOGO LOCK MODE — ZERO TOLERANCE (user-locked 2026-07-17, HIGHEST PRIORITY for background + logo)
+
+**The jewelry, the cloth and the logo are THREE INDEPENDENT LOCKED ASSETS. All three must match their approved references before an image is accepted.** Matching the ring does not excuse a wrong cloth; matching the cloth does not excuse a recreated logo.
+
+The approved white cotton cloth and the approved Lucent Carat Lab logo are LOCKED MASTER ASSETS. **The AI must NEVER recreate, redesign, redraw, stylize or approximate either asset.**
+
+### CLOTH
+Always the approved **premium plain white cotton** cloth, identical in every catalog image.
+
+Never change: cloth colour · cloth material · cloth texture · fabric weave · fabric thickness · fabric finish · white balance · surface appearance.
+
+Never produce: ✗ ivory cloth · ✗ cream cloth · ✗ beige cloth · ✗ satin cloth · ✗ silk appearance · ✗ glossy fabric · ✗ a different weave · ✗ different folds caused by replacing the cloth.
+
+Only natural folds created by camera position are allowed. Lighting must not introduce a warm colour cast — a warm cast IS a cloth failure, not a lighting preference.
+
+### LOGO
+Use ONLY the preserved official Lucent Carat Lab logo. The logo is a **physical print on the cloth**.
+
+Never: ✗ generate the logo with AI · ✗ redraw it · ✗ change typography · ✗ change the diamond icon · ✗ change spacing · ✗ change line thickness · ✗ change colours · ✗ change the gold finish · ✗ change the gradient · ✗ change proportions · ✗ change placement style.
+
+The printed logo must exactly match the preserved master asset, and must appear naturally printed on the cloth with correct perspective, fabric deformation, ink absorption and lighting.
+
+### GATE
+**If either the cloth or the logo differs from the preserved master in any visible way, reject the render and regenerate.** Recurrence 2026-07-17 (LR-0163 hero): warm ivory satin cloth + an AI-recreated logo (wrong icon proportions, typography, gold gradient) shipped for approval. Root cause — the cloth and logo were described in words instead of being driven by the preserved master assets. Remedy: pass the locked cloth and logo assets themselves as Higgsfield references on every office/studio generation (`15` §0 — Higgsfield is the only pipeline), and validate against them before showing the user.
+
 ## FAILURE POLICY — REJECT THE IMAGE IF (user-locked 2026-07-11, applies to logo + cloth)
 An image is INVALID and must be rejected/re-done if ANY of these is true:
 - logo design differs from the preserved asset;
