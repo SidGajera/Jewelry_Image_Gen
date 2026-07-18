@@ -1,5 +1,7 @@
 # 03 — IMAGE GENERATION RULES
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** this doc owns Diamond consistency, Metal colour, Photorealism/anti-CGI, Lifestyle set, Catalog approval workflow. Geometry → `13`; Cloth → `11`; Logo → `04`; Camera uniqueness → `12`; Silent/token → `17`; Consistency gate → `18`. On conflict, the newest "MASTER"/ZERO-TOLERANCE section wins.
+
 Complete rules for every generated image.
 
 ## HIGH PRIORITY — JEWELRY-FIRST PHOTOGRAPHY STANDARD (CRITICAL, user-locked 2026-07-17)

@@ -1,5 +1,7 @@
 # 18 — MASTER CATALOG CONSISTENCY POLICY (user-locked 2026-07-18)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** this doc is the catalog-wide CONSISTENCY GATE only; each check ROUTES to its owner — angles `12`, diamonds/metal/photorealism `03`, cloth `11`, logo `04`, geometry `13`, memory `07`. It never redefines those rules; it enforces them together.
+
 Every catalog must read as ONE uninterrupted professional photoshoot: unique angles, and identical jewelry / diamond / metal / cloth / logo / lighting across all images. Consolidates the angle-uniqueness, diamond-parity, cloth, logo and lighting locks; where a stricter number exists elsewhere, the strictest wins (`17` POLICY MERGE RULE — e.g. `12` uses a ≤20% similarity bar, tighter than the 90% floor below).
 
 ## 1. ONE UNIQUE CAMERA ANGLE = ONE IMAGE

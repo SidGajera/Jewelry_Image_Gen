@@ -1,5 +1,7 @@
 # 15 — SAFE PIPELINE VERSIONING + ZERO-LOSS LEARNING
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** §0 is the canonical PIPELINE rule (Higgsfield-only; CAD/Python banned) and §8.5 the canonical CATALOG GIT RULE. §1–§8 describe the retained versioning machinery and are subordinate to §0.
+
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
 
 ## 0. PIPELINE SPLIT — CAD-COMPOSITE FOR JEWELRY, HIGGSFIELD FOR SCENE (user-locked 2026-07-18, SUPERSEDES the 2026-07-17 Higgsfield-only lock)

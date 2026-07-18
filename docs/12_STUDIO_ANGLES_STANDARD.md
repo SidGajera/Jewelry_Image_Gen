@@ -1,5 +1,7 @@
 # 12 — STUDIO ANGLES + PHYSICAL REALISM (MANDATORY)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** Camera angle uniqueness → this doc's **MASTER CAMERA UNIQUENESS** + **ONE IMAGE PER ANGLE** (≤20% bar) are canonical; `18` §1–§3 route here. Geometry → `13`; realism → `03`.
+
 Locked standards (user-locked 2026-07-10/11). Apply to EVERY catalog's studio set. These add to — never override — P0–P8 in `docs/02_SYSTEM_RULES.md`.
 
 ## 0. STUDIO STARTING-POINT SEQUENCE (ABSOLUTE PRIORITY — locked 2026-07-11)

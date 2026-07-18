@@ -1,5 +1,7 @@
 # 13 — JEWELRY PRESERVATION SPECIFICATION (single source for CAD-fidelity generation + QA)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** this doc owns ALL jewelry geometry / CAD-fidelity / D2D / prong / gallery / band / per-angle preservation (+ `16` zero-invention). `03` §A and `18` §10 route here.
+
 User-locked 2026-07-16, after three consecutive SKUs (twist-halo split-shank; round-halo twist-shank ×2) generated attractive but **redesigned** rings. The prompt rules reduce drift; this spec + the composite fallback are what actually guarantee fidelity. This is the one place that consolidates the geometry-lock requirement and the pre-accept QA checklist — the generation prompt (`prompts/07`) and the auto-QC (`config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`) both point here.
 
 ## 0. MASTER D2D JEWELRY PRESERVATION — HIGHEST PRIORITY (user-locked 2026-07-18; NO other policy overrides this; this is the geometry owner, referenced everywhere else)

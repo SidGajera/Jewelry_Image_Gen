@@ -1,5 +1,7 @@
 # 07 — QUALITY MEMORY
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** this doc + `config/QUALITY_MEMORY.json` own ALL Failure Memory and Quality Memory (every rejection + prevention rule). `14` no-regression routes here. Append new failures here; never start a parallel memory.
+
 Dedicated memory layer for continuous improvement. Machine-readable store: [`config/QUALITY_MEMORY.json`](../config/QUALITY_MEMORY.json) — this file is its structure and rules. Loaded before EVERY generation (docs/03 generation order, step 2).
 
 ## Catalog 0152 — COMPLETE REJECTION · FAILURE MEMORY 001–010 (2026-07-17)

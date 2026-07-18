@@ -1,5 +1,7 @@
 # 11 — MASTER BACKGROUND STANDARD (PERMANENT)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** Cloth topic → this doc's **MASTER CLOTH & LOGO PRESERVATION** + **CLOTH VALIDATION** sections are canonical; all earlier cloth sections below are subordinate history. Logo printing is owned by `04` §14.1b/§14.1c/§14.0. On any conflict, the canonical section (newest "MASTER"/ZERO-TOLERANCE) wins.
+
 The approved reference images (round solitaire on white cloth with the printed Lucent Carat Lab logo) define the ONLY approved studio background. They are the permanent canonical reference for every future generation unless the user explicitly replaces them.
 
 ## NEVER AI-INVENT THE CLOTH (user-locked 2026-07-11, P3)

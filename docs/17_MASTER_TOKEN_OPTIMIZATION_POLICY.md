@@ -1,5 +1,7 @@
 # 17 — MASTER TOKEN OPTIMIZATION POLICY (HIGHEST PRIORITY)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** this doc owns silent execution, token optimization, no-image-preview, and the one-sentence default output contract. `05` is subordinate detail.
+
 User-locked 2026-07-16. **This single policy overrides every previous token-saving, workflow, preview, commit, reasoning, memory, QC-narration, and generation-narration rule. If any prior rule conflicts, THIS policy wins.** It is the one precedence order — do not reason about which scattered rule applies; apply this. (The detailed entries in docs/05 and QUALITY_MEMORY remain as subordinate detail; this governs.)
 
 Does NOT override the ABSOLUTE jewelry-preservation / geometry / logo / QC-fidelity rules (docs/02, 13, 16) — see FINAL PRINCIPLE.

@@ -1,5 +1,7 @@
 # 04 — LOGO WORKFLOW (locked asset + printed-on-cloth compositing)
 
+> **AUTHORITATIVE OWNER (see `00` POLICY INDEX):** Logo printing → **§14.1b MASTER FABRIC PRINTING** + **§14.1c NATURAL CLOTH LOGO** + **§14.0 OFFICIAL LOGO LOCK** are canonical; §1–§15 are subordinate history. Cloth is owned by `11`. Local-composite steps (§3/§4) are disabled while `15` §0 Higgsfield-only is in force. Newest user-locked section wins on conflict.
+
 The single most important workflow in the project. Priority **P0** — overrides everything.
 
 ## 1. WHY
