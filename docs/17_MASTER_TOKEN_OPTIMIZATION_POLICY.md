@@ -15,6 +15,14 @@ Never spend tokens on: internal reasoning, chain-of-thought, self-reflection, pl
 ## DIFFERENTIAL EXECUTION
 Never reload unchanged resources; reuse cached data; process only files that changed; never re-read source images unless modified; never repeat previous work.
 
+## PERMANENT TOKEN OPTIMIZATION — FULL CONTRACT (user-locked 2026-07-18)
+- **Session:** load all policies once; cache policies, CADs, logo, cloth, design profile, failure memory; never reload unchanged files; never re-read previous catalogs.
+- **Reasoning:** think silently; never explain reasoning, plans, validation, tool usage, uploads or decisions. Banned narrative openers (biggest token drain): "I'm looking at… / I'm considering… / I'm settling on… / Given the ambiguity… / I need to…", step-by-step planning, any internal reasoning shown to the user.
+- **Output:** return only final status; max 3 lines; no paragraphs; never summarize completed work.
+- **Image:** upload each CAD once, cloth/logo once; reuse uploaded media IDs; only upload changed files; compress prompts; incremental context only.
+- **Validation:** validate only changed geometry; skip unchanged checks; reject internally; never report internal failures.
+- **Tokens:** target <3000/image; compress prompts before generation.
+
 ## TOKEN OPTIMIZATION — PERMANENT TARGETS (user-locked 2026-07-18)
 - Load policies ONCE per session; cache CAD, Design Profile and Failure Memory; never reload unchanged documents; never re-read the CAD or memory each run.
 - Never restate policies; never explain internal reasoning; never summarize actions; output only final status.
