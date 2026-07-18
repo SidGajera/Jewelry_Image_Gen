@@ -3,7 +3,9 @@
 Fresh pull of `desktop-pc` restores the full workflow automatically. Load `00` POLICY INDEX first; every rule below is already committed and active on pull — no re-prompting needed.
 
 ## Active permanent rules → where they live
-- **Permanent Token Optimizer / targets** → `17` PERMANENT TOKEN OPTIMIZATION + TARGETS (<3k/image, cache once, incremental).
+- **Permanent Token Optimizer / targets** → `17` PERMANENT TOKEN-COST OPTIMIZATION (controlling summary) + PERMANENT TOKEN OPTIMIZATION + TARGETS (<3k/image, cache once, incremental).
+- **Safe-optimization guardrails (never trade quality/geometry/pipeline for tokens)** → `17` SAFE-OPTIMIZATION GUARDRAILS — NON-NEGOTIABLE.
+- **Token-report honesty (measured vs estimate, never fabricate)** → `17` TOKEN REPORTING — HONESTY.
 - **Short-output policy (≤3 lines, one-sentence default)** → `17` DEFAULT RESPONSE STYLE + OUTPUT POLICY (PERMANENT).
 - **Silent execution / no reasoning-planning narration** → `17` INTERNAL REASONING & USER OUTPUT + OUTPUT POLICY.
 - **No bash/shell display, no tool-output narration** → `17` OUTPUT POLICY.
