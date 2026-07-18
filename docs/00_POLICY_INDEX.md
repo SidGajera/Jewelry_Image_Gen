@@ -19,5 +19,6 @@ This index is the **authoritative map**: exactly ONE owner doc/section per topic
 | Approval / commit / git workflow | **`03` CATALOG APPROVAL & LEARNING WORKFLOW** + `15` §8.5 CATALOG GIT RULE | `feedback_*` memory |
 | Source fetch (SKU main folder only; gold default) | **`03` / `feedback_source_main_folder_only`** | per-catalog delivery record |
 | Per-catalog delivery record (recipe, reference IDs, angle map) | **`config/deliveries/LR-XXXX.json`** | `15` §8 baseline |
+| Recovery checkpoint (auto-activation map on fresh pull) | **`19` RECOVERY CHECKPOINT** | routes to owners above |
 
 **Precedence rule:** newest user-locked date wins within an owner; a "MASTER"/"ZERO TOLERANCE" section outranks an older general one on the same topic. Subordinate copies are retained for history and must not be edited to contradict their owner. When adding a new rule, append it to the OWNER only and, if needed, add a see-also pointer elsewhere — never duplicate the rule body.
