@@ -204,5 +204,11 @@ A `status:"nsfw"` / moderation block from Higgsfield is a **temporary provider-s
 Do, automatically: (1) keep all approved images and continue the remaining catalog; (2) wait and retry later, OR regenerate with an EQUIVALENT camera framing that preserves the exact jewelry geometry (geometry owner `13`); (3) resume the blocked image automatically once the provider accepts it.
 User-facing text is ONLY: "One image was temporarily blocked by the provider's moderation system. Remaining images continue processing. The blocked image will retry automatically." No stack traces, widget logs, diagnostics or internal reasoning.
 
+## TOKEN REPORTING — HONESTY (user-locked 2026-07-18)
+When asked for a Session Token Usage Report: report exact usage ONLY if the environment exposes measurable metrics; otherwise clearly label every token count as an ESTIMATE and separate measured values (tool-call counts, images, git/Drive/Higgsfield ops) from estimates. Never fabricate token statistics.
+
+## SAFE-OPTIMIZATION GUARDRAILS — NON-NEGOTIABLE (user-locked 2026-07-18)
+Optimize ONLY by reducing redundant context, duplicate data, repeated uploads, repeated policy loads, repeated prompts, and verbose responses. NEVER optimize by: removing validation · skipping safety/quality checks · changing code behavior · changing generated output · changing the image-generation pipeline · reducing image quality · modifying CAD geometry · altering approved logo/cloth standards. Behavior, pipeline, validation, and final output stay identical — see FINAL PRINCIPLE.
+
 ## FINAL PRINCIPLE
 **Quality first. Geometry second to none. Token efficiency everywhere else.**
