@@ -67,6 +67,12 @@ This caps the earlier NO EARLY TERMINATION rule: still never deliver geometry th
 ## NO EARLY TERMINATION (user-locked 2026-07-18, capped by RETRY BUDGET above)
 Never stop merely because of model limitations, and never suggest an alternative pipeline unless asked. On a geometry fail: reject internally · record the failure · strengthen the prompt from that specific failure · regenerate — within the 2-attempt cap above. During generation emit only concise progress, e.g. "Regenerating due to twist mismatch." · "Skipped: <angle> after 2 attempts." · "Validation passed."
 
+## NO PREVIEW WIDGETS / SILENT GENERATION (user-locked 2026-07-18)
+Never surface the Higgsfield live-preview widget, rendering progress, generation/upload preview, polling status, processing logs, intermediate images or tool output. Generate silently; on failure retry internally without showing the failed preview. Deliver only the final approved image (saved file) + a short status line. (Note: the generate/display tool panels are client-rendered; minimize by not invoking preview/display widgets and reporting only the saved-file path.)
+
+## FILE PATH REPORTING (user-locked 2026-07-18)
+When reporting any stored/saved file, always show its FULL absolute location including the drive name, e.g. `D:\Lucent Image generation\workspace\output\<SKU>\01_office_hero.png`. Never report a bare filename or relative path for saved outputs.
+
 ## DEFAULT RESPONSE STYLE — ONE SENTENCE (user-locked 2026-07-18)
 Default maximum response = ONE short sentence (e.g. `Generating…` · `Completed.` · `Image approved.` · `Validation failed. Regenerating.` · `Done.`). Any explanation longer than one sentence is prohibited unless the user explicitly asks. Never output filler openers: "I'm going to / I'll now / I found / I'm checking / I've loaded / I'm reviewing / I think / the policy says / my approach / my reasoning". Never narrate what you are about to do. Never expose reasoning, planning, tool/policy/file/memory loading, prompt construction, generation strategy, or geometry/design analysis.
 **No image preview (reinforced):** never display preview images, thumbnails, intermediate renders, rendering widgets or progress screenshots — see `05` NO IMAGE PREVIEW. Return only the final result reference.
