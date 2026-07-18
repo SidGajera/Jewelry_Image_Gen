@@ -43,6 +43,19 @@ Complete rules for every generated image.
 
 **Every model must look like a real luxury-campaign model photographed by a professional fashion photographer; every jewelry image must look like genuine commercial product photography from a luxury jewelry brand. Prioritise REALISM OVER STYLIZATION — if any rendering choice makes the image look synthetic, artificial or computer-generated, reject and regenerate.**
 
+**PHOTOREALISM POLICY — MASTER / ANTI-CGI (user-locked 2026-07-18).** Every image must be visually indistinguishable from a professional DSLR macro jewelry photograph. Never a CGI appearance. Before approving, validate ALL:
+- **Metal:** natural environmental reflections on every gold surface — the metal picks up cloth, room, window light, camera and ambient objects; NOT uniform CGI shading. Subtle colour variation across the band.
+- **Diamonds:** real optical physics — internal reflections, light leakage, dispersion/fire, realistic contrast and depth, true scintillation. Never white-glass or flatly rendered.
+- **Cloth:** premium cotton with RANDOM fibre texture, weave variation, tiny imperfections, slight wrinkles, varying softness — never a repeating/uniform pattern.
+- **Lighting:** soft natural daylight with believable bounce light, imperfect reflections, gentle warm/cool variation and soft gradient roll-off — not extremely clean studio-CGI highlights.
+- **Edges/optics:** slight lens softness, tiny bloom, microscopic imperfections — avoid mathematically razor-clean edges and overly perfect digital sharpness.
+- **Contact:** accurate contact shadow with cloth compression and localized wrinkles beneath the ring — the ring never floats.
+- **Background blur:** matches real lens optics (irregular bokeh, natural depth transitions) — not AI-style uniform smooth blur.
+- **Gold tone:** consistent softer CHAMPAGNE-yellow gold across the catalog with natural reflections — never an over-saturated bright yellow-gold.
+- **Micro-realism:** subtle polishing marks, tiny reflection variations, natural imperfections and slight reflection asymmetry — WITHOUT altering the locked jewelry design/geometry.
+- **Reject** any image that appears computer-rendered, over-polished, overly symmetrical, or "too perfect."
+**FINAL ACCEPTANCE RULE:** the image must convincingly pass as a real luxury jewelry photograph shot on a professional macro lens; if it reads as AI/CGI, reject and regenerate. (Recurrence 2026-07-18, LR-0163 office set: metal too perfect, diamonds like white glass, uniform cloth, studio-CGI highlights, weak contact shadow, over-saturated gold. This governs realism only; geometry stays locked by `13`/`16`.)
+
 #### PHOTOREALISM POLICY — ZERO TOLERANCE (user-locked 2026-07-17): per-domain rules
 Simulate a real camera, real lighting, real optics, real materials. Never produce common AI-generated artifacts.
 
@@ -242,10 +255,23 @@ Rules: preserve jewelry exactly · natural home environment · natural daylight 
 - Natural, high-end residential lighting and authentic poses.
 - **Preserve the jewelry D2D exactly** — no geometry, diamond, prong or setting changes (`13 §4.1`).
 - The overall result must look like a professional luxury jewelry photoshoot (`03` ULTIMATE PHOTOGRAPHIC REALISM). Hands/skin: natural pores and texture, realistic lighting response, correct anatomy — never waxy or over-smoothed.
+- **LIFESTYLE SET COMPOSITION (user-locked 2026-07-18).** The 7-image house-lifestyle set = **3 close-up lifestyle** images (macro/tight — the ring fills the frame, worn on the hand, every facet and prong readable) **+ 4 lifestyle** images where the jewelry is still framed CLOSE and clearly visible (not distant environmental shots — the ring reads sharply as the subject even within the scene). Favor tighter framing overall; the jewelry must be clearly visible in all 7. Each of the 7 uses a unique angle/context (`12` ONE IMAGE PER ANGLE, ≤20% similarity).
+- **DIAMOND CLARITY PARITY (user-locked 2026-07-18).** The diamonds in every house-lifestyle image must render at the SAME clarity and optical quality as the office photoshoot: crisp facet edges, real internal reflections, angle-dependent brilliance, clean white light return, sharp table and crown. Never let the worn/lifestyle context soften, haze, blur, dull, grey or under-resolve the stones — the environment and depth of field may soften the background, but the centre and side diamonds stay tack-sharp and ideal-clarity. Reject any lifestyle image where the diamonds look duller or lower-clarity than the office set.
+
+**DIAMOND CONSISTENCY POLICY — MASTER QUALITY REFERENCE (user-locked 2026-07-18).** Diamond quality is IDENTICAL across ALL environments. **The office photoshoot is the MASTER QUALITY REFERENCE.** Every other image — house lifestyle, outdoor, hand-held, close-up, macro — must match the office set for: brilliance · fire · scintillation · facet visibility · table clarity · crown clarity · pavilion visibility · contrast pattern · sharpness · sparkle intensity. Changing the background must NEVER reduce diamond sharpness, facet definition, optical contrast or brilliance. The environment may change; diamond quality may NOT. **Reject and regenerate if the diamond looks softer, hazier, flatter, overexposed, greyer or less detailed than the office reference** — repeat until it matches.
 
 **LIFESTYLE GEOMETRY MATCH (ZERO TOLERANCE — user-locked 2026-07-17).** Every lifestyle image preserves the exact CAD geometry. Before approving, compare the visible ring against the source CAD and verify: band silhouette matches exactly · shoulder curvature matches exactly · the twist begins at the same location · twist width identical · metal thickness identical · **band remains ONE continuous ribbon** · no secondary band appearance · no duplicated metal edge · no invented contour · no invented shoulder ridge · no additional crossover line · head connection matches the CAD.
 **Reject immediately if the rendered ring shows:** ✗ double band · ✗ split shoulder · ✗ extra metal strip · ✗ additional contour · ✗ artificial groove · ✗ false seam · ✗ different twist profile · ✗ different shoulder geometry · ✗ different band flow.
 **Perspective and lighting may change. The jewelry geometry must never change. Only the camera position may change.** (Detail: `13 §3.5`.)
+
+**CATALOG FINAL VALIDATION — GATE BEFORE APPROVAL (user-locked 2026-07-18).** Before approving a catalog, run these checks across the full set:
+1. Every image has a UNIQUE camera angle (≤20% similarity, `12` ONE IMAGE PER ANGLE).
+2. No duplicate compositions exist.
+3. Every diamond matches the Office Photoshoot MASTER QUALITY REFERENCE (`03` DIAMOND CONSISTENCY POLICY).
+4. Reject any image failing any test.
+5. Regenerate ONLY the failed image — never rebuild the whole set.
+
+**Never approve a catalog containing duplicate angles or inconsistent diamond quality.**
 
 **LOCKED MODEL REALISM POLICY (user-locked 2026-07-17).** Use **100% photorealistic human models** in all lifestyle images — they must look captured in a professional luxury jewelry photoshoot.
 **Preserve:** natural skin texture and pores · realistic anatomy and proportions · natural facial expressions · realistic hands and fingers · natural hair · authentic clothing folds and fabric · soft, physically accurate lighting and shadows · natural depth of field.

@@ -13,6 +13,17 @@ Never spend tokens on: internal reasoning, chain-of-thought, self-reflection, pl
 ## DIFFERENTIAL EXECUTION
 Never reload unchanged resources; reuse cached data; process only files that changed; never re-read source images unless modified; never repeat previous work.
 
+## INTERNAL REASONING & USER OUTPUT (user-locked 2026-07-18)
+Think internally; speak minimally; deliver results only. Never expose reasoning, planning, deliberation, uncertainty, conflict resolution, decision process, internal prompts, validation logic, policy/priority/memory loading, failure-memory contents, implementation details, workflow decisions, or model limitations. Banned phrasings include: "I'm thinking / I'm facing a conflict / the policy says / I should / I could / actually / looking at / the user is asking / the executable path is / I'm going to / I don't know".
+- **Policy conflicts:** resolve internally and silently. Do not explain the conflict; do not ask the user to choose between internal workflows unless genuinely-missing essential information blocks the work.
+- **During rendering:** no progress/reasoning/validation/job/prompt narration. Emit only one of: `Generating…` · `Completed.` · `Regenerating.` · `Approved.` · `Failed. Retrying.`
+- **Cannot continue:** return one concise status ≤15 words (e.g. `Missing source CAD.` · `Missing reference image.` · `Higgsfield service unavailable.` · `Rejected. Regenerating.`).
+
+## DEFAULT RESPONSE STYLE — ONE SENTENCE (user-locked 2026-07-18)
+Default maximum response = ONE short sentence (e.g. `Generating…` · `Completed.` · `Image approved.` · `Validation failed. Regenerating.` · `Done.`). Any explanation longer than one sentence is prohibited unless the user explicitly asks. Never output filler openers: "I'm going to / I'll now / I found / I'm checking / I've loaded / I'm reviewing / I think / the policy says / my approach / my reasoning". Never narrate what you are about to do. Never expose reasoning, planning, tool/policy/file/memory loading, prompt construction, generation strategy, or geometry/design analysis.
+**No image preview (reinforced):** never display preview images, thumbnails, intermediate renders, rendering widgets or progress screenshots — see `05` NO IMAGE PREVIEW. Return only the final result reference.
+**After a Git Pull:** do not re-explain the project, workflow, loaded policies, or previous work; do not re-display images; simply continue.
+
 ## NO PREVIEW
 Never preview source / generated / reference / intermediate-composite / internal-QC images unless the user explicitly requests it (types `preview`, `show image`, or `compare images`) or at final approved catalog delivery. If an image must be inspected, do it in code and return text only (e.g. `✓ Downloaded · 1920×1920 · JPG · geometry check: passed`). Never generate throwaway previews/drafts/thumbnails/collages/low-quality tests either — only final full-quality output; regeneration REPLACES (never accumulates); produce exactly the requested count.
 
