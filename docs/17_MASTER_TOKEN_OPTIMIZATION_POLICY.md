@@ -15,6 +15,13 @@ Never spend tokens on: internal reasoning, chain-of-thought, self-reflection, pl
 ## DIFFERENTIAL EXECUTION
 Never reload unchanged resources; reuse cached data; process only files that changed; never re-read source images unless modified; never repeat previous work.
 
+## TOKEN OPTIMIZATION — PERMANENT TARGETS (user-locked 2026-07-18)
+- Load policies ONCE per session; cache CAD, Design Profile and Failure Memory; never reload unchanged documents; never re-read the CAD or memory each run.
+- Never restate policies; never explain internal reasoning; never summarize actions; output only final status.
+- Use INCREMENTAL validation — validate only the changed parts, not the whole set.
+- Keep image prompts compact.
+- **Budgets:** initial project load ~3–5k tokens · each image generation ~1–3k (max 3k) · validation-only <1k.
+
 ## INTERNAL REASONING & USER OUTPUT (user-locked 2026-07-18)
 Think internally; speak minimally; deliver results only. Never expose reasoning, planning, deliberation, uncertainty, conflict resolution, decision process, internal prompts, validation logic, policy/priority/memory loading, failure-memory contents, implementation details, workflow decisions, or model limitations. Banned phrasings include: "I'm thinking / I'm facing a conflict / the policy says / I should / I could / actually / looking at / the user is asking / the executable path is / I'm going to / I don't know".
 - **Policy conflicts:** resolve internally and silently. Do not explain the conflict; do not ask the user to choose between internal workflows unless genuinely-missing essential information blocks the work.
@@ -39,6 +46,18 @@ Think internally; speak minimally; deliver results only. Never expose reasoning,
 **Scope:** applies permanently to every future catalog, workflow, git operation, policy update, image-generation task, validation task and project operation, until explicitly replaced by a newer master Output Policy.
 
 (Consolidates and supersedes the earlier one-line OUTPUT POLICY; reinforces DEFAULT RESPONSE STYLE and INTERNAL REASONING & USER OUTPUT below — `00` INDEX owner: `17`.)
+
+## RETRY BUDGET & CREDIT CONTROL (user-locked 2026-07-18, SUPERSEDES unlimited retries below)
+Diffusion drift + intermittent NSFW refunds waste credits; cap the loop:
+1. **Hard pre-validation:** before generating, confirm the prompt fully specifies the locked geometry for that SKU/angle (design profile + relevant `13` locks). If it doesn't, fix the prompt first — do not generate an under-specified prompt.
+2. **Retry limit = MAX 2 attempts per angle.** Attempt 1; if it fails validation, strengthen from the specific failure and do attempt 2. If attempt 2 still fails geometry → **STOP that angle**, do not burn more credits. (NSFW/refunded auto-refusals do not count against the 2 — those are free re-tries of the same request; only credited geometry fails count.)
+3. **Failure blacklist:** every confirmed failure (twist gap, wrong shoulder, gallery thickness, prong curvature, pavé misalignment, logo issue) becomes a permanent negative rule in `07`/`13` so it is never requested that way again.
+4. **Skip impossible angles:** if an angle fails twice, move to another angle rather than regenerating the same one; report it skipped (never silently drop — `12`/`03` no-silent-caps).
+
+This caps the earlier NO EARLY TERMINATION rule: still never deliver geometry that fails validation, but stop at 2 credited attempts per angle and skip instead of looping.
+
+## NO EARLY TERMINATION (user-locked 2026-07-18, capped by RETRY BUDGET above)
+Never stop merely because of model limitations, and never suggest an alternative pipeline unless asked. On a geometry fail: reject internally · record the failure · strengthen the prompt from that specific failure · regenerate — within the 2-attempt cap above. During generation emit only concise progress, e.g. "Regenerating due to twist mismatch." · "Skipped: <angle> after 2 attempts." · "Validation passed."
 
 ## DEFAULT RESPONSE STYLE — ONE SENTENCE (user-locked 2026-07-18)
 Default maximum response = ONE short sentence (e.g. `Generating…` · `Completed.` · `Image approved.` · `Validation failed. Regenerating.` · `Done.`). Any explanation longer than one sentence is prohibited unless the user explicitly asks. Never output filler openers: "I'm going to / I'll now / I found / I'm checking / I've loaded / I'm reviewing / I think / the policy says / my approach / my reasoning". Never narrate what you are about to do. Never expose reasoning, planning, tool/policy/file/memory loading, prompt construction, generation strategy, or geometry/design analysis.

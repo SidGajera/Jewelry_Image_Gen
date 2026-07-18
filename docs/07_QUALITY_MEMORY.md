@@ -66,6 +66,10 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 - Camera failures
 - Logo placement & catalog composition failures
 
+### FM-0163 / FM-0164 — Ref-text leak & band artifacts (LR-0162, 2026-07-18)
+- **FM-0163 — Internal reference text/IDs in the image.** The rear render engraved "REF1=LR-0162" on the band. *Prevent:* never render prompts, IDs, reference labels, watermarks, hidden annotations or metadata into any image; OCR-check before delivery — if any readable text other than the official Lucent Carat Lab logo appears, reject (see `03` NO TEXT / NO WATERMARK, `04` §14.1d).
+- **FM-0164 — Band reflection/phantom-geometry artifact.** Unnatural reflection/geometry artifact on the lower-inside of the band. *Prevent:* the band is one continuous clean 18K gold surface with physically correct reflections only; inspect the full band at ~200% zoom and reject any dents, seams, folds, duplicated edges, warped reflections or phantom geometry on the metal.
+
 ### Catalog 0159 — Logo Overlay · Cloth Drift · Geometry Simplification · CGI Feel — REJECTED (2026-07-18)
 Four permanent entries (strengthen existing Design-Preservation / Cloth `11` / Logo `04` 14.1b / Photorealism `03` policies — not new policies):
 - **F1 Logo overlay** — logo rendered as a separate graphic layer, not embedded print. *Prevent:* reject any image where the logo reads as visually independent of the fabric; the print must inherit weave, wrinkles, lighting, shadows and fibre texture. Root fix pending user decision (in-model can't guarantee embed; local composite is the reliable path).
