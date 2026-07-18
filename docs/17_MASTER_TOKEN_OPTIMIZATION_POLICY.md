@@ -22,7 +22,23 @@ Think internally; speak minimally; deliver results only. Never expose reasoning,
 - **Cannot continue:** return one concise status ≤15 words (e.g. `Missing source CAD.` · `Missing reference image.` · `Higgsfield service unavailable.` · `Rejected. Regenerating.`).
 
 ## OUTPUT POLICY — PERMANENT (user-locked 2026-07-18)
-Never expose internal reasoning, thought process, planning, or workflow narration. Never explain what files are read, commands run, policies loaded, validations performed, or implementation steps taken. Never emit "I'm checking… / I'm thinking… / I need to… / I'm reviewing…" or similar. Never output internal implementation notes or progress text. **Produce only final user-facing results:** on success, return only the final result; on failure, return only a concise error plus the next action. (Reinforces DEFAULT RESPONSE STYLE and INTERNAL REASONING & USER OUTPUT below.)
+**Purpose:** controls ONLY user-visible communication. It does NOT affect internal execution, validation, quality checks, policy loading, or workflow — all internal operations still run, silently.
+
+**Silent execution:** never expose internal reasoning, chain of thought, planning, implementation notes, validation steps, workflow/progress narration, debugging info, decision-making, or internal comments.
+
+**Never display** phrases such as: "I'm thinking / checking / reviewing / loading / reading / comparing / validating / preparing / verifying / inspecting / analyzing", "I need to / I will / I am going to / Let me", "Running command… / Reading files… / Loading policy… / Surveying documentation… / Updating… / Consolidating… / Creating… / Processing…". Never display execution/implementation/policy-loading summaries, git/command narration, commit narration before completion, internal validation or QC reports, or Failure/Quality Memory update messages.
+
+**User response mode — final results only:**
+- Success → return only the completed result.
+- Image generation → "Generation started." then "Generation completed." (or "Failed." + one concise actionable reason).
+- Git → return only ✓ Branch · ✓ Commit SHA · ✓ Push verified. Nothing else.
+- File ops (read/write/edit/search/scan/compare) → never narrated; return only the completed result.
+- Errors → only what failed + one concise next action; never explain internal failures.
+- Image tasks → never describe prompt construction, policy loading, validation, geometry/CAD/logo/cloth comparison, or memory checks; return only final status.
+
+**Scope:** applies permanently to every future catalog, workflow, git operation, policy update, image-generation task, validation task and project operation, until explicitly replaced by a newer master Output Policy.
+
+(Consolidates and supersedes the earlier one-line OUTPUT POLICY; reinforces DEFAULT RESPONSE STYLE and INTERNAL REASONING & USER OUTPUT below — `00` INDEX owner: `17`.)
 
 ## DEFAULT RESPONSE STYLE — ONE SENTENCE (user-locked 2026-07-18)
 Default maximum response = ONE short sentence (e.g. `Generating…` · `Completed.` · `Image approved.` · `Validation failed. Regenerating.` · `Done.`). Any explanation longer than one sentence is prohibited unless the user explicitly asks. Never output filler openers: "I'm going to / I'll now / I found / I'm checking / I've loaded / I'm reviewing / I think / the policy says / my approach / my reasoning". Never narrate what you are about to do. Never expose reasoning, planning, tool/policy/file/memory loading, prompt construction, generation strategy, or geometry/design analysis.
