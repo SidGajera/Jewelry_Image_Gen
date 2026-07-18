@@ -45,6 +45,26 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 
 Rules: never load the whole repository; load the **smallest** relevant file; after extracting the needed rules, discard unused sections from working memory. Reducing loaded context must NEVER reduce output quality — if you need more, load one more small file, never the whole repo. Never preload documentation, history, or archived files.
 
+### 1.1 SINGLE-OWNER POLICY REGISTRY (user-locked 2026-07-18 — one responsibility, one owner; no rule duplicated across files)
+Every requirement has exactly ONE owning document. Other files that need it **reference the owner — never copy the text.** When a new issue is found: if an existing owner covers the topic, EXTEND that owner; only create a new policy for a genuinely new responsibility.
+
+| Responsibility (single owner) | Owning file | Notes |
+|---|---|---|
+| **Jewelry geometry preservation** — silhouette, head, gallery, basket, cathedral, bridge, prongs, stones, band, shoulders, negative spaces, metal volume, proportions; Master Design Lock; D2D side-angle protocol; CAD-exact validation | `docs/13_JEWELRY_PRESERVATION_SPEC.md` | "Zero jewelry invention" (`docs/16`) is a sub-detector that references 13, not a second geometry policy. |
+| **Logo** — master asset, placement, cloth printing, perspective, all logo failure fixes | `docs/04_LOGO_WORKFLOW.md` | Logo text elsewhere (e.g. `11`, `07`) defers here. |
+| **Cloth** — material, weave, colour, white balance, printing surface | `docs/11_BACKGROUND_STANDARD.md` | Cloth only; its logo paragraphs defer to `04`. |
+| **Camera angles / rendering workflow / lighting / validation sequence** | `docs/03_IMAGE_GENERATION_RULES.md` (+ `docs/12` for the 5 studio angle definitions) | |
+| **Approved patterns + Failure Memory** | `config/QUALITY_MEMORY.json` (store) · `docs/07_QUALITY_MEMORY.md` (schema) | Failure Memory stores ONLY: `Failure ID · Root Cause · Affected Policy · Prevention · Status`. It never restates a master policy — it points to the owner. |
+| **Pipeline selection / Higgsfield-only / compositing ban / rollback** | `docs/15_SAFE_PIPELINE_VERSIONING.md` | |
+| **No-regression + Global Regeneration Lock** | `docs/14_NO_REGRESSION_POLICY.md` | |
+| **Runtime / token / preview / NSFW + service-failure handling / execution order** | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` | |
+
+**Runtime load order (each contributes only its own responsibility):** Master Jewelry Preservation (`13`) → Logo (`04`) → Cloth (`11`) → Image-Generation Rules (`03`/`12`) → Quality Memory (`QUALITY_MEMORY.json`) → Failure Memory. Nothing duplicated.
+
+**Known CROSS-OWNER CONFLICT to resolve once (do not silently duplicate a fix into both):** CAD-exact side/rear geometry is owned by `13`, but *how* it can be achieved is gated by the pipeline owner `15` (Higgsfield-only bans compositing — the only method that guarantees geometry by provenance). These two must be reconciled in ONE place by the user; until then `13` records the limitation and side/rear angles are skipped, not faked.
+
+**Cleanup debt (pending):** logo rules currently duplicated in `04`/`07`/`11`/`16`; cloth in `03`/`11`; geometry in `01`/`02`/`03`/`07`/`13`/`16`. These copies should be collapsed into references to the owners above in a dedicated de-dup pass (not yet done).
+
 ## 2. OPERATING PRINCIPLES (mandatory)
 1. **The repository is the single source of truth.** Behavior comes from these files, not from memory of any prior chat.
 2. **Never invent missing rules.** If something is not specified here, ask the user — do not guess or fill gaps.

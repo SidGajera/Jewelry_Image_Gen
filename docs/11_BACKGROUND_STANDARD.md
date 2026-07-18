@@ -189,6 +189,19 @@ The printed logo must exactly match the preserved master asset, and must appear 
 ### GATE
 **If either the cloth or the logo differs from the preserved master in any visible way, reject the render and regenerate.** Recurrence 2026-07-17 (LR-0163 hero): warm ivory satin cloth + an AI-recreated logo (wrong icon proportions, typography, gold gradient) shipped for approval. Root cause — the cloth and logo were described in words instead of being driven by the preserved master assets. Remedy: pass the locked cloth and logo assets themselves as Higgsfield references on every office/studio generation (`15` §0 — Higgsfield is the only pipeline), and validate against them before showing the user.
 
+### REUSED, NOT REGENERATED — THE DECIDING TEST (user-locked 2026-07-17, SUPERSEDES the reference-passing remedy above)
+The master cloth and logo **are NOT references for style. They are IDENTICAL assets that must appear unchanged in every studio image.**
+
+**Reject immediately if the logo is REGENERATED instead of REUSED.** This is a test of *mechanism*, not of resemblance — a mark that merely looks close still fails.
+
+**Consequence (settled 2026-07-17 after the third same-day recurrence: LR-0158, LR-0163 hero, LR-0163 hero v3).** An in-model Higgsfield render *always* re-synthesises the mark from the prompt+reference; it can never reuse the master's pixels. Passing `logo_official.png` as a third reference was tried three times and drifted every time (icon geometry, kerning, gold gradient). Therefore **the in-model logo path is CLOSED** — it cannot satisfy this lock by construction, and retrying it is a known-failing experiment, not a fix.
+
+The only two compliant outcomes for a studio image:
+1. **Composite the preserved asset** — `scripts/print_logo_on_cloth.py` prints the master's actual pixels onto the clean-cloth render (`logo pixels never repainted`). This is the only path that literally REUSES the logo, and is the required default when the logo must be present.
+2. **Omit the logo** — permitted by the `omit over approximate` governing rule when a composite is not possible. A MISSING logo is acceptable; an AI-drawn one is NOT.
+
+**Known conflict — flagged, not silently resolved:** `15` §0 (same date) bans local compositing as a production step, which forbids outcome 1. That ban and this lock cannot both hold whenever the logo must appear. This lock is the later user instruction and governs the logo; `15` §0 continues to govern the *jewelry/scene* pipeline (Higgsfield only, no CAD/Blender, no local ring rendering). Reconcile explicitly before editing either section.
+
 ## FAILURE POLICY — REJECT THE IMAGE IF (user-locked 2026-07-11, applies to logo + cloth)
 An image is INVALID and must be rejected/re-done if ANY of these is true:
 - logo design differs from the preserved asset;

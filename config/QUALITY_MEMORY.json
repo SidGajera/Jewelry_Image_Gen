@@ -1222,6 +1222,18 @@
         "scripts/rollback-pipeline.ps1",
         "config/learning_candidates.json"
       ]
+    },
+    {
+      "id": "LR-0163-side-rear-ai-geometry",
+      "problem": "AI redesigns hidden jewelry geometry in side/rear/three-quarter views (head height, gallery, baskets, prongs, side-stone position, cathedral, band all drift from CAD).",
+      "root_cause": "The generative image model synthesizes unseen geometry instead of rotating the original CAD object; prompt-only 'CAD lock' cannot hold hidden structure.",
+      "fix": "Never use generative image synthesis for jewelry geometry. Render the ring from the source CAD and composite it unchanged; use AI only for the surrounding scene. If the CAD cannot supply the angle, skip that jewelry angle. VALIDATED 2026-07-18: Higgsfield model `gpt_image_2` (OpenAI GPT Image 2) reproduced the LR-0163 rear/elevation geometry faithfully from the source elevation reference where `nano_banana_2` drifted; use gpt_image_2 (quality high, 2k) for geometry-critical side/rear/three-quarter angles, then run the overlay self-check. Also clears the nano_banana NSFW false-flag on this content.",
+      "affected_policy": "docs/13_JEWELRY_PRESERVATION_SPEC.md#0-required-production-method-d2d-cad-composite",
+      "status": "prevention-active; gpt_image_2 validated",
+      "refs": [
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md#0",
+        "docs/15_SAFE_PIPELINE_VERSIONING.md#0"
+      ]
     }
   ]
 }

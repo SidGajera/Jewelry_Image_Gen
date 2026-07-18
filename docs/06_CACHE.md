@@ -68,6 +68,17 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 ## OFFICIAL LOGO — GENERATION REFERENCE (session-ephemeral)
 Import `assets/logo/logo_official.png` (Drive `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`) via `media_import_url` each session to get a media_id, then pass it as the 3rd studio reference so the printed logo matches the official artwork exactly. media_ids expire across sessions — re-import when needed.
 
+## DESIGN PROFILE — LR-0163 (round three-stone with pear sides; analyzed 2026-07-17)
+- **Source folder:** `1xJYQ1Pu7bLOMNXw6Msoy-0KWIDsB4iZG` ("LR- 0163 (Round)", source parent). Main folder only — a `photo and video` subfolder exists and was NOT used. Studied files: `Copy of 1 (1)` id `13x0K_oMGRGOEk-_JsEUurIAMNk5u7iUP` (front top-down, used as ring source), `Copy of 1 (5)` id `1uyBixy0ZBuLnOnfc3U9OmbOrmW4S1hsu` (three-quarter/side), `Copy of 1 (7)` id `1XMR2YCkOdZDgHD1Jqqi4LwmLmhJiOJOL` (front elevation).
+- **Shape/center:** ROUND BRILLIANT center diamond.
+- **Prongs:** FOUR (4) double-claw prongs on the center. Do NOT render an 8-prong crown.
+- **Side stones:** TWO (2) PEAR-cut colorless brilliant diamonds, one each side, tips pointing OUTWARD toward the shoulders, each held by three prongs with a V-tip at the point. No halo, no pavé, no accent stones anywhere.
+- **Gallery/shoulders:** open cathedral TRELLIS gallery; shoulders rise cleanly to the head.
+- **Band:** plain thin tapering round-profile band, no stones.
+- **Metal:** 18K natural warm yellow gold, high polish. (Folder also holds `Copy of gold.mp4` — gold is the correct metal per the gold-by-default lock.)
+- Reuse this profile for all LR-0163 generations; re-analyze only if the reference changes.
+- **SIDE-VIEW FAILURE (LR-0163, rejected 2026-07-18):** the true-side / elevation studio shot drifted from CAD when the TOP-DOWN source (`Copy of 1 (1)`) was used as the ring reference — the model invented a taller head, elevated gallery, thicker/more-upright prongs, side pears set higher & farther out, thicker pear baskets, altered cathedral angles, thicker shank, and an elevated camera. **FIX (locked): for any side/elevation/3-quarter studio angle, drive geometry from the source's own ELEVATION view `Copy of 1 (7)` id `1XMR2YCkOdZDgHD1Jqqi4LwmLmhJiOJOL` (Higgsfield media re-import each session) as the ring reference, keep the camera exactly at ring height (no added elevation), and validate head height / gallery / basket / prong sweep+thickness / side-stone height+rotation+spacing / shoulder transition / band thickness / cathedral members / overall silhouette against that elevation before delivery.** Cloth+logo remain the locked branded-cloth + official-logo references. General rule: match the camera angle to the source view that actually shows that geometry — never invent an unseen angle from the top-down.
+
 ## DESIGN PROFILE — LR-0140 (round halo, cathedral split-shoulder pavé; analyzed 2026-07-11)
 - **Source folder:** `1XhWzf5tB_0L8wtRaI7LfawqLbgL35vnI` (source parent). Studied files: `Copy of 1 (3)` (three-quarter), `Copy of 1 (7)` id `1I6ewzdn4Z1fTyPB-WombIp2fm8r1735a` (front elevation, used as ring source).
 - **Shape/center:** round brilliant center diamond.

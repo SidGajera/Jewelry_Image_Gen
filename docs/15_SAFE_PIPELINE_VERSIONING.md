@@ -2,18 +2,16 @@
 
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
 
-## 0. THE ONLY PIPELINE — HIGGSFIELD (ZERO TOLERANCE, user-locked 2026-07-17)
+## 0. PIPELINE SPLIT — CAD-COMPOSITE FOR JEWELRY, HIGGSFIELD FOR SCENE (user-locked 2026-07-18, SUPERSEDES the 2026-07-17 Higgsfield-only lock)
 
-**HIGGSFIELD PIPELINE is the only pipeline. There is no second pipeline and no fallback.**
+**Reversal:** the 2026-07-17 "Higgsfield is the only pipeline / CAD & compositing banned" rule is REPEALED by explicit user instruction 2026-07-18, because prompt-only "CAD lock" could not hold jewelry geometry on side/rear/three-quarter angles (in-model always re-synthesizes hidden structure). The governing method is now:
 
-Higgsfield `nano_banana_2` generates every image from the SKU's CAD reference photos plus the prompt locks in `03`, `04`, `11`, `12` and `13`. Geometry fidelity is achieved by reference images + lock wording and by rejecting/regenerating drift — never by rendering locally.
+- **JEWELRY GEOMETRY → CAD-COMPOSITE (required, owner `13` §0).** The ring is rendered from the source CAD (Blender/Rhino/KeyShot/MatrixGold), exported with a mask, and composited UNCHANGED. The image model NEVER generates jewelry geometry.
+- **SCENE → Higgsfield (`nano_banana_2`).** AI generates only background, cloth folds, lighting, shadows, reflections, human model, scene composition — then the untouched CAD jewelry is composited in; logo applied separately (owner `04`).
 
-**BANNED — never propose, build, run or reinstate:**
-- ✗ The CAD Pipeline (Blender / `scripts/cad_render.py` / `rhino3dm` / `.stl` / `.3dm` rendering). **Deleted 2026-07-17 on user instruction.**
-- ✗ Local Python image generation, rendering or compositing as a step in producing a catalog image.
-- ✗ Any pipeline switch, mode flag or "use the other pipeline" recommendation.
+**Still banned:** using an image model to create a new *jewelry* angle (image-to-image rotation, generative fill/inpaint on the ring, AI hidden-geometry reconstruction, AI side synthesis) — see `13` §0 PROHIBITED list. If the CAD cannot supply an angle, SKIP that jewelry angle (`13` side/rear rule); do not fake it in-model.
 
-The prior CAD Pipeline is history, not an option: do not offer it when geometry drifts. When an output drifts, **fix the reference set and the lock wording and regenerate through Higgsfield.**
+**Execution requirement:** this method needs the SKU's actual CAD/STL/3DM file plus a CAD renderer. Where the CAD file or renderer is unavailable, the geometry-critical angle cannot be produced compliantly and must be skipped until the CAD render exists.
 
 ## 1. PRESERVE THE CURRENT PIPELINE
 - Git tag **`pipeline-stable`** marks the last proven-good commit (`config/pipeline_versions.json` → `stable_commit`).

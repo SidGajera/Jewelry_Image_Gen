@@ -11,3 +11,6 @@ __pycache__/
 
 # CAD renders are large binaries; regenerate with scripts/cad_render.py
 workspace/cad_renders/
+
+# AI-generated catalog deliverables (go to Drive Output, not git)
+workspace/output/

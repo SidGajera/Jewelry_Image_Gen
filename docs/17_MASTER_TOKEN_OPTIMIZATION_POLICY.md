@@ -124,5 +124,10 @@ Policy/refactor work must itself obey this policy. Read, merge, replace, delete 
 - **True zero-token option:** hand the user the ready-to-paste prompt pack + settings and let them run generations in the Higgsfield app directly (chat has a ~450-token/image floor).
 - **Measured cost reference:** `generate_image` echo ~450/img · media import ~1,200 · source view ~1,300 · `show_generations`/`job_display` ~10k–15k (banned).
 
+## NSFW / PROVIDER-MODERATION HANDLING (user-locked 2026-07-18; owner of this responsibility per `CLAUDE_SETUP §1.1`)
+A `status:"nsfw"` / moderation block from Higgsfield is a **temporary provider-side event, NOT a design failure.** Do NOT: stop the catalog · mark the design failed · record it as a jewelry failure · add it to Failure Memory · burn repeated immediate-retry credits · ask the user for approval.
+Do, automatically: (1) keep all approved images and continue the remaining catalog; (2) wait and retry later, OR regenerate with an EQUIVALENT camera framing that preserves the exact jewelry geometry (geometry owner `13`); (3) resume the blocked image automatically once the provider accepts it.
+User-facing text is ONLY: "One image was temporarily blocked by the provider's moderation system. Remaining images continue processing. The blocked image will retry automatically." No stack traces, widget logs, diagnostics or internal reasoning.
+
 ## FINAL PRINCIPLE
 **Quality first. Geometry second to none. Token efficiency everywhere else.**
