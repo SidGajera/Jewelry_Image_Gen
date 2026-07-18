@@ -64,6 +64,14 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 - Camera failures
 - Logo placement & catalog composition failures
 
+### Catalog 0159 — Logo Overlay · Cloth Drift · Geometry Simplification · CGI Feel — REJECTED (2026-07-18)
+Four permanent entries (strengthen existing Design-Preservation / Cloth `11` / Logo `04` 14.1b / Photorealism `03` policies — not new policies):
+- **F1 Logo overlay** — logo rendered as a separate graphic layer, not embedded print. *Prevent:* reject any image where the logo reads as visually independent of the fabric; the print must inherit weave, wrinkles, lighting, shadows and fibre texture. Root fix pending user decision (in-model can't guarantee embed; local composite is the reliable path).
+- **F2 Cloth quality drift** — generic white fabric with a slight grey cast and coarse repetitive weave instead of premium luxury bright-white cotton. *Prevent:* lock cloth globally to the premium bright-white benchmark; reject any colour/texture drift (`11` CLOTH VALIDATION).
+- **F3 Geometry drift** — rear gallery, prongs (thicker, more rounded tips, altered spacing), shoulder transitions and pavé layout subtly reinterpreted vs CAD. *Prevent:* part-by-part CAD comparison before approval; any structural deviation, however small, → reject and regenerate.
+- **F4 AI simplification** — fine CAD detail (support bars, gallery elements, band-width transitions, pavé bead consistency) smoothed into generic geometry. *Prevent:* preserve every visible CAD edge/transition/support bar/gallery/setting detail exactly; no smoothing, approximation or reinterpretation.
+Also: gold lacked environmental reflections, edges mathematically perfect, weak contact shadow / minimal cloth compression → CGI feel (`03` PHOTOREALISM MASTER).
+
 ### Catalog 0150 — Head & Shank Geometry Drift — REJECTED (2026-07-17)
 **Reference:** approved Image 1 (hero front) = the locked jewelry benchmark for Catalog 0150.
 

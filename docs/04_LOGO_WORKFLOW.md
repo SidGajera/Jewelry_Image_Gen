@@ -145,6 +145,27 @@ The Lucent Carat Lab logo is a **LOCKED MASTER ASSET**. The image generator must
 
 *Execution note (user-locked 2026-07-17): Higgsfield is the ONLY pipeline (`15` §0) — local Python compositing and the CAD/Blender path are removed and must never be proposed. The lock is therefore enforced inside the Higgsfield path: **pass `assets/logo/logo_official_transparent.png` itself as a reference image on every office/studio generation**, name it as the master to be printed unchanged, and compare the output against the master before showing the user. An in-model render still tends to re-draw the mark, so this comparison is mandatory and any visible difference is an automatic reject-and-regenerate. Where the mark cannot be held to the master, `11` GOVERNING RULE applies — **omit over approximate**.*
 
+## 14.1b MASTER FABRIC PRINTING POLICY — EMBEDDED-IN-COTTON (ZERO TOLERANCE, user-locked 2026-07-18, global, HIGHEST logo authority)
+The logo is a **physical textile print**, professionally screen-printed directly onto premium white cotton — NOT a graphic overlay, watermark, pasted image or AI recreation.
+
+**Inherit the fabric — every pixel of the logo inherits the cloth beneath it.** The ink follows: cloth weave · cotton fibres · thread direction · folds · wrinkles · fabric compression · fabric stretch · surface irregularities · lighting · shadows · perspective. If the cloth bends, the logo bends; if it wrinkles, the logo wrinkles; if it compresses, the logo compresses.
+
+**Ink behaviour — render as premium metallic textile ink:** microscopic ink absorption · tiny edge feathering · subtle pigment diffusion · thread-level interruptions · natural textile imperfections. **Never perfectly sharp vector edges.** The print appears embedded INSIDE the cotton fibres.
+
+**Cloth-first rendering:** render the cloth first, then print the logo INTO it. Never render the logo separately and place it over the cloth — the cloth owns the logo, not the reverse.
+
+**Reject immediately if:** logo appears above/pasted/composited/watermark-like · ignores fabric texture/weave/wrinkles · edges unnaturally sharp · does not inherit lighting/shadows · looks digitally generated or overlaid.
+
+**FINAL ACCEPTANCE:** a viewer must believe the logo was printed on the cloth BEFORE the photo was taken. At 200–300% zoom the gold ink visibly integrates with the cotton weave — slight feathering, fibre interruptions, natural textile behaviour, not clean vector edges. Recurrence 2026-07-18 (LR-0159 hero): crisp edges, ink not inheriting the weave, sitting above the fabric — rejected. Colour/geometry of the mark still stay exactly on the master (§14.0, §14.1); this rule governs how the ink sits in the cloth.
+
+## 14.1c NATURAL CLOTH LOGO POLICY — JEWELRY-FIRST, MATTE ABSORBED INK (user-locked 2026-07-18, global)
+**Primary rule:** the jewelry is always the hero; the logo is secondary — a viewer notices the ring first and the logo only on looking for it.
+**Visual dominance:** the logo must be ~40–60% LESS visually prominent than the jewelry. The ring stays the brightest, highest-contrast subject; the logo never competes with the diamond, never looks brighter than the jewelry.
+**Ink finish — MATTE textile ink, NOT metallic:** slightly absorbed into the fibres, soft edges at microscopic level, natural print imperfections, realistic textile diffusion. NEVER glossy/reflective ink, gold-foil effect, metallic reflection, embossed or engraved look, high contrast, over-saturation, glow.
+**Fabric interaction:** the ink follows every fibre, wrinkle and fold, slightly loses sharpness inside the weave, and inherits the cloth's texture, lighting and shadows — never ignores the cloth texture, never painted-on-top/floating/embossed/laminated.
+**Cloth:** premium pure white cotton, luxurious woven texture, natural soft daylight, subtle sheen from the cotton itself (not from the logo), realistic folds; never change cloth colour/weave/material.
+**Final validation:** ✓ jewelry is the first thing the eye notices · ✓ logo feels physically printed INTO the fabric · ✓ logo follows cloth texture/folds · ✓ no AI/digital appearance · ✓ logo never brighter than the jewelry · ✓ logo supports the composition rather than dominating it. (Note: this softens the earlier "gold gradient" reading toward a MATTE absorbed ink — matte wins where they differ; artwork geometry/typography still exact per §14.0.)
+
 ## 14.1 LOGO PRINT POLICY (LOCKED — user-locked 2026-07-17)
 The official Lucent Carat Lab logo is a **preserved asset** and must be printed using the **exact official logo colours**.
 
