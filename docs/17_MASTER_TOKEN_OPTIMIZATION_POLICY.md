@@ -15,6 +15,16 @@ Never spend tokens on: internal reasoning, chain-of-thought, self-reflection, pl
 ## DIFFERENTIAL EXECUTION
 Never reload unchanged resources; reuse cached data; process only files that changed; never re-read source images unless modified; never repeat previous work.
 
+## PERMANENT TOKEN-COST OPTIMIZATION (user-locked 2026-07-18, controlling summary)
+Authoritative quick-contract; expands in the sections below. Priority order: (1) keep image bytes out of context · (2) cache every asset once · (3) one image per angle · (4) no repeated polling/previews · (5) incremental prompts + validation only.
+
+- **Image bytes:** never put base64/raw/decoded image data in chat context; read images via file path, ID, thumbnail, hash, or external processing only; cache each source + generated image once; never reopen unchanged images; disable preview/live-render/grouping/intermediate widgets; inspect only the final candidate per angle.
+- **Catalogs:** exactly one image per angle; submit once, avoid repeated polling; max 2 attempts per angle; never batch multiple angles into one generation; reuse cached CAD/logo/cloth/Design Profile; send only the angle-specific prompt delta.
+- **Drive:** download each source once outside chat context; store + reuse its local path/asset ID; never re-fetch unchanged sources; never echo downloaded content or metadata.
+- **Policies:** load only the authoritative policy for the task; cache once per session; never re-read unchanged policies; one master per topic with short cross-refs; load only relevant Failure Memory entries.
+- **Validation:** compare via local tools/hashes/crops/compact measurements; never inject full-res images into reasoning; validate only changed/high-risk regions; return only pass/fail.
+- **Operations:** combine related file + Git actions into one execution; take permissions once; avoid repeated confirmations/narration/previews/progress; visible replies ≤3 short lines.
+
 ## PERMANENT TOKEN OPTIMIZATION — FULL CONTRACT (user-locked 2026-07-18)
 - **Session:** load all policies once; cache policies, CADs, logo, cloth, design profile, failure memory; never reload unchanged files; never re-read previous catalogs.
 - **Reasoning:** think silently; never explain reasoning, plans, validation, tool usage, uploads or decisions. Banned narrative openers (biggest token drain): "I'm looking at… / I'm considering… / I'm settling on… / Given the ambiguity… / I need to…", step-by-step planning, any internal reasoning shown to the user.
