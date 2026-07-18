@@ -2,73 +2,60 @@
 
 | | |
 |---|---|
-| **Current Version** | 1.4.0 (stable ✅) — see [`config/VERSION.json`](config/VERSION.json) |
-| **Startup / Entry File** | [`config/runtime.json`](config/runtime.json) (clean-session startup) → [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) rules entry |
-| **Repository** | [SidGajera/Claude_Lucent_Image_Gen](https://github.com/SidGajera/Claude_Lucent_Image_Gen) (**`main` only**) |
-| **Recovery** | [`RECOVERY.md`](RECOVERY.md) · machine-readable [`config/VERSION.json`](config/VERSION.json) |
+| **Branch** | **`desktop-pc` only** — never merge/checkout/rebase/update `main` (`main` and `desktop-pc` are diverged by design) |
+| **Repository** | [SidGajera/Claude_Lucent_Image_Gen](https://github.com/SidGajera/Claude_Lucent_Image_Gen) |
+| **Pipeline** | **Higgsfield only** (`docs/15` §0) — the CAD/Blender/Python path is deleted and banned |
+| **Policy map** | [`docs/00_POLICY_INDEX.md`](docs/00_POLICY_INDEX.md) — one authoritative owner per topic |
+| **Recovery** | [`docs/19_RECOVERY_CHECKPOINT.md`](docs/19_RECOVERY_CHECKPOINT.md) — auto-activation map on fresh pull |
 
-> **Git is the source of truth.** Behavior comes from the files in this repository, never from prior chat history. A new session assumes no memory and reconstructs the entire approved workflow from these files.
+> **Git is the source of truth.** Behavior comes from the files in this repo, never from prior chat. A fresh pull of `desktop-pc` restores the full workflow automatically — load [`docs/00`](docs/00_POLICY_INDEX.md) first; every rule below is already committed and active, no re-prompting.
 
 ## Project purpose
-Portable, reproducible system for generating **12 marketing catalog photos per jewelry SKU** — 5 studio + 4 lifestyle + 3 close-up, all **1:1 / 2K** — that keep the jewelry **100% identical to the source CAD**, on the brand's locked white studio cloth, with the **exact** two-tone Lucent Carat Lab logo. Any session can clone this repo and reproduce the workflow with no other context.
+Portable, reproducible system for generating jewelry-SKU marketing catalogs — office/studio + house-lifestyle sets, **1:1 / 2K** — with jewelry kept **100% identical to the source**, on the locked premium pure-white cotton cloth, with the **exact preserved** Lucent Carat Lab logo.
 
-## Per-SKU workflow (current)
-Locate source in Drive → **study the ring once** (cache the design profile) → import source + branded cloth + logo + rotated poses → **generate 12** with the strict locked-geometry prompts → **auto-QC vs source** → **auto-fallback on any drift** → user approves → deliver + record. Full loop in [`docs/10_CURRENT_STATE.md`](docs/10_CURRENT_STATE.md); five studio angles + rotation in [`docs/12_STUDIO_ANGLES_STANDARD.md`](docs/12_STUDIO_ANGLES_STANDARD.md).
+## Recovery checkpoint — active permanent rules → where they live
+A fresh pull activates all of these automatically (full map in [`docs/19`](docs/19_RECOVERY_CHECKPOINT.md)):
 
-### Generation
-- **Model** `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, 2 credits/image. Medias: source CAD views **first** (max geometry weight), then optional branded cloth + official logo, then the pose reference.
-- Server may label the multi-image edit path `nano_banana_flash` — expected; `resolution:"2k"` governs quality.
-
-## Geometry-immutable auto-fallback (the core guarantee, v1.4.0)
-Jewelry geometry is **immutable**; only camera/composition/cloth/background/lighting/DoF may change. Per shot, automatically (never asking which method):
-1. **AI generation** with the strict CAD-lock prompt.
-2. **Auto-QC vs source** — head, halo diameter + rim, center-to-halo ratio, prong count/positions, shank, gallery, metal thickness, silhouette; lighting; logo.
-3. On **any** drift → do NOT deliver; fall through: **(1)** composite the *real source-ring pixels* into the AI scene ([`scripts/composite_ring_into_scene.py`](scripts/composite_ring_into_scene.py)); **(2)** if the angle is unreachable, render it from the CAD file, then composite.
-
-Honest limit: `nano_banana` biases toward the CAD but cannot guarantee <1% geometry — that is *why* the fallback ladder exists. Details in [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (`geometry-immutable-auto-fallback`) and [`docs/12`](docs/12_STUDIO_ANGLES_STANDARD.md) §A3.
-
-## Locked standards (this repo enforces, auto-applied from `QUALITY_MEMORY.json`)
-- **Logo — required, in-scene, two-tone:** every studio shot carries the logo, hot-foil printed *into* the fabric (follows folds, weave shows through, matched lighting, no float/emboss). It is **two-tone**: emblem + "LUCENT CARAT LAB" gold, **"FUTURE OF FINE JEWELRY" black** — never gold-ified. Exact-typography fallback = local composite ([`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py)).
-- **Jewelry is always the hero:** ring = 55–70% of visual attention, CENTERED horizontally+vertically with balanced margins (user-locked 2026-07-15, supersedes the earlier 70–90%/off-center rule), framed large, background soft-blurred and never sharper than the ring; lifestyle hand is a stand, not the subject.
-- **Per-catalog angle rotation + natural photography:** rotate camera geometry each SKU (incl. harder angles); real macro look (shallow DoF, centered dominant framing, real-lens character); no AI tells.
-- **Color/diamond/cloth fidelity:** source is master for all color; neutral-white daylight; single real facet pattern; premium neutral-white cloth.
-
-## Runtime & token policy
-- **Clean-session startup:** read ONLY [`config/runtime.json`](config/runtime.json) → reply `READY — 0 ACTIVE PROCESSES` → wait.
-- **Token-only optimization:** cache Drive IDs, read each source once, reuse the design profile, never re-list unchanged folders, never echo full prompts/URLs/schemas, batch equivalent calls — **without ever changing output, geometry, QC depth, or resolution.**
-- **Token-safety:** when budget is critically low, stop launching new work and return a status summary instead.
-- **Permissions:** granted once per session (allowlisted in `.claude/settings.local.json`); no repeat prompts. Mid-turn "Stream closed"/"Denied by user" are MCP **transport** drops, not permission asks — auto-reconnect and retry.
-
-## Git workflow — `main` only (permanent)
-All development, fixes, commits, and pushes go **directly to `main`**. No feature branches, no PR workflow (unless explicitly requested). Verify you are on `main` before each task. Origin must be `Claude_Lucent_Image_Gen` — the GitHub rename redirect can rewrite it, so run `git remote set-url origin https://github.com/SidGajera/Claude_Lucent_Image_Gen.git` if a push 404s. Full policy in [`CLAUDE_SETUP.md`](CLAUDE_SETUP.md) §0.5.
-
-## Deliveries
-Approved catalogs are recorded in [`config/deliveries/`](config/deliveries) as `LR-XXXX.json` (SKU, locked design, all 12 job IDs, source folder). Committed only on explicit "Approve catalog LR-XXXX".
-
-**Approved catalogs to date:**
-| SKU | Design |
+| Rule | Owner |
 |---|---|
-| [LR-0142](config/deliveries/LR-0142.json) | Round brilliant, 4-prong, cushion pavé halo, French-pavé shoulders, 18K YG |
-| [LR-0144](config/deliveries/LR-0144.json) | Round brilliant solitaire, 4-prong, plain 18K YG cathedral band |
-| [LR-0147](config/deliveries/LR-0147.json) | Round brilliant, 6-prong, bead-set pavé band, 18K YG |
-| [LR-0148](config/deliveries/LR-0148.json) | Round brilliant, 6-prong plain solitaire, 18K YG |
+| Permanent Token Optimizer / targets / token-cost summary | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Short-output policy (≤3 lines, one-sentence default) | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Silent execution / no reasoning-planning narration | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| No bash/shell display · no tool-output narration | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| No thinking/progress narration | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| No Higgsfield preview widget / silent generation | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Full file path with drive name | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Retry budget (max 2 credited/angle, then skip) | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Safe-optimization guardrails · token-report honesty | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| One image per angle / camera uniqueness (≤20%) | [`12`](docs/12_STUDIO_ANGLES_STANDARD.md) |
+| Cached policies/CAD/logo/cloth/failure memory; never reload | [`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) |
+| Diamond consistency · metal colour (18K YG) · photorealism/anti-CGI · lifestyle set · no-text/watermark | [`03`](docs/03_IMAGE_GENERATION_RULES.md) |
+| Jewelry geometry / D2D / twist / head-shoulder / bottom-shank / no-invention | [`13`](docs/13_JEWELRY_PRESERVATION_SPEC.md) (+ [`16`](docs/16_ZERO_DESIGN_INVENTION.md)) |
+| Cloth (pure white cotton) + benchmark | [`11`](docs/11_BACKGROUND_STANDARD.md) |
+| Logo: master lock (preserved artwork), embedded print, jewelry-first, visibility, matte params | [`04`](docs/04_LOGO_WORKFLOW.md) §14.0–§14.2 |
+| Catalog consistency gate (pre-gen + final validation) | [`18`](docs/18_MASTER_CATALOG_CONSISTENCY_POLICY.md) |
+| Failure/Quality Memory (FM-0163, FM-0164, LR-0159 F1–F4, twist recurrences) | [`07`](docs/07_QUALITY_MEMORY.md) + [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) |
+| Approval + catalog git rule | [`03`](docs/03_IMAGE_GENERATION_RULES.md) + [`15`](docs/15_SAFE_PIPELINE_VERSIONING.md) §8.5 |
 
-## Repository layout
-- **Config:** [`config/VERSION.json`](config/VERSION.json) · [`config/project_manifest.json`](config/project_manifest.json) · [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (verified fixes, auto-applied) · [`config/runtime.json`](config/runtime.json) · [`config/deliveries/`](config/deliveries).
-- **Docs (`docs/`):** `01_MASTER_SPECIFICATION` · `02_SYSTEM_RULES` · `03_IMAGE_GENERATION_RULES` · `04_LOGO_WORKFLOW` · `05_TOKEN_OPTIMIZATION` (→ superseded by `17`) · `06_CACHE` (Drive IDs) · `08_PROJECT_STRUCTURE` · `09_CHANGELOG` · `10_CURRENT_STATE` · `11_BACKGROUND_STANDARD` · `12_STUDIO_ANGLES_STANDARD` · `17_MASTER_TOKEN_OPTIMIZATION_POLICY` (single token policy). Prompts: [`prompts/07_PROMPTS.md`](prompts/07_PROMPTS.md).
-- **Assets:** `assets/logo/logo_official.png` (LOCKED two-tone) · `assets/logo/logo_official_transparent.png` · `assets/background/sample_studio_background_with_logo.png`.
-- **Scripts:** [`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py) (hot-foil two-tone logo composite) · [`scripts/composite_ring_into_scene.py`](scripts/composite_ring_into_scene.py) (exact-ring fallback) · `whiten_cloth.py` · [`scripts/setup.sh`](scripts/setup.sh)/[`.ps1`](scripts/setup.ps1), [`scripts/start.sh`](scripts/start.sh)/[`.ps1`](scripts/start.ps1), [`scripts/health-check.sh`](scripts/health-check.sh)/[`.ps1`](scripts/health-check.ps1) (portable one-command setup for the web tool below).
-- **Tool (`tool/`):** web-app scaffold to run the whole pipeline with auto-QC + approval gate — portable, one-command setup; see [`tool/README.md`](tool/README.md) Quick Start.
+## Generation
+- **Higgsfield** `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, ~2 credits/image. Source stills carry max geometry weight; then locked cloth + preserved logo; then the pose/angle delta.
+- Server may label the multi-image edit path `nano_banana_flash` — expected; `resolution:"2k"` governs quality.
+- Never place image base64/raw bytes in chat context; download → temp file → read locally. No preview/`show_generations`/`job_display` widgets.
 
-## New-project setup
-1. `git clone https://github.com/SidGajera/Claude_Lucent_Image_Gen.git`
-2. Open **`config/runtime.json`** (clean-session start), then `CLAUDE_SETUP.md` for the rules entry.
-3. Operate all Google Drive / Higgsfield actions as `lucentcaratlab@gmail.com`.
-4. Wait for the instruction (e.g. "go for 0XXX").
+## Catalog state
+Delivered ([`config/deliveries/`](config/deliveries)): LR-0149, 0151, 0152, 0153, 0154, 0155, 0156, 0157, 0158, 0159, 0161, 0162, 0163, 0164, BRACELET-01. **Parked:** LR-0150.
+Delivery records hold design profile, workflow, reference media IDs, and angle map. Output PNGs live in `D:\Lucent Image generation\workspace\output\<SKU>` (gitignored → Drive); golden source stills + regression baseline in [`workspace/golden/<SKU>`](workspace/golden).
+
+## Source fetch
+Fetch source images from the SKU's **main Drive folder only** — never enter subfolders without explicit permission. Gold (18K YG) by default. Download each source once; reuse its local path/ID.
+
+## Git workflow — `desktop-pc` only (permanent)
+All work stays on `desktop-pc`; never merge/checkout/rebase/update `main`; push only to `origin/desktop-pc`. Standing approval: commit + push automatically every time a catalog is completed/approved — never during generation, never unapproved images/secrets/venv, never rewrite history without explicit approval.
 
 ## Non-negotiables
-1. Jewelry geometry is immutable — 100% identical to source; on drift, composite the real ring, never ship a redesign.
-2. Logo is a locked two-tone asset — never AI-approximated; black tagline stays black.
-3. Diamonds: single real facet pattern, natural brilliance, no CGI/doubling/whitening.
-4. Cloth: locked premium neutral-white cotton, consistent every image.
-5. Always 1:1 / 2K. `main` only. Operate as `lucentcaratlab@gmail.com`.
+1. Jewelry geometry is immutable — 100% identical to source; never redesign or invent.
+2. Logo is a locked preserved asset — never AI-approximated; icon + wordmark + gold tagline present, jewelry-first/subtle, embedded matte textile print.
+3. Diamonds: single real facet pattern, natural brilliance, office set = master quality reference, no CGI/doubling/whitening.
+4. Cloth: locked premium pure bright white cotton, consistent every image.
+5. Always 1:1 / 2K. `desktop-pc` only. Higgsfield-only pipeline.
+6. Optimize tokens only by removing redundancy — never trade quality, geometry, pipeline, validation, or output ([`17`](docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md) SAFE-OPTIMIZATION GUARDRAILS).
