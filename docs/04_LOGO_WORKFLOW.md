@@ -3,7 +3,7 @@
 The single most important workflow in the project. Priority **P0** — overrides everything.
 
 ## 1. WHY
-Higgsfield `nano_banana_2` CANNOT reproduce the fine logo typography. Whenever it tries, it hallucinates a fake logo (observed: "ELLYREID" with a crown, garbled tagline). Therefore the AI must NEVER render the logo. The logo is a **locked graphic asset** that is **composited locally** after generation, so it stays pixel-identical.
+the Higgsfield production model CANNOT reproduce the fine logo typography. Whenever it tries, it hallucinates a fake logo (observed: "ELLYREID" with a crown, garbled tagline). Therefore the AI must NEVER render the logo. The logo is a **locked graphic asset** that is **composited locally** after generation, so it stays pixel-identical.
 
 ## 2. LOCKED ASSET POLICY
 - Source of truth: `assets/logo/logo_official.png` (repo root) — byte-for-byte copy of the user's official upload (1,079,081 bytes). Drive origin: `Lucent Carat Lab Logo.png`, file id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`.
@@ -120,3 +120,66 @@ The logo MUST:
 
 ## 13. FAILURE POLICY & ASSET CACHING (user-locked 2026-07-11)
 **Reject the image** if the logo design differs from the preserved asset, the logo looks AI-generated, the logo does not merge naturally (floating/pasted/flat), the cloth material changes, the cloth becomes yellowish/non-white, or the cloth looks flat/cheap/artificial/overly simple. Full policy + remedies in `docs/11_BACKGROUND_STANDARD.md` (FAILURE POLICY). **Caching:** cache and reuse the locked logo + premium cotton cloth assets across devices/sessions; caching is byte-preserving only and must never alter image quality or asset fidelity — verify against `config/project_manifest.json` `locked_asset_checksums` before use.
+
+## 8. COMPOSITING IS A MANDATORY, RETRYABLE STAGE — THE RENDER IS IMMUTABLE (user-locked 2026-07-16)
+
+**Higgsfield returning a clean-cloth render is SUCCESS, not failure.** The studio render is a logo-free intermediate by design (§4, `CLAUDE_SETUP.md` §72). A render with no logo has not failed — it has not yet been composited.
+
+Post-render sequence, every studio/office image:
+1. Detect the white cloth.
+2. Print the preserved logo physically onto it (`scripts/print_logo_on_cloth.py`).
+3. Preserve the original logo asset exactly — pixel-identical.
+4. Never redraw or regenerate the logo with AI (P0).
+5. Never overlay it as a watermark.
+6. **Never finish the pipeline until compositing succeeds.**
+
+**If the composite step fails or the result fails the §7 gate:**
+- Retry automatically.
+- Repair the compositing script if needed.
+- **Resume from the failed step only.**
+- **Do NOT regenerate the Higgsfield image. Do NOT ask the user to regenerate it.**
+
+**The Higgsfield render is IMMUTABLE.** Only the compositing stage is retried. A logo fault is never grounds for spending credits on a new render — the fault is downstream of generation, and re-rendering also risks fresh geometry drift under the `legacy` production pipeline (`docs/15` §0).
+
+**Never mark the job complete until the final image contains the preserved printed logo on the cloth.** Compositing is not optional post-processing; it is a production stage, and the deliverable does not exist until it has run.
+
+**Known composite failure modes and their fixes** (all resolved by parameters, never by re-rendering):
+- *White box / patch behind the logo* → the opaque `logo_official.png` was used. Use `logo_official_transparent.png`.
+- *Ink dissolves, tagline vanishes* → `--soften` too high and/or `--opacity` too low. The script's documented defaults (`--scale 0.42 --opacity 0.9 --displace 6 --soften 1.0 --grain 0.06`) are tuned; deviate deliberately, not by habit.
+- *Bright halo / emboss ring around strokes* → `--soften` above ~2. Reduce it.
+- *Logo cropped by the frame* → reduce `--scale` or move `--pos` so `x+lw <= W` and `y+lh <= H`. Partial crop is permitted by §7 but never accidental.
+
+## 9. APPROVED LOGO TREATMENT — REFERENCE STANDARD (user-approved 2026-07-17)
+
+The user approved this treatment from an existing catalog (emerald-cut eternity band, white metal, white cotton). **This is the benchmark every studio/office logo must match.** Observed properties:
+
+- **Scale:** the lockup spans roughly a quarter to a third of the frame width. Present and legible, never the subject.
+- **Placement:** lower area of the frame, offset from centre, clear of the ring. The ring occupies the upper/middle; the logo sits below and behind it in the visual hierarchy.
+- **Completeness:** the full lockup is readable — diamond icon, LUCENT / CARAT / LAB, both stars, both decorative rules, FUTURE OF FINE JEWELRY tagline. Not cropped, not truncated.
+- **Tone:** soft muted gold, tone-on-tone against the white cloth. Clearly visible but never bright, never competing with the metal or the diamonds. It reads as ink, not as foil.
+- **Integration:** the ink follows the fold contours; the cloth's own soft shading passes across it; it shares the scene's depth of field rather than being uniformly sharp against a soft background.
+- **Hierarchy:** jewelry first, cloth second, logo last. In a close-crop the logo may be the only element visible and that is still acceptable — the rule is that it never *competes* when the ring is in frame.
+
+**Contrast with what was rejected (2026-07-16/17):** oversized and centred, ring overlapping it unnaturally, icon distorted, flat and uniformly sharp over the fabric, brighter than the cloth around it. See `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`.
+
+**Local composite parameters that reproduce this standard:** `--scale 0.28-0.34`, `--pos` lower-right or lower-centre, `--opacity 0.45-0.6`, `--displace 6-8`, `--soften 1.0`, `--grain 0.06`. (20% opacity was too faint and read as a ghost; 90% too assertive.)
+
+## 10. OFFICIAL LOGO PRINTING POLICY (mandatory, user-locked 2026-07-17)
+
+Print the official preserved logo as a **real physical print on premium plain white cotton** — never a digital overlay, watermark, sticker, emboss, engraving, projection or AI recreation.
+
+**The logo remains 100% identical to the official asset.** Never modify: shape · typography · diamond icon · colors · metallic gold finish · gradient · stroke thickness · letter spacing · alignment · opacity · texture. Print it exactly as a professional textile printer would onto white fabric.
+
+It must follow the cloth's folds, wrinkles, weave, perspective, lighting, shadows and depth naturally, without looking artificial. The print appears slightly **absorbed into the cotton fibres** with realistic ink interaction, while staying crisp and fully legible.
+
+Do not increase brightness, saturation, contrast, sharpness, metallic effect or gloss beyond the original asset. The cloth stays pure white. **Only the cloth may deform — the logo artwork itself is never redesigned or distorted.**
+
+> **STOP CONDITION (binding): if the logo cannot be reproduced pixel-identically, STOP GENERATION rather than approximate it.**
+
+### WHAT "ONLY THE CLOTH MAY DEFORM" MEANS
+The artwork is never *redesigned* — no re-lettering, no redrawn icon, no restyled strokes. It does *displace* with the substrate it is printed on, exactly as real ink on real fabric does. Warping along the fold map is the cloth deforming and carrying the ink with it; redrawing the letterforms is not. `scripts/print_logo_on_cloth.py` implements precisely this distinction: the asset's pixels are never repainted, only displaced, blended and modulated by the cloth beneath them.
+
+### THE STOP CONDITION IS ACTIVE FOR IN-MODEL GENERATION (recorded 2026-07-17)
+A generative model **cannot** reproduce the logo pixel-identically — it re-synthesises the artwork. Verified twice this session: the icon overlapped the wordmark and the layout changed; then the icon was distorted and the print sat flat on the fabric. `docs/04` §1 records the same failure from before ("ELLYREID" with a crown). `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`, repeat_count 3.
+
+Therefore, **under this policy, generating the logo in-model is a stop condition, not a retry condition.** Pixel-identity is available from exactly one source: the preserved asset, composited (§4, §8, §9). The stop condition does not forbid delivering images — it forbids asking the model to draw the logo.

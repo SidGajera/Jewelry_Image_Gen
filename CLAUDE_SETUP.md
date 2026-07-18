@@ -26,11 +26,15 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Image-generation rule detail | `docs/03_IMAGE_GENERATION_RULES.md` |
 | Logo issue | `docs/04_LOGO_WORKFLOW.md` |
 | Studio camera angles | `docs/12_STUDIO_ANGLES_STANDARD.md` |
-| Jewelry geometry preservation / CAD fidelity / QA checklist | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
+| **Jewelry preservation (SINGLE AUTHORITY — load before EVERY generation)** | `docs/13_JEWELRY_PRESERVATION_SPEC.md` |
 | Invented components (pavé bridge / hidden halo / gallery diamonds) / difference detector | `docs/16_ZERO_JEWELRY_INVENTION.md` |
 | No-regression policy / golden suite / rollback / change discipline | `docs/14_NO_REGRESSION_POLICY.md` |
 | Pipeline versioning / mode switch / rollback / shadow test / fallback / learning store | `docs/15_SAFE_PIPELINE_VERSIONING.md` (+ `config/pipeline_versions.json`) |
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
+| Confirmation / auto-selection / when to ask the user | `docs/19_ZERO_CONFIRMATION_POLICY.md` |
+| Production output / silence / no preview (governs all output) | `docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md` |
+| Image generation ENGINE lock / provider policy / source loading / retry | `docs/21_HIGGSFIELD_ENGINE_LOCK.md` |
+| Jewelry QC / reject-on-drift / zero-tolerance review | `docs/18_ZERO_TOLERANCE_QC_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
 | Prompt writing/editing | `prompts/07_PROMPTS.md` (per-shot deltas) + `prompts/00_MASTER_SYSTEM_PROMPT.md` (fixed system layer) |
 | Master system prompt (reused every generation) | `prompts/00_MASTER_SYSTEM_PROMPT.md` |
@@ -60,10 +64,10 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 - **P4 Light:** natural/realistic only; no over-lighting/CGI glow/starburst.
 - **P5 Output:** always 1:1 and 2K.
 - **P6 Lifestyle:** cozy warm US-home; five-finger natural hand; no laptop/desk; no invented logo.
-- **P7 Tokens / P8 Communication:** as in docs 05; fix our own mistakes locally (0 credits), never burn credits on them.
+- **P7 Tokens / P8 Communication:** as in `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md`; fix our own mistakes locally (0 credits), never burn credits on them.
 
 ## 4. ENVIRONMENT
-- Higgsfield MCP: `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
+- Higgsfield MCP: the production model (`config/project_manifest.json` -> `generation_settings.model`), `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
 - Google Drive MCP: READ/SEARCH/CREATE. Operate ONLY as `lucentcaratlab@gmail.com`.
 - Local Python (Pillow+NumPy) for 0-credit post: `scripts/print_logo_on_cloth.py` (print logo) and `whiten_cloth.py` (neutral-white cloth).
 - `media_id`s expire across sessions → re-import from the Drive file IDs in `docs/06_CACHE.md`.
@@ -72,4 +76,4 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 Search source → study the ring (verify correct file) → import source → reuse studio refs, import fresh lifestyle/closeup poses → **1 verification image → user confirms → generate the rest in one batch** (studio on clean cloth, NO logo) → report count → user downloads → run `print_logo_on_cloth.py` + `whiten_cloth.py` locally → update docs + commit.
 
 ## 6. START
-Operating from this file as the entry point (single source of truth), lazy-load per §1 only when a task needs it, then wait for the user's instruction (e.g. "go for 0XXX folder"). Do not preload the rest of the repo.
+Operating from this file as the **runtime entry point** (the repository, not this file, is the single source of truth), lazy-load per §1 only when a task needs it, then wait for the user's instruction (e.g. "go for 0XXX folder"). Do not preload the rest of the repo.

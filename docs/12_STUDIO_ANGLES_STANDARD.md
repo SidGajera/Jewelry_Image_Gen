@@ -77,7 +77,7 @@ Per SKU, per shot, run this ladder and stop at the first method that passes QC:
 
 **QC pass bar (all must hold):** ✔ 100% geometry match ✔ natural macro photography ✔ bright neutral-white daylight ✔ physically realistic reflections ✔ logo physically printed into the fabric ✔ camera angles varied across catalogs ✔ focus always on the jewelry.
 
-> Honest note kept in-repo: nano_banana biases toward the CAD but cannot guarantee <1% geometry; that is *why* the fallback ladder exists. Compositing (Fallback 1) is the in-pipeline route to true 0% drift.
+> Honest note kept in-repo: the production model biases toward the CAD but cannot guarantee <1% geometry; that is *why* the fallback ladder exists. Compositing (Fallback 1) is the in-pipeline route to true 0% drift.
 
 ## B. PHYSICALLY ACCURATE RING + CLOTH POSITIONING
 Every pose, fold, wrinkle, shadow and contact point must be physically realistic and achievable in a real studio — not CGI, not an impossible AI composition.

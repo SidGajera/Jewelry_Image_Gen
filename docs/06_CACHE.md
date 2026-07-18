@@ -58,10 +58,21 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 |---|---|---|
 | LR-0136 | `159MjisakODelkPZKFFDiAJoii7EKQR8_` | Oval diamond + 2 GREEN emerald-cut emeralds + plain yellow band (3ct) |
 | LR-0137 | `1ADZwnTDCLX4q3PWUG6j0s58RFWB5nN1f` | Oval diamond + 2 tapered baguette diamonds + plain yellow band (3ct) |
+| LR-0151 | `1YgAdm88Dw3fIdxBibYhL_mobm-fukzXz` (Source/`1mKq…`/LR - 0151) | Round solitaire, 4 thin claw prongs, LOW OPEN BASKET (no gallery), thin single-row micro-pavé, 18K yellow gold |
+
+### LR-0151 source files (gold; Drive file IDs — durable)
+| View | Drive file ID | Repo path |
+|---|---|---|
+| `Copy of 97 (1).jpg` — front / hero | `1xgEKiqEwsWScN181Y18CC8Cne7zx_Bf2` | `workspace/golden/round-solitaire-pave-yg/r97_1.jpg` |
+| `Copy of 97 (4).jpg` — 45° / three-quarter | `1xBcRwHdnWuNX5v17N91FkNWWr5uuPgUz` | `…/r97_4.jpg` |
+| `Copy of 97 (8).jpg` — true side | `1vN8p1-l348ZGLyIVM5jnMChiKEtAQ5Mu` | `…/r97_8.jpg` |
+| `Copy of 97 Model G.jpg` — real worn photo (lifestyle) | `1Oav0NTU6d1dUw1CCI9k-sfs4CXciAPXY` | `…/model_G.jpg` |
+
+> Drive access requires the Drive MCP connected as the **owner account `lucentcaratlab@gmail.com`** — other accounts get link-only access and cannot enumerate the source folders. Import each with `media_import_url` on `uc?id=<ID>&export=download`; media_ids are session-ephemeral (re-import next session).
 (Earlier SKUs LR-0156/0160/0162/0164/0165/0166/0167/0168/0190/0191/0192 processed in prior sessions — see `LUCENT_MASTER.md` §14.)
 
 ## MODEL / GENERATION SETTINGS (constant)
-- Model: `nano_banana_2` · `resolution:"2k"` · `aspect_ratio:"1:1"` · `count:1`
+- Model: the production model (`config/project_manifest.json`) · `resolution:"2k"` · `aspect_ratio:"1:1"` · `count:1`
 - medias order: `[ pose/studio reference , SOURCE ring ]`
 - Import URL form: `https://drive.google.com/uc?id=<FILE_ID>&export=download`
 

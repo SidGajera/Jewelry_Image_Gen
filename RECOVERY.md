@@ -49,7 +49,7 @@ Read in order: `LUCENT_MASTER.md` → `docs/02_SYSTEM_RULES.md` → `docs/04_LOG
 
 ## 8. SANITY CHECKLIST BEFORE GENERATING
 - [ ] Correct source file verified (ignore strays).
-- [ ] Model `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`.
+- [ ] The production model (`config/project_manifest.json`), `resolution:"2k"`, `aspect_ratio:"1:1"`.
 - [ ] Studio prompts force clean cloth, NO logo.
 - [ ] Fresh lifestyle/closeup poses (different from last SKU).
 - [ ] Plan to composite the logo + whiten cloth locally (0 credits).
