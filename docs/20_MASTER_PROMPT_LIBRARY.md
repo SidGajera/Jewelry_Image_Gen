@@ -51,13 +51,13 @@ Etsy shows slot 1 as the thumbnail and the video last. Each slot is a **reserved
 |---|---|---|---|
 | 1 | ⭐ White Hero | Product | THUMBNAIL — most important image in the business |
 | 2 | Side Profile | Product | Full silhouette, stone height, gallery, band taper |
-| 3 | Top-Down Face-Up | Product | Face-up appearance — **see §2.3 conflict note** |
+| 3 | Top-Down Face-Up | Product | Face-up appearance at 70–75° (see §2.3) |
 | 4 | ⭐ Hand Try-On | Lifestyle | HIGHEST CONVERTING image |
 | 5 | Lifestyle / Proposal Scene | Lifestyle | Where theme rotation matters most |
 | 6 | IGI Certificate Flat-Lay | Documentary | Real scanned cert only — never AI-generated |
 | 7 | Carat Size Reference | Template | Build once per cut shape (8 total) |
 | 8 | Sparkle Macro | Detail | Dramatic gemmological macro |
-| 9 | Metal Variations | Template | Build once per design — **see §2.9 conflict note** |
+| 9 | Metal Variations | Template | Build once per design; skipped for single-metal listings (§2.9) |
 | 10 | Packaging & Brand | Template | Build once, reuse everywhere |
 | V | Video | 5–15 s | 360° turntable — **ask before generating** |
 
@@ -321,3 +321,31 @@ unnatural skin, mannequin hand, fake certificate
 - [ ] No pool variant applied to slots 1–8; no A/B/C combination repeated back-to-back across the shop grid
 - [ ] Ring is the instant focal point in all 11 assets (`12` §A2)
 - [ ] Resolved theme index + video index + camera variants written to `config/deliveries/LR-XXXX.json`
+
+---
+
+## 7. ANTI-"AI LOOK" CHECKLIST (user-locked 2026-07-20)
+
+Run before uploading any listing set. Complements — never replaces — the pre-generation and final gates in `18` and `03`.
+
+| Check | Why it matters |
+|---|---|
+| ☐ No two listings in the same shop row share a Pool C prop | Repeated props are the #1 tell of AI generation |
+| ☐ Shadow direction is consistent within a listing, varied between listings ¹ | Real shoots have one light setup per session |
+| ☐ Hand skin tone varies across the catalogue | Same hand on 200 listings looks synthetic |
+| ☐ Metal shows fine surface micro-scratches, not mirror-perfect | Real gold is never flawless |
+| ☐ At least one tiny natural imperfection per scene — a stray petal, a fabric crease, an uneven shadow edge | Perfect symmetry reads as fake |
+| ☐ Colour temperature drifts slightly between listings ¹ | Real photography is never perfectly uniform |
+| ☐ Prong count and band width match the CAD exactly | Legal and commercial requirement |
+| ☐ Hand images: 5 fingers, natural joints, believable ring scale | Deformed hands destroy trust instantly |
+| ☐ No AI-rendered text anywhere in any image ² | Garbled text is an instant giveaway |
+| ☐ Certificate images use real scans only | Fabricated certificates are fraud |
+
+**¹ Lifestyle slots only (4, 5).** Product slots keep the locked neutral studio setup: `11:115` requires every studio catalog to be shot "under identical neutral studio lighting, with no artificial colour grading or colour shift," and `11:144` rejects even a *subtle* warm cast (the LR-0154 rejection). Between-listing shadow and colour-temperature drift is exactly what those locks forbid on cloth frames — so vary it in the lifestyle scenes, where it genuinely reads as separate photo sessions, and keep product frames identical shop-wide. Within any single listing, `18` §7 already requires matched white balance, exposure, contrast and shadow density.
+
+**² The printed cloth logo is not AI-rendered text** — it is the preserved official asset (`04` §14.0), which is precisely why this check passes. Any *other* text (carat labels on slot 7, certificate numbers on slot 6, watermarks) is added after generation in code or Canva, never by the model.
+
+**Micro-scratches note:** consistent with `03` §METAL, which already demands "slight surface variation" and bans "mirror-like perfection." Read it against the MASTER METAL COLOUR line's "bright mirror polish" as: high-polish finish *with* believable micro-texture, not a flawless chrome surface.
+
+---
+

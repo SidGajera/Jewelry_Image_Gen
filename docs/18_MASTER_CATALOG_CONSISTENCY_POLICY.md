@@ -31,5 +31,8 @@ Load the approved logo once; every studio image uses the identical preserved log
 ## 9. CATALOG MEMORY
 On approval of an image, store: camera angle · height · lens · distance · lighting · cloth · gold color · diamond appearance in `config/deliveries/LR-XXXX.json` (baseline, `15` §8). Every subsequent image references this baseline before generation.
 
+## 9b. ANTI-"AI LOOK" CHECK (see-also)
+After a listing set passes the gates here, run the shop-level checklist in `20` §7 (prop repetition, skin-tone rotation, metal micro-texture, per-scene imperfection, hand anatomy, no AI text, real certificate scans). It operates ACROSS listings; this doc operates WITHIN one catalog. `20` §7 owns it — do not duplicate the checks here.
+
 ## 10. PRE-GENERATION VALIDATION (gate)
 Before generating each image, confirm: ✓ camera angle unique · ✓ jewelry matches CAD · ✓ cloth matches approved cloth · ✓ logo matches preserved logo · ✓ diamond appearance matches office photos · ✓ gold color matches previous images · ✓ lighting matches previous images. Any check fails → reject and regenerate. Final set gate: `03` CATALOG FINAL VALIDATION.
