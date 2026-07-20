@@ -66,6 +66,13 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 - Camera failures
 - Logo placement & catalog composition failures
 
+### FM-0169 — Hidden-halo invention + AI-rendered logo (LR-0169, 2026-07-20)
+Attempt 1 on the hero slot failed on two counts, both caught before batching the rest of the catalog.
+- **F1 Hidden halo invented** — a ring of accent stones appeared under the crown, plus basket/gallery accents and a decorative cathedral trellis. The source is a plain 4-prong solitaire with a bare polished under-crown. Repeat of the `16` ZERO INVENTION class (cf. F3/F4 on 0159). *Prevent:* a generic "do not add" clause is not enough — name the specific parts: "no hidden halo, no accent or pave stones under the crown, no stones on the basket, gallery, bridge or under-gallery, no diamond collar, no cathedral trellis or cross-bars." With that clause the invention did not recur across eight frames.
+- **F2 Logo AI-rendered** — passing `logo_official.png` as a Higgsfield reference made the model REDRAW the wordmark rather than reproduce it. It came out legible, which is the trap: it reads as a pass and will garble on another SKU. *Prevent:* render clean unmarked cloth ("no logo, no printing, no text, no lettering, no graphic anywhere — the cloth is blank"), then composite the preserved asset locally (`scripts/print_logo_on_cloth.py`). Confirmed working 2026-07-20.
+- **Residual (accepted at delivery):** shoulder pave runs ~3/4 down the shank vs ~mid-shoulder in the source.
+- **Environment note:** Python 3.12 + PIL + numpy ARE available on this machine; `cv2` is not. The local composite path works and sits outside `15` §0 (post-render pixels, not a rendering path — `20` §9.3).
+
 ### CATEGORY AUTO-REJECTS (user-locked 2026-07-20 — non-ring SKUs)
 Applies to every bracelet / necklace / earring catalog. Detail + preservation blocks: `20` §9.
 

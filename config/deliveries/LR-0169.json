@@ -1,0 +1,72 @@
+{
+  "sku": "LR-0169",
+  "status": "approved",
+  "approved_date": "2026-07-20",
+  "metal": "14K yellow",
+  "category": "ring",
+  "design": "round brilliant solitaire, 4 slim rounded claw prongs, single-row scalloped pave on shoulders only, thin band, plain polished under-crown (no hidden halo)",
+  "source": {
+    "drive_folder_id": "1BEZA173hSDWKQ2vbAn089Ezupf6Kx1BV",
+    "drive_folder_name": "LR- 0169 (Round)",
+    "main_folder_only": true,
+    "files": ["Copy of 18 (1).jpg", "Copy of 18 (5).jpg", "Copy of 18 (8).jpg"],
+    "subfolder_not_entered": "18 photo and vidio"
+  },
+  "higgsfield_media_ids": {
+    "src_1": "b8b813ee-7c79-49b0-abd1-82cf57309f64",
+    "src_5": "b0bb4348-5cc0-40bf-b5a3-b1536a19045f",
+    "src_8": "bb21c852-de8f-4794-9f21-508e132dfe67",
+    "studio_ref_logo": "eea51cf3-9ed6-46dd-acba-ea715a2ab471",
+    "logo_official": "9defcb07-935a-4d5a-a2e3-ba14cf0ba58b"
+  },
+  "generation": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "backend_label": "nano_banana_flash",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "slot_map": "docs/20 §2 (ring baseline)",
+  "job_ids": {
+    "slot01_hero": ["24dfb9d4", "3302e114"],
+    "slot02_side": ["cecbf20f"],
+    "slot03_faceup": ["d702a13d"],
+    "slot04_hand": ["ce813e12", "b84756cd"],
+    "slot05_lifestyle": ["73ecee94"],
+    "slot06_cert_flatlay": ["817a202c", "fbfb8629"],
+    "slot08_macro": ["dbf437ba"],
+    "slot10_packaging": ["f6bf9ae7"]
+  },
+  "slots_not_delivered": {
+    "slot07_carat_chart": "requires rendered CT labels - blocked by the no-AI-text rule (docs/20 §7). Build once per cut shape as a library asset with labels added outside the model.",
+    "slot09_metal_variants": "requires rendered metal names, and metal was never confirmed for this SKU. Skipped per docs/20 §2.9 (single-metal listings).",
+    "video": "not generated - requires per-request permission (feedback_ask_before_video)."
+  },
+  "theme": {
+    "slot04_skin_tone": "fair",
+    "slot05_pool_a": "A3 pale honed Carrara marble",
+    "slot05_pool_b": "B2 north-facing window daylight",
+    "slot05_pool_c": "C1 navy velvet ring box + white rose petals",
+    "slot05_pool_d": "D1 neutral bridal",
+    "slot08_lighting": "B5 single focused spot, charcoal background"
+  },
+  "logo_handling": {
+    "slot01": "PRESERVED OFFICIAL ASSET composited locally via scripts/print_logo_on_cloth.py (--scale 0.30 --pos lower-right --opacity 0.85 --displace 6 --soften 1.0 --grain 0.06). Logo pixels byte-identical to assets/logo/logo_official_transparent.png. Compliant with docs/04 §14.0.",
+    "slots_02_03_10": "LOGO RENDERED BY HIGGSFIELD at user instruction 2026-07-20 (Higgsfield-only, no Python). This DEVIATES from docs/04 §14.0 OFFICIAL LOGO LOCK - the mark is an AI reproduction, not the preserved asset. Legible and correct in these frames, but not guaranteed at scale. Flagged, not silently accepted."
+  },
+  "slot06_method": "Photorealistic certification flat-lay with the grading booklet deliberately behind the focal plane and blurred past legibility - no carat, clarity, report number, seal or IGI mark rendered. NO certificate data is fabricated. A real IGI scan may be composited later; the demo certificate supplied 2026-07-20 was rejected (marked DEMO/REPLACEMENT REQUIRED, and certifies a marquise 3.05ct, not this round).",
+  "qc": {
+    "method": "vision, source-vs-render",
+    "geometry_guaranteed": false,
+    "attempt_1_rejected": "hidden halo + gallery/basket accent stones invented (docs/16); logo AI-rendered (docs/04 §14.0)",
+    "attempt_2_passed": "invention cleared by an explicit no-stones-under-the-crown clause; 4 prongs held across all frames",
+    "known_deviation": "shoulder pave runs approx. 3/4 down the shank; source stops nearer mid-shoulder. Accepted by user at delivery."
+  },
+  "unverified_spec": {
+    "note": "docs/21 §4 step 3 (metal vs listing_title cross-check) DID NOT RUN for this SKU.",
+    "metal": "assumed 14K yellow from docs/03 §C default - not confirmed against the live Etsy listing",
+    "centre_stone": "carat, colour and clarity never supplied",
+    "ring_size_shown": "never supplied",
+    "certification": "no real IGI scan supplied"
+  }
+}
