@@ -98,7 +98,7 @@ Deliver      : config/deliveries/LCL-BRC-0007.json
 7. Slots 4–5 use Pool A/B/C rotation
 8. Slot 6 → scene only with a blank document plate; **the real cert is composited downstream, never generated**
 9. Slots 7 / 9 / 10 pulled from the template asset library, not re-rendered
-10. **Generation count per slot — see the OPEN COST ITEM below.** `17` currently governs: one image per angle, up to 2 attempts *on failure*.
+10. **Generation count:** `count: 2` on **slots 1 and 4 only** — keep the stronger frame, discard the other. Every other slot is a single render plus `17`'s retry ladder (max 2 attempts, only after a validation failure). See `17` NARROW CARVE-OUT.
 
 **Before delivering**
 
@@ -107,7 +107,7 @@ Deliver      : config/deliveries/LCL-BRC-0007.json
 13. Reject internally and record any new failure with cause + prevention rule
 14. Write the delivery JSON with `metal` and `category` pinned for reproducibility
 
-> **⚠ OPEN COST ITEM — step 10.** The brief as written says *"generate `count: 2` per slot, keep the stronger frame."* `17` says the opposite in two places: line 22 "exactly one image per angle … max 2 attempts per angle" (an attempt is a **retry after a validation failure**, not a speculative pair), and line 92 "produce exactly the requested count … never generate throwaway drafts/tests." Speculative pairs double the credit line by design: 6 unique slots × 200 listings = 1,200 generations becomes 2,400. Until decided, `17` governs (strictest wins, `17` POLICY MERGE RULE). Pending user decision.
+*Resolved 2026-07-20: the original brief said `count: 2` on every slot; `17` forbade speculative pairs entirely. Settled as a narrow carve-out — pairs on slots 1 and 4, single render everywhere else, ~1,600 generations per 200 listings rather than 1,200 or 2,400. The retry ladder covers frames that FAIL QC; pairs cover the case it cannot reach — a frame that passes QC but is aesthetically weaker — and that only earns its cost on the two frames that drive clicks and add-to-carts.*
 
 ## 5. PER-CATEGORY GOTCHAS TO STATE EXPLICITLY
 - **Ring** — state the depicted ring size. A 2CT stone reads differently on a size 4 vs a size 9 finger, and the try-on scale must match.
