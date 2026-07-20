@@ -73,6 +73,11 @@ Attempt 1 on the hero slot failed on two counts, both caught before batching the
 - **Residual (accepted at delivery):** shoulder pave runs ~3/4 down the shank vs ~mid-shoulder in the source.
 - **Environment note:** Python 3.12 + PIL + numpy ARE available on this machine; `cv2` is not. The local composite path works and sits outside `15` §0 (post-render pixels, not a rendering path — `20` §9.3).
 
+### FM-0171b — Prong count doubled: 4 → 8 on the flower halo (LR-0171, 2026-07-20, CATALOG REJECTED)
+The vintage floral-halo SKU has an eight-lobed flower plate but the centre stone is held by only **4** claw prongs, at the 4 primary petal tips (N/S/E/W). The renders put a prong at EVERY petal point (8 total) and also studded the gallery (FM-0171). Wrong prong count carried through the ENTIRE construction block, so the whole 0171 catalog is rejected and must be re-shot.
+- **Root cause:** on an ornate head, decorative petal tips and real claw prongs look alike; the prompt said "4 prongs" but did not distinguish the 4 stone-holding prongs from the 4 non-prong decorative tips, so the model made all 8 into prongs.
+- **Prevent (hard rule, `13 §3.2`):** COUNT the stone-holding prongs in the CAD and COUNT them in every render before approval — prong count is the single most-broken lock. When a decorative head has more tips/points than prongs, state BOTH numbers: "N decorative petal tips but only M of them are claw prongs holding the stone; the other tips carry no prong." Never let ornamental points become prongs.
+
 ### FM-0171 — Pavé invented in the split-V gallery (LR-0171, 2026-07-20)
 The flower-halo SKU's sparkle macro added a row of pavé diamonds INTO the split-V gallery arms beneath the head. The source sets pavé ONLY inside the eight scalloped flower lobes; the V arms and the whole shank are plain polished gold. Repeat of the `16` zero-invention class — the model studded a bare-metal structural element.
 - **Root cause:** the prompt named the triangular voids and said keep them open, but never said the ARMS THEMSELVES are bare. "Keep the gap open" is not "no stones on the metal beside the gap."
