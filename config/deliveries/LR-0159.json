@@ -2,6 +2,8 @@
   "sku": "LR-0159",
   "status": "delivered",
   "delivered_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
   "design": {
     "type": "round-brilliant solitaire with pave shoulders",
     "center": "one round brilliant, FOUR double-claw prongs (two rounded bead tips per corner, 8 tips total)",
@@ -37,9 +39,22 @@
       "04_office_side (true 90 left profile)",
       "05_office_rear (true rear gallery)"
     ],
-    "closeup": ["06_closeup1", "07_closeup2", "08_closeup3"],
-    "lifestyle": ["09_life_mug", "10_life_book", "11_life_sofa", "12_life_window"]
+    "closeup": [
+      "06_closeup1",
+      "07_closeup2",
+      "08_closeup3"
+    ],
+    "lifestyle": [
+      "09_life_mug",
+      "10_life_book",
+      "11_life_sofa",
+      "12_life_window"
+    ]
   },
-  "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1" },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
   "notes": "Output PNGs live in workspace/output/LR-0159 (gitignored per repo policy -> Drive Output). Recurring open item: in-model logo reads as overlay and cloth/photorealism ceiling; logo-embed method decision pending (local composite vs in-model)."
 }

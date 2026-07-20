@@ -2,6 +2,8 @@
   "sku": "LR-0142",
   "status": "approved",
   "approved_date": "2026-07-12",
+  "metal": "18K yellow",
+  "category": "ring",
   "design": {
     "center": "round brilliant",
     "prongs": "4 slim claw at ~10/2/5/7",
@@ -17,8 +19,17 @@
       "yaw_45_left": "3ce2157d",
       "side": "c9bf27ed"
     },
-    "lifestyle": ["4f14177d", "c1339026", "797f249e", "fe5568bd"],
-    "closeup": ["82b66a24", "4bf94602", "28dc0aa3"]
+    "lifestyle": [
+      "4f14177d",
+      "c1339026",
+      "797f249e",
+      "fe5568bd"
+    ],
+    "closeup": [
+      "82b66a24",
+      "4bf94602",
+      "28dc0aa3"
+    ]
   },
   "generation": {
     "model": "nano_banana_2",

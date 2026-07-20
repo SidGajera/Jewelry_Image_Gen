@@ -2,6 +2,8 @@
   "sku": "LR-0147",
   "status": "approved",
   "approved_date": "2026-07-13",
+  "metal": "18K yellow",
+  "category": "ring",
   "design": {
     "type": "6-prong round-brilliant solitaire, bead-set pave band",
     "center": "round brilliant colorless diamond",
@@ -19,14 +21,26 @@
       "three_quarter_topdown": "80d121cf",
       "yawed_side": "5f3c3b2c"
     },
-    "lifestyle": ["bbb95f99", "df2a5cc9", "d2f2e3e9", "985d1e1f"],
-    "closeup": ["c54140e1", "ddc9ecfb", "c298a864"]
+    "lifestyle": [
+      "bbb95f99",
+      "df2a5cc9",
+      "d2f2e3e9",
+      "985d1e1f"
+    ],
+    "closeup": [
+      "c54140e1",
+      "ddc9ecfb",
+      "c298a864"
+    ]
   },
   "generation": {
     "model": "nano_banana_2",
     "resolution": "2k",
     "aspect_ratio": "1:1",
     "source_folder_id": "1BNlYp9Dsob7c8YvWIl3R0Y6dC6njyvi3",
-    "source_media_ids": ["54c21ea9-0c40-4dbf-b81f-b929a4c43adf", "ba4d0531-6ca7-4b31-9d4b-72527ba0a1c8"]
+    "source_media_ids": [
+      "54c21ea9-0c40-4dbf-b81f-b929a4c43adf",
+      "ba4d0531-6ca7-4b31-9d4b-72527ba0a1c8"
+    ]
   }
 }

@@ -2,16 +2,47 @@
   "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LR-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks.",
   "sku": "LR-XXXX",
   "approved_date": "YYYY-MM-DD",
+  "metal": "14K yellow",
+  "category": "ring",
   "design": "one-line design summary (cut, prongs, halo, band, metal)",
-  "source_files": ["workspace/golden/LR-XXXX/source.png", "drive_file_id:..."],
+  "source_files": [
+    "workspace/golden/LR-XXXX/source.png",
+    "drive_file_id:..."
+  ],
   "approved_first_image": "path/or/job_id of the approved Image 1 (the baseline)",
   "pipeline_version": "legacy | composite-v1",
   "prompt_hash": "sha256 of the exact prompt used",
-  "provider": { "route": "mcp:higgsfield", "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1" },
+  "provider": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
   "seed": null,
-  "geometry_profile": { "center_cut": "", "prongs": 0, "halo": "", "band": "", "metal": "", "gallery": "" },
-  "profiles": { "camera": "", "lighting": "", "cloth": "", "logo": "" },
+  "geometry_profile": {
+    "center_cut": "",
+    "prongs": 0,
+    "halo": "",
+    "band": "",
+    "metal": "",
+    "gallery": ""
+  },
+  "profiles": {
+    "camera": "",
+    "lighting": "",
+    "cloth": "",
+    "logo": ""
+  },
   "user_corrections": [],
-  "qc_report": { "method": "composite-provenance | vision | manual", "geometry_guaranteed": true, "passed": true, "checklist": {} },
-  "job_ids": { "studio": [], "lifestyle": [], "closeup": [] }
+  "qc_report": {
+    "method": "composite-provenance | vision | manual",
+    "geometry_guaranteed": true,
+    "passed": true,
+    "checklist": {}
+  },
+  "job_ids": {
+    "studio": [],
+    "lifestyle": [],
+    "closeup": []
+  }
 }

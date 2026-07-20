@@ -2,6 +2,8 @@
   "sku": "LR-0163",
   "status": "approved",
   "approved_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
   "design": {
     "type": "round-brilliant three-stone with pear sides",
     "center": "round brilliant colorless diamond, 4 double-claw prongs",
@@ -43,6 +45,6 @@
     "logo_ref_drive_id": "1QZgjplaFWenZHt048tzQntk-L-Ezy_qH"
   },
   "model_notes": {
-    "geometry_critical_angles": "gpt_image_2 (OpenAI) — validated for side/rear/elevation; nano_banana_2 for face-on + scene"
+    "geometry_critical_angles": "gpt_image_2 (OpenAI) ï¿½ validated for side/rear/elevation; nano_banana_2 for face-on + scene"
   }
 }
