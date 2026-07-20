@@ -2,6 +2,22 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "composite-v1-production-lock",
+      "problem": "RECURRING across many catalogs (user report 2026-07-20): ~50% wrong/pasted logo on the cloth; plain/simple or colored/yellowish cloth instead of premium PURE-WHITE; color-cast image instead of neutral natural; wrong or too-many prongs; ring drawn 'out of source' (design not in the CAD); band width too large; the width-bend added when the source has none and omitted when the source has one; extra designs/gold invented in the head of the ring. The user demanded these NEVER recur.",
+      "root_cause": "The production pipeline was `legacy` - Higgsfield draws BOTH the scene AND the ring. Prompt-based diffusion CANNOT lock CAD geometry (prong count, band width, head/gallery, no-invention, stone orientation): confirmed across 10+ attempts with the preservation rule restated ever more strongly each time - 'the rule is not the variable; only compositing the source pixels can' (see lr0151-inmodel-geometry-drift). Likewise the logo and the cloth-white/neutral-color can only be guaranteed locally, never by AI drawing/grading. So on `legacy` every one of these mistakes is a PREDICTED consequence, not a fixable prompt problem.",
+      "fix": "PERMANENT FIX (user-instructed 2026-07-20, supersedes the 2026-07-16 'use Higgsfield-only legacy / do not swap to composite' instruction). Production pipeline = composite-v1 (config/pipeline_versions.json active=composite-v1). MECHANISM, each mapped to a user complaint: (1) RING GEOMETRY - the ring is the REAL source-CAD pixels composited into a Higgsfield-rendered scene; the AI never draws the ring, so wrong/too-many prongs, band width, width-bend present/absent, and any head invention (extra designs/gold, added gallery/support/bridge) are IMPOSSIBLE BY CONSTRUCTION, not merely discouraged. (2) LOGO - always composited locally from the pixel-exact two-tone asset via scripts/print_logo_on_cloth.py (docs/04 P0); AI never draws it, so the 'wrong/pasted/overlay logo' failure cannot occur. (3) CLOTH + COLOR - premium neutral pure-white cotton enforced locally (whiten_cloth.py, 0 credits) with the neutral-white-balance color-fidelity lock (color-fidelity, yellowish-simple-cloth, fake-gem-and-moody-lighting); no AI color grading, so 'plain/colored/yellowish cloth' and 'colored image' cannot occur. ENGINE UNCHANGED: Higgsfield remains the sole generation engine and renders the scene (docs/21); compositing preserved pixels is not generation (docs/21 §2), so this is a pipeline-VERSION change, not an engine swap. TRADE-OFF (accepted by the user 2026-07-20): for a worn lifestyle/close-up angle the source cannot cover faithfully, composite-v1 SKIPS the shot or requests more source rather than let AI redraw the ring - missing is preferable to incorrect (docs/15 §5, hybrid-composite-default). LOCK: do NOT switch production back to legacy or to any other pipeline without a new explicit user instruction; restating any preservation rule in a prompt is not a substitute and does not change legacy's outcome.",
+      "refs": [
+        "config/pipeline_versions.json (active=composite-v1)",
+        "config/QUALITY_MEMORY.json hybrid-composite-default",
+        "config/QUALITY_MEMORY.json lr0151-inmodel-geometry-drift",
+        "docs/15 SAFE PIPELINE VERSIONING",
+        "docs/21 §2 (composite is not generation)",
+        "scripts/composite_ring_into_scene.py",
+        "scripts/print_logo_on_cloth.py",
+        "whiten_cloth.py"
+      ]
+    },
+    {
       "id": "logo-white-halo-artifact",
       "problem": "LR-0135 (2026-07-15): across multiple studio renders (with the rescaled/repositioned logo already fixed for size), the printed logo showed fuzzy/vector-sharp-inconsistent edges, uneven line thickness, a bright WHITE HALO/glow patch on the cloth directly behind the logo separating it from the fabric, evenly-bright gold that ignores the cloth's directional lighting, and no visible weave/fold distortion through the ink - reads as an AI-painted graphic pasted on top, not ink printed into the fabric during the same photoshoot. User: this is exactly what makes AI catalog images look artificial.",
       "root_cause": "the model renders the logo as a separate bright asset composited onto the cloth (adding contrast via a light halo to make it legible) instead of treating it as ink absorbed into the same material already lit by the scene.",
@@ -494,9 +510,9 @@
     },
     {
       "id": "higgsfield-production-generator-lock",
-      "problem": "Standing user lock (2026-07-16): the production image generator is Higgsfield (nano_banana_2, resolution 2k, aspect 1:1). It must NOT be redesigned, replaced, migrated, or switched to Nano Banana Pro or any other generator. Visual generation behavior (prompt quality, source fidelity, provider, settings, QC depth, output quality) must never change.",
-      "root_cause": "Provider/pipeline drift risk when a session lacks the Higgsfield tool or experiments with alternatives.",
-      "fix": "Higgsfield remains the sole production generator. Pipeline changes are permitted ONLY for token efficiency, output QC, caching, and failure prevention, and must not alter visual generation behavior. The local composite (scripts/composite_ring_into_scene.py, docs/12 A3 Fallback 1) is an in-pipeline geometry-preservation fallback, NOT a generator swap; use it when AI geometry drifts or when Higgsfield is unreachable, then reconcile on the normal Higgsfield path. No-regression: keep a change only if output is equal/better vs the Higgsfield baseline, else revert while keeping validated learning.",
+      "problem": "Standing user lock (2026-07-16): the production image ENGINE is Higgsfield (nano_banana_2, resolution 2k, aspect 1:1). It must NOT be redesigned, replaced, migrated, or switched to Nano Banana Pro or any other generator. Visual generation behavior (prompt quality, source fidelity, provider, settings, QC depth, output quality) must never change.",
+      "root_cause": "Provider/engine drift risk when a session lacks the Higgsfield tool or experiments with alternatives.",
+      "fix": "Higgsfield remains the sole production ENGINE - UNCHANGED by the 2026-07-20 pipeline-version switch. The production PIPELINE is now composite-v1 (user-instructed 2026-07-20): Higgsfield still renders the scene; the real source-CAD ring is composited in. This is NOT an engine swap - compositing preserved pixels is not generation (docs/21 §2), and the ring composite (scripts/composite_ring_into_scene.py) is exactly the geometry-preservation mechanism this record always allowed. Pipeline changes remain permitted ONLY for token efficiency, output QC, caching, and failure prevention, and must not alter the Higgsfield engine. No-regression: keep a change only if output is equal/better vs baseline, else revert while keeping validated learning.",
       "refs": [
         "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
         "docs/14_NO_REGRESSION_POLICY.md",
@@ -520,7 +536,7 @@
       "id": "lr0151-higgsfield-render-geometry-drift",
       "problem": "LR-0151 true-side Higgsfield render (nano_banana_2/flash, 2k, full geometry-lock prompt + source + logo refs) drifted geometry vs source: basket thicker, gallery shape changed, support bars changed, shoulder angle changed, prong thickness changed, diamond pavilion angle changed, overall proportions changed, camera not exactly 90deg. User rejected. Confirms prompt-based diffusion cannot lock CAD geometry — 'do not change' prose has diminishing returns; the model synthesizes a NEW ring conditioned on refs.",
       "root_cause": "Diffusion image models generate a new image conditioned on prompt+refs; they do not truly lock object geometry. More prose does not fix it.",
-      "fix": "Recorded Higgsfield limitation: prompt-based diffusion cannot lock CAD geometry. PIPELINE UNCHANGED — Higgsfield remains the ACTIVE production generator (user-locked 2026-07-16: 'do not change image pipeline until I instruct; till then use Higgsfield only'). The composite (scripts/composite_ring_into_scene.py, docs/12 A3) stays a DOCUMENTED geometry-true option and is NOT activated/primary unless the user explicitly instructs. When a Higgsfield render drifts, tighten the lock (use the short measurable OBJECT LOCK prompt: immutable ring; allow only background/cloth/lighting/reflections/shadows/DoF; forbid geometry/basket/gallery/prongs/shoulders/shank/stone-positions/count/metal-thickness/proportions/camera-angle; regenerate if geometry changes) and re-run on Higgsfield. Do NOT silently swap to composite.",
+      "fix": "Recorded Higgsfield limitation: prompt-based diffusion cannot lock CAD geometry. RESOLVED 2026-07-20 by explicit user instruction: the production pipeline is now composite-v1 (Higgsfield renders the scene; the real source-CAD ring is composited in), which eliminates this drift by construction. The user explicitly authorised the switch (reversing the 2026-07-16 'use Higgsfield only, don't swap to composite' instruction) after confirming that only compositing the source pixels can stop the recurring prong/band/head/invention mistakes. Higgsfield remains the sole ENGINE (renders the scene). See composite-v1-production-lock.",
       "refs": [
         "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
         "scripts/composite_ring_into_scene.py",
@@ -558,7 +574,8 @@
       "correct_result": "Ring geometry identical to the source CAD: open cathedral/V gallery, 4 slim compass-set claws at source angles, unchanged crown/pavilion proportions, ring resting naturally on cloth.",
       "rejected_output_ref": "LR-0151 side profile, in-model generation, rejected by user 2026-07-16",
       "date_recorded": "2026-07-16",
-      "status": "unresolved",
+      "status": "resolved",
+      "resolved_2026-07-20": "Eliminated by construction: production pipeline switched to composite-v1 (ring = real source pixels, never AI-synthesised). See composite-v1-production-lock.",
       "scope": "global",
       "repeat_count": 7,
       "occurrences": [
@@ -587,7 +604,8 @@
       "correct_result": "Logo printed INTO the fibres: weave visible through the ink, print deforms with folds and perspective, edges not uniform, lighting/shadow inherited from the cloth, naturally occluded where the ring covers it, secondary in the frame.",
       "rejected_output_ref": "LR-0151 side profile + hero front, in-model logo, rejected by user 2026-07-16",
       "date_recorded": "2026-07-16",
-      "status": "unresolved",
+      "status": "resolved",
+      "resolved_2026-07-20": "Logo is now ALWAYS composited locally in production (print_logo_on_cloth.py) - never AI-drawn - under composite-v1. See composite-v1-production-lock.",
       "scope": "global",
       "repeat_count": 3,
       "occurrences": [
@@ -657,7 +675,8 @@
       "rejected_output_ref": "LR-0151 45-right, rejected by user 2026-07-17",
       "fix": "Compositing the source ring at a fixed scale/orientation onto a generated cloth plate is the only way to hold scale and orientation constant across a 12-image catalog. Generation cannot.",
       "date_recorded": "2026-07-17",
-      "status": "unresolved",
+      "status": "resolved",
+      "resolved_2026-07-20": "Compositing the source ring at fixed scale/orientation onto the generated cloth plate is now the production default (composite-v1); scale and orientation are held constant across the catalog by construction. See composite-v1-production-lock.",
       "scope": "global",
       "repeat_count": 1,
       "occurrences": [

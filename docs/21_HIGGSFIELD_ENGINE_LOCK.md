@@ -17,6 +17,8 @@ Always execute generation through the existing Higgsfield MCP integration that p
 
 **No other instruction authorizes it.** Not a bug report, not a quality complaint, not a geometry failure, not a timeout, not an internal recommendation, not an optimization goal. If an instruction seems to imply a pipeline change without that sentence, it does not authorize one - stop and ask.
 
+> **Authorized change on record (2026-07-20).** Production pipeline VERSION was switched `legacy` → `composite-v1` after the user was shown the exact switch and its trade-offs and explicitly confirmed it (the "stop and ask" path above, executed and answered). This changed only the pipeline VERSION (`docs/15`), not the engine — Higgsfield still renders every scene (§2). This clause continues to bind: do not switch production again without a fresh explicit user instruction. See `config/QUALITY_MEMORY.json#composite-v1-production-lock`.
+
 **Never automatically switch to:** another connector · another provider · another image generation workflow · **Composite-v1** · Hybrid Composite · Local Composite · Manual Composite · Upload Widget · Media Upload Workflow · Browser Upload Workflow · Alternative MCP · Experimental Pipeline · any future image generation pipeline.
 
 **Model names are NOT in that list** (user-locked 2026-07-16). Do not hard-code model names and do not permanently ban internal model names - they are Higgsfield MCP internals, not providers. See §3.
@@ -69,7 +71,7 @@ On a Higgsfield MCP authentication or infrastructure error:
 
 **Never introduce:** pipeline selection dialogs · provider selection dialogs.
 
-**Relationship to `docs/15`:** this file fixes the ENGINE (always Higgsfield MCP). `docs/15` fixes the PIPELINE VERSION (`legacy` = production baseline, user-restored 2026-07-16; `composite-v1` = retained for experimentation, not production). Both are true simultaneously: legacy uses Higgsfield MCP for the scene and the jewelry; the preserved logo is still composited locally per `docs/04` P0. The production pipeline is `legacy`, the original Higgsfield lifecycle (`docs/15` §0, user-restored 2026-07-16); `composite-v1` is retained for experimentation only.
+**Relationship to `docs/15`:** this file fixes the ENGINE (always Higgsfield MCP). `docs/15` fixes the PIPELINE VERSION. As of **2026-07-20 (explicit user instruction)** the production version is **`composite-v1`** (Higgsfield renders the scene; the real source-CAD ring is composited in), and `legacy` is retained for experimentation only. This did **not** change the engine: per §2, compositing preserved pixels is not "generation", so Higgsfield remains the sole generation engine that renders every scene. The preserved logo is still composited locally per `docs/04` P0 in both versions. The 2026-07-20 switch reversed the 2026-07-16 "legacy = production" restore, and was an explicit, informed user authorization of a pipeline-VERSION change (`docs/15` §0, `config/QUALITY_MEMORY.json#composite-v1-production-lock`) — not an engine swap, which §1 still forbids.
 
 ## 7. REGRESSION
 If any change produces worse image quality or different generation behavior: immediately revert to the last stable Higgsfield MCP workflow (`docs/15` §3, `scripts/rollback-pipeline.*`), preserve all validated learnings and corrections (`config/QUALITY_MEMORY.json`), and never lose previously approved capabilities. Backward compatibility is mandatory — every existing catalog must keep working exactly as before.
