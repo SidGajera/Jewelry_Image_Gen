@@ -26,14 +26,20 @@ The ring is supplied as source reference at max weight. AI may change **only** c
 
 ## 1. GLOBAL_PRESERVATION_BLOCK (never changes)
 
+> **No new policy here.** This is the prompt-ready wording of the existing locks — `03` §A SOURCE CAD (only camera may change) + §B JEWELRY PRESERVATION reject list, owners `13` / `16`, failures `07` F3/F4. If the owners change, re-render this block; never edit it to say something the owners don't.
+
+Prepend to EVERY prompt. Non-negotiable.
+
 ```
-The subject is the EXACT ring in the reference images. Ring geometry, proportions,
-silhouette, stone count, stone placement, prong count and position, gallery and
-basket architecture, band width and thickness, and metal colour are 100% identical
-to the reference. Do not redesign, reinterpret, smooth, simplify, optimise or
-reconstruct any element. Do not add, remove or resize a single stone. Only the
-camera, composition, lighting, shadows, reflections, depth of field and cloth
-folds may change.
+Photograph of the exact ring shown in the reference CAD image. Reproduce the
+geometry with absolute fidelity: identical band width, band thickness, ring
+profile and silhouette, identical head, gallery, basket, cathedral and bridge
+structure, identical setting type, identical prong count, prong shape, prong
+thickness and prong position, identical centre stone cut, size, proportions,
+table, crown and pavilion, identical side stone and pavé count, size, spacing
+and placement, identical metal thickness, curvature and finish. Do not redesign,
+restyle, stylise, simplify, embellish or reinterpret any element. Only the
+camera angle, lighting and surrounding environment may change.
 ```
 
 ## 2. SLOT_PROMPT — 10 IMAGES + 1 VIDEO (fixed order)
