@@ -66,31 +66,34 @@ Etsy shows slot 1 as the thumbnail and the video last. Each slot is a **reserved
 Three-quarter angle hero shot of the ring standing upright, tilted 30 degrees
 toward camera so the centre stone catches light and the band profile stays
 visible. Ring fills 80 to 85 percent of the square frame, perfectly centred.
-Background: [POOL A]. Lighting: [POOL B].
+Background: locked white cotton cloth + printed logo (§3). Lighting: [POOL B],
+neutral variants only.
 Clean soft contact shadow directly beneath the ring. No props, no text,
 no distractions. Absolute clarity on the centre stone facets and prongs.
 ```
-*Rotation note: keep A1/A2/A4 for hero shots only — buyers scanning search results respond to bright clean backgrounds. Save the dramatic B5 for slot 8.*
+*Rotation note: bright and clean is what buyers scanning search results respond to — the locked white cloth already delivers that, so the hero never takes a dark or textured surface. Save the dramatic B5 for slot 8. (Your original note reserved A1/A2/A4 for the hero; superseded by the §4.0 scoping decision, which keeps product slots on cloth.)*
 
 ### 2.2 Slot 2 — Side Profile
 ```
 Perfect 90 degree side elevation of the ring, standing upright, camera at
 exact band height. Full silhouette visible: stone height above the finger
 line, cathedral or basket rise, gallery detail, band taper from shoulder to
-shank. Background: [POOL A]. Lighting: [POOL B].
+shank. Background: locked white cotton cloth + printed logo (§3).
+Lighting: [POOL B], neutral variants only.
 Emphasise the profile outline crisply against the background.
 ```
 *Physics check (`12` §B): an upright pose needs a believable support — a cloth fold, riser or contact point. Never a floating ring.*
 
 ### 2.3 Slot 3 — Top-Down Face-Up
 ```
-Directly overhead orthographic view of the ring lying flat, stone facing
-camera. Shows full face-up appearance: table, crown facets, halo or pavé
-arrangement, prong placement and symmetry, shoulder stone layout.
-Background: [POOL A]. Lighting: [POOL B].
+Near-overhead view at 70 to 75 degrees, stone facing camera. Shows full
+face-up appearance: table, crown facets, halo or pavé arrangement, prong
+placement and symmetry, shoulder stone layout.
+Background: locked white cotton cloth + printed logo (§3). Lighting: [POOL B],
+neutral variants only.
 Even illumination across the entire stone table, no blown-out highlights.
 ```
-> **⚠ OPEN CONFLICT — `12` CAMERA VALIDATION (ZERO TOLERANCE, user-locked 2026-07-17).** That lock forbids a 90° top-down camera and any orthographic / CAD-style top view by name, with automatic rejection when "the ring reads as a perfect circle because of an overhead viewpoint." It was written from the LR-0157 failure, where exactly this shot produced a flattened stone and a CAD-screenshot look. `12` also states that "top detail" means a HIGH ~60° three-quarter, never a 90° overhead. **Pending your decision** — either shoot this slot at ~70–75° (near face-up, keeps crown depth and reads as a photograph) or amend `12`.
+*Resolved 2026-07-20: 70–75°, not 90° orthographic. `12` CAMERA VALIDATION stands unamended. Orthographic + 90° is literally how a CAD viewport renders — flat stone, band as a perfect circle, no lens perspective, no crown depth: the exact render look this library exists to eliminate, already recorded as the LR-0157 failure. At 70–75° the slot still delivers table, crown facets, halo/pavé layout and prong symmetry, plus the perspective convergence that makes it read as a photograph.*
 
 ### 2.4 ⭐ Slot 4 — Hand Try-On (HIGHEST CONVERTING)
 ```
@@ -116,7 +119,7 @@ Aspirational bridal editorial mood, warm and emotional, not clinical.
 ```
 *This is the slot where theme rotation matters most — it is the most visually distinctive image, so repetition here is what makes a shop feel AI-generated. **Never repeat a Pool C prop within 10 consecutive listings.***
 
-> **⚠ OPEN CONFLICT — `12` §A2 (user-locked 2026-07-15).** §A2 replaced the earlier rule-of-thirds guidance with "the ring is placed centered horizontally, centered vertically" and lists "off-center/edge-placed jewelry" under Forbidden. This prompt asks for left/right third. **Pending your decision** — centre the ring here, or amend §A2 to allow thirds on the editorial slot only.
+*Resolved 2026-07-20: thirds permitted here. `12` §A2 now carries a narrow carve-out for this slot only — centred stays mandatory on all ten other frames. Rationale: this is the one frame whose job is emotional and editorial, and centring it forces symmetrical prop staging, which is itself an AI tell. The ring is still the instant focal point, framed large, background never sharper.*
 
 ### 2.6 Slot 6 — IGI Certificate Flat-Lay
 ```
@@ -161,7 +164,7 @@ Right: 14K rose gold.
 Background: pure white seamless. Lighting: B4 (overcast diffused, even).
 Accurate metal colour differentiation, identical geometry across all three.
 ```
-> **⚠ OPEN CONFLICT — `03` MASTER METAL COLOUR (user-locked 2026-07-17).** The lock is **18K** natural yellow gold, "never rose/white/silver/pale unless the source is that metal." This slot deliberately shows alternates, and at 14K. **Pending your decision** — restate as 18K yellow / 18K white / 18K rose, or carve out a documented exception for this comparison slot only (the honest framing: only show metals you actually sell).
+*Resolved 2026-07-20: `03` amended — metal is a **per-listing parameter**, not a global lock, defaulting to **14K yellow gold**. The declared metal is recorded in `config/deliveries/LR-XXXX.json` and locks that whole catalog. This slot renders only the metals the listing actually offers, and is **skipped entirely for single-metal listings** — never show a metal that is not for sale.*
 
 ### 2.10 Slot 10 — Packaging & Brand (TEMPLATE — build once, reuse everywhere)
 ```
@@ -216,7 +219,7 @@ Rationale, so this is not re-litigated: the uniform white-cloth-with-logo studio
 
 Pool D (palette) may tint lifestyle frames only; it never overrides the studio white balance in `11:144`.
 
-> **⚠ OPEN ITEM — the 2026-07-20 slot map puts `Background: [POOL A]` on the product slots (1, 2, 3) and titles Pool A "for product shots".** That reverses the scoping decided above and re-opens the `11` MASTER BACKGROUND LOCK collision. Slots 1–3 currently resolve to the locked white cloth until this is settled. Pending your decision.
+**Resolved 2026-07-20 — slots 1, 2 and 3 keep the locked white cotton cloth + printed logo, NOT Pool A.** Where a slot prompt says `Background: [POOL A]`, read it as the §3 studio constant on slots 1–3, 7 and 9. Pool A feeds slots 4 and 5 (and the surface of slot 6 / slot 10 staging). `11` MASTER BACKGROUND LOCK stands unamended.
 
 Rotate ONE variant from each pool per listing. Never use the same combination twice in a row across the shop grid. Resolve deterministically: `index = hash(SKU) % pool_size`.
 
