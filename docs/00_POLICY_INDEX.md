@@ -20,5 +20,6 @@ This index is the **authoritative map**: exactly ONE owner doc/section per topic
 | Source fetch (SKU main folder only; gold default) | **`03` / `feedback_source_main_folder_only`** | per-catalog delivery record |
 | Per-catalog delivery record (recipe, reference IDs, angle map) | **`config/deliveries/LR-XXXX.json`** | `15` §8 baseline |
 | Recovery checkpoint (auto-activation map on fresh pull) | **`19` RECOVERY CHECKPOINT** | routes to owners above |
+| Etsy slot map (10 images + 1 video), per-slot prompt text, theme rotation | **`20` MASTER IMAGE PROMPT LIBRARY** | `12` camera, `03` lifestyle, `11`/`04` scene |
 
 **Precedence rule:** newest user-locked date wins within an owner; a "MASTER"/"ZERO TOLERANCE" section outranks an older general one on the same topic. Subordinate copies are retained for history and must not be edited to contradict their owner. When adding a new rule, append it to the OWNER only and, if needed, add a see-also pointer elsewhere — never duplicate the rule body.
