@@ -130,7 +130,26 @@ across the paper with no glare on the document.
 Natural paper texture, realistic document flatness with a faint fold crease.
 Professional, trustworthy, documentary tone.
 ```
-> **🚫 CRITICAL — composite a REAL scanned IGI certificate.** Never let AI generate certificate text, seals or numbers: a fabricated certificate is fraud and will end the shop. Blur or crop the certificate number when reusing one scan across listings. **The generated frame must contain no certificate at all** — leave the space empty and composite the scan afterwards. Note `15` §0 is Higgsfield-only and `04`'s local-composite steps are disabled; this slot needs a compositing route confirmed before it can ship.
+> **🚫 CRITICAL — a generative model must NEVER touch certificate pixels.** Even with a real scan supplied as a reference image, the model re-renders it — and garbled or invented grading numbers on an IGI certificate is fraud, not a quality bug. This is a permanent constraint, not a temporary capability gap.
+
+**Slot 6 is therefore a two-step deterministic build (user-locked 2026-07-20):**
+
+1. **Higgsfield generates the scene only** — ring on surface, correct lighting, with a **blank light rectangle** where the document sits (roughly A4 proportion, slight perspective, soft contact shadow along one edge). No certificate, no text, no seals, no numbers anywhere in the generated frame. Prompt the placeholder explicitly and reject any render that puts marks inside it.
+2. **A deterministic compositing step lays in the real scan** — `cv2.getPerspectiveTransform` + `warpPerspective` to match the rectangle's corners, then a subtle multiply blend for the contact shadow. ~50 lines.
+3. **Certificate pixels stay byte-identical to the original scan.** Nothing generative goes near the text. Blur or crop the certificate number when reusing one scan across listings.
+
+*This does not require amending `15` §0 or `04`: the compositing happens **after** the Higgsfield-only boundary and touches already-rendered pixels, never geometry. See §9.3's pipeline boundary note.*
+
+**Scene prompt (step 1) — replaces the certificate line above:**
+```
+Overhead flat-lay composition. The ring placed to one side. Beside it, lying
+flat and slightly angled, a BLANK sheet of white paper in A4 proportion —
+completely empty, no text, no print, no seals, no logos, no marks of any kind.
+Natural paper texture, realistic flatness with a faint fold crease, soft contact
+shadow along one edge. Surface: [POOL A]. Lighting: [POOL B] — soft and even
+across the paper with no glare.
+Professional, trustworthy, documentary tone.
+```
 
 ### 2.7 Slot 7 — Carat Size Reference (TEMPLATE — once per cut shape)
 ```
@@ -382,3 +401,154 @@ Run before uploading any listing set. Complements — never replaces — the pre
 
 ---
 
+
+---
+
+## 9. CATEGORY TEMPLATES — RING / BRACELET / NECKLACE / EARRING (user-locked 2026-07-20)
+
+### 9.0 Why categories must split
+The slot **purposes** are shared (hero → angles → try-on → lifestyle → cert → size → macro → metals → packaging → video). The **preservation vocabulary** and **what each slot means** are not.
+
+| | Ring | Bracelet | Necklace | Earring |
+|---|---|---|---|---|
+| Worn on | finger | wrist | neck / décolletage | earlobe |
+| Critical spec | ring size + carat | **length (6.5–8")** | **chain length (16/18/20")** | **pair + backing type** |
+| Closure | none | **clasp** | **clasp + bail** | **post / lever / screw back** |
+| Quantity | 1 | 1 | 1 | **always 2 — a pair** |
+| "Side profile" means | stone height above finger | clasp + link edge detail | pendant depth + bail | post/backing profile |
+| "Size chart" means | carat comparison | length comparison | chain length on neck | carat + mm drop length |
+| Dead slot | — | metal variants (usually 1 metal) | — | — |
+
+**Rule: never reuse a ring template for a non-ring SKU.** The wrong preservation block is worse than no preservation block, because it tells the model to preserve features the product doesn't have — which invites hallucination.
+
+### 9.1 PRESERVATION BLOCKS (per category)
+Each replaces the middle of §1's GLOBAL_PRESERVATION_BLOCK. The opening ("Photograph of the exact piece shown in the reference CAD image…") and the closing ("Do not redesign, restyle… Only the camera angle, lighting and surrounding environment may change.") are unchanged.
+
+**RING** — §1 as written, unchanged.
+
+**BRACELET**
+```
+Reproduce the geometry with absolute fidelity: identical link shape, link count,
+link length and width, link spacing and articulation, identical chain gauge and
+wire thickness, identical connector and jump-ring geometry, identical clasp type,
+clasp size and clasp orientation, identical stone setting style, stone count,
+stone size and stone spacing along the chain, identical total bracelet length and
+taper, identical metal thickness, curvature and finish. Do not add, remove or
+resize links. Do not change the clasp type.
+```
+
+**NECKLACE / PENDANT**
+```
+Reproduce the geometry with absolute fidelity: identical pendant silhouette,
+proportions and depth, identical bail shape, size and orientation, identical
+setting type, prong or bezel count and placement, identical centre stone cut,
+size and proportions, identical accent stone count, size and spacing, identical
+chain style, link pattern and chain gauge, identical chain length and drop,
+identical clasp type and size, identical metal thickness, curvature and finish.
+Do not change the chain style or lengthen the drop.
+```
+
+**EARRING**
+```
+Reproduce the geometry with absolute fidelity as a MATCHED PAIR of two identical
+earrings: identical silhouette and proportions on both pieces, identical setting
+type, prong or bezel count, shape and position, identical centre stone cut, size
+and proportions, identical accent stone count, size and spacing, identical
+backing mechanism type (post with push back, screw back, lever back or hoop
+closure) shown accurately, identical drop length where applicable, identical
+metal thickness, curvature and finish. Both earrings must be mirror-accurate to
+each other. Never render a single earring where a pair is specified.
+```
+
+### 9.2 SLOT MAP OVERRIDES
+
+**RING — baseline.** §2 as written, unchanged.
+
+**BRACELET**
+| Slot | Content | Change from ring |
+|---|---|---|
+| 1 | Laid in a soft open curve or gentle S-shape, white cloth, clasp visible | **not upright** |
+| 2 | **Clasp close-up** — mechanism clearly shown, open or closed | replaces side profile |
+| 3 | Full length laid straight, flat, end to end | replaces overhead |
+| 4 | **Wrist try-on** — natural drape and gap under wrist | wrist not finger |
+| 5 | Lifestyle | same |
+| 6 | IGI cert composite | same |
+| 7 | **Length chart** — 6.5" / 7" / 7.5" / 8" side by side | length not carat |
+| 8 | Link + stone macro | same purpose |
+| 9 | Metal variants *(skip if single metal)* | often dead |
+| 10 | Packaging | same |
+
+**NECKLACE / PENDANT**
+| Slot | Content | Change from ring |
+|---|---|---|
+| 1 | Pendant hero with chain falling in a soft V, white cloth | — |
+| 2 | **Pendant side / bail detail** — depth and bail orientation | — |
+| 3 | Full necklace laid flat in an open circle, clasp at top | — |
+| 4 | **Neck try-on** — on décolletage or bust form, shows true drop | neck not finger |
+| 5 | Lifestyle | same |
+| 6 | IGI cert composite | same |
+| 7 | **Chain length chart** — 16" / 18" / 20" / 22" on a neck diagram | length not carat |
+| 8 | Pendant stone macro | same |
+| 9 | Metal variants | same |
+| 10 | Packaging | same |
+
+**EARRING**
+| Slot | Content | Change from ring |
+|---|---|---|
+| 1 | **Both earrings**, symmetrically placed, 3/4 angle, white cloth | pair, never single |
+| 2 | **Backing detail** — post, screw back or lever back clearly shown | replaces side profile |
+| 3 | Pair face-on, flat, perfectly aligned | — |
+| 4 | **Ear try-on** — worn on ear, hair tucked back, shows true scale | ear not finger |
+| 5 | Lifestyle | same |
+| 6 | IGI cert composite | same |
+| 7 | **Carat + drop-length chart** — mm drop beside carat | two-axis |
+| 8 | Single-earring stone macro | one is fine here |
+| 9 | Metal variants — pair shown per metal | 3 pairs, not 3 singles |
+| 10 | Packaging | same |
+
+*Everything else in this doc applies unchanged across categories: §3 studio constant, §4 pools (try-on slot 4 and lifestyle slot 5 are the pool-scoped frames in every category), §5 quality tail, §7 anti-AI checklist, §8 production summary.*
+
+### 9.3 IMPLEMENTATION
+
+**Config shape** — `config/deliveries/LR-XXXX.json`:
+```json
+{
+  "sku": "LCL-BRC-PAPERCLIP-0007",
+  "category": "bracelet",
+  "metal": "14K yellow",
+  "length_in": "7.0",
+  "clasp": "lobster",
+  "link_count": 18
+}
+```
+
+**Resolver** — category selects the preservation block and slot map together:
+```python
+CATEGORY = {
+    "ring":     (RING_PRESERVATION,     RING_SLOTS),
+    "bracelet": (BRACELET_PRESERVATION, BRACELET_SLOTS),
+    "necklace": (NECKLACE_PRESERVATION, NECKLACE_SLOTS),
+    "earring":  (EARRING_PRESERVATION,  EARRING_SLOTS),
+}
+
+def build(sku, category, **spec):
+    if category not in CATEGORY:
+        raise ValueError(f"No template for category: {category}")
+    preservation, slots = CATEGORY[category]
+    ...
+```
+
+**Fail loudly on unknown category.** Silently falling back to the ring template is exactly how `BRACELET.json` inherited ring settings in the first place.
+
+> **Pipeline boundary note.** `15` §0 bans Python/CAD as a *rendering* path — geometry is never reconstructed outside Higgsfield. A resolver that assembles prompt text, and the slot-6 compositing step in §2.6, sit *outside* that boundary: they touch strings and already-rendered pixels, never geometry. No amendment to `15` §0 or `04` is required or implied.
+
+### 9.4 VALIDATION ADDITIONS (route to `07` Failure Memory)
+| Category | Auto-reject if |
+|---|---|
+| Bracelet | clasp missing or type changed; link count differs from spec |
+| Necklace | chain style changed; drop length visually inconsistent with spec |
+| Earring | **only one earring rendered**; the two are not mirror-accurate; backing type wrong |
+| All | try-on body part wrong for category |
+
+### 9.5 CATALOG NOTE
+Earrings and pendants are the fastest-moving **gift** category — no ring-size risk, no resizing returns, and they sell year-round rather than only during engagement season. Building those two templates now unlocks a product line rings cannot reach.
