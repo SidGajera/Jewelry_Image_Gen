@@ -24,5 +24,6 @@ This index is the **authoritative map**: exactly ONE owner doc/section per topic
 | Anti-"AI look" checks ACROSS listings (prop/skin/temp rotation, hand anatomy, no AI text) | **`20` §7 ANTI-AI LOOK CHECKLIST** | `18` §9b pointer; within-catalog consistency stays `18` |
 | Metal karat + colour per listing (default 14K yellow; comparison slot) | **`03` §C METAL IS A PER-LISTING PARAMETER** | `18` §5, `config/deliveries/LR-XXXX.json` |
 | Category templates (ring/bracelet/necklace/earring preservation + slot maps) | **`20` §9 CATEGORY TEMPLATES** | `07` CATEGORY AUTO-REJECTS, `config/deliveries/_TEMPLATE_*.json` |
+| Catalog brief — required input fields, run order, batch CSV | **`21` CATALOG BRIEF SPEC** | `20` slot content, `17` cost, `03` validation |
 
 **Precedence rule:** newest user-locked date wins within an owner; a "MASTER"/"ZERO TOLERANCE" section outranks an older general one on the same topic. Subordinate copies are retained for history and must not be edited to contradict their owner. When adding a new rule, append it to the OWNER only and, if needed, add a see-also pointer elsewhere — never duplicate the rule body.
