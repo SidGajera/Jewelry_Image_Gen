@@ -1,0 +1,61 @@
+{
+  "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LCL-EAR-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks. CATEGORY: earring. Use the EARRING preservation block and slot map (docs/20 §9.1/§9.2) — NEVER the ring template.",
+  "sku": "LCL-EAR-XXXX",
+  "approved_date": "YYYY-MM-DD",
+  "metal": "14K yellow",
+  "category": "earring",
+  "design": "one-line design summary (style, stones, backing, drop, metal)",
+  "source_files": [
+    "workspace/golden/LCL-EAR-XXXX/source.png",
+    "drive_file_id:..."
+  ],
+  "approved_first_image": "path/or/job_id of the approved Image 1 (the baseline)",
+  "pipeline_version": "legacy | composite-v1",
+  "prompt_hash": "sha256 of the exact prompt used",
+  "provider": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "seed": null,
+  "geometry_profile": {
+    "silhouette": "",
+    "setting": "",
+    "prongs": 0,
+    "center_cut": "",
+    "accent_count": 0,
+    "backing_type": "",
+    "drop_mm": "",
+    "metal": ""
+  },
+  "profiles": {
+    "camera": "",
+    "lighting": "",
+    "cloth": "",
+    "logo": ""
+  },
+  "user_corrections": [],
+  "qc_report": {
+    "method": "composite-provenance | vision | manual",
+    "geometry_guaranteed": true,
+    "passed": true,
+    "checklist": {
+      "pair_rendered": null,
+      "mirror_accurate": null,
+      "backing_type_correct": null
+    }
+  },
+  "job_ids": {
+    "studio": [],
+    "lifestyle": [],
+    "closeup": []
+  },
+  "spec": {
+    "backing": "post with push back",
+    "drop_mm": "",
+    "carat_per_stone": "",
+    "quantity": 2
+  },
+  "slot_map": "docs/20 §9.2 EARRING — PAIR hero · BACKING detail · pair face-on aligned · EAR try-on · lifestyle · cert · carat+drop chart · single-earring macro · metals (3 PAIRS) · packaging"
+}

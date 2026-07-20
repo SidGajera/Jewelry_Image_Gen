@@ -66,6 +66,18 @@ Dedicated memory layer for continuous improvement. Machine-readable store: [`con
 - Camera failures
 - Logo placement & catalog composition failures
 
+### CATEGORY AUTO-REJECTS (user-locked 2026-07-20 — non-ring SKUs)
+Applies to every bracelet / necklace / earring catalog. Detail + preservation blocks: `20` §9.
+
+| Category | Auto-reject if |
+|---|---|
+| Bracelet | clasp missing or type changed · link count differs from spec |
+| Necklace | chain style changed · drop length visually inconsistent with spec |
+| Earring | **only one earring rendered** · the two are not mirror-accurate · backing type wrong |
+| All | try-on body part wrong for the category (finger on a bracelet, wrist on a necklace, etc.) |
+
+**Root cause this prevents:** a ring preservation block applied to a non-ring SKU tells the model to preserve prongs, gallery, basket and shank on a product that has none — which invites hallucination rather than suppressing it. `BRACELET.json` inherited ring settings exactly this way; its delivered images were built on ring geometry rules and are queued for re-render. **Never fall back to the ring template on an unknown category — fail loudly** (`20` §9.3).
+
 ### FM-0163 / FM-0164 — Ref-text leak & band artifacts (LR-0162, 2026-07-18)
 - **FM-0163 — Internal reference text/IDs in the image.** The rear render engraved "REF1=LR-0162" on the band. *Prevent:* never render prompts, IDs, reference labels, watermarks, hidden annotations or metadata into any image; OCR-check before delivery — if any readable text other than the official Lucent Carat Lab logo appears, reject (see `03` NO TEXT / NO WATERMARK, `04` §14.1d).
 - **FM-0164 — Band reflection/phantom-geometry artifact.** Unnatural reflection/geometry artifact on the lower-inside of the band. *Prevent:* the band is one continuous clean 18K gold surface with physically correct reflections only; inspect the full band at ~200% zoom and reject any dents, seams, folds, duplicated edges, warped reflections or phantom geometry on the metal.

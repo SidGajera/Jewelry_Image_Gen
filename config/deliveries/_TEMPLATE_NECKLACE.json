@@ -1,0 +1,63 @@
+{
+  "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LCL-NCK-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks. CATEGORY: necklace. Use the NECKLACE preservation block and slot map (docs/20 §9.1/§9.2) — NEVER the ring template.",
+  "sku": "LCL-NCK-XXXX",
+  "approved_date": "YYYY-MM-DD",
+  "metal": "14K yellow",
+  "category": "necklace",
+  "design": "one-line design summary (pendant, bail, chain style, length, metal)",
+  "source_files": [
+    "workspace/golden/LCL-NCK-XXXX/source.png",
+    "drive_file_id:..."
+  ],
+  "approved_first_image": "path/or/job_id of the approved Image 1 (the baseline)",
+  "pipeline_version": "legacy | composite-v1",
+  "prompt_hash": "sha256 of the exact prompt used",
+  "provider": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "seed": null,
+  "geometry_profile": {
+    "pendant_silhouette": "",
+    "bail_shape": "",
+    "setting": "",
+    "center_cut": "",
+    "accent_count": 0,
+    "chain_style": "",
+    "chain_gauge": "",
+    "chain_length_in": "",
+    "clasp_type": "",
+    "metal": ""
+  },
+  "profiles": {
+    "camera": "",
+    "lighting": "",
+    "cloth": "",
+    "logo": ""
+  },
+  "user_corrections": [],
+  "qc_report": {
+    "method": "composite-provenance | vision | manual",
+    "geometry_guaranteed": true,
+    "passed": true,
+    "checklist": {
+      "chain_style_correct": null,
+      "drop_length_matches": null,
+      "bail_correct": null
+    }
+  },
+  "job_ids": {
+    "studio": [],
+    "lifestyle": [],
+    "closeup": []
+  },
+  "spec": {
+    "chain_length_in": "18",
+    "chain_style": "",
+    "clasp": "lobster",
+    "drop_mm": ""
+  },
+  "slot_map": "docs/20 §9.2 NECKLACE — pendant hero w/ soft V chain · BAIL detail · flat open circle · NECK try-on · lifestyle · cert · CHAIN LENGTH chart · pendant macro · metals · packaging"
+}

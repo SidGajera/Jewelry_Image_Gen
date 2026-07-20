@@ -1,5 +1,5 @@
 {
-  "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LR-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks.",
+  "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LR-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks. CATEGORY: ring. Use the RING preservation block and slot map (docs/20 §9.1/§9.2) — NEVER the ring template.",
   "sku": "LR-XXXX",
   "approved_date": "YYYY-MM-DD",
   "metal": "14K yellow",
@@ -44,5 +44,10 @@
     "studio": [],
     "lifestyle": [],
     "closeup": []
-  }
+  },
+  "spec": {
+    "ring_size": "",
+    "carat": ""
+  },
+  "slot_map": "docs/20 §2 baseline — hero 3/4 · 90° side · 70–75° face-up · hand try-on · lifestyle · cert · carat chart · sparkle macro · metals · packaging"
 }

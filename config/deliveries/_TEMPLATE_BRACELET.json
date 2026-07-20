@@ -1,0 +1,60 @@
+{
+  "_note": "Approved-baseline record template (safe-versioning rule 8, docs/15 §8). Copy to LCL-BRC-XXXX.json on 'Approve catalog LR-XXXX'. The approved first image is the catalog baseline; never deliver a later output that scores below it on critical fidelity checks. CATEGORY: bracelet. Use the BRACELET preservation block and slot map (docs/20 §9.1/§9.2) — NEVER the ring template.",
+  "sku": "LCL-BRC-XXXX",
+  "approved_date": "YYYY-MM-DD",
+  "metal": "14K yellow",
+  "category": "bracelet",
+  "design": "one-line design summary (link style, pattern, clasp, stones, metal)",
+  "source_files": [
+    "workspace/golden/LCL-BRC-XXXX/source.png",
+    "drive_file_id:..."
+  ],
+  "approved_first_image": "path/or/job_id of the approved Image 1 (the baseline)",
+  "pipeline_version": "legacy | composite-v1",
+  "prompt_hash": "sha256 of the exact prompt used",
+  "provider": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "seed": null,
+  "geometry_profile": {
+    "link_shape": "",
+    "link_count": 0,
+    "chain_gauge": "",
+    "clasp_type": "",
+    "stone_count": 0,
+    "stone_spacing": "",
+    "total_length_in": "",
+    "metal": ""
+  },
+  "profiles": {
+    "camera": "",
+    "lighting": "",
+    "cloth": "",
+    "logo": ""
+  },
+  "user_corrections": [],
+  "qc_report": {
+    "method": "composite-provenance | vision | manual",
+    "geometry_guaranteed": true,
+    "passed": true,
+    "checklist": {
+      "clasp_present": null,
+      "clasp_type_correct": null,
+      "link_count_matches": null
+    }
+  },
+  "job_ids": {
+    "studio": [],
+    "lifestyle": [],
+    "closeup": []
+  },
+  "spec": {
+    "length_in": "7.0",
+    "clasp": "lobster",
+    "link_count": 0
+  },
+  "slot_map": "docs/20 §9.2 BRACELET — open curve hero · CLASP close-up · full length flat · WRIST try-on · lifestyle · cert · LENGTH chart · link+stone macro · metals (skip if single) · packaging"
+}
