@@ -162,10 +162,67 @@ Within these slots only the *flavour* of the camera rotates per `12` §A1 — e.
 
 ---
 
-## 4. THEME_VARIANT — THE ANTI-"AI LOOK" POOL (slots 9–10)
+## 4. THEME_VARIANT — THEME POOLS, THE ANTI-AI-LOOK ENGINE
 
-Repeating the same setups across every SKU is what makes a shop read as AI-generated. Resolve with `theme_index = hash(SKU) % 7`.
+### 4.0 SCOPE — LIFESTYLE SLOTS ONLY (user-locked 2026-07-20)
 
+**Pools A/B/C apply to slots 9–10 only** (optionally 7–8 detail frames). **Slots 1–8 never rotate** — they keep the locked premium white cotton cloth + printed logo + neutral daylight (`11`, `04`, `03`). No change to `11` or `12` §A2.
+
+Rationale, so this is not re-litigated: the uniform white-cloth-with-logo studio set is the brand signature, and real studios do shoot every product frame on the same sweep — uniformity across product shots reads as professional consistency, not as AI. The "AI look" comes from lifestyle frames with repeated props and identical staging, which is exactly where the pools belong. Rotating studio surfaces would also leave the printed logo (`04`) with no cloth to print into on the marble/concrete/acrylic variants.
+
+Pool D (palette) may tint lifestyle frames only; it never overrides the studio white balance in `11:144`.
+
+Rotate ONE variant from each pool per listing. Never use the same combination twice in a row across the shop grid. Resolve deterministically: `index = hash(SKU) % pool_size`.
+
+### Pool A — Surface / material (lifestyle product-on-surface frames)
+| # | Variant |
+|---|---|
+| A1 | soft matte white seamless paper, gentle gradient falloff |
+| A2 | warm ivory linen textured backdrop |
+| A3 | pale honed Carrara marble slab |
+| A4 | brushed off-white concrete micro-texture |
+| A5 | cool light grey studio sweep with subtle vignette |
+| A6 | natural raw silk fabric, soft folds |
+| A7 | pale travertine stone with fine natural pitting |
+| A8 | frosted acrylic riser on white, faint reflection |
+
+### Pool B — Lighting mood
+| # | Variant |
+|---|---|
+| B1 | large softbox from upper left, gentle fill right, soft shadow lower right |
+| B2 | north-facing window daylight, cool neutral, long soft shadow |
+| B3 | golden hour side light, warm 3200K, elongated soft shadow |
+| B4 | overcast diffused light, near-shadowless, even and clean |
+| B5 | single focused spot with dark falloff, dramatic and editorial |
+| B6 | dual strip lights creating twin highlights on the metal band |
+| B7 | backlit rim light with soft frontal fill, glowing stone edges |
+| B8 | morning light through sheer curtain, faint dappled pattern |
+
+*B3 / B5 / B8 carry warm or uneven colour temperature — permitted on lifestyle slots, never on slots 1–8 (`11:144`, the LR-0154 warm-cast rejection).*
+
+### Pool C — Prop / styling (lifestyle shots)
+| # | Variant |
+|---|---|
+| C1 | open navy velvet ring box, scattered white rose petals |
+| C2 | cream silk ribbon loosely coiled, dried baby's breath sprigs |
+| C3 | vintage brass tray, single blush peony, water droplets |
+| C4 | folded ivory linen napkin, sprig of eucalyptus |
+| C5 | antique mirror surface with soft reflection, pearl strand |
+| C6 | open leather-bound book, pressed flower, warm lamp glow |
+| C7 | white ceramic dish, morning coffee cup blurred behind |
+| C8 | draped ivory tulle fabric, soft bokeh fairy lights far background |
+
+*Props stay softly blurred and subordinate — the ring is still the instant focal point (`12` §A2). A prop that pulls the eye first is a reject regardless of pool.*
+
+### Pool D — Season / palette overlay (rotate monthly for freshness)
+| # | Variant |
+|---|---|
+| D1 | neutral bridal palette — ivory, blush, warm gold |
+| D2 | cool minimal palette — white, grey, cool platinum tones |
+| D3 | autumn palette — amber, terracotta, warm brass accents |
+| D4 | festive palette — deep jewel tones, soft candlelight warmth (use Oct–Nov) |
+
+### Pool S — Slot 9 / 10 scene pairing
 | idx | Theme | Slot 9 setting | Slot 10 scene |
 |---|---|---|---|
 | 0 | Morning Light | Hand by a bright window | Hand around a coffee mug on a linen table |
@@ -211,6 +268,7 @@ unnatural skin, mannequin hand, fake certificate
 - [ ] Every prompt assembled as PRESERVATION + SLOT + THEME/STUDIO + QUALITY_TAIL
 - [ ] Geometry identical to source on every frame (`13`, `16`) — fall through the `12` §A3 ladder if not
 - [ ] Same cloth, same logo treatment, same white balance across slots 1–8 (`11`, `04`)
-- [ ] Theme and video style resolved by `hash(SKU)`, not chosen ad hoc
+- [ ] Theme, pool variants (A/B/C/D/S) and video style resolved by `hash(SKU)`, not chosen ad hoc
+- [ ] No pool variant applied to slots 1–8; no A/B/C combination repeated back-to-back across the shop grid
 - [ ] Ring is the instant focal point in all 11 assets (`12` §A2)
 - [ ] Resolved theme index + video index + camera variants written to `config/deliveries/LR-XXXX.json`
