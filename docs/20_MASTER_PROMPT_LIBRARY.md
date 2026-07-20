@@ -198,6 +198,8 @@ appearance. No white box behind the logo.
 ```
 *Logo rules here are owned by `04` §14.0/§14.1b — official preserved asset only, never AI-drawn.*
 
+> **PACKAGING LOCK (user-locked 2026-07-20).** The jewellery box is a **locked brand asset**, exactly like the cloth (`11`) and the logo (`04`). The approved box is **cream / ivory leatherette, ribbed grosgrain border trim around the rim, pale cream velvet interior with a twin-cushion ring slot** (master render: LR-0169 slot 10, job `f6bf9ae7`). **Never substitute** a navy, dark, velvet-shell, round or otherwise different box — not in slot 10, and not in any lifestyle frame that happens to include a box. **The box must be identical in every image within a catalog AND across catalogs.** Feed the master render in as a reference image on any frame containing the box; describing it in words is not sufficient. *Observed 2026-07-20 (LR-0169): slot 10 rendered the approved cream box while slot 5 was styled with a navy velvet box — two different boxes in one catalog.* Pool C's `C1 open navy velvet ring box` (§4) is therefore **retired**; where a box appears, it is always the approved cream box.
+
 **Best practice:** photograph the real packaging once with a phone and reuse that single real image across all listings. Real packaging beats generated packaging and sets honest delivery expectations.
 
 ### 2.11 ▶ Video Slot — 5 to 15 seconds
@@ -294,6 +296,7 @@ Rotate ONE variant from each pool per listing. Never use the same combination tw
 | idx | Theme | Slot 9 setting | Slot 10 scene |
 |---|---|---|---|
 | 0 | Morning Light | Hand by a bright window | Hand around a coffee mug on a linen table |
+| — | *C1 retired* | *the navy velvet box is superseded by the PACKAGING LOCK in §2.10 — any box in any frame is the approved cream box* | |
 | 1 | Marble & Gold | Hand resting on pale marble | Ring beside a stem of dried florals on marble |
 | 2 | Reading Nook | Hand on an open book | Hand turning a page, warm lamp bokeh |
 | 3 | Desk & Work | Hand resting near a laptop edge | Hand on a notebook with a pen, clean office light |

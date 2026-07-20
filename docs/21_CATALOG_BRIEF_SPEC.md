@@ -98,7 +98,7 @@ Deliver      : config/deliveries/LCL-BRC-0007.json
 7. Slots 4–5 use Pool A/B/C rotation
 8. Slot 6 → scene only with a blank document plate; **the real cert is composited downstream, never generated**
 9. Slots 7 / 9 / 10 pulled from the template asset library, not re-rendered
-10. **Generation count:** `count: 2` on **slots 1 and 4 only** — keep the stronger frame, discard the other. Every other slot is a single render plus `17`'s retry ladder (max 2 attempts, only after a validation failure). See `17` NARROW CARVE-OUT.
+10. **Generation count: `count: 1` on EVERY slot** — no exceptions, no speculative pairs. Regenerate only after a QC failure, max 2 attempts (`17` retry ladder). Two renders of the same locked angle come back near-identical, which is duplication under `12`, not a choice. (The earlier slots-1-and-4 pairs carve-out was revoked the same day it was written — see `17`.)
 
 **Before delivering**
 
