@@ -42,114 +42,158 @@ restyle, stylise, simplify, embellish or reinterpret any element. Only the
 camera angle, lighting and surrounding environment may change.
 ```
 
-## 2. SLOT_PROMPT — 10 IMAGES + 1 VIDEO (fixed order)
 
-Etsy shows slot 1 as the thumbnail and the video last. Each slot is a **reserved camera orientation** — used exactly once per catalog (`12` ONE IMAGE PER ANGLE, ≤20% similarity bar).
+## 2. SLOT_PROMPT — THE 10 SLOTS + 1 VIDEO (user-supplied, 2026-07-20)
 
-| # | Slot | Type | Reserved camera | Purpose |
-|---|---|---|---|---|
-| 1 | Hero Front | Studio | 0° yaw, ring height, 0–5° tilt | Thumbnail; instant recognition |
-| 2 | Front 45° Left | Studio | ~45° yaw L, 30–35° pitch | Setting depth, side stones |
-| 3 | Front 45° Right | Studio | ~45° yaw R, 30–35° pitch | Opposite side, band profile |
-| 4 | True Profile | Studio | 90° yaw (or 75–80° per rotation), ring height | Basket, gallery, cathedral, setting height |
-| 5 | High Three-Quarter | Studio | ~30° yaw, ~60° pitch (never 90° overhead) | Complete architecture |
-| 6 | Rear / Gallery | Studio | 135–180° yaw, 20–30° pitch | Under-gallery, finish quality |
-| 7 | Diamond Macro | Detail | Raked oblique macro, light skimming facets | Brilliance, clarity, cut proof |
-| 8 | Craft Macro | Detail | Low near-table ~10–15°, tight on shoulder→head | Prong work, metal finish, scale |
-| 9 | On-Finger Hero | Lifestyle | Ring-level close, hand as stand | Fit and real-world scale |
-| 10 | Lifestyle Story | Lifestyle | Theme-dependent (§4) | Emotional/context sale |
-| V | Video | 8–10 s | Slow orbit or focus pull | Motion proof of brilliance |
+Etsy shows slot 1 as the thumbnail and the video last. Each slot is a **reserved viewpoint/purpose** — used exactly once per listing (`12` ONE IMAGE PER ANGLE, ≤20% similarity bar).
 
-Slots 1–8 use the locked studio setup (white cloth + printed logo, `11`/`04`). Slots 9–10 are the only frames where the cloth/logo may be absent.
+| # | Slot | Type | Notes |
+|---|---|---|---|
+| 1 | ⭐ White Hero | Product | THUMBNAIL — most important image in the business |
+| 2 | Side Profile | Product | Full silhouette, stone height, gallery, band taper |
+| 3 | Top-Down Face-Up | Product | Face-up appearance — **see §2.3 conflict note** |
+| 4 | ⭐ Hand Try-On | Lifestyle | HIGHEST CONVERTING image |
+| 5 | Lifestyle / Proposal Scene | Lifestyle | Where theme rotation matters most |
+| 6 | IGI Certificate Flat-Lay | Documentary | Real scanned cert only — never AI-generated |
+| 7 | Carat Size Reference | Template | Build once per cut shape (8 total) |
+| 8 | Sparkle Macro | Detail | Dramatic gemmological macro |
+| 9 | Metal Variations | Template | Build once per design — **see §2.9 conflict note** |
+| 10 | Packaging & Brand | Template | Build once, reuse everywhere |
+| V | Video | 5–15 s | 360° turntable — **ask before generating** |
 
-### 2.1 Slot 1 — Hero Front
+### 2.1 ⭐ Slot 1 — White Hero (THUMBNAIL)
 ```
-Camera straight on at ring height, 0° yaw, 0–5° downward tilt. The full face of
-the setting and the centre stone face the lens with maximum brilliance. Cleanest,
-most symmetrical e-commerce hero composition.
+Three-quarter angle hero shot of the ring standing upright, tilted 30 degrees
+toward camera so the centre stone catches light and the band profile stays
+visible. Ring fills 80 to 85 percent of the square frame, perfectly centred.
+Background: [POOL A]. Lighting: [POOL B].
+Clean soft contact shadow directly beneath the ring. No props, no text,
+no distractions. Absolute clarity on the centre stone facets and prongs.
 ```
+*Rotation note: keep A1/A2/A4 for hero shots only — buyers scanning search results respond to bright clean backgrounds. Save the dramatic B5 for slot 8.*
 
-### 2.2 Slot 2 — Front 45° Left
+### 2.2 Slot 2 — Side Profile
 ```
-Camera yawed 45° to the LEFT of front and raised to 30–35° above ring height.
-The setting is clearly seen from the left-front and above: centre-stone depth,
-side stones, gallery and band all readable. Clearly a different viewpoint from
-the hero.
+Perfect 90 degree side elevation of the ring, standing upright, camera at
+exact band height. Full silhouette visible: stone height above the finger
+line, cathedral or basket rise, gallery detail, band taper from shoulder to
+shank. Background: [POOL A]. Lighting: [POOL B].
+Emphasise the profile outline crisply against the background.
 ```
+*Physics check (`12` §B): an upright pose needs a believable support — a cloth fold, riser or contact point. Never a floating ring.*
 
-### 2.3 Slot 3 — Front 45° Right
+### 2.3 Slot 3 — Top-Down Face-Up
 ```
-Mirror of the previous frame: camera yawed 45° to the RIGHT, raised 30–35°.
-Shows the opposite side of the setting and the band profile from that side.
+Directly overhead orthographic view of the ring lying flat, stone facing
+camera. Shows full face-up appearance: table, crown facets, halo or pavé
+arrangement, prong placement and symmetry, shoulder stone layout.
+Background: [POOL A]. Lighting: [POOL B].
+Even illumination across the entire stone table, no blown-out highlights.
 ```
+> **⚠ OPEN CONFLICT — `12` CAMERA VALIDATION (ZERO TOLERANCE, user-locked 2026-07-17).** That lock forbids a 90° top-down camera and any orthographic / CAD-style top view by name, with automatic rejection when "the ring reads as a perfect circle because of an overhead viewpoint." It was written from the LR-0157 failure, where exactly this shot produced a flattened stone and a CAD-screenshot look. `12` also states that "top detail" means a HIGH ~60° three-quarter, never a 90° overhead. **Pending your decision** — either shoot this slot at ~70–75° (near face-up, keeps crown depth and reads as a photograph) or amend `12`.
 
-### 2.4 Slot 4 — True Profile
+### 2.4 ⭐ Slot 4 — Hand Try-On (HIGHEST CONVERTING)
 ```
-True side view at ring height. Basket, gallery, prongs, under-gallery, cathedral
-and side-stone setting in clean profile. The top of the centre stone is NOT
-visible as a face. The customer should understand exactly how the ring is built.
+The ring worn on the ring finger of a natural adult female hand, hand relaxed
+in a soft elegant pose, fingers slightly separated, viewed from a natural
+three-quarter angle. Realistic skin texture with visible pores and natural
+tone variation, short neutral manicure, no jewellery on other fingers.
+The ring must sit at true scale for its stated carat weight — do not enlarge
+or shrink the ring relative to the finger.
+Background: soft neutral bokeh, [POOL A] tones. Lighting: [POOL B].
 ```
+*Skin tone rotation (important for the US market): cycle `fair` → `light olive` → `medium tan` → `deep brown` across the catalogue — varied models make the shop feel photographed, not generated.*
 
-### 2.5 Slot 5 — High Three-Quarter
-```
-Camera high at roughly 60° above the table, yawed about 30°. Top and one side
-seen together, revealing the complete architecture. Never a 90° overhead flat-lay:
-the crown, prongs and band depth must stay visible with natural lens perspective.
-```
+**⚠ Manual check on every single one:** five fingers · correct joints · no fused or extra digits · natural nail beds · believable ring scale. Reject and regenerate on any failure. (Matches the `07` LR-0141 lifestyle failure: worn shots multiplied prongs and drifted stone size — count prongs here too.)
 
-### 2.6 Slot 6 — Rear / Gallery
+### 2.5 Slot 5 — Lifestyle / Proposal Scene
 ```
-Camera behind the head looking forward, 135–180° yaw, 20–30° above ring height.
-Shows the rear of the setting and the under-gallery finish — the craftsmanship a
-buyer normally never sees. Ring still centered and fully in frame.
+Editorial lifestyle still life. The ring positioned as the clear hero subject
+in the left or right third of the frame, styled with [POOL C].
+Surface: [POOL A]. Lighting: [POOL B]. Palette: [POOL D].
+Shallow depth of field, f/2.8, background softly out of focus, ring tack sharp.
+Aspirational bridal editorial mood, warm and emotional, not clinical.
 ```
+*This is the slot where theme rotation matters most — it is the most visually distinctive image, so repetition here is what makes a shop feel AI-generated. **Never repeat a Pool C prop within 10 consecutive listings.***
 
-### 2.7 Slot 7 — Diamond Macro
-```
-Raked oblique macro, light skimming across the facets. Fill the frame with the
-centre stone and its immediate setting while keeping prongs whole and uncropped.
-Show real fire and scintillation — sharp facet edges, crisp reflections, a true
-focal plane on the table facet with soft falloff behind.
-```
+> **⚠ OPEN CONFLICT — `12` §A2 (user-locked 2026-07-15).** §A2 replaced the earlier rule-of-thirds guidance with "the ring is placed centered horizontally, centered vertically" and lists "off-center/edge-placed jewelry" under Forbidden. This prompt asks for left/right third. **Pending your decision** — centre the ring here, or amend §A2 to allow thirds on the editorial slot only.
 
-### 2.8 Slot 8 — Craft Macro
+### 2.6 Slot 6 — IGI Certificate Flat-Lay
 ```
-Low near-table angle, 10–15° above the cloth, tight on the shoulder-to-head
-transition. The stone towers over the band. Show prong tips, metal polish,
-milgrain or detailing, and the real thickness of the shank. Extreme close focus,
-background dissolving into soft white.
+Overhead flat-lay composition. The ring placed to one side, a genuine IGI
+diamond grading certificate document laid flat beside it, slightly angled,
+partially in frame. Surface: [POOL A]. Lighting: [POOL B] — soft and even
+across the paper with no glare on the document.
+Natural paper texture, realistic document flatness with a faint fold crease.
+Professional, trustworthy, documentary tone.
 ```
+> **🚫 CRITICAL — composite a REAL scanned IGI certificate.** Never let AI generate certificate text, seals or numbers: a fabricated certificate is fraud and will end the shop. Blur or crop the certificate number when reusing one scan across listings. **The generated frame must contain no certificate at all** — leave the space empty and composite the scan afterwards. Note `15` §0 is Higgsfield-only and `04`'s local-composite steps are disabled; this slot needs a compositing route confirmed before it can ship.
 
-### 2.9 Slot 9 — On-Finger Hero
+### 2.7 Slot 7 — Carat Size Reference (TEMPLATE — once per cut shape)
 ```
-The ring worn on a well-groomed hand, natural skin, short neutral nails. Camera
-at ring level, close in — the ring is the subject and the hand is only a stand,
-NOT portrait-style hand photography. Ring occupies the centre of the frame, soft
-natural light, background softly blurred.
+Clean informational comparison layout on plain white background. The same
+[CUT SHAPE] diamond shown at 1.00CT, 1.50CT, 2.00CT, 3.00CT and 4.00CT, in a
+single evenly spaced horizontal row, all viewed face-up from directly overhead,
+scaled accurately relative to one another.
+Soft even shadowless studio lighting. Generous white margin around the row.
+Leave clear empty space beneath each stone for a size label to be added later.
 ```
+*Build 8 total: Round · Oval · Marquise · Dutch Marquise · Pear · Emerald · Radiant · Asscher. Add the mm labels afterwards in code or Canva — never let the model render text.*
 
-### 2.10 Slot 10 — Lifestyle Story
+### 2.8 Slot 8 — Sparkle Macro
 ```
-The ring worn or resting in the scene defined by the theme variant. Ring centered,
-framed large, the clear focal point — the eye must land on it within one second.
-Environment softly blurred and never sharper than the ring. No prop competes with
-the jewelry.
+Extreme macro close-up of the centre stone filling 90 percent of the frame,
+shot at a slight angle to catch maximum fire. Visible spectral dispersion —
+rainbow flashes of red, blue and green within the facets — alongside bright
+white brilliance returns. Crisp facet edges and clean facet junctions.
+Background: deep charcoal or black with soft falloff.
+Lighting: B5 (single focused spot with dark falloff) or B7 (backlit rim light).
+Dramatic gemmological photography, high contrast, jewel-like.
 ```
+*`03` bans "random sparkle effects, artificial starbursts or fake rainbow dispersion" — the dispersion here must be real optical behaviour of the stone's facets, never an added effect layer.*
 
-### 2.11 Slot V — Video (8–10 s, 24–30 fps)
-One style per SKU, selected by the same hash rule (`video_index = hash(SKU) % 4`):
-- **Slow orbit** — camera arcs 0°→60° around the ring on the studio cloth, constant height, constant light; brilliance shifts naturally as facets catch the light.
-- **Focus pull** — static camera, focus travels from the shank to the centre stone; shallow DoF throughout.
-- **Light sweep** — ring static, a soft key light travels across the stone, igniting fire facet by facet.
-- **Hand reveal** — hand enters frame and settles; ring holds the centre for the final 4 s.
+### 2.9 Slot 9 — Metal Variations (TEMPLATE — once per design)
+```
+Three identical copies of the same ring shown side by side in a single evenly
+spaced horizontal row, all at the same three-quarter angle and identical scale.
+Left: 14K yellow gold. Centre: 14K white gold with rhodium finish.
+Right: 14K rose gold.
+Background: pure white seamless. Lighting: B4 (overcast diffused, even).
+Accurate metal colour differentiation, identical geometry across all three.
+```
+> **⚠ OPEN CONFLICT — `03` MASTER METAL COLOUR (user-locked 2026-07-17).** The lock is **18K** natural yellow gold, "never rose/white/silver/pale unless the source is that metal." This slot deliberately shows alternates, and at 14K. **Pending your decision** — restate as 18K yellow / 18K white / 18K rose, or carve out a documented exception for this comparison slot only (the honest framing: only show metals you actually sell).
 
-No cuts, no text overlays, no zoom punches. Geometry stays locked across every frame.
+### 2.10 Slot 10 — Packaging & Brand (TEMPLATE — build once, reuse everywhere)
+```
+Premium unboxing still life. The ring seated inside an open jewellery box,
+accompanied by a folded premium white cotton cloth bearing the LucentCaratLab
+logo, a pouch and a thank-you card. Surface: [POOL A]. Lighting: [POOL B].
+Luxury gift presentation mood, warm and inviting.
+The logo must appear naturally printed into the cotton weave, following the
+fabric's folds and perspective, with correct colour, typography, spacing and
+alignment. No sticker, overlay, floating, embossed or artificially applied
+appearance. No white box behind the logo.
+```
+*Logo rules here are owned by `04` §14.0/§14.1b — official preserved asset only, never AI-drawn.*
 
----
+**Best practice:** photograph the real packaging once with a phone and reuse that single real image across all listings. Real packaging beats generated packaging and sets honest delivery expectations.
 
-## 3. STUDIO SCENE CONSTANT (slots 1–8)
+### 2.11 ▶ Video Slot — 5 to 15 seconds
+> **ASK BEFORE GENERATING.** No video is produced without explicit per-request permission from the user.
+```
+The ring rotating slowly and smoothly through 360 degrees on an invisible
+turntable, centred in frame, against a clean [POOL A] background.
+A soft light source sweeps across the stone during the rotation so the facets
+flash and the fire animates. Constant camera position, no zoom, no cuts.
+Smooth constant rotation speed, approximately 12 seconds per full revolution.
+Photorealistic, no motion blur on the ring, no warping of geometry during
+rotation.
+```
+*Etsy videos play silent — no audio needed. Once a real finished ring exists, film it on a cheap turntable and replace this; real sparkle video outperforms every generated asset.*
 
-Appended to slots 1–8 in place of a lifestyle theme variant — the studio setup is locked, not rotated (`11`, `04`):
+## 3. STUDIO SCENE CONSTANT (locked white-cloth frames)
+
+Appended in place of a theme variant wherever the locked studio background is used — the studio setup is locked, not rotated (`11`, `04`). Under the 2026-07-20 slot map this covers slot 10 for certain, plus whichever product slots resolve to cloth (see the §4.0 open item):
 
 ```
 Premium pure-white cotton cloth, naturally draped, folds falling where gravity
@@ -164,13 +208,15 @@ Within these slots only the *flavour* of the camera rotates per `12` §A1 — e.
 
 ## 4. THEME_VARIANT — THEME POOLS, THE ANTI-AI-LOOK ENGINE
 
-### 4.0 SCOPE — LIFESTYLE SLOTS ONLY (user-locked 2026-07-20)
+### 4.0 SCOPE — LIFESTYLE SLOTS ONLY (decided 2026-07-20)
 
-**Pools A/B/C apply to slots 9–10 only** (optionally 7–8 detail frames). **Slots 1–8 never rotate** — they keep the locked premium white cotton cloth + printed logo + neutral daylight (`11`, `04`, `03`). No change to `11` or `12` §A2.
+**Pools A/B/C apply to lifestyle slots only** — under the new slot map that is slots 4 and 5. Product frames keep the locked premium white cotton cloth + printed logo + neutral daylight (`11`, `04`, `03`). No change to `11` or `12` §A2.
 
 Rationale, so this is not re-litigated: the uniform white-cloth-with-logo studio set is the brand signature, and real studios do shoot every product frame on the same sweep — uniformity across product shots reads as professional consistency, not as AI. The "AI look" comes from lifestyle frames with repeated props and identical staging, which is exactly where the pools belong. Rotating studio surfaces would also leave the printed logo (`04`) with no cloth to print into on the marble/concrete/acrylic variants.
 
 Pool D (palette) may tint lifestyle frames only; it never overrides the studio white balance in `11:144`.
+
+> **⚠ OPEN ITEM — the 2026-07-20 slot map puts `Background: [POOL A]` on the product slots (1, 2, 3) and titles Pool A "for product shots".** That reverses the scoping decided above and re-opens the `11` MASTER BACKGROUND LOCK collision. Slots 1–3 currently resolve to the locked white cloth until this is settled. Pending your decision.
 
 Rotate ONE variant from each pool per listing. Never use the same combination twice in a row across the shop grid. Resolve deterministically: `index = hash(SKU) % pool_size`.
 
