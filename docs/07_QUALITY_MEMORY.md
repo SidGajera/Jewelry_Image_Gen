@@ -73,6 +73,11 @@ Attempt 1 on the hero slot failed on two counts, both caught before batching the
 - **Residual (accepted at delivery):** shoulder pave runs ~3/4 down the shank vs ~mid-shoulder in the source.
 - **Environment note:** Python 3.12 + PIL + numpy ARE available on this machine; `cv2` is not. The local composite path works and sits outside `15` §0 (post-render pixels, not a rendering path — `20` §9.3).
 
+### FM-0171 — Pavé invented in the split-V gallery (LR-0171, 2026-07-20)
+The flower-halo SKU's sparkle macro added a row of pavé diamonds INTO the split-V gallery arms beneath the head. The source sets pavé ONLY inside the eight scalloped flower lobes; the V arms and the whole shank are plain polished gold. Repeat of the `16` zero-invention class — the model studded a bare-metal structural element.
+- **Root cause:** the prompt named the triangular voids and said keep them open, but never said the ARMS THEMSELVES are bare. "Keep the gap open" is not "no stones on the metal beside the gap."
+- **Prevent:** when a structural element (gallery, arm, bridge, basket, under-gallery, shank) is plain metal in the source, state it explicitly as bare polished gold with NO pavé/stones/milgrain — naming the open voids is not enough. For every SKU, list where stones ARE and add "the only stones in the ring are X; every other metal surface is plain." Count stone-bearing zones against the source before approving.
+
 ### CATEGORY AUTO-REJECTS (user-locked 2026-07-20 — non-ring SKUs)
 Applies to every bracelet / necklace / earring catalog. Detail + preservation blocks: `20` §9.
 
