@@ -349,3 +349,36 @@ Run before uploading any listing set. Complements — never replaces — the pre
 
 ---
 
+
+---
+
+## 8. PRODUCTION SUMMARY PER LISTING (user-locked 2026-07-20)
+
+| Type | Count | Notes |
+|---|---|---|
+| Unique generations | 6 | Slots 1, 2, 3, 4, 5, 8 |
+| Composite (not generated) | 1 | Slot 6 — real IGI scan laid into a generated empty flat-lay |
+| Template reuse | 3 | Slots 7, 9, 10 — pulled from the asset library by cut shape / design |
+| Video | 1 | Generated or filmed — **ask before generating** (`20` §2.11) |
+| **Total Etsy assets** | **10 images + 1 video** | Fills every available Etsy slot |
+
+*Slot 6 is listed separately because it is neither a fresh generation nor a library template: the frame is generated empty and the certificate is composited afterwards. Your original summary had 6 + 3 = 9 images against a 10-slot total; this row closes the gap.*
+
+### Asset library — build once
+| Template | Count | Rebuild trigger |
+|---|---|---|
+| Carat size chart (§2.7) | 8 — one per cut shape: Round · Oval · Marquise · Dutch Marquise · Pear · Emerald · Radiant · Asscher | New cut shape added |
+| Metal variants (§2.9) | 1 per design that offers multiple metals — skipped for single-metal designs | New design, or a design's metal range changes |
+| Packaging & brand (§2.10) | 1 universal — ideally a real photograph of the actual packaging | Packaging changes |
+
+*Count check: 8 charts + 8 metal sheets (one per design, each showing 3 metals) + 1 packaging = **17**, not 24. 24 would be the number if metal variants were counted as 8 designs × 3 individual renders — but §2.9 is a single side-by-side frame, so it is one asset per design. Adjust if you meant 8 charts + 24 separate metal renders (= 33 total).*
+
+### Throughput
+- **~20 minutes per listing** at steady state
+- **200 listings** ≈ 1,200 unique generations + 200 slot-6 composites + 200 videos
+- ≈ **67 hours** ≈ 2 hrs/day over 6 weeks
+
+*Cost note: `17` MASTER TOKEN OPTIMIZATION applies — reuse each `media_id` (cloth, logo, CAD, approved masters) across the six generations rather than re-uploading, and fix cloth/logo defects locally at 0 credits instead of regenerating a frame.*
+
+---
+
