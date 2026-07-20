@@ -180,15 +180,28 @@ Repeating the same setups across every SKU is what makes a shop read as AI-gener
 
 ## 5. QUALITY_TAIL (never changes)
 
+Append to EVERY prompt.
+
 ```
-Real macro photography shot on a professional camera — genuine shallow depth of
-field with soft gradual falloff, a true focal plane, believable specular
-highlights, natural shadow gradients and gentle light falloff toward the frame
-edges. Ring centered horizontally and vertically, framed large, whole ring
-visible, nothing important cropped. Photorealistic, not CGI, not a 3D render, not
-a CAD screenshot; no waxy over-smooth surfaces, no unnaturally even lighting, no
-everything-in-focus flatness.
+Shot on Canon EOS R5 with 100mm f/2.8 macro lens, f/8, focus stacked, true
+colour accuracy, natural micro-imperfections in metal surface, realistic
+subsurface light behaviour in the diamond, no plastic or waxy rendering,
+no oversaturation, no HDR halo, photorealistic commercial jewellery
+photography, 3000x3000px, tack sharp.
 ```
+
+**Negative prompt** (if the pipeline supports it):
+
+```
+cgi, 3d render, plastic, waxy, oversaturated, hdr glow, extra prongs, missing
+prongs, deformed band, warped stone, wrong facet pattern, text, watermark,
+logo, signature, blurry, distorted hands, extra fingers, fused fingers,
+unnatural skin, mannequin hand, fake certificate
+```
+
+**Two usage notes (owners win, per `17` POLICY MERGE RULE):**
+1. **Drop `logo` from the negative list on slots 1–8.** Those frames REQUIRE the brand logo printed into the cloth (`04` §14.1b). The term is there to block AI-invented marks — on studio slots that job is done by `04`'s official-asset lock instead. Keep `logo` in the negatives only for slots 9–10 and any frame with no cloth.
+2. **`f/8, focus stacked, tack sharp` applies to the RING, not the frame.** `12` §A1(2)/§A2 still govern: real shallow depth of field, background softly blurred and never sharper than the ring. Read the tail as "the jewelry is fully sharp front-to-back"; it does not authorise an everything-in-focus flat image.
 
 ---
 
