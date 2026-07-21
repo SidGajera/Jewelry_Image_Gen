@@ -41,6 +41,8 @@ The source CAD is the ONLY source of truth. Never add, remove, redesign, reconst
 Never add or remove prongs. Never add extra diamonds, metal, supports, decorations, halos, bridges, gallery elements, or head details. Never make the band wider or thinner than the source. If the source HAS a bend/taper/curve/narrowing/widening, preserve it exactly; if it does NOT, never invent one. **Only the camera angle may change.**
 
 ## 2. LOGO LOCK
+**PRIMARY METHOD — LOGO IS COMPOSITED LOCALLY, NEVER AI-GENERATED (docs/04 P0, user-locked 2026-07-21).** For studio/packaging shots, do NOT put the logo in the AI prompt and do NOT pass the logo artwork as a generation reference. Generate the shot on CLEAN premium-white cloth (explicitly forbid any logo/text/printing/watermark and any background diamond-outline/wireframe/line-art). Then add the ONE exact logo with `scripts/print_logo_on_cloth.py` (pixel-exact two-tone asset; enforces fold displacement, weave-through, matched lighting, single instance, black tagline). **In-model logo is FORBIDDEN** — diffusion cannot print-integrate it and duplicates the icon as a background motif (see `config/QUALITY_MEMORY.json#lr0180-inmodel-logo-overlay-and-duplicate`). The rules below define what the composited/preserved logo must satisfy.
+
 Use only the official preserved Lucent Carat Lab logo (`assets/logo/logo_official.png`). Preserve exactly: diamond icon, typography, gold colour, black tagline, gradients, kerning, spacing, alignment, line thickness, scale ratio, layout.
 - **"LUCENT CARAT LAB" must remain GOLD.**
 - **"FUTURE OF FINE JEWELRY" must remain BLACK. Never recolour the tagline to gold.**

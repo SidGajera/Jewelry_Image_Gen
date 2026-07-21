@@ -14,6 +14,27 @@
       ]
     },
     {
+      "id": "lr0180-inmodel-logo-overlay-and-duplicate",
+      "problem": "LR-0180 hero (in-model logo): the printed 'LUCENT CARAT LAB / FUTURE OF FINE JEWELRY' lockup rendered as a FLAT DIGITAL OVERLAY on top of the cloth (sharp edges, not following folds, not merged into the weave); AND a SECOND logo element appeared - the diamond icon reinterpreted as a large gold wireframe/line-art graphic behind the ring (duplicate/ghost logo). Tagline colour was correct (black) but print-integration and single-logo both failed.",
+      "root_cause": "the logo was AI-generated in-model (in the prompt + logo passed as a generation reference). Diffusion cannot print-integrate a logo into fabric and cannot hold it to exactly one instance - it overlays the wordmark and duplicates the icon as a background motif. Violates docs/04 P0 (AI never renders the logo).",
+      "fix": "STUDIO/PACKAGING SHOTS = CLEAN-CLOTH GENERATION + LOCAL LOGO COMPOSITE ONLY (user-locked 2026-07-21, docs/04 P0, docs/22 2). Never include the logo in the AI prompt and never pass the logo artwork as a generation reference for studio shots; generate plain clean premium-white cloth and explicitly forbid any logo/text/printing/watermark and any background diamond-outline/wireframe/line-art. Add the ONE exact logo afterwards via scripts/print_logo_on_cloth.py (pixel-exact two-tone asset; fold displacement, weave-through, matched lighting, single instance, black tagline). In-model logo is FORBIDDEN. ENVIRONMENT: the local composite must run where the render is downloadable; a sandbox whose proxy blocks the Higgsfield CDN cannot run it - hand the clean-cloth renders to a session that can (desktop) or to the operator.",
+      "refs": [
+        "docs/04",
+        "docs/22 2",
+        "scripts/print_logo_on_cloth.py",
+        "config/QUALITY_MEMORY.json printed-logo-fabric-realism",
+        "config/QUALITY_MEMORY.json logo-color-lock-black-tagline"
+      ],
+      "sku": "LR-0180",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "affected_area": "logo, cloth",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": ["LR-0180 hero, 2026-07-21"]
+    },
+    {
       "id": "logo-color-lock-black-tagline",
       "problem": "In-model studio logos recolour the BLACK tagline 'FUTURE OF FINE JEWELRY' to gold (and can tint/brighten/harmonise the whole logo with the scene). Compounded by a PROMPT BUG: earlier prompts described the logo as 'all GOLD ink, never black', which actively forced the tagline gold. User issued a CRITICAL logo-colour-preservation mandate (2026-07-21).",
       "root_cause": "diffusion tends to render the logo as a single-tone gold foil; prompts that said 'all gold / never black' made it worse.",
