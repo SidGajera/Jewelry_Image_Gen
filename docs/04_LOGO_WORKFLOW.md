@@ -2,6 +2,27 @@
 
 The single most important workflow in the project. Priority **P0** — overrides everything.
 
+## 0. LUXURY CLOTH & EMBLEM INTEGRATION POLICY (P0, user-locked 2026-07-21)
+The official Lucent Carat Lab logo is a PRESERVED MASTER ASSET (`assets/logo/logo_official.png`) — the complete lockup (diamond emblem + typography + decorative lines + BLACK tagline). It must **NEVER** appear as digital artwork placed over the image; it must exist **as part of the physical cloth itself**, permanently printed into the premium white cloth *before* the photo is taken.
+
+**Emblem printing (like luxury textile ink):** penetrates the fibres · follows every thread · bends with every fold · stretches with fabric deformation · compresses where cloth compresses · disappears slightly into the weave · stays physically attached to the cloth. Never render the logo independently of the cloth — it must look impossible to separate from it.
+
+**No digital look — reject:** vector artwork · watermark · overlay · pasted/floating/hovering logo · emboss · glossy logo · AI-generated typography · isolated emblem.
+
+**Focus priority:** 1 Jewelry · 2 Diamond · 3 Metal · 4 Cloth · 5 Logo. Jewelry always the hero with perfect focus; if logo and jewelry share depth, the logo is physically correct but naturally softer ONLY from optical DoF — never blur/sharpen the logo independently.
+
+**Premium white cloth:** pure neutral white, expensive cotton weave, soft brushed finish, dense fibres, elegant folds, realistic micro-texture, premium thread definition. Never flat/plastic/CGI/synthetic/repeating-weave cloth, never coloured/cream/grey/blue.
+
+**Colour + typography LOCK:** the preserved logo colours/gradient/metallic appearance/typography/emblem/spacing/decorative lines/tagline are LOCKED — never recreate/recolour/brighten/darken/modify anything. Use the preserved asset exactly.
+
+**Single logo:** exactly ONE complete logo — never duplicate/partially-duplicate/crop/add-extra-emblem/add-typography.
+
+**Camera realism:** the result must read as *"a photographer placed a real ring on an expensive branded cloth and photographed it,"* never *"an AI generated a ring and added a logo afterwards."* Nothing may reveal AI generation; cloth + logo + jewelry are one physically consistent scene.
+
+**FINAL VALIDATION — reject immediately if:** logo looks pasted / too sharp / floats / doesn't follow folds · cloth looks AI-generated or not premium white · jewelry not dominant · logo competes with jewelry · multiple/partial logo · wrong colours/typography/emblem/tagline · any part of the preserved logo modified.
+
+*Method note:* pixel-exact printed-into-cloth is achieved by the local composite `scripts/print_logo_on_cloth.py` from the preserved asset (runs where the render is downloadable). This §0 defines the appearance every studio/office image must satisfy.
+
 ## 1. WHY
 the Higgsfield production model CANNOT reproduce the fine logo typography. Whenever it tries, it hallucinates a fake logo (observed: "ELLYREID" with a crown, garbled tagline). Therefore the AI must NEVER render the logo. The logo is a **locked graphic asset** that is **composited locally** after generation, so it stays pixel-identical.
 
