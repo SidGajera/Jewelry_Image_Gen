@@ -34,6 +34,27 @@ The source render/CAD is the **master, immutable object**. The AI's only job is 
 - Metal thickness everywhere
 - Full diamond cut anatomy per stone (see `docs/03 §L` GEOMETRY LOCK): L:W ratio, table, crown, pavilion, girdle, culet, facet layout/count, symmetry — same physical stone from every angle.
 
+## 3b. DIAMOND LENGTH-TO-WIDTH RATIO REFERENCE (user-locked 2026-07-21)
+
+Standard L:W ranges per cut, for future image generation and QA. **The SOURCE CAD's actual measured ratio ALWAYS governs** — reproduce the source exactly. Use this table two ways: (1) when the source's own ratio is known/visible, match it; (2) as a sanity-check to CATCH SHAPE DRIFT (e.g. an oval rendered too round, an elongated hexagon rendered squat, a marquise not pointed enough). If a render's stone falls outside the source's shape/ratio, it is a geometry FAILURE → regenerate.
+
+| Cut | L:W range | Ideal |
+|---|---|---|
+| Round | 1.00 | 1.00 (perfect circle) |
+| Oval | 1.33–1.66 | 1.4–1.5 (elegant elongated) |
+| Emerald | 1.30–1.60 | 1.4 (classic rectangular step-cut) |
+| Pear (teardrop) | 1.45–1.75 | 1.5–1.6 |
+| Marquise | 1.75–2.25 | 1.9–2.1 (sharp pointed ends) |
+| Cushion (square) | 1.00–1.20 | — |
+| Cushion (rectangular) | 1.15–1.30 | — |
+| Princess | 1.00–1.05 | near-perfect square |
+| Radiant (square) | 1.00–1.05 | — |
+| Radiant (rectangular) | 1.20–1.40 | — |
+| Asscher | 1.00–1.05 | octagonal square, emerald-like corners |
+| Heart | 0.90–1.10 | 1.00 (symmetrical lobes) |
+
+Note: elongated hexagon / elongated step-cuts follow their source's own ratio (e.g. LR-0193/0194 hexagons ≈ 2:1, ~13×6.5mm) — the source measurement wins over any generic range.
+
 ## 4. GENERATION REQUIREMENT
 Every prompt LEADS with the `CRITICAL REQUIREMENT — GEOMETRY LOCK` header (`prompts/07` canonical base prompt) — it goes first, before the angle/scene tag, because the model weights the prompt opening most. Source images are fed FIRST at max weight, medias `[reference, SOURCE]`. If any feature cannot be held exactly, do NOT invent/redesign — preserve the original geometry even at the cost of less dramatic lighting.
 
