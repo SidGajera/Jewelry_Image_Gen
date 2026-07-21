@@ -659,13 +659,14 @@
       "status": "resolved",
       "resolved_2026-07-20": "Eliminated by construction: production pipeline switched to composite-v1 (ring = real source pixels, never AI-synthesised). See composite-v1-production-lock.",
       "scope": "global",
-      "repeat_count": 7,
+      "repeat_count": 8,
       "occurrences": [
         "LR-0151 hero front x3",
         "LR-0151 side profile",
         "LR-0141 8-prong crown vs source 4 claws",
         "LR-0151 45-right, 2026-07-17: head/gallery geometry, cathedral profile, prong thickness+angle, centre-stone proportions, pave spacing/count, band thickness/profile, overall ring proportions ALL changed vs 97.png",
-        "LR-0151 side profile, 2026-07-17 (10th in-model attempt): gallery/basket structure, centre-stone profile, prongs, shoulder thickness, pave layout and proportions all differ from 97.png"
+        "LR-0151 side profile, 2026-07-17 (10th in-model attempt): gallery/basket structure, centre-stone profile, prongs, shoulder thickness, pave layout and proportions all differ from 97.png",
+        "LR-0181 studio hero, 2026-07-21: head width/height/thickness, gallery opening, cathedral arm thickness/angle/height + inner triangular opening, prong thickness/curvature/tip/position (oversized), diamond crown/table/pavilion/girdle proportions, band width/taper/cross-section/shank, and overall silhouette all drifted and were 'beautified' vs the CAD. REJECTED. Enforce the new CAD GEOMETRY VALIDATION (ZERO TOLERANCE) gate (docs/13). Guaranteed fidelity needs ring compositing (composite-v1), currently off by user lock."
       ]
     },
     {
