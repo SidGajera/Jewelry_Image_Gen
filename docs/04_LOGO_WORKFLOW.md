@@ -193,6 +193,8 @@ The user approved this treatment from an existing catalog (emerald-cut eternity 
 
 **Local composite parameters that reproduce this standard:** `--scale 0.28-0.34`, `--pos` lower-right or lower-centre, `--opacity 0.45-0.6`, `--displace 6-8`, `--soften 1.0`, `--grain 0.06`. (20% opacity was too faint and read as a ghost; 90% too assertive.)
 
+**VELVET BENCHMARK (user-locked 2026-07-21, "exactly like this", LR-0194):** the user supplied a definitive reference of the preserved logo printed on premium white plush VELVET — gold emblem line-art and gold LUCENT CARAT LAB wordmark with the BLACK tagline, the velvet pile/fibres visibly crossing the gold strokes, matte (no foil-shine), the emblem's fine lines softly absorbed into the nap, sitting in the lower frame below/behind the ring. This embedded-into-velvet look is the PERMANENT standard for every office/studio shot. **It is produced by the local composite (`print_logo_on_cloth.py`) stamping the preserved PNG onto a clean velvet plate — that is what the reference itself is.** An in-model (AI-drawn) logo only ever approximates it and must not be treated as matching this benchmark. Production flow for office/velvet shots: render a CLEAN velvet plate (ring upper, clean velvet lower half) → composite the preserved logo locally (velvet-tuned: `--pos lower-centre --scale ~0.4-0.5 --opacity ~0.5 --displace 9 --soften 1.2 --grain 0.08`). The composite runs where the render is downloadable (desktop, or pull the plate via Google Drive).
+
 ## 10. OFFICIAL LOGO PRINTING POLICY (mandatory, user-locked 2026-07-17)
 
 Print the official preserved logo as a **real physical print on premium plain white cotton** — never a digital overlay, watermark, sticker, emboss, engraving, projection or AI recreation.
