@@ -48,13 +48,21 @@ Use only the official preserved Lucent Carat Lab logo (`assets/logo/logo_officia
 - Must look naturally printed into the cloth fibres, following folds and weave.
 - Never allow: fake logo · missing logo · multiple logos · sticker look · floating overlay · white box · glow · shadow behind the logo · artificial embossing · wrong perspective · wrong opacity · wrong placement · a logo that ignores cloth folds/weave.
 
+**Print integration (ZERO TOLERANCE, user-locked 2026-07-21).** The logo must appear as a REAL physical print INSIDE the premium white cotton — never digitally overlaid. It must: be absorbed into the cotton fibres; follow every wrinkle, fold and the fabric weave; receive the IDENTICAL lighting, shadows, highlights and perspective as the cloth; look printed during fabric manufacturing. It must NEVER appear to sit on top of the cloth. **Reject immediately if:** letters appear above the cloth · text ignores cloth folds · text stays perfectly flat while the cloth bends · logo edges are too sharp vs the cloth texture · logo looks pasted/sticker-like · logo has its own lighting · logo has its own shadow.
+
+**Exactly ONE logo (ZERO TOLERANCE).** Exactly ONE official Lucent Carat Lab logo is allowed. Never generate a second logo, partial duplicate, background logo, watermark logo, ghost logo, the diamond icon repeated elsewhere, duplicate typography, or extra decorative logo elements. If more than one logo (or a duplicated logo element) appears anywhere in the image, reject automatically.
+
+**Logo final validation — REJECT if:** the logo is not fully merged into the cloth · the logo appears digitally overlaid · multiple logos exist · any logo element is duplicated · the cloth and logo appear to be separate layers.
+
+> In-model diffusion cannot guarantee true print-into-fibre integration; if a render fails these checks after retries, fall back to the local composite (`scripts/print_logo_on_cloth.py`), which enforces fold displacement, weave-through, matched lighting and ink diffusion (`config/QUALITY_MEMORY.json#printed-logo-fabric-realism`).
+
 ## 3. CLOTH LOCK
 Use only premium pure neutral-white cotton cloth: fine realistic cotton weave, soft natural sheen, elegant natural folds, soft daylight, real cloth shadows, neutral colourless appearance. Never: plain/cheap cloth · grey/cream/ivory/beige/yellow/pink/red/blue/orange cloth · any colored lighting or colour cast · artificial fabric texture. Final image must have natural, colour-neutral lighting.
 
 ## 4. PERMANENT FAILURE MEMORY
 Every rejected mistake is recorded automatically (`config/QUALITY_MEMORY.json` schema): exact failure, cause, prevention rule, catalog/SKU, image angle, repeat count, corrected result when approved. Before every generation, load all recorded failures and prevent recurrence. Never duplicate a record — increment `repeat_count` and append to `occurrences`.
 
-**Permanent blocked failures:** wrong logo · missing logo · gold tagline instead of black · artificial logo printing · wrong cloth · colored cloth · plain low-quality cloth · colored lighting / colour cast · wrong prong count · extra prongs · missing prongs · wrong prong shape or position · extra diamonds · missing diamonds · wrong diamond size/position/orientation/spacing · added head details · added gold or metal in the head · changed basket/gallery/bridge/cathedral/setting · band too wide or too thin · missing source bend or taper · invented bend or taper · changed ring proportions · any geometry not present in the source.
+**Permanent blocked failures:** wrong logo · missing logo · gold tagline instead of black · artificial logo printing · logo digitally overlaid / not merged into cloth · multiple or duplicated logos / repeated logo elements · wrong cloth · colored cloth · plain low-quality cloth · colored lighting / colour cast · wrong prong count · extra prongs · missing prongs · wrong prong shape or position · extra diamonds · missing diamonds · wrong diamond size/position/orientation/spacing · added head details · added gold or metal in the head · changed basket/gallery/bridge/cathedral/setting · band too wide or too thin · missing source bend or taper · invented bend or taper · changed ring proportions · any geometry not present in the source.
 
 ## 5. GENERATION GATE
 **Before sending the request:** confirm the correct 4-view CAD is loaded; confirm the official logo is loaded; confirm the cached Design Profile matches the source; add all relevant Failure Memory restrictions to the compact prompt; keep the Higgsfield workflow unchanged.
