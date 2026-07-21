@@ -42,8 +42,12 @@
       "affected_area": "logo, cloth",
       "status": "corrected",
       "scope": "global",
-      "repeat_count": 1,
-      "occurrences": ["LR-0180 hero, 2026-07-21"]
+      "repeat_count": 2,
+      "cloth_note": "User (2026-07-21) also flagged the CLOTH in the studio composite - it must match the premium pure-white cotton benchmark (docs/22 §3), never cheap/plain/tinted. Do not repeat the cloth or logo-printing mistakes in ANY other catalog.",
+      "occurrences": [
+        "LR-0180 hero, 2026-07-21",
+        "LR-0180 studio composite re-flagged by user (cloth + logo printing: overlaid logo, background diamond wireframe, cloth quality), 2026-07-21"
+      ]
     },
     {
       "id": "logo-color-lock-black-tagline",
