@@ -8,7 +8,7 @@ User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — i
 - **"Higgsfield"** = the only production generation ENGINE (`docs/21`). Under `legacy` it renders the scene AND the ring.
 - **`legacy`** = Higgsfield generates scene + jewelry from the approved geometry-locked prompts. **THIS IS PRODUCTION.**
 - **"Composite-first"** = `composite-v1`. Higgsfield renders only the scene; the CAD ring is composited in — geometry guaranteed by construction, but **studio angles only**. **Retained, NOT production.**
-- **Logo compositing is NOT a pipeline.** The preserved logo is composited locally in BOTH versions - required by `docs/04` P0 (AI never renders the logo).
+- **Logo is rendered IN-MODEL by Higgsfield** (user-locked 2026-07-21; the local composite is retired), held exact by prompt + QC + regenerate (`docs/04` override, `docs/22` §2).
 
 Both versions call Higgsfield. The distinction is whether Higgsfield draws the **ring**.
 

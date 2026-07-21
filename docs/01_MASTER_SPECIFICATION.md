@@ -40,7 +40,7 @@ User reviews outputs in the Higgsfield app
         ▼
 LOCAL post-processing  (Python/PIL, 0 credits, run by user on downloaded outputs):
    • whiten_cloth.py            → force pure neutral white cloth
-   • scripts/print_logo_on_cloth.py → composite the LOCKED logo so it looks printed on the cloth
+   • [RETIRED 2026-07-21] scripts/print_logo_on_cloth.py is NO LONGER used — the logo is rendered IN-MODEL by Higgsfield only (docs/04 override, docs/22 §2)
         │
         ▼
 Final catalog images → Drive Output folder + tracking log

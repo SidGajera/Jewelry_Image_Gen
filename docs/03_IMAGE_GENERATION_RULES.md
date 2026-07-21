@@ -42,7 +42,7 @@ Complete rules for every generated image.
 - **Lighting character (user-locked 2026-07-11):** neutral daylight / luxury jewelry studio light with soft shadows, clean highlights, neutral white balance. NEVER yellow/orange/blue/blackish/dark, warm indoor, cinematic, dramatic, or moody lighting. White fabric stays pure neutral white; gold stays natural yellow gold; diamonds stay colorless. Lighting may change naturally by scene, but the reference's lighting calibration/white balance is preserved.
 
 ## F. BACKGROUND (P3 — see docs/11_BACKGROUND_STANDARD.md)
-- Studio: the LOCKED white cloth material only, neutral pure white, same texture/fold/grain as references, with the printed logo (composited locally).
+- Studio: the LOCKED white cloth material only, neutral pure white, same texture/fold/grain as references, with the printed logo (rendered in-model by Higgsfield; local composite retired 2026-07-21, `docs/04` override).
 - Lifestyle/closeup: cozy warm US-home scene (soft knit, marble, warm window light); soft blurred background; NO desks/laptops/offices; NO logo.
 
 ## G. COMPOSITION

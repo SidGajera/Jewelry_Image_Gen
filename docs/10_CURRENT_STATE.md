@@ -12,11 +12,11 @@ As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
 5. **References:**
    - Studio: reuse the 5 branded `Offie_photoshoot` refs (re-import from Drive IDs if media_ids expired).
    - Lifestyle + closeup: import DIFFERENT pose files than the previous SKU (from `Reference_US_Ring` + `Closup_houselifestyle`).
-6. **Two-phase catalog approval (user-locked 2026-07-16 — see "CATALOG APPROVAL WORKFLOW" below):** generate ONLY Image 1 first → user reviews → collect corrections → regenerate Image 1 → repeat until the user EXPLICITLY approves Image 1. Then generate ALL remaining images for that catalog in ONE automatic batch under the Image-1 lock — no further approval per image. `generate_image`, `model:"the production model"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio prompts force clean cloth with NO logo.**
+6. **Two-phase catalog approval (user-locked 2026-07-16 — see "CATALOG APPROVAL WORKFLOW" below):** generate ONLY Image 1 first → user reviews → collect corrections → regenerate Image 1 → repeat until the user EXPLICITLY approves Image 1. Then generate ALL remaining images for that catalog in ONE automatic batch under the Image-1 lock — no further approval per image. `generate_image`, `model:"the production model"`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, medias `[reference, source]`. Prompts = canonical base + group wrapper + SKU design string (docs/07). **Studio shots render the ONE exact logo IN-MODEL (Higgsfield); the local composite is retired (2026-07-21, `docs/04` override).**
 7. **Report count only.** No preview tools.
 8. **Local post-processing (user runs on downloaded outputs, 0 credits):**
    - `whiten_cloth.py` if any cloth drifted warm.
-   - `scripts/print_logo_on_cloth.py` on the 5 studio shots to print the locked logo onto the cloth.
+   - the logo rendered IN-MODEL by Higgsfield on the studio shots (local composite retired 2026-07-21).
 9. **Deliver** to Drive Output folder; update tracking log.
 
 ## CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16 — MANDATORY)
@@ -33,7 +33,7 @@ Each catalog is independent. A catalog begins whenever a new jewelry design (new
 **MANDATORY:** exactly ONE approval image per catalog. Never require approval for every image. Never generate the remaining catalog before Image 1 is approved. The approved Image 1 is the permanent reference standard for every remaining image in that catalog. (Consistent with CLAUDE_SETUP §2.5/§5 "one verification image, then batch" and docs/17 Master Token Policy — the verification image is a full-quality final, not a draft.)
 
 ## KEY DECISIONS IN FORCE
-- Logo: NEVER AI-rendered; ALWAYS composited from `assets/logo/logo_official.png` to look printed on cloth (P0).
+- Logo: rendered IN-MODEL by Higgsfield (2026-07-21; local composite retired), passing `assets/logo/logo_official.png` as reference; held exact (two-tone, BLACK tagline, single, printed-in, no wireframe) by QC + regenerate.
 - Cloth: locked material + neutral white; consistent every image (P3).
 - Jewelry: 100 % identical to source (P1). Diamonds: single facet pattern, no doubling (P2).
 - Format: 1:1, 2K always (P5).
@@ -56,7 +56,7 @@ Each catalog is independent. A catalog begins whenever a new jewelry design (new
 
 
 ## v1.2.0 UPDATE (2026-07-10)
-- Studio logo path in practice: because Claude cannot download Higgsfield CDN renders here, studio shots are generated with the branded reference's printed logo PRESERVED in-model, optionally passing `assets/logo/logo_official.png` as a 3rd reference for pixel-exact match; drifted logos are fixed with the logo-correction edit prompt (prompts/07). The local `print_logo_on_cloth.py` composite stays the pixel-perfect route wherever the render is downloadable.
+- Studio logo path in practice: because Claude cannot download Higgsfield CDN renders here, studio shots are generated with the branded reference's printed logo PRESERVED in-model, optionally passing `assets/logo/logo_official.png` as a 3rd reference for pixel-exact match; drifted logos are fixed with the logo-correction edit prompt (prompts/07). The local composite is retired (2026-07-21); the logo is rendered in-model by Higgsfield only, held exact by prompt + QC + regenerate.
 - Locked this cycle: diamond realism, photography/reference consistency (fixed camera height/distance/lens/exposure/WB), plain-or-folded cloth, natural per-shot variation, pixel-identical logo, physical-scene consistency, repository-maintenance/file-ownership.
 - LR-0137 office set (5 angles) generated with logo preserved on cloth.
 
@@ -83,7 +83,7 @@ The execution sequence for every image. Each step **references** its owning poli
 ### WHERE THIS FLOW CURRENTLY BREAKS (recorded 2026-07-17)
 Steps 3 and 8 are unsatisfiable while the model draws the ring. Step 3 locks geometry in the *request*; the renderer re-synthesises the ring regardless, so step 8 rejects the output. Verified: seven prompt formulations, seven distinct drifts (`QUALITY_MEMORY` → `lr0151-inmodel-geometry-drift`, repeat_count 6).
 
-Step 3 becomes a real lock — rather than a request — only when the source-CAD pixels are composited into the generated scene. Same for step 4: the approved logo benchmark (`docs/04` §9) is reproduced by the local composite at `--scale 0.28-0.34 --opacity 0.45-0.6 --displace 6-8 --soften 1.0`; an in-model logo has never passed it.
+Step 3 becomes a real lock — rather than a request — only when the source-CAD pixels are composited into the generated scene. Same for step 4: the approved logo benchmark (`docs/04` §9) is the QC target the IN-MODEL Higgsfield logo must match (2026-07-21; local composite retired).
 
 The flow above is correct and stays as written. What it needs is a pipeline in which steps 3 and 4 are enforceable by construction (`docs/15` §0, `docs/21` §1a).
 
