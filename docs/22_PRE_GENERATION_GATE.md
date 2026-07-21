@@ -13,6 +13,19 @@ Do not begin generation until all of these are loaded and enforced:
 5. **FAILURE_MEMORY** — `config/QUALITY_MEMORY.json` (`failure_memory`)
 6. **APPROVED_BENCHMARKS** — `config/deliveries/`, `workspace/golden/`
 
+## 0a. JEWELRY PRIORITY & FOCUS HIERARCHY (MANDATORY, user-locked 2026-07-21)
+The jewelry is ALWAYS the primary subject. Every image must draw the viewer's eye to the jewelry before anything else, and the jewelry stays the **sharpest, brightest, highest-detail** object in the scene. The logo, cloth and background exist ONLY to support it.
+
+**Focus hierarchy (strict):** 1 Jewelry → 2 Diamond → 3 Logo → 4 Cloth → 5 Background. Never let the logo or cloth compete with the jewelry.
+
+**Keep perfectly sharp:** jewelry, diamond, prongs, pavé — maximum micro-detail and the highest local contrast on the **jewelry only**.
+
+**Logo depth of field:** when the logo sits close to or behind the jewelry, keep it naturally out of focus per real camera DoF — blur subtle and physically realistic, the jewelry always sharper. The logo must NEVER be the visual focus. Even blurred, preserve EXACTLY its geometry, typography, diamond icon, GOLD colour, BLACK tagline, kerning, alignment, layout, line thickness, spacing, perspective. Blur may never change, distort, stretch, recolour, regenerate, or simplify the logo — it must read as a real printed logo falling outside the focal plane (§2).
+
+**Cloth:** naturally soft and secondary; never let cloth texture, folds, highlights, or logo printing dominate the jewelry (§3).
+
+**REJECT if:** the logo attracts more attention than the jewelry · the cloth attracts more attention than the jewelry · the logo is sharper than the jewelry · the logo blur changes its design/colour/typography/tagline · the jewelry is not the primary visual focus.
+
 ## 1. SOURCE LOCK
 The source CAD is the ONLY source of truth. Never add, remove, redesign, reconstruct, improve, simplify, beautify, or invent any jewelry detail. Preserve exactly:
 - Overall ring geometry; silhouette and proportions
@@ -50,7 +63,7 @@ Every rejected mistake is recorded automatically (`config/QUALITY_MEMORY.json` s
 
 **If any mismatch:** reject internally → record the failure → regenerate → never deliver the failed image. Do NOT claim success merely because generation completed (`docs/21` §8).
 
-**Deliver ONLY when:** jewelry matches source · diamonds match source · prongs match source · band width and all bends match source · head and setting match source · logo matches the official asset · tagline remains black · cloth is premium pure white cotton · lighting is natural and colour-neutral · no recorded failure is repeated.
+**Deliver ONLY when:** jewelry matches source · diamonds match source · prongs match source · band width and all bends match source · head and setting match source · logo matches the official asset · tagline remains black · cloth is premium pure white cotton · lighting is natural and colour-neutral · **the jewelry is the primary visual focus and sharper than the logo/cloth (§0a)** · no recorded failure is repeated.
 
 > **Environment note.** Where a session cannot fetch the rendered output (e.g. a sandbox whose proxy blocks the CDN), the after-generation visual comparison is performed by the operator / via the Drive read-back loop (`config/QUALITY_MEMORY.json#drive-readback-verify-loop`); never mark a shot verified without an actual comparison. The guaranteed logo fix is the local composite (`scripts/print_logo_on_cloth.py`), run where the render is downloadable.
 
