@@ -21,6 +21,14 @@ The official Lucent Carat Lab logo is a PRESERVED MASTER ASSET (`assets/logo/log
 
 **FINAL VALIDATION — reject immediately if:** logo looks pasted / too sharp / floats / doesn't follow folds · cloth looks AI-generated or not premium white · jewelry not dominant · logo competes with jewelry · multiple/partial logo · wrong colours/typography/emblem/tagline · any part of the preserved logo modified.
 
+**COLOUR & PRINT LOCK (user-locked 2026-07-21 — explicit reinforcement, merged here).** The supplied logo is the SINGLE MASTER LOGO and a LOCKED asset: never recreate/redraw/reinterpret/restyle any part.
+- **Gold lock:** match the preserved gold EXACTLY — hue, brightness, saturation, gradient, opacity, metallic appearance. Never brighten, darken, boost saturation, or shift it toward orange / yellow / bronze; never make it glossy or shiny.
+- **Tagline lock:** "FUTURE OF FINE JEWELRY" stays BLACK exactly as supplied — never gold, never grey, never faded; font/spacing/thickness/opacity unchanged. Black decorative elements stay black.
+- **Material lock (refines the §4 foil framing):** the print is **matte textile ink absorbed into the fibres** — never glossy, reflective, metallic-coating, laminate, embossed, sticker, or vector overlay. Where §4 says "hot-foil," it means flat/matte-into-the-weave, never a shiny raised foil.
+- **Texture lock:** the cloth weave/fibre/thread pattern must continue visibly THROUGH the logo; the print is never smoother than the cloth around it.
+- **Consistency lock:** every catalog image uses the IDENTICAL logo — same colour, typography, emblem, spacing, tagline, decorative lines, proportions. No per-image variation.
+- **Instruction wording (reduces model redraw tendency):** never ask the model to "generate the logo." State: *"The attached preserved logo is the only valid logo. Use it unchanged. Do not recreate or reinterpret any part of it. Treat it as an existing physical textile print already embedded into the premium white cloth."* In practice this is guaranteed only by the local composite (below) or by omitting the logo on the render — an AI-drawn logo recolours the two-tone lockup to single-tone gold every time (see `config/QUALITY_MEMORY.json#logo-tagline-color-drift`).
+
 *Method note:* pixel-exact printed-into-cloth is achieved by the local composite `scripts/print_logo_on_cloth.py` from the preserved asset (runs where the render is downloadable). This §0 defines the appearance every studio/office image must satisfy.
 
 ## 1. WHY
