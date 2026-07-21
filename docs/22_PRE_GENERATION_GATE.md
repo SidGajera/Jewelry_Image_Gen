@@ -58,8 +58,13 @@ Use only the official preserved Lucent Carat Lab logo (`assets/logo/logo_officia
 
 > In-model diffusion cannot guarantee true print-into-fibre integration; if a render fails these checks after retries, fall back to the local composite (`scripts/print_logo_on_cloth.py`), which enforces fold displacement, weave-through, matched lighting and ink diffusion (`config/QUALITY_MEMORY.json#printed-logo-fabric-realism`).
 
-## 3. CLOTH LOCK
-Use only premium pure neutral-white cotton cloth: fine realistic cotton weave, soft natural sheen, elegant natural folds, soft daylight, real cloth shadows, neutral colourless appearance. Never: plain/cheap cloth · grey/cream/ivory/beige/yellow/pink/red/blue/orange cloth · any colored lighting or colour cast · artificial fabric texture. Final image must have natural, colour-neutral lighting.
+## 3. CLOTH LOCK (premium benchmark, ZERO TOLERANCE, user-locked 2026-07-21)
+The cloth is a LOCKED visual asset. Always use the approved premium benchmark: premium luxury white COTTON, fine high-thread-count weave, soft natural sheen, dense cotton texture, elegant natural folds, soft daylight illumination, natural contact shadows, studio-quality fabric, pure neutral white (RGB-neutral), premium luxury product-photography quality — it must instantly read as expensive jewelry-display fabric.
+- **Never generate:** cheap · plain · flat · thin · synthetic · rough · low-quality-weave · muslin-like · bed-sheet · paper-like · smooth-CGI · plastic-looking fabric.
+- **Never allow:** grey/yellow/cream/ivory/beige cloth · blue/pink/green tint · warm or cold colour cast. Final lighting stays natural and colour-neutral.
+
+**LOGO IS MANDATORY ON EVERY STUDIO IMAGE (user-locked 2026-07-21).** Never deliver jewelry on plain cloth and never deliver a studio image without the logo. The logo must be physically printed into the fabric (fibres/weave/folds/perspective, identical lighting+shadows as the cloth), a single exact instance, and **must NOT be AI-generated** — it is added by the LOCAL COMPOSITE from `assets/logo/logo_official.png` (§2 primary method, `docs/04` P0). Reject if: no logo · plain cloth delivered · logo pasted/floating/detached/sticker-like · logo AI-generated · cloth does not match the benchmark.
+> Because the logo must be composited (not AI-drawn) and delivered on every studio image, a studio deliverable is only COMPLETE after the local composite runs. An environment that cannot download the render (proxy-blocked CDN) can produce the clean-cloth base but CANNOT complete the studio deliverable — the composite must run where the render is reachable (`config/QUALITY_MEMORY.json#lr0180-inmodel-logo-overlay-and-duplicate`).
 
 ## 4. PERMANENT FAILURE MEMORY
 Every rejected mistake is recorded automatically (`config/QUALITY_MEMORY.json` schema): exact failure, cause, prevention rule, catalog/SKU, image angle, repeat count, corrected result when approved. Before every generation, load all recorded failures and prevent recurrence. Never duplicate a record — increment `repeat_count` and append to `occurrences`.
