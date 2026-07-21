@@ -8,3 +8,10 @@ tool/backend/.venv/
 # Python build artifacts (regenerated; never reviewed) — not project content.
 __pycache__/
 *.pyc
+
+# Generated image outputs / composite intermediates — NEVER commit generated images.
+workspace/output/*
+!workspace/output/.gitkeep
+workspace/temp/
+**/CUT_*.png
+hf_*.png
