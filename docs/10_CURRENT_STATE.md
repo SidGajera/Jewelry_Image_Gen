@@ -19,6 +19,12 @@ As of 2026-07-11 (v1.3.2). This is precisely what happens for a new SKU today.
    - `scripts/print_logo_on_cloth.py` on the 5 studio shots to print the locked logo onto the cloth.
 9. **Deliver** to Drive Output folder; update tracking log.
 
+## DEFAULT CATALOG COMPOSITION (user-locked 2026-07-21) — 10 images per catalog
+Standing per-catalog shot plan for every new SKU unless the user specifies a different mix:
+- **7 × CLOSED HAND (worn) images** — the ring worn on a natural hand (five fingers, natural skin), closeup/lifestyle, cozy warm US-home, NO laptop/desk/office, NO logo. Vary pose/angle/background across the 7 (hand near face, back-of-hand, side-of-finger, on knit/marble/linen, etc.); ring tack-sharp, only background blurs; true manufactured size.
+- **3 × VELVET BACKGROUND (studio) images** — premium pure-white plush VELVET, the ONE preserved logo printed into the cloth per `docs/04` (composite = the only compliant method; office plates render CLEAN then composite). Vary the camera angle across the 3 (front, 45°, top-down/side).
+This supersedes the earlier ad-hoc mixes (e.g. the LR-0184/0193/0194 "3 office / 3 hand / 1 cert / 2 table / 1 head" plan) as the DEFAULT. Hero-first approval still applies (generate image 1, get approval, then batch the rest). Diamond L:W per `docs/13 §3b`.
+
 ## CATALOG APPROVAL WORKFLOW (user-locked 2026-07-16 — MANDATORY)
 Each catalog is independent. A catalog begins whenever a new jewelry design (new SKU / source ring) is loaded.
 
