@@ -101,5 +101,7 @@ Lucent-Carat-Lab/
 | Zero-tolerance QC | `docs/18` |
 | Zero-confirmation execution | `docs/19` |
 | Zero internal output (production) | `docs/20` |
+| Higgsfield engine lock | `docs/21` |
+| Pre-generation gate — mandatory, consolidates all locks | `docs/22` |
 | Prompts | `prompts/00` · `prompts/07` |
 | Pre-split historical snapshot (archived, not authoritative) | `docs/archive/LUCENT_MASTER_LEGACY_2026-07-16.md` |
