@@ -7,7 +7,7 @@
 ## 1. ENGINE + PIPELINE — LOCKED (never change, never ask)
 - **Generator: Higgsfield MCP only** (`docs/21`). Model `nano_banana_2`, `resolution:2k`, `aspect_ratio:1:1`, `count:1`. The server may route the edit path as `nano_banana_flash` — that is fine.
 - **Pipeline: `legacy`** — Higgsfield renders the scene (`config/pipeline_versions.json` active=legacy). Do NOT change provider, model, source-loading, or lifecycle (`docs/15`, `docs/21`).
-- **The logo is NEVER AI-generated** — it is composited locally from the exact asset (`docs/04` P0, §3.6).
+- **The logo is generated IN-MODEL by Higgsfield only** (user-locked 2026-07-21). `scripts/print_logo_on_cloth.py` is **NOT used** (it made too many mistakes). Hold the logo to its exact two-tone lock (gold emblem + "LUCENT CARAT LAB", BLACK tagline), single instance, printed-into-cloth, no background wireframe — by prompting + QC + regenerate (`docs/04` override, `docs/22` §2).
 
 ## 2. BEFORE EVERY GENERATION — LOAD & ENFORCE (mandatory gate)
 Load and enforce **`docs/22_PRE_GENERATION_GATE.md`** (source lock · jewelry-priority focus hierarchy · logo lock: black tagline + single instance + print-into-fabric · premium cloth benchmark · failure memory · generation gate) **plus the runtime trio** (`config/project_manifest.json`, `prompts/07_PROMPTS.md`, `config/QUALITY_MEMORY.json`). Do not generate until all are active.
@@ -18,7 +18,7 @@ Load and enforce **`docs/22_PRE_GENERATION_GATE.md`** (source lock · jewelry-pr
 3. **Import** the source CAD (and the logo asset for the local composite) via `media_import_url`.
 4. **New SKU →** generate ONLY image 1 (hero); verify against the gate; take the single per-catalog approval (`docs/10`). **Established standard →** go straight to batch.
 5. **Batch** the remaining slots in one run, matched to the approved standard; inject every relevant failure-memory restriction into the compact prompt.
-6. **Studio/packaging shots (1,2,3,10):** generate on **CLEAN cloth (no in-model logo, no background graphic)**, then composite the ONE exact logo locally with `scripts/print_logo_on_cloth.py`. **Lifestyle/macro shots (4,5a,5b,6,7,8,9):** no logo. Closeup-lifestyle occupy slots 7 & 9.
+6. **Studio/packaging shots (1,2,3,10):** render the logo **in-model with Higgsfield** (pass the official logo artwork as a reference) — exact two-tone with BLACK tagline, EXACTLY ONE logo, printed into the cloth, **no background diamond wireframe/line-art**, jewelry the sharp hero with the logo softened only by DoF; reject + regenerate on any logo/cloth failure. Do NOT use `print_logo_on_cloth.py`. **Lifestyle/macro shots (4,5a,5b,6,7,8,9):** no logo. Closeup-lifestyle occupy slots 7 & 9.
 7. **After each output** compare vs the source CAD, the logo benchmark, the cloth benchmark, and every recorded failure. Any mismatch → reject internally → record the failure → regenerate → never deliver it. Never claim success merely because generation completed (`docs/22` §5, `docs/21` §8).
 8. **Record** each delivery in `config/deliveries/LR-XXXX.json`. Commit only on explicit catalog approval (`config/runtime.json` commit_policy).
 
@@ -34,8 +34,8 @@ Before generating any SKU or slot, check **all three**: the approved baseline (`
 ## 7. AUTONOMY — DO NOT ASK + RESPONSE POLICY
 Every process decision is locked in the docs.  **Execution/response contract: `docs/23`.** Execute silently; visible text ≤3 short lines; a generation run shows only `Generating...` → `Done.` (or `Stopped: <verified concise error>.`). Do not narrate reasoning/validation/model-routing. **Do NOT ask the user about** pipeline, provider, model, settings, logo method, cloth, focus/composition, source-loading, or "should I proceed / is this ok". Execute silently (`docs/19`, `docs/20`). Permissions granted once hold for the whole session. The **only** permitted pause is the single image-1 approval for a NEW SKU (`docs/10`) — and skip even that if the user has said to proceed. Ask **only** if the correct SOURCE genuinely cannot be identified.
 
-## 8. STUDIO DELIVERABLE COMPLETION (capability note, not a process choice)
-A studio image is COMPLETE only after the local logo composite runs (§3.6) — the logo must be present, exact, single, and print-integrated, and must never be AI-generated or delivered as plain cloth (`docs/22` §2–§3). An environment that cannot download the render (proxy-blocked Higgsfield CDN — e.g. some web sandboxes) can still produce clean-cloth bases and the no-logo lifestyle/macro shots, but the studio deliverables' logo composite must run where the render is reachable (e.g. the desktop session). This is an environment capability limit; it does not change the locked process above.
+## 8. STUDIO LOGO (in-model, user-locked 2026-07-21)
+Studio/packaging shots carry the logo rendered **in-model by Higgsfield** — present, exact two-tone (BLACK tagline), single, print-integrated, no background wireframe, jewelry the sharp hero. Never plain cloth, never a gold tagline, never a duplicate logo. On any logo/cloth failure, reject and regenerate on Higgsfield. `scripts/print_logo_on_cloth.py` is not used. This works fully within Higgsfield — no local-composite / render-download step is required.
 
 ---
 **Precedence:** the ABSOLUTE jewelry/logo/cloth/QC locks (`docs/02`, `04`, `13`, `16`, `22`) outrank everything. `docs/22` is the consolidated gate; owning docs win on any detail. These rules are permanent for every catalog, image, session, and device.

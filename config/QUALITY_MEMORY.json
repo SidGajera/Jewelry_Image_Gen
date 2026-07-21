@@ -14,6 +14,18 @@
       ]
     },
     {
+      "id": "logo-method-inmodel-higgsfield-only",
+      "problem": "The local logo composite scripts/print_logo_on_cloth.py made too many mistakes. User directive 2026-07-21: 'do not use this file, only Higgsfield.'",
+      "root_cause": "User method decision - the composite path is rejected; logo must be produced by Higgsfield.",
+      "fix": "LOGO METHOD = IN-MODEL HIGGSFIELD ONLY (user-locked 2026-07-21; SUPERSEDES the clean-cloth+local-composite method in lr0180-inmodel-logo-overlay-and-duplicate and the docs/04 P0 'AI must NEVER render the logo' clause, per docs/04 method override). Do NOT call print_logo_on_cloth.py. Render the logo IN-SCENE with Higgsfield, passing assets/logo/logo_official.png as a reference, and enforce the full logo lock by PROMPT + QC + REGENERATE: exact two-tone (gold diamond emblem + 'LUCENT CARAT LAB'; BLACK 'FUTURE OF FINE JEWELRY' tagline, never gold); EXACTLY ONE logo; printed into the cloth (weave/folds/light, no overlay/sticker/glow/box/independent shadow); explicitly FORBID any background diamond-outline / wireframe / line-art; jewelry stays the sharp hero with the logo softened only by real DoF (never a colour/design change); premium pure-white cloth benchmark. Reject and regenerate ON HIGGSFIELD for any logo/cloth failure - never fall back to the composite. In-model cannot be pixel-perfect every time; iterate until it passes.",
+      "refs": [
+        "docs/04 method override",
+        "docs/22 2",
+        "config/QUALITY_MEMORY.json logo-color-lock-black-tagline",
+        "config/QUALITY_MEMORY.json lr0180-inmodel-logo-overlay-and-duplicate"
+      ]
+    },
+    {
       "id": "lifestyle-scene-variety",
       "problem": "House-lifestyle / lifestyle / closeup-lifestyle frames come out SAME-LOOKING - every one used raw silk + dried baby's breath + warm-autumn amber/terracotta, so slots 4/5a/5b/7/9 read as the same shot repeated (LR-0180, user 2026-07-21: 'houselifestyle images are same looking / do not repeat same image').",
       "root_cause": "the lifestyle prompt template reused the identical surface (raw silk), prop (dried baby's breath) and palette across every lifestyle frame.",
@@ -28,7 +40,7 @@
       "id": "lr0180-inmodel-logo-overlay-and-duplicate",
       "problem": "LR-0180 hero (in-model logo): the printed 'LUCENT CARAT LAB / FUTURE OF FINE JEWELRY' lockup rendered as a FLAT DIGITAL OVERLAY on top of the cloth (sharp edges, not following folds, not merged into the weave); AND a SECOND logo element appeared - the diamond icon reinterpreted as a large gold wireframe/line-art graphic behind the ring (duplicate/ghost logo). Tagline colour was correct (black) but print-integration and single-logo both failed.",
       "root_cause": "the logo was AI-generated in-model (in the prompt + logo passed as a generation reference). Diffusion cannot print-integrate a logo into fabric and cannot hold it to exactly one instance - it overlays the wordmark and duplicates the icon as a background motif. Violates docs/04 P0 (AI never renders the logo).",
-      "fix": "STUDIO/PACKAGING SHOTS = CLEAN-CLOTH GENERATION + LOCAL LOGO COMPOSITE ONLY (user-locked 2026-07-21, docs/04 P0, docs/22 2). Never include the logo in the AI prompt and never pass the logo artwork as a generation reference for studio shots; generate plain clean premium-white cloth and explicitly forbid any logo/text/printing/watermark and any background diamond-outline/wireframe/line-art. Add the ONE exact logo afterwards via scripts/print_logo_on_cloth.py (pixel-exact two-tone asset; fold displacement, weave-through, matched lighting, single instance, black tagline). In-model logo is FORBIDDEN. ENVIRONMENT: the local composite must run where the render is downloadable; a sandbox whose proxy blocks the Higgsfield CDN cannot run it - hand the clean-cloth renders to a session that can (desktop) or to the operator.",
+      "fix": "SUPERSEDED 2026-07-21 (see logo-method-inmodel-higgsfield-only): the local composite is NO LONGER used (user: print_logo_on_cloth.py makes too many mistakes). The overlay + background-diamond-wireframe failures shown here are now prevented IN-MODEL by prompt + QC: render the logo in-scene with Higgsfield, pass assets/logo/logo_official.png as a reference, require EXACTLY ONE logo printed into the cloth (two-tone, BLACK tagline), and EXPLICITLY FORBID any background diamond-outline/wireframe/line-art and any overlay/sticker look. Reject and regenerate on Higgsfield if the logo overlays, duplicates, shows a background wireframe, golds the tagline, or the cloth is off-benchmark. Do not use the composite.",
       "refs": [
         "docs/04",
         "docs/22 2",
