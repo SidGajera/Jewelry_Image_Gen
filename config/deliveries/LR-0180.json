@@ -21,7 +21,7 @@
     },
     "utility": { "cert_6": "c45c30a3", "sparkle_macro_8": "c8c4dd14" }
   },
-  "logo_status": "studio shots (1,2,3,10) generated on CLEAN cloth; the exact single logo must be composited locally (print_logo_on_cloth.py) in a render-reachable session (docs/22 §2-3).",
+  "logo_status": "studio shots (1,2,3,10) were generated on CLEAN cloth (before the 2026-07-21 in-model-logo switch). Per the current method the logo is added by regenerating these studio shots IN-MODEL on Higgsfield (local composite retired); do not use print_logo_on_cloth.py.",
   "note": "Generated 2026-07-21. Lifestyle frames use 5 distinct scenes (lifestyle-scene-variety). Do NOT regenerate.",
   "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "pipeline": "legacy" }
 }

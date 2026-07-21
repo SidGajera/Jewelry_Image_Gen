@@ -23,8 +23,8 @@ Both versions call Higgsfield. The distinction is whether Higgsfield draws the *
 
 ## 2. VERSIONED PIPELINES
 `config/pipeline_versions.json` registers named versions:
-- **`composite-v1`** — **the DEFAULT** (user-locked 2026-07-16). AI generates only the scene; the real source-CAD ring is composited in → geometry identical by construction. Studio: always composite. Lifestyle/close-up: composite when the worn angle is achievable from source; else request more source or SKIP (§5).
-- **`legacy`** — prompt-based MCP workflow (full-AI scene + ring; geometry may drift). **Retained for manual experimentation ONLY — never selected automatically, never a fallback.** Available via the one-command switch for experimentation.
+- **`legacy`** — **PRODUCTION** (user-locked 2026-07-21, §0). Prompt-based Higgsfield workflow: Higgsfield generates the whole image INCLUDING the ring, from the approved geometry-locked prompts; the logo is rendered in-model. Fidelity held by prompt + QC + regenerate, not by construction.
+- **`composite-v1`** — AI generates only the scene; the real source-CAD ring is composited in → geometry identical by construction, but studio angles only. **RETAINED, not production** (superseded 2026-07-21; it cannot produce worn lifestyle/close-up frames — §0/§5).
 - Future: `composite-v2`, … (add a version block; never edit an existing one in place).
 
 Select the active pipeline with **one value** — no source edits:
