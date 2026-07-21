@@ -14,6 +14,19 @@
       ]
     },
     {
+      "id": "logo-color-lock-black-tagline",
+      "problem": "In-model studio logos recolour the BLACK tagline 'FUTURE OF FINE JEWELRY' to gold (and can tint/brighten/harmonise the whole logo with the scene). Compounded by a PROMPT BUG: earlier prompts described the logo as 'all GOLD ink, never black', which actively forced the tagline gold. User issued a CRITICAL logo-colour-preservation mandate (2026-07-21).",
+      "root_cause": "diffusion tends to render the logo as a single-tone gold foil; prompts that said 'all gold / never black' made it worse.",
+      "fix": "LOGO COLOUR LOCK (CRITICAL, user-locked 2026-07-21). The official logo is a LOCKED asset reproduced PIXEL-IDENTICALLY - never modify any element: typography, diamond icon, gold letters, black tagline, line colours, gradients, metallic finish, kerning, alignment, spacing, opacity. It is TWO-TONE: the faceted diamond icon + 'LUCENT CARAT LAB' = metallic GOLD; the tagline 'FUTURE OF FINE JEWELRY' = BLACK (exactly as assets/logo/logo_official.png). NEVER recolour the tagline to gold; never tint/brighten/fade/stylise/harmonise the logo with the scene; never apply global colour grading to the logo; never regenerate or reinterpret any logo element. PROMPT RULE: never write 'all gold ink' or 'never black' for the logo - always specify gold wordmark + BLACK tagline, matching the reference. The logo may be softened only by depth-of-field blur (see jewelry-hero-logo-soft-secondary) - focus/brightness only, NEVER colour; the black tagline stays black even when blurred. QC GATE: if any logo colour differs from the official asset (especially a gold tagline), REJECT the image, record the failure, and regenerate. GUARANTEED FIX: in-model diffusion cannot guarantee pixel-identical two-tone; the reliable path is the LOCAL COMPOSITE (scripts/print_logo_on_cloth.py) from the pixel-exact asset, which preserves the black tagline - use it wherever the render is downloadable (this web session's proxy blocks the CDN, so verification/local-composite must run where the render can be fetched).",
+      "refs": [
+        "config/QUALITY_MEMORY.json logo-tagline-color-drift",
+        "config/QUALITY_MEMORY.json jewelry-hero-logo-soft-secondary",
+        "assets/logo/logo_official.png",
+        "scripts/print_logo_on_cloth.py",
+        "docs/04"
+      ]
+    },
+    {
       "id": "composite-v1-production-lock",
       "problem": "RECURRING across many catalogs (user report 2026-07-20): ~50% wrong/pasted logo on the cloth; plain/simple or colored/yellowish cloth instead of premium PURE-WHITE; color-cast image instead of neutral natural; wrong or too-many prongs; ring drawn 'out of source' (design not in the CAD); band width too large; the width-bend added when the source has none and omitted when the source has one; extra designs/gold invented in the head of the ring. The user demanded these NEVER recur.",
       "root_cause": "The production pipeline was `legacy` - Higgsfield draws BOTH the scene AND the ring. Prompt-based diffusion CANNOT lock CAD geometry (prong count, band width, head/gallery, no-invention, stone orientation): confirmed across 10+ attempts with the preservation rule restated ever more strongly each time - 'the rule is not the variable; only compositing the source pixels can' (see lr0151-inmodel-geometry-drift). Likewise the logo and the cloth-white/neutral-color can only be guaranteed locally, never by AI drawing/grading. So on `legacy` every one of these mistakes is a PREDICTED consequence, not a fixable prompt problem.",
