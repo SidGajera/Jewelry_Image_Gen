@@ -2,6 +2,18 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "jewelry-hero-logo-soft-secondary",
+      "problem": "On studio shots the printed cloth logo can highlight as strongly as the ring and compete for attention, pulling the eye off the product. User (2026-07-21, LR-0179): the jewelry must ALWAYS be the sole focus; when the logo sits at the same prominence/position as the ring, the logo must be blurred/softened so the ring stands out - but the blurred logo must remain identical to the preserved logo (design, colour, typography, tagline, everything).",
+      "root_cause": "In-model studio logo is rendered sharp and bright, at the same focal plane as the ring, so it competes with the jewelry for the viewer's attention.",
+      "fix": "JEWELRY-HERO + STUDIO LOGO SOFT/SECONDARY (user-locked 2026-07-21). On every studio/packaging shot (slots 1,2,3,10) the jewelry is the SINGLE tack-sharp hero and sole focal point; the printed Lucent Carat Lab logo must stay the EXACT preserved logo - identical design, colours, two-tone typography and the FUTURE OF FINE JEWELRY tagline, never altered/recoloured/miswritten/single-line-sans-serif - but rendered SOFT and OUT OF FOCUS in the shallow macro depth of field, dimmer and clearly less sharp than the ring, never competing. Where the logo falls near the ring it is blurred by the DoF so the ring alone stays the focal point. The logo is understated by FOCUS and BRIGHTNESS only, NEVER by changing its design/colour/typography/tagline. Lifestyle/close-up/macro shots carry no logo. Applies to all future catalogs.",
+      "refs": [
+        "config/QUALITY_MEMORY.json jewelry-is-always-the-hero",
+        "config/QUALITY_MEMORY.json logo-tagline-color-drift",
+        "config/QUALITY_MEMORY.json printed-logo-fabric-realism",
+        "docs/04"
+      ]
+    },
+    {
       "id": "composite-v1-production-lock",
       "problem": "RECURRING across many catalogs (user report 2026-07-20): ~50% wrong/pasted logo on the cloth; plain/simple or colored/yellowish cloth instead of premium PURE-WHITE; color-cast image instead of neutral natural; wrong or too-many prongs; ring drawn 'out of source' (design not in the CAD); band width too large; the width-bend added when the source has none and omitted when the source has one; extra designs/gold invented in the head of the ring. The user demanded these NEVER recur.",
       "root_cause": "The production pipeline was `legacy` - Higgsfield draws BOTH the scene AND the ring. Prompt-based diffusion CANNOT lock CAD geometry (prong count, band width, head/gallery, no-invention, stone orientation): confirmed across 10+ attempts with the preservation rule restated ever more strongly each time - 'the rule is not the variable; only compositing the source pixels can' (see lr0151-inmodel-geometry-drift). Likewise the logo and the cloth-white/neutral-color can only be guaranteed locally, never by AI drawing/grading. So on `legacy` every one of these mistakes is a PREDICTED consequence, not a fixable prompt problem.",
