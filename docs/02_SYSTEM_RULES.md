@@ -15,7 +15,7 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 
 ### P0 — BRAND LOGO PRESERVATION (overrides everything)
 - The official logo is a LOCKED ASSET (`assets/logo/logo_official.png`). Never regenerate, redraw, interpret, verify-by-reading, enhance, vectorize, recreate, OCR, "fix", or hallucinate it.
-- The logo is rendered IN-MODEL by Higgsfield only (user-locked 2026-07-21; local composite `print_logo_on_cloth.py` retired), held exact by prompt + QC + regenerate (`docs/04` override, `docs/22` §2).
+- The logo is NEVER rendered by the AI model. It is composited from the locked file AFTER generation.
 - The logo must ALWAYS appear on studio cloth, looking **physically printed** (not a watermark/sticker/overlay). Partial crop / fold distortion / jewelry occlusion (60–90 % visible) is acceptable and preferred.
 - Never ask the user to verify whether the logo is correct.
 
@@ -55,7 +55,7 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 - 2 credits per 2K image; confirm inputs before firing a full batch on a novel/risky design.
 
 ## THINGS THAT MUST NEVER CHANGE
-1. The logo is rendered IN-MODEL by Higgsfield only (user-locked 2026-07-21; the local composite `print_logo_on_cloth.py` is retired/not used) and held to its exact appearance — two-tone (gold emblem + LUCENT CARAT LAB, BLACK tagline), single instance, printed into the cloth, no background wireframe, jewelry the sharp hero — by prompt + QC + regenerate (`docs/04` override, `docs/22` §2).
+1. The logo is never AI-generated and never altered — only the locked asset is composited.
 2. The jewelry design is never modified relative to the source.
 3. The cloth material and neutral-white color are locked.
 4. Output is always 1:1 / 2K.

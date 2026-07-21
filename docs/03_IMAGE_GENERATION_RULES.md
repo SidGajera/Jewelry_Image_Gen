@@ -2,20 +2,6 @@
 
 Complete rules for every generated image.
 
-## 0. REAL PHOTOGRAPH LOCK (MANDATORY, user-locked 2026-07-21)
-Every image must be visually **indistinguishable from a real photograph** shot in a professional luxury-jewelry studio on a **Canon EOS R5 / Sony A1 / Phase One XF IQ4** with a 90–100mm macro lens under physically accurate studio lighting. It must NEVER resemble AI art · CGI · 3D/Octane/Blender/Unreal render · Midjourney/Stable-Diffusion look · procedural cloth · synthetic lighting · hyperreal render. **If a viewer can tell it is AI-generated, it FAILS QC — reject and regenerate.**
-
-Every material obeys real-world physics:
-- **Cotton:** premium Egyptian/Pima, high thread count, natural fiber randomness, micro-fuzz, woven yarn variation, an **imperfect/non-repeating weave**, natural compression under the ring, believable fold tension and soft cloth shadows. NEVER a perfectly repeating weave, CGI-smooth/uniform texture, or synthetic fabric.
-- **Lighting:** one dominant soft key + subtle bounce fill, natural falloff, physically correct reflections. No glowing gold, no fake bloom, no HDR, no artificial contrast.
-- **Gold:** microscopic polishing marks, tiny edge/Fresnel reflections, real environment reflections, natural exposure variation. Never plastic/CGI/airbrushed gold.
-- **Diamond:** real internal reflections, **asymmetrical** sparkle, controlled fire, subtle camera-dependent scintillation. Never a white glowing centre, exaggerated brilliance, or perfect symmetry.
-- **Edges:** microscopic edge imperfections and realistic machining polish — not mathematically smooth.
-- **Depth of field:** gradual optical falloff with real lens/bokeh character — not a perfect uniform blur.
-- **Logo:** looks like luxury textile screen-printing (ink absorbed into fibres, affected by weave/folds/lighting/DoF) — never an overlay/watermark/graphic (§0 of `docs/04`).
-
-**Honest limitation (recorded, not a loophole).** A prompt cannot force a generative model to behave like a camera; Higgsfield's model can tend toward a CGI look that prompt engineering reduces but cannot fully remove. Best results = strict geometry preservation + engineered photoreal prompts + strong rejection criteria, and — where absolute fidelity is required (logo, CAD geometry) — controlled post-processing. Post-processing/compositing is currently OFF by user lock (Higgsfield-only, `docs/21`); revisit only on explicit user instruction.
-
 ## A. JEWELRY PRESERVATION (P1)
 - 100 % identical to the correct SOURCE file. Verify design by viewing the source before generating.
 - Preserve: overall design/silhouette, stone SHAPE, stone COUNT, stone SIZE + spacing, SETTING type, PRONG count/shape/position, side/accent settings, gallery/trellis, band width + structure, metal type/color.
@@ -56,7 +42,7 @@ Every material obeys real-world physics:
 - **Lighting character (user-locked 2026-07-11):** neutral daylight / luxury jewelry studio light with soft shadows, clean highlights, neutral white balance. NEVER yellow/orange/blue/blackish/dark, warm indoor, cinematic, dramatic, or moody lighting. White fabric stays pure neutral white; gold stays natural yellow gold; diamonds stay colorless. Lighting may change naturally by scene, but the reference's lighting calibration/white balance is preserved.
 
 ## F. BACKGROUND (P3 — see docs/11_BACKGROUND_STANDARD.md)
-- Studio: the LOCKED white cloth material only, neutral pure white, same texture/fold/grain as references, with the printed logo (rendered in-model by Higgsfield; local composite retired 2026-07-21, `docs/04` override).
+- Studio: the LOCKED white cloth material only, neutral pure white, same texture/fold/grain as references, with the printed logo (composited locally).
 - Lifestyle/closeup: cozy warm US-home scene (soft knit, marble, warm window light); soft blurred background; NO desks/laptops/offices; NO logo.
 
 ## G. COMPOSITION

@@ -41,18 +41,15 @@
   },
   "output_lock": "token optimization must never alter jewelry geometry, diamonds, prongs, settings, lighting, logo, cloth, physics, or image quality",
   "pointers": {
-    "operating_instruction": "CLAUDE.md",
     "rules_entry": "CLAUDE_SETUP.md",
     "runtime_trio": [
       "config/project_manifest.json",
       "prompts/07_PROMPTS.md",
       "config/QUALITY_MEMORY.json"
     ],
-    "pre_generation_gate": "docs/22_PRE_GENERATION_GATE.md",
     "verify_inbox_drive_id": "1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0",
     "repository": "https://github.com/SidGajera/Claude_Lucent_Image_Gen"
   },
-  "pre_generation_gate_rule": "MANDATORY (user-locked 2026-07-21): before AND after EVERY image generation, load and enforce docs/22_PRE_GENERATION_GATE.md (source lock, logo lock incl. BLACK tagline, cloth lock, failure memory, generation gate). Do not begin generation until it is active; do not deliver any output that fails its checklist. The Higgsfield workflow/provider/source-loading/lifecycle stay unchanged (docs/21).",
   "load_rule": "Load a file only when runtime.json or the current task explicitly requires it. Reuse asset paths/checksums without opening assets until needed.",
   "ownership": "CLAUDE_SETUP.md = AI runtime, startup + loading order, agent execution rules, token policy. LUCENT_MASTER.md = project architecture, business rules, folder structure, high-level overview. config/runtime.json = machine-readable runtime configuration only. docs/17 = token optimization policy. The repository as a whole is the single source of truth; no individual file is."
 }

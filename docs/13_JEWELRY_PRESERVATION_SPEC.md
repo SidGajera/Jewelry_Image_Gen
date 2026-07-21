@@ -7,14 +7,6 @@
 > `docs/02` P1/P2 (priority order only), `docs/14` (regression checklist — enforcement, not definition),
 > `prompts/07` (per-shot prompt text). On ANY conflict, THIS FILE WINS.
 
-## CAD GEOMETRY VALIDATION (ZERO TOLERANCE, user-locked 2026-07-21)
-The uploaded 4-view CAD is the MASTER. The generated jewelry must be **visually identical** to the CAD — no artistic interpretation, no beautification, no redesign, no smoothing. **If the generated ring cannot be overlaid on the CAD with no visible geometry difference → REJECT, do not improve it, generate again, never deliver.**
-
-Reject immediately if ANY of these differ from the CAD:
-overall silhouette · head width · head height · head thickness · gallery · basket · cathedral angle · cathedral height · cathedral thickness · inner triangular opening · bridge · prong count · prong position · prong curvature · prong thickness · prong tip shape · centre diamond diameter · table · crown height · pavilion depth · girdle thickness · shoulder taper · shoulder width · band width · band thickness · band curvature · shank profile · metal thickness · every CAD line · every CAD curve. Observed on LR-0181 (2026-07-21): head/gallery/cathedral/prongs/diamond-proportions/band/silhouette all drifted and were "beautified" — REJECTED.
-
-**HONEST LIMITATION (validation ≠ generation).** This ZERO-TOLERANCE check reliably CATCHES geometry drift, but it cannot force a diffusion model to reproduce the CAD; Higgsfield re-synthesises the ring each render and tends to reinterpret/smooth geometry, so it may keep failing this gate. The only method that GUARANTEES CAD geometry is **compositing the real source-CAD ring pixels** (`composite-v1` / `scripts/composite_ring_into_scene.py`) — currently OFF for the ring by user lock (Higgsfield generates the ring, `docs/21`/`docs/15`). Under the current lock: enforce this gate, reject drift, regenerate; for guaranteed fidelity the user must re-enable ring compositing.
-
 User-locked 2026-07-16, after three consecutive SKUs (twist-halo split-shank; round-halo twist-shank ×2) generated attractive but **redesigned** rings. The prompt rules reduce drift; this spec + the composite fallback are what actually guarantee fidelity. This is the one place that consolidates the geometry-lock requirement and the pre-accept QA checklist — the generation prompt (`prompts/07`) and the auto-QC (`config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`) both point here.
 
 ## 1. PRINCIPLE

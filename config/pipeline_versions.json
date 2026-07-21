@@ -76,7 +76,7 @@
   "terminology": {
     "Higgsfield": "The only production image generation engine (docs/21) - unchanged by the 2026-07-20 switch. Higgsfield renders the scene in BOTH versions; compositing preserved pixels is not generation (docs/21 §2).",
     "Composite-first": "`composite-v1`. Higgsfield renders only the scene; the real source-CAD ring is composited in - geometry identical by construction, but studio angles only. RETAINED, not production (user-instructed 2026-07-21).",
-    "Logo rendering": "NOT a pipeline. As of 2026-07-21 the logo is rendered IN-MODEL by Higgsfield (local composite print_logo_on_cloth.py retired); held exact by prompt + QC + regenerate (docs/04 override, docs/22 §2).",
+    "Logo compositing": "NOT a pipeline. The preserved logo is composited locally in BOTH versions - required by docs/04 P0 in all cases and unaffected by this switch.",
     "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = legacy = Higgsfield generates every frame including the ring (user-instructed 2026-07-21: 'use only Higgsfield'); fidelity held by locked prompts + QC + local logo/cloth, not by construction."
   }
 }

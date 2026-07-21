@@ -25,7 +25,7 @@
 ├── prompts/
 │   └── 07_PROMPTS.md             # reusable prompts
 ├── scripts/
-│   └── print_logo_on_cloth.py    # RETIRED 2026-07-21 — retained but NOT used (logo is in-model Higgsfield)
+│   └── print_logo_on_cloth.py    # 0-credit local script: print the logo onto the cloth
 ├── assets/
 │   ├── logo/
 │   │   ├── logo_official.png             # LOCKED brand logo — exact upload (never modify)
