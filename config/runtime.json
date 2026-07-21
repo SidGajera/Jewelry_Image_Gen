@@ -41,6 +41,7 @@
   },
   "output_lock": "token optimization must never alter jewelry geometry, diamonds, prongs, settings, lighting, logo, cloth, physics, or image quality",
   "pointers": {
+    "operating_instruction": "CLAUDE.md",
     "rules_entry": "CLAUDE_SETUP.md",
     "runtime_trio": [
       "config/project_manifest.json",
