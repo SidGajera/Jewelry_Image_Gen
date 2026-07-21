@@ -1,0 +1,21 @@
+{
+  "sku": "LR-0172",
+  "status": "complete",
+  "completed_confirmed": "2026-07-21 (user)",
+  "design": {
+    "type": "round brilliant raised above an 8-lobe scalloped flower-plate halo",
+    "prongs": "EXACTLY 4 claw prongs at 4 of the 8 petal points; the other 4 tips are decorative (no prong)",
+    "flower_plate": "pave INSIDE the 8 lobes only; gallery/arms plain polished gold",
+    "band": "plain knife-edge tapering, no pave",
+    "metal": "14K natural yellow gold"
+  },
+  "source_folder_id": "1rG5la95LsbFEenkjBd8LWkbFCTsClan5",
+  "catalog": {
+    "studio": { "hero": "e254003f", "side_profile": "f5da36d9", "face_up": "d61e168e" },
+    "lifestyle": { "hand": "51ac8137", "box_5a": "22a87602", "silk_5b": "742872f0" },
+    "closeup_lifestyle": { "slot_7_worn": "1cbfb5de", "slot_9_stilllife": "2964ef12" },
+    "utility": { "cert_6": "12a332a5", "sparkle_macro_8": "446bc230", "packaging_10": "13e87c71" }
+  },
+  "note": "9-frame catalog produced in the desktop session; slots 7 & 9 (closeup lifestyle) added 2026-07-21. Do NOT regenerate.",
+  "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "pipeline": "legacy" }
+}

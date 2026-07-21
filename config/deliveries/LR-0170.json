@@ -1,0 +1,7 @@
+{
+  "sku": "LR-0170",
+  "status": "complete",
+  "completed_confirmed": "2026-07-21 (user)",
+  "note": "Catalog completed in a prior/desktop session. Frames in the Higgsfield gallery and the SKU Drive folder. Do NOT regenerate — reuse existing frames (CLAUDE.md §4).",
+  "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "pipeline": "legacy" }
+}

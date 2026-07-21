@@ -1,0 +1,15 @@
+{
+  "sku": "LR-0179",
+  "status": "complete",
+  "completed_confirmed": "2026-07-21 (user)",
+  "design": { "type": "round (Round) design", "metal": "yellow gold (gold by default)" },
+  "source_folder_id": "1Kp9z6eBqCZ-_XfeFoU8C5uLcD4qCvw2B",
+  "catalog": {
+    "studio": { "hero": "f128d5f8", "side_profile": "6f5b2832", "face_up": "d680c9ac" },
+    "lifestyle": { "hand": "ad1a23ba", "box_5a": "25c7d4da", "silk_5b": "a8707230" },
+    "closeup_lifestyle": { "slot_7_worn": "4b808078", "slot_9_stilllife": "bb63c2c1" },
+    "utility": { "cert_6": "03b4cd37", "sparkle_macro_8": "e1733fd5", "packaging_10": "8d3276f3" }
+  },
+  "note": "Full 11-frame catalog generated 2026-07-21. Hero uses the corrected two-tone logo (gold wordmark, BLACK tagline) + jewelry-first soft logo. Do NOT regenerate.",
+  "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "pipeline": "legacy" }
+}

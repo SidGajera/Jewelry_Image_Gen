@@ -1,0 +1,20 @@
+{
+  "sku": "LR-0174",
+  "status": "complete",
+  "completed_confirmed": "2026-07-21 (user)",
+  "design": {
+    "type": "round brilliant solitaire with pave accents",
+    "center": "round brilliant ~8x8mm (~2ct) colorless",
+    "accents": "18 round pave (1.2mm)",
+    "metal": "18K/14K yellow gold"
+  },
+  "source_folder_id": "18_rKlh5TX6vkVd9Akr0piCGbM_M_iodE",
+  "catalog": {
+    "studio": { "hero": "13c900cf", "side_profile": "3e36fa17", "face_up": "f69d495d" },
+    "lifestyle": { "hand": "2a0f3551", "box_5a": "05f11f25", "silk_5b": "bafe98c7" },
+    "closeup_lifestyle": { "slot_7_worn": "04a8f616", "slot_9_stilllife": "a4a3bd67" },
+    "utility": { "cert_6": "8c71f36b", "sparkle_macro_8": "81b468c2", "packaging_10": "0eeacdcf" }
+  },
+  "note": "Full 11-frame catalog generated 2026-07-21. Studio shots carried in-model logo (superseded by the clean-cloth+local-composite policy for future work). Do NOT regenerate.",
+  "generation": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "pipeline": "legacy" }
+}
