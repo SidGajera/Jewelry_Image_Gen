@@ -1,6 +1,6 @@
 {
-  "note": "Versioned pipeline registry (safe-versioning policy, docs/15). Select the active pipeline with ONE value (env PIPELINE_MODE overrides `active`), never by editing source. PRODUCTION = `composite-v1`: Higgsfield renders only the scene, the real source-CAD ring is composited in, so jewelry geometry is identical to source BY CONSTRUCTION (the AI can never redraw prongs, band width, head/gallery, or invent stones/gold/designs). Switched from `legacy` by explicit user instruction 2026-07-20 (permanent fix for recurring geometry/logo/cloth drift; see QUALITY_MEMORY.json#composite-v1-production-lock). ENGINE UNCHANGED: Higgsfield remains the sole generation engine (docs/21) - compositing preserved pixels is not generation (docs/21 §2). `legacy` (Higgsfield draws the ring too) is retained intact for experimentation but is NOT production. Neither version may be switched automatically in either direction - only by explicit user instruction. The preserved logo and premium-white cloth are ALSO enforced locally (print_logo_on_cloth.py / whiten_cloth.py) in production, never AI-drawn/graded.",
-  "active": "composite-v1",
+  "note": "Versioned pipeline registry (safe-versioning policy, docs/15). Select the active pipeline with ONE value (env PIPELINE_MODE overrides `active`), never by editing source. PRODUCTION = `legacy`: Higgsfield generates the whole image INCLUDING the ring, from the approved geometry-locked prompts; the preserved logo is still composited locally (docs/04 P0) and cloth neutralised locally (whiten_cloth.py). Set by explicit, repeated user instruction 2026-07-21 ('use only Higgsfield', 'do not ask again'): the user wants Higgsfield to generate every frame - including worn lifestyle/close-up shots that `composite-v1` cannot produce (it can only composite studio angles the 2D CAD covers). This REVERSES the 2026-07-20 composite-v1 switch. Geometry/logo/cloth fidelity under `legacy` is enforced by the strong locked prompts + QC + local logo/cloth compositing + iteration, NOT guaranteed by construction (see QUALITY_MEMORY.json#composite-v1-production-lock, updated 2026-07-21). Higgsfield remains the sole engine either way (docs/21). `composite-v1` is retained intact for optional studio-only geometry-guarantee, NOT production. Neither version switches automatically - only explicit user instruction.",
+  "active": "legacy",
   "stable": "composite-v1",
   "stable_commit": "a58f7d2cd99e853b8fcb7ff469b3ae6d0a64cc75",
   "stable_tag": "pipeline-stable",
@@ -10,13 +10,13 @@
     "missing_over_incorrect": true,
     "request_more_source": true,
     "every_output_passes_geometry_qc": true,
-    "active_activation": "composite-v1 IS PRODUCTION BY EXPLICIT USER INSTRUCTION 2026-07-20 (permanent-geometry-fix). This supersedes the 2026-07-16 restore-original-lifecycle instruction that had set legacy as production. Deliberate, user-ordered production baseline - not an automatic fallback. Automatic switching between versions remains forbidden in both directions; only an explicit user instruction may change `active`."
+    "active_activation": "legacy IS PRODUCTION BY EXPLICIT, REPEATED USER INSTRUCTION 2026-07-21 ('use only Higgsfield', 'do not ask again'). This supersedes the 2026-07-20 composite-v1 switch: the user wants Higgsfield to generate every frame, including worn lifestyle/close-up shots composite-v1 cannot produce. Deliberate, user-ordered production baseline. Automatic switching between versions remains forbidden in both directions; only an explicit user instruction may change `active`. Do NOT re-raise the pipeline choice with the user."
   },
   "versions": {
     "composite-v1": {
-      "description": "PRODUCTION (user-instructed 2026-07-20). Higgsfield renders only the scene; the real source-CAD ring is composited in - jewelry geometry identical to source by construction (prongs, band width, head/gallery, stone count/orientation can never be redrawn or invented). The preserved logo is composited locally (print_logo_on_cloth.py) and cloth is neutralised to premium white locally (whiten_cloth.py); neither is AI-drawn or AI-graded.",
+      "description": "RETAINED, NOT PRODUCTION (user-instructed 2026-07-21). Higgsfield renders only the scene; the real source-CAD ring is composited in - geometry identical by construction, but ONLY for studio angles the 2D CAD covers; it cannot produce worn lifestyle/close-up shots. Kept intact for optional studio geometry-guarantee; not selected automatically.",
       "kind": "composite",
-      "status": "production",
+      "status": "retained-for-experimentation",
       "fallback_to": null,
       "on_unachievable": "skip-and-request-source",
       "module": "lib.pipeline.pipeline",
@@ -45,9 +45,9 @@
       "aka": "Composite-first (non-production; retained)"
     },
     "legacy": {
-      "description": "RETAINED, NOT PRODUCTION (user-instructed 2026-07-20). The original Higgsfield MCP lifecycle that generated the previously approved catalogs: Higgsfield renders the scene AND the jewelry from the approved prompts; the preserved logo is composited locally afterwards (docs/04 P0 - AI never renders the logo). Geometry is NOT guaranteed by construction here - the AI redraws the ring, which is the root cause of the recurring prong/band/head/invention drift; that is why production moved to composite-v1. Kept intact for manual experimentation only; never selected automatically, never a fallback.",
+      "description": "PRODUCTION (user-instructed 2026-07-21: 'use only Higgsfield'). The original Higgsfield MCP lifecycle that generated the approved catalogs: Higgsfield renders the scene AND the jewelry from the approved geometry-locked prompts; the preserved logo is composited locally afterwards (docs/04 P0 - AI never renders the logo) and cloth neutralised locally. Geometry is NOT guaranteed by construction; it is held by the strong locked prompts (e.g. 'EXACTLY 4 claw prongs, not eight - count them'), per-shot QC, and iteration. Produces every frame type including worn lifestyle/close-ups. This is the user's chosen production baseline.",
       "kind": "prompt",
-      "status": "retained-for-experimentation",
+      "status": "production",
       "fallback_to": null,
       "prompt_file": "prompts/07_PROMPTS.md",
       "system_prompt": "prompts/00_MASTER_SYSTEM_PROMPT.md",
@@ -75,8 +75,8 @@
   },
   "terminology": {
     "Higgsfield": "The only production image generation engine (docs/21) - unchanged by the 2026-07-20 switch. Higgsfield renders the scene in BOTH versions; compositing preserved pixels is not generation (docs/21 §2).",
-    "Composite-first": "`composite-v1`. Higgsfield renders only the scene; the real source-CAD ring is composited in. THIS IS PRODUCTION (user-instructed 2026-07-20) - geometry identical by construction.",
+    "Composite-first": "`composite-v1`. Higgsfield renders only the scene; the real source-CAD ring is composited in - geometry identical by construction, but studio angles only. RETAINED, not production (user-instructed 2026-07-21).",
     "Logo compositing": "NOT a pipeline. The preserved logo is composited locally in BOTH versions - required by docs/04 P0 in all cases and unaffected by this switch.",
-    "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = composite-v1 = the ring is real source pixels (never AI-drawn), so geometry cannot drift or be invented."
+    "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = legacy = Higgsfield generates every frame including the ring (user-instructed 2026-07-21: 'use only Higgsfield'); fidelity held by locked prompts + QC + local logo/cloth, not by construction."
   }
 }

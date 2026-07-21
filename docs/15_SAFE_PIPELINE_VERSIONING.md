@@ -1,25 +1,25 @@
 # 15 — SAFE PIPELINE VERSIONING + ZERO-LOSS LEARNING
 
 User-locked 2026-07-16. The composite pipeline is a **reversible upgrade** — it never permanently replaces the working pipeline until it proves better. Improvements are reversible; validated learning is permanent; failed experiments are recorded, not repeated.
-## 0. TERMINOLOGY + ACTIVE PRODUCTION PIPELINE (BINDING, user-instructed 2026-07-20)
+## 0. TERMINOLOGY + ACTIVE PRODUCTION PIPELINE (BINDING, user-instructed 2026-07-21)
 
-**PRODUCTION = `composite-v1`.** Set by explicit user instruction (2026-07-20) as the permanent fix for recurring geometry/logo/cloth drift — this **supersedes** the 2026-07-16 "restore the original Higgsfield lifecycle" instruction that had made `legacy` production. Higgsfield renders **only the scene**; the real source-CAD **ring is composited in**, so jewelry geometry is identical to source **by construction** (prongs, band width, head/gallery, stone count/orientation can never be redrawn or invented). The preserved logo is composited locally (`print_logo_on_cloth.py`) and the cloth is neutralised to premium white locally (`whiten_cloth.py`); neither is AI-drawn or AI-graded.
+**PRODUCTION = `legacy` = Higgsfield generates every frame, including the ring.** Set by explicit, repeated user instruction (2026-07-21: "use only Higgsfield", "do not ask again"), which **supersedes** the 2026-07-20 switch to `composite-v1`. The user wants Higgsfield to generate every shot — including worn lifestyle/close-up frames that `composite-v1` **cannot** produce (composite can only place the 2D-CAD ring at studio angles). The preserved logo is still composited locally (`print_logo_on_cloth.py`) and the cloth neutralised locally (`whiten_cloth.py`); neither is AI-drawn or AI-graded.
 
-- **"Higgsfield"** = the only production generation ENGINE (`docs/21`) — **unchanged** by this switch. It renders the scene in both versions; compositing preserved pixels is not generation (`docs/21` §2). The production pipeline VERSION is `composite-v1`.
-- **"Composite-first"** = `composite-v1`. Higgsfield renders only the scene; the CAD ring is composited in. **THIS IS PRODUCTION.**
-- **`legacy`** = Higgsfield generates the scene AND the jewelry. **Retained intact for experimentation — NOT production.** Its AI-drawn ring is the root cause of the recurring prong/band/head/invention drift.
-- **Logo compositing is NOT a pipeline.** The preserved logo is composited locally in BOTH versions - required by `docs/04` P0 (AI never renders the logo) and unaffected by this switch.
+- **"Higgsfield"** = the only production generation ENGINE (`docs/21`). Under `legacy` it renders the scene AND the ring.
+- **`legacy`** = Higgsfield generates scene + jewelry from the approved geometry-locked prompts. **THIS IS PRODUCTION.**
+- **"Composite-first"** = `composite-v1`. Higgsfield renders only the scene; the CAD ring is composited in — geometry guaranteed by construction, but **studio angles only**. **Retained, NOT production.**
+- **Logo compositing is NOT a pipeline.** The preserved logo is composited locally in BOTH versions - required by `docs/04` P0 (AI never renders the logo).
 
 Both versions call Higgsfield. The distinction is whether Higgsfield draws the **ring**.
 
-**Geometry under `composite-v1` is guaranteed BY CONSTRUCTION** (the ring is source pixels, never re-synthesised). QC (`docs/18`, `docs/13`, `docs/16`) additionally verifies composite integrity per shot. Under `legacy` geometry is NOT guaranteed — the AI redraws the ring — which is why it is no longer production.
+**Geometry under `legacy` is NOT guaranteed by construction** — the AI draws the ring. It is held by: the strong approved geometry-lock prompt reused verbatim every shot ("EXACTLY 4 claw prongs … four not eight — count them", "pave INSIDE the lobes ONLY", "gallery/arms PLAIN POLISHED GOLD"), per-shot QC (`docs/18`, `docs/13`, `docs/16`), local logo/cloth compositing, and iteration. This is the accepted trade the user chose to get worn/close-up frames.
 
-**Neither version may be switched automatically, in either direction.** Only an explicit user instruction changes `active`. (The 2026-07-20 switch to `composite-v1` was such an explicit instruction; see `config/QUALITY_MEMORY.json#composite-v1-production-lock`.)
+**Neither version may be switched automatically, in either direction.** Only an explicit user instruction changes `active`, and the pipeline choice must NOT be re-raised with the user (2026-07-21: "do not ask again"). See `config/QUALITY_MEMORY.json#composite-v1-production-lock` (updated 2026-07-21).
 
 ## 1. PRESERVE THE CURRENT PIPELINE
 - Git tag **`pipeline-stable`** marks the last proven-good commit (`config/pipeline_versions.json` → `stable_commit`).
 - Each version's full profile (prompts, provider routing, QC, geometry, compositing) is stored per-version in `config/pipeline_versions.json` — a complete, restorable snapshot.
-- The non-production pipeline (`legacy`) always remains runnable and is never overwritten or deleted - retained for manual experimentation only. Both the `active` and `stable` pointers are `composite-v1` (§0).
+- `composite-v1` always remains runnable and is never overwritten or deleted - retained for optional studio geometry-guarantee. Per §0 the `active` pointer is `legacy` (user-instructed 2026-07-21); the `stable` pointer remains `composite-v1`.
 
 ## 2. VERSIONED PIPELINES
 `config/pipeline_versions.json` registers named versions:
