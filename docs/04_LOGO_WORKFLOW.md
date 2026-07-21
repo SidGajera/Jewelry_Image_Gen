@@ -4,6 +4,23 @@ The single most important workflow in the project. Priority **P0** — overrides
 
 > **METHOD OVERRIDE (user-locked 2026-07-21): LOGO IS GENERATED IN-MODEL BY HIGGSFIELD ONLY.** The local composite `scripts/print_logo_on_cloth.py` is **NOT used** — the user found it makes too many mistakes. Do not call it. The logo is rendered **in-scene by Higgsfield** with the full quality lock (exact two-tone: gold emblem + "LUCENT CARAT LAB", **BLACK** "FUTURE OF FINE JEWELRY" tagline; single instance; printed into the cloth following weave/folds/light; no overlay/sticker/glow/box/duplicate/background-wireframe; jewelry stays the sharp hero, logo softened only by real DoF). Fidelity is held by strong prompting + QC + regenerate-on-failure — NOT by local compositing. This supersedes the "AI must NEVER render the logo" clause below and the §4/§7 local-composite fallback wherever they conflict. Everything else in this file about the logo's exact appearance still applies as the QC target.
 
+## 0. PREMIUM CLOTH LOGO PRINT STANDARD (MANDATORY, user-locked 2026-07-21)
+**Preserved asset.** `assets/logo/logo_official.png` ("Copy of Lucent Carat Lab Logo(1).png") is the ONE and ONLY approved logo — a LOCKED visual asset. Pass this exact file as the logo reference and **reproduce it pixel-faithfully**; treat it like an existing product photo. Never recreate / redraw / vectorize / reinterpret / simplify / restyle / recolor / modify any element.
+
+**Approved look (benchmark).** Match the user's approved sample studio images (2026-07-21): the complete logo lockup printed naturally into premium white cotton in the lower area, jewelry the sharp hero, logo soft and secondary. That natural screen-print look is the target for every studio/office image.
+
+**Print method.** The logo must look exactly like **premium textile ink screen-printed directly into luxury white cotton** — ink sitting INSIDE the weave, the cloth texture visible THROUGH the ink, the weave continuing under every letter. NEVER an overlay · watermark · sticker · decal · floating/projected graphic · emboss · engrave · metallic foil · CGI texture · fake displacement · AI re-creation · white box · glow · independent shadow.
+
+**Fabric integration + textile physics.** The logo is physically printed BEFORE the photo, so it follows every fold, wrinkle, deformation, perspective change and depth-of-field transition, and receives the IDENTICAL lighting, shadows, highlights and texture as the cloth. No independent lighting/reflections/sharpness. No visible separation between logo and cloth.
+
+**Color + tagline + completeness lock.** Never modify the diamond emblem, LUCENT, CARAT, LAB, decorative stars, horizontal lines, tagline, letter-spacing, kerning, font, stroke, layout, alignment, color, opacity or size ratio. The tagline **FUTURE OF FINE JEWELRY stays BLACK** — never recolor/bold/thin/sharpen/blur-independently/rewrite. **Exactly ONE complete logo** — no multiple/partial/cropped/ghost logos, no duplicate emblem or repeated text; the whole lockup (emblem + LUCENT + CARAT + LAB + tagline + decorative elements) stays visible.
+
+**Focus.** Jewelry is always the hero (critically sharp). The logo is secondary and softens **uniformly with the cloth** only via natural camera depth of field — never blur only the letters, never change any logo detail when softening.
+
+**Cloth.** Premium luxury white cotton only — fine natural weave, high thread count, soft daylight, natural folds, neutral white, soft sheen. Never cheap/canvas/linen/synthetic/paper-texture/flat cloth, never cream/yellow/gray/blue/pink/colored/tinted.
+
+**Failure policy (zero tolerance).** If ANY logo property differs from the preserved asset, or the print looks pasted/overlaid rather than screen-printed into the weave → reject internally and regenerate on Higgsfield; never deliver.
+
 ## 1. WHY
 the Higgsfield production model has struggled to reproduce the fine logo typography (observed: "ELLYREID" with a crown, garbled tagline), which is why the logo was historically composited locally. **[SUPERSEDED 2026-07-21 — see the METHOD OVERRIDE at the top of this file: the logo is now rendered IN-MODEL by Higgsfield only; `print_logo_on_cloth.py` is retired.]** The original rationale below is retained for context; the in-model logo is held exact by strong prompting + QC + regenerate.
 

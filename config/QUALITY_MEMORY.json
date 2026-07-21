@@ -772,7 +772,7 @@
       "root_cause": "n/a",
       "correct_result": "Lockup ~a quarter to a third of frame width, lower area offset from centre and clear of the ring, full lockup readable (icon, LUCENT/CARAT/LAB, stars, rules, tagline), soft muted tone-on-tone gold never brighter than the cloth, ink following fold contours and sharing the scene depth of field. Hierarchy: jewelry, cloth, logo.",
       "rejected_output_ref": "n/a - approved reference",
-      "fix": "Match this treatment on every studio/office image. Local composite: --scale 0.28-0.34, --pos lower-right/lower-centre, --opacity 0.45-0.6, --displace 6-8, --soften 1.0, --grain 0.06.",
+      "fix": "APPROVED NATURAL-PRINT BENCHMARK (user samples 2026-07-21): the complete logo lockup printed naturally into premium white cotton in the lower area, jewelry the sharp hero, logo soft/secondary, reading as premium textile INK SCREEN-PRINTED INTO the weave (cloth texture visible through the ink, follows folds/light/DoF) — never an overlay/sticker/foil/emboss. Reproduce the exact preserved asset (assets/logo/logo_official.png) pixel-faithfully, complete single lockup, BLACK tagline. Method = IN-MODEL Higgsfield (docs/04 §0 PREMIUM CLOTH LOGO PRINT STANDARD; the local-composite params '--scale 0.28-0.34 --pos lower-right/lower-centre --opacity 0.45-0.6 --displace 6-8 --soften 1.0 --grain 0.06' are HISTORICAL, from the retired print_logo_on_cloth.py, kept only as the visual target).",
       "date_recorded": "2026-07-17",
       "status": "validated",
       "scope": "global",
