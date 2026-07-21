@@ -9,9 +9,14 @@ Do not begin generation until all of these are loaded and enforced:
 1. **MASTER_JEWELRY_PRESERVATION_POLICY** — `docs/13`, `docs/02`
 2. **IMAGE_GENERATION_RULES** — `docs/03`
 3. **LOGO_WORKFLOW** — `docs/04`
-4. **QUALITY_MEMORY** — `config/QUALITY_MEMORY.json`
-5. **FAILURE_MEMORY** — `config/QUALITY_MEMORY.json` (`failure_memory`)
-6. **APPROVED_BENCHMARKS** — `config/deliveries/`, `workspace/golden/`
+4. **BACKGROUND_STANDARD** — `docs/11`
+5. **STUDIO_ANGLES_STANDARD** — `docs/12`
+6. **NO_REGRESSION_POLICY** — `docs/14`
+7. **ZERO_JEWELRY_INVENTION** — `docs/16`
+8. **HIGGSFIELD_ENGINE_LOCK** — `docs/21`
+9. **QUALITY_MEMORY** — `config/QUALITY_MEMORY.json`
+10. **FAILURE_MEMORY** — `config/QUALITY_MEMORY.json` (`failure_memory`)
+11. **APPROVED_BENCHMARKS** — `config/deliveries/`, `workspace/golden/`
 
 ## 0a. JEWELRY PRIORITY & FOCUS HIERARCHY (MANDATORY, user-locked 2026-07-21)
 The jewelry is ALWAYS the primary subject. Every image must draw the viewer's eye to the jewelry before anything else, and the jewelry stays the **sharpest, brightest, highest-detail** object in the scene. The logo, cloth and background exist ONLY to support it.
