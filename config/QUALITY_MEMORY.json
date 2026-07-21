@@ -14,6 +14,17 @@
       ]
     },
     {
+      "id": "lifestyle-scene-variety",
+      "problem": "House-lifestyle / lifestyle / closeup-lifestyle frames come out SAME-LOOKING - every one used raw silk + dried baby's breath + warm-autumn amber/terracotta, so slots 4/5a/5b/7/9 read as the same shot repeated (LR-0180, user 2026-07-21: 'houselifestyle images are same looking / do not repeat same image').",
+      "root_cause": "the lifestyle prompt template reused the identical surface (raw silk), prop (dried baby's breath) and palette across every lifestyle frame.",
+      "fix": "LIFESTYLE SCENE VARIETY (user-locked 2026-07-21). Every lifestyle / house-lifestyle / closeup-lifestyle frame in a catalog must be a DISTINCT scene. Vary the SURFACE (silk / linen / oak wood / marble / ceramic / open book / stone), the PROP (none / eucalyptus / a single rose or lavender stem / coffee cup / book / candle - do NOT reuse dried baby's breath on every frame), the PALETTE (warm autumn / cool neutral / bright airy / soft green), the CAMERA (three-quarter / low / top-down / tight macro / 30-degree tilt) and the LIGHT (window / morning rake / soft overcast). No two lifestyle frames in a catalog may share the same surface+prop+palette combination. ACROSS catalogs, use different lifestyle/closeup scenes than the previous SKU (docs/06 pose-variety, Closup_houselifestyle set). Reject any lifestyle frame that repeats another frame's look. Jewelry-hero + geometry lock unchanged.",
+      "refs": [
+        "config/QUALITY_MEMORY.json natural-photography-angle-variety",
+        "docs/06",
+        "docs/22"
+      ]
+    },
+    {
       "id": "lr0180-inmodel-logo-overlay-and-duplicate",
       "problem": "LR-0180 hero (in-model logo): the printed 'LUCENT CARAT LAB / FUTURE OF FINE JEWELRY' lockup rendered as a FLAT DIGITAL OVERLAY on top of the cloth (sharp edges, not following folds, not merged into the weave); AND a SECOND logo element appeared - the diamond icon reinterpreted as a large gold wireframe/line-art graphic behind the ring (duplicate/ghost logo). Tagline colour was correct (black) but print-integration and single-logo both failed.",
       "root_cause": "the logo was AI-generated in-model (in the prompt + logo passed as a generation reference). Diffusion cannot print-integrate a logo into fabric and cannot hold it to exactly one instance - it overlays the wordmark and duplicates the icon as a background motif. Violates docs/04 P0 (AI never renders the logo).",

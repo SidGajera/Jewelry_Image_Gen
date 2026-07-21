@@ -26,6 +26,8 @@ The jewelry is ALWAYS the primary subject. Every image must draw the viewer's ey
 
 **REJECT if:** the logo attracts more attention than the jewelry · the cloth attracts more attention than the jewelry · the logo is sharper than the jewelry · the logo blur changes its design/colour/typography/tagline · the jewelry is not the primary visual focus.
 
+**LIFESTYLE SCENE VARIETY (user-locked 2026-07-21).** Every lifestyle / house-lifestyle / closeup-lifestyle frame must be a DISTINCT scene — vary surface, prop, palette, camera and light; **never reuse the same surface+prop+palette (e.g. raw-silk + dried baby's breath + warm-autumn) across frames**, and use different lifestyle scenes than the previous SKU. Reject any lifestyle frame that looks the same as another (`config/QUALITY_MEMORY.json#lifestyle-scene-variety`, `#natural-photography-angle-variety`).
+
 ## 1. SOURCE LOCK
 The source CAD is the ONLY source of truth. Never add, remove, redesign, reconstruct, improve, simplify, beautify, or invent any jewelry detail. Preserve exactly:
 - Overall ring geometry; silhouette and proportions
