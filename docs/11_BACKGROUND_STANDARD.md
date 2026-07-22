@@ -7,9 +7,9 @@ The background cloth is NEVER to be freely generated/invented by AI. It must rep
 - **Yellowish cloth:** cloth rendered cream/warm/yellow instead of neutral premium white → fix locally with `whiten_cloth.py` (0 credits); never accept a warm cast.
 - **Simple/flat cloth:** cloth rendered plain, cheap, or texture-less instead of premium cotton with natural soft draping → cloth must always read as premium white cotton with soft, believable folds and fine grain, never a flat blank sheet.
 
-## CLOTH MATERIAL — LOCKED
-Use the exact cloth material shown in the reference images: **premium soft white cotton** jewelry-pouch fabric with a fine even grain and natural soft draping. This material is LOCKED.
-Do NOT replace it with: silk, satin, linen, cheap/generic cotton, velvet, marble, paper, leather, coarse visible-weave fabric, a flat plain sheet, or any other material. Reuse the same premium cotton for every catalog image.
+## CLOTH MATERIAL — LOCKED (velvet preferred, user-locked 2026-07-21)
+**PREFERRED DEFAULT: premium pure-white plush VELVET** (luxury jewelry-box velvet — soft dense pile, gentle sheen, elegant soft folds), per `docs/04 §0`. It reads more premium than cotton and is the default studio cloth. **Premium soft white cotton** (fine even grain, natural soft draping) remains acceptable as the alternate. Either way the material is LOCKED to one of these two premium options.
+Do NOT replace it with: silk, satin, linen, cheap/generic cotton, marble, paper, leather, coarse visible-weave fabric, a flat plain sheet, or any other material. Use premium white velvet (preferred) or premium white cotton consistently across a catalog.
 
 ## CLOTH COLOR — LOCKED NEUTRAL WHITE
 The cloth must always be pure premium / neutral / bright luxury white.

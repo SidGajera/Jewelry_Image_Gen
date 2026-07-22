@@ -10,6 +10,8 @@
 For each jewelry SKU, take the brand's SOURCE product images and generate **12 marketing photos** that keep the jewelry **100 % identical** to the source, on the brand's **locked white studio cloth with the printed brand logo**. Output: photorealistic, **1:1 aspect, 2K resolution**, images only.
 
 ## 2. THE 12 IMAGES PER CATALOG
+> **SUPERSEDED for new catalogs (user-locked 2026-07-21):** the current default is **10 images = 7 closed-hand (worn) + 3 velvet-background studio** — see `docs/10 → DEFAULT CATALOG COMPOSITION`. The 12-image breakdown below is retained as the historical/base structure and for catalogs that explicitly request it.
+
 | Group | Count | What |
 |---|---|---|
 | STUDIO | 5 | Ring on locked white cloth + printed logo. 5 different angles: front top-down, macro close-up, side profile, held-on-cloth-fold, three-quarter rest. |

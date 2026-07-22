@@ -13,7 +13,7 @@ User-locked 2026-07-16, after three consecutive SKUs (twist-halo split-shank; ro
 The source render/CAD is the **master, immutable object**. The AI's only job is to place that exact ring into a realistic scene. A catalog image is a *product visualization* of the SAME physical ring in a new setting — **never a reinterpreted design**. This applies equally to studio, lifestyle, and close-up shots.
 
 ## 2. WHAT MAY CHANGE (the entire allow-list — nothing else)
-- Background / environment (locked premium white cotton cloth for studio)
+- Background / environment (locked premium white VELVET cloth for studio — cotton acceptable; docs/11, docs/04 §0)
 - Lighting
 - Camera angle + position
 - Focus / depth of field
