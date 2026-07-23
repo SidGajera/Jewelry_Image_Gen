@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lucentcaratlab.com/schema/design-dna.schema.json",
+  "title": "Design DNA",
+  "description": "A manufacturable-by-construction parameter set for one piece of fine jewelry. Consumed by the CAD build (Rhino/Grasshopper) and the cost/manufacturability engine.",
+  "type": "object",
+  "required": ["piece_type", "metal", "centre", "composition", "band"],
+  "additionalProperties": false,
+  "properties": {
+    "sku": { "type": "string", "description": "Optional catalog id, e.g. LR-0200" },
+    "name": { "type": "string" },
+    "piece_type": { "type": "string", "enum": ["ring"], "default": "ring" },
+    "metal": {
+      "type": "string",
+      "enum": ["18k_yellow_gold", "18k_white_gold", "18k_rose_gold", "platinum_950", "14k_yellow_gold"]
+    },
+    "centre": {
+      "type": "object",
+      "required": ["cut", "carat", "lw", "setting"],
+      "additionalProperties": false,
+      "properties": {
+        "cut": { "type": "string", "enum": ["round","oval","emerald","hexagon","marquise","pear","cushion","princess","radiant","asscher","heart"] },
+        "carat": { "type": "number", "minimum": 0.1, "maximum": 10 },
+        "lw": { "type": "number", "minimum": 0.85, "maximum": 2.5, "description": "length:width ratio; validate against schema/cut-ratios.json" },
+        "mm": { "type": "array", "items": { "type": "number" }, "description": "[L,W] or [diameter] — derived, informational" },
+        "lab_grown": { "type": "boolean", "default": true },
+        "orientation": { "type": "string", "enum": ["north_south", "east_west"], "default": "north_south" },
+        "setting": { "type": "string", "enum": ["prong", "bezel", "half_bezel"] },
+        "prongs": { "type": ["integer", "null"], "enum": [3, 4, 6, null] },
+        "prong_dia_mm": { "type": "number", "default": 1.2 },
+        "bezel_wall_mm": { "type": "number", "default": 0.8 }
+      }
+    },
+    "composition": {
+      "type": "string",
+      "enum": ["solitaire", "hidden_halo", "halo", "toi_et_moi", "three_stone", "cluster"],
+      "description": "Layout family. Secondary stones are defined by convention per composition (see cad/rhino_build.py)."
+    },
+    "accents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cut", "carat", "count"],
+        "properties": {
+          "role": { "type": "string", "enum": ["side", "halo", "pave"] },
+          "cut": { "type": "string" },
+          "carat": { "type": "number" },
+          "count": { "type": "integer", "minimum": 1 },
+          "setting": { "type": "string", "enum": ["prong", "bezel", "bead", "channel"] }
+        }
+      }
+    },
+    "band": {
+      "type": "object",
+      "required": ["profile", "width_mm"],
+      "additionalProperties": false,
+      "properties": {
+        "profile": { "type": "string", "enum": ["knife_edge", "round", "flat", "cigar", "cathedral"] },
+        "width_mm": { "type": "number", "minimum": 1.0, "maximum": 8 },
+        "taper": { "type": "string", "description": "free text, e.g. taper_1.8_to_1.4" },
+        "finger_size": { "type": "number", "default": 7 }
+      }
+    },
+    "estimate_usd": {
+      "type": "object",
+      "description": "Populated by cad/manufacturability.py — not authored by hand.",
+      "properties": {
+        "metal": { "type": "number" }, "stones": { "type": "number" },
+        "labour": { "type": "number" }, "make": { "type": "number" }, "retail": { "type": "number" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "trend_tags": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string", "enum": ["human", "trend_engine", "configurator"] }
+      }
+    }
+  }
+}

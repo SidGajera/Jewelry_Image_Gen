@@ -1,0 +1,19 @@
+{
+  "note": "Attribute taxonomy for tagging market pieces (CV + NLP) and for describing generated designs. Every scraped image/listing gets normalised to these attributes so trends are countable.",
+  "attributes": {
+    "cut": ["round","oval","emerald","hexagon","marquise","pear","cushion","princess","radiant","asscher","heart","kite","baguette","trillion"],
+    "orientation": ["north_south","east_west"],
+    "setting": ["prong","bezel","half_bezel","tension","flush","channel","pave"],
+    "prongs": ["3","4","5","6","double_claw","eagle_claw"],
+    "composition": ["solitaire","hidden_halo","halo","double_halo","toi_et_moi","three_stone","cluster","eternity","stackable"],
+    "band": ["knife_edge","round","flat","cigar","cathedral","split_shank","twist","pave"],
+    "metal": ["yellow_gold","white_gold","rose_gold","platinum","two_tone"],
+    "motif": ["minimal","vintage","celestial","nature","geometric","art_deco","organic"],
+    "price_band_usd": ["<1000","1000-2500","2500-5000","5000-10000",">10000"]
+  },
+  "hot_2026": {
+    "note": "Manually seeded momentum weights (0-1). The real engine derives these from live counts + engagement + sales rank deltas; treat as placeholders.",
+    "toi_et_moi": 0.9, "hexagon": 0.8, "east_west": 0.8, "bezel": 0.85, "marquise": 0.75,
+    "oval": 0.7, "cigar": 0.75, "hidden_halo": 0.7, "kite": 0.6, "yellow_gold": 0.8, "vintage": 0.65
+  }
+}

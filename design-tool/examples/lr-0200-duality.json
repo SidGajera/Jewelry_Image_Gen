@@ -1,0 +1,16 @@
+{
+  "sku": "LR-0200",
+  "name": "Duality",
+  "piece_type": "ring",
+  "metal": "18k_yellow_gold",
+  "centre": {
+    "cut": "hexagon", "carat": 1.5, "lw": 1.5, "lab_grown": true,
+    "orientation": "north_south", "setting": "bezel", "prongs": null, "bezel_wall_mm": 0.8
+  },
+  "composition": "toi_et_moi",
+  "accents": [
+    { "role": "side", "cut": "pear", "carat": 0.9, "count": 1, "setting": "prong" }
+  ],
+  "band": { "profile": "knife_edge", "width_mm": 1.8, "taper": "taper_1.8_to_1.4", "finger_size": 7 },
+  "provenance": { "source": "human", "trend_tags": ["toi_et_moi", "hexagon", "bezel", "mixed_cuts"] }
+}
