@@ -180,4 +180,33 @@ this configurator → shoppable + priced + manufacturable.** That's the moat: th
 viewer; you sell a design-to-storefront pipeline.
 
 ---
+
+## 12. Parity checklist — i3djewel's highlighted features → our modules
+
+| # | Their highlighted feature | Covered by | Type |
+|---|---|---|---|
+| 1 | Jewelry CAD Design | Parametric generator + Rhino/Grasshopper build (§CAD) — **auto** in our tool | software |
+| 2 | Photorealistic 3D Rendering (up to **8K**) | Offline render service (Blender Cycles), 8K tier | software |
+| 3 | Custom Ring Design | Configurator widget + design-DNA edits | software |
+| 4 | Diamond Jewelry Design | Stone library + diamond feed + gem PBR | software |
+| 5 | Jewelry Visualization | Real-time viewer + renders + 360° video | software |
+| 6 | Product Rendering | Batch render queue (stills + video) | software |
+| 7 | Manufacturing-Ready Designs | CAD export `.3dm/.stl` + BOM + manufacturability checks | software |
+| 8 | Customization Support | Configurator options + save/share | software |
+| 9 | Professional Design Service | Our **auto-generate** turns this into software; human-assist optional | service→auto |
+| 10 | Online Jewelry Business Growth | Embed widget + Shopify + AR + analytics (conversion) | software+GTM |
+| 11 | Website & Phone Support | Support desk / onboarding | **service (ops)** |
+| 12 | Multiple Jewelry Design Options | Auto-mode **batch generation** — our strength | software |
+| 13 | Up to 8K jewelry quality | Render pipeline max tier (see note) | software |
+
+**8K render note:** 8K (7680×4320) stills are heavy — minutes of GPU per frame with real
+caustics/dispersion. Offer it as a **top render tier** (real-time preview → 2K quick → 8K
+hero on request), and **cache by config-hash** so an 8K is rendered once and reused.
+
+**Read of their business:** i3djewel is a **software + done-for-you service** (they'll CAD +
+render for you, with phone support). Items 9 and 11 are *services*, not code. Your wedge:
+automate item 9 (auto-generate designs) so you're not selling human hours — you're selling a
+machine that produces #1–8 and #12 at scale, then layer light human support (#11) on top.
+
+---
 *Sources: i3djewel.com · docs.ijewel3d.com · Rhino iJewel plugin announcement (Aug 2024).*
