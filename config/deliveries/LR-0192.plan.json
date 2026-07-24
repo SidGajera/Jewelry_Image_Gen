@@ -1,0 +1,30 @@
+{
+  "sku": "LR-0192",
+  "name": "Julia",
+  "created": "2026-07-24",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider) - new close-up weighting, docs/10",
+  "source_folder": "1DhzKuNkS5gPxmCk85vMO4tR4D4j--7YW",
+  "source_ring": "1.png / Drive 1lvgAFB8DOAeYxHvFy6VQkc4VMOXaBigX",
+  "design_profile": "Half-eternity BAND. NO center stone, head, basket, gallery, halo or baguettes. Yellow gold, comfortable rounded shank. Front half = ONE continuous single row of ROUND BRILLIANT diamonds in shared/common French prongs, slightly graduated (largest at centre front). Rear half plain polished. No pave, milgrain, channel, bezel or second row.",
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "slots": [
+    { "n": 1,  "group": "velvet",      "angle": "hero-front",         "job": "f2107d77-8690-454a-b0a7-032ad6d7e680" },
+    { "n": 2,  "group": "velvet",      "angle": "45-left",            "job": "01efcded-f312-41d6-8198-69632dfb839b" },
+    { "n": 3,  "group": "velvet",      "angle": "top-down",           "job": "0024e87e-fd28-413a-b82c-7eeb00617e39" },
+    { "n": 4,  "group": "close-up",    "angle": "macro-top-down",     "job": "19487b96-2a55-4424-b8b0-ef9d95b600c6" },
+    { "n": 5,  "group": "close-up",    "angle": "macro-side-finger",  "job": "59e13362-d9b5-4898-bb44-726ccd1644eb" },
+    { "n": 6,  "group": "close-up",    "angle": "macro-fingertips",   "job": "3eb3d506-dfee-4bac-b0cb-3ed73e8e04ef" },
+    { "n": 7,  "group": "close-up",    "angle": "macro-three-quarter","job": "539b0c8d-73c8-4a57-af41-8f34b4d6d378" },
+    { "n": 8,  "group": "wider-worn",  "angle": "back-of-hand",       "job": "d6aa6517-ad4a-4f65-8eb5-ab94e999f173" },
+    { "n": 9,  "group": "wider-worn",  "angle": "hand-near-face",     "job": "ae187553-dcb7-4b7b-95b4-3b956e51615c" },
+    { "n": 10, "group": "wider-worn",  "angle": "on-marble",          "job": "d7db40de-c4a8-4553-8f82-ce5fb90ea94e" }
+  ],
+  "superseded": ["fb82bd74-9a8e-41e2-8fd3-03d3be395b66 (slot 1, fired before the DIAMOND CLARITY block was locked)"],
+  "notes": [
+    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards (scripts/print_logo_on_cloth.py --fabric velvet).",
+    "Every prompt carries the DIAMOND CLARITY block (prompts/07, user-locked 2026-07-24).",
+    "Stale Closup_houselifestyle Drive IDs in docs/06 all 404 - close-ups used the current Reference_US_Ring set in folder 1GFwd4SHSPuCoaQj2WHYJWb7nTsvFUPzi instead.",
+    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  ],
+  "credits": { "renders": 11, "credits": 22 }
+}

@@ -724,6 +724,112 @@
       "refs": [
         "docs/04 9"
       ]
+    },
+    {
+      "id": "office-photoshoot-background-must-be-velvet",
+      "sku": "LR-0189",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "source 3.png (Drive 1SS_pV_6arnKLHzTBWmTJbJ-xgoi0xjPF); studio ref Offie_photoshoot (1); official logo asset",
+      "problem": "Office/studio photoshoot prompt specified 'premium pure-white cotton cloth' as the background. Office photoshoot backgrounds must be premium white plush VELVET only; no other material, surface or texture is permitted.",
+      "affected_area": "cloth",
+      "root_cause": "Prompt was built from the pre-2026-07-24 wording, which allowed cotton as an acceptable alternate to velvet. No prompt-build gate existed to block a non-velvet material before submission.",
+      "correct_result": "Every office/studio photoshoot image is shot on premium pure-white plush VELVET (soft dense pile, gentle sheen, elegant soft folds), neutral pure-white balance, natural soft draping, with the preserved official logo printed into the pile.",
+      "rejected_output_ref": "job 5f0e3049-bb0b-46c3-a849-77a947b0e3a0 (LR-0189 Image 1, 2026-07-24)",
+      "fix": "TWO MANDATORY GATES. (1) PROMPT-BUILD GATE: before submitting any office-photoshoot generation, confirm the prompt names VELVET and names no other fabric; a prompt containing 'cotton' or any non-velvet material must be corrected before submission. (2) PRE-DELIVERY GATE: validate the rendered background reads as velvet; a non-velvet background is an automatic REJECT and is recorded here. Cotton is revoked as an alternate.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0189 image 1 (job 5f0e3049-bb0b-46c3-a849-77a947b0e3a0)"
+      ],
+      "refs": "docs/11_BACKGROUND_STANDARD.md (CLOTH MATERIAL - VELVET ONLY); prompts/07_PROMPTS.md (CLOTH P3, STUDIO WRAPPER, STUDIO WRAPPER v2); BACKGROUND_RULES.md"
+    },
+    {
+      "id": "stone-shape-must-match-source-exactly",
+      "sku": "LR-0194",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "LR-0194 source CAD",
+      "problem": "TWO defects in the LR-0194 catalog. (1) SHAPE: centre rendered as an EMERALD cut instead of the 2ct ELONGATED HEXAGON. (2) ADDED STONES: a halo / surrounding pave was invented around the centre. LR-0194 is a PLAIN SOLITAIRE - no halo, no surrounding pave, no accent stones of any kind.",
+      "affected_area": "diamond",
+      "root_cause": "Stone shape was left to the model's prior rather than pinned to the source. Elongated hexagons sit close to emerald cuts in latent space, so any slack in the prompt collapses hexagon -> emerald. No pre-delivery shape check existed to catch it.",
+      "correct_result": "LR-0194: 2ct elongated hexagon (six straight sides, step facets), PLAIN SOLITAIRE, no halo, no surrounding pave, no accent stones. Generally: every stone matches the source in shape, count, size and placement - never add a halo, pave or accent that is not in the source, never remove one that is.",
+      "rejected_output_ref": "LR-0194 delivered set (user-supplied contact sheets, 2026-07-24)",
+      "fix": "(1) SOURCE LOCKING: always pass the source CAD as a locked visual reference (image-to-image); never build the ring from text alone. (2) PROMPT: name the exact cut, spell out its outline, and name the shapes it must not become. (3) State explicitly whether accents exist - for a plain solitaire say NO halo / NO pave / NO accent stones. (4) PRE-DELIVERY: compare side-by-side with the source; any shape, count or placement mismatch = REJECT.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 2,
+      "occurrences": [
+        "LR-0194 catalog (2026-07-21 set)",
+        "LR-0194 slot 1 job d0b68cb3-d9ff-4924-ad0b-b7b59e94df40 (2026-07-24) - hidden halo specified in error"
+      ],
+      "refs": "prompts/07_PROMPTS.md (STONE SHAPE LOCK); docs/13_JEWELRY_PRESERVATION_SPEC.md"
+    },
+    {
+      "id": "hexagon-centre-orientation-verify-against-worn-photos",
+      "sku": "LR-0193 / LR-0195 / LR-0196 / LR-0197",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "each SKU's source CAD renders",
+      "problem": "Assistant first specified the hexagon centre as EAST-WEST, then self-corrected to NORTH-SOUTH on a misapplied heuristic ('side stones always sit along the finger, so a horizontal long axis in a front elevation means along the finger'). Re-checked against the delivered LR-0194 worn photos: the band runs horizontally and the centre stone stands TALL, perpendicular to the band. The ORIGINAL east-west reading was correct; the self-correction was the error.",
+      "affected_area": "jewelry",
+      "root_cause": "The heuristic fails on east-west three-stone designs. In these rings the centre's long axis is perpendicular to the finger WHILE the side stones still sit along the finger on the shoulders - both are true at once, so side-stone placement does not determine centre orientation.",
+      "correct_result": "Centre elongated hexagon is set EAST-WEST: its long axis runs ACROSS the finger, perpendicular to the band. Side stones sit on the shoulders ALONG the finger. Confirmed by the LR-0194 worn photos (band horizontal, stone standing tall).",
+      "rejected_output_ref": "No renders rejected on this basis - LR-0193/0195/0196/0197 were generated with the ORIGINAL east-west wording, which this record confirms is correct.",
+      "fix": "Determine centre-stone orientation from a WORN photo or an axial CAD view (band seen as a full circle), never from side-stone placement. In an axial view the in-image horizontal is ACROSS the finger. State the orientation explicitly in the prompt and re-verify before delivery.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "assistant reasoning error 2026-07-24; no output affected"
+      ],
+      "refs": "config/deliveries/LR-0193/0195/0196/0197.plan.json"
+    },
+    {
+      "id": "lr-0194-is-a-plain-solitaire-no-accents",
+      "sku": "LR-0194",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "LR-0194 CAD 4.png + 2.png",
+      "problem": "Assistant specified a HIDDEN HALO (row of round pave under the girdle) in the LR-0194 slot-1 prompt. The user has confirmed LR-0194 is a PLAIN SOLITAIRE with no halo and no surrounding pave.",
+      "affected_area": "diamond",
+      "root_cause": "Assistant read small round forms beneath the girdle in the CAD as a hidden halo and wrote them into the prompt. Where the source reading and the user's stated design disagree, the user's stated design governs - the assistant should not add accents on its own reading.",
+      "correct_result": "LR-0194 renders as a plain solitaire: one elongated hexagon, four double-claw prongs, open basket, thin plain round band. NO halo, NO pave, NO accent stones anywhere.",
+      "rejected_output_ref": "job d0b68cb3-d9ff-4924-ad0b-b7b59e94df40 - REJECTED, not for delivery",
+      "fix": "Every LR-0194 prompt states NO halo, NO surrounding pave, NO accent stones, plus the shapes the centre must not become. Where a CAD reading would ADD a component, confirm before generating rather than writing it into the prompt.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "catalog-specific",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0194 slot 1, 2026-07-24"
+      ],
+      "refs": "prompts/07_PROMPTS.md (STONE SHAPE LOCK, SOURCE LOCKING); config/deliveries/LR-0194.plan.json"
+    },
+    {
+      "id": "never-describe-the-setting-in-words-copy-it-from-the-cad",
+      "sku": "LR-0194",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "LR-0194 CAD 4.png + 2.png",
+      "problem": "Prongs came out wrong. The assistant had written a TEXTUAL prong spec into the prompt ('FOUR DOUBLE-CLAW prongs, one at each of the four long-side corners, each splitting into a doubled claw'). That description was the assistant's own reading of the CAD, not the CAD, and it overrode the reference image - the model built prongs from the words instead of copying the source.",
+      "affected_area": "prong",
+      "root_cause": "Describing the setting in prose competes with the locked source image. Where a written spec and a reference image disagree, the model follows the words. Any prong count/shape/style stated in text is a guess unless it is measured, and a guess in the prompt is stronger than the truth in the image.",
+      "correct_result": "Prong count, shape, style, thickness and position exactly as the source CAD - copied from the image, not restyled. Same for gallery, basket and band. Only the camera angle changes.",
+      "rejected_output_ref": "job a7750c48-5372-444b-a82b-7aa201243b6b - REJECTED on prongs (centre stone shape was correct and is retained)",
+      "fix": "DO NOT describe the setting in words. For prongs, gallery, basket and band the prompt says only: reproduce them EXACTLY as in the reference CAD - do not add, remove, split, double, restyle, thicken, thin or reposition. Never state a prong count or prong style in text unless the user has given it. Reserve prose for what the image cannot carry (scene, background, lighting, camera) and for explicit exclusions the user has stated.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0194 slot 1 (2026-07-24)"
+      ],
+      "refs": "prompts/07_PROMPTS.md (SOURCE LOCKING)"
     }
   ],
   "failure_memory": {

@@ -1,0 +1,47 @@
+{
+  "sku": "LR-0194",
+  "name": "Hexagon (solitaire + hidden halo)",
+  "created": "2026-07-24",
+  "history": "Earlier catalog rejected: centre rendered as emerald/radiant instead of the 2ct elongated hexagon. See QUALITY_MEMORY id stone-shape-must-match-source-exactly.",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "1K67mproX3S2bh1Gh6wtc2bn9ufTdEJA-",
+  "source_refs": [
+    "4.png head detail (1-kWEVd0rWPII_d1F-wuslzAdaZUvYvb8)",
+    "2.png axial front elevation (1MOzR-9jl4iz6l8TsHgsWvrlYfGkjn4ZN)"
+  ],
+  "design_profile": "PLAIN SOLITAIRE, yellow gold, ONE stone only. CENTRE: 2ct ELONGATED HEXAGON step cut - SIX straight sides, two long parallel sides, each short end two angled edges meeting in a shallow point (four clipped corners). Step-cut rows, large flat table. Long axis ACROSS the finger. FOUR DOUBLE-CLAW prongs at the long-side corners. Plain OPEN basket with NO stones set into it. Thin plain polished ROUND band. NO halo, NO hidden halo, NO surrounding pave, NO accent/side/shoulder stones anywhere - exactly one diamond on this ring.",
+  "not_this_shape": [
+    "emerald",
+    "radiant",
+    "oval",
+    "cushion",
+    "octagon",
+    "rounded rectangle",
+    "rectangle with cut corners"
+  ],
+  "provider": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "count": 1
+  },
+  "slots": [
+    {
+      "n": 1,
+      "group": "velvet",
+      "angle": "hero-front",
+      "job": "a7750c48-5372-444b-a82b-7aa201243b6b",
+      "status": "awaiting_shape_verification"
+    }
+  ],
+  "gate": "STOPPED AFTER SLOT 1 ON PURPOSE. Two known failure modes on this SKU - centre drifting hexagon -> emerald, and an invented halo. Neither can be guaranteed by prompt alone; both have to be seen. Verify slot 1 against the source (six-sided centre, exactly one diamond) before the remaining 9 are generated.",
+  "credits": {
+    "renders": 2,
+    "credits": 4,
+    "note": "1 rejected + 1 current candidate"
+  },
+  "media_order": "CAD FIRST (source lock), scene plate last - per prompts/07 SOURCE LOCKING. The CAD is the base to preserve; the plate donates only background, lighting, camera and white balance.",
+  "superseded": [
+    "d0b68cb3-d9ff-4924-ad0b-b7b59e94df40 - REJECTED: hidden halo specified in error; 0194 is a plain solitaire"
+  ]
+}

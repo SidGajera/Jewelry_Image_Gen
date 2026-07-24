@@ -59,6 +59,57 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 | LR-0136 | `159MjisakODelkPZKFFDiAJoii7EKQR8_` | Oval diamond + 2 GREEN emerald-cut emeralds + plain yellow band (3ct) |
 | LR-0137 | `1ADZwnTDCLX4q3PWUG6j0s58RFWB5nN1f` | Oval diamond + 2 tapered baguette diamonds + plain yellow band (3ct) |
 | LR-0151 | `1YgAdm88Dw3fIdxBibYhL_mobm-fukzXz` (Source/`1mKq…`/LR - 0151) | Round solitaire, 4 thin claw prongs, LOW OPEN BASKET (no gallery), thin single-row micro-pavé, 18K yellow gold |
+| LR-0186 | `1UDls78x1rlwr4rRAXx-e4G7pcomyCBqG` (folder title `LR- 0186 Dimond ring`) | design profile not yet studied — see LR-0186 file table below |
+
+### LR-0186 source files (main folder only; Drive file IDs — durable)
+> Main folder holds 22 PNGs + `Lucentcaratlab.mp4`. There is also a `rough` subfolder (`1UrqUFoBOYmPUCS_mbp9S3cl2dWHbNEEH`) — **off-limits** under the source lock (main folder only).
+
+| File | Drive file ID |
+|---|---|
+| `1.png` | `1xlzYpn6Ao0z5EKjK3ft_qotcxkggoTg4` |
+| `2.png` | `1tFOMB25Xl-I1gT331AcdBuvbgvTGRUXI` |
+| `3.png` | `1bOxIROKISCzm260egiwNJz7cTYQ7Qh08` |
+| `4.png` | `1UdxmEaOSmYVFHIl51djPPMutvOSX190O` |
+| `5.png` | `17smqpSdaddOR6EGCctddwI99_Kq7qSe-` |
+| `6.png` | `1UfTXd5Wh40QTIQYbNSotY2OJvGtQm0t2` |
+| `diamond ring (1).png` | `1J7kCxP9YjY-ugiEJffKuDq_Usy_Ck47n` |
+| `diamond ring (2).png` | `11LJmtBnScODE2KiMh6gbppDHVuTItGO2` |
+| `diamond ring (3).png` | `1X5Sxnk1OQhQDih4s7WyLx012CihRC633` |
+| `diamond ring (4).png` | `1reWR73gs6OzhVAmsM9nLPO9QiEzJbZ_p` |
+| `diamond ring (5).png` | `1ZNCPSkARv2xuVSBtGZbeKzHNHpk_F1E5` |
+| `diamond ring (6).png` | `1biLgxR6e8PSS58XkJpbSgtnOyv04f3xh` |
+| `diamond ring (7).png` | `1kQLI2LhKukcCcqtAk4ocyjRupgEwHPph` |
+| `diamond ring (8).png` | `1-Xzla9mkV7zzuKh5mZAEOAYET8pZMn8o` |
+| `diamond ring (9).png` | `1Bq2g9orrTfqC21o0qs1_Ro-Ekt3IZd2w` |
+| `diamond ring (10).png` | `19TeOeWXVlvbHrIHtmPXazMwp8udqa7iX` |
+| `diamond ring (11).png` | `1hWw9LaBCnmf4fyhHEqgdNGZ3r7cWesGL` |
+| `diamond ring (12).png` | `1W1kTq3atV5TSvWJPi-hmyKSH2ZCi0e6p` |
+| `diamond ring (13).png` | `1PIhW97Naxs7J7s_uvE3weSS1b8MyaF7-` |
+| `diamond ring (14).png` | `1rmSJHamUKYGIyvkVWTLXybiQ-FStx0Sk` |
+| `diamond ring (15).png` | `1C4KPoOG2skcKPizgowhVbBms6Jjt4T4A` |
+
+### LR-0189 source files (main folder only; Drive file IDs — durable)
+> Folder `1_68-Y4XCmhbsVU4C-PV1hFBXxOu41ptm` (title `LR- 0189 (Band`). A **band**, not a solitaire. Main folder holds only **4 usable source PNGs**. A `raw` subfolder (`1WyNZ8J8yQ-lS-yVBMS0WybIFOkcMiS8C`) is **off-limits** under the source lock (main folder only).
+>
+> **Not usable as source:** `{1147EE36-…}.png` (55 KB screenshot) and the `.txt` whose filename is an lpriorijewelry.com "Celine ring" product URL. Both are third-party reference material — competitor photography may not be composited, used as a Higgsfield reference, or published. Read them for *facts only* (prong/baguette counts, band profile).
+
+| File | Drive file ID |
+|---|---|
+| `1.png` | `1FwMQaWHTYW8oN0Y30mqv__CIEnpuiixi` |
+| `3.png` | `1SS_pV_6arnKLHzTBWmTJbJ-xgoi0xjPF` |
+| `8.png` | `172tIfXTF8_q0oPMIhd5q9DoYz7w1nqmn` |
+| `9.png` | `1F9aVLb01OWCtB-2k4Cfd211AHXoaFM-B` |
+
+#### LR-0189 design profile (studied 2026-07-24 — reuse, do not re-analyse)
+- **Type:** half-eternity BAND. **No center stone, no head, no basket, no gallery, no halo.**
+- **Metal:** thin 14K yellow gold, round comfort shank; rear half plain polished.
+- **Stone run (front half):** alternating single STEP-CUT BAGUETTE ↔ groups of THREE ROUND BRILLIANTS.
+- **Baguette setting:** BAR-SET lengthwise **along** the band, flat polished gold bar at each end.
+- **Round setting:** shared/common two-prong.
+- **Centre front (confirmed, front elevation `3.png`):** `BAG · R · R · R · BAG` — verified by saturation/coverage profiling, gold prong separators resolved at every junction.
+- **No** pavé, milgrain, channel, or bezel anywhere.
+
+> **Source-of-truth note.** `1.png` + `3.png` are plain-background product photos watermarked `Lucentcaratlab` → these are the geometry ground truth; `3.png` (front elevation) is the SOURCE ring reference. `8.png` + `9.png` are branded-cloth catalog-style images; `9.png` reads only **2** rounds between baguettes where `3.png` unambiguously shows **3**, so 8/9 are treated as prior output with possible drift and are **not** used for geometry.
 
 ### LR-0151 source files (gold; Drive file IDs — durable)
 | View | Drive file ID | Repo path |

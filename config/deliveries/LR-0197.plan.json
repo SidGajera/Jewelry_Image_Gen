@@ -1,0 +1,35 @@
+{
+  "sku": "LR-0197",
+  "name": "Hexagon (bezel + hidden halo)",
+  "created": "2026-07-24",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "18O3Rtj7cjdX-65MGbzrwNtpFNelM2VbJ",
+  "source_refs": ["1.png head detail (1DiuXYDSXzgOHQ7myJfWeJmwP-Ns8yxbe)", "2.png side profile (15Ue6zAgYtdFFyDhYkJuC9ZjpT2qUVB6Z)"],
+  "design_profile": "BEZEL-SET SOLITAIRE, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond, six-sided outline, two long parallel sides, angled clipped corners, set EAST-WEST (long axis across the finger), FULLY BEZEL-SET in a continuous smooth polished rim following every angle of the hexagon. NO prongs or claws anywhere. HIDDEN HALO: single row of small round brilliant pave around the UNDERSIDE of the bezel, following the hexagonal outline, visible only from side/three-quarter angles - never a halo on the top face. SHANK: thin plain polished ROUND band with a small open shoulder void at the head. No side stones, top halo, shoulder pave or milgrain.",
+  "hexagon_family_disambiguation": {
+    "LR-0193": "THREE-STONE - trapezoid/shield sides, thin round tapering shank, V-trellis cathedral gallery, prong-set",
+    "LR-0195": "THREE-STONE - tapered baguette sides, FLAT squared shank, hexagonal openwork basket, prong-set",
+    "LR-0196": "SOLITAIRE - no side stones, FOUR double-claw prongs, compact open basket, thin round band",
+    "LR-0197": "BEZEL solitaire - NO prongs at all, continuous gold rim, HIDDEN HALO pave under the bezel, thin round band"
+  },
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "slots": [
+    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "13aeee36-05e2-4adc-922b-b5d23821d846" },
+    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "fd4b1e2e-0c85-4ded-80ee-f5750a0eb298" },
+    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "421717a6-a9da-4954-a180-e1a9545238a2" },
+    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "ca5fafde-06da-41e2-93dc-543369a7654e" },
+    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "d440ce52-a2a1-4d95-991f-612425bab5aa" },
+    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "40b54f16-13cc-4718-b64c-1bfca9c6cd78" },
+    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "f347c312-1435-4255-af27-57f0b5ad04d0" },
+    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "124edb3f-5dd4-46b7-bda5-13cd807aa0ca" },
+    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "b2638def-9953-48a6-a3a0-ea10a216f850" },
+    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "a57eeda6-1af1-4934-bf2a-719d5824a8fe" }
+  ],
+  "notes": [
+    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards.",
+    "Two failure modes guarded in every prompt: (a) adding prongs - this ring has NONE, the bezel is continuous; (b) promoting the hidden halo to a visible top halo - the pave sits UNDER the bezel and must not appear on the top face. The top-down prompts say so explicitly.",
+    "Slot 5 (macro side-of-finger) is the money shot for this SKU - it is the only angle that reads the hidden halo.",
+    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  ],
+  "credits": { "renders": 10, "credits": 20 }
+}

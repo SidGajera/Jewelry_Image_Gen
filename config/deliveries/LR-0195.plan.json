@@ -1,0 +1,29 @@
+{
+  "sku": "LR-0195",
+  "name": "Hexagon",
+  "created": "2026-07-24",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "1uIXgIDWGSzjwsGRipJLbqIKtr8fn3pZR",
+  "source_refs": ["2.png front elevation (1beYNgMLmmD90sPmpLnhpw9CYg5GFnZ2z)", "1.png three-quarter side (1iCyGLkYUyY68jRgf67om5i-VTeV02VX8)"],
+  "design_profile": "THREE-STONE ring, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond, six-sided outline, two long parallel sides, angled clipped corners, set EAST-WEST (long axis across the finger), double-claw prongs. SIDES: exactly TWO long TAPERED BAGUETTE diamonds, one per shoulder, lengthwise along the shoulder and tapering outward, held between flat polished gold rails. SHANK: FLAT squared-profile band with crisp edges and an angular stepped shoulder - not a round wire band. GALLERY: open hexagonal openwork basket under the centre. No halo, pave, milgrain or accent stones.",
+  "differs_from_LR0193": "0193 has TRAPEZOID/shield side stones, a thin ROUND tapering shank and a V-trellis cathedral gallery. 0195 has TAPERED BAGUETTE sides, a FLAT squared shank and a hexagonal openwork basket. Same centre-stone family, different setting - do not cross-contaminate the two design strings.",
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "slots": [
+    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "b719ad46-f208-4706-b3ba-9ba8130d33c0" },
+    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "5f5348f3-cf84-4f4a-b6e4-e3c78b867725" },
+    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "bac6a874-7026-4c11-ab5d-6026f72ac758" },
+    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "a88ff19b-1e49-4eba-b78e-629ec53922bc" },
+    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "4115f68b-9190-4148-b116-a7f786441864" },
+    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "e1e6c845-86d4-4a48-97ee-357840525f15" },
+    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "68d5c3f5-6764-4edf-b663-c229a691e73e" },
+    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "aad003db-b6a2-4484-a1bc-eb68ccfd342a" },
+    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "dee3dda2-1d3e-434c-9d45-f5447a5035a5" },
+    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "e13fc157-258c-489b-8ad3-1a2bbf32fc7d" }
+  ],
+  "notes": [
+    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards (scripts/print_logo_on_cloth.py --fabric velvet).",
+    "Two CAD views passed on every shot so the hexagon outline, the tapered baguettes and the flat shank are each image-constrained.",
+    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  ],
+  "credits": { "renders": 10, "credits": 20 }
+}

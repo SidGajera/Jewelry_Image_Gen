@@ -102,7 +102,21 @@
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);print\\('ok'\\)\")",
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/VERSION.json'\\)\\);json.load\\(open\\('config/project_manifest.json'\\)\\);print\\('JSON all valid'\\)\")",
       "Bash(git commit -q -m 'Consolidate token rules into single Master Token Optimization Policy \\(docs/17\\) *)",
-      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)"
+      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)",
+      "Bash(git pull *)",
+      "Bash(echo \"EXIT: $?\")",
+      "mcp__higgsfield__balance",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__balance",
+      "Bash(python -c \"import json;d=json.load\\(open\\('config/project_manifest.json'\\)\\);print\\(json.dumps\\(d.get\\('generation_settings',{}\\),indent=1\\)\\)\")",
+      "Bash(python -c ' *)",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__media_import_url",
+      "mcp__7a3e6356-b5c0-403d-92f0-0bc2bd0b3730__generate_image",
+      "Bash(python scripts/print_logo_on_cloth.py --help)",
+      "Bash(python -)",
+      "Bash(python -c \"import ast;ast.parse\\(open\\(r'D:/Lucent Image generation/scripts/print_logo_on_cloth.py',encoding='utf-8'\\).read\\(\\)\\);print\\('syntax OK'\\)\")",
+      "Bash(python scripts/print_logo_on_cloth.py --image __TRACKED_VAR__/9.png --logo assets/logo/logo_official_transparent.png --out __TRACKED_VAR__/velvet_test.png)",
+      "Bash(python scripts/validate_render.py __TRACKED_VAR__/velvet_test.png)",
+      "Bash(python scripts/validate_render.py __TRACKED_VAR__/9.png)"
     ]
   }
 }

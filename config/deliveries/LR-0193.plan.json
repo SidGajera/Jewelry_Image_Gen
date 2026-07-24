@@ -1,0 +1,30 @@
+{
+  "sku": "LR-0193",
+  "name": "Hexagon",
+  "created": "2026-07-24",
+  "regenerated": "Folder already held 10 hf_2026-07-21 renders; user authorised regeneration 2026-07-24.",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "1YsWHccZxgqgyxWEnvoWoIoDiAsShhXuz",
+  "source_refs": ["2.png front elevation (13ilj68eX_tp05mQtEzR3Zglc0jMZh6dh)", "1.png head detail (15zHRfas8fn0qJkpB2Vz6sAbz57nWZ0YA)"],
+  "design_profile": "THREE-STONE ring, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond - six-sided outline, two long parallel sides, angled clipped corners each end, large open table, concentric step-facet rows - set EAST-WEST (long axis across the finger), double-claw prongs. SIDES: exactly TWO step-cut trapezoid/shield diamonds, flat outer edge, angled sides, tilted to follow the shoulder, prong-set. SHANK: thin plain polished tapering band rising into an OPEN cathedral gallery with visible V/trellis supports. No halo, pave, milgrain or accent stones.",
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "slots": [
+    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "1f3866e6-844e-4954-91e4-bbdce765a2ad" },
+    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "93218055-f090-4c3d-8ed6-d4d108d6127a" },
+    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "7a204f82-53b5-4101-879c-dcbbaf2d4a47" },
+    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "c13f3edb-2269-469b-a1ba-f02e1a0275a2" },
+    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "037edc42-464a-42f6-a4da-1bfc069d7d07" },
+    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "a0d1d8b8-fb4b-47ba-b0f5-565cc518f7f6" },
+    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "d9aa3f4a-234e-439d-b89c-4accd2ecd68e" },
+    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "80124f83-7595-4355-9a16-29f9e05ece99" },
+    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "a381b154-74a2-4140-8ed0-1957c5196a84" },
+    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "371ae551-892d-4938-ba49-6b621d7ddac1" }
+  ],
+  "notes": [
+    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards (scripts/print_logo_on_cloth.py --fabric velvet).",
+    "Two CAD views passed as references on every shot so the hexagon outline and the open gallery are both constrained.",
+    "Expanded DIAMOND CLARITY block used: step-cut rows must read as straight parallel steps, corners never rounded, stones never merged.",
+    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  ],
+  "credits": { "renders": 10, "credits": 20 }
+}

@@ -1,0 +1,33 @@
+{
+  "sku": "LR-0196",
+  "name": "Hexagon (solitaire)",
+  "created": "2026-07-24",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "1xrpOfg9-YsaUBV_hOqHg22nzal03Y9JQ",
+  "source_refs": ["1.png head detail (1Tt4Ihbo6dI3LtddTP9WzTT3wTlI8Wu8F)", "3.png rear / basket (1jH9q0pKKs-Ou41TZtKcdUsb9cvZGBQY6)"],
+  "design_profile": "SOLITAIRE, yellow gold, ONE stone only. CENTRE: one elongated HEXAGON step-cut diamond - six-sided outline, two long parallel sides, angled clipped corners each end, large open table - set EAST-WEST (long axis across the finger), held by FOUR DOUBLE-CLAW prongs, one per corner, each splitting into a doubled claw. Compact OPEN basket with a simple cross/trellis support beneath. SHANK: thin plain polished ROUND band running straight into the basket. NO side stones, no shoulder stones, no halo, pave, milgrain or accents.",
+  "hexagon_family_disambiguation": {
+    "LR-0193": "THREE-STONE - trapezoid/shield sides, thin round tapering shank, V-trellis cathedral gallery",
+    "LR-0195": "THREE-STONE - tapered baguette sides, FLAT squared shank, hexagonal openwork basket",
+    "LR-0196": "SOLITAIRE - no side stones at all, four double-claw prongs, compact open basket, thin round band"
+  },
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "slots": [
+    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "f216b83b-f6bd-4402-97b6-cfd343157e75" },
+    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "f7a3a836-9e01-4727-920e-83bffdaa5ebe" },
+    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "6ba498d2-c994-49bb-b84a-e0a8994f7da8" },
+    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "5f910cb2-0792-4bc5-be4f-ba89bfe68bfe" },
+    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "21aeb951-d4e2-4ce8-b487-13ce6ef36aac" },
+    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "4fae29fc-b7a6-4e4e-aff5-9d27875c9343" },
+    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "b7c147ce-4af1-43c2-b93b-3e88ce130f2d" },
+    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "02c8e593-9f3b-49f9-9f09-0ad71164027d" },
+    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "4b04ca28-e945-4dc3-b6b7-d8c20acb747b" },
+    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "37db4c90-10f5-4e68-a435-d2a7b81eea0d" }
+  ],
+  "notes": [
+    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards.",
+    "'NO side stones' is stated explicitly in every prompt: 0193 and 0195 both have side stones, and a three-stone bleed is the obvious failure mode for this SKU.",
+    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  ],
+  "credits": { "renders": 10, "credits": 20 }
+}
