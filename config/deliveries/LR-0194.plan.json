@@ -9,7 +9,22 @@
     "4.png head detail (1-kWEVd0rWPII_d1F-wuslzAdaZUvYvb8)",
     "2.png axial front elevation (1MOzR-9jl4iz6l8TsHgsWvrlYfGkjn4ZN)"
   ],
-  "design_profile": "PLAIN SOLITAIRE, yellow gold, ONE stone only. CENTRE: 2ct ELONGATED HEXAGON step cut - SIX straight sides, two long parallel sides, each short end two angled edges meeting in a shallow point (four clipped corners). Step-cut rows, large flat table. Long axis ACROSS the finger. FOUR DOUBLE-CLAW prongs at the long-side corners. Plain OPEN basket with NO stones set into it. Thin plain polished ROUND band. NO halo, NO hidden halo, NO surrounding pave, NO accent/side/shoulder stones anywhere - exactly one diamond on this ring.",
+  "design_profile": "CORRECTED + LOCKED 2026-07-25 from main-folder CAD 1-4.png (supersedes prior text). Yellow gold. CENTRE: 2ct ELONGATED HEXAGON, step-cut (emerald-style faceting) inside a SIX-sided hexagon outline; pointed/chevron top AND bottom; SLIM and clearly ELONGATED (long vertical axis, narrow width). NOT emerald, NOT radiant, NOT octagonal, NO cropped rectangular corners, NO flat top/bottom, NOT wide/chunky. Long axis runs UP the finger (vertical). PRONGS (CORRECTED 2026-07-25, user-locked): exactly 6 SINGLE prongs, ONE clean prong at each of the six hexagon corners (top point, bottom point, four side corners). NOT double, NOT split, NOT paired claws. HIDDEN HALO: thin row of small pave UNDER the centre stone around the basket, visible from side/underneath only; never a bead/milgrain line tracing the crown outline on the top face; never move to top, remove, or enlarge. BAND: thin, plain, rounded/knife-edge yellow gold; no pave on band; no cathedral.",
+  "failure_memory_repeated_5x": [
+    "centre rendered EMERALD cut (8-sided, flat top/bottom) instead of elongated hexagon = WRONG",
+    "centre rendered too WIDE/chunky instead of slim elongated = WRONG",
+    "halo rendered as visible bead/milgrain outline around crown top instead of hidden under stone = WRONG",
+    "prongs rendered as DOUBLE/split/fluted claws instead of 6 SINGLE prongs (one clean prong per corner) = WRONG",
+    "side/profile/back angles drift stone to emerald (flat top) + prongs to doubled; PREVENTION: keep long axis so the chevron POINT shows even from side/back, and single prongs, at every non-front angle"
+  ],
+  "approved_benchmarks": [
+    "slot 1 velvet hero job 930ff952 (APPROVED 2026-07-25): slim elongated hexagon pointed top+bottom, hidden halo under stone, thin plain band, velvet"
+  ],
+  "prong_truth": "Ring has 6 SPLIT/DOUBLE-CLAW prongs. From TOP-DOWN each corner reads as one prong ('single'); from the SIDE each shows both talons ('double'). Same ring, both true. Earlier 'single vs double' loop resolved 2026-07-25 by user.",
+  "production_method_locked_2026-07-25": "BACKGROUND-SWAP the source CAD renders (remove_background -> composite onto white velvet + soft contact shadow). Keeps 100% ring pixels = zero drift. NEVER redraw the ring. Source CADs in main folder: 1.png(back-3/4) 2.png(axial flat profile) 3.png(low-side-3/4) 4.png(head-3/4).",
+  "office_velvet_set_APPROVED": "Higgsfield generate (NOT composite - user rejected local composite 2026-07-25, Higgsfield-only). 3 approved: front-hero 930ff952, 45deg-3/4 b9afd06b (head centered), back-3/4 gallery 2d5df9d9. Pure flat side profile never used (foreshortens to emerald). Angle rule: every image a different angle.",
+  "lifestyle_theme_LOCKED": "BEACH GOLDEN-HOUR ENGAGEMENT series (user redirected 2026-07-25, supersedes the earlier 'elegant evening' pick): warm natural golden-hour / soft-overcast coastal light, real coastal locations, candid authentic phone-photo feel, cohesive warm palette. Vertical 3:4. Vary only angle/pose. Anchor ring shape by feeding approved hero job 930ff952 as a reference. NATURALNESS BAR: everything must look real - real skin with pores/natural tone, natural hand anatomy, believable background depth, consistent natural light; NEVER plastic/over-smoothed/AI-looking; backgrounds must be genuine real-world locations, not generic AI scenes. Approved lifestyle: beach-handshake dda57ee2, couple-kiss 79a95e2d. (Earlier beige close-ups 52bfc304/9a982007 + emerald 014ce9ce are off this theme; kept per user but not part of the beach series.)",
+  "predelivery_check": "(1) centre = slim 6-sided elongated hexagon, pointed top+bottom; (2) 6 split-claw prongs (two clean smooth talons each, not single, not fluted); (3) hidden halo UNDER stone only, no top-face milgrain line; (4) plain thin band; (5) velvet bg. Any mismatch = REJECT + regenerate.",
   "not_this_shape": [
     "emerald",
     "radiant",
@@ -30,10 +45,11 @@
       "n": 1,
       "group": "velvet",
       "angle": "hero-front",
-      "job": "a7750c48-5372-444b-a82b-7aa201243b6b",
-      "status": "awaiting_shape_verification"
+      "job": "930ff952-2786-4b57-b19a-88222dcc19fc",
+      "status": "APPROVED 2026-07-25 = MASTER STANDARD (slim elongated hexagon, pointed top+bottom, 6 single prongs one-per-corner, hidden halo under stone, thin plain band, velvet). Sources 4.png=1-kWEVd0rWPII_d1F-wuslzAdaZUvYvb8, 2.png=1MOzR-9jl4iz6l8TsHgsWvrlYfGkjn4ZN. Gate: one-at-a-time, wait for user go per slot."
     }
   ],
+  "status_final": "CATALOG DONE 2026-07-25. Office velvet (Higgsfield): 930ff952 front-hero, b9afd06b 45deg-3/4, 2d5df9d9 back-3/4. Lifestyle: beach-handshake dda57ee2, couple-kiss 79a95e2d, + earlier approved close-ups 52bfc304/9a982007 and wider 014ce9ce. Theme = beach golden-hour engagement. All source-locked pointed hexagon / 6 single prongs / hidden halo under / thin band / head centered.",
   "gate": "STOPPED AFTER SLOT 1 ON PURPOSE. Two known failure modes on this SKU - centre drifting hexagon -> emerald, and an invented halo. Neither can be guaranteed by prompt alone; both have to be seen. Verify slot 1 against the source (six-sided centre, exactly one diamond) before the remaining 9 are generated.",
   "credits": {
     "renders": 2,
