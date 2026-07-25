@@ -7,6 +7,14 @@
   "source_folder": "1YsWHccZxgqgyxWEnvoWoIoDiAsShhXuz",
   "source_refs": ["2.png front elevation (13ilj68eX_tp05mQtEzR3Zglc0jMZh6dh)", "1.png head detail (15zHRfas8fn0qJkpB2Vz6sAbz57nWZ0YA)"],
   "design_profile": "THREE-STONE ring, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond - six-sided outline, two long parallel sides, angled clipped corners each end, large open table, concentric step-facet rows - set EAST-WEST (long axis across the finger), double-claw prongs. SIDES: exactly TWO step-cut trapezoid/shield diamonds, flat outer edge, angled sides, tilted to follow the shoulder, prong-set. SHANK: thin plain polished tapering band rising into an OPEN cathedral gallery with visible V/trellis supports. No halo, pave, milgrain or accent stones.",
+  "verified_2026-07-25": "All 4 main-folder CADs viewed (STEP 1). Confirms THREE-STONE: center elongated hexagon step-cut (east-west, pointed ends facing the side stones) with DOUBLE-CLAW prongs; TWO step-cut TRAPEZOID/SHIELD side stones (flat outer edge, angled), prong-set, tilted to the shoulder; thin round tapering band; OPEN cathedral V/trellis gallery; NO halo/pave. Family: 0193=trapezoid/shield sides, 0195=tapered baguette sides, 0196=solitaire.",
+  "failure_memory_0193": [
+    "must be THREE-STONE - never drop the two side stones (solitaire = WRONG)",
+    "side stones are TRAPEZOID/SHIELD step-cut - not baguette (that is 0195), not trillion/round",
+    "center hexagon must stay pointed six-sided (not emerald/flat) with double-claw prongs",
+    "no halo/pave anywhere; keep the open cathedral V-gallery"
+  ],
+  "superseded_prior_session_jobs": "The 10 slot jobs below were generated 2026-07-24 without approval (prior session). DISCARD; regenerate via the corrected playbook (Higgsfield generate, one-at-a-time approval, distinct angles, golden-hour lifestyle theme).",
   "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
   "slots": [
     { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "1f3866e6-844e-4954-91e4-bbdce765a2ad" },

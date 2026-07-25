@@ -1,33 +1,31 @@
 {
   "sku": "LR-0196",
-  "name": "Hexagon (solitaire)",
+  "name": "Elongated Hexagon Claw Solitaire (Cynthia-type)",
   "created": "2026-07-24",
-  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "corrected": "2026-07-25 from main-folder CAD 1-4.png + user locked spec (supersedes the prior-session profile that wrongly said 4 prongs / east-west).",
   "source_folder": "1xrpOfg9-YsaUBV_hOqHg22nzal03Y9JQ",
-  "source_refs": ["1.png head detail (1Tt4Ihbo6dI3LtddTP9WzTT3wTlI8Wu8F)", "3.png rear / basket (1jH9q0pKKs-Ou41TZtKcdUsb9cvZGBQY6)"],
-  "design_profile": "SOLITAIRE, yellow gold, ONE stone only. CENTRE: one elongated HEXAGON step-cut diamond - six-sided outline, two long parallel sides, angled clipped corners each end, large open table - set EAST-WEST (long axis across the finger), held by FOUR DOUBLE-CLAW prongs, one per corner, each splitting into a doubled claw. Compact OPEN basket with a simple cross/trellis support beneath. SHANK: thin plain polished ROUND band running straight into the basket. NO side stones, no shoulder stones, no halo, pave, milgrain or accents.",
+  "source_cads_main_folder": {
+    "1.png": "1Tt4Ihbo6dI3LtddTP9WzTT3wTlI8Wu8F (head-detail 3/4)",
+    "2.png": "1Igk0AGtxfdXu9AUBYoZ8_y3pF-y0qWDm (rear/side, open basket)",
+    "3.png": "1jH9q0pKKs-Ou41TZtKcdUsb9cvZGBQY6",
+    "4.png": "1BpXSmJhryVfFVPOVF6i9PcHq-OlZnjR8 (axial profile)"
+  },
+  "ignore_strays": "Main folder also has product-page screenshot ({331263EA}: 'Cynthia', elongated hexagon, six eagle-tipped claws, plain solitaire, ~2ct) and stray {552FCCDE}. Source = 1-4.png only.",
+  "design_profile_LOCKED": "PLAIN SOLITAIRE, yellow gold, ONE stone. CENTER: elongated HEXAGON, step-cut, six-sided outline, POINTED chevron top AND bottom, slim/elongated (long axis UP the finger). NOT emerald/radiant/octagon; no flat top/bottom; not wide/chunky. PRONGS: 6 DOUBLE-CLAW (split/eagle-tipped) prongs, one at each of the six hexagon corners, each prong tip splitting into TWO claws. HALO: NONE - plain solitaire, OPEN basket (simple cross/trellis support); no hidden halo, no surface halo, no pave/milgrain anywhere. BAND: thin, plain, rounded/knife-edge yellow gold; no band pave, no cathedral. HEAD centered and square on the band from every angle. True-to-source size on finger.",
   "hexagon_family_disambiguation": {
     "LR-0193": "THREE-STONE - trapezoid/shield sides, thin round tapering shank, V-trellis cathedral gallery",
     "LR-0195": "THREE-STONE - tapered baguette sides, FLAT squared shank, hexagonal openwork basket",
-    "LR-0196": "SOLITAIRE - no side stones at all, four double-claw prongs, compact open basket, thin round band"
+    "LR-0196": "SOLITAIRE - no side stones, 6 DOUBLE-CLAW prongs, open basket, thin round band"
   },
+  "failure_memory_0196": [
+    "center rendered emerald/flat-top instead of pointed elongated hexagon = WRONG",
+    "any halo/pave added (0196 is a PLAIN SOLITAIRE, open basket) = WRONG",
+    "prongs reduced to single or restyled instead of 6 DOUBLE-CLAW split prongs = WRONG",
+    "three-stone bleed (0193/0195 have side stones; 0196 has NONE) = WRONG"
+  ],
   "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
-  "slots": [
-    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "f216b83b-f6bd-4402-97b6-cfd343157e75" },
-    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "f7a3a836-9e01-4727-920e-83bffdaa5ebe" },
-    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "6ba498d2-c994-49bb-b84a-e0a8994f7da8" },
-    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "5f910cb2-0792-4bc5-be4f-ba89bfe68bfe" },
-    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "21aeb951-d4e2-4ce8-b487-13ce6ef36aac" },
-    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "4fae29fc-b7a6-4e4e-aff5-9d27875c9343" },
-    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "b7c147ce-4af1-43c2-b93b-3e88ce130f2d" },
-    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "02c8e593-9f3b-49f9-9f09-0ad71164027d" },
-    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "4b04ca28-e945-4dc3-b6b7-d8c20acb747b" },
-    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "37db4c90-10f5-4e68-a435-d2a7b81eea0d" }
-  ],
-  "notes": [
-    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards.",
-    "'NO side stones' is stated explicitly in every prompt: 0193 and 0195 both have side stones, and a three-stone bleed is the obvious failure mode for this SKU.",
-    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
-  ],
-  "credits": { "renders": 10, "credits": 20 }
+  "deliverables": "3-4 office velvet + 5-6 on-hand lifestyle (3 macro close-ups); every image a distinct angle; may use the 4 saved romantic poses; ONE cohesive real theme.",
+  "process": "Follows reference_master_generation_prompt playbook: source-lock, Higgsfield-only, validate BEFORE generating, head-centered, natural look, single photo no watermark/inset, one-at-a-time approval (0193/0196 style).",
+  "superseded_prior_session_jobs": "The 10 slot jobs generated 2026-07-24 without approval used the wrong 4-prong/east-west profile - DISCARD; regenerate from the corrected spec.",
+  "status": "in_progress - office slot 1 (velvet hero) next; awaiting per-image approval"
 }

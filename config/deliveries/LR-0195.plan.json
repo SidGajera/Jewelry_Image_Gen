@@ -7,6 +7,14 @@
   "source_refs": ["2.png front elevation (1beYNgMLmmD90sPmpLnhpw9CYg5GFnZ2z)", "1.png three-quarter side (1iCyGLkYUyY68jRgf67om5i-VTeV02VX8)"],
   "design_profile": "THREE-STONE ring, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond, six-sided outline, two long parallel sides, angled clipped corners, set EAST-WEST (long axis across the finger), double-claw prongs. SIDES: exactly TWO long TAPERED BAGUETTE diamonds, one per shoulder, lengthwise along the shoulder and tapering outward, held between flat polished gold rails. SHANK: FLAT squared-profile band with crisp edges and an angular stepped shoulder - not a round wire band. GALLERY: open hexagonal openwork basket under the centre. No halo, pave, milgrain or accent stones.",
   "differs_from_LR0193": "0193 has TRAPEZOID/shield side stones, a thin ROUND tapering shank and a V-trellis cathedral gallery. 0195 has TAPERED BAGUETTE sides, a FLAT squared shank and a hexagonal openwork basket. Same centre-stone family, different setting - do not cross-contaminate the two design strings.",
+  "verified_2026-07-25": "All 4 main-folder CADs viewed (STEP 1) + product listing ('Myrtle... elongated hexagon Trilogy with tapered baguette side stones, cathedral'). Confirms design_profile below. Center prongs = DOUBLE-CLAW.",
+  "failure_memory_0195": [
+    "must be THREE-STONE - never drop the two tapered baguette sides (solitaire = WRONG)",
+    "side stones are TAPERED BAGUETTE (0193 is trapezoid/shield - do not swap)",
+    "shank is FLAT squared profile (0193 is round) - keep the flat angular shank + hexagonal openwork basket",
+    "center hexagon pointed six-sided with double-claw prongs; no halo/pave"
+  ],
+  "superseded_prior_session_jobs": "The 10 slot jobs below were generated 2026-07-24 without approval (prior session). DISCARD; regenerate via the corrected playbook (Higgsfield generate, distinct angles, golden-hour lifestyle in its own fresh setting).",
   "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
   "slots": [
     { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "b719ad46-f208-4706-b3ba-9ba8130d33c0" },
