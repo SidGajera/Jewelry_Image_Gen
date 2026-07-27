@@ -18,4 +18,4 @@
 ## Delivery: iterate Image 1 (velvet hero, 3/4) to approval → lock master → batch rest (4 office velvet + 6 lifestyle, distinct angles/poses, 100% natural). marketing_studio_image source-locked. Save to deliveries/LR-0195/.
 
 ## FAILURE MEMORY (re-read before every gen)
-- (none yet — watch for: hexagon→emerald flattening, tapered baguettes turning to rounds/kites, wrong side-stone count.)
+- **2026-07-27 REJECT (0195 lifestyle set):** center drifted to a FLAT-TOP EMERALD cut (flat horizontal top/bottom) instead of the pointed elongated hexagon. Cause: model flattened the subtle hexagon points. Fix: hammer "pointed chevron point at BOTH top AND bottom, coffin/elongated-hexagon, NO flat horizontal edge, NOT emerald"; use 3/4 angle; VALIDATE the render (view it) and confirm BOTH ends are sharp points before delivering — reject+regen if either end is flat. Baguette sides + thin band stay as source.
