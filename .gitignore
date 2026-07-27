@@ -15,3 +15,11 @@ workspace/output/*
 workspace/temp/
 **/CUT_*.png
 hf_*.png
+
+# Lightweight repo: never commit deliverable renders or source CAD/reference images (large binaries)
+deliveries/
+workspace/golden/**/*.png
+workspace/golden/**/*.jpg
+workspace/golden/**/*.jpeg
+workspace/golden/**/*.webp
+hero_jewelry.png
