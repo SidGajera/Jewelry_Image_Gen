@@ -1,0 +1,37 @@
+{
+  "sku": "LR-0198",
+  "name": "Anastasia — Elongated Hexagon Six-Claw Solitaire (hidden halo, cathedral)",
+  "created": "2026-07-27",
+  "source_folder": "1pvpJh2Boz75XLTG7oDnDBJgW-szJ6gua",
+  "method": "Higgsfield nano_banana_2 image-to-image, source-locked to matching CAD angle (no AI redraw, no local compositing)",
+  "design_profile": "18k YG single tone. CENTRE = slim ELONGATED HEXAGON step-cut, POINTED top AND bottom (chevron ends), set east-west, ~13x6.5mm 2ct. Held by EXACTLY SIX single gold claws (prong-set, NOT bezel). Hidden-halo pave row UNDER the head (side view only), never top-face. Cathedral high setting. Thin plain rounded band ~1.8mm. Head centered.",
+  "hexagon_family_disambiguation": {
+    "LR-0197": "BEZEL solitaire (no prongs), hidden halo under bezel",
+    "LR-0198": "SIX single CLAWS (prong-set), hidden halo under head, cathedral"
+  },
+  "source_media": {
+    "view1_back3q": "8815d893-cc83-47ca-9426-95218f9ddf57",
+    "view2_hero3q": "c903ded7-3c4d-4e57-8ce4-2709968f6522",
+    "view3_front":  "e525a72d-7d19-465e-8a1f-816353338f38",
+    "view4_side":   "3f71e241-814f-4007-b5ed-0fd50afc235e"
+  },
+  "slots": [
+    { "n": 1,  "group": "office-velvet", "angle": "hero-3q",       "ref": "view2", "job": "ec976fd9-1ba6-4838-91da-42a48738b1c8", "status": "APPROVED (master)" },
+    { "n": 2,  "group": "office-velvet", "angle": "side-profile",  "ref": "view4", "job": "c616190a-de9e-42ad-b697-eb1a3538e545" },
+    { "n": 3,  "group": "office-velvet", "angle": "back-3q",       "ref": "view1", "job": "66ec6fb4-c579-4f42-897c-dc30b7e1ba4d" },
+    { "n": 4,  "group": "office-velvet", "angle": "front-upright", "ref": "view3", "job": "fe4b8bfc-6a1b-495b-8ffd-0a8ab0008404" },
+    { "n": 5,  "group": "lifestyle", "pose": "macro back-of-hand raised",  "ref": "view2", "job": "ebeb038f-a9d0-4dc7-bbf7-8f7305773512" },
+    { "n": 6,  "group": "lifestyle", "pose": "macro hand-on-shoulder",     "ref": "view2", "job": "71ae749f-4261-4239-a724-f94303217664" },
+    { "n": 7,  "group": "lifestyle", "pose": "macro hand-near-face",       "ref": "view2", "job": "7504a2b7-4399-4602-9ed1-f99fcc088fa1" },
+    { "n": 8,  "group": "lifestyle", "pose": "macro side-profile (halo)",  "ref": "view4", "job": "3fc32683-a621-40c8-b0cf-4a8a9d646fa9" },
+    { "n": 9,  "group": "lifestyle", "pose": "ring-hero hand at rest",     "ref": "view2", "job": "1d0c4d46-716f-4d27-aaf8-fa9e00bf3871" },
+    { "n": 10, "group": "lifestyle", "pose": "ring-hero hands clasped",    "ref": "view2", "job": "71c528d0-86d6-4163-8a8b-0063c13407be" }
+  ],
+  "guards": [
+    "Hexagon->emerald drift: validate two sharp points, reject flat/emerald.",
+    "Prong count: EXACTLY 6 single claws; reject bezel or wrong count.",
+    "Lifestyle = jewelry photography (ring hero); 100% natural, no artificial/AI hands/skin/metal.",
+    "Only 4 source angles exist -> only these 4 studio angles."
+  ],
+  "status": "Image 1 APPROVED; remaining 9 generated 2026-07-27 (4 office + 6 lifestyle). Higgsfield source-locked i2i."
+}
