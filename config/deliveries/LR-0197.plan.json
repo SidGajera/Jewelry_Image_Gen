@@ -12,24 +12,31 @@
     "LR-0196": "SOLITAIRE - no side stones, FOUR double-claw prongs, compact open basket, thin round band",
     "LR-0197": "BEZEL solitaire - NO prongs at all, continuous gold rim, HIDDEN HALO pave under the bezel, thin round band"
   },
-  "provider": { "model": "nano_banana_2", "resolution": "2k", "aspect_ratio": "1:1", "count": 1 },
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "method": "Higgsfield image-to-image, source-locked to matching CAD angle (no AI redraw, no local compositing)" },
+  "source_media": {
+    "view1_hero3q": "b7765417-9b38-4bfb-a034-eadb980d4852",
+    "view2_side":   "ca7d0e63-8754-4772-ae33-97224899fbcc",
+    "view3_back3q": "5f446050-2e8e-456b-a026-cc4ea982e20f",
+    "view4_front":  "88894bc0-70cf-43ed-8905-fef0008b8c1a"
+  },
+  "regenerated_2026-07-27": "Superseded the 2026-07-24 batch. Only 4 source CAD angles exist -> only 4 studio angles produced. Ring corrected to POINTED elongated hexagon (was mis-specced clipped). Lifestyle reframed jewelry-first (ring hero, people soft).",
   "slots": [
-    { "n": 1,  "group": "velvet",     "angle": "hero-front",          "job": "13aeee36-05e2-4adc-922b-b5d23821d846" },
-    { "n": 2,  "group": "velvet",     "angle": "45-left",             "job": "fd4b1e2e-0c85-4ded-80ee-f5750a0eb298" },
-    { "n": 3,  "group": "velvet",     "angle": "top-down",            "job": "421717a6-a9da-4954-a180-e1a9545238a2" },
-    { "n": 4,  "group": "close-up",   "angle": "macro-top-down",      "job": "ca5fafde-06da-41e2-93dc-543369a7654e" },
-    { "n": 5,  "group": "close-up",   "angle": "macro-side-finger",   "job": "d440ce52-a2a1-4d95-991f-612425bab5aa" },
-    { "n": 6,  "group": "close-up",   "angle": "macro-fingertips",    "job": "40b54f16-13cc-4718-b64c-1bfca9c6cd78" },
-    { "n": 7,  "group": "close-up",   "angle": "macro-three-quarter", "job": "f347c312-1435-4255-af27-57f0b5ad04d0" },
-    { "n": 8,  "group": "wider-worn", "angle": "back-of-hand",        "job": "124edb3f-5dd4-46b7-bda5-13cd807aa0ca" },
-    { "n": 9,  "group": "wider-worn", "angle": "hand-near-face",      "job": "b2638def-9953-48a6-a3a0-ea10a216f850" },
-    { "n": 10, "group": "wider-worn", "angle": "on-marble",           "job": "a57eeda6-1af1-4934-bf2a-719d5824a8fe" }
+    { "n": 1,  "group": "office-velvet", "angle": "hero-3q",       "ref": "view1", "job": "c0c32da8-0053-46c7-a0e4-05f59a23f871" },
+    { "n": 2,  "group": "office-velvet", "angle": "side-profile",  "ref": "view2", "job": "df3600e5-52bc-40fe-9b28-3035990bee11" },
+    { "n": 3,  "group": "office-velvet", "angle": "back-3q",       "ref": "view3", "job": "3e9759ce-2e45-4b60-958f-69a00d59ac70" },
+    { "n": 4,  "group": "office-velvet", "angle": "front-upright", "ref": "view4", "job": "5f1a0816-5335-4a87-8d0e-646313e08b79" },
+    { "n": 5,  "group": "lifestyle", "pose": "macro back-of-hand raised",   "ref": "view1", "job": "122625fc-8e52-4fab-a126-f31f61c0f0f9" },
+    { "n": 6,  "group": "lifestyle", "pose": "macro hand-on-shoulder",      "ref": "view1", "job": "cfdb22f2-5d60-4f62-b4f3-928b78620ce8" },
+    { "n": 7,  "group": "lifestyle", "pose": "macro hand-near-face",        "ref": "view1", "job": "49c7d3a4-141c-4814-a90a-598a8b7f3b6b" },
+    { "n": 8,  "group": "lifestyle", "pose": "macro side-profile (halo)",   "ref": "view2", "job": "9e63c75a-fe31-4543-b834-d3fa8e380876" },
+    { "n": 9,  "group": "lifestyle", "pose": "ring-hero hand at rest",      "ref": "view1", "job": "61cd6fca-a04f-48da-89ef-0a4ec8e2ce26" },
+    { "n": 10, "group": "lifestyle", "pose": "ring-hero hands clasped",     "ref": "view1", "job": "02511031-ee40-4cd3-a644-8108fdab1992" }
   ],
-  "notes": [
-    "Velvet slots 1-3 are CLEAN plates - logo composited locally afterwards.",
-    "Two failure modes guarded in every prompt: (a) adding prongs - this ring has NONE, the bezel is continuous; (b) promoting the hidden halo to a visible top halo - the pave sits UNDER the bezel and must not appear on the top face. The top-down prompts say so explicitly.",
-    "Slot 5 (macro side-of-finger) is the money shot for this SKU - it is the only angle that reads the hidden halo.",
-    "Generated without slot-1 approval per standing end-to-end instruction (deviates from docs/10 STEP 1)."
+  "guards": [
+    "This ring has NO prongs - continuous bezel; reject any prong/claw.",
+    "Hidden halo sits UNDER the bezel (side view only) - never a top-face halo.",
+    "Centre = POINTED elongated hexagon, slim; reject emerald/cushion/flat-top.",
+    "Lifestyle = jewelry photography: ring is hero and sharpest; people/scene soft."
   ],
-  "credits": { "renders": 10, "credits": 20 }
+  "status": "Delivered 2026-07-27 for review (10 images: 4 office velvet + 6 lifestyle). Higgsfield source-locked i2i."
 }
