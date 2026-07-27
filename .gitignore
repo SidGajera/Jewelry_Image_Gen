@@ -23,3 +23,14 @@ workspace/golden/**/*.jpg
 workspace/golden/**/*.jpeg
 workspace/golden/**/*.webp
 hero_jewelry.png
+
+# Belt-and-suspenders: never commit ANY generated/heavy media anywhere under workspace/
+workspace/cache/
+workspace/**/*.png
+workspace/**/*.jpg
+workspace/**/*.jpeg
+workspace/**/*.webp
+workspace/**/*.mp4
+workspace/**/*.mov
+workspace/**/*.glb
+!workspace/**/.gitkeep
