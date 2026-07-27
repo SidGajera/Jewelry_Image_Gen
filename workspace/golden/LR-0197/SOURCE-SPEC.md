@@ -19,5 +19,8 @@
 - Cathedral rise must be preserved — do not seat the stone low/flush.
 - Single gold tone (18k YG) — no two-tone, no white-gold prongs.
 
+## FAILURE MEMORY (LR-0197) — one line each; grows only, re-read before every gen
+- MISTAKE: centre stone rendered EMERALD (flat top/bottom, clipped corners). CAUSE: i2i drifts pointed hexagon→emerald; wording alone insufficient. SOLUTION: feed top-down face ref, keep ring large, validate two sharp apex points, reject if flat.
+
 ## Delivery standard
 Plain premium white velvet background (no logo). Photoreal studio macro. Ideal-clarity stone, tack-sharp. One render per angle.
