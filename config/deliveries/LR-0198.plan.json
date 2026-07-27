@@ -37,5 +37,13 @@
     "Lifestyle = jewelry photography (ring hero); 100% natural, no artificial/AI hands/skin/metal.",
     "Only 4 source angles exist -> only these 4 studio angles."
   ],
-  "status": "Image 1 APPROVED; remaining 9 generated 2026-07-27 (4 office + 6 lifestyle). Higgsfield source-locked i2i."
+  "final_resolution_2026-07-27": "Both Higgsfield models (nano_banana_2 AND marketing_studio_image) drifted the stone to EMERALD + 4 claws on the on-hand lifestyle shots. Per user-locked policy -> OPTION 2: deliver ONLY the 4 exact-source OFFICE VELVET angles, DROP all 6 lifestyle for this SKU. Office re-renders the true source pose (background-only change) so geometry holds. Never Python, never ship emerald.",
+  "delivered_office": {
+    "hero-3q": "ec976fd9-1ba6-4838-91da-42a48738b1c8 (APPROVED, nano_banana)",
+    "side": "c616190a-de9e-42ad-b697-eb1a3538e545 (nano_banana; alt marketing_studio d1c89897)",
+    "back-3q": "66ec6fb4-c579-4f42-897c-dc30b7e1ba4d (nano_banana; alt marketing_studio 2f88b741)",
+    "front-upright": "fe4b8bfc-6a1b-495b-8ffd-0a8ab0008404 (nano_banana; alt marketing_studio 22e8f8cb)"
+  },
+  "dropped_lifestyle": "All 6 lifestyle dropped (emerald-drift on both models): nano_banana ebeb038f/71ae749f/7504a2b7/3fc32683/1d0c4d46/71c528d0; marketing_studio 00386fd3/6e5adf68/3f1380a0/7ce1e9cb/6bd46f31/cfd755a8.",
+  "status": "DELIVERED as 4 office velvet only (Option 2). Lifestyle not feasible for this SKU without emerald-drift."
 }
