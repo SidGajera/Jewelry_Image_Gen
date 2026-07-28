@@ -34,3 +34,11 @@ workspace/**/*.mp4
 workspace/**/*.mov
 workspace/**/*.glb
 !workspace/**/.gitkeep
+
+# Source CAD/reference stills are heavy binaries — never commit
+workspace/**/*.avif
+workspace/golden/*.avif
+workspace/golden/*.jpg
+workspace/golden/*.jpeg
+workspace/golden/*.png
+*.avif
