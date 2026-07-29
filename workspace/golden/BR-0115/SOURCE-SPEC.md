@@ -3,7 +3,7 @@
 **Product:** Women's tennis bracelet, single row of **round brilliants alternating with fancy shapes (PEAR and MARQUISE)**, **YELLOW GOLD**, prong-set, high polish.
 
 ## Locks (viewed webp once, 2026-07-28)
-1. ONE continuous single row. Pattern: **round · pear · round · marquise · round · pear · round · marquise …** — round brilliants act as connectors between alternating pear (teardrop) and marquise (navette) fancy stones. Keep this mixed-shape rhythm.
+1. ONE continuous single row. Pattern (re-verified from source 2026-07-28): fancy stones ALTERNATE **PEAR ↔ MARQUISE**, with a **round brilliant between each fancy stone** → sequence reads **pear · round · marquise · round · pear · round · marquise …**. BOTH fancy shapes must be clearly, roughly-equally present. **PEAR** = teardrop (one pointed tip + one rounded end). **MARQUISE** = navette, pointed at BOTH ends, symmetric elongated — oriented along the chain (vertical). Do NOT render all fancies as pears; the marquise MUST be visibly there.
 2. Prong-set (fancy stones held at tips, rounds in small prongs); YELLOW GOLD.
 3. Metal: **YELLOW GOLD**, single warm tone. Not white/rose.
 4. Delicate flexible line; even spacing, no gaps; drapes on wrist.
@@ -21,4 +21,4 @@
 - 4 velvet (angles differ from source) + 6 lifestyle distinct = 10. Source = structure-locked i2i ref. Save to deliveries/BR-0115/.
 
 ## FAILURE MEMORY
-- (none yet)
+- **2026-07-28 (rejected):** delivered set under-represented / dropped the MARQUISE — read as pear + round only. User: "pear, round, marquise… marquise pan che" (marquise is ALSO there). FIX: the row alternates PEAR and MARQUISE fancy stones (round brilliant between each); render the marquise navettes (pointed both ends) clearly and distinctly from the pears — never all pears. Both shapes ~equal count.
