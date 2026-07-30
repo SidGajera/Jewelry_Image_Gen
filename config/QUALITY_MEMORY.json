@@ -830,6 +830,27 @@
         "LR-0194 slot 1 (2026-07-24)"
       ],
       "refs": "prompts/07_PROMPTS.md (SOURCE LOCKING)"
+    },
+    {
+      "id": "shoulder-pave-count-size-coverage-setting-must-match-source",
+      "sku": "LR-0203",
+      "image_number": 3,
+      "camera_angle": "velvet-upper-3q",
+      "source_files": "LR-0203 user-supplied authoritative source photo (oval solitaire, micro French pave)",
+      "problem": "7 deviations on the pave/band. (1) PAVE COUNT: ~10 stones/side vs source ~18-20/side. (2) PAVE SIZE: oversized + widely spaced vs micro tightly-packed. (3) PAVE COVERAGE: stopped at shoulder vs running past shoulder down the shank. (4) PAVE SETTING: raised channel with thick beads + flat metal edge vs flush French/micro-set with minimal metal. (5) BAND PROFILE: wider/flatter/tapered vs thin uniform round/knife-edge. (6) STONE:BAND SCALE: centre oversized vs source proportional to thin band. (7) FORMAT: delivered PORTRAIT vs 1:1 square lock.",
+      "affected_area": "band",
+      "root_cause": "The model chose its own pave count, stone size, coverage length and setting style instead of matching the source pixels, and re-styled the band profile + centre scale. Pave parameters were not count-locked in the prompt, so generation defaulted to a sparse, oversized, channel-look shank. Format was not gated before visual review, so a non-square render reached QC.",
+      "correct_result": "Shoulder pave = SINGLE row, EXACTLY 18-20 micro stones/side (each ~1/10 band width), tightly packed near-touching, uniform, minimal metal between, flush French/micro-bead (level with band, no channel/thick beads/metal rail), coverage running head -> DOWN PAST SHOULDER (front ~2/3 of shank). Band thin uniform round/knife-edge, no taper/flat/widening/cathedral. Centre width ~4.5x band width at shoulder (never enlarged vs band). Output 1:1 exactly 2048x2048.",
+      "rejected_output_ref": "LR-0203 slot 03 (03_velvet_upper_3q) - REJECTED, 2026-07-30",
+      "fix": "(1) COUNT-LOCK pave in every prompt: state exact per-side stone count from source (never 'pave' unqualified) and forbid the model choosing. (2) SIZE-LOCK: micro, each ~1/10 band width, tightly packed; NEGATIVES: large pave stones, widely spaced pave. (3) COVERAGE-LOCK: pave runs past shoulder down the shank; NEGATIVE: pave stopping at shoulder. (4) SETTING-LOCK: flush French/micro-bead; NEGATIVES: channel set, thick bead setting, metal rail under pave. (5) BAND-LOCK: thin uniform round/knife-edge; NEGATIVES: tapered/wide/flat band, cathedral shoulders. (6) SCALE-LOCK: centre ~4.5x band width; do not enlarge centre vs band. (7) FORMAT GATE: check 1:1 2048x2048 BEFORE visual review; any portrait/landscape/non-square = discard + regenerate, do not review. Applies to ALL catalogs: match source pave count/size/coverage/setting + band profile + centre:band scale exactly; never let the model pick them.",
+      "date_recorded": "2026-07-30",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0203 slot 03 (2026-07-30)"
+      ],
+      "refs": "workspace/golden/LR-0203/SOURCE-SPEC.md (MANDATORY PROMPT LOCKS); docs/13_JEWELRY_PRESERVATION_SPEC.md §6b; docs/22_CATALOG_PIPELINE_SOP.md P4"
     }
   ],
   "failure_memory": {
