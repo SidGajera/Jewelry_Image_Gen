@@ -137,7 +137,14 @@ def git_push(sku):
 # user's visual QC, per the no-self-QC policy) until calibrated on approved-render
 # goldens. G10 pairwise (declared, within-group) IS enforced; single-shot
 # elevation estimate is advisory.
-ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO", "G12_MARKS", "G14_CONTENT"}
+def _gates_cfg():
+    return json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))["gates"]
+
+
+def _enforced():
+    return {g for g, v in _gates_cfg().items() if v.get("blocking")}
+
+
 IMG_EXT = (".png", ".jpg", ".jpeg", ".webp")
 
 
@@ -177,6 +184,7 @@ def finish(sku):
     sized = [sl for sl, p in renders.items() if p and Image.open(p).size == (2048, 2048)]
     box1 = len(sized) == 10
 
+    enforced = _enforced()
     enforced_fail, advisory = [], 0
     for sl, slot in slots.items():
         if not renders[sl]:
@@ -184,7 +192,7 @@ def finish(sku):
         res = vr.validate_image(sku, renders[sl], slot)
         for r in res:
             if r["status"] == "fail":
-                if r["gate"] in ENFORCED_GATES:
+                if r["gate"] in enforced:
                     enforced_fail.append(f"{sl}:{r['gate']}")
                 else:
                     advisory += 1
@@ -213,16 +221,18 @@ def finish(sku):
         (box3, "failures auto-retried and re-gated"),
         (box4, "manifest + spec pushed (clean, not ahead)"),
     ]
+    cfg = _gates_cfg()
+    n_block = sum(1 for v in cfg.values() if v.get("blocking"))
+    n_adv = len(cfg) - n_block
     if all(b for b, _ in boxes):
-        print(f"{sku}: 10/10 OK · pushed · repo clean · COMPLETE"
-              + (f"  [advisory heuristic flags: {advisory} — visual QC]" if advisory else ""))
+        print(f"{sku}: 10/10 · {n_block} gates blocking, {n_adv} advisory · pushed · repo clean · COMPLETE")
         return 0
-    print(f"{sku}: NOT COMPLETE — unchecked:")
+    print(f"{sku}: NOT COMPLETE ({n_block} gates blocking, {n_adv} advisory) — unchecked:")
     for ok, label in boxes:
         if not ok:
             print(f"  [ ] {label}")
     if advisory:
-        print(f"  (advisory heuristic gate flags: {advisory} — miscalibrated on real renders; visual QC)")
+        print(f"  (advisory gate flags this run: {advisory} — not yet promoted to blocking; visual QC)")
     return 1
 
 
