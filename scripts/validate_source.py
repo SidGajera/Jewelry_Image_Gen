@@ -29,7 +29,7 @@ import _cv_lib as cv  # noqa: E402
 
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff"}
 SKIN_MAX = 0.05
-PHASH_MAX_DIST = 26  # loose: catches a grossly different second design only
+HUE_MAX_UNITS = 4  # OpenCV hue units; 1 unit = 2 deg, so 4 = 8 deg (spec)
 
 
 def _fail(item, detail):
@@ -67,8 +67,8 @@ def validate(sku, source_dir=None):
             return _fail("views",
                          f"{cat} needs {len(required)} views {required}; only {len(imgs)} image(s) present")
 
-    # ---- per-image checks ----
-    hashes = []
+    # ---- per-image checks + angle-invariant identity signals ----
+    sig = []  # (name, metal_hue, stone_count, accent_present)
     for p in imgs:
         bgr = cv.load_bgr(p)
         wm, det = cv.detect_watermark(bgr)
@@ -77,21 +77,37 @@ def validate(sku, source_dir=None):
         skin = cv.skin_fraction(bgr)
         if skin >= SKIN_MAX:
             return _fail("cad_only", f"{p.name}: skin fraction {skin:.1%} >= {SKIN_MAX:.0%} (worn/lifestyle photo, not CAD)")
-        hashes.append((p.name, cv.focal_phash(bgr)))
+        sig.append((p.name, cv.metal_hue_peak(bgr), cv.primary_stone_count(bgr), cv.accent_present(bgr)))
 
-    # ---- one design (coarse) ----
-    maxd, pair = 0, None
-    for i in range(len(hashes)):
-        for j in range(i + 1, len(hashes)):
-            d = hashes[i][1] - hashes[j][1]
-            if d > maxd:
-                maxd, pair = d, (hashes[i][0], hashes[j][0])
-    if maxd > PHASH_MAX_DIST:
-        return _fail("one_design",
-                     f"focal pHash distance {maxd} > {PHASH_MAX_DIST} between {pair} (possible 2nd design)")
+    # ONE design via angle-invariant signals (pHash removed — it cannot separate
+    # angle-diverse views of one design from two designs at one angle).
+    # (1) dominant metal hue within 8 deg (handles hue wrap; None = white metal bucket)
+    hues = [(nm, h) for nm, h, _, _ in sig]
+    whites = [nm for nm, h in hues if h is None]
+    golds = [(nm, h) for nm, h in hues if h is not None]
+    if whites and golds:
+        return _fail("one_design", f"metal mismatch: white-metal {whites} vs coloured-metal views (two designs?)")
+    if golds:
+        hv = [h for _, h in golds]
+        span = max(hv) - min(hv)
+        span = min(span, 180 - span)  # hue wrap
+        if span > HUE_MAX_UNITS:
+            return _fail("one_design", f"metal hue span {span*2} deg > 8 deg across views (two designs?)")
+    # (2) primary stone count: consensus across measurable views. Exact count can
+    # flicker by one on an edge-on view of an elongated stone, so require a strict
+    # MAJORITY to agree; no consensus => genuinely mixed designs => STOP.
+    counts = [c for _, _, c, _ in sig if c is not None]
+    if counts:
+        from collections import Counter
+        mode, hits = Counter(counts).most_common(1)[0]
+        if hits * 2 <= len(counts):
+            return _fail("one_design", f"no primary-stone-count consensus across views {sorted(counts)} (mixed designs?)")
+    # (3) accent-run present/absent identical across measurable views
+    accents = {a for _, _, _, a in sig if a is not None}
+    if len(accents) > 1:
+        return _fail("one_design", "accent-run present in some views, absent in others (two designs?)")
 
-    return {"ok": True, "sku": sku, "category": cat, "views_present": len(imgs),
-            "required": required, "max_focal_phash_dist": maxd}
+    return {"ok": True, "sku": sku, "category": cat, "views_present": len(imgs), "required": required}
 
 
 def main():
@@ -105,7 +121,7 @@ def main():
         print(json.dumps(res, indent=2))
     elif res["ok"]:
         print(f"SOURCE GATE PASS: {args.sku} ({res['category']}) — {res['views_present']} views, "
-              f"required {res['required']}, focal-hash dist {res['max_focal_phash_dist']}")
+              f"required {res['required']}")
     sys.exit(0 if res["ok"] else 2)
 
 

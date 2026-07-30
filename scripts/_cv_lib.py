@@ -39,39 +39,107 @@ def load_bgr(path):
 
 # ---------- source-intake primitives ----------
 def skin_fraction(bgr):
-    """Fraction of skin-tone pixels (YCrCb). CAD render ~0; worn photo >> 5%."""
+    """Fraction of skin-tone pixels. Must NOT count yellow gold (gold overlaps
+    skin in YCrCb). Discriminate in HSV: skin is reddish (low hue) with MODERATE
+    saturation; polished gold is yellower (higher hue) and/or highly saturated
+    with strong specular. Require BOTH the YCrCb skin rule AND the HSV reddish-
+    moderate-sat rule, excluding gold's yellow/high-sat band."""
     ycrcb = cv2.cvtColor(bgr, cv2.COLOR_BGR2YCrCb)
     cr, cb = ycrcb[:, :, 1], ycrcb[:, :, 2]
-    mask = (cr >= 135) & (cr <= 180) & (cb >= 85) & (cb <= 135)
+    ycc = (cr >= 135) & (cr <= 178) & (cb >= 90) & (cb <= 132)
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    h, s, v = hsv[:, :, 0], hsv[:, :, 1], hsv[:, :, 2]
+    reddish = (h <= 17)                     # skin ~red-orange; gold ~yellow (18-40) excluded
+    moderate_sat = (s >= 40) & (s <= 170)   # gold is often > 170 (highly saturated polish)
+    val_ok = (v >= 60) & (v <= 235)
+    mask = ycc & reddish & moderate_sat & val_ok
     return float(mask.mean())
 
 
 def detect_watermark(bgr):
-    """(found, detail). OCR (pytesseract) for any repeated text/vendor overlay;
-    fallback = periodic-tiling autocorrelation when tesseract is absent."""
+    """(found, detail). A tiled watermark has THREE properties a CAD render's
+    specular speckle lacks together: (1) REGULAR SPACING of its glyphs, (2) LOW
+    CONTRAST vs the surface, (3) wide SPREAD across the frame. Flag only when all
+    three hold. OCR (pytesseract) is used first when available."""
     gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
     if HAVE_OCR:
         txt = pytesseract.image_to_string(gray).lower()
         words = [w.strip(".,-_|") for w in txt.split() if len(w.strip(".,-_|")) >= 4]
+        from collections import Counter
         if words:
-            from collections import Counter
             tok, n = Counter(words).most_common(1)[0]
             if n >= 3:
                 return True, f"OCR repeated overlay token '{tok}' x{n}"
-        if words:
-            return True, f"OCR found text overlay: {words[:5]}"
-        return False, "OCR: no text overlay"
+        # fall through to the geometric test even with OCR (catches faint tiling)
     g = gray.astype(np.float32)
-    hp = g - cv2.GaussianBlur(g, (0, 0), 3)
-    hp -= hp.mean()
-    f = np.fft.fft2(hp)
-    ac = np.fft.fftshift(np.fft.ifft2(f * np.conj(f)).real)
-    ac /= (ac.max() + 1e-9)
-    h, w = ac.shape
-    cy, cx = h // 2, w // 2
-    ac[cy - 8:cy + 8, cx - 8:cx + 8] = 0
-    peak = float(ac.max())
-    return peak > 0.35, f"tiling-autocorr peak={peak:.2f} (OCR unavailable; heuristic)"
+    hp = g - cv2.GaussianBlur(g, (0, 0), 3.0)          # high-pass
+    amp = np.abs(hp)
+    mark = (amp > 6).astype(np.uint8)                   # low-contrast marks only
+    mark = cv2.morphologyEx(mark, cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+    n, _, stats, cent = cv2.connectedComponentsWithStats(mark, 8)
+    H, W = gray.shape
+    pts, contrasts = [], []
+    for i in range(1, n):
+        a = stats[i, cv2.CC_STAT_AREA]
+        if 6 <= a <= (H * W) * 0.002:                   # glyph-sized
+            pts.append(cent[i])
+            contrasts.append(amp[int(cent[i][1]), int(cent[i][0])])
+    if len(pts) < 12:
+        return False, "no tiled overlay (too few glyph-sized marks)"
+    pts = np.array(pts)
+    # nearest-neighbour spacing regularity
+    d = np.sqrt(((pts[:, None, :] - pts[None, :, :]) ** 2).sum(2))
+    np.fill_diagonal(d, np.inf)
+    nn = d.min(1)
+    cv_spacing = float(nn.std() / (nn.mean() + 1e-9))
+    spread = float((np.ptp(pts[:, 0]) * np.ptp(pts[:, 1])) / (H * W))
+    low_contrast = float(np.median(contrasts)) < 30.0
+    regular = cv_spacing < 0.35                          # tiled grid; speckle > 0.6
+    spread_ok = spread > 0.25
+    found = regular and low_contrast and spread_ok
+    return found, (f"spacing_cv={cv_spacing:.2f} spread={spread:.2f} "
+                   f"low_contrast={low_contrast} -> {'TILED WATERMARK' if found else 'clean (speckle/detail)'}")
+
+
+def metal_hue_peak(bgr):
+    """Dominant metal hue (OpenCV hue 0-180) from moderately-saturated foreground
+    pixels — angle-invariant identity signal. Gold ~ 20-35; white metal has low
+    saturation -> returns None (treated as 'white' bucket)."""
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    h, s, v = hsv[:, :, 0], hsv[:, :, 1], hsv[:, :, 2]
+    m = (s > 60) & (v > 60) & (v < 250)
+    if m.sum() < 2000:
+        return None                                     # white/platinum (low sat)
+    hist = np.bincount(h[m].ravel(), minlength=180)
+    return int(np.argmax(hist))
+
+
+def primary_stone_count(bgr):
+    """Count PRIMARY stones (angle-invariant identity): bright blobs comparably
+    large to the dominant one. Accents are far smaller than the primary and are
+    excluded, so a single-primary design reads 1 from every angle. Returns None
+    when nothing large resolves (occluded back view) so it never false-STOPs."""
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    H, W = gray.shape
+    _, th = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+    th = cv2.morphologyEx(th, cv2.MORPH_OPEN, np.ones((7, 7), np.uint8))
+    nn, _, stats, _ = cv2.connectedComponentsWithStats(th, 8)
+    areas = [stats[i, cv2.CC_STAT_AREA] for i in range(1, nn)]
+    big = [a for a in areas if a >= H * W * 0.02]
+    if not big:
+        return None
+    amax = max(big)
+    return sum(1 for a in big if a >= 0.6 * amax)   # only a true co-primary counts; accents excluded
+
+
+def accent_present(bgr):
+    """True/False/None — are small accent stones present (identity signal)."""
+    rois = accent_rois(bgr)
+    counts = [count_small_stones(r) for r in rois.values()]
+    counts = [c for c in counts if c is not None]
+    if not counts:
+        return None
+    return max(counts) >= 3
 
 
 def focal_phash(bgr, box=0.5):
