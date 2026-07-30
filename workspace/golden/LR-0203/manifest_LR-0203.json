@@ -1,0 +1,17 @@
+{
+  "sku": "LR-0203", "model": "seedream_v5_pro",
+  "source_media_id": "40b43a28-fc80-4b6e-a8a8-ffbee455240e",
+  "aspect_ratio": "3:4", "resolution": "2k",
+  "jobs": {
+    "01_velvet_hero_3q": "300d99f3-b161-42aa-86ea-4a2da7e28b42",
+    "02_velvet_side_profile": "293715c6-c199-4fcc-a118-f425e9243a29",
+    "03_velvet_upper_3q": "a64ea028-6157-4803-9488-1fc12d33b41a",
+    "04_velvet_macro_head": "09452c54-40a9-40dd-bdca-8ba0d9e79944",
+    "05_life_pov_handraise": "88d99204-8231-433c-9a5d-cb144c10a855",
+    "06_life_reaching_shoulder": "ab172c63-c7fb-4189-a7d7-14b410361cd8",
+    "07_life_goldenhour_embrace": "d7bc1f7f-bc2d-4522-935b-7228cf3f40ea",
+    "08_life_cafe_table": "76fe1ebd-b458-4be1-a203-b5d4f3d91884",
+    "09_life_intertwined": "83044a87-368c-439c-9813-5a72f6de4cb1",
+    "10_life_hand_hair": "d83cf4ba-a14e-417f-9bc4-51eb13842a1c"
+  }
+}

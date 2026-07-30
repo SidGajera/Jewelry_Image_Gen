@@ -42,3 +42,15 @@ workspace/golden/*.jpg
 workspace/golden/*.jpeg
 workspace/golden/*.png
 *.avif
+outputs/
+renders/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+tmp/
+cache/
+.venv/
+node_modules/
+.DS_Store
