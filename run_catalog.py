@@ -42,7 +42,20 @@ def _run(cmd):
     return subprocess.run(cmd, cwd=ROOT).returncode
 
 
+def policy_gate():
+    """Load the rule registry and refuse to run on any STOP (policy/check.py).
+    Prints rule counts; empty enforced_by = advisory (said plainly)."""
+    rc = _run([sys.executable, "policy/check.py"])
+    reg = json.loads((ROOT / "policy" / "registry.json").read_text(encoding="utf-8"))["rules"]
+    active = [r for r in reg if r["status"] == "active"]
+    enf = [r for r in active if r.get("enforced_by")]
+    print(f"policy: {len(active)} rules active, {len(enf)} enforced by gates, {len(active)-len(enf)} advisory")
+    if rc != 0:
+        sys.exit("STOP: policy/check.py found a conflict; catalog refused. Resolve in policy/registry.json.")
+
+
 def source_gate(sku, source_dir=None):
+    policy_gate()
     cmd = [sys.executable, "scripts/validate_source.py", sku]
     if source_dir:
         cmd += ["--source-dir", source_dir]

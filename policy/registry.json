@@ -1,0 +1,452 @@
+{
+  "_note": "Single source of truth for RULES (as specs/ is for geometry). Every rule is one entry, never restated in prose. Precedence: higher wins; the loser gets status 'superseded' + superseded_by and is NEVER deleted. 'key' identifies the decision a rule governs; two ACTIVE rules on the same key with different statements = conflict (policy/check.py STOPs). Docs reference IDs, never values.",
+  "precedence_levels": {
+    "source_fidelity": 100,
+    "safety_platform": 90,
+    "physical_plausibility": 80,
+    "user_preference": 50,
+    "document_default": 10
+  },
+  "rules": [
+    {
+      "id": "FORMAT_ASPECT",
+      "key": "format.aspect",
+      "statement": "1:1 square, 2048x2048 minimum, native, no upscale",
+      "scope": "global",
+      "precedence": 50,
+      "supersedes": [
+        "FORMAT_PORTRAIT"
+      ],
+      "enforced_by": [
+        "G1_FORMAT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "portrait_output"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "FORMAT_PORTRAIT",
+      "key": "format.aspect",
+      "statement": "all images portrait",
+      "scope": "global",
+      "precedence": 10,
+      "enforced_by": [],
+      "origin": "docs 2026-07-28",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "FORMAT_ASPECT"
+    },
+    {
+      "id": "METAL_SOURCE_GOVERNED",
+      "key": "metal.value",
+      "statement": "metal read from source into specs/<SKU>.json; no document-level default; 14K only a tiebreaker when source ambiguous AND Etsy title says 14K",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "METAL_DEFAULT_18K"
+      ],
+      "enforced_by": [
+        "spec_source_read"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "metal_wrong_vs_source"
+      ],
+      "status": "active",
+      "literal_banned_in_prose": [
+        "default 18K",
+        "Default 18K NATURAL YELLOW GOLD"
+      ]
+    },
+    {
+      "id": "METAL_DEFAULT_18K",
+      "key": "metal.value",
+      "statement": "default 18K natural yellow gold unless source otherwise",
+      "scope": "global",
+      "precedence": 10,
+      "enforced_by": [],
+      "origin": "docs 2026-07-16",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "METAL_SOURCE_GOVERNED"
+    },
+    {
+      "id": "SOURCE_FIDELITY",
+      "key": "geometry.source",
+      "statement": "the source CAD is the only truth; AI redraw disabled; geometry from source pixels only",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G2_ACCENT_COUNT",
+        "G3_ACCENT_SIZE",
+        "G4_ACCENT_RUN",
+        "G5_SETTING_STYLE",
+        "G6_STONE_RATIO",
+        "G7_SETTING_COUNT",
+        "G8_UNAUTHORIZED",
+        "G9_PIECE_COUNT"
+      ],
+      "origin": "user 2026-07-17",
+      "failure_cases": [
+        "accent_count_short",
+        "accent_run_too_short",
+        "accent_stones_oversized",
+        "duplicate_piece_in_frame",
+        "hidden_halo_added",
+        "piece_scale_drift",
+        "primary_stone_ratio_drift",
+        "raised_rail_when_flush_specified",
+        "split_or_double_setting_elements",
+        "structure_taper_drift",
+        "unauthorized_accents"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "COUNTS_4_6",
+      "key": "deliverables.counts",
+      "statement": "exactly 4 studio (white velvet) + 6 lifestyle; one image per angle/pose",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "slot_manifest"
+      ],
+      "origin": "user 2026-07-28",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_NUMERIC_MATRIX",
+      "key": "angle.matrix",
+      "statement": "camera defined by numeric azimuth/elevation/crop per slot; filenames carry no geometry; within-group pairwise separation 20az/15el",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G10_ANGLE",
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "repeated_camera_angle"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_STUDIO_SLOTS",
+      "key": "angle.studio_slots",
+      "statement": "ring studio 4 = top_down, true_side (edge-on stone), front_elevation, gallery_back (rear 3/4, filigree gallery + back of shank); gallery_back replaces macro_head",
+      "scope": "category:ring",
+      "precedence": 50,
+      "supersedes": [
+        "ANGLE_STUDIO_MACRO_HEAD"
+      ],
+      "enforced_by": [
+        "G10_ANGLE"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "wrong_angle_front_not_rear"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_STUDIO_MACRO_HEAD",
+      "key": "angle.studio_slots",
+      "statement": "studio slot 04 = macro_head",
+      "scope": "category:ring",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "docs 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "ANGLE_STUDIO_SLOTS"
+    },
+    {
+      "id": "CONTENT_ETSY",
+      "key": "content.compliance",
+      "statement": "jewellery is the subject; no kissing/faces-in-contact/embrace/suggestive; couple never outweighs the ring",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G14_CONTENT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "face_sharper_than_ring",
+        "couple_is_subject"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "MARKS_EXCLUDE",
+      "key": "marks.exclude",
+      "statement": "exclude any source watermark/hallmark/vendor/engraved mark; inner shank plain; only the official Lucent logo permitted",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G12_MARKS"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "vendor_watermark",
+        "engraved_maker_mark"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L1_CONTINUITY",
+      "key": "plausibility.worn_continuity",
+      "statement": "band arms both terminate on the same finger/wrist; band crossing an inter-finger gap = FAIL; bracelet must close",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "ring_spans_two_fingers"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L2_PLACEMENT",
+      "key": "plausibility.placement",
+      "statement": "ring centre between MCP and PIP of one finger; webbing/over-knuckle/past-fingertip = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "ring_at_webbing"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L3_ANATOMY",
+      "key": "plausibility.anatomy",
+      "statement": "MediaPipe: 5 digits, correct joints, detection confidence >0.8; fused/extra/missing digits or impossible thumb = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "malformed_hand"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L4_L8_VISUAL",
+      "key": "plausibility.visual",
+      "statement": "support/gravity, occlusion, light consistency, scale, reflection sanity \u00e2\u20ac\u201d mandatory visual checklist on EVERY render until automated",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "SKIN_REALISM",
+      "key": "realism.skin",
+      "statement": "exposure-normalized skin high-frequency energy above threshold; plastic/over-smoothed skin = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G16_SKIN_REALISM"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "REFS_PER_SLOT",
+      "key": "refs.per_slot",
+      "statement": "medias[0] is a distinct per-slot reference from refs/<SKU>/; --stage prompts hard-fails if any missing",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "REFS_REAL_PHOTO",
+      "key": "refs.quality",
+      "statement": "every lifestyle reference is a real camera photograph (no AI/render), unambiguous one-finger placement, real skin detail",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "synthetic_reference_propagates_plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "FROZEN_CALL",
+      "key": "generation.call",
+      "statement": "Higgsfield generation call frozen: text-to-image, 2k/1:1/count1/one batch, medias [pose/studio ref, SOURCE piece]; no img2img/denoise/compositing of jewelry (accent-run composite exception approved)",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "SUBAGENT_BAN",
+      "key": "process.subagents",
+      "statement": "never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "LOGO_LOCKED",
+      "key": "logo.render",
+      "statement": "the Lucent logo is only the locked composited asset on studio cloth; AI never draws a logo; no AI text on studio renders",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G11_LOGO"
+      ],
+      "origin": "user 2026-07-16",
+      "failure_cases": [
+        "ai_drawn_logo"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "TOKEN_BUDGET",
+      "key": "process.token_budget",
+      "statement": "<=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user (05+17)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "BACKGROUND_VELVET",
+      "key": "background.studio",
+      "statement": "studio background is premium plain pure-white velvet only; plain, no AI-generated cloth",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "docs 11",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "AUTONOMY_RUN",
+      "key": "process.autonomy",
+      "statement": "permissions granted once; run every catalog end-to-end with no check-ins; internal output only; user reviews after completion",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (19+20)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "REGRESSION_NO_REGRESS",
+      "key": "process.regression",
+      "statement": "quality only ratchets up; a gate that stops catching a past failure fails the build; goldens are permanent",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "regression_suite"
+      ],
+      "origin": "user (14+15)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "GEN_ENGINE_LOCK",
+      "key": "generation.engine",
+      "statement": "Higgsfield MCP is the only production image-generation engine; never swap providers",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (21)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "PIPELINE_SOP",
+      "key": "process.pipeline",
+      "statement": "per-catalog order P0-P9: source gate -> spec -> prompts -> frozen batch -> validate -> retry -> download(deliveries/) -> manifest -> failure memory -> commit+push",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (22)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "THEME_PER_CATALOG",
+      "key": "deliverables.theme",
+      "statement": "one coherent theme within a catalog; a different theme per catalog rotated by SKU hash",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user (24 P5)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "REALISM_ANTI_AI",
+      "key": "realism.anti_ai",
+      "statement": "genuine photography, varied non-generic models/wardrobe; banned beige/cream/oatmeal knit, neutral couch, seamless backdrop in a lifestyle frame",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G16_SKIN_REALISM"
+      ],
+      "origin": "user (24 P6)",
+      "failure_cases": [
+        "plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "OUTPUT_STORE",
+      "key": "process.output_store",
+      "statement": "all render outputs live in the single store deliveries/<SKU>/ (gitignored); images never committed",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    }
+  ]
+}
