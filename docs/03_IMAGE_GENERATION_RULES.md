@@ -27,7 +27,7 @@ Complete rules for every generated image.
 - **Benchmark image:** LR-0156 studio shot (user-approved 2026-07-10). Match every future center + pavé to that look.
 
 ## C. METAL RENDERING
-- Default 18K NATURAL YELLOW GOLD — warm yellow, premium polished finish. Never rose/white/silver/pale unless the source is that metal.
+- Metal: per-SKU, read from source, recorded in `specs/<SKU>.json`. See `docs/00_MASTER_RULES.md`. No document-level default exists. (Removes the earlier "default 18K yellow" — a doc that restates a value becomes a second source of truth and drifts.)
 - Match the source's exact metal color and finish. High polish; realistic gold reflections; no CGI shine.
 
 ## D. CAMERA

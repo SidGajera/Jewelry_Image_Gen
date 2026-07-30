@@ -60,7 +60,7 @@ Final catalog images → Drive Output folder + tracking log
 ## 5. QUALITY STANDARDS (summary — full text in docs 03)
 - Jewelry 100 % identical to source (design, stones, count, setting, prongs, band, metal). Change nothing.
 - Diamonds: single real brilliant-cut facet pattern, natural bright+dark facet mix, crystal clear, NO doubling/CGI. Small pavé as crisp as the center. (Benchmark: LR-0156 studio shot.)
-- Metal: 18K natural warm yellow gold (unless the source is otherwise).
+- Metal: per-SKU, read from source, recorded in `specs/<SKU>.json`. See `docs/00_MASTER_RULES.md`. No document-level default exists.
 - Cloth: locked material + pure neutral white, consistent every image.
 - Logo: printed-on-cloth look, pixel-identical to the locked asset, never AI-drawn.
 - Light/sparkle: natural, realistic; no over-lighting, CGI glow, starburst, rainbow fire.
