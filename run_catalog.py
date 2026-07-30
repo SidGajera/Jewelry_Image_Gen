@@ -167,10 +167,19 @@ def check_refs(sku):
     return missing, refs
 
 
+def renders_dir(sku):
+    """Single canonical output store: deliveries/<SKU>/ (gitignored). Falls back
+    to the legacy workspace path if deliveries/ has no renders yet."""
+    d = ROOT / "deliveries" / sku
+    if d.exists() and any(d.glob("*.png")):
+        return d
+    return ROOT / "workspace" / "golden" / sku / "renders"
+
+
 def finish(sku):
     """Completion checklist. Prints COMPLETE only if every box is checked; else
     prints the unchecked boxes. Completion is a checklist, not a claim."""
-    rdir = ROOT / "workspace" / "golden" / sku / "renders"
+    rdir = renders_dir(sku)
     matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     slots = {s["slot"]: s for s in matrix["categories"][spec["category"]]["slots"]}
