@@ -29,7 +29,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 14. Any fail = auto-regenerate that slot with a tightened negative. Never deliver a fail.
 
 ## P5 — DOWNLOAD
-15. ONE bash call, in-thread, output to /dev/null. No agent, no subagent.
+15. Download all 10 to the SINGLE output store `deliveries/<SKU>/` (gitignored). ONE bash call, in-thread. No agent, no subagent.
 
 ## P6 — RECORD
 16. Write `manifest_LR-XXXX.json`.
