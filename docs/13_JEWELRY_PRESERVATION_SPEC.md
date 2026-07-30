@@ -94,6 +94,21 @@ The source read is never compromised and never token-budgeted (token economy cut
 
 Capture this full field list into SOURCE_SPEC on the first source view; re-read before every gen. This is the mandatory input to §5 QA.
 
+## 6c. PAVÉ COUNT — DETERMINISTIC ENFORCEMENT (user-locked 2026-07-30, ALL SKUs)
+
+**Diffusion cannot count discrete repeated elements.** Stating the pavé count in the prompt has failed twice on LR-0203 (10/side, then 14–15/side vs source 18–20). A third restatement will not fix it. **Pavé is the same class of problem as the logo — enforce it, do not generate it.**
+
+**PRIMARY (required once a clean CAD side view exists):**
+- (a) Generate **img2img** with the real CAD side view as the STRUCTURAL reference; denoise strength capped so shoulder geometry + the stone run are preserved. The pavé row is **copied**, never re-invented.
+- (b) Or **composite** the shoulder pavé from the CAD render onto the generated scene — the same layer mechanism used for the logo (`docs/04`).
+
+**FALLBACK GATE (c) — MANDATORY on EVERY render until (a)/(b) is live:**
+- Detect pavé stones per shoulder on the rendered image.
+- Compare to SOURCE_SPEC count; **outside source ±1 = auto-reject**.
+- Auto-regenerate with the count restated and denoise lowered. **Never deliver an unchecked render.**
+
+This gate is wired into `docs/22` P4. QUALITY_MEMORY: `pave-is-uncountable-by-diffusion-enforce-like-the-logo`.
+
 ## 7. RELATED
 `docs/03 §A` (Design Preservation + Geometry Lock allow-list) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`geometry-immutable-auto-fallback`) · `docs/12_STUDIO_ANGLES_STANDARD.md` (angle rotation) · `scripts/composite_ring_into_scene.py`.
 

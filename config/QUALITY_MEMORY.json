@@ -872,6 +872,28 @@
         "LR-0203 office slots 01/02/03 (2026-07-30)"
       ],
       "refs": "docs/12_STUDIO_ANGLES_STANDARD.md (A-MATRIX + SEPARATION RULE + VALIDATION GATE); docs/22_CATALOG_PIPELINE_SOP.md P2 step 8 / P4"
+    },
+    {
+      "id": "pave-is-uncountable-by-diffusion-enforce-like-the-logo",
+      "sku": "LR-0203",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "LR-0203 source (oval solitaire, micro French pave)",
+      "problem": "Shoulder pave count keeps landing near-but-wrong even with the count stated in the prompt: run 1 = ~10/side, run 2 = ~14-15/side (source 18-20/side). Same render also collapsed the centre oval toward ROUND (L:W ~1.45 read as near-round), rendered a raised rail/flat-metal-edge setting instead of flush French, oversized the pave stones, and split/doubled the 4 claws.",
+      "affected_area": "pipeline",
+      "root_cause": "Diffusion models cannot reliably reproduce a COUNT of discrete repeated elements (pave stones) from text — the same reason the pipeline composites the logo instead of generating it. Prompt text alone has failed twice; a third restatement will not fix it. Pave is the same class of problem as the logo: it must be ENFORCED, not generated.",
+      "correct_result": "Pave stone count/size/spacing/setting are COPIED from the source, not invented. Centre reads clearly elongated oval L:W 1.45:1. Prongs 4 thin single rounded claws. Setting flush French/micro-bead, no raised rail.",
+      "rejected_output_ref": "LR-0203 side-profile + front-elevation renders (jobs cc73e83d / ede8309d), REJECTED 2026-07-30",
+      "fix": "PAVE COUNT — DETERMINISTIC ENFORCEMENT (ALL SKUs, user-locked 2026-07-30). Treat pave like the logo: enforce, do not generate. PRIMARY (required once a clean CAD side view is available): generate img2img with the real CAD side view as structural reference, denoise capped so shoulder geometry + stone run are preserved; the pave row is COPIED, never re-invented. Alt primary (b): composite the shoulder pave from the CAD render onto the generated scene, same layer approach as the logo. FALLBACK GATE (c) — MANDATORY on EVERY render until (a)/(b) is live: detect pave stones per shoulder on the rendered image, compare to SOURCE_SPEC count, outside source +/-1 = auto-reject and auto-regenerate with count restated + denoise lowered; never deliver an unchecked render. Also state LR-0203 numeric locks every prompt: centre elongated OVAL L:W 1.45:1 (not round/near-round/1.2); prongs exactly 4 thin single rounded claws (not broad/split/double/fluted/flared); shoulder pave single row 18-20/side, each dia = 1/10 band width, near-touching uniform, coverage front two-thirds past shoulder toward base; setting flush French/micro-bead level with band (no raised rail/channel/metal edge below); band thin uniform round/knife-edge no taper/widening.",
+      "date_recorded": "2026-07-30",
+      "status": "unresolved",
+      "scope": "global",
+      "repeat_count": 2,
+      "occurrences": [
+        "LR-0203 slot 03 (2026-07-30, ~10/side)",
+        "LR-0203 side+front re-gen (2026-07-30, ~14-15/side, L:W collapse, split claws, raised rail)"
+      ],
+      "refs": "docs/13_JEWELRY_PRESERVATION_SPEC.md §6c; docs/22_CATALOG_PIPELINE_SOP.md P3/P4; docs/04_LOGO_WORKFLOW.md (logo-layer analogue); workspace/golden/LR-0203/SOURCE-SPEC.md"
     }
   ],
   "failure_memory": {

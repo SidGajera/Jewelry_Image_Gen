@@ -5,7 +5,7 @@ Corrected 2026-07-29 from user-supplied authoritative source image. Re-read befo
 
 ## Ring identity (AUTHORITATIVE)
 - **Type:** classic OVAL solitaire, plain — NO halo of any kind.
-- **Centre stone:** OVAL brilliant, **north–south** (long axis vertical), single centre stone. Elongated.
+- **Centre stone:** OVAL brilliant, **north–south** (long axis vertical), single centre stone. **Elongated, L:W = 1.45:1 — must read clearly elongated; NOT round, NOT near-round, NOT 1.2:1.**
 - **Head / prongs:** exactly **4 PLAIN slender claws, compass-set** (one at each compass point gripping the oval). Plain rounded claws — NOT split, NOT double, NOT fluted.
 - **Hidden halo:** **NONE.** ZERO pavé under the head. No pavé collar, no basket diamonds, no accent stones beneath the crown. The area under the stone is plain metal only.
 - **Basket / gallery:** plain metal basket — no diamonds set in it.
@@ -87,11 +87,15 @@ Rejected renders:
 
 **NEGATIVE PROMPT (verbatim, always include)**
 ```
+round brilliant center, near-round center, low length-to-width ratio,
+broad prongs, split prongs, double claws, flared prongs, fluted prong, 5 prongs, 6 prongs,
 hidden halo, halo, diamonds under center stone, basket pave, peekaboo diamonds,
-double prong, split prong, fluted prong, 5 prongs, 6 prongs,
-double row pave, second pave row, large pave stones, widely spaced pave,
-channel set, thick bead setting, metal rail under pave, pave stopping at shoulder,
+double row pave, second pave row, large pave stones, widely spaced pave, sparse pave, short pave run,
+channel set pave, raised pave rail, metal edge below pave, thick bead setting, pave stopping at shoulder,
 tapered band, wide band, flat band, cathedral shoulders,
 second ring, extra ring, duplicate jewelry, watermark, text, logo overlay,
 portrait format, landscape format, non-square crop
 ```
+
+## PAVÉ = ENFORCED, NOT GENERATED (user-locked 2026-07-30 — see docs/13 §6c)
+Diffusion cannot count. Prompt text has failed twice (10/side, 14–15/side). Until img2img source-lock (a) or pavé composite (b) is live, the deterministic COUNT GATE (c) is mandatory on every render: detect stones/shoulder, reject if outside 18–20 ±1, auto-regenerate. Never deliver an unchecked render.

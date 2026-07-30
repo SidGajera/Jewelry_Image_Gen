@@ -25,6 +25,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 12. Script check: exists · size>0 · 2048×2048 · 1:1 · PNG.
 13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · portrait/square lock.
 13b. ANGLE VALIDATION GATE (docs/12 A-MATRIX): read each render's ACTUAL azimuth/elevation from the image (not the filename); reject any slot that mismatches its declared numbers; compare all 10 pairwise, reject the later slot of any pair within 20° azimuth AND 15° elevation, regenerate azimuth +30° / elevation re-forced; repeat until all 10 distinct. Never deliver a duplicate angle.
+13c. PAVÉ COUNT GATE (docs/13 §6c, MANDATORY every render until img2img source-lock/composite is live): detect pavé stones per shoulder; reject if outside SOURCE_SPEC count ±1; auto-regenerate (count restated, denoise lowered). Diffusion cannot count — never deliver an unchecked pavé render.
 14. Any fail = auto-regenerate that slot with a tightened negative. Never deliver a fail.
 
 ## P5 — DOWNLOAD
