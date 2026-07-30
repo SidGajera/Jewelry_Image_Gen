@@ -1,0 +1,22 @@
+{
+  "sku": "LR-0209",
+  "category": "ring",
+  "model": "seedream_v5_pro",
+  "source_media_id": "45e3e4e6-6f10-4ff9-ae5f-00ca2330d5b4",
+  "aspect_ratio": "1:1",
+  "resolution": "2k",
+  "mode": "frozen_text_to_image",
+  "renders_dir": "D:\\Lucent Image generation\\workspace\\golden\\LR-0209\\renders",
+  "jobs": {
+    "01_top_down_flatlay": "cc276ec1-fd2a-4481-ba7d-8018d1d6f6de",
+    "02_true_side_profile": "5f9fa203-b81e-41e8-9f51-737ec8d4cac7",
+    "03_front_elevation": "c5e7f1d2-869e-461a-9170-146d9bf48b49",
+    "04_gallery_back": "3f213783-2b11-4986-87db-ebdecbdc3a3e",
+    "05_low_hero_conservatory": "f07e18e2-5566-4949-a89b-3458ae857b27",
+    "06_reach_to_camera": "9f59f2c7-882c-45c7-ae8d-7b9cef002801",
+    "07_hands_clasped": "5cec90f8-63f4-4d95-9313-8577169a6b8f",
+    "08_hands_stacked_editorial": "866bc247-4b57-48b6-902d-95bba6ade6da",
+    "09_beauty_closeup": "02ceda49-2729-4e99-a567-11f253b71d18",
+    "10_raised_hand": "3817f48a-dcbf-4a22-95a8-aea287461b4f"
+  }
+}

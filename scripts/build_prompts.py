@@ -51,6 +51,8 @@ def build_negative(spec):
     # halo / under-head
     if spec.get("halo", "none") == "none":
         negs.append("hidden halo, halo, accent stones under primary stone, basket pave, peekaboo diamonds")
+    elif spec.get("halo") == "hidden":
+        negs.append("visible surface halo, halo on top of the crown, halo ring around the stone seen from above, double halo, cluster halo, accents on the top face")
     # accent runs: forbid spacing/size drift only where the run is a uniform micro row
     runs = spec.get("accent_runs") or []
     if runs:
@@ -61,6 +63,9 @@ def build_negative(spec):
         settings = {r.get("setting", "") for r in runs}
         if any(str(s).startswith("flush") for s in settings):
             negs.append("channel set accents, raised rail, metal edge below accents, thick bead setting, accents stopping short")
+    else:
+        # plain unaccented band: forbid any shoulder/shank stones
+        negs.append("pave band, accented band, stones on the shank, side stones on the band, shoulder accents, three stone ring")
     # structure
     st = spec.get("structure") or {}
     if not st.get("taper"):
@@ -100,7 +105,7 @@ def _setting_phrase(se):
 
 def _accent_phrase(runs, structure):
     if not runs:
-        return "No accent stones anywhere."
+        return "No accents on the shoulders; the band is plain and unaccented (any accents are the hidden halo only)."
     r = runs[0]
     ids = ", ".join(x["id"] for x in runs)
     cov = int(r.get("coverage_fraction", 0.66) * 100)
@@ -117,10 +122,18 @@ def _accent_phrase(runs, structure):
 
 
 def _halo_phrase(spec):
-    if spec.get("halo", "none") == "none":
+    halo = spec.get("halo", "none")
+    if halo == "none":
         uh = spec.get("under_head", "plain")
         return f"NO halo of any kind, NO hidden halo, NO stones under the primary, plain polished {uh} under-head."
-    return f"Halo: {spec['halo']}. Under-head: {spec.get('under_head')}."
+    if halo == "hidden":
+        n = spec.get("halo_count")
+        cnt = f"about {n} " if n else ""
+        return (f"HIDDEN HALO: a single row of {cnt}tiny round accents encircling the primary directly under "
+                f"the girdle, set into the {spec.get('under_head', 'basket')} under-head, visible ONLY from the "
+                f"side and rear -- NOT on the top face. From directly above, the piece reads as a clean solitaire "
+                f"with no surface halo.")
+    return f"Halo: {halo}. Under-head: {spec.get('under_head')}."
 
 
 def _structure_phrase(st):
