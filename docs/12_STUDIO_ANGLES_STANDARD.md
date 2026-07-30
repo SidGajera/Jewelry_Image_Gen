@@ -21,7 +21,7 @@ Every office/studio photoshoot MUST begin from the same approved studio setup, b
 | 01 | top_down_flatlay | 90° | 0° | ring flat, full ring in frame, symmetric |
 | 02 | true_side_profile | 3° | 90° | band fills frame, stone seen edge-on; shank silhouette + full pavé run visible |
 | 03 | front_elevation | 15° | 0° | head-on, band symmetric L/R, both shoulders equal, NOT rotated |
-| 04 | macro_head | 30° | 45° | stone fills ~70% of frame, band cropped |
+| 04 | gallery_back | 20° | 135° | REAR three-quarter, filigree gallery + back of shank visible (§4 buying-decision coverage; REPLACES macro_head, which duplicated an existing 3/4) |
 
 ### LIFESTYLE — worn on hand, 6 images
 | Slot | Name | Elev | Azim | Crop / notes |
