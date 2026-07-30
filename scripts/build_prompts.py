@@ -165,11 +165,18 @@ ANATOMY_NEGATIVE = ("ring between two fingers, ring spanning two fingers, band c
                     "malformed hand")
 
 
-def build_prompt(spec, slot):
+def build_prompt(spec, slot, theme=None):
     grp = slot["group"]
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
     if grp == "lifestyle":
+        if theme:
+            # one theme per catalog (all 6 lifestyle slots share it); studio stays velvet
+            scene = (f"THEME '{theme['id']}' -- ALL lifestyle slots in this catalog share this SET: "
+                     f"location {theme['location']}; palette {theme['palette']}; light {theme['light']}; "
+                     f"wardrobe {theme['wardrobe']}; mood {theme['mood']}. This theme location/palette/light "
+                     f"REPLACES any other location; keep ONLY the hand pose and framing from: [{scene}]. "
+                     f"Vary the model, skin tone, age, wardrobe piece and time-within-window per slot.")
         scene = scene + ". " + REALISM_POSITIVE   # includes anatomy + ring placement
         neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE   # includes skin + anatomy
     geom = " ".join(p for p in [
@@ -215,7 +222,13 @@ def build_all(sku):
     cat = spec["category"]
     if cat not in matrix["categories"]:
         sys.exit(f"FAIL: no angle matrix for category '{cat}'")
-    return spec, [build_prompt(spec, slot) for slot in matrix["categories"][cat]["slots"]]
+    theme = None
+    try:
+        import theme as _theme
+        theme = _theme.assign(sku)
+    except Exception:
+        pass
+    return spec, [build_prompt(spec, slot, theme) for slot in matrix["categories"][cat]["slots"]]
 
 
 def main():

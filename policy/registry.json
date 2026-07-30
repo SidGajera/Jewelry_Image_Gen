@@ -417,9 +417,14 @@
       "statement": "one coherent theme within a catalog; a different theme per catalog rotated by SKU hash",
       "scope": "global",
       "precedence": 50,
-      "enforced_by": [],
+      "enforced_by": [
+        "G17_THEME"
+      ],
       "origin": "user (24 P5)",
-      "failure_cases": [],
+      "failure_cases": [
+        "mixed_themes_in_one_catalog",
+        "theme_repeat_across_catalogs"
+      ],
       "status": "active"
     },
     {

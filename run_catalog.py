@@ -225,6 +225,10 @@ def finish(sku):
     pv = vr.pairwise_angles(list(slots.values()))
     if pv:
         enforced_fail.append(f"pairwise:{[v['reject_slot'] for v in pv]}")
+    if _gates_cfg().get("G17_THEME", {}).get("blocking"):
+        t = vr.g17_theme(sku)
+        if t["status"] == "fail":
+            enforced_fail.append(f"G17_THEME:{t['detail']}")
     box2 = not enforced_fail
 
     st_path = ROOT / "build" / f"{sku}_state.json"

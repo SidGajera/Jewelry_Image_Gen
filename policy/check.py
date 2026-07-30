@@ -115,6 +115,10 @@ def main():
         if not reaches_gate and not reaches_golden and not eb:
             wishes.append(r["id"])
 
+    themes = _load(ROOT / "config" / "themes.json", [])
+    if isinstance(themes, list) and len(themes) < 8:
+        stops.append(f"theme pool has {len(themes)} entries (<8 required)")
+
     for s in stops:
         print("STOP  " + s)
     for w in warns:

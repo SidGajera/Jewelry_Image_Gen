@@ -84,6 +84,12 @@
       "kind": "robust",
       "measures": "studio angle traces to a source view within 45deg",
       "note": "No source view within 45deg (az+el) of a studio slot = invention, blocked. Source angles in specs/<SKU>_views.json. Lifestyle exempt."
+    },
+    "G17_THEME": {
+      "blocking": true,
+      "kind": "heuristic",
+      "measures": "lifestyle theme consistency + cross-catalog distinctness",
+      "note": "Catalog-level: 6 lifestyle renders cluster in hue+luma (a=consistency); catalog palette differs from last 6 (b=distinctness); banned wardrobe prompt-enforced (c)."
     }
   }
 }

@@ -2,7 +2,7 @@
 
 Read-only projection of the rule registry. Edit `policy/registry.json`, then run `python policy/gen_policy.py`. `policy/check.py` runs before every catalog and STOPs on conflicts.
 
-**28 rules active** · 17 enforced (blocking gate) · 8 observed (non-blocking gate / visual checklist) · 3 advisory (no gate) · 3 superseded.
+**28 rules active** · 18 enforced (blocking gate) · 8 observed (non-blocking gate / visual checklist) · 2 advisory (no gate) · 3 superseded.
 
 Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausibility · 50 user preference · 10 doc defaults. Higher wins; the loser is superseded, never deleted.
 
@@ -36,7 +36,7 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 | `REFS_PER_SLOT` | 50 | medias[0] is a distinct per-slot reference from refs/<SKU>/; --stage prompts hard-fails if any missing | refs_preflight | user 2026-07-30 |
 | `REGRESSION_NO_REGRESS` | 50 | quality only ratchets up; a gate that stops catching a past failure fails the build; goldens are permanent | regression_suite | user (14+15) |
 | `SUBAGENT_BAN` | 50 | never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog | preflight | user 2026-07-30 |
-| `THEME_PER_CATALOG` | 50 | one coherent theme within a catalog; a different theme per catalog rotated by SKU hash | _advisory_ | user (24 P5) |
+| `THEME_PER_CATALOG` | 50 | one coherent theme within a catalog; a different theme per catalog rotated by SKU hash | G17_THEME | user (24 P5) |
 | `TOKEN_BUDGET` | 50 | <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation | _advisory_ | user (05+17) |
 
 ## Superseded rules (provenance — never deleted)
@@ -51,4 +51,3 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 
 - `TOKEN_BUDGET` — <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation
 - `BACKGROUND_VELVET` — studio background is premium plain pure-white velvet only; plain, no AI-generated cloth
-- `THEME_PER_CATALOG` — one coherent theme within a catalog; a different theme per catalog rotated by SKU hash

@@ -337,6 +337,46 @@ def g14_content(bgr, slot):
     return [_g("G14_CONTENT", "pass", f"faces={len(faces)} prominent={len(prominent)}", "compliant")]
 
 
+def _palette_sig(bgr):
+    hsv = cv.cv2.cvtColor(bgr, cv.cv2.COLOR_BGR2HSV)
+    return float(np.median(hsv[:, :, 0])), float(hsv[:, :, 2].mean())
+
+
+def g17_theme(sku):
+    """THEME_PER_CATALOG (catalog-level, lifestyle). (a) CONSISTENCY: the six
+    lifestyle renders cluster in hue+luminance (an outlier breaks the theme).
+    (b) DISTINCTNESS: this catalog's mean palette differs from the last 6 catalogs
+    (colour distance) -- else a theme collision. (c) banned wardrobe is prompt-
+    enforced + advisory. Returns {gate,status,detail}."""
+    import json as _json
+    matrix = _json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
+    spec = _json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
+    life = [s["slot"] for s in matrix["categories"][spec["category"]]["slots"] if s["group"] == "lifestyle"]
+    rdir = ROOT / "deliveries" / sku
+    sigs = []
+    for sl in life:
+        hits = sorted(rdir.glob(f"{sl}_*.png"))
+        if hits:
+            sigs.append(_palette_sig(cv.load_bgr(hits[0])))
+    if len(sigs) < 4:
+        return _g("G17_THEME", "unmeasurable", None, None, "fewer than 4 lifestyle renders")
+    hues = np.array([s[0] for s in sigs]); lums = np.array([s[1] for s in sigs])
+    # (a) consistency: outlier if a render is >40 hue or >70 luma from the median
+    hmed, lmed = np.median(hues), np.median(lums)
+    out = [life[i] for i in range(len(sigs)) if abs(hues[i] - hmed) > 40 or abs(lums[i] - lmed) > 70]
+    if out:
+        return _g("G17_THEME", "fail", f"outliers {out}", "one cluster", f"slot(s) {out} break catalog theme")
+    # (b) distinctness vs last 6 catalogs in the theme ledger
+    led = _json.loads((ROOT / "memory" / "theme_ledger.json").read_text(encoding="utf-8")) if (ROOT / "memory" / "theme_ledger.json").exists() else []
+    cat_sig = (float(hmed), float(lmed))
+    for e in [x for x in led if x.get("sku") != sku][-6:]:
+        if "sig" in e:
+            d = ((cat_sig[0] - e["sig"][0]) ** 2 + (cat_sig[1] - e["sig"][1]) ** 2) ** 0.5
+            if d < 12:
+                return _g("G17_THEME", "fail", f"dist {d:.0f}", ">=12", f"theme collision with {e['sku']}")
+    return _g("G17_THEME", "pass", f"hue~{hmed:.0f} lum~{lmed:.0f}", "clustered+distinct", "consistent + distinct")
+
+
 def validate_image(sku, image_path, slot):
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     res = [g1_format(image_path)]
