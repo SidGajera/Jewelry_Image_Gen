@@ -42,8 +42,11 @@ Everything else is automatic.
 ## 5. MAXIMUM ONE QUESTION PER TASK
 Combine any additional needs into that single prompt. No multi-step confirmation chains.
 
+## 5b. NO-PERMISSION FULL RUN (user-locked 2026-07-30 — ALL catalogs, supersedes §6 one-approval)
+Run each catalog **end-to-end with no pauses and no check-ins**. Do not stop for Image-1 approval; generate the full deliverable set, then report. **User review comes AFTER completion.** Errors/failures the user reports are logged to Failure Memory (`config/QUALITY_MEMORY.json`), pushed, and applied to all future generations. The only hard stop remains a missing/ambiguous/conflicting source view (docs/13 §6b) and the §4 exception list.
+
 ## 6. WHAT THIS POLICY DOES NOT WAIVE
-- **`CLAUDE_SETUP.md` §2.5 — one approval image per catalog.** This is a business decision and remains user-locked. Generate Image 1 only; wait for explicit approval; then auto-batch the rest. Never approval-per-image; never batch before Image 1 is approved.
+- ~~`CLAUDE_SETUP.md` §2.5 — one approval image per catalog.~~ **Superseded by §5b (2026-07-30): full no-permission run; review after completion.**
 - **`CLAUDE_SETUP.md` §0.5 — branch creation** still requires explicit user permission.
 - **`docs/14` / `docs/18` quality gates.** Rejecting a drifted render is not a confirmation prompt; it is a gate. Auto-reject and regenerate silently per `docs/20`.
 

@@ -82,6 +82,16 @@ Pure generation cannot guarantee 99.9% CAD fidelity — the production model bia
 
 The composite runs where the render is downloadable (the user's machine / the `tool/` backend) — that is the point of the tool: it unblocks downloads so this fallback is automatic rather than manual.
 
+## 6b. D2D PIXEL-PERFECT SOURCE READ (user-locked 2026-07-30 — ALL catalogs, ultra-strict, NEVER budgeted)
+
+The source read is never compromised and never token-budgeted (token economy cuts DISPLAY only). Before ANY generation:
+- Read **every** provided view. A **missing view = STOP**.
+- Record exactly, **from source pixels only** (SOURCE_SPEC): stone shape · cut · facet pattern · facet count · proportions · L:W ratio · girdle · crown · pavilion · table · prong count · prong type · prong position · halo/none · basket · gallery · under-head · side stones (shape, count, size, spacing) · shoulder pavé (rows, count, size, spacing, coverage) · band width · thickness · profile · taper · metal · finish.
+- **Zero inference. Zero category priors. Zero AI redraw.**
+- **Ambiguous or conflicting views = STOP and ask. Never guess.**
+
+Capture this full field list into SOURCE_SPEC on the first source view; re-read before every gen. This is the mandatory input to §5 QA.
+
 ## 7. RELATED
 `docs/03 §A` (Design Preservation + Geometry Lock allow-list) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`geometry-immutable-auto-fallback`) · `docs/12_STUDIO_ANGLES_STANDARD.md` (angle rotation) · `scripts/composite_ring_into_scene.py`.
 
