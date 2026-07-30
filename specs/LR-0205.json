@@ -1,0 +1,31 @@
+{
+  "sku": "LR-0205",
+  "category": "ring",
+  "title": "Elongated radiant hidden-halo solitaire, French micro-pave band, yellow gold",
+  "note_source_vs_listing": "SEO sheet says 'marquise'; the CAD renders are an ELONGATED RADIANT cut (rectangular, cropped corners, crushed-ice faceting). Pixels govern (D2D).",
+  "primary_stones": [
+    {"id": "center", "shape": "radiant", "cut": "radiant_brilliant_crushed_ice", "orientation": "north_south",
+     "lw_ratio": 1.35, "tolerance": 0.1, "count": 1, "scale_ratio_to_structure": 4.0}
+  ],
+  "setting_elements": {"type": "claw", "count": 4, "form": "plain_slender", "layout": "corner"},
+  "accent_runs": [
+    {"id": "shoulder_left",  "rows": 1, "count": 16, "tolerance": 3,
+     "stone_dia_ratio_to_structure": 0.12, "size_tolerance": 0.2,
+     "coverage_fraction": 0.75, "setting": "flush_french_micro"},
+    {"id": "shoulder_right", "rows": 1, "count": 16, "tolerance": 3,
+     "stone_dia_ratio_to_structure": 0.12, "size_tolerance": 0.2,
+     "coverage_fraction": 0.75, "setting": "flush_french_micro"}
+  ],
+  "halo": "hidden",
+  "under_head": "pave",
+  "structure": {"profile": "knife_edge", "uniform_width": true, "taper": false, "link_count": null, "link_form": null},
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "seedream_v5_pro",
+  "resolution": "2k"
+}
