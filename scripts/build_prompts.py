@@ -31,8 +31,16 @@ NEGATIVE = (
     "tapered structure, wider structure, flat structure, added filigree, "
     "second piece, extra piece, duplicate jewelry, ghost clasp, doubled link run, "
     "watermark, text, vendor mark, logo overlay, portrait format, landscape format, non-square crop, "
-    "yellow gold, rose gold, rotated piece, asymmetric structure"
+    "yellow gold, rose gold, rotated piece, asymmetric structure, "
+    # inner-shank clean-metal lock (user-locked 2026-07-30, all catalogs): never invent an engraving/hallmark
+    "engraved mark on the band, maker's mark, hallmark, stamp on the inner shank, "
+    "initials engraved in metal, karat stamp, serial number, logo cut into metal, "
+    "engraving on the shank interior, etched glyph, chisel mark"
 )
+
+# Positive inner-shank clause appended to every prompt's PIECE section.
+INNER_SHANK = ("INNER SHANK: plain polished metal, smooth, unmarked, uninterrupted "
+               "(no engraving, hallmark, stamp or maker's mark).")
 
 
 def _stone_phrase(s):
@@ -97,6 +105,7 @@ def build_prompt(spec, slot):
         _structure_phrase(spec.get("structure")),
         f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}. "
         f"No yellow, no rose, no two-tone.",
+        INNER_SHANK,
     ] if p)
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "
            f"above the lay plane, azimuth {slot['azimuth']} degrees. Piece fills ~{int(slot['crop']*100)}% of frame.")
