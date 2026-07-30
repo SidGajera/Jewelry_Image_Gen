@@ -1,0 +1,29 @@
+{
+  "sku": "LR-0206",
+  "category": "ring",
+  "title": "Marquise centre, scattered mixed-size round accent clusters, filigree gallery, yellow gold",
+  "note_source_vs_listing": "Etsy listing text says 'oval'; the CAD renders are unmistakably MARQUISE (pointed both ends, V-prongs). Pixels govern (D2D).",
+  "primary_stones": [
+    {"id": "center", "shape": "marquise", "cut": "marquise_brilliant", "orientation": "north_south",
+     "lw_ratio": 2.0, "tolerance": 0.15, "count": 1, "scale_ratio_to_structure": 2.5}
+  ],
+  "setting_elements": {"type": "claw", "count": 6, "form": "double", "layout": "marquise_tip_and_side"},
+  "accent_runs": [
+    {"id": "shoulder_left",  "rows": 1, "count": 7, "tolerance": 2, "arrangement": "scattered_cluster_mixed_size",
+     "stone_dia_ratio_to_structure": 0.14, "size_tolerance": 0.5, "coverage_fraction": 0.5, "setting": "prong_cluster"},
+    {"id": "shoulder_right", "rows": 1, "count": 7, "tolerance": 2, "arrangement": "scattered_cluster_mixed_size",
+     "stone_dia_ratio_to_structure": 0.14, "size_tolerance": 0.5, "coverage_fraction": 0.5, "setting": "prong_cluster"}
+  ],
+  "halo": "none",
+  "under_head": "filigree",
+  "structure": {"profile": "round", "uniform_width": true, "taper": false, "link_count": null, "link_form": null},
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "seedream_v5_pro",
+  "resolution": "2k"
+}
