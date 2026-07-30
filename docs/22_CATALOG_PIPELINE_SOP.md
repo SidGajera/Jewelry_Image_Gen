@@ -14,7 +14,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 ## P2 — PROMPT
 6. Build master prompt: full geometry lock + explicit NEGATIVES from Failure Memory (NO hidden halo, NO added diamonds, NO double prongs, NO extra jewelry piece, exact scale).
 7. Attach format lock: 1:1, 2K min, native, tack-sharp, sRGB, no watermark.
-8. Assign 10 distinct angle deltas — 4 office (white velvet) + 6 lifestyle. One image per angle/pose, never repeated.
+8. Assign the 10 slots by the LOCKED NUMERIC ANGLE MATRIX (docs/12 A-MATRIX) — 4 office + 6 lifestyle. Each prompt states azimuth + elevation + distance/crop as NUMBERS; filenames are labels only. Obey the SEPARATION RULE (no two within 20° azimuth AND 15° elevation; elevated 3/4 only in slot 04). One image per angle, never repeated.
 9. Set catalog theme — consistent within, distinct from every prior catalog. Non-generic models/wardrobe. Banned: beige knit + neutral couch.
 
 ## P3 — GENERATE
@@ -23,7 +23,8 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 
 ## P4 — VALIDATE
 12. Script check: exists · size>0 · 2048×2048 · 1:1 · PNG.
-13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · distinct angles · portrait/square lock.
+13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · portrait/square lock.
+13b. ANGLE VALIDATION GATE (docs/12 A-MATRIX): read each render's ACTUAL azimuth/elevation from the image (not the filename); reject any slot that mismatches its declared numbers; compare all 10 pairwise, reject the later slot of any pair within 20° azimuth AND 15° elevation, regenerate azimuth +30° / elevation re-forced; repeat until all 10 distinct. Never deliver a duplicate angle.
 14. Any fail = auto-regenerate that slot with a tightened negative. Never deliver a fail.
 
 ## P5 — DOWNLOAD

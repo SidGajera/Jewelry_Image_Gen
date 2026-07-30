@@ -851,6 +851,27 @@
         "LR-0203 slot 03 (2026-07-30)"
       ],
       "refs": "workspace/golden/LR-0203/SOURCE-SPEC.md (MANDATORY PROMPT LOCKS); docs/13_JEWELRY_PRESERVATION_SPEC.md §6b; docs/22_CATALOG_PIPELINE_SOP.md P4"
+    },
+    {
+      "id": "studio-slots-must-be-distinct-numeric-angles",
+      "sku": "LR-0203",
+      "image_number": null,
+      "camera_angle": "office slots 01/02/03",
+      "source_files": "LR-0203 delivered set (user contact sheet, 2026-07-30)",
+      "problem": "Office slots 01/02/03 were delivered as three near-identical front-ish three-quarter views of the ring standing on velvet — effectively the same camera angle three times. Not resolved by prior verbal 'angle distinctness' guidance; it recurred.",
+      "affected_area": "composition",
+      "root_cause": "Angles were driven by filename LABELS (hero_3q / side_profile / upper_3q) instead of explicit camera NUMBERS. Labels carry no geometry, so the model defaulted all three to its favored 3/4 front pose. No numeric azimuth/elevation per slot and no pairwise separation gate existed to catch the collision.",
+      "correct_result": "Camera is defined by NUMBERS per slot (azimuth around ring, elevation above table, distance/crop) per the LOCKED ANGLE MATRIX (docs/12 A-MATRIX). Office 4 = top_down_flatlay (elev90/azim0), true_side_profile (elev3/azim90), front_elevation (elev15/azim0), macro_head (elev30/azim45). Lifestyle 6 = low_hero (10/30), back_three_quarter (25/135), hand_top_down (85), hand_45_three_quarter (40/45), hand_side_macro (5/90), hand_tilted_POV (20/210). No two slots within 20deg azimuth AND 15deg elevation; elevated 3/4 only in slot 04.",
+      "rejected_output_ref": "LR-0203 office slots 01/02/03 - REJECTED as duplicate angles, 2026-07-30",
+      "fix": "(1) Every prompt states azimuth + elevation + distance/crop as NUMBERS; never rely on the filename/label. (2) Use the locked ANGLE MATRIX (docs/12 A-MATRIX) for all 10 slots, every catalog. (3) VALIDATION GATE before delivery: read each render's actual camera azimuth/elevation from the image, compare to the slot's declared numbers (mismatch = reject), then compare all 10 pairwise - any pair within 20deg azimuth AND 15deg elevation = reject the later slot and regenerate with azimuth pushed 30deg further + elevation re-forced; repeat until all 10 pass. Never deliver a duplicate angle. Applies to ALL catalogs.",
+      "date_recorded": "2026-07-30",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0203 office slots 01/02/03 (2026-07-30)"
+      ],
+      "refs": "docs/12_STUDIO_ANGLES_STANDARD.md (A-MATRIX + SEPARATION RULE + VALIDATION GATE); docs/22_CATALOG_PIPELINE_SOP.md P2 step 8 / P4"
     }
   ],
   "failure_memory": {

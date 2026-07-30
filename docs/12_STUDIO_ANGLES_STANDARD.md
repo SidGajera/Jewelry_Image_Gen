@@ -11,6 +11,40 @@ Every office/studio photoshoot MUST begin from the same approved studio setup, b
 
 **FINAL VALIDATION (every studio image):** ✓ approved premium white cloth used ✓ preserved official logo used ✓ logo naturally printed into cloth ✓ jewelry placed after background prep ✓ physics correct ✓ neutral white balance ✓ NO AI-generated logo ✓ NO AI-generated cloth. This sequence is mandatory for every office/studio photoshoot. (Practical pipeline: the Higgsfield render delivers the clean-cloth+ring intermediate; the preserved logo is composited locally per `docs/04` — the build ORDER and validation still govern the final deliverable.)
 
+## A-MATRIX — LOCKED NUMERIC ANGLE MATRIX (user-locked 2026-07-30, ALL CATALOGS — SUPERSEDES the label-based slot definitions in §A/§A1 for the 10-slot deliverable)
+
+**Camera is defined by NUMBERS, never by a label.** Every prompt states three numbers: **azimuth** (degrees around the ring, 0° = front/head-on), **elevation** (degrees above the table plane, 0° = eye-level with the band, 90° = top-down), **distance/crop** (how much of the frame the ring fills). **Filenames are labels only and carry no geometry — never rely on them to judge or set the angle.**
+
+### OFFICE — white velvet, 4 images
+| Slot | Name | Elev | Azim | Crop / notes |
+|---|---|---|---|---|
+| 01 | top_down_flatlay | 90° | 0° | ring flat, full ring in frame, symmetric |
+| 02 | true_side_profile | 3° | 90° | band fills frame, stone seen edge-on; shank silhouette + full pavé run visible |
+| 03 | front_elevation | 15° | 0° | head-on, band symmetric L/R, both shoulders equal, NOT rotated |
+| 04 | macro_head | 30° | 45° | stone fills ~70% of frame, band cropped |
+
+### LIFESTYLE — worn on hand, 6 images
+| Slot | Name | Elev | Azim | Crop / notes |
+|---|---|---|---|---|
+| 05 | low_hero | 10° | 30° | camera slightly BELOW the ring, looking up |
+| 06 | back_three_quarter | 25° | 135° | rear of gallery + back of shank visible |
+| 07 | hand_top_down | 85° | — | over the knuckle, fingers relaxed |
+| 08 | hand_45_three_quarter | 40° | 45° | worn, hand angled |
+| 09 | hand_side_macro | 5° | 90° | finger in profile, ring edge-on, macro |
+| 10 | hand_tilted_POV | 20° | 210° | dutch tilt, hand raised toward camera |
+
+### SEPARATION RULE
+- No two slots may be within **20° azimuth AND 15° elevation** of each other.
+- Elevated 3/4 (elev 25–45° / azim 30–60°) may appear **ONCE only, in slot 04**.
+
+### VALIDATION GATE (run before delivery — every catalog)
+1. For each render, read the ACTUAL camera position from the image (azimuth + elevation), not the filename.
+2. Compare against the slot's declared azimuth/elevation. Mismatch = reject that slot.
+3. Compare all 10 pairwise. Any pair inside the separation rule = reject the LATER slot; regenerate with azimuth pushed **30° further** and elevation re-forced.
+4. Re-run until all 10 pass. **Never deliver a duplicate angle.**
+
+**Recurring failure this fixes:** slots 01/02/03 delivered as three near-identical front-ish 3/4 views (LR-0203, 2026-07-30). The cause was label-driven angles; the fix is numeric azimuth/elevation per slot + the pairwise separation gate above. Logged in QUALITY_MEMORY `studio-slots-must-be-distinct-numeric-angles`.
+
 ## A. STUDIO PHOTOSHOOT — THE 5 REQUIRED ANGLES
 Every SKU's 5 studio images must be exactly these angles, so a customer can inspect the piece from every important side. Same locked white cloth + printed logo + identical lighting/exposure/white-balance across all five.
 
