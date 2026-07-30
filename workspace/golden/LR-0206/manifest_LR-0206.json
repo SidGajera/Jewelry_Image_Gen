@@ -1,21 +1,18 @@
 {
-  "sku": "LR-0206",
-  "category": "ring",
-  "model": "seedream_v5_pro",
+  "sku": "LR-0206", "category": "ring", "model": "seedream_v5_pro",
   "source_media_id": "99140e1d-59ad-4e0f-b253-c3df6ccf3fb1",
-  "aspect_ratio": "1:1",
-  "resolution": "2k",
-  "mode": "frozen_text_to_image",
+  "aspect_ratio": "1:1", "resolution": "2k", "mode": "frozen_text_to_image",
+  "batch": "regen-2 (approved poses + realism + anatomy)",
   "jobs": {
-    "01_top_down_flatlay": "32d043b4-b011-44f2-98e7-c6bf903e9276",
-    "02_true_side_profile": "e6e7f22b-5a30-4860-b3b9-f98ae14751e8",
-    "03_front_elevation": "12c3da9f-966a-4629-858b-8249ee426982",
-    "04_macro_head": "1e6e8668-5bef-4ff8-a5cd-30ad2f8fa95f",
-    "05_low_hero": "2d2706ef-eb0a-40b6-8500-6f570f70c249",
-    "06_back_three_quarter": "ca58e5a7-850f-430a-a8b6-382cc739b581",
-    "07_hands_held_beach": "88b98724-1513-48bb-88f2-6ad3d2f25da3",
-    "08_hand_45_three_quarter": "34f229ac-4f96-48ae-90d7-fdb3a857e989",
-    "09_hand_side_macro": "b4e2db81-9da9-443b-817b-f1a764c64333",
-    "10_hand_tilted_pov": "22bdf568-c9e5-4ffd-8567-bb267dca5303"
+    "01_top_down_flatlay": "a4ee5300-88c6-45ad-84d4-69e3a4379cf4",
+    "02_true_side_profile": "763ec431-bffb-4885-801c-1c52e87fa8e1",
+    "03_front_elevation": "45e56301-d991-4cf1-9b87-2c7ef65e8a0f",
+    "04_macro_head": "f2dd6cff-7929-4ce2-81b8-9c3e2d262abb",
+    "05_low_hero_beach": "05dad6ab-7d2b-4ed0-8c20-5f275ebc05f5",
+    "06_reach_to_camera": "b1d8eeb3-59ba-4485-9af6-f1deb48b4dc9",
+    "07_hands_held_beach": "7a37c74a-f3f8-431c-9835-d4b58a940d14",
+    "08_hands_stacked_editorial": "affebdd0-f908-4fa1-a176-9ac7f1e5d2ce",
+    "09_beauty_closeup": "b83b5d7a-b91f-4756-8e6a-b0681995c906",
+    "10_sunset_raised_hand": "639af98a-b9f9-4c74-b182-ba3ca23dc6a7"
   }
 }
