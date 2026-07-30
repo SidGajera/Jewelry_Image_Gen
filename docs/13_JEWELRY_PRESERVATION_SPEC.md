@@ -67,7 +67,9 @@ Compare the render to the source, feature by feature. Any ✗ = FAIL → do not 
 - [ ] Band: same width + thickness
 - [ ] Twist/infinity loops: same curve, same negative-space openings, same symmetry
 - [ ] Shoulder→halo transition matches
-- [ ] Pavé: same count, size, spacing, start/end positions
+- [ ] Pavé: same **exact per-side count** (count it — under-counting is a FAIL), same stone size (micro stays micro), same spacing (tightly packed stays tightly packed), same coverage length (runs past shoulder down shank if source does — no stopping short), same setting style (flush French/micro-bead — never a raised channel / thick beads / metal rail), same start/end positions
+- [ ] Band profile matches (thin uniform round/knife-edge vs tapered/flat/cathedral — not restyled) + centre:band scale matches (centre not enlarged vs band)
+- [ ] FORMAT GATE (before visual review): 1:1 exactly 2048×2048; non-square = discard + regenerate
 - [ ] Every stone: count/size/orientation match; diamonds are real-optics VVS/IF (no CGI/doubling/over-whitening)
 - [ ] Gallery/basket/metal thickness match
 - [ ] NO invented components (docs/16 detector): diamond_count, diamond_locations, gallery_structure, prong_count, hidden_halo_presence, pave_bridge_presence, metal_silhouette all match source — no added pavé bridge / hidden halo / gallery diamonds / extra prongs
