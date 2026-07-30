@@ -219,6 +219,23 @@ def g12_marks(bgr, slot):
     return [_g("G12_MARKS", "pass", "no watermark, band clean", "none")]
 
 
+def g16_skin_realism(bgr, slot):
+    """SKIN REALISM (lifestyle): exposure-normalized high-frequency energy in the
+    hand region. Below threshold = plastic/over-smoothed skin = FAIL. Threshold
+    from config/gates.json (provisional until locked on labelled goldens)."""
+    if slot.get("group") != "lifestyle":
+        return [_g("G16_SKIN_REALISM", "skip", detail="studio slot")]
+    import json as _json
+    thr = (_json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))
+           ["gates"].get("G16_SKIN_REALISM", {}).get("threshold", 70))
+    e = cv.skin_hf_normalized(bgr)
+    if e is None:
+        return [_g("G16_SKIN_REALISM", "unmeasurable", None, thr, "no hand-skin region")]
+    if e < thr:
+        return [_g("G16_SKIN_REALISM", "fail", round(e, 1), f">={thr}", "plastic / over-smoothed skin")]
+    return [_g("G16_SKIN_REALISM", "pass", round(e, 1), f">={thr}", "real skin texture")]
+
+
 def g15_hand_anatomy(bgr, slot):
     """HAND ANATOMY (lifestyle): a ring encircles ONE finger. Checks (1) hand/
     finger plausibility via MediaPipe, (2) band continuity — both arms on the
@@ -228,17 +245,17 @@ def g15_hand_anatomy(bgr, slot):
     nor the band heuristic can assess (e.g. a tight macro with no gap resolvable)."""
     if slot.get("group") != "lifestyle":
         return [_g("G15_HAND_ANATOMY", "skip", detail="studio slot")]
-    verdict, det = cv.band_spans_two_fingers(bgr)
+    # PRIMARY: MediaPipe landmark band-arm trace (blocking-capable when a hand is detected)
+    verdict, det = cv.ring_on_one_finger(bgr)
     if verdict == "fail":
-        return [_g("G15_HAND_ANATOMY", "fail", "band spans two fingers", "one finger", det)]
-    lm = cv.hand_landmarks(bgr)
-    if lm is None:
-        return [_g("G15_HAND_ANATOMY", "unmeasurable", None, None, "hand model unavailable")]
-    if not lm:
-        # no hand detected AND band check didn't fail -> cannot confirm anatomy
-        return [_g("G15_HAND_ANATOMY", "unmeasurable", "0 hands", "1 hand",
-                   "MediaPipe found no hand in this macro crop; band-continuity " + verdict)]
-    return [_g("G15_HAND_ANATOMY", "pass", f"{len(lm)} hand(s)", "1 finger", det)]
+        return [_g("G15_HAND_ANATOMY", "fail", "ring not on one finger", "one finger", det)]
+    if verdict == "pass":
+        return [_g("G15_HAND_ANATOMY", "pass", "ring on one finger", "one finger", det)]
+    # FALLBACK: band-gap heuristic when MediaPipe cannot see the hand (macro crop)
+    hv, hdet = cv.band_spans_two_fingers(bgr)
+    if hv == "fail":
+        return [_g("G15_HAND_ANATOMY", "fail", "band spans two fingers", "one finger", hdet)]
+    return [_g("G15_HAND_ANATOMY", "unmeasurable", None, None, f"{det}; heuristic: {hdet}")]
 
 
 def g14_content(bgr, slot):
@@ -302,6 +319,7 @@ def validate_image(sku, image_path, slot):
     res += g12_marks(bgr, slot)
     res += g14_content(bgr, slot)
     res += g15_hand_anatomy(bgr, slot)
+    res += g16_skin_realism(bgr, slot)
     return res
 
 

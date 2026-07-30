@@ -347,10 +347,12 @@ def jewellery_area(bgr):
 _HANDLM = None
 
 
-def hand_landmarks(bgr, conf=0.5, max_hands=4):
+def hand_landmarks(bgr, conf=0.3, max_hands=4):
     """MediaPipe Hands (Tasks API). Returns list of hands, each a list of 21
-    (x,y) in pixels, or None if the model/asset is unavailable. Empty list means
-    the model ran but found no hand (common on tight ring-macro crops)."""
+    (x,y) in FULL-RES pixels, or None if the model/asset is unavailable. Empty
+    list = model ran, no hand found. Detection runs on multiple downscales
+    (2048px renders overflow the model; ~512px is where a large hand locks in);
+    normalized landmarks map straight back to full-res coordinates."""
     global _HANDLM
     from pathlib import Path
     m = Path(__file__).resolve().parent.parent / "models" / "hand_landmarker.task"
@@ -365,10 +367,14 @@ def hand_landmarks(bgr, conf=0.5, max_hands=4):
                 base_options=python.BaseOptions(model_asset_path=str(m)),
                 num_hands=max_hands, min_hand_detection_confidence=conf,
                 min_hand_presence_confidence=conf))
-        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
-        res = _HANDLM.detect(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb))
         h, w = bgr.shape[:2]
-        return [[(int(p.x * w), int(p.y * h)) for p in hand] for hand in res.hand_landmarks]
+        for dw in (512, 640, 768, 384, 1024):
+            small = cv2.resize(bgr, (dw, max(int(h * dw / w), 1)))
+            rgb = cv2.cvtColor(small, cv2.COLOR_BGR2RGB)
+            res = _HANDLM.detect(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb))
+            if res.hand_landmarks:
+                return [[(int(p.x * w), int(p.y * h)) for p in hand] for hand in res.hand_landmarks]
+        return []
     except Exception:
         return None
 
@@ -421,6 +427,95 @@ def band_spans_two_fingers(bgr):
     if frac >= 0.4:
         return "fail", f"inter-finger gap under ring in {frac:.0%} of rows (band spans two fingers)"
     return "pass", f"continuous finger under ring (gap rows {frac:.0%})"
+
+
+def ring_on_one_finger(bgr):
+    """G15 primary (MediaPipe): a ring encircles ONE finger. Detect hand
+    landmarks, locate the ring, find the nearest finger, and verify (a) the ring
+    centre sits between that finger's MCP and PIP knuckles, and (b) BOTH band
+    arms map to the SAME finger. Returns (verdict, detail); verdict in
+    {'fail','pass','unmeasurable'}. Unmeasurable when no hand is detected (tight
+    macro) -> caller falls back to the band-gap heuristic."""
+    lm = hand_landmarks(bgr)
+    if lm is None:
+        return "unmeasurable", "hand model unavailable"
+    if not lm:
+        return "unmeasurable", "no hand detected (macro crop)"
+    # locate the ring as the gold band WITHIN a hand's bounding box (not the
+    # global brightest blob -- on a beach/sunset frame that is the sky).
+    gold_all = _gold_band_mask(bgr)
+    best = None
+    for hand in lm:
+        xs = [p[0] for p in hand]; ys = [p[1] for p in hand]
+        x0, y0 = max(min(xs) - 40, 0), max(min(ys) - 40, 0)
+        x1, y1 = min(max(xs) + 40, bgr.shape[1]), min(max(ys) + 40, bgr.shape[0])
+        sub = np.zeros_like(gold_all); sub[y0:y1, x0:x1] = gold_all[y0:y1, x0:x1]
+        ys2, xs2 = np.where(sub > 0)
+        if xs2.size > 40 and (best is None or xs2.size > best[0]):
+            best = (xs2.size, hand, int(np.mean(xs2)), int(np.mean(ys2)))
+    if best is None:
+        return "unmeasurable", "ring/band not found on any hand"
+    _, hand, rx, ry = best
+    fingers = {"index": (hand[5], hand[6]), "middle": (hand[9], hand[10]),
+               "ring": (hand[13], hand[14]), "pinky": (hand[17], hand[18])}
+    mid = lambda a, b: ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+    nf = min(fingers, key=lambda f: (mid(*fingers[f])[0] - rx) ** 2 + (mid(*fingers[f])[1] - ry) ** 2)
+    mcp, pip = fingers[nf]
+    vx, vy = pip[0] - mcp[0], pip[1] - mcp[1]
+    l2 = vx * vx + vy * vy or 1.0
+    t = ((rx - mcp[0]) * vx + (ry - mcp[1]) * vy) / l2
+    if not (-0.4 <= t <= 1.4):
+        return "fail", f"ring not between {nf} knuckles (t={t:.2f}); over a knuckle or at the base/webbing"
+    # perpendicular distance from ring centre to the finger axis: large => the
+    # ring sits in an inter-finger gap (spans two fingers), not on the finger.
+    px, py = mcp[0] + t * vx, mcp[1] + t * vy
+    perp = ((rx - px) ** 2 + (ry - py) ** 2) ** 0.5
+    mcps = sorted(fingers[f][0][0] for f in fingers)
+    spacing = min((mcps[i + 1] - mcps[i]) for i in range(len(mcps) - 1)) if len(mcps) > 1 else 1e9
+    if perp > 0.7 * spacing:
+        return "fail", f"ring centre {int(perp)}px off the {nf} axis (>0.7x finger spacing {int(spacing)}) -- in an inter-finger gap / spans two fingers"
+    return "pass", f"ring on the {nf} finger, between the knuckles (t={t:.2f}, off-axis {int(perp)}/{int(spacing)}px)"
+
+
+def skin_hf_energy(bgr, hand):
+    """High-frequency energy (Laplacian variance) over skin pixels in the hand's
+    bounding box. Real skin (pores, creases, tendon shadows) is high; plastic/
+    over-smoothed AI skin is low. Returns (energy or None)."""
+    xs = [p[0] for p in hand]; ys = [p[1] for p in hand]
+    x0, y0 = max(min(xs), 0), max(min(ys), 0)
+    x1, y1 = min(max(xs), bgr.shape[1]), min(max(ys), bgr.shape[0])
+    if x1 - x0 < 20 or y1 - y0 < 20:
+        return None
+    reg = np.zeros(bgr.shape[:2], bool); reg[y0:y1, x0:x1] = True
+    m = reg & skin_mask(bgr)
+    if m.sum() < 5000:
+        return None
+    lap = cv2.Laplacian(cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY).astype(np.float64), cv2.CV_64F)
+    return float(lap[m].var())
+
+
+def skin_hf_normalized(bgr):
+    """Exposure-normalized skin high-frequency energy for G16 skin-realism.
+    Laplacian variance over hand-skin pixels divided by mean-luma^2 (variance
+    scales with contrast^2 ~ exposure^2), x1e4. Real skin ~90-135; waxy/plastic
+    skin is lower. Returns value or None if not measurable. Uses the detected
+    hand's bbox when available, else the whole skin mask."""
+    lm = hand_landmarks(bgr)
+    skin = skin_mask(bgr)
+    if lm:
+        h = max(lm, key=lambda H: (max(p[0] for p in H) - min(p[0] for p in H)) *
+                (max(p[1] for p in H) - min(p[1] for p in H)))
+        xs = [p[0] for p in h]; ys = [p[1] for p in h]
+        reg = np.zeros(bgr.shape[:2], bool)
+        reg[max(min(ys), 0):max(ys), max(min(xs), 0):max(xs)] = True
+        m = reg & skin
+    else:
+        m = skin
+    if m.sum() < 5000:
+        return None
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    mean = gray[m].mean() or 1.0
+    return float(cv2.Laplacian(gray, cv2.CV_64F)[m].var() / (mean * mean) * 1e4)
 
 
 def estimate_elevation(bgr):

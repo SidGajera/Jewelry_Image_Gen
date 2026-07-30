@@ -21,6 +21,9 @@ Studio EXACTLY 4 (premium white velvet only). Lifestyle EXACTLY 6 (worn on hand,
 ## P4 ANGLE VARIATION
 Distinct camera angle AND composition per slot (incl. macros). Camera stated as NUMBERS per slot (azimuth, elevation, crop); filenames carry no geometry. Rotate: top-down, 45° three-quarter, 3/4 side (not flat profile), low angle, back three-quarter, tilted, macro. **`medias[0]` carries a DISTINCT per-slot reference from `refs/`** — a shared reference produces ten near-identical views regardless of prompt text; `refs/` is a prerequisite and `--stage prompts` hard-fails if any of the ten is missing.
 
+## P4b REFS SOURCING STANDARD (blocking, user-locked 2026-07-30)
+`medias[0]` dominates skin texture and hand structure — a synthetic reference propagates synthetic skin no matter the prompt (three consecutive plastic-skin failures came from this, not wording). Every `refs/<SKU>/` lifestyle reference MUST be: an actual camera photograph of a real hand · visible pores, knuckle creases, tendon shadows, fine hairs, faint veins · natural nail beds (uneven length, real cuticles, slight ridging) · ring clearly on ONE finger, both band arms visible on it, seated between MCP and PIP · available light with real direction/falloff. REJECT as a reference: any AI-generated image, any 3D render, airbrushed editorial retouch, hands edge-on/tightly closed, band occluded/ambiguous. Own phone photos are ideal (real skin, real light, no licensing). `run_catalog.py --stage prompts` hard-fails if any of the ten refs is missing; ref quality (real-photo skin HF, one-finger placement) is checked at intake. **Current state: `refs/<SKU>/` is empty — generation uses the shared source CAD as `medias[0]`, which is why skin/placement vary. Real photo refs are required to fix it at the source.**
+
 ## P5 THEME
 One coherent theme within a catalog (palette, styling, mood, lighting); a different theme per catalog, rotated by SKU hash, so catalogs never look alike.
 

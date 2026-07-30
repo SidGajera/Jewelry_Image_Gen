@@ -140,29 +140,29 @@ LIFESTYLE_NEGATIVE = ("kissing, couple kissing, faces touching, embracing, intim
                       "romantic contact, cheek to cheek, couple as the subject, people in focus, "
                       "suggestive posing")
 
-# Realism / anti-AI, appended to EVERY lifestyle slot (all catalogs).
+# Realism / anti-AI, appended to EVERY lifestyle slot (all catalogs). Verbatim per user 2026-07-30.
 REALISM_POSITIVE = ("Photographed on a full-frame camera, 85mm, f/2.0, natural available light. "
-                    "Real skin with visible pores, fine hairs, knuckle creases, faint veins, uneven "
-                    "nail beds, natural nail length. Hands show real anatomy -- tendons, joint lines, "
-                    "slight asymmetry. Fabric shows weave and genuine creasing. Slight motion "
-                    "imperfection, candid framing, honest colour. This slot uses a DISTINCT model, "
-                    "wardrobe and location from every other lifestyle slot (rotate skin tone and age "
-                    "within the catalog theme).")
-REALISM_NEGATIVE = ("airbrushed skin, plastic skin, waxy texture, poreless face, symmetrical face, "
-                    "generic AI model, stock-photo smile, uncanny hands, extra fingers, fused fingers, "
-                    "malformed knuckles, glossy CGI highlights, HDR glow, over-smoothed background, "
-                    "beige knit sweater, oatmeal chunky knit, neutral couch, studio seamless backdrop "
-                    "in a lifestyle shot, identical model across slots")
+                    "Real human skin: visible pores, fine vellus hair, knuckle creases, tendon shadows "
+                    "across the back of the hand, faint blue veins, subtle redness at the joints, uneven "
+                    "skin tone. Natural nails with real cuticles and slight ridging. Hand anatomy correct: "
+                    "five fingers, natural spacing, believable joint angles. Ring worn on the ring finger, "
+                    "band fully encircling that single finger, seated between the knuckles. Unretouched "
+                    "skin. Candid, imperfect, honest colour. This slot uses a DISTINCT model, wardrobe and "
+                    "location from every other lifestyle slot (rotate skin tone and age within the theme).")
+REALISM_NEGATIVE = ("plastic skin, waxy skin, poreless, airbrushed, smoothed skin, mannequin hand, "
+                    "doll hand, rubber texture, uniform skin tone, glossy CGI highlight, HDR glow, "
+                    "beauty filter, retouched, symmetrical hand, ring between two fingers, band crossing "
+                    "the gap between fingers, ring at the webbing, fused fingers, extra fingers, malformed hand")
 
 
-# Hand-anatomy lock, appended to EVERY lifestyle slot (G15).
-ANATOMY_POSITIVE = ("Ring worn on ONE finger, the band fully encircling a single finger, positioned "
-                    "between the knuckles (between the MCP and PIP joints), anatomically correct hand "
-                    "with exactly five fingers and natural joints.")
-ANATOMY_NEGATIVE = ("ring spanning two fingers, ring in the finger gap, ring at the webbing, band across "
-                    "two fingers, stone in the valley between fingers, ring low near the knuckle base, "
-                    "six fingers, four fingers, fused fingers, extra finger, missing finger, "
-                    "duplicated knuckle, impossible thumb")
+# Hand-anatomy lock, appended to EVERY lifestyle slot (G15). Verbatim per user 2026-07-30.
+ANATOMY_POSITIVE = ("Ring worn on the ring finger, band fully encircling that single finger, seated "
+                    "between the knuckles, both sides of the band on the same finger, anatomically "
+                    "correct hand, five fingers, natural spacing.")
+ANATOMY_NEGATIVE = ("ring between two fingers, ring spanning two fingers, band crossing the gap between "
+                    "fingers, ring at the webbing, ring over a knuckle, floating ring, ring not "
+                    "encircling a finger, fused fingers, extra fingers, six fingers, missing finger, "
+                    "malformed hand")
 
 
 def build_prompt(spec, slot):
@@ -170,8 +170,8 @@ def build_prompt(spec, slot):
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
     if grp == "lifestyle":
-        scene = scene + ". " + REALISM_POSITIVE + " " + ANATOMY_POSITIVE
-        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE + ", " + ANATOMY_NEGATIVE
+        scene = scene + ". " + REALISM_POSITIVE   # includes anatomy + ring placement
+        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE   # includes skin + anatomy
     geom = " ".join(p for p in [
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),

@@ -75,3 +75,5 @@ refs/**/*.jpeg
 refs/**/*.webp
 
 models/
+
+tests/golden/pass_*/*.png
