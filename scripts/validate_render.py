@@ -216,10 +216,15 @@ def validate_image(sku, image_path, slot):
 
 
 def pairwise_angles(slots):
+    """Reject the later slot if two slots IN THE SAME GROUP are within SEP_AZ AND
+    SEP_EL. Studio (velvet) and lifestyle (worn) shots at a similar camera angle
+    are different scenes, so separation applies within a group, not across."""
     viol = []
     for i in range(len(slots)):
         for j in range(i + 1, len(slots)):
             a, b = slots[i], slots[j]
+            if a.get("group") != b.get("group"):
+                continue
             daz = abs(a["azimuth"] - b["azimuth"]) % 360
             daz = min(daz, 360 - daz)
             dele = abs(a["elevation"] - b["elevation"])

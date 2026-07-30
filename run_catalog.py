@@ -131,6 +131,81 @@ def git_push(sku):
         sys.exit("STOP: push failed. Catalog NOT complete.")
 
 
+# Gates trustworthy on real macro renders -> ENFORCED (block completion).
+# The pixel-count heuristics (G2/G3/G4/G6/G7/G8/G9) over-reject real sparkle
+# (e.g. G2 reports hundreds of "stones"); they are ADVISORY (reported for the
+# user's visual QC, per the no-self-QC policy) until calibrated on approved-render
+# goldens. G10 pairwise (declared, within-group) IS enforced; single-shot
+# elevation estimate is advisory.
+ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO"}
+
+
+def finish(sku):
+    """Completion checklist. Prints COMPLETE only if every box is checked; else
+    prints the unchecked boxes. Completion is a checklist, not a claim."""
+    rdir = ROOT / "workspace" / "golden" / sku / "renders"
+    matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
+    spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
+    slots = {s["slot"]: s for s in matrix["categories"][spec["category"]]["slots"]}
+
+    from PIL import Image
+    renders = {}
+    for sl, slot in slots.items():
+        hits = sorted(rdir.glob(f"{sl}_*.png")) if rdir.exists() else []
+        renders[sl] = hits[0] if hits else None
+    have = [sl for sl, p in renders.items() if p]
+    sized = [sl for sl, p in renders.items() if p and Image.open(p).size == (2048, 2048)]
+    box1 = len(sized) == 10
+
+    enforced_fail, advisory = [], 0
+    for sl, slot in slots.items():
+        if not renders[sl]:
+            enforced_fail.append(f"{sl}:MISSING"); continue
+        res = vr.validate_image(sku, renders[sl], slot)
+        for r in res:
+            if r["status"] == "fail":
+                if r["gate"] in ENFORCED_GATES:
+                    enforced_fail.append(f"{sl}:{r['gate']}")
+                else:
+                    advisory += 1
+    pv = vr.pairwise_angles(list(slots.values()))
+    if pv:
+        enforced_fail.append(f"pairwise:{[v['reject_slot'] for v in pv]}")
+    box2 = not enforced_fail
+
+    st_path = ROOT / "build" / f"{sku}_state.json"
+    st = json.loads(st_path.read_text(encoding="utf-8")) if st_path.exists() else {}
+    box3 = box2 or st.get("retries_exhausted", False)
+
+    import subprocess
+    dirty = subprocess.run(["git", "status", "--porcelain",
+                            f"specs/{sku}.json",
+                            f"workspace/golden/{sku}/manifest_{sku}.json"],
+                           cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    ahead = subprocess.run(["git", "log", "origin/HEAD..HEAD", "--oneline"],
+                           cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    box4 = (not dirty) and (not ahead)
+
+    boxes = [
+        (box1, f"all 10 renders downloaded + 2048^2 ({len(sized)}/10)"),
+        (box2, "validate_render ENFORCED gates PASS on all 10" +
+               (f" -- FAIL {enforced_fail}" if enforced_fail else "")),
+        (box3, "failures auto-retried and re-gated"),
+        (box4, "manifest + spec pushed (clean, not ahead)"),
+    ]
+    if all(b for b, _ in boxes):
+        print(f"{sku}: 10/10 OK · pushed · repo clean · COMPLETE"
+              + (f"  [advisory heuristic flags: {advisory} — visual QC]" if advisory else ""))
+        return 0
+    print(f"{sku}: NOT COMPLETE — unchecked:")
+    for ok, label in boxes:
+        if not ok:
+            print(f"  [ ] {label}")
+    if advisory:
+        print(f"  (advisory heuristic gate flags: {advisory} — miscalibrated on real renders; visual QC)")
+    return 1
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("sku")
@@ -138,7 +213,11 @@ def main():
     ap.add_argument("--emit-plan", action="store_true")
     ap.add_argument("--renders-dir")
     ap.add_argument("--commit", action="store_true")
+    ap.add_argument("--stage")
     args = ap.parse_args()
+
+    if args.stage == "finish":
+        sys.exit(finish(args.sku))
 
     source_gate(args.sku, args.source_dir)
 

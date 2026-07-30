@@ -63,3 +63,6 @@ tests/golden/source_clean_cad/*
 tests/golden/source_watermarked/*
 tests/golden/source_worn_photo/*
 workspace/golden/**/ref/*
+
+build/*_urls.json
+build/*_state.json
