@@ -36,4 +36,7 @@ All geometry per `docs/13` (JEWELLERY PRESERVATION) + the catalog SOURCE_SPEC. O
 ## GATE MAP (enforced in code)
 P1 → G1 · P3 → slot manifest · P4 → G10 + refs/ preflight · P6 → G9 scale, G14 content · P7 → G12 · P8 → G2–G9. A catalog is COMPLETE only when all 10 render, all gates pass, images are downloaded, and the push succeeds (`run_catalog.py --stage finish`).
 
-**Build status (honest):** enforced today — G1, G10 (within-group), G14, slot-count manifest, G2–G9 (heuristic/advisory on real renders). Not yet built — refs/ per-slot distinct `medias[0]` + `--stage prompts` hard-fail (P4), G12 mark-removal (P7), G9 true-to-source scale as blocking (P6).
+**Build status (honest):**
+- Enforced (blocking): G1 format · G10 within-group angle · **G12 marks** (watermark/vendor — blocking; isolated band engraving is advisory) · G14 content · slot-count manifest · **`--stage prompts` refs/ hard-fail** (P4: refs/<SKU>/ must supply a distinct per-slot medias[0], else STOP before generation).
+- Advisory (reported, calibrating): G2–G9 pixel-geometry heuristics on real renders; G9 true-to-source scale (needs a finger/source reference to block reliably).
+- refs/ images are operator-provided assets (gitignored), the same way source CAD views are.

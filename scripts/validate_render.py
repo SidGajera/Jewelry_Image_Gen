@@ -196,6 +196,29 @@ def g11_logo(bgr, slot):
     return [_g("G11_LOGO", "pass", detail="no unauthorized text" if logo is None else "locked logo asset present")]
 
 
+def g12_marks(bgr, slot):
+    """MARKS (P7): no source watermark / vendor mark / engraved maker's mark
+    carried into the render; inner shank stays plain. BLOCKING on a tiled/vendor
+    watermark (robust). An isolated engraved glyph on the polished band is
+    reported ADVISORY (subtle; false-positive prone) rather than blocking."""
+    wm, det = cv.detect_watermark(bgr)
+    if wm:
+        return [_g("G12_MARKS", "fail", "watermark/vendor mark", "none", det)]
+    # advisory: isolated small dark glyph on an otherwise smooth bright-metal band
+    import numpy as np
+    gray = cv.cv2.cvtColor(bgr, cv.cv2.COLOR_BGR2GRAY)
+    metal = (gray > 150).astype("uint8")
+    dark_on_metal = ((gray < 90).astype("uint8") &
+                     cv.cv2.dilate(metal, np.ones((15, 15), np.uint8)))
+    n, _, stats, _ = cv.cv2.connectedComponentsWithStats(dark_on_metal, 8)
+    h, w = gray.shape
+    glyphs = [i for i in range(1, n) if 20 <= stats[i, cv.cv2.CC_STAT_AREA] <= h * w * 0.0008]
+    if glyphs:
+        return [_g("G12_MARKS", "unmeasurable", f"{len(glyphs)} possible band marks", "0",
+                   "advisory: verify inner shank is plain (no engraved mark)")]
+    return [_g("G12_MARKS", "pass", "no watermark, band clean", "none")]
+
+
 def g14_content(bgr, slot):
     """CONTENT COMPLIANCE (lifestyle only): jewellery is the subject, people are
     set dressing. FAIL on (1) two faces within one face-width, (2) any face
@@ -254,6 +277,7 @@ def validate_image(sku, image_path, slot):
     res += g9_piece_count(bgr)
     res.append(g10_angle_single(bgr, slot))
     res += g11_logo(bgr, slot)
+    res += g12_marks(bgr, slot)
     res += g14_content(bgr, slot)
     return res
 

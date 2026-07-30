@@ -68,3 +68,8 @@ build/*_urls.json
 build/*_state.json
 
 models/
+
+refs/**/*.png
+refs/**/*.jpg
+refs/**/*.jpeg
+refs/**/*.webp

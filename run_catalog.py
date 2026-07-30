@@ -137,7 +137,27 @@ def git_push(sku):
 # user's visual QC, per the no-self-QC policy) until calibrated on approved-render
 # goldens. G10 pairwise (declared, within-group) IS enforced; single-shot
 # elevation estimate is advisory.
-ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO", "G14_CONTENT"}
+ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO", "G12_MARKS", "G14_CONTENT"}
+IMG_EXT = (".png", ".jpg", ".jpeg", ".webp")
+
+
+def check_refs(sku):
+    """P4: refs/<SKU>/ must hold a DISTINCT per-slot reference (medias[0]) for all
+    10 slots — a shared reference yields ten near-identical views. Returns the
+    missing slot list ([] if complete)."""
+    matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
+    spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
+    slots = matrix["categories"][spec["category"]]["slots"]
+    rdir = ROOT / "refs" / sku
+    missing, refs = [], {}
+    for s in slots:
+        hits = [p for p in (rdir.glob(f"{s['slot']}_*") if rdir.exists() else [])
+                if p.suffix.lower() in IMG_EXT]
+        if hits:
+            refs[s["slot"]] = hits[0]
+        else:
+            missing.append(s["slot"])
+    return missing, refs
 
 
 def finish(sku):
@@ -218,6 +238,22 @@ def main():
 
     if args.stage == "finish":
         sys.exit(finish(args.sku))
+
+    if args.stage == "prompts":
+        missing, refs = check_refs(args.sku)
+        if missing:
+            print(f"STOP: refs/{args.sku}/ missing per-slot reference for slots {missing} "
+                  f"-- P4 requires a DISTINCT medias[0] per slot (a shared ref = 10 identical views). "
+                  f"Add refs/{args.sku}/<slot>_*.png for each before generating.")
+            sys.exit(2)
+        _, prompts = bp.build_all(args.sku)
+        outp = ROOT / "build" / f"{args.sku}_prompts.json"
+        outp.parent.mkdir(parents=True, exist_ok=True)
+        for p in prompts:
+            p["ref"] = refs[p["slot"]].name
+        outp.write_text(json.dumps(prompts, indent=2), encoding="utf-8")
+        print(f"{args.sku}: 10/10 prompts built, all refs present -> {outp}")
+        sys.exit(0)
 
     source_gate(args.sku, args.source_dir)
 
