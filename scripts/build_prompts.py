@@ -140,13 +140,28 @@ LIFESTYLE_NEGATIVE = ("kissing, couple kissing, faces touching, embracing, intim
                       "romantic contact, cheek to cheek, couple as the subject, people in focus, "
                       "suggestive posing")
 
+# Realism / anti-AI, appended to EVERY lifestyle slot (all catalogs).
+REALISM_POSITIVE = ("Photographed on a full-frame camera, 85mm, f/2.0, natural available light. "
+                    "Real skin with visible pores, fine hairs, knuckle creases, faint veins, uneven "
+                    "nail beds, natural nail length. Hands show real anatomy -- tendons, joint lines, "
+                    "slight asymmetry. Fabric shows weave and genuine creasing. Slight motion "
+                    "imperfection, candid framing, honest colour. This slot uses a DISTINCT model, "
+                    "wardrobe and location from every other lifestyle slot (rotate skin tone and age "
+                    "within the catalog theme).")
+REALISM_NEGATIVE = ("airbrushed skin, plastic skin, waxy texture, poreless face, symmetrical face, "
+                    "generic AI model, stock-photo smile, uncanny hands, extra fingers, fused fingers, "
+                    "malformed knuckles, glossy CGI highlights, HDR glow, over-smoothed background, "
+                    "beige knit sweater, oatmeal chunky knit, neutral couch, studio seamless backdrop "
+                    "in a lifestyle shot, identical model across slots")
+
 
 def build_prompt(spec, slot):
     grp = slot["group"]
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
     if grp == "lifestyle":
-        neg = neg + ", " + LIFESTYLE_NEGATIVE
+        scene = scene + ". " + REALISM_POSITIVE
+        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE
     geom = " ".join(p for p in [
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),

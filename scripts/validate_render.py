@@ -249,16 +249,16 @@ def g14_content(bgr, slot):
             if fv > ring_var:
                 return [_g("G14_CONTENT", "fail", f"face sharper ({fv:.0f}>{ring_var:.0f})",
                            "ring sharpest", "a face is in sharper focus than the ring")]
-    # (3) person area vs jewellery area -- gated on 2+ faces so an allowed solo
-    # hand (hand = skin, always > jewellery) or a single soft-focus model is not
-    # falsely failed; this rule targets a COUPLE/people dominating the frame.
-    if len(faces) >= 2:
-        person = int(cv.skin_mask(bgr).sum())
-        jew = max(cv.jewellery_area(bgr), 1)
-        if person > jew * 6:
-            return [_g("G14_CONTENT", "fail", f"{len(faces)} faces, person {person} > 6x jewellery",
-                       "<=6x", "couple/people are the subject")]
-    return [_g("G14_CONTENT", "pass", f"faces={len(faces)}", "compliant")]
+    # (3) couple-as-subject: TWO PROMINENT faces (each large in frame). A single
+    # allowed model, or an allowed SECONDARY partner (small / softly out of focus,
+    # per the approved pose set), stays below the prominence bar and passes; rules
+    # 1 and 2 still catch adjacency and any in-focus face.
+    hh, ww = bgr.shape[:2]
+    prominent = [f for f in faces if (f[2] * f[3]) >= 0.03 * hh * ww]
+    if len(prominent) >= 2:
+        return [_g("G14_CONTENT", "fail", f"{len(prominent)} prominent faces", "<=1 prominent",
+                   "two people prominently framed (couple is the subject)")]
+    return [_g("G14_CONTENT", "pass", f"faces={len(faces)} prominent={len(prominent)}", "compliant")]
 
 
 def validate_image(sku, image_path, slot):
