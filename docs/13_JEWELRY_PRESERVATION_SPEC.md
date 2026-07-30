@@ -100,10 +100,12 @@ Capture this full field list into SOURCE_SPEC on the first source view; re-read 
 
 **The generation call is FROZEN** (user-locked 2026-07-30): plain Higgsfield text-to-image, medias [pose/studio ref, SOURCE piece], 2k, 1:1, count 1, all slots one batch — **no img2img, no denoise/strength, no compositing of the jewelry.** The earlier img2img/composite routes are WITHDRAWN. Enforcement is entirely OUTSIDE the call:
 
-**DETERMINISTIC GATE + SAME-CALL RETRY (mandatory, every render):**
-- Detect accent stones per run on the rendered image (generalised beyond pavé to every `accent_run`).
-- Compare to the spec count; **outside spec ± tolerance = auto-reject** (`scripts/validate_render.py` G2; siblings G3–G8 cover size, run, setting, L:W, setting-count, unauthorized clusters).
-- On any fail, **re-fire the SAME unmodified call** for that slot with the failed gate's constraint appended to the prompt NEGATIVES; max 5 retries, then STOP and report slot+gate. **Never deliver an unchecked render.**
+**PRIMARY — ACCENT-RUN COMPOSITE (user-locked 2026-07-30, approved exception, docs/21 §2).** Since the frozen call cannot count, the accent/pavé run is **composited post-render from the clean CAD source view** (local Python, same layer mechanism as the logo), so the count is correct BY CONSTRUCTION. Jewelry body + scene stay generated; only the accent run is transferred. Requires the 4 clean CAD views to pass `validate_source`. `scripts/composite_accent_run.py`.
+
+**GATE + SAME-CALL RETRY (mandatory, every render — also the fallback until composite is wired/possible):**
+- Detect accent stones per run on the rendered image (every `accent_run`).
+- Compare to the spec count; **outside spec ± tolerance = auto-reject** (`scripts/validate_render.py` G2; siblings G3–G8 cover size, run, setting, L:W, setting-count, unauthorized clusters). The gate also verifies the composite output.
+- On any fail with no composite available, **re-fire the SAME unmodified call** for that slot with the failed gate's constraint appended to the prompt NEGATIVES; max 5 retries, then STOP and report slot+gate. **Never deliver an unchecked render.**
 
 Wired into `docs/22` (DETERMINISTIC ENFORCEMENT + P4). QUALITY_MEMORY: `pave-is-uncountable-by-diffusion-enforce-like-the-logo`; machine-readable `memory/failures.json`.
 

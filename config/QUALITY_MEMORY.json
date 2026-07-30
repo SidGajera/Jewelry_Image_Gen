@@ -886,12 +886,14 @@
       "rejected_output_ref": "LR-0203 side-profile + front-elevation renders (jobs cc73e83d / ede8309d), REJECTED 2026-07-30",
       "fix": "PAVE COUNT — DETERMINISTIC ENFORCEMENT (ALL SKUs, user-locked 2026-07-30). Treat pave like the logo: enforce, do not generate. PRIMARY (required once a clean CAD side view is available): generate img2img with the real CAD side view as structural reference, denoise capped so shoulder geometry + stone run are preserved; the pave row is COPIED, never re-invented. Alt primary (b): composite the shoulder pave from the CAD render onto the generated scene, same layer approach as the logo. FALLBACK GATE (c) — MANDATORY on EVERY render until (a)/(b) is live: detect pave stones per shoulder on the rendered image, compare to SOURCE_SPEC count, outside source +/-1 = auto-reject and auto-regenerate with count restated + denoise lowered; never deliver an unchecked render. Also state LR-0203 numeric locks every prompt: centre elongated OVAL L:W 1.45:1 (not round/near-round/1.2); prongs exactly 4 thin single rounded claws (not broad/split/double/fluted/flared); shoulder pave single row 18-20/side, each dia = 1/10 band width, near-touching uniform, coverage front two-thirds past shoulder toward base; setting flush French/micro-bead level with band (no raised rail/channel/metal edge below); band thin uniform round/knife-edge no taper/widening.",
       "date_recorded": "2026-07-30",
-      "status": "unresolved",
+      "status": "resolution-approved-pending-source",
+      "resolution": "User decision 2026-07-30 (option 4 then 1): (4) ROOT CAUSE = the source set is 2 watermarked retail photos (one hand-held); provide the 4 clean CAD views (top/front/true_side/back_gallery) so validate_source passes and even the frozen call improves. (1) ACCENT-RUN COMPOSITE = keep the Higgsfield call FROZEN; composite the accent/pave run post-render in local Python from the clean CAD view (scripts/composite_accent_run.py), same layer mechanism as the logo, so count is correct by construction. APPROVED EXCEPTION to 'do not composite the jewelry', scoped to accent runs only; jewelry body + scene stay generated. NOT option 2 (would unfreeze the call) and NOT option 3 (best-effort never converges). See docs/21 §2, docs/13 §6c.",
       "scope": "global",
-      "repeat_count": 2,
+      "repeat_count": 3,
       "occurrences": [
         "LR-0203 slot 03 (2026-07-30, ~10/side)",
-        "LR-0203 side+front re-gen (2026-07-30, ~14-15/side, L:W collapse, split claws, raised rail)"
+        "LR-0203 side+front re-gen (2026-07-30, ~14-15/side, L:W collapse, split claws, raised rail)",
+        "LR-0203 job 440a2dfa (2026-07-30, frozen text-to-image slot 02: ~9-10/side vs 19, camera ignored declared side-profile -> 3/4 front, coverage stops mid-shank). Confirms frozen plain t2i cannot hit exact count/angle; same-call retry cannot converge; every copy mechanism (img2img/composite) is frozen off -> exact accent count NOT achievable under current constraints."
       ],
       "refs": "docs/13_JEWELRY_PRESERVATION_SPEC.md §6c; docs/22_CATALOG_PIPELINE_SOP.md P3/P4; docs/04_LOGO_WORKFLOW.md (logo-layer analogue); workspace/golden/LR-0203/SOURCE-SPEC.md"
     }

@@ -36,6 +36,8 @@ Always execute generation through the existing Higgsfield MCP integration that p
 
 Therefore the ban on "PIL/OpenCV rendering" targets **synthesis** engines, never the composite/QC/cut steps. Python may: manage files, cut/key source assets, composite preserved assets, validate, QC, crop, resize, rename, log, automate. Python may **never synthesise image content**.
 
+**APPROVED ACCENT-RUN COMPOSITE EXCEPTION (user-locked 2026-07-30).** The Higgsfield generation call is FROZEN (docs/22): plain text-to-image, medias [pose/studio ref, SOURCE piece], 2k/1:1/count 1/one batch — no img2img, no denoise. Because diffusion cannot count discrete accent stones or hold an exact count, **accent/pavé runs MAY be composited post-render, in local Python, from the clean source CAD view** — the same preserved-pixel layer mechanism proven on the logo (§2, `docs/04`). This is a deliberate carve-out to the "do not composite the jewelry" clause, scoped to **accent runs only**: the jewelry BODY (primary stone, head/setting, structure/band) and the SCENE remain **generated**, never composited; only the accent-stone run is transferred so its count is correct by construction. The generation call itself is unchanged. Prerequisite: a clean CAD source view (the 4 required views must pass `validate_source`). `scripts/composite_accent_run.py`.
+
 ## 3. MODEL POLICY — BACKWARD COMPATIBILITY DECIDES (user-locked 2026-07-16)
 
 **Do NOT hard-code model names. Do NOT permanently ban internal model names.** Models are Higgsfield MCP internals; naming one is not a provider switch, and banning one is not provider hygiene.
