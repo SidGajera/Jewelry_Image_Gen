@@ -449,6 +449,21 @@
       "origin": "user 2026-07-30",
       "failure_cases": [],
       "status": "active"
+    },
+    {
+      "id": "GEOM_NO_INVENT",
+      "key": "geometry.no_invention",
+      "statement": "a studio angle must trace to a source view within 45deg (az+el); no source view = invention, block the slot; lifestyle worn-camera exempt",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G_INVENT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "invented_studio_angle"
+      ],
+      "status": "active"
     }
   ]
 }

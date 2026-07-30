@@ -67,17 +67,23 @@
       "measures": "jewellery is the subject"
     },
     "G15_HAND_ANATOMY": {
-      "blocking": true,
+      "blocking": false,
       "kind": "heuristic",
       "measures": "ring on ONE finger; band continuity; position",
-      "note": "MediaPipe landmark band-arm trace (primary) + band-gap heuristic fallback. Blocking per user 2026-07-30; unmeasurable (no hand detected) does not block."
+      "note": "OBSERVED (demoted from blocking 2026-07-30): false-rejected verified-good LR-0205 slot07 (two clasped hands read as one -> mis-assigned finger). MediaPipe finger assignment unreliable on overlapping/partial hands. Re-promote only after FP=0 on the LR-0205/0206 golden set. Single-hand placement still measured + reported."
     },
     "G16_SKIN_REALISM": {
-      "blocking": true,
+      "blocking": false,
       "kind": "heuristic",
-      "threshold": 70,
+      "threshold": 45,
       "measures": "exposure-normalized skin HF energy",
-      "note": "Below threshold=plastic skin. Threshold 70 PROVISIONAL: passes confirmed-good slot10 (135) + rooftop (92); fails waxy (54-70). Lock on labelled rooftop-PASS/beach-FAIL goldens via calibrate.py."
+      "note": "OBSERVED (demoted from blocking 2026-07-30): false-rejected verified-good soft beauty-crop skin (LR-0205 slot09=64); normalized-HF cannot cleanly separate soft-focus from waxy. Threshold 45 for advisory signal. Re-promote only after FP=0 on a labelled soft-vs-waxy golden set."
+    },
+    "G_INVENT": {
+      "blocking": true,
+      "kind": "robust",
+      "measures": "studio angle traces to a source view within 45deg",
+      "note": "No source view within 45deg (az+el) of a studio slot = invention, blocked. Source angles in specs/<SKU>_views.json. Lifestyle exempt."
     }
   }
 }

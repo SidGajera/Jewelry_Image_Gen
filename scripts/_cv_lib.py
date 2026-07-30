@@ -441,6 +441,8 @@ def ring_on_one_finger(bgr):
         return "unmeasurable", "hand model unavailable"
     if not lm:
         return "unmeasurable", "no hand detected (macro crop)"
+    if len(lm) >= 2:
+        return "unmeasurable", "2+ overlapping hands; single-ring finger assignment unreliable (visual QC)"
     # locate the ring as the gold band WITHIN a hand's bounding box (not the
     # global brightest blob -- on a beach/sunset frame that is the sky).
     gold_all = _gold_band_mask(bgr)

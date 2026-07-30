@@ -196,6 +196,31 @@ def g11_logo(bgr, slot):
     return [_g("G11_LOGO", "pass", detail="no unauthorized text" if logo is None else "locked logo asset present")]
 
 
+def g_invent(sku, slot):
+    """G-INVENT (studio slots): a studio angle must trace to a real source view.
+    If the slot's declared azimuth/elevation has NO source view within 45 deg
+    (both axes), generating it is INVENTION, not photography -> FAIL. Source view
+    angles are declared in specs/<SKU>_views.json. Lifestyle slots are exempt
+    (worn camera has no CAD equivalent; docs/00 geometry-vs-camera)."""
+    if slot.get("group") != "studio":
+        return [_g("G_INVENT", "skip", detail="lifestyle: worn camera has no CAD equivalent")]
+    import json as _json
+    vp = ROOT / "specs" / f"{sku}_views.json"
+    if not vp.exists():
+        return [_g("G_INVENT", "fail", "no source-view map", "specs/<SKU>_views.json",
+                   "no declared source views -> cannot establish any studio angle is real")]
+    views = _json.loads(vp.read_text(encoding="utf-8")).get("views", [])
+    saz, sel = slot["azimuth"], slot["elevation"]
+    for v in views:
+        daz = abs(v["azimuth"] - saz) % 360
+        daz = min(daz, 360 - daz)
+        if daz <= 45 and abs(v["elevation"] - sel) <= 45:
+            return [_g("G_INVENT", "pass", v.get("name", "view"), "<=45deg",
+                       f"covered by source view {v.get('name')} (az{v['azimuth']}/el{v['elevation']})")]
+    return [_g("G_INVENT", "fail", f"az{saz}/el{sel}", "source view <=45deg",
+               "no source view within 45deg of this angle -- generating it is invention, not photography")]
+
+
 def g12_marks(bgr, slot):
     """MARKS (P7): no source watermark / vendor mark / engraved maker's mark
     carried into the render; inner shank stays plain. BLOCKING on a tiled/vendor
@@ -316,6 +341,7 @@ def validate_image(sku, image_path, slot):
     res += g9_piece_count(bgr)
     res.append(g10_angle_single(bgr, slot))
     res += g11_logo(bgr, slot)
+    res += g_invent(sku, slot)
     res += g12_marks(bgr, slot)
     res += g14_content(bgr, slot)
     res += g15_hand_anatomy(bgr, slot)
