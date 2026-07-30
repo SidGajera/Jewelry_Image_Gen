@@ -1,0 +1,67 @@
+{
+  "sku": "LR-0207",
+  "category": "ring",
+  "title": "Oval claw solitaire, ten clustered round shoulder accents (5/side), low open basket, no halo, 18k yellow gold",
+  "note_source_vs_listing": "Etsy 'Bella': oval claw solitaire, 18k Yellow Gold, 'ten round cut side stones set low in a basket setting'. CAD renders confirm oval + double-claw + open low basket + scattered shoulder clusters. Pixels and listing agree (D2D).",
+  "primary_stones": [
+    {
+      "id": "center",
+      "shape": "oval",
+      "cut": "oval_brilliant",
+      "orientation": "north_south",
+      "lw_ratio": 1.4,
+      "tolerance": 0.12,
+      "count": 1,
+      "scale_ratio_to_structure": 2.3
+    }
+  ],
+  "setting_elements": {
+    "type": "claw",
+    "count": 4,
+    "form": "double",
+    "layout": "oval_four_position_double_claw"
+  },
+  "accent_runs": [
+    {
+      "id": "shoulder_left",
+      "rows": 1,
+      "count": 5,
+      "tolerance": 1,
+      "arrangement": "scattered_cluster_mixed_size",
+      "stone_dia_ratio_to_structure": 0.13,
+      "size_tolerance": 0.5,
+      "coverage_fraction": 0.4,
+      "setting": "prong_cluster_low_near_basket"
+    },
+    {
+      "id": "shoulder_right",
+      "rows": 1,
+      "count": 5,
+      "tolerance": 1,
+      "arrangement": "scattered_cluster_mixed_size",
+      "stone_dia_ratio_to_structure": 0.13,
+      "size_tolerance": 0.5,
+      "coverage_fraction": 0.4,
+      "setting": "prong_cluster_low_near_basket"
+    }
+  ],
+  "halo": "none",
+  "under_head": "open_basket_low",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "source_media_id": "b58fe0f0-e5d3-4bd0-ba33-2e82b2b21373"
+}
