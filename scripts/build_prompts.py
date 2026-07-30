@@ -22,21 +22,52 @@ ROOT = Path(__file__).resolve().parent.parent
 # All enforcement is OUTSIDE the call (gates + retry). This builder only produces
 # the spec-driven prompt text + negatives; it sets no generation params.
 
-NEGATIVE = (
-    "round brilliant primary stone, near-round primary, low length-to-width ratio, "
-    "broad setting elements, split claws, double claws, flared prongs, fluted prong, extra prong, "
-    "hidden halo, halo, accent stones under primary stone, basket pave, peekaboo diamonds, "
-    "extra accent row, oversized accent stones, widely spaced accents, sparse accents, short accent run, "
-    "channel set accents, raised rail, metal edge below accents, thick bead setting, accents stopping short, "
-    "tapered structure, wider structure, flat structure, added filigree, "
-    "second piece, extra piece, duplicate jewelry, ghost clasp, doubled link run, "
-    "watermark, text, vendor mark, logo overlay, portrait format, landscape format, non-square crop, "
-    "yellow gold, rose gold, rotated piece, asymmetric structure, "
-    # inner-shank clean-metal lock (user-locked 2026-07-30, all catalogs): never invent an engraving/hallmark
-    "engraved mark on the band, maker's mark, hallmark, stamp on the inner shank, "
-    "initials engraved in metal, karat stamp, serial number, logo cut into metal, "
-    "engraving on the shank interior, etched glyph, chisel mark"
-)
+def build_negative(spec):
+    """Emit the negative list FROM the spec so we never negate the real geometry
+    (e.g. LR-0206's double claws / scattered clusters are the design, not defects)."""
+    negs = ["duplicate jewelry, second piece, extra piece, ghost clasp, doubled link run",
+            "watermark, text, vendor mark, logo overlay",
+            "portrait format, landscape format, non-square crop, rotated piece, asymmetric structure",
+            # inner-shank clean-metal lock (all catalogs)
+            "engraved mark on the band, maker's mark, hallmark, stamp on the inner shank, "
+            "initials engraved in metal, karat stamp, serial number, logo cut into metal, "
+            "engraving on the shank interior, etched glyph, chisel mark"]
+    # metal colour: forbid the colours the spec is NOT
+    metal = spec.get("metal", "")
+    if "yellow" not in metal:
+        negs.append("yellow gold")
+    if "rose" not in metal:
+        negs.append("rose gold")
+    # primary shape drift
+    for s in spec.get("primary_stones", []):
+        if s.get("lw_ratio", 1) >= 1.25:
+            negs.append("round primary stone, near-round primary, low length-to-width ratio")
+    # setting form: only forbid split/double/broad when the design is plain single
+    form = (spec.get("setting_elements") or {}).get("form", "")
+    if form == "plain_slender":
+        negs.append("broad setting elements, split claws, double claws, flared prongs, fluted prong, extra prong")
+    else:
+        negs.append("extra prong, wrong prong count")
+    # halo / under-head
+    if spec.get("halo", "none") == "none":
+        negs.append("hidden halo, halo, accent stones under primary stone, basket pave, peekaboo diamonds")
+    # accent runs: forbid spacing/size drift only where the run is a uniform micro row
+    runs = spec.get("accent_runs") or []
+    if runs:
+        arrangement = runs[0].get("arrangement", "uniform_row")
+        negs.append("extra accent row, oversized accent stones, short accent run")
+        if arrangement != "scattered_cluster_mixed_size":
+            negs.append("widely spaced accents, sparse accents")
+        settings = {r.get("setting", "") for r in runs}
+        if any(str(s).startswith("flush") for s in settings):
+            negs.append("channel set accents, raised rail, metal edge below accents, thick bead setting, accents stopping short")
+    # structure
+    st = spec.get("structure") or {}
+    if not st.get("taper"):
+        negs.append("tapered structure")
+    if st.get("uniform_width"):
+        negs.append("wider structure, flat structure")
+    return ", ".join(negs)
 
 # Positive inner-shank clause appended to every prompt's PIECE section.
 INNER_SHANK = ("INNER SHANK: plain polished metal, smooth, unmarked, uninterrupted "
@@ -57,22 +88,32 @@ def _stone_phrase(s):
 def _setting_phrase(se):
     if not se or se.get("count") in (None, 0):
         return ""
-    return (f"Exactly {se['count']} {se.get('form', '').replace('_', ' ')} {se['type']} setting elements, "
-            f"{se.get('layout', '')}-set, thin, single. NO broad, split, double or flared elements, "
-            f"no extra element.")
+    form = se.get("form", "")
+    layout = se.get("layout", "").replace("_", " ")
+    if form == "plain_slender":
+        return (f"Exactly {se['count']} plain slender {se['type']} setting elements, {layout}-set, "
+                f"thin and single -- NO broad, split, double or flared elements, no extra element.")
+    # non-plain forms (double/split) are the intended design; state them, do not forbid them
+    return (f"Exactly {se['count']} {form.replace('_', ' ')} {se['type']} setting elements, {layout} "
+            f"(the {form.replace('_',' ')} form is intentional and must be preserved); no extra or missing element.")
 
 
 def _accent_phrase(runs, structure):
     if not runs:
         return "No accent stones anywhere."
-    r = runs[0]  # runs share geometry; state once, note it applies to each
+    r = runs[0]
     ids = ", ".join(x["id"] for x in runs)
+    cov = int(r.get("coverage_fraction", 0.66) * 100)
+    if r.get("arrangement") == "scattered_cluster_mixed_size":
+        return (f"Accent runs [{ids}]: each a SCATTERED CLUSTER of about {r['count']} round accents of "
+                f"MIXED sizes, {r.get('setting', '').replace('_', ' ')}, trailing naturally along the shoulder "
+                f"with irregular organic spacing (NOT a uniform row, NOT evenly spaced), spanning about {cov}% "
+                f"of the shoulder. Preserve the mixed sizes and scattered layout exactly.")
     return (f"Accent runs [{ids}]: each is {r['rows']} row, exactly {r['count']} MICRO stones "
             f"(each diameter about {r.get('stone_dia_ratio_to_structure', 0.1):.2f}x the structure width), "
             f"tightly packed, near-touching, uniform. Setting {r.get('setting', '').replace('_', ' ')} "
             f"-- flush, level with the surface, NO raised rail, NO channel, NO metal edge below the stones. "
-            f"Coverage spans the front {int(r.get('coverage_fraction', 0.66) * 100)}% of the structure, "
-            f"not stopping short.")
+            f"Coverage spans the front {cov}% of the structure, not stopping short.")
 
 
 def _halo_phrase(spec):
@@ -97,14 +138,15 @@ def _structure_phrase(st):
 def build_prompt(spec, slot):
     grp = slot["group"]
     scene = spec["scene"][grp]
+    neg = build_negative(spec)
     geom = " ".join(p for p in [
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),
         _halo_phrase(spec),
         _accent_phrase(spec.get("accent_runs", []), spec.get("structure", {})),
         _structure_phrase(spec.get("structure")),
-        f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}. "
-        f"No yellow, no rose, no two-tone.",
+        f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}, "
+        f"single tone (no two-tone).",
         INNER_SHANK,
     ] if p)
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "
@@ -116,14 +158,14 @@ def build_prompt(spec, slot):
         f"PIECE ({spec['sku']}, category {spec['category']}, match structural reference exactly):\n{geom}\n\n"
         f"SCENE: {scene}. Realistic macro luxury jewellery product photography, tack-sharp on the piece, "
         f"shallow depth of field, sRGB, no watermark, no text. Format 1:1 square, 2048x2048.\n\n"
-        f"NEGATIVE: {NEGATIVE}"
+        f"NEGATIVE: {neg}"
     )
     return {
         "slot": slot["slot"], "name": slot["name"], "group": grp,
         "azimuth": slot["azimuth"], "elevation": slot["elevation"], "crop": slot["crop"],
         "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
         "model": spec.get("model", "seedream_v5_pro"),
-        "prompt": prompt, "negative": NEGATIVE,
+        "prompt": prompt, "negative": neg,
     }
 
 

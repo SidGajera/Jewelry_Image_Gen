@@ -1,0 +1,17 @@
+{
+  "sku": "LR-0206", "category": "ring", "model": "seedream_v5_pro",
+  "source_media_id": "99140e1d-59ad-4e0f-b253-c3df6ccf3fb1",
+  "aspect_ratio": "1:1", "resolution": "2k", "mode": "frozen_text_to_image",
+  "jobs": {
+    "01_top_down_flatlay": "32d043b4-b011-44f2-98e7-c6bf903e9276",
+    "02_true_side_profile": "e6e7f22b-5a30-4860-b3b9-f98ae14751e8",
+    "03_front_elevation": "12c3da9f-966a-4629-858b-8249ee426982",
+    "04_macro_head": "1e6e8668-5bef-4ff8-a5cd-30ad2f8fa95f",
+    "05_low_hero": "2d2706ef-eb0a-40b6-8500-6f570f70c249",
+    "06_back_three_quarter": "ca58e5a7-850f-430a-a8b6-382cc739b581",
+    "07_hand_top_down": "390e6197-e38e-4be0-922a-2e49b49ff5e6",
+    "08_hand_45_three_quarter": "34f229ac-4f96-48ae-90d7-fdb3a857e989",
+    "09_hand_side_macro": "b4e2db81-9da9-443b-817b-f1a764c64333",
+    "10_hand_tilted_pov": "22bdf568-c9e5-4ffd-8567-bb267dca5303"
+  }
+}
