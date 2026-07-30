@@ -1,0 +1,22 @@
+[
+  {
+    "ts": 1785391159,
+    "tool": "background_task",
+    "detail": "banned tool invocation blocked"
+  },
+  {
+    "ts": 1785391159,
+    "tool": "show_generations",
+    "detail": "banned tool invocation blocked"
+  },
+  {
+    "ts": 1785391159,
+    "tool": "show_marketing_studio_generations",
+    "detail": "banned tool invocation blocked"
+  },
+  {
+    "ts": 1785391159,
+    "tool": "spawn_agent",
+    "detail": "banned tool invocation blocked"
+  }
+]
