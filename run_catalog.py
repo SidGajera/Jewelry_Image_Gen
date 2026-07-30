@@ -182,9 +182,9 @@ def finish(sku):
                             f"specs/{sku}.json",
                             f"workspace/golden/{sku}/manifest_{sku}.json"],
                            cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    ahead = subprocess.run(["git", "log", "origin/HEAD..HEAD", "--oneline"],
+    ahead = subprocess.run(["git", "rev-list", "--count", "@{u}..HEAD"],
                            cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    box4 = (not dirty) and (not ahead)
+    box4 = (not dirty) and (ahead in ("", "0"))
 
     boxes = [
         (box1, f"all 10 renders downloaded + 2048^2 ({len(sized)}/10)"),
