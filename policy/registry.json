@@ -343,7 +343,9 @@
       "statement": "<=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation",
       "scope": "global",
       "precedence": 50,
-      "enforced_by": [],
+      "enforced_by": [
+        "run_catalog.budget_check"
+      ],
       "origin": "user (05+17)",
       "failure_cases": [],
       "status": "active"
@@ -351,10 +353,12 @@
     {
       "id": "BACKGROUND_VELVET",
       "key": "background.studio",
-      "statement": "studio background is premium plain pure-white velvet only; plain, no AI-generated cloth",
+      "statement": "studio background is premium plain pure-white velvet only (low saturation, high luminance, fine fabric texture); reject coloured backgrounds, seamless paper, hard gradients, props",
       "scope": "global",
       "precedence": 50,
-      "enforced_by": [],
+      "enforced_by": [
+        "G18_BACKGROUND"
+      ],
       "origin": "docs 11",
       "failure_cases": [],
       "status": "active"

@@ -32,7 +32,7 @@ def _load(p, default=None):
 
 
 # non-gate enforcers: hard code-enforcers block like a blocking gate; visual = observed
-_HARD_NONGATE = {"run_catalog", "refs_preflight", "slot_manifest", "preflight", "regression_suite", "spec_source_read"}
+_HARD_NONGATE = {"run_catalog", "run_catalog.budget_check", "refs_preflight", "slot_manifest", "preflight", "regression_suite", "spec_source_read"}
 _OBSERVED_NONGATE = {"visual_checklist"}
 
 

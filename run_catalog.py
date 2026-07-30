@@ -58,6 +58,40 @@ def _policy_counts():
     return _chk.counts()
 
 
+# TOKEN_BUDGET runtime guard (registry rule TOKEN_BUDGET, enforced_by run_catalog.budget_check).
+# Cumulative token estimate per SKU; over cap => that SKU is marked blocked and the
+# queue continues. Not a render gate. The pipeline records an estimate via
+# `--record-tokens N`; the ledger persists across the run.
+TOKEN_CAP = 15000
+_LEDGER = ROOT / "memory" / "token_ledger.json"
+
+
+def _ledger_load():
+    if _LEDGER.exists():
+        try:
+            return json.loads(_LEDGER.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def budget_check(sku, add=0, cap=TOKEN_CAP):
+    """Add `add` tokens to this SKU's running total, persist, and report status.
+    Returns {sku, tokens, cap, over, blocked}. On exceeding the cap the SKU is
+    flagged blocked (the caller stops this SKU and moves on); it is never a render
+    gate and never trims source fidelity/prompt/validation — only display spend."""
+    led = _ledger_load()
+    e = led.get(sku, {"tokens": 0, "blocked": False})
+    e["tokens"] = int(e.get("tokens", 0)) + int(add)
+    e["cap"] = cap
+    e["over"] = e["tokens"] > cap
+    e["blocked"] = bool(e.get("blocked")) or e["over"]
+    led[sku] = e
+    _LEDGER.parent.mkdir(parents=True, exist_ok=True)
+    _LEDGER.write_text(json.dumps(led, indent=2), encoding="utf-8")
+    return {"sku": sku, "tokens": e["tokens"], "cap": cap, "over": e["over"], "blocked": e["blocked"]}
+
+
 def source_gate(sku, source_dir=None):
     policy_gate()
     cmd = [sys.executable, "scripts/validate_source.py", sku]
@@ -272,7 +306,15 @@ def main():
     ap.add_argument("--renders-dir")
     ap.add_argument("--commit", action="store_true")
     ap.add_argument("--stage")
+    ap.add_argument("--record-tokens", type=int, help="add N tokens to this SKU's budget ledger, then report status")
+    ap.add_argument("--budget-status", action="store_true", help="print this SKU's token budget status")
     args = ap.parse_args()
+
+    if args.record_tokens is not None or args.budget_status:
+        st = budget_check(args.sku, add=args.record_tokens or 0)
+        flag = "BLOCKED (over cap)" if st["blocked"] else "ok"
+        print(f"{args.sku}: {st['tokens']}/{st['cap']} tokens · {flag}")
+        sys.exit(2 if st["blocked"] else 0)
 
     if args.stage == "finish":
         sys.exit(finish(args.sku))

@@ -2,7 +2,7 @@
 
 Read-only projection of the rule registry. Edit `policy/registry.json`, then run `python policy/gen_policy.py`. `policy/check.py` runs before every catalog and STOPs on conflicts.
 
-**28 rules active** · 18 enforced (blocking gate) · 8 observed (non-blocking gate / visual checklist) · 2 advisory (no gate) · 3 superseded.
+**28 rules active** · 20 enforced (blocking gate) · 8 observed (non-blocking gate / visual checklist) · 0 advisory (no gate) · 3 superseded.
 
 Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausibility · 50 user preference · 10 doc defaults. Higher wins; the loser is superseded, never deleted.
 
@@ -25,7 +25,7 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 | `ANGLE_NUMERIC_MATRIX` | 50 | camera defined by numeric azimuth/elevation/crop per slot; filenames carry no geometry; within-group pairwise separation 20az/15el | G10_ANGLE, refs_preflight | user 2026-07-30 |
 | `ANGLE_STUDIO_SLOTS` | 50 | ring studio 4 = top_down, true_side (edge-on stone), front_elevation, gallery_back (rear 3/4, filigree gallery + back of shank); gallery_back replaces macro_head | G10_ANGLE | user 2026-07-30 |
 | `AUTONOMY_RUN` | 50 | permissions granted once; run every catalog end-to-end with no check-ins; internal output only; user reviews after completion | run_catalog | user (19+20) |
-| `BACKGROUND_VELVET` | 50 | studio background is premium plain pure-white velvet only; plain, no AI-generated cloth | _advisory_ | docs 11 |
+| `BACKGROUND_VELVET` | 50 | studio background is premium plain pure-white velvet only (low saturation, high luminance, fine fabric texture); reject coloured backgrounds, seamless paper, hard gradients, props | G18_BACKGROUND | docs 11 |
 | `COUNTS_4_6` | 50 | exactly 4 studio (white velvet) + 6 lifestyle; one image per angle/pose | slot_manifest | user 2026-07-28 |
 | `FORMAT_ASPECT` | 50 | 1:1 square, 2048x2048 minimum, native, no upscale | G1_FORMAT | user 2026-07-30 |
 | `FROZEN_CALL` | 50 | Higgsfield generation call frozen: text-to-image, 2k/1:1/count1/one batch, medias [pose/studio ref, SOURCE piece]; no img2img/denoise/compositing of jewelry (accent-run composite exception approved) | run_catalog | user 2026-07-30 |
@@ -37,7 +37,7 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 | `REGRESSION_NO_REGRESS` | 50 | quality only ratchets up; a gate that stops catching a past failure fails the build; goldens are permanent | regression_suite | user (14+15) |
 | `SUBAGENT_BAN` | 50 | never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog | preflight | user 2026-07-30 |
 | `THEME_PER_CATALOG` | 50 | one coherent theme within a catalog; a different theme per catalog rotated by SKU hash | G17_THEME | user (24 P5) |
-| `TOKEN_BUDGET` | 50 | <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation | _advisory_ | user (05+17) |
+| `TOKEN_BUDGET` | 50 | <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation | run_catalog.budget_check | user (05+17) |
 
 ## Superseded rules (provenance — never deleted)
 
@@ -49,5 +49,4 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 
 ## Advisory rules (empty enforced_by — not machine-verified)
 
-- `TOKEN_BUDGET` — <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation
-- `BACKGROUND_VELVET` — studio background is premium plain pure-white velvet only; plain, no AI-generated cloth
+- (none)

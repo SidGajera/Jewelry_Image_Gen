@@ -90,6 +90,21 @@
       "kind": "heuristic",
       "measures": "lifestyle theme consistency + cross-catalog distinctness",
       "note": "Catalog-level: 6 lifestyle renders cluster in hue+luma (a=consistency); catalog palette differs from last 6 (b=distinctness); banned wardrobe prompt-enforced (c)."
+    },
+    "G18_BACKGROUND": {
+      "blocking": true,
+      "kind": "studio_background",
+      "thresholds": {
+        "sat_max": 14.0,
+        "lum_min": 210.0,
+        "gradient_max": 0.22,
+        "chan_spread_max": 0.04,
+        "texture_min": 0.3,
+        "texture_max": 5.0,
+        "min_bg_frac": 0.15
+      },
+      "measures": "studio background is plain pure-white velvet (low sat, high lum, fine mid-freq fabric texture)",
+      "note": "Studio slots only. Rejects coloured backgrounds (sat/chan), seamless paper (texture<min), hard gradients/sweeps (gradient), busy props (texture>max). Calibrated on 7 approved velvet renders (sat<=6.1, lum>=227, grad<=0.144, tex 0.76-1.64, chan<=0.022) -> FP=0 with wide margin. Golden: LR-0205 studio."
     }
   }
 }

@@ -316,6 +316,53 @@ def laplacian_var(gray):
     return float(cv2.Laplacian(gray, cv2.CV_64F).var())
 
 
+def background_velvet_stats(bgr, dilate_px=25):
+    """Sample the background (outside the piece mask) for the G18 velvet check.
+    Returns dict: bg_frac, sat, lum, gradient, texture, chan_spread.
+      sat  = mean HSV saturation over bg (0-255); velvet ~ low.
+      lum  = mean HSV value over bg (0-255); velvet ~ high.
+      gradient = spread of block-luminance across the frame /255 (hard gradient / seamless sweep -> high).
+      texture = std of the mid-frequency (band-pass) energy over bg; seamless paper ~ 0, velvet ~ moderate, props/edges ~ high.
+      chan_spread = max-min of per-channel BGR means over bg /255 (coloured cast -> high).
+    bg_frac < 0.15 -> not measurable (piece fills frame)."""
+    h, w = bgr.shape[:2]
+    mask = foreground_mask(bgr)
+    k = max(3, int(dilate_px))
+    dil = cv2.dilate(mask, np.ones((k, k), np.uint8))
+    bg = dil == 0
+    bg_frac = float(bg.mean())
+    if bg_frac < 0.15:
+        return {"bg_frac": bg_frac, "sat": None, "lum": None, "gradient": None,
+                "texture": None, "chan_spread": None}
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    s, v = hsv[:, :, 1].astype(np.float64), hsv[:, :, 2].astype(np.float64)
+    sat = float(s[bg].mean())
+    lum = float(v[bg].mean())
+    # per-channel colour cast
+    b, g, r = bgr[:, :, 0].astype(np.float64), bgr[:, :, 1].astype(np.float64), bgr[:, :, 2].astype(np.float64)
+    means = [b[bg].mean(), g[bg].mean(), r[bg].mean()]
+    chan_spread = float((max(means) - min(means)) / 255.0)
+    # frame-scale luminance gradient: block means over a grid, bg-only blocks
+    gy, gx = 6, 6
+    bh, bw = h // gy, w // gx
+    blk = []
+    for iy in range(gy):
+        for ix in range(gx):
+            sub_bg = bg[iy * bh:(iy + 1) * bh, ix * bw:(ix + 1) * bw]
+            if sub_bg.mean() < 0.5:
+                continue
+            sub_v = v[iy * bh:(iy + 1) * bh, ix * bw:(ix + 1) * bw][sub_bg]
+            blk.append(sub_v.mean())
+    gradient = float((max(blk) - min(blk)) / 255.0) if len(blk) >= 2 else 0.0
+    # mid-frequency (band-pass) texture: coarse-blur minus fine-blur, std over bg
+    fine = cv2.GaussianBlur(v, (0, 0), 1.2)
+    coarse = cv2.GaussianBlur(v, (0, 0), 6.0)
+    band = fine - coarse
+    texture = float(band[bg].std())
+    return {"bg_frac": bg_frac, "sat": sat, "lum": lum, "gradient": gradient,
+            "texture": texture, "chan_spread": chan_spread}
+
+
 def skin_mask(bgr):
     ycrcb = cv2.cvtColor(bgr, cv2.COLOR_BGR2YCrCb)
     cr, cb = ycrcb[:, :, 1], ycrcb[:, :, 2]

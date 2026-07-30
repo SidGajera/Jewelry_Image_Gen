@@ -196,6 +196,38 @@ def g11_logo(bgr, slot):
     return [_g("G11_LOGO", "pass", detail="no unauthorized text" if logo is None else "locked logo asset present")]
 
 
+def g18_background(bgr, slot):
+    """G18 BACKGROUND_VELVET (studio slots only). The studio background must be
+    plain pure-white velvet: low saturation, high luminance, fine mid-frequency
+    fabric texture. Rejects coloured backgrounds, seamless paper, hard gradients,
+    props. Thresholds from config/gates.json."""
+    if slot.get("group") != "studio":
+        return [_g("G18_BACKGROUND", "skip", detail="lifestyle slot")]
+    import json as _json
+    t = (_json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))
+         ["gates"]["G18_BACKGROUND"]["thresholds"])
+    s = cv.background_velvet_stats(bgr)
+    if s["sat"] is None or s["bg_frac"] < t["min_bg_frac"]:
+        return [_g("G18_BACKGROUND", "unmeasurable", f"bg_frac={s['bg_frac']:.2f}",
+                   detail="piece fills frame; too little background to sample")]
+    fails = []
+    if s["sat"] > t["sat_max"] or s["chan_spread"] > t["chan_spread_max"]:
+        fails.append(f"coloured background (sat={s['sat']:.1f}, chan={s['chan_spread']:.3f})")
+    if s["lum"] < t["lum_min"]:
+        fails.append(f"not white/too dark (lum={s['lum']:.1f})")
+    if s["gradient"] > t["gradient_max"]:
+        fails.append(f"hard gradient/seamless sweep (grad={s['gradient']:.3f})")
+    if s["texture"] < t["texture_min"]:
+        fails.append(f"seamless paper, no fabric texture (tex={s['texture']:.2f})")
+    elif s["texture"] > t["texture_max"]:
+        fails.append(f"busy background/props (tex={s['texture']:.2f})")
+    if fails:
+        return [_g("G18_BACKGROUND", "fail", f"sat={s['sat']:.1f} lum={s['lum']:.1f} tex={s['texture']:.2f}",
+                   "plain white velvet", "; ".join(fails))]
+    return [_g("G18_BACKGROUND", "pass", f"sat={s['sat']:.1f} lum={s['lum']:.1f} tex={s['texture']:.2f}",
+               "plain white velvet")]
+
+
 def invent_block(sku, slot):
     """SOURCE_COVERAGE_REQUIRED (studio): returns (unmet_items, required_files, az_ok).
     A studio slot is blocked unless (a) every item in slot.reveals is established
@@ -398,6 +430,7 @@ def validate_image(sku, image_path, slot):
     res += g14_content(bgr, slot)
     res += g15_hand_anatomy(bgr, slot)
     res += g16_skin_realism(bgr, slot)
+    res += g18_background(bgr, slot)
     return res
 
 
