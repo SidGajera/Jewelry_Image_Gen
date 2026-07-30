@@ -196,6 +196,48 @@ def g11_logo(bgr, slot):
     return [_g("G11_LOGO", "pass", detail="no unauthorized text" if logo is None else "locked logo asset present")]
 
 
+def g14_content(bgr, slot):
+    """CONTENT COMPLIANCE (lifestyle only): jewellery is the subject, people are
+    set dressing. FAIL on (1) two faces within one face-width, (2) any face
+    sharper than the ring region, (3) combined person area > jewellery area x6."""
+    if slot.get("group") != "lifestyle":
+        return [_g("G14_CONTENT", "skip", detail="studio slot")]
+    faces = cv.detect_faces(bgr)
+    if faces is None:
+        return [_g("G14_CONTENT", "unmeasurable", None, None, "face model unavailable")]
+    # (1) two faces close together
+    for i in range(len(faces)):
+        for j in range(i + 1, len(faces)):
+            (x1, y1, w1, h1), (x2, y2, w2, h2) = faces[i], faces[j]
+            c1 = (x1 + w1 / 2, y1 + h1 / 2)
+            c2 = (x2 + w2 / 2, y2 + h2 / 2)
+            dist = ((c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2) ** 0.5
+            if dist < max(w1, w2):
+                return [_g("G14_CONTENT", "fail", "2 faces adjacent", "<=1 or spaced",
+                           "two faces within one face-width (couple/kiss)")]
+    # (2) any face sharper than the ring region
+    ring = cv.jewellery_region(bgr)
+    gray = cv.cv2.cvtColor(bgr, cv.cv2.COLOR_BGR2GRAY)
+    if ring:
+        x, y, w, h = ring
+        ring_var = cv.laplacian_var(gray[y:y + h, x:x + w])
+        for (fx, fy, fw, fh) in faces:
+            fv = cv.laplacian_var(gray[max(fy, 0):fy + fh, max(fx, 0):fx + fw])
+            if fv > ring_var:
+                return [_g("G14_CONTENT", "fail", f"face sharper ({fv:.0f}>{ring_var:.0f})",
+                           "ring sharpest", "a face is in sharper focus than the ring")]
+    # (3) person area vs jewellery area -- gated on 2+ faces so an allowed solo
+    # hand (hand = skin, always > jewellery) or a single soft-focus model is not
+    # falsely failed; this rule targets a COUPLE/people dominating the frame.
+    if len(faces) >= 2:
+        person = int(cv.skin_mask(bgr).sum())
+        jew = max(cv.jewellery_area(bgr), 1)
+        if person > jew * 6:
+            return [_g("G14_CONTENT", "fail", f"{len(faces)} faces, person {person} > 6x jewellery",
+                       "<=6x", "couple/people are the subject")]
+    return [_g("G14_CONTENT", "pass", f"faces={len(faces)}", "compliant")]
+
+
 def validate_image(sku, image_path, slot):
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     res = [g1_format(image_path)]
@@ -212,6 +254,7 @@ def validate_image(sku, image_path, slot):
     res += g9_piece_count(bgr)
     res.append(g10_angle_single(bgr, slot))
     res += g11_logo(bgr, slot)
+    res += g14_content(bgr, slot)
     return res
 
 

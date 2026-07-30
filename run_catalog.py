@@ -137,7 +137,7 @@ def git_push(sku):
 # user's visual QC, per the no-self-QC policy) until calibrated on approved-render
 # goldens. G10 pairwise (declared, within-group) IS enforced; single-shot
 # elevation estimate is advisory.
-ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO"}
+ENFORCED_GATES = {"G1_FORMAT", "G11_LOGO", "G14_CONTENT"}
 
 
 def finish(sku):

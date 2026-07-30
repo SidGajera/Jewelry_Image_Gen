@@ -135,10 +135,18 @@ def _structure_phrase(st):
     return ", ".join(b for b in bits if b) + ", NO widening."
 
 
+# Verbatim content-policy negative, appended to EVERY lifestyle slot (all catalogs).
+LIFESTYLE_NEGATIVE = ("kissing, couple kissing, faces touching, embracing, intimate pose, "
+                      "romantic contact, cheek to cheek, couple as the subject, people in focus, "
+                      "suggestive posing")
+
+
 def build_prompt(spec, slot):
     grp = slot["group"]
-    scene = spec["scene"][grp]
+    scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
+    if grp == "lifestyle":
+        neg = neg + ", " + LIFESTYLE_NEGATIVE
     geom = " ".join(p for p in [
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),

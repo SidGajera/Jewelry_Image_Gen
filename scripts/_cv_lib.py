@@ -283,6 +283,67 @@ def detect_raised_rail(roi):
     return False, "no long horizontal edge"
 
 
+_YUNET = None
+
+
+def _yunet():
+    global _YUNET
+    if _YUNET is None:
+        from pathlib import Path
+        m = Path(__file__).resolve().parent.parent / "models" / "face_detection_yunet.onnx"
+        if not m.exists():
+            return None
+        _YUNET = cv2.FaceDetectorYN.create(str(m), "", (320, 320), 0.6)
+    return _YUNET
+
+
+def detect_faces(bgr, conf=0.7):
+    """Return list of (x, y, w, h) faces via YuNet DNN. [] if model missing."""
+    fd = _yunet()
+    if fd is None:
+        return None  # model unavailable -> caller treats G14 as unmeasurable
+    h, w = bgr.shape[:2]
+    fd.setInputSize((w, h))
+    _, faces = fd.detect(bgr)
+    if faces is None:
+        return []
+    return [tuple(int(v) for v in f[:4]) for f in faces if f[-1] >= conf]
+
+
+def laplacian_var(gray):
+    if gray is None or gray.size == 0:
+        return 0.0
+    return float(cv2.Laplacian(gray, cv2.CV_64F).var())
+
+
+def skin_mask(bgr):
+    ycrcb = cv2.cvtColor(bgr, cv2.COLOR_BGR2YCrCb)
+    cr, cb = ycrcb[:, :, 1], ycrcb[:, :, 2]
+    ycc = (cr >= 135) & (cr <= 178) & (cb >= 90) & (cb <= 132)
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    h, s, v = hsv[:, :, 0], hsv[:, :, 1], hsv[:, :, 2]
+    return ycc & (h <= 17) & (s >= 40) & (s <= 170) & (v >= 60) & (v <= 235)
+
+
+def jewellery_region(bgr):
+    """Bounding box of the brightest large cluster (stone/metal). (x,y,w,h) or None."""
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    _, th = cv2.threshold(gray, 225, 255, cv2.THRESH_BINARY)
+    th = cv2.morphologyEx(th, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8))
+    n, _, stats, _ = cv2.connectedComponentsWithStats(th, 8)
+    if n <= 1:
+        return None
+    i = 1 + int(np.argmax([stats[k, cv2.CC_STAT_AREA] for k in range(1, n)]))
+    x, y, w, h = (stats[i, cv2.CC_STAT_LEFT], stats[i, cv2.CC_STAT_TOP],
+                  stats[i, cv2.CC_STAT_WIDTH], stats[i, cv2.CC_STAT_HEIGHT])
+    return (int(x), int(y), int(w), int(h))
+
+
+def jewellery_area(bgr):
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    return int((gray > 225).sum())
+
+
 def estimate_elevation(bgr):
     """Coarse elevation estimate from the silhouette aspect (top-down => wide,
     side => tall). Sanity flag only; azimuth from a single view is unreliable."""

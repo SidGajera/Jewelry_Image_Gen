@@ -66,3 +66,5 @@ workspace/golden/**/ref/*
 
 build/*_urls.json
 build/*_state.json
+
+models/
