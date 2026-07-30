@@ -89,8 +89,8 @@ def main():
     for f in sorted(fails - ruled_fails):
         warns.append(f"failure_case with no rule: {f}")
 
-    # 5. prose doc restating a banned literal
-    docs = list((ROOT / "docs").glob("*.md"))
+    # 5. prose doc restating a banned literal (skip the GENERATED projection and archive)
+    docs = [d for d in (ROOT / "docs").glob("*.md") if d.name != "POLICY.md"]
     for r in active:
         for lit in r.get("literal_banned_in_prose", []):
             for d in docs:
