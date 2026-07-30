@@ -1,0 +1,12 @@
+{
+  "_note": "What each SOURCE view TYPE establishes (G-INVENT / SOURCE_COVERAGE_REQUIRED). A slot is blocked unless every item in its 'reveals' (config/angle_matrix.json) is established by at least one SUPPLIED source view (specs/<SKU>_views.json). If the source does not show it, it does not get generated. No inference, no category priors.",
+  "establishes": {
+    "top":          ["prong_count", "prong_type", "stone_lw", "accent_layout_head", "symmetry"],
+    "front":        ["front_silhouette", "accent_front_arc", "band_width_shoulder"],
+    "true_side":    ["accent_coverage_length", "accent_run_terminus", "band_profile", "band_taper", "head_height", "cathedral_rise"],
+    "back_gallery": ["under_head", "gallery_openwork", "rear_shank", "rear_prong"]
+  },
+  "required_filename": {
+    "top": "01_top.png", "front": "03_front.png", "true_side": "02_true_side.png", "back_gallery": "04_back_gallery.png"
+  }
+}

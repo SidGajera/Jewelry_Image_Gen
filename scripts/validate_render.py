@@ -196,29 +196,41 @@ def g11_logo(bgr, slot):
     return [_g("G11_LOGO", "pass", detail="no unauthorized text" if logo is None else "locked logo asset present")]
 
 
+def invent_block(sku, slot):
+    """SOURCE_COVERAGE_REQUIRED (studio): returns (unmet_items, required_files, az_ok).
+    A studio slot is blocked unless (a) every item in slot.reveals is established
+    by a SUPPLIED source view (config/view_coverage.json x specs/<SKU>_views.json),
+    AND (b) some source view is within 45deg azimuth. No inference / category priors."""
+    import json as _json
+    cov = _json.loads((ROOT / "config" / "view_coverage.json").read_text(encoding="utf-8"))
+    est, reqf = cov["establishes"], cov["required_filename"]
+    vp = ROOT / "specs" / f"{sku}_views.json"
+    views = _json.loads(vp.read_text(encoding="utf-8")).get("views", []) if vp.exists() else []
+    supplied_types = {v.get("type") for v in views if v.get("type")}
+    supplied_est = set().union(*(set(est.get(t, [])) for t in supplied_types)) if supplied_types else set()
+    unmet = [i for i in slot.get("reveals", []) if i not in supplied_est]
+    req = set()
+    for i in unmet:
+        for t, items in est.items():
+            if i in items:
+                req.add(reqf.get(t, t))
+    saz, sel = slot["azimuth"], slot["elevation"]
+    az_ok = any(min(abs(v["azimuth"] - saz) % 360, 360 - abs(v["azimuth"] - saz) % 360) <= 45 for v in views)
+    return unmet, sorted(req), az_ok
+
+
 def g_invent(sku, slot):
-    """G-INVENT (studio slots): a studio angle must trace to a real source view.
-    If the slot's declared azimuth/elevation has NO source view within 45 deg
-    (both axes), generating it is INVENTION, not photography -> FAIL. Source view
-    angles are declared in specs/<SKU>_views.json. Lifestyle slots are exempt
-    (worn camera has no CAD equivalent; docs/00 geometry-vs-camera)."""
+    """G-INVENT (studio slots blocking). Lifestyle exempt (worn camera has no CAD
+    equivalent; docs/00 geometry-vs-camera)."""
     if slot.get("group") != "studio":
         return [_g("G_INVENT", "skip", detail="lifestyle: worn camera has no CAD equivalent")]
-    import json as _json
-    vp = ROOT / "specs" / f"{sku}_views.json"
-    if not vp.exists():
-        return [_g("G_INVENT", "fail", "no source-view map", "specs/<SKU>_views.json",
-                   "no declared source views -> cannot establish any studio angle is real")]
-    views = _json.loads(vp.read_text(encoding="utf-8")).get("views", [])
-    saz, sel = slot["azimuth"], slot["elevation"]
-    for v in views:
-        daz = abs(v["azimuth"] - saz) % 360
-        daz = min(daz, 360 - daz)
-        if daz <= 45 and abs(v["elevation"] - sel) <= 45:
-            return [_g("G_INVENT", "pass", v.get("name", "view"), "<=45deg",
-                       f"covered by source view {v.get('name')} (az{v['azimuth']}/el{v['elevation']})")]
-    return [_g("G_INVENT", "fail", f"az{saz}/el{sel}", "source view <=45deg",
-               "no source view within 45deg of this angle -- generating it is invention, not photography")]
+    unmet, req, az_ok = invent_block(sku, slot)
+    if unmet or not az_ok:
+        why = (f"reveals {unmet} not established by any supplied view" if unmet
+               else "no source view within 45deg azimuth")
+        return [_g("G_INVENT", "fail", f"missing {req or 'source view'}", "source-established",
+                   f"invention: {why}. Required: {req}")]
+    return [_g("G_INVENT", "pass", "covered", "source-established", "every revealed item established by a supplied view")]
 
 
 def g12_marks(bgr, slot):

@@ -10,8 +10,8 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 
 | ID | Prec | Statement | Enforced by | Origin |
 |---|---|---|---|---|
-| `GEOM_NO_INVENT` | 100 | a studio angle must trace to a source view within 45deg (az+el); no source view = invention, block the slot; lifestyle worn-camera exempt | G_INVENT | user 2026-07-30 |
 | `METAL_SOURCE_GOVERNED` | 100 | metal read from source into specs/<SKU>.json; no document-level default; 14K only a tiebreaker when source ambiguous AND Etsy title says 14K | spec_source_read | user 2026-07-30 |
+| `SOURCE_COVERAGE_REQUIRED` | 100 | every item a studio slot reveals must be established by a supplied source view (config/view_coverage.json); + azimuth within 45deg; else block. No inference, no category priors, no defaults | G_INVENT | user 2026-07-30 |
 | `SOURCE_FIDELITY` | 100 | the source CAD is the only truth; AI redraw disabled; geometry from source pixels only | G2_ACCENT_COUNT, G3_ACCENT_SIZE, G4_ACCENT_RUN, G5_SETTING_STYLE, G6_STONE_RATIO, G7_SETTING_COUNT, G8_UNAUTHORIZED, G9_PIECE_COUNT | user 2026-07-17 |
 | `CONTENT_ETSY` | 90 | jewellery is the subject; no kissing/faces-in-contact/embrace/suggestive; couple never outweighs the ring | G14_CONTENT | user 2026-07-30 |
 | `LOGO_LOCKED` | 90 | the Lucent logo is only the locked composited asset on studio cloth; AI never draws a logo; no AI text on studio renders | G11_LOGO | user 2026-07-16 |

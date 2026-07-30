@@ -451,9 +451,9 @@
       "status": "active"
     },
     {
-      "id": "GEOM_NO_INVENT",
+      "id": "SOURCE_COVERAGE_REQUIRED",
       "key": "geometry.no_invention",
-      "statement": "a studio angle must trace to a source view within 45deg (az+el); no source view = invention, block the slot; lifestyle worn-camera exempt",
+      "statement": "every item a studio slot reveals must be established by a supplied source view (config/view_coverage.json); + azimuth within 45deg; else block. No inference, no category priors, no defaults",
       "scope": "global",
       "precedence": 100,
       "enforced_by": [
@@ -461,7 +461,9 @@
       ],
       "origin": "user 2026-07-30",
       "failure_cases": [
-        "invented_studio_angle"
+        "invented_full_circumference_pave",
+        "invented_split_prongs_from_front_view",
+        "invented_hidden_halo_from_front_view"
       ],
       "status": "active"
     }

@@ -274,6 +274,25 @@ def main():
         sys.exit(finish(args.sku))
 
     if args.stage == "prompts":
+        # SOURCE_COVERAGE_REQUIRED (G-INVENT): refuse the WHOLE catalog if any
+        # studio slot reveals geometry no supplied source view establishes.
+        matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
+        spec = json.loads((ROOT / "specs" / f"{args.sku}.json").read_text(encoding="utf-8"))
+        blocked, need = [], set()
+        for s in matrix["categories"][spec["category"]]["slots"]:
+            if s["group"] != "studio":
+                continue
+            unmet, req, az_ok = vr.invent_block(args.sku, s)
+            if unmet or not az_ok:
+                blocked.append((s["slot"], s["name"], unmet, req))
+                need.update(req)
+        if blocked:
+            for sl, nm, unmet, req in blocked:
+                print(f"{args.sku}: BLOCKED -- slot {sl} ({nm}) reveals {unmet}; "
+                      f"no supplied source view establishes it. Required: {req}")
+            print(f"{args.sku}: BLOCKED -- supply {sorted(need)} then update specs/{args.sku}_views.json. "
+                  f"A partial catalog is not a catalog; no slots generated.")
+            sys.exit(2)
         missing, refs = check_refs(args.sku)
         if missing:
             print(f"STOP: refs/{args.sku}/ missing per-slot reference for slots {missing} "

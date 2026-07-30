@@ -14,7 +14,14 @@
           "group": "studio",
           "azimuth": 0,
           "elevation": 90,
-          "crop": 0.7
+          "crop": 0.7,
+          "reveals": [
+            "prong_count",
+            "prong_type",
+            "accent_front_arc",
+            "accent_coverage_length",
+            "symmetry"
+          ]
         },
         {
           "slot": "02",
@@ -22,7 +29,13 @@
           "group": "studio",
           "azimuth": 90,
           "elevation": 3,
-          "crop": 0.85
+          "crop": 0.85,
+          "reveals": [
+            "accent_coverage_length",
+            "accent_run_terminus",
+            "band_profile",
+            "head_height"
+          ]
         },
         {
           "slot": "03",
@@ -30,7 +43,12 @@
           "group": "studio",
           "azimuth": 0,
           "elevation": 15,
-          "crop": 0.75
+          "crop": 0.75,
+          "reveals": [
+            "front_silhouette",
+            "accent_front_arc",
+            "band_width_shoulder"
+          ]
         },
         {
           "slot": "04",
@@ -39,7 +57,12 @@
           "azimuth": 135,
           "elevation": 20,
           "crop": 0.65,
-          "scene": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo; REAR THREE-QUARTER angle showing the filigree gallery and the back of the shank (buying-decision coverage)"
+          "scene": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo; REAR THREE-QUARTER angle showing the filigree gallery and the back of the shank (buying-decision coverage)",
+          "reveals": [
+            "under_head",
+            "gallery_openwork",
+            "rear_shank"
+          ]
         },
         {
           "slot": "05",
@@ -48,7 +71,8 @@
           "azimuth": 30,
           "elevation": 10,
           "crop": 0.6,
-          "scene": "golden-hour beach, own hand large in the foreground, fingers relaxed and slightly curled, ring tack-sharp; a partner far behind, small, heavily blurred, celebrating, NO contact; warm rim light, sky gradient"
+          "scene": "golden-hour beach, own hand large in the foreground, fingers relaxed and slightly curled, ring tack-sharp; a partner far behind, small, heavily blurred, celebrating, NO contact; warm rim light, sky gradient",
+          "reveals": []
         },
         {
           "slot": "06",
@@ -57,7 +81,8 @@
           "azimuth": 135,
           "elevation": 25,
           "crop": 0.6,
-          "scene": "follow-me gesture, arm extended toward the lens, hand and ring the sharpest plane; model laughing, face soft and secondary; urban daylight, muted background; wardrobe a dark leather or structured jacket, not knitwear"
+          "scene": "follow-me gesture, arm extended toward the lens, hand and ring the sharpest plane; model laughing, face soft and secondary; urban daylight, muted background; wardrobe a dark leather or structured jacket, not knitwear",
+          "reveals": []
         },
         {
           "slot": "07",
@@ -66,7 +91,8 @@
           "azimuth": 0,
           "elevation": 85,
           "crop": 0.5,
-          "scene": "two hands clasped, HANDS ONLY in frame, no faces; overcast beach, soft even light; ring hand nearer the camera; varied skin tones"
+          "scene": "two hands clasped, HANDS ONLY in frame, no faces; overcast beach, soft even light; ring hand nearer the camera; varied skin tones",
+          "reveals": []
         },
         {
           "slot": "08",
@@ -75,7 +101,8 @@
           "azimuth": 45,
           "elevation": 40,
           "crop": 0.55,
-          "scene": "two hands resting stacked on soft draped fabric, palms down, relaxed, no faces; neutral warm textiles, window light; ring the sharpest element; editorial stillness"
+          "scene": "two hands resting stacked on soft draped fabric, palms down, relaxed, no faces; neutral warm textiles, window light; ring the sharpest element; editorial stillness",
+          "reveals": []
         },
         {
           "slot": "09",
@@ -84,7 +111,8 @@
           "azimuth": 90,
           "elevation": 5,
           "crop": 0.7,
-          "scene": "head-and-shoulders beauty crop, fingertips resting at the chin or jaw so the ring reads clearly and is the sharpest element; eyes closed or averted; dewy natural skin, wet-look hair, warm stone background"
+          "scene": "head-and-shoulders beauty crop, fingertips resting at the chin or jaw so the ring reads clearly and is the sharpest element; eyes closed or averted; dewy natural skin, wet-look hair, warm stone background",
+          "reveals": []
         },
         {
           "slot": "10",
@@ -93,7 +121,8 @@
           "azimuth": 210,
           "elevation": 20,
           "crop": 0.55,
-          "scene": "beach sunset, ring hand raised toward the lens and the sharpest thing in frame; a partner present but BEHIND and to the side, out of focus, NOT touching, face turned away or partial; no kiss, no embrace, no cheek contact"
+          "scene": "beach sunset, ring hand raised toward the lens and the sharpest thing in frame; a partner present but BEHIND and to the side, out of focus, NOT touching, face turned away or partial; no kiss, no embrace, no cheek contact",
+          "reveals": []
         }
       ]
     },
