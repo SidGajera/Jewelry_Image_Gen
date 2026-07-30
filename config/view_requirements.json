@@ -1,0 +1,9 @@
+{
+  "_note": "Required SOURCE views per product category (docs/22 / validate_source). Category-agnostic; no SKU hard-coded. A catalog cannot start until every listed view is present, watermark-free, one design, CAD (not worn).",
+  "ring":     ["top", "front", "true_side", "back_gallery"],
+  "bracelet": ["full_lay_flat", "clasp", "link_macro", "side_edge"],
+  "pendant":  ["front", "side", "bail", "back"],
+  "earring":  ["front", "side", "back_post"],
+  "necklace": ["full_lay_flat", "clasp", "centerpiece_macro"],
+  "bangle":   ["full_lay_flat", "clasp", "profile"]
+}

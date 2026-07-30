@@ -47,5 +47,14 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 ## P9 — REPORT
 23. ONE line: `LR-XXXX: 10/10 OK · pushed · repo clean · COMPLETE`
 
+## DETERMINISTIC ENFORCEMENT (code — user-locked 2026-07-30, ALL categories)
+Text prompts cannot count or hold ratios, so the guarantees are CODE, not wording. `run_catalog.py <SKU>` chains:
+- **Source intake gate** — `scripts/validate_source.py` (blocking): required views per category (`config/view_requirements.json`), zero watermark (OCR/heuristic), one CAD design (focal pHash), skin <5%. Fail = STOP, names the missing item.
+- **Machine-readable spec** — `specs/<SKU>.json` (category-agnostic schema). Every prompt is GENERATED from it by `scripts/build_prompts.py`; no hand-written geometry text anywhere. Null fields auto-skip their gates.
+- **img2img source-lock** — the piece is transferred from the nearest-azimuth source view; denoise 0.35 studio / 0.45 lifestyle. Text-to-image for the jewelry is disabled.
+- **Render gates G1–G11** — `scripts/validate_render.py` (blocking, every image; `config/angle_matrix.json` for angles). Any confident fail → auto-regenerate that slot (denoise −0.05, failed gate appended as negative), max 3 retries, else STOP.
+- **Failure memory → regression** — `memory/failures.json` (machine-readable) + `tests/golden/cases.json` + `tests/run_gates.py`. Every rejection adds an entry + a case; a gate that stops catching a past failure fails the build. Deps: `requirements-gates.txt`.
+Gate accuracy note: G2–G8/G10 are heuristic, calibrated against `tests/golden`; only a confident fail rejects (unmeasurable never blocks). G1/G9/G11-text are robust.
+
 ## BUDGET
 ≤15k tokens whole catalog. Savings come from what is DISPLAYED, never from source fidelity, prompt detail, or validation. See `docs/17`.

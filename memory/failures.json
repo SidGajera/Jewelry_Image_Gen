@@ -1,0 +1,19 @@
+{
+  "_note": "Machine-readable failure memory. Every rejection appends an entry here AND a case in tests/golden/cases.json. CI (tests/run_gates.py) runs the mapped gate against every case that has a sample image; a gate that stops catching a past failure fails the build. All entries are global + category-agnostic. Human-readable narrative stays in config/QUALITY_MEMORY.json.",
+  "failures": [
+    {"id": "accent_count_short",              "gate": "G2_ACCENT_COUNT", "category": "*", "scope": "global", "description": "accent run rendered with fewer stones than spec (diffusion undercounts; e.g. 10-15 vs 19)"},
+    {"id": "accent_stones_oversized",         "gate": "G3_ACCENT_SIZE",  "category": "*", "scope": "global", "description": "accent stones rendered larger / more widely spaced than spec ratio"},
+    {"id": "accent_run_too_short",            "gate": "G4_ACCENT_RUN",   "category": "*", "scope": "global", "description": "accent run stops short instead of covering the spec coverage_fraction"},
+    {"id": "raised_rail_when_flush_specified","gate": "G5_SETTING_STYLE","category": "*", "scope": "global", "description": "flush French/micro set rendered as a raised channel rail with a metal edge below the stones"},
+    {"id": "hidden_halo_added",               "gate": "G8_UNAUTHORIZED", "category": "*", "scope": "global", "description": "hidden halo / basket pave invented under a primary stone the spec declares plain"},
+    {"id": "unauthorized_accents",            "gate": "G8_UNAUTHORIZED", "category": "*", "scope": "global", "description": "accent stones added where the spec declares none"},
+    {"id": "split_or_double_setting_elements","gate": "G7_SETTING_COUNT","category": "*", "scope": "global", "description": "claws/prongs rendered split, doubled, broad or flared vs plain single elements"},
+    {"id": "primary_stone_ratio_drift",       "gate": "G6_STONE_RATIO",  "category": "*", "scope": "global", "description": "primary stone L:W drifts (oval->round, marquise->oval, hexagon->emerald)"},
+    {"id": "structure_taper_drift",           "gate": "G6_STONE_RATIO",  "category": "*", "scope": "global", "description": "structure/band restyled: taper/widening/flat when spec says uniform (no direct CV gate yet; caught in visual QA + spec-driven prompt)"},
+    {"id": "duplicate_piece_in_frame",        "gate": "G9_PIECE_COUNT",  "category": "*", "scope": "global", "description": "duplicate / ghost second piece, clasp or link run in frame"},
+    {"id": "piece_scale_drift",               "gate": "G9_PIECE_COUNT",  "category": "*", "scope": "global", "description": "primary scaled wrong vs structure / vs finger-hand"},
+    {"id": "portrait_output",                 "gate": "G1_FORMAT",       "category": "*", "scope": "global", "description": "render delivered non-square (portrait/landscape) instead of 1:1 2048"},
+    {"id": "repeated_camera_angle",           "gate": "G10_ANGLE",       "category": "*", "scope": "global", "description": "two or more slots rendered at effectively the same camera angle"},
+    {"id": "ai_drawn_logo",                   "gate": "G11_LOGO",        "category": "*", "scope": "global", "description": "logo/text AI-drawn on a studio render instead of the locked composited asset"}
+  ]
+}

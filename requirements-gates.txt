@@ -1,0 +1,8 @@
+# Deterministic source/render gate pipeline (scripts/validate_*.py, tests/run_gates.py)
+numpy>=1.26
+pillow>=10
+opencv-python-headless>=4.9
+imagehash>=4.3
+# Optional: enables OCR watermark/vendor-mark detection in validate_source.py.
+# Needs the tesseract binary on PATH; without it, a periodic-tiling heuristic is used.
+pytesseract>=0.3
