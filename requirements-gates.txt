@@ -6,3 +6,4 @@ imagehash>=4.3
 # Optional: enables OCR watermark/vendor-mark detection in validate_source.py.
 # Needs the tesseract binary on PATH; without it, a periodic-tiling heuristic is used.
 pytesseract>=0.3
+mediapipe>=1.0   # G15 hand anatomy (Tasks HandLandmarker; model models/hand_landmarker.task)

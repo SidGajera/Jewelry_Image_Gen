@@ -73,3 +73,5 @@ refs/**/*.png
 refs/**/*.jpg
 refs/**/*.jpeg
 refs/**/*.webp
+
+models/

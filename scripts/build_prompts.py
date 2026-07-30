@@ -155,13 +155,23 @@ REALISM_NEGATIVE = ("airbrushed skin, plastic skin, waxy texture, poreless face,
                     "in a lifestyle shot, identical model across slots")
 
 
+# Hand-anatomy lock, appended to EVERY lifestyle slot (G15).
+ANATOMY_POSITIVE = ("Ring worn on ONE finger, the band fully encircling a single finger, positioned "
+                    "between the knuckles (between the MCP and PIP joints), anatomically correct hand "
+                    "with exactly five fingers and natural joints.")
+ANATOMY_NEGATIVE = ("ring spanning two fingers, ring in the finger gap, ring at the webbing, band across "
+                    "two fingers, stone in the valley between fingers, ring low near the knuckle base, "
+                    "six fingers, four fingers, fused fingers, extra finger, missing finger, "
+                    "duplicated knuckle, impossible thumb")
+
+
 def build_prompt(spec, slot):
     grp = slot["group"]
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
     if grp == "lifestyle":
-        scene = scene + ". " + REALISM_POSITIVE
-        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE
+        scene = scene + ". " + REALISM_POSITIVE + " " + ANATOMY_POSITIVE
+        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE + ", " + ANATOMY_NEGATIVE
     geom = " ".join(p for p in [
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),

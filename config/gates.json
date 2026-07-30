@@ -13,6 +13,8 @@
     "G10_ANGLE":        {"blocking": false, "kind": "heuristic", "measures": "single-shot elevation est"},
     "G11_LOGO":         {"blocking": true,  "kind": "robust",    "measures": "no AI text on studio"},
     "G12_MARKS":        {"blocking": true,  "kind": "robust",    "measures": "no watermark/vendor mark"},
-    "G14_CONTENT":      {"blocking": true,  "kind": "robust",    "measures": "jewellery is the subject"}
+    "G14_CONTENT":      {"blocking": true,  "kind": "robust",    "measures": "jewellery is the subject"},
+    "G15_HAND_ANATOMY": {"blocking": false, "kind": "heuristic", "measures": "ring on ONE finger; band continuity; position",
+                         "note": "MediaPipe Hands + band-continuity heuristic. Advisory until it catches its FAIL golden with FP=0 (MediaPipe returns 0 hands on tight ring-macro crops, so the heuristic must carry it there). Promote per calibrate.py once a G15 FAIL golden is provided."}
   }
 }

@@ -344,6 +344,85 @@ def jewellery_area(bgr):
     return int((gray > 225).sum())
 
 
+_HANDLM = None
+
+
+def hand_landmarks(bgr, conf=0.5, max_hands=4):
+    """MediaPipe Hands (Tasks API). Returns list of hands, each a list of 21
+    (x,y) in pixels, or None if the model/asset is unavailable. Empty list means
+    the model ran but found no hand (common on tight ring-macro crops)."""
+    global _HANDLM
+    from pathlib import Path
+    m = Path(__file__).resolve().parent.parent / "models" / "hand_landmarker.task"
+    if not m.exists():
+        return None
+    try:
+        import mediapipe as mp
+        from mediapipe.tasks import python
+        from mediapipe.tasks.python import vision
+        if _HANDLM is None:
+            _HANDLM = vision.HandLandmarker.create_from_options(vision.HandLandmarkerOptions(
+                base_options=python.BaseOptions(model_asset_path=str(m)),
+                num_hands=max_hands, min_hand_detection_confidence=conf,
+                min_hand_presence_confidence=conf))
+        rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+        res = _HANDLM.detect(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb))
+        h, w = bgr.shape[:2]
+        return [[(int(p.x * w), int(p.y * h)) for p in hand] for hand in res.hand_landmarks]
+    except Exception:
+        return None
+
+
+def _gold_band_mask(bgr):
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    hh, s, v = hsv[:, :, 0], hsv[:, :, 1], hsv[:, :, 2]
+    gold = ((hh >= 12) & (hh <= 40) & (s >= 70) & (v >= 90)).astype(np.uint8) * 255
+    white = (v > 235).astype(np.uint8) * 255              # stone
+    band = cv2.morphologyEx(gold | white, cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8))
+    return band
+
+
+def band_spans_two_fingers(bgr):
+    """MediaPipe-independent band-continuity / position check for ring-macro
+    shots. A correctly worn ring sits on ONE finger: directly under the stone is
+    continuous skin. Failure: an inter-finger GAP (non-skin wedge flanked by skin
+    on both sides) sits under the stone / the band bridges it. Returns
+    (verdict, detail): verdict in {'fail','pass','unmeasurable'}. Heuristic."""
+    skin = skin_mask(bgr).astype(np.uint8)
+    if skin.mean() < 0.03:
+        return "unmeasurable", "no hand/skin present"
+    band = _gold_band_mask(bgr)
+    n, _, stats, cent = cv2.connectedComponentsWithStats(band, 8)
+    if n <= 1:
+        return "unmeasurable", "ring not segmented"
+    i = 1 + int(np.argmax([stats[k, cv2.CC_STAT_AREA] for k in range(1, n)]))
+    cx = int(cent[i][0]); by = stats[i, cv2.CC_STAT_TOP] + stats[i, cv2.CC_STAT_HEIGHT]
+    bw = stats[i, cv2.CC_STAT_WIDTH]
+    h, w = skin.shape
+    # sample a strip just BELOW the ring (where band meets the finger)
+    y0, y1 = min(by, h - 2), min(by + int(bw * 0.6), h - 1)
+    x0, x1 = max(cx - bw // 2, 0), min(cx + bw // 2, w - 1)
+    if y1 <= y0 or x1 <= x0:
+        return "unmeasurable", "strip out of frame"
+    gap_rows = 0
+    for y in range(y0, y1):
+        row = skin[y, x0:x1]
+        if row.mean() < 0.15:
+            continue
+        idx = np.where(row > 0)[0]
+        if idx.size < 3:
+            continue
+        # gap = a run of non-skin between two skin runs on the same row
+        inner = row[idx.min():idx.max() + 1]
+        gap = (inner == 0).sum()
+        if gap >= 0.30 * inner.size:     # >=30% of the span under the ring is a gap
+            gap_rows += 1
+    frac = gap_rows / max(y1 - y0, 1)
+    if frac >= 0.4:
+        return "fail", f"inter-finger gap under ring in {frac:.0%} of rows (band spans two fingers)"
+    return "pass", f"continuous finger under ring (gap rows {frac:.0%})"
+
+
 def estimate_elevation(bgr):
     """Coarse elevation estimate from the silhouette aspect (top-down => wide,
     side => tall). Sanity flag only; azimuth from a single view is unreliable."""

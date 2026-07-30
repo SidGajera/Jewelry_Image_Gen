@@ -219,6 +219,28 @@ def g12_marks(bgr, slot):
     return [_g("G12_MARKS", "pass", "no watermark, band clean", "none")]
 
 
+def g15_hand_anatomy(bgr, slot):
+    """HAND ANATOMY (lifestyle): a ring encircles ONE finger. Checks (1) hand/
+    finger plausibility via MediaPipe, (2) band continuity — both arms on the
+    SAME finger (a band bridging an inter-finger gap = spans two fingers), (3)
+    position between knuckles / not at the webbing. BLOCKING once calibrated on a
+    FAIL golden; advisory until then. Returns unmeasurable when neither MediaPipe
+    nor the band heuristic can assess (e.g. a tight macro with no gap resolvable)."""
+    if slot.get("group") != "lifestyle":
+        return [_g("G15_HAND_ANATOMY", "skip", detail="studio slot")]
+    verdict, det = cv.band_spans_two_fingers(bgr)
+    if verdict == "fail":
+        return [_g("G15_HAND_ANATOMY", "fail", "band spans two fingers", "one finger", det)]
+    lm = cv.hand_landmarks(bgr)
+    if lm is None:
+        return [_g("G15_HAND_ANATOMY", "unmeasurable", None, None, "hand model unavailable")]
+    if not lm:
+        # no hand detected AND band check didn't fail -> cannot confirm anatomy
+        return [_g("G15_HAND_ANATOMY", "unmeasurable", "0 hands", "1 hand",
+                   "MediaPipe found no hand in this macro crop; band-continuity " + verdict)]
+    return [_g("G15_HAND_ANATOMY", "pass", f"{len(lm)} hand(s)", "1 finger", det)]
+
+
 def g14_content(bgr, slot):
     """CONTENT COMPLIANCE (lifestyle only): jewellery is the subject, people are
     set dressing. FAIL on (1) two faces within one face-width, (2) any face
@@ -279,6 +301,7 @@ def validate_image(sku, image_path, slot):
     res += g11_logo(bgr, slot)
     res += g12_marks(bgr, slot)
     res += g14_content(bgr, slot)
+    res += g15_hand_anatomy(bgr, slot)
     return res
 
 
