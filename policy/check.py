@@ -31,6 +31,33 @@ def _load(p, default=None):
         return default if default is not None else {}
 
 
+# non-gate enforcers: hard code-enforcers block like a blocking gate; visual = observed
+_HARD_NONGATE = {"run_catalog", "refs_preflight", "slot_manifest", "preflight", "regression_suite", "spec_source_read"}
+_OBSERVED_NONGATE = {"visual_checklist"}
+
+
+def classify(rule, gates):
+    """ENFORCED = rule -> blocking gate (or hard code-enforcer).
+    OBSERVED = rule -> non-blocking gate (G2-G9/G10) or a mandatory visual checklist (L4-L8).
+    ADVISORY = rule -> no gate/enforcer."""
+    eb = rule.get("enforced_by", [])
+    if any(g in gates and gates[g].get("blocking") for g in eb) or any(g in _HARD_NONGATE for g in eb):
+        return "enforced"
+    if any(g in gates and not gates[g].get("blocking") for g in eb) or any(g in _OBSERVED_NONGATE for g in eb):
+        return "observed"
+    return "advisory"
+
+
+def counts():
+    reg = _load(ROOT / "policy" / "registry.json").get("rules", [])
+    gates = _load(ROOT / "config" / "gates.json", {}).get("gates", {})
+    active = [r for r in reg if r.get("status") == "active"]
+    c = {"enforced": 0, "observed": 0, "advisory": 0}
+    for r in active:
+        c[classify(r, gates)] += 1
+    return c["enforced"], c["observed"], c["advisory"]
+
+
 def main():
     reg = _load(REG).get("rules", [])
     active = [r for r in reg if r.get("status") == "active"]
@@ -94,7 +121,8 @@ def main():
         print("warn  " + w)
     if wishes:
         print(f"wishes (rule reaches no gate+golden): {wishes}")
-    print(f"\n{len(active)} active rules, {len(stops)} STOP, {len(warns)} warn, {len(wishes)} wishes")
+    e, o, a = counts()
+    print(f"\n{len(active)} active rules: {e} enforced, {o} observed, {a} advisory | {len(stops)} STOP, {len(warns)} warn")
     sys.exit(2 if stops else 0)
 
 

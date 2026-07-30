@@ -12,8 +12,13 @@ reg = json.loads((ROOT / "policy" / "registry.json").read_text(encoding="utf-8")
 rules = reg["rules"]
 active = [r for r in rules if r["status"] == "active"]
 superseded = [r for r in rules if r["status"] == "superseded"]
-enforced = [r for r in active if r.get("enforced_by")]
-advisory = [r for r in active if not r.get("enforced_by")]
+import sys as _sys
+_sys.path.insert(0, str(ROOT / "policy"))
+from check import classify  # noqa: E402
+_gates = json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))["gates"]
+enforced = [r for r in active if classify(r, _gates) == "enforced"]
+observed = [r for r in active if classify(r, _gates) == "observed"]
+advisory = [r for r in active if classify(r, _gates) == "advisory"]
 
 lines = [
     "# POLICY — GENERATED from policy/registry.json (DO NOT EDIT)",
@@ -21,8 +26,8 @@ lines = [
     "Read-only projection of the rule registry. Edit `policy/registry.json`, then run "
     "`python policy/gen_policy.py`. `policy/check.py` runs before every catalog and STOPs on conflicts.",
     "",
-    f"**{len(active)} rules active** · {len(enforced)} enforced by gates · {len(advisory)} advisory "
-    f"(empty enforced_by) · {len(superseded)} superseded (kept for provenance).",
+    f"**{len(active)} rules active** · {len(enforced)} enforced (blocking gate) · {len(observed)} observed "
+    f"(non-blocking gate / visual checklist) · {len(advisory)} advisory (no gate) · {len(superseded)} superseded.",
     "",
     "Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausibility · "
     "50 user preference · 10 doc defaults. Higher wins; the loser is superseded, never deleted.",

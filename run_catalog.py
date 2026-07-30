@@ -46,12 +46,16 @@ def policy_gate():
     """Load the rule registry and refuse to run on any STOP (policy/check.py).
     Prints rule counts; empty enforced_by = advisory (said plainly)."""
     rc = _run([sys.executable, "policy/check.py"])
-    reg = json.loads((ROOT / "policy" / "registry.json").read_text(encoding="utf-8"))["rules"]
-    active = [r for r in reg if r["status"] == "active"]
-    enf = [r for r in active if r.get("enforced_by")]
-    print(f"policy: {len(active)} rules active, {len(enf)} enforced by gates, {len(active)-len(enf)} advisory")
+    e, o, a = _policy_counts()
+    print(f"policy: {e} enforced, {o} observed, {a} advisory rules")
     if rc != 0:
         sys.exit("STOP: policy/check.py found a conflict; catalog refused. Resolve in policy/registry.json.")
+
+
+def _policy_counts():
+    sys.path.insert(0, str(ROOT / "policy"))
+    import check as _chk
+    return _chk.counts()
 
 
 def source_gate(sku, source_dir=None):
@@ -243,13 +247,11 @@ def finish(sku):
         (box3, "failures auto-retried and re-gated"),
         (box4, "manifest + spec pushed (clean, not ahead)"),
     ]
-    cfg = _gates_cfg()
-    n_block = sum(1 for v in cfg.values() if v.get("blocking"))
-    n_adv = len(cfg) - n_block
+    e, o, a = _policy_counts()
     if all(b for b, _ in boxes):
-        print(f"{sku}: 10/10 · {n_block} gates blocking, {n_adv} advisory · pushed · repo clean · COMPLETE")
+        print(f"{sku}: 10/10 · {e} enforced, {o} observed, {a} advisory · pushed · repo clean · COMPLETE")
         return 0
-    print(f"{sku}: NOT COMPLETE ({n_block} gates blocking, {n_adv} advisory) — unchecked:")
+    print(f"{sku}: NOT COMPLETE ({e} enforced, {o} observed, {a} advisory) — unchecked:")
     for ok, label in boxes:
         if not ok:
             print(f"  [ ] {label}")

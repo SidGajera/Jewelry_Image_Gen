@@ -2,7 +2,7 @@
 
 Read-only projection of the rule registry. Edit `policy/registry.json`, then run `python policy/gen_policy.py`. `policy/check.py` runs before every catalog and STOPs on conflicts.
 
-**27 rules active** · 23 enforced by gates · 4 advisory (empty enforced_by) · 3 superseded (kept for provenance).
+**27 rules active** · 21 enforced (blocking gate) · 3 observed (non-blocking gate / visual checklist) · 3 advisory (no gate) · 3 superseded.
 
 Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausibility · 50 user preference · 10 doc defaults. Higher wins; the loser is superseded, never deleted.
 
@@ -18,7 +18,7 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 | `PLAUSIBILITY_L1_CONTINUITY` | 80 | band arms both terminate on the same finger/wrist; band crossing an inter-finger gap = FAIL; bracelet must close | G15_HAND_ANATOMY | user 2026-07-30 |
 | `PLAUSIBILITY_L2_PLACEMENT` | 80 | ring centre between MCP and PIP of one finger; webbing/over-knuckle/past-fingertip = FAIL | G15_HAND_ANATOMY | user 2026-07-30 |
 | `PLAUSIBILITY_L3_ANATOMY` | 80 | MediaPipe: 5 digits, correct joints, detection confidence >0.8; fused/extra/missing digits or impossible thumb = FAIL | G15_HAND_ANATOMY | user 2026-07-30 |
-| `PLAUSIBILITY_L4_L8_VISUAL` | 80 | support/gravity, occlusion, light consistency, scale, reflection sanity â€” mandatory visual checklist on EVERY render until automated | _advisory_ | user 2026-07-30 |
+| `PLAUSIBILITY_L4_L8_VISUAL` | 80 | support/gravity, occlusion, light consistency, scale, reflection sanity â€” mandatory visual checklist on EVERY render until automated | visual_checklist | user 2026-07-30 |
 | `REFS_REAL_PHOTO` | 80 | every lifestyle reference is a real camera photograph (no AI/render), unambiguous one-finger placement, real skin detail | refs_preflight | user 2026-07-30 |
 | `SKIN_REALISM` | 80 | exposure-normalized skin high-frequency energy above threshold; plastic/over-smoothed skin = FAIL | G16_SKIN_REALISM | user 2026-07-30 |
 | `ANGLE_NUMERIC_MATRIX` | 50 | camera defined by numeric azimuth/elevation/crop per slot; filenames carry no geometry; within-group pairwise separation 20az/15el | G10_ANGLE, refs_preflight | user 2026-07-30 |
@@ -48,7 +48,6 @@ Precedence: 100 source fidelity · 90 platform compliance · 80 physical plausib
 
 ## Advisory rules (empty enforced_by — not machine-verified)
 
-- `PLAUSIBILITY_L4_L8_VISUAL` — support/gravity, occlusion, light consistency, scale, reflection sanity â€” mandatory visual checklist on EVERY render until automated
 - `TOKEN_BUDGET` — <=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation
 - `BACKGROUND_VELVET` — studio background is premium plain pure-white velvet only; plain, no AI-generated cloth
 - `THEME_PER_CATALOG` — one coherent theme within a catalog; a different theme per catalog rotated by SKU hash

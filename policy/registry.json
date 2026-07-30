@@ -246,7 +246,9 @@
       "statement": "support/gravity, occlusion, light consistency, scale, reflection sanity \u00e2\u20ac\u201d mandatory visual checklist on EVERY render until automated",
       "scope": "global",
       "precedence": 80,
-      "enforced_by": [],
+      "enforced_by": [
+        "visual_checklist"
+      ],
       "origin": "user 2026-07-30",
       "failure_cases": [],
       "status": "active"
