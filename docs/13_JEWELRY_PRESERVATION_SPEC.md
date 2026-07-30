@@ -98,16 +98,14 @@ Capture this full field list into SOURCE_SPEC on the first source view; re-read 
 
 **Diffusion cannot count discrete repeated elements.** Stating the pavé count in the prompt has failed twice on LR-0203 (10/side, then 14–15/side vs source 18–20). A third restatement will not fix it. **Pavé is the same class of problem as the logo — enforce it, do not generate it.**
 
-**PRIMARY (required once a clean CAD side view exists):**
-- (a) Generate **img2img** with the real CAD side view as the STRUCTURAL reference; denoise strength capped so shoulder geometry + the stone run are preserved. The pavé row is **copied**, never re-invented.
-- (b) Or **composite** the shoulder pavé from the CAD render onto the generated scene — the same layer mechanism used for the logo (`docs/04`).
+**The generation call is FROZEN** (user-locked 2026-07-30): plain Higgsfield text-to-image, medias [pose/studio ref, SOURCE piece], 2k, 1:1, count 1, all slots one batch — **no img2img, no denoise/strength, no compositing of the jewelry.** The earlier img2img/composite routes are WITHDRAWN. Enforcement is entirely OUTSIDE the call:
 
-**FALLBACK GATE (c) — MANDATORY on EVERY render until (a)/(b) is live:**
-- Detect pavé stones per shoulder on the rendered image.
-- Compare to SOURCE_SPEC count; **outside source ±1 = auto-reject**.
-- Auto-regenerate with the count restated and denoise lowered. **Never deliver an unchecked render.**
+**DETERMINISTIC GATE + SAME-CALL RETRY (mandatory, every render):**
+- Detect accent stones per run on the rendered image (generalised beyond pavé to every `accent_run`).
+- Compare to the spec count; **outside spec ± tolerance = auto-reject** (`scripts/validate_render.py` G2; siblings G3–G8 cover size, run, setting, L:W, setting-count, unauthorized clusters).
+- On any fail, **re-fire the SAME unmodified call** for that slot with the failed gate's constraint appended to the prompt NEGATIVES; max 5 retries, then STOP and report slot+gate. **Never deliver an unchecked render.**
 
-This gate is wired into `docs/22` P4. QUALITY_MEMORY: `pave-is-uncountable-by-diffusion-enforce-like-the-logo`.
+Wired into `docs/22` (DETERMINISTIC ENFORCEMENT + P4). QUALITY_MEMORY: `pave-is-uncountable-by-diffusion-enforce-like-the-logo`; machine-readable `memory/failures.json`.
 
 ## 7. RELATED
 `docs/03 §A` (Design Preservation + Geometry Lock allow-list) · `prompts/07` (GEOMETRY LOCK header) · `config/QUALITY_MEMORY.json` (`geometry-immutable-auto-fallback`) · `docs/12_STUDIO_ANGLES_STANDARD.md` (angle rotation) · `scripts/composite_ring_into_scene.py`.

@@ -25,7 +25,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 12. Script check: exists · size>0 · 2048×2048 · 1:1 · PNG.
 13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · portrait/square lock.
 13b. ANGLE VALIDATION GATE (docs/12 A-MATRIX): read each render's ACTUAL azimuth/elevation from the image (not the filename); reject any slot that mismatches its declared numbers; compare all 10 pairwise, reject the later slot of any pair within 20° azimuth AND 15° elevation, regenerate azimuth +30° / elevation re-forced; repeat until all 10 distinct. Never deliver a duplicate angle.
-13c. PAVÉ COUNT GATE (docs/13 §6c, MANDATORY every render until img2img source-lock/composite is live): detect pavé stones per shoulder; reject if outside SOURCE_SPEC count ±1; auto-regenerate (count restated, denoise lowered). Diffusion cannot count — never deliver an unchecked pavé render.
+13c. ACCENT/PAVÉ COUNT GATE (docs/13 §6c, validate_render G2, MANDATORY every render): detect accent stones per run; reject if outside spec count ± tolerance; re-fire the SAME frozen call with the failed constraint appended to negatives (max 5). Diffusion cannot count — never deliver an unchecked render.
 14. Any fail = auto-regenerate that slot with a tightened negative. Never deliver a fail.
 
 ## P5 — DOWNLOAD
@@ -51,8 +51,8 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 Text prompts cannot count or hold ratios, so the guarantees are CODE, not wording. `run_catalog.py <SKU>` chains:
 - **Source intake gate** — `scripts/validate_source.py` (blocking): required views per category (`config/view_requirements.json`), zero watermark (OCR/heuristic), one CAD design (focal pHash), skin <5%. Fail = STOP, names the missing item.
 - **Machine-readable spec** — `specs/<SKU>.json` (category-agnostic schema). Every prompt is GENERATED from it by `scripts/build_prompts.py`; no hand-written geometry text anywhere. Null fields auto-skip their gates.
-- **img2img source-lock** — the piece is transferred from the nearest-azimuth source view; denoise 0.35 studio / 0.45 lifestyle. Text-to-image for the jewelry is disabled.
-- **Render gates G1–G11** — `scripts/validate_render.py` (blocking, every image; `config/angle_matrix.json` for angles). Any confident fail → auto-regenerate that slot (denoise −0.05, failed gate appended as negative), max 3 retries, else STOP.
+- **FROZEN generation call** — the Higgsfield call is unchanged: same tool/model, resolution 2k, aspect_ratio 1:1, count 1, ALL slots in one batch, medias order [pose/studio ref, SOURCE piece]. **No img2img, no denoise/strength, no compositing of the jewelry.** Every fix sits OUTSIDE the call. `run_catalog.py --emit-plan` emits the per-slot plan honoring these constraints.
+- **Render gates G1–G11** — `scripts/validate_render.py` (blocking, every image; `config/angle_matrix.json` for angles). Any confident fail → **re-fire the SAME unmodified call for that slot with the failed gate's constraint appended to the prompt NEGATIVES** (no other change), max 5 retries, else STOP and report slot+gate.
 - **Failure memory → regression** — `memory/failures.json` (machine-readable) + `tests/golden/cases.json` + `tests/run_gates.py`. Every rejection adds an entry + a case; a gate that stops catching a past failure fails the build. Deps: `requirements-gates.txt`.
 Gate accuracy note: G2–G8/G10 are heuristic, calibrated against `tests/golden`; only a confident fail rejects (unmeasurable never blocks). G1/G9/G11-text are robust.
 

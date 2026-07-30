@@ -4,15 +4,18 @@ no render reaches the user un-gated. Images are never committed.
 
 Pipeline (docs/22):
   validate_source -> load spec -> build slot prompts (spec + angle matrix)
-  -> [img2img source-lock batch] -> validate_render (all gates) -> auto-retry
-  -> download -> manifest -> failure memory -> regression -> git commit + push
+  -> [FROZEN Higgsfield batch, unchanged] -> validate_render (all gates)
+  -> same-call auto-retry -> download -> manifest -> failure memory
+  -> regression -> git commit + push
 
-The generation + download steps run through the Higgsfield MCP, which is driven
-by the agent, not a Python subprocess. So this orchestrator:
+The Higgsfield call is FROZEN: same tool/model, 2k, 1:1, count 1, all slots one
+batch, medias order [pose/studio ref, SOURCE piece]; no img2img, no denoise, no
+compositing. Every fix is OUTSIDE the call. Generation + download run through the
+Higgsfield MCP (agent-driven), not a Python subprocess. So this orchestrator:
   * runs every deterministic step itself (source gate, prompt build, render
     gates, manifest, memory, regression, git);
-  * EMITS a generation plan (per-slot img2img prompt + denoise + source view)
-    for the agent to execute;
+  * EMITS a generation plan (per-slot prompt + medias order) for the agent to
+    fire with the frozen call;
   * validates the produced renders once they are in --renders-dir, and reports
     exactly which slots must be regenerated (bounded to 3 retries per slot).
 
@@ -32,7 +35,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import build_prompts as bp          # noqa: E402
 import validate_render as vr        # noqa: E402
 
-MAX_RETRIES = 3
+MAX_RETRIES = 5   # re-fire the SAME frozen call, failed gate appended to negatives
 
 
 def _run(cmd):
@@ -48,24 +51,37 @@ def source_gate(sku, source_dir=None):
         sys.exit(f"STOP: source gate failed for {sku} (rc={rc}). Catalog not started.")
 
 
-def emit_plan(sku):
+def emit_plan(sku, pose_refs=None):
+    """Emit the per-slot generation plan for the FROZEN Higgsfield call.
+    The call is unchanged: same tool/model, resolution 2k, aspect_ratio 1:1,
+    count 1, ALL slots in one batch, medias order [pose/studio ref, SOURCE piece].
+    No img2img, no denoise/strength, no compositing. pose_refs maps slot -> media
+    id for the pose/studio reference (first media); fill before firing."""
     spec, prompts = bp.build_all(sku)
     src = spec.get("source_media_id")
+    pose_refs = pose_refs or {}
     plan = {
         "sku": sku, "category": spec["category"], "model": spec.get("model", "seedream_v5_pro"),
-        "source_media_id": src, "mode": "img2img_source_lock",
+        "source_media_id": src, "mode": "frozen_text_to_image",
+        "call_constraints": {"resolution": "2k", "aspect_ratio": "1:1", "count": 1,
+                             "one_batch": True, "medias_order": ["pose_studio_ref", "SOURCE_piece"],
+                             "no_img2img": True, "no_denoise": True, "no_compositing": True},
         "slots": [{
             "slot": p["slot"], "name": p["name"], "group": p["group"],
             "azimuth": p["azimuth"], "elevation": p["elevation"],
-            "denoise": p["denoise"], "aspect_ratio": "1:1", "resolution": p["resolution"],
-            "medias": [{"value": src, "role": "image_references"}],
-            "prompt": p["prompt"],
+            "aspect_ratio": "1:1", "resolution": p["resolution"], "count": 1,
+            "medias": [
+                {"value": pose_refs.get(p["slot"]), "role": "pose_studio_ref"},
+                {"value": src, "role": "SOURCE_piece"},
+            ],
+            "prompt": p["prompt"], "negative": p["negative"],
         } for p in prompts],
     }
     outp = ROOT / "workspace" / "golden" / sku / f"genplan_{sku}.json"
     outp.parent.mkdir(parents=True, exist_ok=True)
     outp.write_text(json.dumps(plan, indent=2), encoding="utf-8")
-    print(f"emitted generation plan -> {outp} ({len(plan['slots'])} slots, img2img source-lock)")
+    print(f"emitted generation plan -> {outp} ({len(plan['slots'])} slots, FROZEN text-to-image, "
+          f"medias [pose_ref, SOURCE])")
     return plan
 
 
@@ -94,7 +110,7 @@ def write_manifest(sku, renders_dir, jobs=None):
     man = {"sku": sku, "category": spec["category"], "model": spec.get("model"),
            "source_media_id": spec.get("source_media_id"),
            "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
-           "mode": "img2img_source_lock", "renders_dir": str(renders_dir), "jobs": jobs or {}}
+           "mode": "frozen_text_to_image", "renders_dir": str(renders_dir), "jobs": jobs or {}}
     mp.write_text(json.dumps(man, indent=2), encoding="utf-8")
     print(f"wrote manifest -> {mp}")
 
@@ -129,8 +145,8 @@ def main():
     if args.emit_plan:
         emit_plan(args.sku)
         if not args.renders_dir:
-            print("next: agent runs the img2img batch from the gen plan, saves NN_name.png into a renders dir, "
-                  "then re-run with --renders-dir")
+            print("next: agent fires the FROZEN Higgsfield batch from the gen plan (medias [pose_ref, SOURCE]), "
+                  "saves NN_name.png into a renders dir, then re-run with --renders-dir")
             return
 
     if not args.renders_dir:
@@ -143,7 +159,9 @@ def main():
         print(f"  G10 pairwise: {pv}")
     if retry or pv:
         print(f"RETRY needed (max {MAX_RETRIES}/slot): slots={retry} "
-              f"-> regenerate with denoise -0.05 and the failed gate appended as a negative. "
+              f"-> RE-FIRE THE SAME UNMODIFIED Higgsfield call for each, appending the failed gate's "
+              f"constraint to that slot's prompt NEGATIVES (no other change; call stays frozen). "
+              f"Still failing after {MAX_RETRIES} => STOP and report slot+gate. "
               f"Un-gated renders must NOT be delivered.")
         sys.exit(1)
 

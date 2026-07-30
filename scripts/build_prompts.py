@@ -17,7 +17,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DENOISE = {"studio": 0.35, "lifestyle": 0.45}   # img2img source-lock caps (docs/22 §3)
+# NOTE: the Higgsfield generation call is FROZEN (docs/22) — plain text-to-image,
+# medias [pose/studio ref, SOURCE piece], no img2img / no denoise / no compositing.
+# All enforcement is OUTSIDE the call (gates + retry). This builder only produces
+# the spec-driven prompt text + negatives; it sets no generation params.
 
 NEGATIVE = (
     "round brilliant primary stone, near-round primary, low length-to-width ratio, "
@@ -98,9 +101,8 @@ def build_prompt(spec, slot):
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "
            f"above the lay plane, azimuth {slot['azimuth']} degrees. Piece fills ~{int(slot['crop']*100)}% of frame.")
     prompt = (
-        "GEOMETRY LOCK -- the structural reference is the master CAD object; reproduce it with 100% fidelity. "
-        "Do NOT redesign, beautify, add or remove anything. Same physical piece; only camera and scene change. "
-        "This is img2img source-lock: the PIECE is transferred from the reference, only scene/lighting/hands are generated.\n\n"
+        "GEOMETRY LOCK -- the SOURCE piece reference is the master CAD object; reproduce it with 100% fidelity. "
+        "Do NOT redesign, beautify, add or remove anything. Same physical piece; only camera and scene change.\n\n"
         f"{cam}\n\n"
         f"PIECE ({spec['sku']}, category {spec['category']}, match structural reference exactly):\n{geom}\n\n"
         f"SCENE: {scene}. Realistic macro luxury jewellery product photography, tack-sharp on the piece, "
@@ -110,8 +112,8 @@ def build_prompt(spec, slot):
     return {
         "slot": slot["slot"], "name": slot["name"], "group": grp,
         "azimuth": slot["azimuth"], "elevation": slot["elevation"], "crop": slot["crop"],
-        "denoise": DENOISE[grp], "aspect_ratio": "1:1",
-        "resolution": spec.get("resolution", "2k"), "model": spec.get("model", "seedream_v5_pro"),
+        "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
+        "model": spec.get("model", "seedream_v5_pro"),
         "prompt": prompt, "negative": NEGATIVE,
     }
 
