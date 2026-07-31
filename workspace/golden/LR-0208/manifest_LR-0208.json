@@ -1,0 +1,28 @@
+{
+  "sku": "LR-0208",
+  "category": "ring",
+  "title": "Round-brilliant solitaire, 6-prong, scrolling-vine shoulders with 4 round accents, yellow gold",
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "source": "seller product photos (no CAD); clean main + 2 DIAMONDS-BY-UK watermarked read for geometry; watermarked excluded from generation",
+  "source_media_id": "c9518e88-5ce3-4c7f-aa03-3e14944bebe8",
+  "source_ref_file": "workspace/golden/LR-0208/source/main_clean.webp",
+  "theme": "evening_city",
+  "composition": "4 studio velvet + 6 lifestyle",
+  "self_qc": "studio 01/02/03/04 verified: round centre, 6 prongs, 4 accents (2 per vine scroll), no halo, no watermark",
+  "jobs": {
+    "01_top_down_flatlay": "8dfccd6d-67f5-4a78-a9d6-5874dd56320c",
+    "02_true_side_profile": "babd5142-030e-4ffd-aa1b-d7c05bf790c5",
+    "03_front_elevation": "fb9758da-e014-4392-9c22-c9723c37c79b",
+    "04_gallery_back": "7e69985c-4ce0-4076-a349-04ab43e9a9eb",
+    "05_low_hero": "d7a37596-7a9b-446e-b1aa-869f67c0cd7e",
+    "06_reach_to_camera": "adc0395a-ebeb-4d96-a88f-5e69ee9862ca",
+    "07_hands_held": "60700582-b2b6-46e9-b23a-1229a98ee210",
+    "08_hands_stacked_editorial": "55e565b9-668e-467a-8487-1ec4203d324a",
+    "09_beauty_closeup": "6c2acca8-e61a-440c-acdf-1d44bb21d461",
+    "10_sunset_raised_hand": "9022c4cc-fc77-46c6-8379-406867cf86e0"
+  },
+  "status": "generated_geometry_verified_pending_user_style_qc"
+}

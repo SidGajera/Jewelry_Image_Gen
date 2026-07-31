@@ -58,12 +58,19 @@ def build_negative(spec):
     if runs:
         arrangement = runs[0].get("arrangement", "uniform_row")
         negs.append("extra accent row, oversized accent stones, short accent run")
-        if arrangement == "bar_set_baguette":
+        if arrangement == "vine_scroll_shoulder":
+            # symmetric scroll/vine shoulders with a few small round accents (the scrollwork IS the design)
+            negs.append("pave shoulders, packed pave row, channel set accents, halo, extra accent stones, "
+                        "baguette accents, plain shoulders with no scrollwork, missing vine scroll, "
+                        "asymmetric shoulders, oversized side stones, three stone ring")
+        elif arrangement == "bar_set_baguette":
             # bar-set east-west baguette band: the gold bars/spacing ARE the design
             negs.append("round accents, princess-cut accents, tapered baguettes, pave band, "
                         "channel set, bezel set row, prong-set stones, center solitaire stone, "
                         "large centre gemstone, halo, second row of stones, full eternity band, "
-                        "stones on the lower shank, stones wrapping fully around the band")
+                        "stones on the lower shank, stones wrapping fully around the band, "
+                        "few large baguettes, oversized baguettes, chunky baguettes, only 5 or 6 stones, "
+                        "wide gaps between stones, thick gold bars, sparse row")
         elif arrangement != "scattered_cluster_mixed_size":
             negs.append("widely spaced accents, sparse accents")
         settings = {r.get("setting", "") for r in runs}
@@ -90,7 +97,10 @@ def _stone_phrase(s):
     if s.get("orientation"):
         bits.append(f"oriented {s['orientation'].replace('_', '-')}")
     if s.get("lw_ratio"):
-        bits.append(f"length-to-width ratio {s['lw_ratio']}:1 (must read at this ratio, not round/near-round)")
+        if s["lw_ratio"] >= 1.25:
+            bits.append(f"length-to-width ratio {s['lw_ratio']}:1 (must read elongated at this ratio, not round/near-round)")
+        else:
+            bits.append("round outline, a true circle (equal length and width, 1:1)")
     if s.get("scale_ratio_to_structure"):
         bits.append(f"primary width about {s['scale_ratio_to_structure']}x the structure width -- do NOT enlarge it")
     return ", ".join(bits) + "."
@@ -117,14 +127,27 @@ def _accent_phrase(runs, spec):
     cov = int(r.get("coverage_fraction", 0.66) * 100)
     if r.get("arrangement") == "bar_set_baguette":
         metal = spec.get("metal", "yellow_gold").replace("_", " ")
-        return (f"Accent run [{ids}]: a single straight HALF-ETERNITY row of exactly {r['count']} step-cut "
-                f"BAGUETTE diamonds (elongated rectangles, straight clean step-cut edges, NOT round, NOT tapered), "
-                f"set EAST-WEST -- each baguette's long axis lying across the band, laid end-to-end in one continuous "
-                f"line along the TOP of the shank. BAR-SET: a thin polished {metal} bar between every adjacent pair "
-                f"of baguettes and one bar at each end of the row (shared vertical bars only -- NOT channel walls, "
-                f"NOT prongs, NOT bezel, NOT flush pave). All baguettes identical size, level and evenly spaced. The "
-                f"row spans about {cov}% of the band (front/top only); the rest of the shank is plain polished "
-                f"{metal}. Single row, no stones on the lower half, no centre stone, no halo.")
+        return (f"Accent run [{ids}]: a single straight HALF-ETERNITY row of {r['count']} SMALL step-cut "
+                f"BAGUETTE diamonds (small elongated rectangles, straight clean step-cut edges, NOT round, NOT "
+                f"tapered), set EAST-WEST -- each baguette's long axis lying across the band, packed CLOSE-SET "
+                f"edge-to-edge in one continuous line along the TOP of the shank. The stones are SMALL and MANY: "
+                f"each baguette is only slightly longer than the band is wide, and there are about {r['count']} of "
+                f"them filling the front -- do NOT enlarge the baguettes and do NOT reduce their number (a few big "
+                f"baguettes is WRONG). BAR-SET: a thin polished {metal} bar between every adjacent pair of baguettes "
+                f"and one bar at each end (shared vertical bars only -- NOT channel walls, NOT prongs, NOT bezel, "
+                f"NOT flush pave). All baguettes identical small size, level, evenly and tightly spaced. The row "
+                f"spans about {cov}% of the band (front/top only); the rest of the shank is plain polished {metal}. "
+                f"Single row, no stones on the lower half, no centre stone, no halo.")
+    if r.get("arrangement") == "vine_scroll_shoulder":
+        metal = spec.get("metal", "yellow_gold").replace("_", " ")
+        per = r["count"]
+        return (f"SHOULDER ACCENTS [{ids}]: the band does NOT run plain into the head -- each of the TWO shoulders "
+                f"is a small decorative {metal} SCROLL / VINE (an S-curl of polished gold) flanking the centre "
+                f"stone, and each scroll holds exactly {per} tiny ROUND brilliant accent diamonds (total {2 * per} "
+                f"accents, {per} per side, left and right MIRRORED). The accents are SMALL (each roughly one-fifth "
+                f"the centre stone), bead/prong-set into the scrollwork, spaced apart within the curls -- NOT a "
+                f"packed pave row, NOT channel, NOT a halo. Keep the vine scroll symmetric and delicate; do NOT add "
+                f"extra accents, do NOT turn the shoulders into pave, do NOT omit the scrollwork.")
     if r.get("arrangement") == "scattered_cluster_mixed_size":
         return (f"Accent runs [{ids}]: each a SCATTERED CLUSTER of about {r['count']} round accents of "
                 f"MIXED sizes, {r.get('setting', '').replace('_', ' ')}, trailing naturally along the shoulder "
