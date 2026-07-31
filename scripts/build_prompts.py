@@ -81,6 +81,15 @@ def build_negative(spec):
                         "marquise accents, oval accents, princess-cut accents, baguette accents, "
                         "solitaire, single centre stone only, three stone ring, asymmetric crown, "
                         "missing pear, added pear, extra stones, fewer stones")
+        elif arrangement == "east_west_marquise_shared_prong":
+            # shared-prong east-west marquise band: the EVEN SPACING and horizontal
+            # (tip-to-tip) orientation ARE the design -- do NOT forbid spacing here.
+            negs.append("marquise standing vertical, marquise tips pointing up, upright marquise, "
+                        "radial marquise, marquise pointing outward, tilted marquise, rotated marquise, "
+                        "stones packed tightly, clustered stones, touching stones, bunched stones, "
+                        "pave row, channel set, bezel row, prong basket, centre solitaire, large centre "
+                        "gem, halo, second row of stones, uneven spacing, miscounted marquise, wrong "
+                        "stone count, oval accents, round accents, pear accents")
         elif arrangement != "scattered_cluster_mixed_size":
             negs.append("widely spaced accents, sparse accents")
         settings = {r.get("setting", "") for r in runs}
@@ -100,6 +109,20 @@ def build_negative(spec):
 # Positive inner-shank clause appended to every prompt's PIECE section.
 INNER_SHANK = ("INNER SHANK: plain polished metal, smooth, unmarked, uninterrupted "
                "(no engraving, hallmark, stamp or maker's mark).")
+
+# Physics lock (EVERY ring, all catalogs): exactly ONE continuous shank. Prevents the
+# recurring reject where the generator invents a phantom second band / floating rail of
+# stones above the shank. Verbatim per user 2026-07-31.
+SINGLE_BAND = ("BAND STRUCTURE (physics -- obey exactly): the ring is ONE single continuous shank "
+               "(one closed loop of metal); all stones are set INTO that one band. Match the source band "
+               "exactly -- one shank, correct thickness and rounded profile. NEVER render 2, 3 or multiple "
+               "bands, split rails, twin rails, a double band, floating loops, or an extra arc/rail of "
+               "stones sitting above the shank. Count the bands before output: it must equal the source "
+               "(a normal ring = one band).")
+SINGLE_BAND_NEGATIVE = ("two bands, double band, twin rails, split rail, split shank, extra shank, "
+                        "duplicated band, second concentric ring, floating rail of stones, arc of stones "
+                        "above the band, stones on a separate rail, multiple bands, stacked bands, "
+                        "physically impossible band")
 
 
 def _stone_phrase(s):
@@ -174,6 +197,20 @@ def _accent_phrase(runs, spec):
                 f"plain polished {metal}. Keep the arc symmetric and the size graduation intact; do NOT "
                 f"add a halo, a centre head/basket, pave, or a second row; the band stays a curved contour "
                 f"band (never straight) with no solitaire head.")
+    if r.get("arrangement") == "east_west_marquise_shared_prong":
+        metal = spec.get("metal", "yellow_gold").replace("_", " ")
+        n = r["count"]
+        return (f"Accent run [{ids}]: a single HALF-ETERNITY row of exactly {n} MARQUISE-cut diamonds set "
+                f"EAST-WEST -- each marquise's LONG axis lies flat ALONG the band (horizontal, following the "
+                f"finger), the pointed tips meeting end-to-end around the band. The marquises NEVER stand "
+                f"vertical, NEVER tilt, NEVER point up or radially outward -- every stone lies lengthwise on "
+                f"the band. The {n} stones are EVENLY SPACED with a small even GAP between neighbours, joined "
+                f"by ONE SINGLE SHARED V-PRONG (a common prong/bead) at each gap -- a shared-prong 'floating' "
+                f"setting -- so the stones are clearly SEPARATED: NOT packed, NOT clustered, NOT touching, NOT "
+                f"pave, NOT channel. Exactly {n} marquise, all the SAME size, one even spacing rhythm, set "
+                f"across the TOP front {cov}% of the band; the rest is a thin rounded {metal} shank. Each "
+                f"marquise is about as wide as the band and sits LOW and integral to that one shank -- there "
+                f"is NO second rail and NO arc of stones floating above the band.")
     if r.get("arrangement") == "scattered_cluster_mixed_size":
         return (f"Accent runs [{ids}]: each a SCATTERED CLUSTER of about {r['count']} round accents of "
                 f"MIXED sizes, {r.get('setting', '').replace('_', ' ')}, trailing naturally along the shoulder "
@@ -282,6 +319,8 @@ def build_prompt(spec, slot, theme=None):
     grp = slot["group"]
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
+    if spec.get("category") == "ring":
+        neg = neg + ", " + SINGLE_BAND_NEGATIVE
     if grp == "lifestyle":
         if theme:
             # one theme per catalog (all 6 lifestyle slots share it); studio stays velvet
@@ -301,6 +340,7 @@ def build_prompt(spec, slot, theme=None):
         _structure_phrase(spec.get("structure")),
         f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}, "
         f"single tone (no two-tone).",
+        SINGLE_BAND if spec.get("category") == "ring" else "",
         INNER_SHANK,
     ] if p)
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "

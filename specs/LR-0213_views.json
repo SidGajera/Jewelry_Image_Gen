@@ -9,8 +9,8 @@
      "establishes_note": "east-west marquise row along the band, shared V-prongs between stones, count and spacing"},
     {"name": "front_elev",   "file": "front.jpg",        "type": "front",        "azimuth": 0,   "elevation": 12,
      "establishes_note": "marquise lengthwise, thin round yellow-gold shank, half-eternity front"},
-    {"name": "three_qtr",    "file": "true_side.jpg",    "type": "true_side",    "azimuth": 40,  "elevation": 25,
-     "establishes_note": "shared single-prong setting between adjacent marquise, low profile, plain rear shank"},
+    {"name": "three_qtr",    "file": "true_side.jpg",    "type": "true_side",    "azimuth": 55,  "elevation": 25,
+     "establishes_note": "strong 3/4-to-side view: shared single-prong setting between adjacent marquise, band side profile (symmetric band), low profile, plain rear shank — establishes the side elevation"},
     {"name": "rear",         "file": "back_gallery.jpg", "type": "back_gallery", "azimuth": 175, "elevation": 15,
      "establishes_note": "rear of the band, plain round shank, underside of the shared prongs"}
   ]

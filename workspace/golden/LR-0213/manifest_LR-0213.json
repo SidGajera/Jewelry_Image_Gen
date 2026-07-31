@@ -1,0 +1,12 @@
+{
+  "sku": "LR-0213",
+  "category": "ring",
+  "model": "seedream_v5_pro",
+  "source_media_id": null,
+  "aspect_ratio": "1:1",
+  "resolution": "2k",
+  "mode": "frozen_text_to_image",
+  "geometry": "approximate \u2014 generated, not source-matched",
+  "renders_dir": "deliveries/LR-0213",
+  "jobs": {}
+}

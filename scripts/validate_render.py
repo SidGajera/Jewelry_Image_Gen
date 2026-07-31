@@ -473,13 +473,22 @@ def g21_stone_ratio(bgr, spec, slot):
     return [_g("G21_STONE_RATIO", "pass", f"ratio {ratio:.2f}, {n} stones", f"{want}+/-{tol:.0%}, {total}", "stone ratios ok")]
 
 
-def g22_stone_within_finger(bgr, slot):
+def g22_stone_within_finger(bgr, slot, spec=None):
     """RING SCALE ON HAND (lifestyle, BLOCKING): the centre stone must sit WITHIN
     the finger's width — never wider than the finger. Detect the centre-stone blob
     width and the skin (finger) width at the stone's row; FAIL if stone is wider
-    than the finger (× tol). Reject 'cocktail-huge' diamonds."""
+    than the finger (× tol). Reject 'cocktail-huge' diamonds.
+
+    Defined for CENTRE-STONE pieces only. A band with NO centre stone (empty
+    primary_stones — e.g. an east-west marquise / eternity half-band) has no
+    single centre stone to measure; the brightest blob is the whole accent ROW,
+    which legitimately spans the finger top, so the blob detector false-positives.
+    For such specs G22 is not applicable (skip); band scale is verified by the
+    accent-size gates (G3) and documented visual QC instead."""
     if slot.get("group") != "lifestyle":
         return [_g("G22_STONE_WITHIN_FINGER", "skip", detail="studio slot")]
+    if spec is not None and not (spec.get("primary_stones") or []):
+        return [_g("G22_STONE_WITHIN_FINGER", "skip", detail="no centre stone (band); G22 measures a centre stone — N/A, scale via G3 + visual QC")]
     import cv2
     import numpy as _np
     import json as _json
@@ -537,7 +546,7 @@ def validate_image(sku, image_path, slot):
     res += g18_background(bgr, slot)
     res += g20_min_subject_scale(bgr, slot)
     res += g21_stone_ratio(bgr, spec, slot)
-    res += g22_stone_within_finger(bgr, slot)
+    res += g22_stone_within_finger(bgr, slot, spec)
     return res
 
 
