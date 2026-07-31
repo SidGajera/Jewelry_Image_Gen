@@ -77,3 +77,7 @@ refs/**/*.webp
 models/
 
 tests/golden/pass_*/*.png
+
+# Machine-local ref cache index + transient build artifacts (regenerated)
+refs/manifest.json
+build/

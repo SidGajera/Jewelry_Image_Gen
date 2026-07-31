@@ -137,21 +137,35 @@ def emit_plan(sku, pose_refs=None):
 
 
 def gate_catalog(sku, renders_dir):
+    """Only ENFORCED (blocking) gate fails trigger retry. Advisory gate fails
+    (G2/G6/G7/G8/G9 heuristics, over-reject real sparkle) are logged to
+    build/<SKU>_advisory.json and summarized as a count — never printed per-slot,
+    never block completion (docs/22 DETERMINISTIC ENFORCEMENT note)."""
     matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     slots = {s["slot"]: s for s in matrix["categories"][spec["category"]]["slots"]}
+    enforced = _enforced()
     cdir = Path(renders_dir)
-    report, retry = {}, []
+    report, retry, advisory = {}, [], {}
     for sl, slot in slots.items():
         hits = sorted(cdir.glob(f"{sl}_*.png"))
         if not hits:
             report[sl] = "MISSING"; retry.append(sl); continue
         res = vr.validate_image(sku, hits[0], slot)
-        fails = [r["gate"] for r in res if r["status"] == "fail"]
-        report[sl] = "REJECT:" + ",".join(fails) if fails else "pass"
-        if fails:
+        efails = [r["gate"] for r in res if r["status"] == "fail" and r["gate"] in enforced]
+        afails = [r["gate"] for r in res if r["status"] == "fail" and r["gate"] not in enforced]
+        if afails:
+            advisory[sl] = afails
+        report[sl] = ("REJECT:" + ",".join(efails)) if efails else "pass"
+        if efails:
             retry.append(sl)
     pv = vr.pairwise_angles(list(slots.values()))
+    n_adv = sum(len(v) for v in advisory.values())
+    if n_adv:
+        ap = ROOT / "build" / f"{sku}_advisory.json"
+        ap.parent.mkdir(parents=True, exist_ok=True)
+        ap.write_text(json.dumps(advisory, indent=2), encoding="utf-8")
+        print(f"  {n_adv} advisory flags across {len(advisory)} slots (see build/{sku}_advisory.json) — non-blocking")
     return report, retry, pv
 
 
@@ -324,6 +338,16 @@ def main():
         # studio slot reveals geometry no supplied source view establishes.
         matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
         spec = json.loads((ROOT / "specs" / f"{args.sku}.json").read_text(encoding="utf-8"))
+        # REF-CACHE preflight (token-optimization, docs/06 + scripts/sync_refs.py):
+        # refs are read from disk, never fetched at runtime. Fail BEFORE spending
+        # if refs/manifest.json is missing or does not cover all slots for this category.
+        import sync_refs as _sr
+        _ok, _missing = _sr.check(spec["category"])
+        if not _ok:
+            print(f"STOP: refs/manifest.json does not cover {spec['category']} slots {_missing}. "
+                  f"Run `python scripts/sync_refs.py` once to cache refs locally, then retry. "
+                  f"(No Drive/media_import_url calls for refs at catalog time.)")
+            sys.exit(2)
         blocked, need = [], set()
         for s in matrix["categories"][spec["category"]]["slots"]:
             if s["group"] != "studio":

@@ -38,18 +38,10 @@ Also: `Offie_photoshoot (1).png` (`1orscL2F2NYpyPb7jA70CqSboqBYqrCvH`) is a stud
 | (2) | `10lX8o2IhRwiq3zbgPCyVMqYKGWZNM0_w` |
 | (6) | `12zRXerpNEhdqo4DMLgQkiJnt7YDg7NV9` |
 | (8) Copy | `1u5JNWqQ9GKgYwAB3PVW02zKVmnC4GW_K` |
-| (9) | `1pikNgx5RIMjmniABU-frf1n7NDsMF47Y` |
 
 ## LIFESTYLE — CLOSE-UP REFERENCES (`Closup_houselifestyle`)
 | # | Drive file ID | # | Drive file ID |
 |---|---|---|---|
-| (2) | `1d_Rxs5djy5W9xO6rxBo6HNOEwxsOvMkE` | (10) | `1tbJACkJUk0W5J7i-AaiKVIS-2iAPe7wl` |
-| (3) | `1C7gMaVixfWwiY9yfTXZaByNGqv7NDSV7` | (11) | `1Lqpgc4lz59u9_kEz0KJtiLdgu3AJA5r6` |
-| (5) | `1_NwJiAxRklEEMcMc2iOUe5AW-a72eOsg` | (12) | `17ozftZRAPtotvLPEHkdPJJkQdTWViXaE` |
-| (6) | `1qNGDjhWT86SW1LfAXhbgOHh4OVC0fmA9` | (13) | `1TFG37rNRzGr5gec_XoJAY__paWHsjzyC` |
-| (7) | `16Jh0jjtMEtUoM63lFtdGttgpHmRxxovA` | (14) | `1nA-fzOhogQQluPKlwOWvVuhHKgkAH4N5` |
-| (8) | `1UUWVDbJ0WLvNYxrtR9TJf3QRTxp9ZttH` | (15) | `1cEixik3XL9BAcv1sffE2U0U-UfJeL0b8` |
-| (9) | `1NF2XNYAmGUOC6ANb7M3KzcCxijAkRzco` | (16) | `11ulp1TgRdL6kBvpa9DRFkGuVSDfD317b` |
 
 **Pose-variety rule:** use DIFFERENT lifestyle/closeup files for each SKU than the previous SKU (studio branded refs may repeat since they are the fixed branded set).
 

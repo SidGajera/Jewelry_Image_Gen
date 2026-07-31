@@ -1,0 +1,60 @@
+{
+  "sku": "LR-0211",
+  "category": "ring",
+  "title": "Contoured 'crown' curved band — central pear trio + graduated round accents, yellow gold",
+  "note_source_vs_listing": "Source = 5 clean CAD renders (Drive folder LR-0211 '1GqwnP4eyl60j2Cepk1ABBK7Sz2z_HF3l'), no watermark: top/crown face, front elevation, true side, back/gallery, three-quarter. Piece: a CONTOURED (curved, centre-dipping) thin round plain-polished yellow-gold band carrying a symmetric GRADUATED CROWN of 7 diamonds — a central down-pointing PEAR (largest) flanked each side by 1 slightly smaller PEAR angled outward, then 2 ROUND brilliants graduating smaller toward the shoulders (3 pears + 4 rounds total). Shared/common-prong set in one continuous arc. No halo, no centre head/basket, no pave; plain polished shank.",
+  "primary_stones": [
+    {
+      "id": "center_pear",
+      "shape": "pear",
+      "cut": "pear_brilliant",
+      "orientation": "point_down",
+      "lw_ratio": 1.5,
+      "tolerance": 0.15,
+      "count": 1,
+      "scale_ratio_to_structure": 3.0
+    }
+  ],
+  "setting_elements": {
+    "type": "prong",
+    "count": 3,
+    "form": "plain_slender",
+    "layout": "around_pear_shared"
+  },
+  "accent_runs": [
+    {
+      "id": "crown_arc",
+      "shape": "mixed_pear_round",
+      "cut": "mixed",
+      "arrangement": "graduated_crown_arc",
+      "setting": "shared_prong",
+      "rows": 1,
+      "count": 6,
+      "flanking_pears": 2,
+      "round_accents": 4,
+      "tolerance": 0,
+      "coverage_fraction": 0.6
+    }
+  ],
+  "halo": "none",
+  "halo_count": null,
+  "under_head": "plain",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "contour": "curved_center_dip",
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "source_media_id": "2b63b4cd-902f-4be3-b4a7-5db83f334f9e"
+}

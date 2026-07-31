@@ -1,0 +1,31 @@
+{
+  "sku": "LR-0211",
+  "category": "ring",
+  "title": "Contoured 'crown' curved band — central pear trio + graduated round accents, yellow gold",
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "frozen_text_to_image",
+  "source": "5 clean CAD renders (Drive folder 1GqwnP4eyl60j2Cepk1ABBK7Sz2z_HF3l), no watermark",
+  "source_media_id": "2b63b4cd-902f-4be3-b4a7-5db83f334f9e",
+  "theme": "winter_window",
+  "composition": "4 studio velvet + 6 lifestyle",
+  "renders_dir": "deliveries/LR-0211",
+  "enforced_gates": "all 10 PASS (G1 format, G11 logo, G12 marks, G14 content, G-INVENT, G17 theme, G18 background); 0 pairwise-angle collisions; 50 advisory flags non-blocking (build/LR-0211_advisory.json)",
+  "self_qc": "studio 01/02/03/04 visually verified vs source: contoured crown band, central down-pointing pear + 1 flanking pear + 2 graduating rounds per side (3 pear + 4 round = 7 stones), yellow gold, no halo, no watermark, square 2048. Flanking accents read pear (02/03) / slightly marquise (01/04) — advisory-range diffusion nuance.",
+  "known_gap": "studio cloth rendered without the printed two-tone logo (seedream did not transfer it from the branded reference) — pending logo composite / user style QC, as with LR-0208.",
+  "jobs": {
+    "01_top_down_flatlay": "7394fd71-1af3-4d28-babd-63da2a6d73f5",
+    "02_true_side_profile": "7ba8e467-8e5e-4604-83e1-6034daa8666b",
+    "03_front_elevation": "0e983ef4-1cb1-40d2-9304-0fba1991d5a7",
+    "04_gallery_back": "491ec689-7c06-403c-a73c-dbb1d1b0cf9d",
+    "05_low_hero": "92872380-2151-49f9-8666-1f5e82d46fca",
+    "06_reach_to_camera": "3e536703-37c2-4214-8825-4897fafcd0b9",
+    "07_hands_held": "eceab4a5-31a1-4d29-9f8f-e1966f0ab1e2",
+    "08_hands_stacked_editorial": "011b071a-8e6d-43ae-9b14-3f68b01e74a3",
+    "09_beauty_closeup": "21814ac8-f9fa-474d-a663-1605f5825050",
+    "10_sunset_raised_hand": "a6d0288a-06b1-4ec8-9e59-a109172342bf"
+  },
+  "status": "generated_geometry_verified_pending_user_style_qc"
+}

@@ -71,6 +71,16 @@ def build_negative(spec):
                         "stones on the lower shank, stones wrapping fully around the band, "
                         "few large baguettes, oversized baguettes, chunky baguettes, only 5 or 6 stones, "
                         "wide gaps between stones, thick gold bars, sparse row")
+        elif arrangement == "graduated_crown_arc":
+            # contoured curved 'crown'/tiara band: central pear trio + graduating
+            # round accents (the fan/graduation + curved contour ARE the design)
+            negs.append("halo, hidden halo, centre head, basket, cathedral head, pave shoulders, "
+                        "packed pave row, channel set accents, bezel set row, extra accent row, "
+                        "second row of stones, straight band, flat straight shank, stones wrapping "
+                        "fully around the band, full eternity band, uniform same-size accents, "
+                        "marquise accents, oval accents, princess-cut accents, baguette accents, "
+                        "solitaire, single centre stone only, three stone ring, asymmetric crown, "
+                        "missing pear, added pear, extra stones, fewer stones")
         elif arrangement != "scattered_cluster_mixed_size":
             negs.append("widely spaced accents, sparse accents")
         settings = {r.get("setting", "") for r in runs}
@@ -148,6 +158,22 @@ def _accent_phrase(runs, spec):
                 f"the centre stone), bead/prong-set into the scrollwork, spaced apart within the curls -- NOT a "
                 f"packed pave row, NOT channel, NOT a halo. Keep the vine scroll symmetric and delicate; do NOT add "
                 f"extra accents, do NOT turn the shoulders into pave, do NOT omit the scrollwork.")
+    if r.get("arrangement") == "graduated_crown_arc":
+        metal = spec.get("metal", "yellow_gold").replace("_", " ")
+        fp = r.get("flanking_pears", 2)
+        ra = r.get("round_accents", 4)
+        return (f"CROWN ARC [{ids}]: the {metal} band is CONTOURED -- a curved band that dips at the "
+                f"centre -- and carries ONE symmetric GRADUATED CROWN of accent diamonds flanking the "
+                f"central pear. On EACH side, moving outward from the centre: first {fp // 2} PEAR "
+                f"diamond (slightly smaller than the centre pear, its point angled outward/downward), "
+                f"then {ra // 2} ROUND brilliant diamonds graduating SMALLER toward the shoulder. Total "
+                f"accents: {fp} flanking pears + {ra} rounds = {fp + ra}, mirrored left and right, so the "
+                f"whole piece reads as {fp + 1} pears + {ra} rounds ({fp + ra + 1} stones). All stones are "
+                f"shared/common-prong set in one continuous fanned arc, points fanning outward like a small "
+                f"tiara/crown. The crown spans about {cov}% of the band front; the rest of the shank is "
+                f"plain polished {metal}. Keep the arc symmetric and the size graduation intact; do NOT "
+                f"add a halo, a centre head/basket, pave, or a second row; the band stays a curved contour "
+                f"band (never straight) with no solitaire head.")
     if r.get("arrangement") == "scattered_cluster_mixed_size":
         return (f"Accent runs [{ids}]: each a SCATTERED CLUSTER of about {r['count']} round accents of "
                 f"MIXED sizes, {r.get('setting', '').replace('_', ' ')}, trailing naturally along the shoulder "
