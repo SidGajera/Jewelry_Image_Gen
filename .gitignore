@@ -81,3 +81,8 @@ tests/golden/pass_*/*.png
 # Machine-local ref cache index + transient build artifacts (regenerated)
 refs/manifest.json
 build/
+
+# Regenerable per-catalog transients (build/download artifacts)
+workspace/golden/**/_prompts.json
+workspace/golden/**/urls_*.json
+workspace/golden/**/jobs_*.json
