@@ -117,10 +117,13 @@ PROMPT_HEADER = (
     "2. STONE LAYOUT LOCK: preserve every stone's exact ORIENTATION, SPACING and COUNT. "
     "Marquise/oval/pear set EAST-WEST stay east-west (never vertical/tilted/radial); evenly-spaced "
     "shared-prong stones stay spaced (never packed/clustered/touching); exact source count -- never add/drop.\n"
-    "3. 100% NATURAL & ORIGINAL: must look like a genuine real photograph -- nothing artificial "
+    "3. HAND & PLACEMENT: exactly 5 fingers per hand; the ring encircles ONE single finger only "
+    "(that finger slightly separated with a clear gap) -- NEVER resting across, spanning, or bridging "
+    "two fingers, band never crossing the gap between fingers (physically impossible = reject).\n"
+    "4. 100% NATURAL & ORIGINAL: must look like a genuine real photograph -- nothing artificial "
     "(no plastic/CGI look, no fake/AI hands, no mannequin model, no artificial skin/lighting/background).\n"
-    "4. JEWELLERY IS THE MAIN FOCUS -- ring/diamond sharpest and most prominent; people/background softer.\n"
-    "5. Do NOT change the jewellery design from source -- reproduce exactly; diamonds D2D pixel-perfect "
+    "5. JEWELLERY IS THE MAIN FOCUS -- ring/diamond sharpest and most prominent; people/background softer.\n"
+    "6. Do NOT change the jewellery design from source -- reproduce exactly; diamonds D2D pixel-perfect "
     "(shape/size/cut/facets). Ring at TRUE real-life scale -- stone within finger width, never oversized."
 )
 
@@ -291,18 +294,25 @@ REALISM_NEGATIVE = ("plastic skin, waxy skin, poreless, airbrushed, smoothed ski
 
 
 # Hand-anatomy lock, appended to EVERY lifestyle slot (G15). Verbatim per user 2026-07-30/31.
-ANATOMY_POSITIVE = ("HAND & PLACEMENT LOGIC (mandatory): hands 100% realistic and anatomically correct "
-                    "-- EXACTLY FIVE fingers per hand (never six, never four; no extra, missing or fused "
-                    "fingers), natural joints and proportions. The ring is worn on ONE finger only, "
-                    "seated properly at the base of that single finger, band fully encircling it, both "
-                    "sides of the band on the SAME finger. NEVER place the ring across or spanning two "
-                    "fingers (physically impossible). Ring, hand and fingers logically and physically "
-                    "placed, correct ring size, natural pose.")
-ANATOMY_NEGATIVE = ("six fingers, seven fingers, four fingers, extra finger, missing finger, fused "
-                    "fingers, webbed fingers, ring between two fingers, ring spanning two fingers, one "
-                    "ring across two fingers, band crossing the gap between fingers, ring at the webbing, "
-                    "ring over a knuckle, floating ring, ring not encircling a finger, ring not on a "
-                    "finger, malformed hand, deformed hand, impossible hand, extra hand")
+ANATOMY_POSITIVE = ("HAND & PLACEMENT LOGIC (mandatory, hard): hands 100% realistic and anatomically "
+                    "correct -- EXACTLY FIVE fingers per hand (never six, never four; no extra, missing "
+                    "or fused fingers), natural joints and proportions. The ring encircles ONE SINGLE "
+                    "finger completely -- the band wraps all the way around that one finger, both sides "
+                    "of the band on the SAME finger, seated at its base. That ring finger is slightly "
+                    "SEPARATED from its neighbours with a CLEAR VISIBLE GAP on each side, so it is "
+                    "obvious the band goes around only ONE finger and touches no other. The stones and "
+                    "band stay entirely over that one finger and its width. It is PHYSICALLY IMPOSSIBLE "
+                    "and STRICTLY FORBIDDEN for the ring to rest across, span, bridge, or sit on top of "
+                    "TWO fingers, or for the band or any stone to cross the gap/valley between two "
+                    "fingers. Correct real-life ring size, natural hand pose.")
+ANATOMY_NEGATIVE = ("ring across two fingers, ring spanning two fingers, ring bridging two fingers, ring "
+                    "resting on top of two fingers, band crossing the gap between fingers, stones over "
+                    "the gap between fingers, ring in the valley between two fingers, ring at the "
+                    "webbing, one ring on two fingers, ring between two fingers, band touching a second "
+                    "finger, six fingers, seven fingers, four fingers, extra finger, missing finger, "
+                    "fused fingers, webbed fingers, ring over a knuckle, floating ring, ring not "
+                    "encircling a finger, ring not on a finger, malformed hand, deformed hand, "
+                    "impossible hand, extra hand")
 
 
 def _stone_equality(spec):
