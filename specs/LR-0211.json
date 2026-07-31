@@ -1,8 +1,8 @@
 {
   "sku": "LR-0211",
   "category": "ring",
-  "title": "Contoured 'crown' curved band — central pear trio + graduated round accents, yellow gold",
-  "note_source_vs_listing": "Source = 5 clean CAD renders (Drive folder LR-0211 '1GqwnP4eyl60j2Cepk1ABBK7Sz2z_HF3l'), no watermark: top/crown face, front elevation, true side, back/gallery, three-quarter. Piece: a CONTOURED (curved, centre-dipping) thin round plain-polished yellow-gold band carrying a symmetric GRADUATED CROWN of 7 diamonds — a central down-pointing PEAR (largest) flanked each side by 1 slightly smaller PEAR angled outward, then 2 ROUND brilliants graduating smaller toward the shoulders (3 pears + 4 rounds total). Shared/common-prong set in one continuous arc. No halo, no centre head/basket, no pave; plain polished shank.",
+  "title": "Contoured 'crown' curved band \u2014 central pear trio + graduated round accents, yellow gold",
+  "note_source_vs_listing": "Source = 5 clean CAD renders (Drive folder LR-0211 '1GqwnP4eyl60j2Cepk1ABBK7Sz2z_HF3l'), no watermark: top/crown face, front elevation, true side, back/gallery, three-quarter. Piece: a CONTOURED (curved, centre-dipping) thin round plain-polished yellow-gold band carrying a symmetric GRADUATED CROWN of 7 diamonds \u2014 a central down-pointing PEAR (largest) flanked each side by 1 slightly smaller PEAR angled outward, then 2 ROUND brilliants graduating smaller toward the shoulders (3 pears + 4 rounds total). Shared/common-prong set in one continuous arc. No halo, no centre head/basket, no pave; plain polished shank.",
   "primary_stones": [
     {
       "id": "center_pear",
@@ -56,5 +56,44 @@
   },
   "model": "seedream_v5_pro",
   "resolution": "2k",
-  "source_media_id": "2b63b4cd-902f-4be3-b4a7-5db83f334f9e"
+  "source_media_id": "2b63b4cd-902f-4be3-b4a7-5db83f334f9e",
+  "stone_equality": {
+    "centre_flanker_ratio": 1.3,
+    "centre_band_width_ratio": 3.0,
+    "flanker_accent_ratio": 1.8,
+    "counts_by_shape": {
+      "pear": 3,
+      "round": 4
+    },
+    "total_stones": 7,
+    "band": "contoured crown/chevron band, uniform thin round shank, centre rise ~1.5mm, no taper, yellow gold",
+    "ratio_tol": 0.1
+  },
+  "cutouts": {
+    "top": {
+      "path": "assets/cutouts/LR-0211/top.png",
+      "sha256": "1eb147cf5e2a983162c9376e823b09ac7ebad75ff06e2cf9ad061eba74e97b5b",
+      "w": 1062,
+      "h": 413
+    },
+    "front": {
+      "path": "assets/cutouts/LR-0211/front.png",
+      "sha256": "733f86c032c43c717087835bc27c14edec78eb8926b0ac2902dc68c7328ea620",
+      "w": 942,
+      "h": 967
+    },
+    "true_side": {
+      "path": "assets/cutouts/LR-0211/true_side.png",
+      "sha256": "156f1d60a89942a5f05be78e6588eea05df3a804e982a2207be9a02eda3b4603",
+      "w": 1216,
+      "h": 442
+    },
+    "back_gallery": {
+      "path": "assets/cutouts/LR-0211/back_gallery.png",
+      "sha256": "dd01ff637349282f797c1708d8a5edb18a1b511869a5e4e332c077649ebef871",
+      "w": 1220,
+      "h": 618
+    }
+  },
+  "px_per_mm": null
 }

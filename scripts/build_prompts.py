@@ -245,6 +245,39 @@ ANATOMY_NEGATIVE = ("ring between two fingers, ring spanning two fingers, band c
                     "malformed hand")
 
 
+def _stone_equality(spec):
+    """STONE EQUALITY LOCK (G21): numeric per-stone equality vs source, stated in
+    every prompt. Built from specs/<SKU>.json.stone_equality; empty when absent."""
+    se = spec.get("stone_equality")
+    if not se:
+        return ""
+    counts = ", ".join(f"{v} {k}" for k, v in (se.get("counts_by_shape") or {}).items())
+    return ("STONE EQUALITY LOCK (match the SOURCE exactly; only camera and scene change): exactly "
+            f"{se.get('total_stones')} stones -- {counts}. Each stone is identical to its source counterpart in "
+            "shape, cut and facet pattern, orientation and tilt, setting and prong style, and spacing/arrangement. "
+            "LOCKED RELATIVE SIZES (must read at these ratios, never equalised): centre stone = "
+            f"{se.get('centre_flanker_ratio')}x each flanking stone and {se.get('centre_band_width_ratio')}x the band "
+            f"width; each flanking stone = {se.get('flanker_accent_ratio')}x each small round accent. Do NOT render the "
+            "centre stone at flanker size, do NOT shrink or enlarge any stone relative to the others. Band: "
+            f"{se.get('band')} -- identical profile, width, contour, silhouette and metal, no taper.")
+
+
+# Minimum-subject-scale framing (G20), appended to EVERY lifestyle slot.
+MACRO_FRAMING = ("FRAMING: the ring fills at least one quarter of the frame width; macro framing, hand "
+                 "cropped at the knuckles, the ring is the largest sharp subject in frame. NO full-hand "
+                 "shot, NO wide or environment-establishing composition, NO torso; the scene reads only "
+                 "through background bokeh, never through frame coverage. RING SCALE: render the ring at "
+                 "TRUE real-life size on the finger — the centre stone sits WITHIN the finger's width, "
+                 "NEVER wider than the finger, never oversized or cocktail-huge; an elongated stone spans "
+                 "ALONG the finger but must not overhang the finger sides.")
+# Wardrobe / pull-back negative (G20 + REALISM_ANTI_AI), appended to EVERY lifestyle slot.
+WARDROBE_NEGATIVE = ("beige knit, cream knit, oatmeal knit, grey knit, gray knit, neutral couch, seamless "
+                     "backdrop, full hand in frame, whole hand shown, wide shot, establishing shot, "
+                     "environment wide, ring tiny in frame, distant ring, zoomed out, small ring, "
+                     "oversized diamond, oversized stone, stone wider than the finger, diamond overhanging "
+                     "the finger, cocktail-huge ring, giant diamond, exaggerated stone size")
+
+
 def build_prompt(spec, slot, theme=None):
     grp = slot["group"]
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
@@ -257,9 +290,10 @@ def build_prompt(spec, slot, theme=None):
                      f"wardrobe {theme['wardrobe']}; mood {theme['mood']}. This theme location/palette/light "
                      f"REPLACES any other location; keep ONLY the hand pose and framing from: [{scene}]. "
                      f"Vary the model, skin tone, age, wardrobe piece and time-within-window per slot.")
-        scene = scene + ". " + REALISM_POSITIVE   # includes anatomy + ring placement
-        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE   # includes skin + anatomy
+        scene = scene + ". " + REALISM_POSITIVE + " " + MACRO_FRAMING   # includes anatomy + ring placement + G20 framing
+        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE + ", " + WARDROBE_NEGATIVE   # skin + anatomy + wardrobe/pull-back
     geom = " ".join(p for p in [
+        _stone_equality(spec),
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),
         _halo_phrase(spec),

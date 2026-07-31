@@ -70,9 +70,10 @@
           "group": "lifestyle",
           "azimuth": 30,
           "elevation": 10,
-          "crop": 0.6,
+          "crop": 0.85,
           "scene": "golden-hour beach, own hand large in the foreground, fingers relaxed and slightly curled, ring tack-sharp; a partner far behind, small, heavily blurred, celebrating, NO contact; warm rim light, sky gradient",
-          "reveals": []
+          "reveals": [],
+          "macro": true
         },
         {
           "slot": "06",
@@ -80,9 +81,10 @@
           "group": "lifestyle",
           "azimuth": 135,
           "elevation": 25,
-          "crop": 0.6,
+          "crop": 0.7,
           "scene": "follow-me gesture, arm extended toward the lens, hand and ring the sharpest plane; model laughing, face soft and secondary; urban daylight, muted background; wardrobe a dark leather or structured jacket, not knitwear",
-          "reveals": []
+          "reveals": [],
+          "macro": false
         },
         {
           "slot": "07",
@@ -90,9 +92,10 @@
           "group": "lifestyle",
           "azimuth": 0,
           "elevation": 85,
-          "crop": 0.5,
+          "crop": 0.7,
           "scene": "two hands clasped, HANDS ONLY in frame, no faces; overcast beach, soft even light; ring hand nearer the camera; varied skin tones",
-          "reveals": []
+          "reveals": [],
+          "macro": false
         },
         {
           "slot": "08",
@@ -100,9 +103,10 @@
           "group": "lifestyle",
           "azimuth": 45,
           "elevation": 40,
-          "crop": 0.55,
+          "crop": 0.7,
           "scene": "two hands resting stacked on soft draped fabric, palms down, relaxed, no faces; neutral warm textiles, window light; ring the sharpest element; editorial stillness",
-          "reveals": []
+          "reveals": [],
+          "macro": false
         },
         {
           "slot": "09",
@@ -110,9 +114,10 @@
           "group": "lifestyle",
           "azimuth": 90,
           "elevation": 5,
-          "crop": 0.7,
+          "crop": 0.85,
           "scene": "head-and-shoulders beauty crop, fingertips resting at the chin or jaw so the ring reads clearly and is the sharpest element; eyes closed or averted; dewy natural skin, wet-look hair, warm stone background",
-          "reveals": []
+          "reveals": [],
+          "macro": true
         },
         {
           "slot": "10",
@@ -120,9 +125,10 @@
           "group": "lifestyle",
           "azimuth": 210,
           "elevation": 20,
-          "crop": 0.55,
+          "crop": 0.7,
           "scene": "beach sunset, ring hand raised toward the lens and the sharpest thing in frame; a partner present but BEHIND and to the side, out of focus, NOT touching, face turned away or partial; no kiss, no embrace, no cheek contact",
-          "reveals": []
+          "reveals": [],
+          "macro": false
         }
       ]
     },
@@ -166,7 +172,8 @@
           "group": "lifestyle",
           "azimuth": 0,
           "elevation": 80,
-          "crop": 0.6
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "06",
@@ -174,7 +181,8 @@
           "group": "lifestyle",
           "azimuth": 40,
           "elevation": 35,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "07",
@@ -182,7 +190,8 @@
           "group": "lifestyle",
           "azimuth": 90,
           "elevation": 10,
-          "crop": 0.65
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "08",
@@ -190,7 +199,8 @@
           "group": "lifestyle",
           "azimuth": 200,
           "elevation": 25,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "09",
@@ -198,7 +208,8 @@
           "group": "lifestyle",
           "azimuth": 25,
           "elevation": 12,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "10",
@@ -206,7 +217,8 @@
           "group": "lifestyle",
           "azimuth": 150,
           "elevation": 30,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         }
       ]
     },
@@ -250,7 +262,8 @@
           "group": "lifestyle",
           "azimuth": 0,
           "elevation": 20,
-          "crop": 0.55
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "06",
@@ -258,7 +271,8 @@
           "group": "lifestyle",
           "azimuth": 45,
           "elevation": 30,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "07",
@@ -266,7 +280,8 @@
           "group": "lifestyle",
           "azimuth": 90,
           "elevation": 15,
-          "crop": 0.6
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "08",
@@ -274,7 +289,8 @@
           "group": "lifestyle",
           "azimuth": 25,
           "elevation": 10,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "09",
@@ -282,7 +298,8 @@
           "group": "lifestyle",
           "azimuth": 160,
           "elevation": 25,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "10",
@@ -290,7 +307,8 @@
           "group": "lifestyle",
           "azimuth": 200,
           "elevation": 35,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         }
       ]
     },
@@ -334,7 +352,8 @@
           "group": "lifestyle",
           "azimuth": 0,
           "elevation": 20,
-          "crop": 0.5
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "06",
@@ -342,7 +361,8 @@
           "group": "lifestyle",
           "azimuth": 45,
           "elevation": 30,
-          "crop": 0.5
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "07",
@@ -350,7 +370,8 @@
           "group": "lifestyle",
           "azimuth": 90,
           "elevation": 15,
-          "crop": 0.55
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "08",
@@ -358,7 +379,8 @@
           "group": "lifestyle",
           "azimuth": 25,
           "elevation": 10,
-          "crop": 0.5
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "09",
@@ -366,7 +388,8 @@
           "group": "lifestyle",
           "azimuth": 150,
           "elevation": 25,
-          "crop": 0.5
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "10",
@@ -374,7 +397,8 @@
           "group": "lifestyle",
           "azimuth": 205,
           "elevation": 30,
-          "crop": 0.5
+          "crop": 0.7,
+          "macro": false
         }
       ]
     },
@@ -418,7 +442,8 @@
           "group": "lifestyle",
           "azimuth": 0,
           "elevation": 20,
-          "crop": 0.6
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "06",
@@ -426,7 +451,8 @@
           "group": "lifestyle",
           "azimuth": 45,
           "elevation": 30,
-          "crop": 0.6
+          "crop": 0.85,
+          "macro": true
         },
         {
           "slot": "07",
@@ -434,7 +460,8 @@
           "group": "lifestyle",
           "azimuth": 90,
           "elevation": 15,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "08",
@@ -442,7 +469,8 @@
           "group": "lifestyle",
           "azimuth": 25,
           "elevation": 10,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "09",
@@ -450,7 +478,8 @@
           "group": "lifestyle",
           "azimuth": 160,
           "elevation": 25,
-          "crop": 0.6
+          "crop": 0.7,
+          "macro": false
         },
         {
           "slot": "10",
@@ -458,7 +487,8 @@
           "group": "lifestyle",
           "azimuth": 200,
           "elevation": 35,
-          "crop": 0.55
+          "crop": 0.7,
+          "macro": false
         }
       ]
     }

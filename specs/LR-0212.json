@@ -1,0 +1,70 @@
+{
+  "sku": "LR-0212",
+  "category": "ring",
+  "title": "Marquise solitaire, 6-prong, hidden halo, micro-pavé shoulders, white gold (~3ct)",
+  "note_source_vs_listing": "Source = vendor CAD renders (Drive folder 1HC3xULaK9BpCZiDRXddxJg_j5SEyaXA9), white metal, marquise 3.00ct: top face + two side views. Piece: a MARQUISE-cut centre diamond (pointed both ends, oriented north-south) in a 6-prong head (two V-tip prongs + two side-pair prongs); a HIDDEN HALO of tiny round accents encircles the marquise under the girdle (visible from the side/rear, not the top); the shank shoulders carry a single row of small round micro-PAVÉ diamonds (scallop/French-set) running about half-way down each side; thin white-gold shank, no taper. No visible surface halo, no second row.",
+  "primary_stones": [
+    {
+      "id": "center_marquise",
+      "shape": "marquise",
+      "cut": "marquise_brilliant",
+      "orientation": "north_south",
+      "lw_ratio": 2.0,
+      "tolerance": 0.2,
+      "count": 1,
+      "scale_ratio_to_structure": 4.0
+    }
+  ],
+  "setting_elements": {
+    "type": "prong",
+    "count": 6,
+    "form": "plain_slender",
+    "layout": "v_tips_and_side_pairs"
+  },
+  "accent_runs": [
+    {
+      "id": "shoulders_left",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "arrangement": "uniform_row",
+      "setting": "flush_pave",
+      "rows": 1,
+      "count": 18,
+      "stone_dia_ratio_to_structure": 0.5,
+      "coverage_fraction": 0.55,
+      "tolerance": 3
+    },
+    {
+      "id": "shoulders_right",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "arrangement": "uniform_row",
+      "setting": "flush_pave",
+      "rows": 1,
+      "count": 18,
+      "stone_dia_ratio_to_structure": 0.5,
+      "coverage_fraction": 0.55,
+      "tolerance": 3
+    }
+  ],
+  "halo": "hidden",
+  "halo_count": 24,
+  "under_head": "basket",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "white_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "source_media_id": null
+}

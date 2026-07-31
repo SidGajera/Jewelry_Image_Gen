@@ -400,7 +400,8 @@
       ],
       "origin": "user (21)",
       "failure_cases": [],
-      "status": "active"
+      "status": "superseded",
+      "superseded_by": "GEN_COMPOSITE_V2"
     },
     {
       "id": "PIPELINE_SOP",
@@ -473,6 +474,150 @@
         "invented_full_circumference_pave",
         "invented_split_prongs_from_front_view",
         "invented_hidden_halo_from_front_view"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "GEN_COMPOSITE_V2",
+      "key": "generation.engine",
+      "statement": "Jewellery is composited from source CAD cutouts (whole-asset affine transform only); Higgsfield generates BACKGROUND PLATES ONLY (call shape unchanged: 2k,1:1,count1,one batch); no jewellery word or geometry in any prompt.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "GEN_ENGINE_LOCK"
+      ],
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_generated_not_composited",
+        "geometry_drift_from_text_to_image"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "G19_COMPOSITE_PROVENANCE",
+      "key": "generation.provenance",
+      "statement": "every delivery carries its source cutout name + sha256 and asserts whole-asset affine only; no sidecar or hash mismatch = no ship. Pixel-counters G2-G9 retired for composites; geometry verified by cutout hash.",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "missing_provenance",
+        "cutout_hash_mismatch"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "HIGGSFIELD_ONLY",
+      "key": "generation.engine",
+      "statement": "ALL delivered pixels come from Higgsfield generate_image. Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write). Python allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "GEN_COMPOSITE_V2",
+        "G19_COMPOSITE_PROVENANCE"
+      ],
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "python_wrote_delivered_pixels",
+        "silent_delivery_on_geometry_fail"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "SUBJECT_SCALE_MIN",
+      "key": "deliverables.subject_scale",
+      "statement": "lifestyle jewellery bounding box >= 12% of frame area (>= 25% on the two macro lifestyle slots); below threshold the model cannot resolve real geometry and substitutes a generic piece -> FAIL, regenerate with tighter framing.",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G20_MIN_SUBJECT_SCALE"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "ring_too_small_generic_substitute"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "STONE_EQUALITY_LOCK",
+      "key": "geometry.stone_equality",
+      "statement": "every stone in the output equals its source counterpart: count, shape per stone, cut/facet pattern, absolute size, size RELATIVE to every other stone, orientation/tilt, setting/prong style, spacing/arrangement. Band profile/width/contour/silhouette/taper/metal identical. Only camera angle and scene may change. Locked numeric ratios live in specs/<SKU>.json.stone_equality and are stated in every prompt.",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G21_STONE_RATIO"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "centre_stone_at_flanker_size",
+        "stone_count_wrong",
+        "relative_size_drift"
+      ],
+      "status": "aspirational"
+    },
+    {
+      "id": "GEOMETRY_FROM_SOURCE",
+      "key": "generation.engine",
+      "precedence": 100,
+      "statement": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) \u2014 never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+      "scope": "global",
+      "supersedes": [
+        "HIGGSFIELD_ONLY"
+      ],
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_generated_not_placed",
+        "stone_ratio_drift"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "RING_SCALE_ON_HAND",
+      "key": "plausibility.ring_scale",
+      "precedence": 80,
+      "statement": "on every on-hand/lifestyle image the ring is at true real-life scale: the centre stone sits WITHIN the finger's width (stone width <= finger width), never wider/oversized/cocktail-huge; an elongated stone spans ALONG the finger but must not overhang the finger sides. Reject if the diamond looks oversized for the hand.",
+      "scope": "global",
+      "enforced_by": [
+        "G22_STONE_WITHIN_FINGER"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "diamond_oversized_on_hand",
+        "stone_wider_than_finger"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "JEWELRY_PRESERVATION",
+      "key": "geometry.preservation",
+      "precedence": 100,
+      "statement": "Jewellery redesign/redraw PROHIBITED: diamond shape/size/cut/facet/count/placement, prongs/setting/gallery/band and metalwork come ONLY from the source CAD, unchanged (target: D2D pixel-perfect), on EVERY image including lifestyle. Only the camera angle may change. Read ALL source angles before generating; never generate an angle without a source view. Materials must look 100% real (no plastic/CZ/CGI). Aspirational under HIGGSFIELD_ONLY (text-to-image cannot guarantee D2D); kept as the locked target and enforced where measurable (G22 scale, G20 framing, G12 marks, G-INVENT coverage).",
+      "scope": "global",
+      "enforced_by": [
+        "G_INVENT",
+        "G20_MIN_SUBJECT_SCALE",
+        "G22_STONE_WITHIN_FINGER"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_redrawn",
+        "diamond_shape_changed",
+        "stone_added_or_removed"
       ],
       "status": "active"
     }

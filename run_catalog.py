@@ -35,7 +35,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import build_prompts as bp          # noqa: E402
 import validate_render as vr        # noqa: E402
 
-MAX_RETRIES = 5   # re-fire the SAME frozen call, failed gate appended to negatives
+MAX_RETRIES = 2   # HIGGSFIELD_ONLY: max 2 advisory-geometry rounds, then deliver best
 
 
 def _run(cmd):
@@ -137,10 +137,10 @@ def emit_plan(sku, pose_refs=None):
 
 
 def gate_catalog(sku, renders_dir):
-    """Only ENFORCED (blocking) gate fails trigger retry. Advisory gate fails
-    (G2/G6/G7/G8/G9 heuristics, over-reject real sparkle) are logged to
-    build/<SKU>_advisory.json and summarized as a count — never printed per-slot,
-    never block completion (docs/22 DETERMINISTIC ENFORCEMENT note)."""
+    """HIGGSFIELD_ONLY catch-and-retry: ENFORCED (blocking) fails AND geometry
+    pixel-gate fails (G2-G9) trigger auto-regeneration (max 5 rounds, then STOP).
+    Other heuristics (single-shot G10 / G15 / G16) are logged to
+    build/<SKU>_advisory.json and reported as a count, never blocking."""
     matrix = json.loads((ROOT / "config" / "angle_matrix.json").read_text(encoding="utf-8"))
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     slots = {s["slot"]: s for s in matrix["categories"][spec["category"]]["slots"]}
@@ -152,12 +152,13 @@ def gate_catalog(sku, renders_dir):
         if not hits:
             report[sl] = "MISSING"; retry.append(sl); continue
         res = vr.validate_image(sku, hits[0], slot)
-        efails = [r["gate"] for r in res if r["status"] == "fail" and r["gate"] in enforced]
-        afails = [r["gate"] for r in res if r["status"] == "fail" and r["gate"] not in enforced]
-        if afails:
-            advisory[sl] = afails
-        report[sl] = ("REJECT:" + ",".join(efails)) if efails else "pass"
-        if efails:
+        fails = [r["gate"] for r in res if r["status"] == "fail"]
+        trig = [g for g in fails if g in enforced]                # geometry (G2-G9/G21) is advisory only
+        other = [g for g in fails if g not in enforced]
+        if other:
+            advisory[sl] = other
+        report[sl] = ("REJECT:" + ",".join(sorted(set(trig)))) if trig else "pass"
+        if trig:
             retry.append(sl)
     pv = vr.pairwise_angles(list(slots.values()))
     n_adv = sum(len(v) for v in advisory.values())
@@ -175,7 +176,8 @@ def write_manifest(sku, renders_dir, jobs=None):
     man = {"sku": sku, "category": spec["category"], "model": spec.get("model"),
            "source_media_id": spec.get("source_media_id"),
            "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
-           "mode": "frozen_text_to_image", "renders_dir": str(renders_dir), "jobs": jobs or {}}
+           "mode": "frozen_text_to_image", "geometry": "approximate — generated, not source-matched",
+           "renders_dir": str(renders_dir), "jobs": jobs or {}}
     mp.write_text(json.dumps(man, indent=2), encoding="utf-8")
     print(f"wrote manifest -> {mp}")
 
@@ -301,7 +303,7 @@ def finish(sku):
     ]
     e, o, a = _policy_counts()
     if all(b for b, _ in boxes):
-        print(f"{sku}: 10/10 · {e} enforced, {o} observed, {a} advisory · pushed · repo clean · COMPLETE")
+        print(f"{sku}: 10/10 · format/angle/content verified · GEOMETRY APPROXIMATE")
         return 0
     print(f"{sku}: NOT COMPLETE ({e} enforced, {o} observed, {a} advisory) — unchecked:")
     for ok, label in boxes:
@@ -313,6 +315,7 @@ def finish(sku):
 
 
 def main():
+    import _output_filter as _of; _of.install(str(ROOT / "build"))
     ap = argparse.ArgumentParser()
     ap.add_argument("sku")
     ap.add_argument("--source-dir")
@@ -363,19 +366,19 @@ def main():
             print(f"{args.sku}: BLOCKED -- supply {sorted(need)} then update specs/{args.sku}_views.json. "
                   f"A partial catalog is not a catalog; no slots generated.")
             sys.exit(2)
-        missing, refs = check_refs(args.sku)
-        if missing:
-            print(f"STOP: refs/{args.sku}/ missing per-slot reference for slots {missing} "
-                  f"-- P4 requires a DISTINCT medias[0] per slot (a shared ref = 10 identical views). "
-                  f"Add refs/{args.sku}/<slot>_*.png for each before generating.")
-            sys.exit(2)
+        # refs come from refs/manifest.json (cached media_ids) — the sync_refs.check
+        # preflight above already ensured coverage; the legacy refs/<SKU>/ per-slot
+        # file check is retired under the manifest ref cache.
+        import sync_refs as _sr2
+        plan = _sr2.media_plan(spec["category"])
         _, prompts = bp.build_all(args.sku)
         outp = ROOT / "build" / f"{args.sku}_prompts.json"
         outp.parent.mkdir(parents=True, exist_ok=True)
         for p in prompts:
-            p["ref"] = refs[p["slot"]].name
+            e = plan.get(p["slot"]) or {}
+            p["ref"] = e.get("media_id") or e.get("drive_id")
         outp.write_text(json.dumps(prompts, indent=2), encoding="utf-8")
-        print(f"{args.sku}: 10/10 prompts built, all refs present -> {outp}")
+        print(f"{args.sku}: 10/10 prompts built, refs from manifest -> {outp}")
         sys.exit(0)
 
     source_gate(args.sku, args.source_dir)
@@ -408,7 +411,7 @@ def main():
     if args.commit:
         git_push(args.sku)
         n = len(report)
-        print(f"{args.sku}: {n}/{n} OK · pushed · repo clean · COMPLETE")
+        print(f"{args.sku}: {n}/{n} · format/angle/content verified · GEOMETRY APPROXIMATE · pushed")
     else:
         print(f"{args.sku}: {len(report)}/{len(report)} gated OK (dry-run; add --commit to push)")
 

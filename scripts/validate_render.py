@@ -409,6 +409,110 @@ def g17_theme(sku):
     return _g("G17_THEME", "pass", f"hue~{hmed:.0f} lum~{lmed:.0f}", "clustered+distinct", "consistent + distinct")
 
 
+def g20_min_subject_scale(bgr, slot):
+    """MINIMUM SUBJECT SCALE (lifestyle, BLOCKING): the jewellery bounding box must
+    be >= lifestyle_min of frame area (>= macro_min on the two macro lifestyle slots).
+    Below threshold the model has no pixel budget to resolve the real geometry and
+    substitutes a generic piece -> FAIL, regenerate with tighter framing."""
+    if slot.get("group") != "lifestyle":
+        return [_g("G20_MIN_SUBJECT_SCALE", "skip", detail="studio slot")]
+    import cv2
+    import numpy as _np
+    import json as _json
+    cfg = _json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))["gates"].get("G20_MIN_SUBJECT_SCALE", {})
+    lo = cfg.get("macro_min", 0.25) if slot.get("macro") else cfg.get("lifestyle_min", 0.12)
+    h, w = bgr.shape[:2]
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    H, S, V = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+    gold = ((H >= 13) & (H <= 45) & (S >= 55) & (V >= 70)).astype("uint8") * 255
+    spark = ((V >= 235) & (S <= 60)).astype("uint8") * 255
+    m = cv2.bitwise_or(gold, spark)
+    m = cv2.dilate(m, _np.ones((9, 9), "uint8"), iterations=2)
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, _np.ones((25, 25), "uint8"))
+    cnts, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if not cnts:
+        return [_g("G20_MIN_SUBJECT_SCALE", "unmeasurable", None, f">={lo:.0%}", "no jewellery region isolated")]
+    x, y, bw, bh = cv2.boundingRect(max(cnts, key=cv2.contourArea))
+    frac = (bw * bh) / float(h * w)
+    if frac < lo:
+        return [_g("G20_MIN_SUBJECT_SCALE", "fail", f"{frac:.1%}", f">={lo:.0%}", "ring too small in frame; tighten to macro framing")]
+    return [_g("G20_MIN_SUBJECT_SCALE", "pass", f"{frac:.1%}", f">={lo:.0%}", "subject large enough")]
+
+
+def g21_stone_ratio(bgr, spec, slot):
+    """STONE RATIO (BLOCKING): resolve the bright diamond blobs, compare the
+    centre:flanker size ratio to spec.stone_equality within +/-ratio_tol, and assert
+    the distinct-stone count is not short of spec (the generic-substitute failure).
+    Unmeasurable when stones cannot be resolved (small lifestyle crops -> G20 gates first)."""
+    se = spec.get("stone_equality")
+    if not se:
+        return [_g("G21_STONE_RATIO", "skip", detail="no stone_equality in spec")]
+    import cv2
+    import numpy as _np
+    import statistics as _st
+    tol = se.get("ratio_tol", 0.10)
+    want = se.get("centre_flanker_ratio")
+    total = se.get("total_stones") or 0
+    h, w = bgr.shape[:2]
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    S, V = hsv[..., 1], hsv[..., 2]
+    stones = (((V >= 170) & (S <= 70)).astype("uint8")) * 255
+    stones = cv2.morphologyEx(stones, cv2.MORPH_OPEN, _np.ones((3, 3), "uint8"))
+    cnts, _ = cv2.findContours(stones, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    minA = 0.00003 * h * w
+    areas = sorted((cv2.contourArea(c) for c in cnts if cv2.contourArea(c) >= minA), reverse=True)
+    if len(areas) < 2:
+        return [_g("G21_STONE_RATIO", "unmeasurable", None, None, "stones not resolvable (check G20 scale)")]
+    n = len(areas)
+    if total and n < total - 2:
+        return [_g("G21_STONE_RATIO", "fail", f"{n} stones", f"{total}", "too few distinct stones; generic substitute")]
+    flank = _st.median(areas[1:min(len(areas), 4)])
+    ratio = (areas[0] / flank) ** 0.5 if flank > 0 else 0.0
+    if want and abs(ratio - want) / want > tol:
+        return [_g("G21_STONE_RATIO", "fail", f"{ratio:.2f}", f"{want}+/-{tol:.0%}", "centre:flanker size ratio out of range")]
+    return [_g("G21_STONE_RATIO", "pass", f"ratio {ratio:.2f}, {n} stones", f"{want}+/-{tol:.0%}, {total}", "stone ratios ok")]
+
+
+def g22_stone_within_finger(bgr, slot):
+    """RING SCALE ON HAND (lifestyle, BLOCKING): the centre stone must sit WITHIN
+    the finger's width — never wider than the finger. Detect the centre-stone blob
+    width and the skin (finger) width at the stone's row; FAIL if stone is wider
+    than the finger (× tol). Reject 'cocktail-huge' diamonds."""
+    if slot.get("group") != "lifestyle":
+        return [_g("G22_STONE_WITHIN_FINGER", "skip", detail="studio slot")]
+    import cv2
+    import numpy as _np
+    import json as _json
+    tol = _json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))["gates"].get("G22_STONE_WITHIN_FINGER", {}).get("tol", 1.05)
+    h, w = bgr.shape[:2]
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV); S, V = hsv[..., 1], hsv[..., 2]
+    stone = (((V >= 190) & (S <= 55)).astype("uint8")) * 255
+    stone = cv2.morphologyEx(stone, cv2.MORPH_OPEN, _np.ones((5, 5), "uint8"))
+    cnts, _ = cv2.findContours(stone, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = [c for c in cnts if cv2.contourArea(c) >= 0.0005 * h * w]
+    if not cnts:
+        return [_g("G22_STONE_WITHIN_FINGER", "unmeasurable", None, None, "no centre stone resolved")]
+    sx, sy, sw, sh = cv2.boundingRect(max(cnts, key=cv2.contourArea))
+    ycr = cv2.cvtColor(bgr, cv2.COLOR_BGR2YCrCb)
+    Y, Cr, Cb = ycr[..., 0], ycr[..., 1], ycr[..., 2]
+    skin = ((Cr >= 135) & (Cr <= 180) & (Cb >= 85) & (Cb <= 135) & (Y >= 40)).astype("uint8")
+    band = skin[max(0, sy + sh):min(h, sy + sh + max(8, sh // 2)), :]  # skin just below the stone
+    if band.size == 0 or band.sum() < 50:
+        return [_g("G22_STONE_WITHIN_FINGER", "unmeasurable", None, None, "no finger skin resolved under stone")]
+    col = band.sum(axis=0); xc = sx + sw // 2
+    left = xc
+    while left > 0 and col[left] > 0:
+        left -= 1
+    right = xc
+    while right < w - 1 and col[right] > 0:
+        right += 1
+    finger_w = max(1, right - left)
+    ratio = sw / float(finger_w)
+    if ratio > tol:
+        return [_g("G22_STONE_WITHIN_FINGER", "fail", f"{ratio:.2f}", f"<={tol}", "centre stone wider than the finger; oversized on hand")]
+    return [_g("G22_STONE_WITHIN_FINGER", "pass", f"{ratio:.2f}", f"<={tol}", "stone within finger width")]
+
+
 def validate_image(sku, image_path, slot):
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     res = [g1_format(image_path)]
@@ -431,6 +535,9 @@ def validate_image(sku, image_path, slot):
     res += g15_hand_anatomy(bgr, slot)
     res += g16_skin_realism(bgr, slot)
     res += g18_background(bgr, slot)
+    res += g20_min_subject_scale(bgr, slot)
+    res += g21_stone_ratio(bgr, spec, slot)
+    res += g22_stone_within_finger(bgr, slot)
     return res
 
 

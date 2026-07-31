@@ -178,6 +178,14 @@ def sync():
                                 "local_path": ref["local_path"], "sha256": ref["sha256"]}
 
     removed = _prune_docs06(dead)
+    # carry forward cached Higgsfield media_ids (never re-import a ref that has one)
+    prior = _media_map()
+    for grp in pool:
+        for e in pool[grp]:
+            e["media_id"] = prior.get(e["drive_id"])
+    for cat in slots:
+        for sl in slots[cat]:
+            slots[cat][sl]["media_id"] = prior.get(slots[cat][sl]["drive_id"])
     manifest = {
         "_note": "Locally cached pose/studio references. Per catalog, refs are read from disk "
                  "(no Drive calls, no media_import_url for refs). Regenerate with scripts/sync_refs.py.",
@@ -195,6 +203,43 @@ def sync():
     else:
         print("no dead ids — docs/06 unchanged")
     return manifest
+
+
+def _media_map():
+    """{drive_id: media_id} from the current manifest (empty if none/absent)."""
+    if not MANIFEST.exists():
+        return {}
+    man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    out = {}
+    for grp in man.get("pool", {}).values():
+        for e in grp:
+            if e.get("media_id"):
+                out[e["drive_id"]] = e["media_id"]
+    return out
+
+
+def set_media_id(drive_id, media_id):
+    """Persist a Higgsfield media_id for a drive_id across pool + every slot entry.
+    Called ONCE after a first import so the ref is never re-imported again."""
+    man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    for grp in man.get("pool", {}).values():
+        for e in grp:
+            if e["drive_id"] == drive_id:
+                e["media_id"] = media_id
+    for cat in man.get("slots", {}).values():
+        for sl in cat.values():
+            if sl["drive_id"] == drive_id:
+                sl["media_id"] = media_id
+    MANIFEST.write_text(json.dumps(man, indent=2), encoding="utf-8")
+    return media_id
+
+
+def media_plan(sku_category="ring"):
+    """Per-catalog ref plan with ZERO Drive calls: {slot: {media_id|None, drive_id,
+    local_path}}. Slots whose media_id is None still need a ONE-TIME import; the rest
+    are reused as-is. run_catalog / the agent reads this instead of importing refs."""
+    man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    return man.get("slots", {}).get(sku_category, {})
 
 
 def check(category=None):
@@ -221,7 +266,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="no network; report manifest coverage and exit")
     ap.add_argument("--category", help="limit --check to one category")
+    ap.add_argument("--set-media", nargs=2, metavar=("DRIVE_ID", "MEDIA_ID"),
+                    help="cache a Higgsfield media_id for a drive_id (one-time, after first import)")
+    ap.add_argument("--media-status", action="store_true",
+                    help="list drive_ids still missing a cached media_id (need a one-time import)")
     args = ap.parse_args()
+    if args.set_media:
+        set_media_id(args.set_media[0], args.set_media[1])
+        print(f"cached media_id {args.set_media[1]} for {args.set_media[0]}")
+        sys.exit(0)
+    if args.media_status:
+        mm = _media_map()
+        man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        allids = {e["drive_id"] for grp in man.get("pool", {}).values() for e in grp}
+        need = sorted(allids - set(mm))
+        print("all refs have media_id (zero Drive imports needed)" if not need
+              else "need one-time import (drive_id -> media_id): " + ", ".join(need))
+        sys.exit(0)
     if args.check:
         ok, missing = check(args.category)
         if ok:

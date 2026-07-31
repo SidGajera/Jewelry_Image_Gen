@@ -9,42 +9,50 @@
     "G2_ACCENT_COUNT": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "accent stones/run"
+      "measures": "accent stones/run",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G3_ACCENT_SIZE": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "accent dia / structure"
+      "measures": "accent dia / structure",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G4_ACCENT_RUN": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "accent run coverage"
+      "measures": "accent run coverage",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G5_SETTING_STYLE": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "raised rail vs flush"
+      "measures": "raised rail vs flush",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G6_STONE_RATIO": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "primary L:W ellipse"
+      "measures": "primary L:W ellipse",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G7_SETTING_COUNT": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "prong count/width"
+      "measures": "prong count/width",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G8_UNAUTHORIZED": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "unauthorized clusters"
+      "measures": "unauthorized clusters",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G9_PIECE_COUNT": {
       "blocking": false,
       "kind": "heuristic",
-      "measures": "one piece + scale"
+      "measures": "one piece + scale",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G10_ANGLE": {
       "blocking": false,
@@ -105,6 +113,26 @@
       },
       "measures": "studio background is plain pure-white velvet (low sat, high lum, fine mid-freq fabric texture)",
       "note": "Studio slots only. Rejects coloured backgrounds (sat/chan), seamless paper (texture<min), hard gradients/sweeps (gradient), busy props (texture>max). Calibrated on 7 approved velvet renders (sat<=6.1, lum>=227, grad<=0.144, tex 0.76-1.64, chan<=0.022) -> FP=0 with wide margin. Golden: LR-0205 studio."
+    },
+    "G20_MIN_SUBJECT_SCALE": {
+      "blocking": true,
+      "kind": "subject_scale",
+      "lifestyle_min": 0.12,
+      "macro_min": 0.25,
+      "measures": "jewellery bbox area fraction on lifestyle slots (>=12%, >=25% macro); below = too small to resolve geometry"
+    },
+    "G21_STONE_RATIO": {
+      "blocking": false,
+      "kind": "stone_ratio",
+      "ratio_tol": 0.1,
+      "measures": "per-stone areas -> centre:flanker size ratio within +/-10% of spec, and stone COUNT per shape class == spec",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G22_STONE_WITHIN_FINGER": {
+      "blocking": true,
+      "kind": "ring_scale_on_hand",
+      "tol": 1.05,
+      "measures": "lifestyle: centre-stone width <= finger width (\u00d7 tol); rejects oversized 'cocktail-huge' diamonds on the hand"
     }
   }
 }
