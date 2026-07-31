@@ -110,21 +110,26 @@ def build_negative(spec):
 # This is a prompt template only — authority for each rule lives in its own policy file
 # (JEWELRY_PRESERVATION_POLICY etc.); do NOT duplicate full policy text here. Per user 2026-07-31.
 PROMPT_HEADER = (
+    "#0 READ SOURCE FIRST (ABSOLUTE HIGHEST PRIORITY, before anything): the jewellery is reproduced "
+    "ONLY from the read source -- every angle, every stone (shape/count/orientation/spacing/type), band, "
+    "prongs, setting, proportions. Redesign/redraw is STRICTLY BANNED. If a required angle has no source "
+    "view, do NOT redraw it -- it is 'no source angle'. Only render angles that exist in the source.\n\n"
     "TOP ORDER -- HIGHEST PRIORITY (obey before everything below):\n"
-    "1. PHYSICS/LOGIC: the ring must be physically real. It has EXACTLY the source's band "
-    "structure -- normally ONE continuous shank. NEVER 2/3/multiple bands, split rails, floating "
-    "loops or duplicated shanks. Count the bands: must equal the source (usually 1).\n"
-    "2. STONE LAYOUT LOCK: preserve every stone's exact ORIENTATION, SPACING and COUNT. "
+    "1. PHYSICS/LOGIC: physically real. The ring has EXACTLY the source's band structure -- normally ONE "
+    "continuous shank (never 2/3/multiple bands, split rails, floating loops, duplicated shanks). Ring worn "
+    "on ONE single finger only, band encircling that one finger -- NEVER across/spanning two fingers. Count "
+    "bands + check the finger before output.\n"
+    "2. BAND NEVER CHANGES: band profile, thickness, width, curve, metal, finish and any engraving stay "
+    "EXACTLY as the source. No restyle/thicken/thin/split/add.\n"
+    "3. STONE LAYOUT LOCK: preserve every stone's exact ORIENTATION, SPACING, COUNT and TYPE. "
     "Marquise/oval/pear set EAST-WEST stay east-west (never vertical/tilted/radial); evenly-spaced "
-    "shared-prong stones stay spaced (never packed/clustered/touching); exact source count -- never add/drop.\n"
-    "3. HAND & PLACEMENT: exactly 5 fingers per hand; the ring encircles ONE single finger only "
-    "(that finger slightly separated with a clear gap) -- NEVER resting across, spanning, or bridging "
-    "two fingers, band never crossing the gap between fingers (physically impossible = reject).\n"
-    "4. 100% NATURAL & ORIGINAL: must look like a genuine real photograph -- nothing artificial "
-    "(no plastic/CGI look, no fake/AI hands, no mannequin model, no artificial skin/lighting/background).\n"
+    "shared-prong stones stay spaced (never packed/clustered/touching); keep any round accents; exact "
+    "source count -- never add, drop, or swap a stone.\n"
+    "4. 100% NATURAL & ORIGINAL: a genuine real photograph -- nothing artificial (no plastic/CGI look, no "
+    "fake/AI hands, exactly 5 fingers, no mannequin, no artificial skin/lighting/background).\n"
     "5. JEWELLERY IS THE MAIN FOCUS -- ring/diamond sharpest and most prominent; people/background softer.\n"
-    "6. Do NOT change the jewellery design from source -- reproduce exactly; diamonds D2D pixel-perfect "
-    "(shape/size/cut/facets). Ring at TRUE real-life scale -- stone within finger width, never oversized."
+    "6. Do NOT change the jewellery design from source -- AI-redraw disabled, source-locked; diamonds D2D "
+    "pixel-perfect (shape/size/cut/facets). Ring at TRUE real-life scale -- stone within finger width, never oversized."
 )
 
 # Positive inner-shank clause appended to every prompt's PIECE section.
