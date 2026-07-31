@@ -58,7 +58,13 @@ def build_negative(spec):
     if runs:
         arrangement = runs[0].get("arrangement", "uniform_row")
         negs.append("extra accent row, oversized accent stones, short accent run")
-        if arrangement != "scattered_cluster_mixed_size":
+        if arrangement == "bar_set_baguette":
+            # bar-set east-west baguette band: the gold bars/spacing ARE the design
+            negs.append("round accents, princess-cut accents, tapered baguettes, pave band, "
+                        "channel set, bezel set row, prong-set stones, center solitaire stone, "
+                        "large centre gemstone, halo, second row of stones, full eternity band, "
+                        "stones on the lower shank, stones wrapping fully around the band")
+        elif arrangement != "scattered_cluster_mixed_size":
             negs.append("widely spaced accents, sparse accents")
         settings = {r.get("setting", "") for r in runs}
         if any(str(s).startswith("flush") for s in settings):
@@ -103,12 +109,22 @@ def _setting_phrase(se):
             f"(the {form.replace('_',' ')} form is intentional and must be preserved); no extra or missing element.")
 
 
-def _accent_phrase(runs, structure):
+def _accent_phrase(runs, spec):
     if not runs:
         return "No accents on the shoulders; the band is plain and unaccented (any accents are the hidden halo only)."
     r = runs[0]
     ids = ", ".join(x["id"] for x in runs)
     cov = int(r.get("coverage_fraction", 0.66) * 100)
+    if r.get("arrangement") == "bar_set_baguette":
+        metal = spec.get("metal", "yellow_gold").replace("_", " ")
+        return (f"Accent run [{ids}]: a single straight HALF-ETERNITY row of exactly {r['count']} step-cut "
+                f"BAGUETTE diamonds (elongated rectangles, straight clean step-cut edges, NOT round, NOT tapered), "
+                f"set EAST-WEST -- each baguette's long axis lying across the band, laid end-to-end in one continuous "
+                f"line along the TOP of the shank. BAR-SET: a thin polished {metal} bar between every adjacent pair "
+                f"of baguettes and one bar at each end of the row (shared vertical bars only -- NOT channel walls, "
+                f"NOT prongs, NOT bezel, NOT flush pave). All baguettes identical size, level and evenly spaced. The "
+                f"row spans about {cov}% of the band (front/top only); the rest of the shank is plain polished "
+                f"{metal}. Single row, no stones on the lower half, no centre stone, no halo.")
     if r.get("arrangement") == "scattered_cluster_mixed_size":
         return (f"Accent runs [{ids}]: each a SCATTERED CLUSTER of about {r['count']} round accents of "
                 f"MIXED sizes, {r.get('setting', '').replace('_', ' ')}, trailing naturally along the shoulder "
@@ -124,6 +140,8 @@ def _accent_phrase(runs, structure):
 def _halo_phrase(spec):
     halo = spec.get("halo", "none")
     if halo == "none":
+        if not spec.get("primary_stones"):
+            return ""   # band with no head/centre stone: no halo/under-head language at all
         uh = spec.get("under_head", "plain")
         return f"NO halo of any kind, NO hidden halo, NO stones under the primary, plain polished {uh} under-head."
     if halo == "hidden":
@@ -196,7 +214,7 @@ def build_prompt(spec, slot, theme=None):
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
         _setting_phrase(spec.get("setting_elements")),
         _halo_phrase(spec),
-        _accent_phrase(spec.get("accent_runs", []), spec.get("structure", {})),
+        _accent_phrase(spec.get("accent_runs", []), spec),
         _structure_phrase(spec.get("structure")),
         f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}, "
         f"single tone (no two-tone).",

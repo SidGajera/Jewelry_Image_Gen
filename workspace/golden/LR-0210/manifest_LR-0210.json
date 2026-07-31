@@ -1,0 +1,27 @@
+{
+  "sku": "LR-0210",
+  "category": "ring",
+  "title": "East-west baguette bar-set half-eternity band, thin round shank, yellow gold",
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "source": "Etsy listing photos only (no CAD); user-authorized best-effort 2026-07-31",
+  "source_media_id": "e854d2be-cb1f-406a-90f6-e661545dd7c6",
+  "source_ref_file": "workspace/golden/LR-0210/source/r3l7_clean.webp",
+  "theme": "winter_window",
+  "composition": "4 studio velvet + 6 lifestyle",
+  "jobs": {
+    "01_top_down_flatlay": "814e6d68-77f0-4201-ae12-9bed9520b511",
+    "02_true_side_profile": "0debd537-edf5-40bd-8dc8-395f5c8f33f9",
+    "03_front_elevation": "80b10f64-232a-46f9-9e22-e2cd8032648e",
+    "04_gallery_back": "c98be496-4dff-4933-978d-fd38ac8e8c92",
+    "05_low_hero": "80fc2e4f-b011-435d-9aa7-cf968a633406",
+    "06_reach_to_camera": "a734a0b7-8a2f-4cb8-aae0-004be077dd1d",
+    "07_hands_held": "34f18def-d8e9-465a-bed2-f339e9464848",
+    "08_hands_stacked_editorial": "b4faf89a-5e26-49ab-a7f5-5b7b4813ec1d",
+    "09_beauty_closeup": "034d4097-4316-442d-9834-b35bb7df9edf",
+    "10_sunset_raised_hand": "d4b1783f-5043-4469-ae81-abb437899a76"
+  },
+  "status": "generated_pending_user_qc"
+}
