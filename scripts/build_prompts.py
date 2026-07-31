@@ -106,6 +106,24 @@ def build_negative(spec):
         negs.append("wider structure, flat structure")
     return ", ".join(negs)
 
+# TOP-ORDER prompt header, prepended VERBATIM to every generation prompt (all catalogs).
+# This is a prompt template only — authority for each rule lives in its own policy file
+# (JEWELRY_PRESERVATION_POLICY etc.); do NOT duplicate full policy text here. Per user 2026-07-31.
+PROMPT_HEADER = (
+    "TOP ORDER -- HIGHEST PRIORITY (obey before everything below):\n"
+    "1. PHYSICS/LOGIC: the ring must be physically real. It has EXACTLY the source's band "
+    "structure -- normally ONE continuous shank. NEVER 2/3/multiple bands, split rails, floating "
+    "loops or duplicated shanks. Count the bands: must equal the source (usually 1).\n"
+    "2. STONE LAYOUT LOCK: preserve every stone's exact ORIENTATION, SPACING and COUNT. "
+    "Marquise/oval/pear set EAST-WEST stay east-west (never vertical/tilted/radial); evenly-spaced "
+    "shared-prong stones stay spaced (never packed/clustered/touching); exact source count -- never add/drop.\n"
+    "3. 100% NATURAL & ORIGINAL: must look like a genuine real photograph -- nothing artificial "
+    "(no plastic/CGI look, no fake/AI hands, no mannequin model, no artificial skin/lighting/background).\n"
+    "4. JEWELLERY IS THE MAIN FOCUS -- ring/diamond sharpest and most prominent; people/background softer.\n"
+    "5. Do NOT change the jewellery design from source -- reproduce exactly; diamonds D2D pixel-perfect "
+    "(shape/size/cut/facets). Ring at TRUE real-life scale -- stone within finger width, never oversized."
+)
+
 # Positive inner-shank clause appended to every prompt's PIECE section.
 INNER_SHANK = ("INNER SHANK: plain polished metal, smooth, unmarked, uninterrupted "
                "(no engraving, hallmark, stamp or maker's mark).")
@@ -346,6 +364,7 @@ def build_prompt(spec, slot, theme=None):
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "
            f"above the lay plane, azimuth {slot['azimuth']} degrees. Piece fills ~{int(slot['crop']*100)}% of frame.")
     prompt = (
+        f"{PROMPT_HEADER}\n\n"
         "GEOMETRY LOCK -- the SOURCE piece reference is the master CAD object; reproduce it with 100% fidelity. "
         "Do NOT redesign, beautify, add or remove anything. Same physical piece; only camera and scene change.\n\n"
         f"{cam}\n\n"
