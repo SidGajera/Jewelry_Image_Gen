@@ -145,6 +145,19 @@ SINGLE_BAND_NEGATIVE = ("two bands, double band, twin rails, split rail, split s
                         "above the band, stones on a separate rail, multiple bands, stacked bands, "
                         "physically impossible band")
 
+# Band-fidelity lock (EVERY ring, all catalogs): the shank is part of the locked source
+# design — reproduce it EXACTLY, never restyle it. Per user 2026-07-31.
+BAND_LOCK = ("BAND/SHANK LOCK (source-exact, do not change): the band (shank) is EXACTLY as the source "
+             "in every image -- same profile, thickness, width, metal, finish, curve/contour, and any "
+             "engraving or pave that is (or is not) on it. Do NOT restyle, thicken, thin, widen, narrow, "
+             "add pave, add engraving, add milgrain, split, or otherwise alter the band. Keep it "
+             "identical to the source design.")
+BAND_LOCK_NEGATIVE = ("restyled band, altered band, changed shank, thickened band, thinner band, wider "
+                      "band, narrower band, reshaped shank, different band profile, added pave on the "
+                      "band, extra pave on the shank, added engraving on the band, milgrain added to the "
+                      "band, decorated shank not in source, split shank not in source, twisted band not "
+                      "in source, redesigned band")
+
 
 def _stone_phrase(s):
     bits = [f"{s.get('count', 1)}x {s['shape']} {s.get('cut', '')}".strip() + f" primary stone(s) id '{s['id']}'"]
@@ -353,7 +366,7 @@ def build_prompt(spec, slot, theme=None):
     scene = slot.get("scene") or spec["scene"][grp]   # per-slot compliant scene wins
     neg = build_negative(spec)
     if spec.get("category") == "ring":
-        neg = neg + ", " + SINGLE_BAND_NEGATIVE
+        neg = neg + ", " + SINGLE_BAND_NEGATIVE + ", " + BAND_LOCK_NEGATIVE
     if grp == "lifestyle":
         if theme:
             # one theme per catalog (all 6 lifestyle slots share it); studio stays velvet
@@ -374,6 +387,7 @@ def build_prompt(spec, slot, theme=None):
         f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}, "
         f"single tone (no two-tone).",
         SINGLE_BAND if spec.get("category") == "ring" else "",
+        BAND_LOCK if spec.get("category") == "ring" else "",
         INNER_SHANK,
     ] if p)
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "

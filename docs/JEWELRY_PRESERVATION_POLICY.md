@@ -10,11 +10,17 @@ Pipeline = IMAGE_GENERATION_RULES; per-ring geometry = each catalog's SOURCE_SPE
 - Every diamond's SIZE, CUT, FACET, SHAPE is D2D pixel-perfect to the source — no compromise. Size/shape/design come ONLY from the source.
 - Applies to EVERY image including lifestyle/on-hand. Same rule, no exception.
 
+## Band never changes (permanent — all rings, all catalogs)
+- NEVER change the band (shank) in any ring. It must stay EXACTLY as the source in every image.
+- Preserve exactly: band profile, thickness, width, taper, curve/shape, metal, finish, and any engraving/pavé/milgrain on the band.
+- Do NOT restyle, thicken, thin, round, flatten, split, add pavé, add engraving, remove detail, or alter the band in any way. The band is part of the locked source design.
+
 ## Physical & logical correctness (permanent, all catalogs)
 - The ring must be physically real and logically possible. A single ring has EXACTLY the band structure of the source — normally ONE continuous band (shank).
 - NEVER generate 2/3/multiple bands, loops, rails, shanks, split rails, floating loops, duplicated or ghost bands — unless the source genuinely has them.
 - The band is one closed continuous loop with correct thickness/profile; stones sit in that single band. Nothing floating, merged, doubled, or impossible.
-- Validate before output: count the bands — must equal the source (usually 1). Reject extra/duplicate bands, impossible geometry, floating parts.
+- The ring is worn on ONE finger only — never spanning/resting across two fingers.
+- Validate before output: count the bands — must equal the source (usually 1); ring on one finger only. Reject extra/duplicate bands, two-finger placement, impossible geometry, floating parts.
 
 ## Stone layout — orientation, spacing, count (permanent, all catalogs)
 - Preserve ORIENTATION exactly: source east-west marquise/oval/pear (long axis along the band) stays east-west — never rotate vertical/tilted/radial. Match the exact tilt/direction of every stone.
@@ -62,6 +68,6 @@ Pipeline = IMAGE_GENERATION_RULES; per-ring geometry = each catalog's SOURCE_SPE
 - Use a 3/4 side angle (~30-45 deg off pure profile) so the POINTED top/bottom stay visible while still showing the band side.
 
 ## Check (before delivery; validate BEFORE generation)
-Compare with source. Reject on ANY mismatch: wrong diamond shape/size/cut/facets; wrong stone orientation/spacing/count;
-extra/duplicate bands or impossible geometry; changed design; added/removed stones/halo/metalwork; wrong prongs;
-off-center head; oversized/wrong scale on hand; artificial/fake material look.
+Compare with source. Reject on ANY mismatch: wrong diamond shape/size/cut/facets; changed band; wrong stone
+orientation/spacing/count; extra/duplicate bands or impossible geometry; two-finger placement; changed design;
+added/removed stones/halo/metalwork; wrong prongs; off-center head; oversized/wrong scale on hand; artificial/fake material look.
