@@ -9,6 +9,22 @@
 
 User-locked 2026-07-16, after three consecutive SKUs (twist-halo split-shank; round-halo twist-shank ×2) generated attractive but **redesigned** rings. The prompt rules reduce drift; this spec + the composite fallback are what actually guarantee fidelity. This is the one place that consolidates the geometry-lock requirement and the pre-accept QA checklist — the generation prompt (`prompts/07`) and the auto-QC (`config/QUALITY_MEMORY.json geometry-immutable-auto-fallback`) both point here.
 
+## §0 SOURCE-FIRST, EXACT-COUNT, BAND-LOCK, HEXAGON, FALLBACK (user-locked 2026-07-31 — consolidated here; supersedes the standalone docs/JEWELRY_PRESERVATION_POLICY.md, now removed)
+
+**#0 READ SOURCE FIRST (highest priority).** Before ANY generation, read/analyze the source completely — every provided angle, every stone (shape/count/orientation/spacing/**type**), band, prongs, setting, proportions. Redesign/redraw is BANNED. If you do NOT have a source view for a required angle, do NOT generate/redraw it — reply verbatim: **"I don't have the source angle to generate this image."** Only render angles that exist in the source. (Extends §6b "missing view = STOP" and rule 31/39.)
+
+**#0.1 EXACT DETAIL MATCH — count front AND back.** Every piece matches the source on every detail, **front side AND back side**. COUNT and match: diamonds, prongs (per stone AND total), settings, side/accent/pavé stones — every count equals source, front and back. Match each stone's shape/cut/size/L:W/orientation/facets/position and every prong/gallery/basket/band/engraving/milgrain. Validate before output by counting both sides. (Extends §5 checklist + rules 31–40.)
+
+**BAND NEVER CHANGES.** The band (shank) stays EXACTLY as source in every image — profile, thickness, width, taper, curve/shape, metal, finish, and any engraving/pavé/milgrain on it. Never restyle, thicken, thin, round, flatten, split, add pavé, add engraving, remove detail, or alter it. (Reinforces §3 band lock.)
+
+**STONE TYPE + LAYOUT.** Preserve exact stone COUNT and TYPES — never add, drop, or swap a stone. Preserve orientation (east-west stays east-west, never vertical/tilted/radial), spacing/rhythm (keep gaps + shared/common prongs + any round accents between stones; never pack/cluster; if stones touch in source keep them touching), and the between-stone setting style (shared prong / bead / bar).
+
+**ONE FINGER (lifestyle).** Ring worn on ONE finger only; band never spans/rests across two fingers (registry `PLAUSIBILITY_L1`, G15).
+
+**HEXAGON SIDE-ANGLE RULE.** For elongated-hexagon centre stones, do NOT use the dead-flat pure side profile — it foreshortens the stone so the pointed top/bottom disappears and it reads as a flat-top emerald cut (WRONG). Use a 3/4 side angle (~30–45° off pure profile) so the pointed top and bottom stay visible while still showing the band side.
+
+**EMERALD-DRIFT FALLBACK (decision order).** (1) Higgsfield subject-preserve / source-reference call first (registry `SOURCE_REF_CALL` + `HIGGSFIELD_ONLY`). (2) If a SKU still drifts to a wrong stone (e.g. emerald) on ALL Higgsfield models: deliver only the exact-source OFFICE velvet angles and **SKIP lifestyle** for that SKU — a missing lifestyle image beats a wrong stone. (3) NEVER local/Python pixel-compositing (superseded by `HIGGSFIELD_ONLY` no-Python). (4) NEVER accept a wrong diamond shape. NOTE: §6's earlier "composite the source-ring pixels" fallback is superseded by `HIGGSFIELD_ONLY` (all pixels from Higgsfield; Python never writes delivered pixels) — kept below for provenance only.
+
 ## 1. PRINCIPLE
 The source render/CAD is the **master, immutable object**. The AI's only job is to place that exact ring into a realistic scene. A catalog image is a *product visualization* of the SAME physical ring in a new setting — **never a reinterpreted design**. This applies equally to studio, lifestyle, and close-up shots.
 

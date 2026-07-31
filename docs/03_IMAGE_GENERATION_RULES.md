@@ -2,6 +2,15 @@
 
 Complete rules for every generated image.
 
+## §0 PIPELINE MECHANICS (user-locked 2026-07-31 — consolidated here; supersedes the standalone docs/IMAGE_GENERATION_RULES.md, now removed)
+Authority for these lives in `policy/registry.json` (the single source of truth) — this section points to the rule IDs, it does not restate values:
+- **Engine / call:** all delivered pixels from Higgsfield (`HIGGSFIELD_ONLY`); the call feeds the matching source-CAD angle as a structure-lock reference / subject-preserve, medias [pose/studio ref, SOURCE piece] (`SOURCE_REF_CALL`, supersedes the old text-to-image `FROZEN_CALL`). Python NEVER composites or writes delivered pixels.
+- **No widgets, silent:** never open any Higgsfield widget/gallery incl. job_display / show_generations / media_upload_widget (`PROCESS_NO_WIDGETS`, supersedes `SUBAGENT_BAN`); take a generation's URL/ID from its own result in hand; the user previews in Higgsfield; reply with one short status line, no in-chat previews.
+- **Format / autonomy:** 2K, 1:1 (`FORMAT_ASPECT`); permissions once then fully auto (`AUTONOMY_RUN`); 4 studio + 6 lifestyle (`COUNTS_4_6`); one theme per catalog (`THEME_PER_CATALOG`).
+- **Mandatory verification before delivery:** every image geometrically/logically/physically correct; hand & one-finger (`PLAUSIBILITY_L1-3`, G15); ring scale (`RING_SCALE_ON_HAND`, G22); subject scale (`SUBJECT_SCALE_MIN`, G20). Validate BEFORE generation; never generate-then-reject.
+- **Clean output:** deliver only the SINGLE final photo — no watermark/logo-stamp/text/overlay, and no before-image, inset, thumbnail, split-frame, or reference box.
+- **Emerald-drift fallback:** see `docs/13 §0` (preserve-call first → office-only + skip lifestyle → never Python → never a wrong stone).
+
 ## A. JEWELRY PRESERVATION (P1)
 - 100 % identical to the correct SOURCE file. Verify design by viewing the source before generating.
 - Preserve: overall design/silhouette, stone SHAPE, stone COUNT, stone SIZE + spacing, SETTING type, PRONG count/shape/position, side/accent settings, gallery/trellis, band width + structure, metal type/color.

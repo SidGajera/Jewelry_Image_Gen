@@ -107,8 +107,8 @@ def build_negative(spec):
     return ", ".join(negs)
 
 # TOP-ORDER prompt header, prepended VERBATIM to every generation prompt (all catalogs).
-# This is a prompt template only — authority for each rule lives in its own policy file
-# (JEWELRY_PRESERVATION_POLICY etc.); do NOT duplicate full policy text here. Per user 2026-07-31.
+# This is a prompt template only — rule authority lives in the single source of truth
+# policy/registry.json (prose: docs/13 jewelry, docs/03 image-gen); do NOT duplicate policy text here.
 PROMPT_HEADER = (
     "#0 READ SOURCE FIRST (ABSOLUTE HIGHEST PRIORITY, before anything): the jewellery is reproduced "
     "ONLY from the read source -- every angle, every stone (shape/count/orientation/spacing/type), band, "

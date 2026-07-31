@@ -302,11 +302,29 @@
       "statement": "Higgsfield generation call frozen: text-to-image, 2k/1:1/count1/one batch, medias [pose/studio ref, SOURCE piece]; no img2img/denoise/compositing of jewelry (accent-run composite exception approved)",
       "scope": "global",
       "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "SOURCE_REF_CALL"
+    },
+    {
+      "id": "SOURCE_REF_CALL",
+      "key": "generation.call",
+      "statement": "Higgsfield call feeds the matching source-CAD angle as a structure-lock REFERENCE (image-to-image / subject-preserve) so the exact ring geometry is held while only the scene changes; medias [pose/studio ref, SOURCE piece]; 2k/1:1/count1/one batch. Per HIGGSFIELD_ONLY, all delivered pixels come from Higgsfield and Python never composites/writes delivered pixels. Supersedes the earlier text-to-image/no-img2img call.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "FROZEN_CALL"
+      ],
       "enforced_by": [
         "run_catalog"
       ],
-      "origin": "user 2026-07-30",
-      "failure_cases": [],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "text_to_image_no_source_reference",
+        "source_media_not_fed_to_call"
+      ],
       "status": "active"
     },
     {
@@ -315,11 +333,29 @@
       "statement": "never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog",
       "scope": "global",
       "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "PROCESS_NO_WIDGETS"
+    },
+    {
+      "id": "PROCESS_NO_WIDGETS",
+      "key": "process.subagents",
+      "statement": "never spawn subagent/background-task/agent; read source in-thread once. NO Higgsfield widgets/galleries of any kind, INCLUDING job_display, show_generations, show_marketing_studio_generations, media_upload_widget or any gallery/grid/preview/widget tool. Take a generation's URL/ID only from its own result already in hand; the user previews results in Higgsfield. Silent operation: one short final status line, no in-chat image previews.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "SUBAGENT_BAN"
+      ],
       "enforced_by": [
         "preflight"
       ],
-      "origin": "user 2026-07-30",
-      "failure_cases": [],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "opened_higgsfield_widget",
+        "job_display_used_for_retrieval"
+      ],
       "status": "active"
     },
     {
