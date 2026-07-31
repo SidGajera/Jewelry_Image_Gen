@@ -240,8 +240,9 @@ def _accent_phrase(runs, spec):
                 f"vertical, NEVER tilt, NEVER point up or radially outward -- every stone lies lengthwise on "
                 f"the band. The {n} stones are EVENLY SPACED with a small even GAP between neighbours, joined "
                 f"by ONE SINGLE SHARED V-PRONG (a common prong/bead) at each gap -- a shared-prong 'floating' "
-                f"setting -- so the stones are clearly SEPARATED: NOT packed, NOT clustered, NOT touching, NOT "
-                f"pave, NOT channel. Exactly {n} marquise, all the SAME size, one even spacing rhythm, set "
+                f"setting -- so the stones are clearly SEPARATED with OPEN, AIRY, GENEROUS spacing (visible "
+                f"gold gaps between neighbours, like the source): NOT packed, NOT clustered, NOT touching, NOT "
+                f"crowded, NOT pave, NOT channel. Exactly {n} marquise, all the SAME size, one even spacing rhythm, set "
                 f"across the TOP front {cov}% of the band; the rest is a thin rounded {metal} shank. Each "
                 f"marquise is about as wide as the band and sits LOW and integral to that one shank -- there "
                 f"is NO second rail and NO arc of stones floating above the band.")

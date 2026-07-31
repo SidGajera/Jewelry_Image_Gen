@@ -2,11 +2,11 @@
   "sku": "LR-0213",
   "category": "ring",
   "title": "East-west marquise half-eternity band, shared single-prong, yellow gold",
-  "note_source_vs_listing": "Source = vendor CAD renders (Drive folder 1r_PeSZNjAwazOiQQtDCwUswgOIqYq2B5), yellow metal: 5 views (3/4 side, front elevation, others). Piece: a HALF-ETERNITY BAND of MARQUISE-cut diamonds set EAST-WEST (each marquise lying lengthwise along the band, tip-to-tip), each held by a single SHARED V-PRONG between adjacent stones (common-prong 'floating' setting). About 7 marquise across the front half; thin round yellow-gold shank runs plain around the rear. No centre stone, no halo, no pavé.",
+  "note_source_vs_listing": "Source = vendor CAD renders, yellow gold. CONFIRMED design (user ground-truth 2026-07-31): a HALF-ETERNITY BAND of exactly 6 MARQUISE-cut diamonds set EAST-WEST (each marquise lengthwise along the band, tip-to-tip), EVENLY SPACED with open gaps, each adjacent pair joined by a single SHARED V-PRONG (gold chevron; NO round accents between them, they are prongs not stones). Thin round yellow-gold shank runs plain around the rear. No centre stone, no halo, no pavé, no bezel. Marquise are open/airy in spacing -- NOT packed/clustered. Supplied CAD angles: front (through-ring, az0), 3/4 side (~az50), low 3/4 front (back_gallery), low rear 3/4 (top.jpg). NOT supplied: pure top-down plan, pure 90-deg side profile.",
   "primary_stones": [],
   "setting_elements": {
     "type": "prong",
-    "count": 8,
+    "count": 7,
     "form": "shared_single_v",
     "layout": "between_adjacent_stones"
   },
@@ -18,9 +18,10 @@
       "arrangement": "east_west_marquise_shared_prong",
       "setting": "shared_prong",
       "rows": 1,
-      "count": 7,
+      "count": 6,
       "coverage_fraction": 0.55,
-      "tolerance": 1
+      "spacing": "evenly_spaced_open_gaps",
+      "tolerance": 0
     }
   ],
   "halo": "none",
