@@ -290,14 +290,19 @@ REALISM_NEGATIVE = ("plastic skin, waxy skin, poreless, airbrushed, smoothed ski
                     "the gap between fingers, ring at the webbing, fused fingers, extra fingers, malformed hand")
 
 
-# Hand-anatomy lock, appended to EVERY lifestyle slot (G15). Verbatim per user 2026-07-30.
-ANATOMY_POSITIVE = ("Ring worn on the ring finger, band fully encircling that single finger, seated "
-                    "between the knuckles, both sides of the band on the same finger, anatomically "
-                    "correct hand, five fingers, natural spacing.")
-ANATOMY_NEGATIVE = ("ring between two fingers, ring spanning two fingers, band crossing the gap between "
-                    "fingers, ring at the webbing, ring over a knuckle, floating ring, ring not "
-                    "encircling a finger, fused fingers, extra fingers, six fingers, missing finger, "
-                    "malformed hand")
+# Hand-anatomy lock, appended to EVERY lifestyle slot (G15). Verbatim per user 2026-07-30/31.
+ANATOMY_POSITIVE = ("HAND & PLACEMENT LOGIC (mandatory): hands 100% realistic and anatomically correct "
+                    "-- EXACTLY FIVE fingers per hand (never six, never four; no extra, missing or fused "
+                    "fingers), natural joints and proportions. The ring is worn on ONE finger only, "
+                    "seated properly at the base of that single finger, band fully encircling it, both "
+                    "sides of the band on the SAME finger. NEVER place the ring across or spanning two "
+                    "fingers (physically impossible). Ring, hand and fingers logically and physically "
+                    "placed, correct ring size, natural pose.")
+ANATOMY_NEGATIVE = ("six fingers, seven fingers, four fingers, extra finger, missing finger, fused "
+                    "fingers, webbed fingers, ring between two fingers, ring spanning two fingers, one "
+                    "ring across two fingers, band crossing the gap between fingers, ring at the webbing, "
+                    "ring over a knuckle, floating ring, ring not encircling a finger, ring not on a "
+                    "finger, malformed hand, deformed hand, impossible hand, extra hand")
 
 
 def _stone_equality(spec):
@@ -347,8 +352,8 @@ def build_prompt(spec, slot, theme=None):
                      f"wardrobe {theme['wardrobe']}; mood {theme['mood']}. This theme location/palette/light "
                      f"REPLACES any other location; keep ONLY the hand pose and framing from: [{scene}]. "
                      f"Vary the model, skin tone, age, wardrobe piece and time-within-window per slot.")
-        scene = scene + ". " + REALISM_POSITIVE + " " + MACRO_FRAMING   # includes anatomy + ring placement + G20 framing
-        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE + ", " + WARDROBE_NEGATIVE   # skin + anatomy + wardrobe/pull-back
+        scene = scene + ". " + REALISM_POSITIVE + " " + ANATOMY_POSITIVE + " " + MACRO_FRAMING   # skin + hand/placement lock + G20 framing
+        neg = neg + ", " + LIFESTYLE_NEGATIVE + ", " + REALISM_NEGATIVE + ", " + ANATOMY_NEGATIVE + ", " + WARDROBE_NEGATIVE   # skin + hand anatomy + wardrobe/pull-back
     geom = " ".join(p for p in [
         _stone_equality(spec),
         " ".join(_stone_phrase(s) for s in spec.get("primary_stones", [])),
