@@ -567,6 +567,71 @@ def skin_hf_normalized(bgr):
     return float(cv2.Laplacian(gray, cv2.CV_64F)[m].var() / (mean * mean) * 1e4)
 
 
+def stone_regions(bgr, min_area_frac=0.0009, max_area_frac=0.08):
+    """Segment individual diamond/stone regions for the G24 clarity gate: bright,
+    low-to-moderate-saturation specular blobs (diamonds read white/bright, not
+    gold-saturated). Returns list of (bool_mask, (x,y,w,h)) per stone, largest
+    first. Category-agnostic."""
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    v, s = hsv[:, :, 2], hsv[:, :, 1]
+    bright = (v >= 165) & (s <= 95)                     # diamond facets: bright, low-sat
+    bw = (bright * 255).astype(np.uint8)
+    bw = cv2.morphologyEx(bw, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    bw = cv2.morphologyEx(bw, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    n, lbl, stats, _ = cv2.connectedComponentsWithStats(bw, 8)
+    H, W = v.shape
+    tot = H * W
+    out = []
+    for i in range(1, n):
+        a = stats[i, cv2.CC_STAT_AREA]
+        if a < tot * min_area_frac or a > tot * max_area_frac:
+            continue
+        x, y, w, h = (stats[i, cv2.CC_STAT_LEFT], stats[i, cv2.CC_STAT_TOP],
+                      stats[i, cv2.CC_STAT_WIDTH], stats[i, cv2.CC_STAT_HEIGHT])
+        out.append((lbl == i, (int(x), int(y), int(w), int(h)), int(a)))
+    out.sort(key=lambda t: t[2], reverse=True)
+    return [(m, box) for m, box, _ in out]
+
+
+def stone_clarity_stats(bgr, rel_luma=0.45, speck_frac_max=0.004):
+    """Per-stone clarity measurements for G24. For each resolved stone returns a
+    dict: luma (mean grey), sharp (Laplacian var inside), cast (max per-channel
+    mean spread / 255 = colour cast), speck (largest connected DARK blob area /
+    stone area, dark = below rel_luma x stone-mean). Returns [] if <3 stones."""
+    stones = stone_regions(bgr)
+    if len(stones) < 3:
+        return []
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    b, g, r = (bgr[:, :, 0].astype(np.float32), bgr[:, :, 1].astype(np.float32),
+               bgr[:, :, 2].astype(np.float32))
+    lap = cv2.Laplacian(gray, cv2.CV_64F)
+    out = []
+    for m, (x, y, w, h) in stones:
+        area = int(m.sum())
+        if area < 60:
+            continue
+        vals = gray[m]
+        mean = float(vals.mean())
+        sharp = float(lap[m].var())
+        means = [float(b[m].mean()), float(g[m].mean()), float(r[m].mean())]
+        cast = (max(means) - min(means)) / 255.0
+        # dark-speck: genuinely dark pixels WELL INSIDE the stone. Erode the stone
+        # first so dark facet edges (a diamond's normal contrast) are excluded --
+        # only an interior inclusion/dust blob should register.
+        mu = m.astype(np.uint8)
+        inner = cv2.erode(mu, np.ones((5, 5), np.uint8))
+        speck = 0.0
+        if inner.any():
+            dark = ((inner > 0) & (gray < rel_luma * mean)).astype(np.uint8)
+            if dark.any():
+                nn, _, st, _ = cv2.connectedComponentsWithStats(dark, 8)
+                if nn > 1:
+                    biggest = max(st[k, cv2.CC_STAT_AREA] for k in range(1, nn))
+                    speck = biggest / max(area, 1)
+        out.append({"luma": mean, "sharp": sharp, "cast": cast, "speck": speck, "area": area})
+    return out
+
+
 def estimate_elevation(bgr):
     """Coarse elevation estimate from the silhouette aspect (top-down => wide,
     side => tall). Sanity flag only; azimuth from a single view is unreliable."""

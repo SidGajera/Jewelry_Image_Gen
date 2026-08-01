@@ -13,5 +13,6 @@
       "azimuth": 30,
       "elevation": 25
     }
-  ]
+  ],
+  "model": "nano_banana_2"
 }

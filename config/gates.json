@@ -7,10 +7,14 @@
       "measures": "1:1 2048 PNG"
     },
     "G2_ACCENT_COUNT": {
-      "blocking": false,
+      "blocking": true,
       "kind": "heuristic",
-      "measures": "accent stones/run",
-      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+      "plain_name": "STONE_COUNT",
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
+      "measures": "total stone count per shape class == source; accent stones/run",
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws geometry so count can drift; every render gated, any miss auto-regenerates up to 5 rounds. A slot that never converges is delivered labelled GEOMETRY APPROXIMATE, not silently shipped."
     },
     "G3_ACCENT_SIZE": {
       "blocking": false,
@@ -37,10 +41,14 @@
       "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G7_SETTING_COUNT": {
-      "blocking": false,
+      "blocking": true,
       "kind": "heuristic",
-      "measures": "prong count/width",
-      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+      "plain_name": "PRONG_CHECK",
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
+      "measures": "prong count/width per stone == source setting",
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 can split/drop prongs; every render gated, prong-count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE."
     },
     "G8_UNAUTHORIZED": {
       "blocking": false,
@@ -130,11 +138,15 @@
       "note": "Raised 2026-08-01 (CATALOG STANDARD). Faces not required — crop a face that pulls attention. Banned framings: full hand at arm's length, both hands wide, torso, environment establishing, ring as a sliver."
     },
     "G21_STONE_RATIO": {
-      "blocking": false,
+      "blocking": true,
       "kind": "stone_ratio",
+      "plain_name": "STONE_MATCH",
       "ratio_tol": 0.1,
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
       "measures": "per-stone areas -> centre:flanker size ratio within +/-10% of spec, and stone COUNT per shape class == spec",
-      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws size ratios; every render gated, ratio/count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE. Was advisory (engine can't hold ratios) — user accepted the tradeoff to keep this model."
     },
     "G22_STONE_WITHIN_FINGER": {
       "blocking": true,
@@ -153,8 +165,17 @@
       "blocking": true,
       "kind": "stone_clarity",
       "plain_name": "CLARITY_CHECK",
-      "measures": "every stone crystal-clear/water-clear: (a) per-stone mean luminance above threshold; (b) facet-edge sharpness = high-frequency energy inside each stone above threshold (soft/smeared = FAIL); (c) colour neutrality within a narrow neutral-white band (no yellow/grey cast); (d) consistency = no stone materially duller than its neighbours",
-      "note": "PERMANENT all catalogs. Any fail = auto-regenerate. Lifestyle: ring must sit in direct light, not hand shadow (a shadowed stone fails regardless of prompt). Positive clarity clause + banned terms wired into build_prompts (all slots)."
+      "dark_speck_max_frac": 0.02,
+      "dark_speck_rel_luma": 0.32,
+      "measures": "every stone crystal/water-clear: (a) per-stone mean luminance above threshold; (b) facet-edge sharpness = high-frequency energy inside each stone above threshold (soft/smeared = FAIL); (c) colour neutrality within a narrow neutral-white band (no yellow/grey cast); (d) DARK SPECK DETECTION = any dark blob inside a stone boundary (pixels below dark_speck_rel_luma x stone-mean, connected area > dark_speck_max_frac x stone area) = FAIL 'inclusion or dust on stone'; (e) consistency = no stone materially duller than its neighbours",
+      "note": "PERMANENT all catalogs (TIGHTENED 2026-08-01 — user: stones must be crystal-clear like water, no milkiness, no dots/specks/dust). Any fail = auto-regenerate. Clarity block moved EARLY in the prompt (after geometry lock, before scene) so it keeps weight; verbatim positive + tightened verbatim negative wired into build_prompts (all slots). LIGHTING every slot: piece in direct light, no stone in hand/fabric shadow (a shadowed stone reads milky regardless of prompt). Root-cause note: clarity drop coincided with wrong-model runs (nano_banana_pro) — MODEL_LOCK now forces nano_banana_2 (verify: preflight --check-model). CALIBRATION: implemented in validate_render.g24_clarity + _cv_lib.stone_clarity_stats; tuned FP=0 against tests/golden pass goldens (LR-0205 05/06/08/09/10, LR-0206 10). Drop milky/specky renders into tests/golden/fail_clarity_* (G24 FAIL) to tune catch-sensitivity."
+    },
+    "G25_GOLD_CHECK": {
+      "blocking": true,
+      "kind": "metal_colour",
+      "plain_name": "GOLD_CHECK",
+      "measures": "rendered metal reads as GOLD of the spec's locked colour: yellow gold hue ~15-40, rose gold hue ~3-18, white gold = low-saturation neutral. A render whose metal colour disagrees with the spec (e.g. silver/steel where gold expected, or yellow where rose specified) = FAIL. Karat (18K) is not visually measurable — enforced by prompt + audited against the Etsy listing, not by pixels.",
+      "note": "PERMANENT (METAL LOCK 2026-08-01). Karat always 18K; default colour yellow gold; one colour across all 10 slots. White-gold/platinum SOURCES are BLOCKED until the user ticks 18K-YELLOW-override or 18K-WHITE (registry METAL_KARAT_18K). Detector: _cv_lib.metal_hue_peak vs spec.metal."
     }
   }
 }

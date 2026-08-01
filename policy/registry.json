@@ -656,6 +656,79 @@
         "stone_added_or_removed"
       ],
       "status": "active"
+    },
+    {
+      "id": "MODEL_ENGINE_PRIOR_LOCK",
+      "key": "generation.model",
+      "statement": "engine frozen to Higgsfield nano_banana_2 (2k, 1:1); never switch/redesign/migrate to Nano Banana Pro or any other generator; visual-generation behaviour must not change",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-16",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "MODEL_LOCK"
+    },
+    {
+      "id": "MODEL_LOCK",
+      "key": "generation.model",
+      "statement": "Nano Banana 2 is the ONLY image-generation model — every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry — count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "MODEL_ENGINE_PRIOR_LOCK"
+      ],
+      "enforced_by": [
+        "run_catalog",
+        "G2_ACCENT_COUNT",
+        "G7_SETTING_COUNT",
+        "G21_STONE_RATIO"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "wrong_model_used",
+        "flash_edit_path_used",
+        "geometry_drift_shipped_without_label"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "DIAMOND_CLARITY",
+      "key": "realism.clarity",
+      "statement": "Every stone crystal/water-clear on every slot: colourless, fully transparent, glass-bright, flawless, crisp sharply-defined facet edges, true white brilliance with sharp fire and defined scintillation, clean bright table/crown, crisp pavilion reflections, every stone equally clean and bright. Verbatim positive clause + verbatim banned-terms in every prompt. G24 checks (a) per-stone luminance, (b) facet-edge sharpness, (c) colour neutrality, (d) consistency; any fail auto-regenerates. Lifestyle: piece must sit in direct light, not hand shadow (shadowed stone fails regardless of prompt). Thresholds calibrated against tests/golden clarity goldens (FP=0).",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G24_CLARITY_CHECK"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "cloudy_or_milky_stone",
+        "yellow_or_grey_cast",
+        "soft_smeared_facets",
+        "stone_dulled_in_hand_shadow",
+        "unevenly_lit_stones"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "METAL_KARAT_18K",
+      "key": "metal.karat",
+      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render — STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G25_GOLD_CHECK",
+        "spec_source_read"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "karat_not_18k",
+        "metal_colour_mismatch_vs_source",
+        "listing_metal_mismatch",
+        "white_gold_source_generated_without_decision"
+      ],
+      "status": "active"
     }
   ]
 }

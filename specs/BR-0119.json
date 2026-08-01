@@ -1,0 +1,76 @@
+{
+  "sku": "BR-0119",
+  "category": "bracelet",
+  "title": "Mixed-shape scattered fancy-cut diamond bracelet \u2014 rose gold, double-row cable chain",
+  "source": "1 clean Etsy product photo (il_794xN.7318730949_j2a3.jpg, 794x446), front lay-flat, pulled via authenticated Drive connector. No watermark.",
+  "source_watermarked": false,
+  "metal": "rose_gold",
+  "finish": "high_polish",
+  "structure": "front decorative arc carrying MIXED fancy-cut diamonds set at alternating playful tilt angles; back is a fine DOUBLE-ROW cable/rope chain each side to a single clasp",
+  "chain": {
+    "type": "double_row_cable",
+    "note": "two fine cable strands per side, joined at bar connectors flanking the decorative section"
+  },
+  "clasp": {
+    "type": "lobster",
+    "count": 1,
+    "safety": "figure_8",
+    "note": "single lobster clasp at one end + figure-8 safety catch (G23 ok)"
+  },
+  "motifs": {
+    "arrangement": "scattered / cluster: fancy cuts alternate and tilt L/R along the front arc, no strict repeat unit",
+    "shapes_present": [
+      "marquise",
+      "pear",
+      "round_brilliant",
+      "emerald_or_baguette"
+    ],
+    "setting_per_shape": {
+      "round": "3-prong",
+      "pear": "3-prong",
+      "marquise": "V-tip prong",
+      "rectangular": "bar / prong"
+    }
+  },
+  "stone_count": {
+    "_phase1": "read s1.jpg (single clean front lay-flat)",
+    "certain": {
+      "design": "mixed-shape scattered fancy-cut diamonds (marquise+pear+round+emerald/baguette) tilted along a front arc; double-row cable chain; single lobster clasp; rose gold"
+    },
+    "best_read_front_stones": "~13-15 stones across the front arc",
+    "uncertain": "EXACT per-shape counts not certain from a single 794px view: overlapping tilted stones make marquise-vs-pear and emerald-vs-baguette ambiguous at edges; total best-read 13-15.",
+    "certainty": false,
+    "blocked_reason": "COUNT_FROM_SOURCE: exact stone count + per-shape breakdown not establishable with certainty from one low-res lay-flat.",
+    "missing_view_requested": "a higher-resolution front lay-flat (or the vendor stone-count/shape list) to lock exact totals per shape"
+  },
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft folds, bright neutral-white daylight, no logo",
+    "lifestyle": "one theme per catalog; bracelet on wrist, jewellery is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "source_media_id": "de7c02d8-4042-4a3e-842e-d996a22cb31c",
+  "field_provenance": {
+    "measured_from_image": [
+      "metal colour = rose_gold",
+      "structure = mixed-shape scattered front arc",
+      "shapes = marquise+pear+round+emerald/baguette",
+      "clasp = single lobster + figure-8",
+      "chain = double-row cable"
+    ],
+    "supplied_required_not_written": [
+      "metal karat",
+      "carat weight",
+      "mm dimensions",
+      "clarity/colour grade"
+    ],
+    "measured_but_uncertain": [
+      "exact total stone count",
+      "per-shape breakdown \u2014 best-read only from one low-res view"
+    ]
+  },
+  "scale_reference": null,
+  "scale_note": "no mm dimension supplied and no scale reference -> mm/size NOT written.",
+  "status": "STUDIED (P1 source read complete). BLOCKED at P3/COUNT_FROM_SOURCE: need higher-res front lay-flat OR vendor stone list to lock exact per-shape counts before generation."
+}

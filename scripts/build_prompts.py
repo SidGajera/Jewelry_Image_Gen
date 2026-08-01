@@ -17,6 +17,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def locked_model():
+    """MODEL_LOCK (user 2026-08-01): the ONE Nano Banana 2 string, read from
+    config/model.json ONLY. No model string is ever written inline here."""
+    return json.loads((ROOT / "config" / "model.json").read_text(encoding="utf-8"))["model"]
 # NOTE: the Higgsfield generation call is FROZEN (docs/22) — plain text-to-image,
 # medias [pose/studio ref, SOURCE piece], no img2img / no denoise / no compositing.
 # All enforcement is OUTSIDE the call (gates + retry). This builder only produces
@@ -26,11 +32,14 @@ def build_negative(spec):
     """Emit the negative list FROM the spec so we never negate the real geometry
     (e.g. LR-0206's double claws / scattered clusters are the design, not defects)."""
     negs = ["duplicate jewelry, second piece, extra piece, ghost clasp, doubled link run",
-            # G24 (CLARITY_CHECK) — diamond clarity banned terms, verbatim, all catalogs
-            "cloudy, milky, hazy, foggy, frosted, dull, grey stone, yellow tint, brown tint, "
-            "warm-tinted diamond, included, inclusions, feathers, spots, carbon, blurry facets, "
-            "soft facet edges, muddy reflections, flat stone, glassy plastic look, dead stone, "
-            "unevenly lit stones, dirty stone, smudged, dusty, fingerprints on the stone",
+            # G24 (CLARITY_CHECK) — diamond clarity banned terms, VERBATIM (user 2026-08-01 TIGHTENED), all catalogs
+            "milky, cloudy, hazy, foggy, frosted, translucent, opaque, dull stone, "
+            "black dots, dark specks, pinpoints, carbon spots, inclusions, feathers, "
+            "crystals in stone, salt and pepper diamond, included diamond, rough diamond, "
+            "uncut, dusty, dust on stone, specks of dirt, debris, lint, fibres, smudge, "
+            "fingerprint, scratched surface, grey stone, yellow tint, brown tint, "
+            "soft facet edges, blurry facets, muddy reflections, flat lifeless stone, "
+            "dead stone, unevenly lit stones",
             "watermark, text, vendor mark, logo overlay",
             # G12 (NO_MARKS) zero-tolerance third-party watermark block, verbatim, all catalogs
             "watermark, vendor watermark, semi-transparent logo overlay, brand mark on skin, "
@@ -403,36 +412,46 @@ def build_prompt(spec, slot, theme=None):
         _halo_phrase(spec),
         _accent_phrase(spec.get("accent_runs", []), spec),
         _structure_phrase(spec.get("structure")),
-        f"Metal: {spec.get('metal', '').replace('_', ' ')} {spec.get('finish', '').replace('_', ' ')}, "
-        f"single tone (no two-tone).",
+        # METAL LOCK (user 2026-08-01): karat is ALWAYS 18K; default colour yellow gold
+        # when the source colour is absent. Colour otherwise from source (rose/white).
+        f"Metal: 18K {(spec.get('metal') or 'yellow_gold').replace('_', ' ')} "
+        f"{(spec.get('finish') or 'high polish').replace('_', ' ')}, single tone (no two-tone), "
+        f"solid 18-karat gold throughout.",
         SINGLE_BAND if spec.get("category") == "ring" else "",
         BAND_LOCK if spec.get("category") == "ring" else "",
         INNER_SHANK,
     ] if p)
     cam = (f"CAMERA (numeric, obey exactly): {slot['name']} -- elevation {slot['elevation']} degrees "
            f"above the lay plane, azimuth {slot['azimuth']} degrees. Piece fills ~{int(slot['crop']*100)}% of frame.")
+    # DIAMOND CLARITY (G24) — verbatim, placed EARLY (right after geometry lock, before scene/camera)
+    # so the clarity wording keeps its weight in a long prompt (user 2026-08-01, tightened).
+    clarity = (
+        "DIAMOND CLARITY (every stone): Every diamond is perfectly transparent and water-clear -- "
+        "flawless, colourless, internally clean with no visible inclusions of any kind. Facet edges are "
+        "razor-sharp and precisely defined. Light passes cleanly through each stone producing bright white "
+        "brilliance and crisp fire. The surface of every stone is spotless -- no dust, no specks, no dark "
+        "points, no smudges, no fingerprints. Every stone equally clean and equally bright. Freshly "
+        "polished, showroom condition. The ring sits in direct light, stones fully illuminated, no stone "
+        "in hand shadow or fabric shadow."
+    )
     prompt = (
         f"{PROMPT_HEADER}\n\n"
         "GEOMETRY LOCK -- the SOURCE piece reference is the master CAD object; reproduce it with 100% fidelity. "
         "Do NOT redesign, beautify, add or remove anything. Same physical piece; only camera and scene change.\n\n"
+        f"{clarity}\n\n"
         f"{cam}\n\n"
         f"PIECE ({spec['sku']}, category {spec['category']}, match structural reference exactly):\n{geom}\n\n"
         f"SCENE: {scene}. Realistic macro luxury jewellery product photography, tack-sharp on the piece, "
         f"shallow depth of field, sRGB, no watermark, no text. Format 1:1 square, 2048x2048.\n\n"
-        f"DIAMOND CLARITY (G24, every stone): Diamonds are colourless and water-clear -- completely "
-        "transparent, glass-bright, flawless. Facets are crisp and sharply defined with clean edges. "
-        "Light passes cleanly through the stone with true white brilliance, sharp fire and defined "
-        "scintillation. Table and crown read clean and bright, pavilion shows crisp facet reflections. "
-        "Every stone in the piece is equally clean and equally bright."
-        + (" The ring sits in direct light, NOT in hand shadow -- each stone catches the light.\n\n"
-           if grp == "lifestyle" else "\n\n")
-        + f"NEGATIVE: {neg}"
+        f"NEGATIVE: {neg}"
     )
     return {
         "slot": slot["slot"], "name": slot["name"], "group": grp,
         "azimuth": slot["azimuth"], "elevation": slot["elevation"], "crop": slot["crop"],
         "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
-        "model": spec.get("model", "seedream_v5_pro"),
+        # MODEL_LOCK: always the locked Nano Banana 2 string from config/model.json.
+        # The spec's own model field is IGNORED so no SKU can override the lock.
+        "model": locked_model(),
         "prompt": prompt, "negative": neg,
     }
 

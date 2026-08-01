@@ -27,10 +27,28 @@ RETRIEVAL_ALLOWED = {"job_display"}
 BANNED_TOOLS = {"spawn_agent", "background_task"}
 DRIVE_TOOLS = {"search_files", "list_recent_files"}
 DRIVE_REQUIRED_FIELDS = "files(id,name,mimeType)"
+MODEL_CFG = ROOT / "config" / "model.json"
 
 
 class PolicyViolation(RuntimeError):
     pass
+
+
+def locked_model():
+    """The one Nano Banana 2 model string. Read from config/model.json ONLY."""
+    return json.loads(MODEL_CFG.read_text(encoding="utf-8"))["model"]
+
+
+def assert_model(model):
+    """MODEL_LOCK (user 2026-08-01): raise unless `model` == config/model.json.
+    Call before EVERY generate_image. Mismatch = do not generate."""
+    want = locked_model()
+    if model != want:
+        _log("generate_image", f"MODEL_LOCK violation: got '{model}', require '{want}'")
+        raise PolicyViolation(
+            f"MODEL_LOCK: model '{model}' is not the locked Nano Banana 2 string '{want}'. "
+            f"Reject the call; do not generate.")
+    return model
 
 
 def _log(tool, detail):
@@ -90,6 +108,11 @@ def preflight(tool_name, sku=None, **kwargs):
 
 
 if __name__ == "__main__":
+    import sys
+    if "--check-model" in sys.argv:
+        # Print ONLY the locked Nano Banana 2 string and nothing else.
+        print(locked_model())
+        sys.exit(0)
     for t in sorted(BANNED_DISPLAY | BANNED_TOOLS):
         try:
             preflight(t); print("FAIL not blocked:", t)

@@ -1,0 +1,5 @@
+{
+  "_note": "SINGLE SOURCE OF TRUTH for the generation model (MODEL_LOCK, user 2026-08-01, precedence 100). Every generate_image call MUST use exactly this string. Verified against the Higgsfield model catalog: id 'nano_banana_2' = 'Nano Banana 2' (Google). BANNED and must never be used: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any other string. Do NOT write a model string inline anywhere in scripts/ or configs — read it from here.",
+  "model": "nano_banana_2",
+  "banned": ["nano_banana_pro", "nano_banana_flash", "nano_banana_2_lite", "nano_banana_2_shots", "seedream_v5_pro", "nano_banana"]
+}

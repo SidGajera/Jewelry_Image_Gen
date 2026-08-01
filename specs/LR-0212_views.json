@@ -1,17 +1,42 @@
 {
-  "_note": "Supplied source view coverage for LR-0212 (marquise 6-prong hidden-halo micro-pavé solitaire, white gold). Source has top + 2 side views only; front/back mapped best-effort. Flat keys feed validate_source; the 'views' list (type+azimuth+elevation) feeds G-INVENT.",
+  "_note": "Supplied source view coverage for LR-0212 (marquise 6-prong hidden-halo micro-pav\u00e9 solitaire, white gold). Source has top + 2 side views only; front/back mapped best-effort. Flat keys feed validate_source; the 'views' list (type+azimuth+elevation) feeds G-INVENT.",
   "top": "top.jpg",
   "front": "top.jpg",
   "true_side": "true_side.jpg",
   "back_gallery": "back_gallery.jpg",
   "views": [
-    {"name": "top_face",         "file": "top.jpg",          "type": "top",          "azimuth": 0,   "elevation": 78,
-     "establishes_note": "marquise L/W (pointed both ends, N-S), 6 prongs (V-tips + side pairs), micro-pavé shoulders, white metal"},
-    {"name": "front_face",       "file": "top.jpg",          "type": "front",        "azimuth": 0,   "elevation": 15,
-     "establishes_note": "marquise face and prong layout (reused top face — no dedicated front in source)"},
-    {"name": "true_side",        "file": "true_side.jpg",    "type": "true_side",    "azimuth": 90,  "elevation": 6,
-     "establishes_note": "hidden halo under the girdle, pavé shank profile, basket under-head"},
-    {"name": "rear_gallery",     "file": "back_gallery.jpg", "type": "back_gallery", "azimuth": 150, "elevation": 18,
-     "establishes_note": "gallery/basket + hidden halo from behind, pavé shoulder run, cathedral rise"}
-  ]
+    {
+      "name": "top_face",
+      "file": "top.jpg",
+      "type": "top",
+      "azimuth": 0,
+      "elevation": 78,
+      "establishes_note": "marquise L/W (pointed both ends, N-S), 6 prongs (V-tips + side pairs), micro-pav\u00e9 shoulders, white metal"
+    },
+    {
+      "name": "front_face",
+      "file": "top.jpg",
+      "type": "front",
+      "azimuth": 0,
+      "elevation": 15,
+      "establishes_note": "marquise face and prong layout (reused top face \u2014 no dedicated front in source)"
+    },
+    {
+      "name": "true_side",
+      "file": "true_side.jpg",
+      "type": "true_side",
+      "azimuth": 90,
+      "elevation": 6,
+      "establishes_note": "hidden halo under the girdle, pav\u00e9 shank profile, basket under-head"
+    },
+    {
+      "name": "rear_gallery",
+      "file": "back_gallery.jpg",
+      "type": "back_gallery",
+      "azimuth": 150,
+      "elevation": 18,
+      "establishes_note": "gallery/basket + hidden halo from behind, pav\u00e9 shoulder run, cathedral rise"
+    }
+  ],
+  "model": "nano_banana_2"
 }

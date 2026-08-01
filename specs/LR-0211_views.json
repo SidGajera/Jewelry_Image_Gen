@@ -5,15 +5,46 @@
   "true_side": "true_side.jpg",
   "back_gallery": "back_gallery.jpg",
   "views": [
-    {"name": "crown_top_face",       "file": "top.jpg",          "type": "top",          "azimuth": 0,   "elevation": 55,
-     "establishes_note": "full graduated crown from above/front: central down-pointing pear, 1 flanking pear + 2 graduating rounds per side (7 stones), left/right symmetry, shared-prong set"},
-    {"name": "front_elevation",       "file": "front.jpg",        "type": "front",        "azimuth": 0,   "elevation": 10,
-     "establishes_note": "face-on front: contoured curved band, centre dip, thin round shank, crown standing up"},
-    {"name": "true_side_profile",     "file": "true_side.jpg",    "type": "true_side",    "azimuth": 90,  "elevation": 5,
-     "establishes_note": "band thin round profile, plain polished shank, low seat height, no gallery stones on side"},
-    {"name": "back_gallery",          "file": "back_gallery.jpg", "type": "back_gallery", "azimuth": 190, "elevation": 20,
-     "establishes_note": "rear/underside of the crown: open backs of the pears, shared prong structure, plain inner shank"},
-    {"name": "three_quarter",         "file": "three_quarter.jpg","type": "front",        "azimuth": 35,  "elevation": 30,
-     "establishes_note": "three-quarter macro: stone graduation and shared prongs, pear shapes read clearly"}
-  ]
+    {
+      "name": "crown_top_face",
+      "file": "top.jpg",
+      "type": "top",
+      "azimuth": 0,
+      "elevation": 55,
+      "establishes_note": "full graduated crown from above/front: central down-pointing pear, 1 flanking pear + 2 graduating rounds per side (7 stones), left/right symmetry, shared-prong set"
+    },
+    {
+      "name": "front_elevation",
+      "file": "front.jpg",
+      "type": "front",
+      "azimuth": 0,
+      "elevation": 10,
+      "establishes_note": "face-on front: contoured curved band, centre dip, thin round shank, crown standing up"
+    },
+    {
+      "name": "true_side_profile",
+      "file": "true_side.jpg",
+      "type": "true_side",
+      "azimuth": 90,
+      "elevation": 5,
+      "establishes_note": "band thin round profile, plain polished shank, low seat height, no gallery stones on side"
+    },
+    {
+      "name": "back_gallery",
+      "file": "back_gallery.jpg",
+      "type": "back_gallery",
+      "azimuth": 190,
+      "elevation": 20,
+      "establishes_note": "rear/underside of the crown: open backs of the pears, shared prong structure, plain inner shank"
+    },
+    {
+      "name": "three_quarter",
+      "file": "three_quarter.jpg",
+      "type": "front",
+      "azimuth": 35,
+      "elevation": 30,
+      "establishes_note": "three-quarter macro: stone graduation and shared prongs, pear shapes read clearly"
+    }
+  ],
+  "model": "nano_banana_2"
 }

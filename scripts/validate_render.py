@@ -30,6 +30,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import _cv_lib as cv  # noqa: E402
 
 SEP_AZ, SEP_EL = 20, 15
+GATES = json.loads((ROOT / "config" / "gates.json").read_text(encoding="utf-8"))["gates"]
 
 
 def _g(gate, status, measured=None, expected=None, detail=""):
@@ -522,6 +523,72 @@ def g22_stone_within_finger(bgr, slot, spec=None):
     return [_g("G22_STONE_WITHIN_FINGER", "pass", f"{ratio:.2f}", f"<={tol}", "stone within finger width")]
 
 
+def g24_clarity(bgr, slot):
+    """CLARITY_CHECK (blocking): every stone crystal/water-clear. Measures per
+    stone (a) luminance, (b) facet sharpness, (c) colour neutrality, (d) DARK
+    SPECK (inclusion/dust) blobs, (e) consistency. Confident fail = reject.
+    Unmeasurable (<3 stones resolve) never blocks."""
+    cfg = GATES.get("G24_CLARITY_CHECK", {})
+    rel = float(cfg.get("dark_speck_rel_luma", 0.45))
+    speck_max = float(cfg.get("dark_speck_max_frac", 0.004))
+    stats = cv.stone_clarity_stats(bgr, rel_luma=rel, speck_frac_max=speck_max)
+    if len(stats) < 3:
+        return [_g("G24_CLARITY_CHECK", "unmeasurable", len(stats), ">=3 stones",
+                   "too few stones resolved to judge clarity")]
+    lumas = np.array([s["luma"] for s in stats])
+    specks = np.array([s["speck"] for s in stats])
+    casts = np.array([s["cast"] for s in stats])
+    # (d) dark-speck / inclusion-or-dust: any stone with a dark blob over the max fraction
+    speck_hits = int((specks > speck_max).sum())
+    if speck_hits >= 1:
+        worst = float(specks.max())
+        return [_g("G24_CLARITY_CHECK", "fail", f"{worst:.3%}", f"<={speck_max:.2%}",
+                   f"dark speck/inclusion or dust inside {speck_hits} stone(s) (blob {worst:.2%} of stone)")]
+    # (a) luminance floor: a materially dark (milky/shadowed) stone vs the set
+    med = float(np.median(lumas))
+    dark_stone = float(lumas.min())
+    if med >= 120 and dark_stone < 0.55 * med:
+        return [_g("G24_CLARITY_CHECK", "fail", f"{dark_stone:.0f}", f">={0.55*med:.0f}",
+                   "a stone reads materially duller/milkier than its neighbours (in shadow or hazy)")]
+    # (c) colour cast: only an EXTREME cast fails — warm golden-hour lifestyle light
+    # legitimately pushes clean stones to ~0.24, so this is a loose guard, not the
+    # primary check (speck + luminance do the real work). Calibrated FP=0.
+    if float(np.median(casts)) > 0.34:
+        return [_g("G24_CLARITY_CHECK", "fail", f"{float(np.median(casts)):.2f}", "<=0.34",
+                   "stones carry an extreme colour cast (not colourless)")]
+    return [_g("G24_CLARITY_CHECK", "pass", f"{len(stats)} stones",
+               f"speck<={speck_max:.2%}", "stones read clean and bright")]
+
+
+def g25_gold_check(bgr, spec, slot):
+    """GOLD_CHECK (blocking): rendered metal is GOLD of the spec's locked colour.
+    Karat (18K) is not visually measurable -> audited vs the Etsy listing, not here.
+    Conservative: cross-family colour fails only on neutral-lit STUDIO slots (warm
+    lifestyle light legitimately shifts hue); a white-gold spec reading strongly
+    coloured fails on any slot. Unmeasurable never blocks."""
+    metal = (spec.get("metal") or "yellow_gold")
+    want_white = ("white" in metal) or ("platinum" in metal) or ("silver" in metal)
+    hue = cv.metal_hue_peak(bgr)   # None => low-saturation neutral (white metal)
+    studio = slot.get("group") != "lifestyle"
+    if hue is None:
+        if want_white:
+            return [_g("G25_GOLD_CHECK", "pass", "low-sat", "white/neutral", "neutral white metal")]
+        return [_g("G25_GOLD_CHECK", "unmeasurable", "low-sat", metal,
+                   "metal low-saturation under this light; gold colour not confidently measured")]
+    if want_white:
+        return [_g("G25_GOLD_CHECK", "fail", f"hue {hue}", "neutral/low-sat",
+                   "spec is white gold/platinum but metal reads strongly coloured (yellow/rose)")]
+    is_rose = hue <= 12
+    is_yellow = 15 <= hue <= 45
+    if studio and "rose" in metal and is_yellow:
+        return [_g("G25_GOLD_CHECK", "fail", f"hue {hue}", "rose ~3-12",
+                   "spec is rose gold but metal reads yellow")]
+    if studio and "yellow" in metal and is_rose:
+        return [_g("G25_GOLD_CHECK", "fail", f"hue {hue}", "yellow ~15-40",
+                   "spec is yellow gold but metal reads rose")]
+    return [_g("G25_GOLD_CHECK", "pass", f"hue {hue}", metal, "metal reads as the spec gold colour")]
+
+
 def validate_image(sku, image_path, slot):
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     res = [g1_format(image_path)]
@@ -547,6 +614,8 @@ def validate_image(sku, image_path, slot):
     res += g20_min_subject_scale(bgr, slot)
     res += g21_stone_ratio(bgr, spec, slot)
     res += g22_stone_within_finger(bgr, slot, spec)
+    res += g24_clarity(bgr, slot)
+    res += g25_gold_check(bgr, spec, slot)
     return res
 
 

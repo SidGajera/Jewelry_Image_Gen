@@ -1,8 +1,8 @@
 {
   "sku": "LR-0212",
   "category": "ring",
-  "title": "Marquise solitaire, 6-prong, hidden halo, micro-pavé shoulders, white gold (~3ct)",
-  "note_source_vs_listing": "Source = vendor CAD renders (Drive folder 1HC3xULaK9BpCZiDRXddxJg_j5SEyaXA9), white metal, marquise 3.00ct: top face + two side views. Piece: a MARQUISE-cut centre diamond (pointed both ends, oriented north-south) in a 6-prong head (two V-tip prongs + two side-pair prongs); a HIDDEN HALO of tiny round accents encircles the marquise under the girdle (visible from the side/rear, not the top); the shank shoulders carry a single row of small round micro-PAVÉ diamonds (scallop/French-set) running about half-way down each side; thin white-gold shank, no taper. No visible surface halo, no second row.",
+  "title": "Marquise solitaire, 6-prong, hidden halo, micro-pav\u00e9 shoulders, white gold (~3ct)",
+  "note_source_vs_listing": "Source = vendor CAD renders (Drive folder 1HC3xULaK9BpCZiDRXddxJg_j5SEyaXA9), white metal, marquise 3.00ct: top face + two side views. Piece: a MARQUISE-cut centre diamond (pointed both ends, oriented north-south) in a 6-prong head (two V-tip prongs + two side-pair prongs); a HIDDEN HALO of tiny round accents encircles the marquise under the girdle (visible from the side/rear, not the top); the shank shoulders carry a single row of small round micro-PAV\u00c9 diamonds (scallop/French-set) running about half-way down each side; thin white-gold shank, no taper. No visible surface halo, no second row.",
   "primary_stones": [
     {
       "id": "center_marquise",
@@ -64,7 +64,7 @@
     "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
     "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
   },
-  "model": "seedream_v5_pro",
+  "model": "nano_banana_2",
   "resolution": "2k",
   "source_media_id": null
 }
