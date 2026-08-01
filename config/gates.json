@@ -55,9 +55,11 @@
       "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
     },
     "G10_ANGLE": {
-      "blocking": false,
+      "blocking": true,
       "kind": "heuristic",
-      "measures": "single-shot elevation est"
+      "plain_name": "ANGLE_CHECK",
+      "measures": "every slot a genuinely different camera angle; NO duplicate angles delivered. A retry REPLACES its slot, never ships alongside it (e.g. never 04_gallery_back AND 04_gallery_back_2).",
+      "note": "Blocking 2026-08-01 (CATALOG STANDARD). Pairwise angle separation also enforced in run_catalog."
     },
     "G11_LOGO": {
       "blocking": true,
@@ -66,8 +68,11 @@
     },
     "G12_MARKS": {
       "blocking": true,
+      "scope": "catalog",
       "kind": "robust",
-      "measures": "no watermark/vendor mark"
+      "plain_name": "NO_MARKS",
+      "measures": "ZERO TOLERANCE for third-party/vendor watermark and any burned-in mark. Scan every render for: semi-transparent glyph clusters anywhere in frame, low-contrast repeated text, engraved marks/hallmark/karat-stamp/initials on metal surfaces, corner logo/badge. Any hit = FAIL -> auto-regenerate. A watermarked render is NEVER delivered.",
+      "note": "CATALOG-BLOCKING (raised 2026-08-01). Vendor source watermark (e.g. CRYSTALIGHT, MoonlitCharms) must never appear on jewellery/skin/background, not faint/partial/stylised. Only permitted mark = official Lucent logo printed into studio cloth from the locked asset (never on metal/skin/lifestyle). Full negative block wired into build_prompts."
     },
     "G14_CONTENT": {
       "blocking": true,
@@ -117,9 +122,12 @@
     "G20_MIN_SUBJECT_SCALE": {
       "blocking": true,
       "kind": "subject_scale",
-      "lifestyle_min": 0.12,
-      "macro_min": 0.25,
-      "measures": "jewellery bbox area fraction on lifestyle slots (>=12%, >=25% macro); below = too small to resolve geometry"
+      "plain_name": "BIG_ENOUGH",
+      "lifestyle_min": 0.20,
+      "macro_min": 0.35,
+      "min_macro_slots": 3,
+      "measures": "jewellery bbox area fraction: lifestyle >=20%, macro >=35%; below = auto-reject before geometry. Min 3 of 6 lifestyle slots must be tight macro (ring dominates, hand cropped, pure bokeh).",
+      "note": "Raised 2026-08-01 (CATALOG STANDARD). Faces not required — crop a face that pulls attention. Banned framings: full hand at arm's length, both hands wide, torso, environment establishing, ring as a sliver."
     },
     "G21_STONE_RATIO": {
       "blocking": false,
@@ -133,6 +141,20 @@
       "kind": "ring_scale_on_hand",
       "tol": 1.05,
       "measures": "lifestyle: centre-stone width <= finger width (\u00d7 tol); rejects oversized 'cocktail-huge' diamonds on the hand"
+    },
+    "G23_MAKES_SENSE": {
+      "blocking": true,
+      "kind": "physical_plausibility",
+      "plain_name": "MAKES_SENSE",
+      "measures": "jewellery is wearable as rendered. Bracelet/necklace/anklet: exactly ONE clasp (one lobster/spring-ring/toggle-bar at one end; opposite end = jump ring / closed loop / extender ending in a drop, never a second claw). Two identical fastening mechanisms = FAIL 'unfastenable, two claws' -> auto-regenerate. Rings: closed single shank. Earrings: one post/hook each. Pendants: one bail, chain passes through.",
+      "note": "PERMANENT (CATALOG STANDARD). BR-0110 rendered a lobster claw on both ends. Positive+negative clasp clauses wired into build_prompts for bracelet/necklace."
+    },
+    "G24_CLARITY_CHECK": {
+      "blocking": true,
+      "kind": "stone_clarity",
+      "plain_name": "CLARITY_CHECK",
+      "measures": "every stone crystal-clear/water-clear: (a) per-stone mean luminance above threshold; (b) facet-edge sharpness = high-frequency energy inside each stone above threshold (soft/smeared = FAIL); (c) colour neutrality within a narrow neutral-white band (no yellow/grey cast); (d) consistency = no stone materially duller than its neighbours",
+      "note": "PERMANENT all catalogs. Any fail = auto-regenerate. Lifestyle: ring must sit in direct light, not hand shadow (a shadowed stone fails regardless of prompt). Positive clarity clause + banned terms wired into build_prompts (all slots)."
     }
   }
 }

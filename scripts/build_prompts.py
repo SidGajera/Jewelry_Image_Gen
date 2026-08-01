@@ -26,7 +26,16 @@ def build_negative(spec):
     """Emit the negative list FROM the spec so we never negate the real geometry
     (e.g. LR-0206's double claws / scattered clusters are the design, not defects)."""
     negs = ["duplicate jewelry, second piece, extra piece, ghost clasp, doubled link run",
+            # G24 (CLARITY_CHECK) — diamond clarity banned terms, verbatim, all catalogs
+            "cloudy, milky, hazy, foggy, frosted, dull, grey stone, yellow tint, brown tint, "
+            "warm-tinted diamond, included, inclusions, feathers, spots, carbon, blurry facets, "
+            "soft facet edges, muddy reflections, flat stone, glassy plastic look, dead stone, "
+            "unevenly lit stones, dirty stone, smudged, dusty, fingerprints on the stone",
             "watermark, text, vendor mark, logo overlay",
+            # G12 (NO_MARKS) zero-tolerance third-party watermark block, verbatim, all catalogs
+            "watermark, vendor watermark, semi-transparent logo overlay, brand mark on skin, "
+            "brand mark on jewellery, text overlay, signature, copyright mark, stamp, engraved "
+            "hallmark, maker's mark, initials in metal, karat stamp, corner logo, badge",
             "portrait format, landscape format, non-square crop, rotated piece, asymmetric structure",
             # inner-shank clean-metal lock (all catalogs)
             "engraved mark on the band, maker's mark, hallmark, stamp on the inner shank, "
@@ -304,8 +313,10 @@ REALISM_POSITIVE = ("Photographed on a full-frame camera, 85mm, f/2.0, natural a
                     "skin tone. Natural nails with real cuticles and slight ridging. Hand anatomy correct: "
                     "five fingers, natural spacing, believable joint angles. Ring worn on the ring finger, "
                     "band fully encircling that single finger, seated between the knuckles. Unretouched "
-                    "skin. Candid, imperfect, honest colour. This slot uses a DISTINCT model, wardrobe and "
-                    "location from every other lifestyle slot (rotate skin tone and age within the theme).")
+                    "skin. Candid, imperfect, honest colour. This slot shares the SAME theme, wardrobe "
+                    "family, palette, location and light as every other lifestyle slot in this catalog "
+                    "(ONE theme per catalog); vary ONLY the model's skin tone and age -- never the theme, "
+                    "wardrobe colour or location.")
 REALISM_NEGATIVE = ("plastic skin, waxy skin, poreless, airbrushed, smoothed skin, mannequin hand, "
                     "doll hand, rubber texture, uniform skin tone, glossy CGI highlight, HDR glow, "
                     "beauty filter, retouched, symmetrical hand, ring between two fingers, band crossing "
@@ -352,10 +363,12 @@ def _stone_equality(spec):
 
 
 # Minimum-subject-scale framing (G20), appended to EVERY lifestyle slot.
-MACRO_FRAMING = ("FRAMING: the ring fills at least one quarter of the frame width; macro framing, hand "
-                 "cropped at the knuckles, the ring is the largest sharp subject in frame. NO full-hand "
-                 "shot, NO wide or environment-establishing composition, NO torso; the scene reads only "
-                 "through background bokeh, never through frame coverage. RING SCALE: render the ring at "
+MACRO_FRAMING = ("FRAMING (G20 BIG_ENOUGH): the ring is the subject and fills the frame -- at least 20% "
+                 "of the frame area (tight-macro slots >=35%); macro framing, hand cropped at wrist or "
+                 "knuckles, the ring is the largest sharp subject, background pure bokeh. FACES ARE NOT "
+                 "REQUIRED -- if a face would pull attention, crop it out; prefer hand only. NO full-hand "
+                 "shot, NO hand at arm's length, NO both-hands-wide, NO wide or environment-establishing "
+                 "composition, NO torso; the ring must NEVER read as a sliver. RING SCALE: render the ring at "
                  "TRUE real-life size on the finger — the centre stone sits WITHIN the finger's width, "
                  "NEVER wider than the finger, never oversized or cocktail-huge; an elongated stone spans "
                  "ALONG the finger but must not overhang the finger sides.")
@@ -406,7 +419,14 @@ def build_prompt(spec, slot, theme=None):
         f"PIECE ({spec['sku']}, category {spec['category']}, match structural reference exactly):\n{geom}\n\n"
         f"SCENE: {scene}. Realistic macro luxury jewellery product photography, tack-sharp on the piece, "
         f"shallow depth of field, sRGB, no watermark, no text. Format 1:1 square, 2048x2048.\n\n"
-        f"NEGATIVE: {neg}"
+        f"DIAMOND CLARITY (G24, every stone): Diamonds are colourless and water-clear -- completely "
+        "transparent, glass-bright, flawless. Facets are crisp and sharply defined with clean edges. "
+        "Light passes cleanly through the stone with true white brilliance, sharp fire and defined "
+        "scintillation. Table and crown read clean and bright, pavilion shows crisp facet reflections. "
+        "Every stone in the piece is equally clean and equally bright."
+        + (" The ring sits in direct light, NOT in hand shadow -- each stone catches the light.\n\n"
+           if grp == "lifestyle" else "\n\n")
+        + f"NEGATIVE: {neg}"
     )
     return {
         "slot": slot["slot"], "name": slot["name"], "group": grp,

@@ -14,8 +14,8 @@
       "orientation": "east_west",
       "setting": "bar_set",
       "rows": 1,
-      "count": 11,
-      "tolerance": 3,
+      "count": 10,
+      "tolerance": 2,
       "coverage_fraction": 0.5
     }
   ],
