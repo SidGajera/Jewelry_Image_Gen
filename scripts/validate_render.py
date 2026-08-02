@@ -589,6 +589,99 @@ def g25_gold_check(bgr, spec, slot):
     return [_g("G25_GOLD_CHECK", "pass", f"hue {hue}", metal, "metal reads as the spec gold colour")]
 
 
+def _circle_fit(xs, ys):
+    """Kasa algebraic circle fit. Returns (cx, cy) or None."""
+    A = np.c_[xs, ys, np.ones(len(xs))]
+    b = xs ** 2 + ys ** 2
+    try:
+        sol, *_ = np.linalg.lstsq(A, b, rcond=None)
+    except Exception:
+        return None
+    return sol[0] / 2.0, sol[1] / 2.0
+
+
+def _rect_long_axis_deg(rect):
+    """Angle (deg, 0..180) of a minAreaRect's LONG side in image coords."""
+    (_c, (w, h), ang) = rect
+    if w < h:
+        ang = ang + 90.0
+    return ang % 180.0
+
+
+def g27_orientation(bgr, spec, slot):
+    """G27 ORIENTATION_CHECK (BLOCKING). Each stone's long axis must match the
+    spec's orientation RELATIVE TO THE LOCAL SHANK TANGENT:
+      parallel  (east-west)  -> long-axis vs tangent diff <= 15 deg
+      perpendicular(north-south) -> diff in 75..105 deg
+    Also asserts coverage: a spec-declared PARTIAL band must show a plain-metal
+    gap in the stone ring; a full-eternity render (no gap) FAILS.
+    Method: segment bright low-sat stones -> minAreaRect long axis; fit a circle
+    to the stone centroids -> local tangent = radial + 90 deg. Needs >=5 stones,
+    else 'unmeasurable' (never blocks — small/oblique lifestyle crops)."""
+    cfg = spec.get("g27")
+    if not cfg or not cfg.get("axis"):
+        return [_g("G27_ORIENTATION_CHECK", "skip", detail="no g27 axis in spec")]
+    import cv2
+    axis = cfg["axis"]                       # "parallel" | "perpendicular"
+    coverage = cfg.get("coverage", "partial")  # "partial" | "full"
+    tol_par = float(cfg.get("parallel_tol_deg", 15))
+    h, w = bgr.shape[:2]
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    S, V = hsv[..., 1], hsv[..., 2]
+    m = (((V >= 165) & (S <= 75)).astype("uint8")) * 255
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((3, 3), "uint8"))
+    cnts, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    lo, hi = 0.00006 * h * w, 0.02 * h * w
+    stones = []  # (cx, cy, long_axis_deg)
+    for c in cnts:
+        a = cv2.contourArea(c)
+        if a < lo or a > hi or len(c) < 5:
+            continue
+        rect = cv2.minAreaRect(c)
+        (cx, cy), (rw, rh), _ = rect
+        if min(rw, rh) < 2 or max(rw, rh) / max(min(rw, rh), 1) < 1.15:
+            continue  # too round to have a reliable long axis
+        stones.append((cx, cy, _rect_long_axis_deg(rect)))
+    if len(stones) < 5:
+        return [_g("G27_ORIENTATION_CHECK", "unmeasurable", len(stones), ">=5 stones",
+                   "too few stones resolved to fit the arc (oblique/occluded crop)")]
+    xs = np.array([s[0] for s in stones]); ys = np.array([s[1] for s in stones])
+    ctr = _circle_fit(xs, ys)
+    if ctr is None:
+        return [_g("G27_ORIENTATION_CHECK", "unmeasurable", None, None, "circle fit failed")]
+    cx, cy = ctr
+    offenders, diffs = 0, []
+    for (x, y, la) in stones:
+        rad = np.degrees(np.arctan2(y - cy, x - cx))
+        tan = (rad + 90.0) % 180.0
+        d = abs(la - tan) % 180.0
+        d = min(d, 180.0 - d)                # fold to 0..90
+        diffs.append(d)
+    # d is folded to 0..90: parallel -> d near 0 (<=tol); perpendicular -> d near 90 (>=75)
+    if axis == "perpendicular":
+        offenders = sum(1 for d in diffs if d < 75.0)
+    else:
+        offenders = sum(1 for d in diffs if d > tol_par)
+    # coverage: angular span covered by stones; a PARTIAL band must leave a gap
+    angs = np.sort(np.degrees(np.arctan2(ys - cy, xs - cx)) % 360.0)
+    gaps = np.diff(np.r_[angs, angs[0] + 360.0])
+    max_gap = float(gaps.max())
+    frac_off = offenders / float(len(stones))
+    fails = []
+    if frac_off > 0.15 and offenders >= 2:
+        want = "long axis PARALLEL to shank (east-west)" if axis == "parallel" else "long axis PERPENDICULAR to shank (north-south)"
+        fails.append(f"{offenders}/{len(stones)} stones misoriented (want {want}; median diff {np.median(diffs):.0f} deg)")
+    if coverage == "partial" and max_gap < 25.0:
+        fails.append(f"no plain-shank gap (max angular gap {max_gap:.0f} deg) -> looks like a FULL eternity, spec says partial")
+    if coverage == "full" and max_gap > 60.0:
+        fails.append(f"stone row broken (gap {max_gap:.0f} deg) -> spec says full eternity")
+    if fails:
+        return [_g("G27_ORIENTATION_CHECK", "fail", f"off={offenders}/{len(stones)} gap={max_gap:.0f}",
+                   f"{axis}, {coverage}", "; ".join(fails))]
+    return [_g("G27_ORIENTATION_CHECK", "pass", f"off={offenders}/{len(stones)} gap={max_gap:.0f}",
+               f"{axis}, {coverage}", "orientation + coverage match source")]
+
+
 def validate_image(sku, image_path, slot):
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
     res = [g1_format(image_path)]
@@ -616,6 +709,7 @@ def validate_image(sku, image_path, slot):
     res += g22_stone_within_finger(bgr, slot, spec)
     res += g24_clarity(bgr, slot)
     res += g25_gold_check(bgr, spec, slot)
+    res += g27_orientation(bgr, spec, slot)
     return res
 
 

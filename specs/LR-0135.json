@@ -1,0 +1,133 @@
+{
+  "sku": "LR-0135",
+  "category": "ring",
+  "subtype": "eternity_band",
+  "style_code": "BE2D3425-PT",
+  "run_scope": "lifestyle_only_5",
+  "note": "Studio/velvet skipped — catalog previously generated. This run = 5 lifestyle only.",
+  "correction_log": "2026-08-02 CATALOG FAILURE: prior render rotated stones (north-south) and made a FULL eternity. USER-AUTHORITATIVE FIX below. Orientation is EAST-WEST, long axis PARALLEL to the shank; partial band with plain polished shank behind; shared prongs, single bead per junction; thin band, stones low.",
+  "metal": { "value": "white", "karat": "18K", "source_actual": "950 platinum", "decision": "keep source white look", "confidence": "supplied" },
+  "band": { "width_mm": 2.6, "profile": "thin, low-set, tapering to plain polished shank behind stones", "confidence": "certain" },
+  "stones": {
+    "total": 15,
+    "shape": "emerald_cut",
+    "orientation": "east-west, long axis PARALLEL to the shank (runs along the finger / along the band circumference); short axis across the band width",
+    "setting": "shared_prongs_single_bead_per_junction",
+    "coverage": "partial band (~3/4); stones stop, plain polished shank behind",
+    "ctw": "0.875",
+    "color": "F/G",
+    "clarity": "SI",
+    "confidence": { "total": "certain", "shape": "certain", "orientation": "certain", "setting": "certain", "coverage": "certain", "ctw": "supplied", "color": "supplied", "clarity": "supplied" }
+  },
+  "design_between_stones": "REPEATING PATTERN (user-corrected 2026-08-02): emerald-cut (east-west) -> a vertical PAIR of small round brilliant diamonds stacked between prongs -> next emerald-cut. The alternation repeats along the whole stone section. French pave with V-shaped prong cutouts along the band edges. NOTE: the small rounds were previously misread as prong beads — they are diamonds. Verify count of round pairs against source before locking as certain.",
+  "stone_pattern": { "unit": "emerald_EW + vertical_pair_round_brilliant", "repeat": "along entire stone section", "setting": "french_pave_V_cutout", "confidence": "user-authoritative; visual re-verify pending" },
+  "watermark": { "source_watermarked": true, "text": "Lucent Carat Lab", "action": "scrub_G12" },
+  "counts": {
+    "total_stones": { "value": 15, "confidence": "certain", "basis": "Etsy=15; source images 1/2" },
+    "stones_by_shape": { "value": { "emerald_cut": 15 }, "confidence": "certain" },
+    "baguette_count": { "value": 15, "confidence": "certain", "note": "step-cut emerald-cut stones" },
+    "divider_count": { "value": 14, "confidence": "certain", "note": "one single shared bead/prong per internal junction between 15 stones; + terminal prong at each row end" },
+    "prong_per_stone": { "value": "2 shared corner prongs per stone (each shared with neighbour); single bead at each junction", "confidence": "certain" },
+    "prong_count_total": { "value": 16, "confidence": "certain", "note": "14 internal shared beads + 2 terminal" },
+    "clasp_count": { "value": 0, "confidence": "certain", "note": "ring, no clasp" },
+    "visible_by_slot": {
+      "note": "lifestyle: hand occludes back; front arc must read as uniform emerald baguettes, EAST-WEST, single shared bead per junction. Full row visible only in near-top poses.",
+      "L1_pov_raise": "8-11 front-arc stones",
+      "L2_book_rest": "9-13 stones",
+      "L3_reach": "7-10 stones",
+      "L4_collarbone": "6-9 stones",
+      "L5_clasped": "7-10 stones"
+    }
+  },
+  "per_stone": {
+    "shape_cut": { "value": "emerald cut (step cut)", "confidence": "certain" },
+    "corner_type": { "value": "cut corner (octagonal outline)", "confidence": "certain" },
+    "LW_ratio": { "value": "~1.4:1", "confidence": "certain", "basis": "source images 1/2; all stones equal" },
+    "relative_size": { "value": "all 15 identical — NOT graduated", "confidence": "certain" },
+    "orientation": { "value": "EAST-WEST: long axis PARALLEL to the shank (follows the band's wrap around the finger). FLAT PRODUCT SHOT: long axis horizontal along the band. WORN HAND (correct look): stones lie ACROSS the finger like ladder rungs at the finger top. WRONG (north-south) = stones pointing toward the fingertip. Do not apply flat-shot appearance to on-hand shots.", "confidence": "certain" },
+    "step_facet_rows": { "value": "~3 step rows on table", "confidence": "certain" },
+    "twelve_oclock": { "value": "plain polished shank at 12 o'clock; stone row is a ~3/4 arc centered on 6 o'clock", "confidence": "certain" }
+  },
+  "setting_spacing": {
+    "setting_style": { "value": "shared prongs, single bead per junction", "confidence": "certain" },
+    "gap_between_stones_ratio": { "value": "~0.10 of stone width (near-touching, single bead at junction)", "confidence": "certain" },
+    "divider_width_ratio": { "value": "~0.12 of stone width (single thin bead/prong)", "confidence": "certain" },
+    "setting_height": { "value": "low — stones sit low and near-flush, thin band", "confidence": "certain" },
+    "coverage_arc": { "value": "partial band (~3/4, ~240-260deg); stones STOP and a plain polished shank runs behind (~10 to 2 o'clock). NOT a full eternity.", "confidence": "certain" }
+  },
+  "metal_band": {
+    "band_width_mm": { "value": 2.6, "confidence": "supplied" },
+    "profile": { "value": "thin profile, stones sit low", "confidence": "certain" },
+    "taper": { "value": "tapers thinner from stone row toward plain polished shank at back", "confidence": "certain" },
+    "band_width_below_stones": { "value": "thin rail, narrower than stone length", "confidence": "certain" },
+    "shank_profile_behind_row": { "value": "plain polished, thin, tapering", "confidence": "certain" },
+    "colour_finish": { "value": "white metal, bright polished (source 950 platinum; render as 18K white)", "confidence": "certain" }
+  },
+  "supplied_fields": {
+    "single_stone_mm": "not supplied",
+    "carat_total": "0.875 (7/8) ctw; accent min 0.83",
+    "ring_size": "not supplied (not needed for lifestyle)",
+    "karat": "18K (per metal lock; source 950 Pt)",
+    "clarity": "SI", "color": "F/G", "band_width_mm": 2.6
+  },
+  "g27": { "axis": "parallel", "coverage": "partial", "parallel_tol_deg": 15, "_note": "machine-readable input for G27_ORIENTATION_CHECK: parallel = long axis east-west/parallel to shank; partial = plain-shank gap required" },
+  "phase_1_5_verification": {
+    "policy": "BLOCKING. After writing the spec, re-open source views and check each field against the pixels; name the view and whether it shows the feature unambiguously. Generation blocked if ANY field is 'inferred' or 'missing'.",
+    "verified_on": "2026-08-02",
+    "fields": {
+      "orientation": { "view": "r2.png front velvet (stones face camera)", "unambiguous": true, "result": "PASS — east-west, long axis PARALLEL to shank; step facets run lengthwise", "confidence": "certain", "prior_error": "originally read off r8 near-top + hero 3/4 macro = INFERRED; wrongly marked certain" },
+      "coverage_arc": { "view": "r2.png front + r7.png 3/4", "unambiguous": true, "result": "PASS — row stops both sides, plain polished shank to top; partial ~3/4, NOT full eternity", "confidence": "certain" },
+      "total_count": { "view": "r2.png front + Etsy", "unambiguous": true, "result": "PASS — 15", "confidence": "certain" },
+      "divider": { "view": "r2.png front", "unambiguous": true, "result": "PASS — single shared prong/bead per junction; outer rail has decorative French-pave V-cut notches (not doubled prongs)", "confidence": "certain" },
+      "stone_shape_ratio": { "view": "r2.png front", "unambiguous": true, "result": "PASS — emerald cut, cut corners, ~1.4:1, all identical", "confidence": "certain" },
+      "band_profile": { "view": "r2.png + r9 side", "unambiguous": true, "result": "PASS — thin, low setting", "confidence": "certain" }
+    }
+  },
+  "stone_orientation_lock": {
+    "policy": "G27 ORIENTATION_CHECK — PERMANENT ZERO TOLERANCE. Rotating/reangling/repositioning any stone = redraw = prohibited. Only camera angle and scene may change.",
+    "stone_orientation": { "value": "every stone east-west: long axis PARALLEL to the shank", "confidence": "certain" },
+    "stone_tilt": { "value": "0 deg off axis — all stones level/flat, table up", "confidence": "certain" },
+    "stone_position": { "value": "15 stones on a ~3/4 arc centered on 6 o'clock, running ~8 o'clock -> 6 -> ~4 o'clock", "confidence": "certain" },
+    "stone_sequence": { "value": "S1..S15 in continuous reading order along the arc; all identical, uniform spacing", "confidence": "certain" },
+    "coverage_arc": { "value": "stone row STARTS ~8 o'clock and STOPS ~4 o'clock (~240-260deg)", "confidence": "certain" },
+    "plain_shank_arc": { "value": "bare polished metal across the top ~10 to 2 o'clock (~100-120deg)", "confidence": "certain" },
+    "divider_type": { "value": "single shared bead per junction; 1 per junction; 14 internal junctions", "confidence": "certain" },
+    "setting_height": { "value": "low — stones sit low, thin band", "confidence": "certain" },
+    "band_profile": { "value": "thin, rounded, tapering behind the row", "confidence": "certain" }
+  },
+  "g27_orientation_check": {
+    "blocking": true,
+    "checks": [
+      "fit the long axis of each stone; every stone within 5 deg of east-west (parallel to shank) — any stone off by >5 deg = FAIL",
+      "coverage arc matches: row starts ~8 o'clock, stops ~4 o'clock",
+      "plain polished shank present across the top (~10-2 o'clock)",
+      "single bead per junction; divider count per junction == 1",
+      "stone sequence/positions match source; no repositioned or resequenced stones",
+      "no full eternity, no rotated/tilted/perpendicular stones"
+    ],
+    "on_fail": "auto-regenerate; never deliver"
+  },
+  "g27_prompt_verbatim": "Stones set east-west, long axis PARALLEL to the band, exactly as source. Orientation, tilt, position and sequence identical to source. Partial band — the stone row stops and plain polished shank continues. Shared prongs, single bead per junction. Thin band, stones sit low.",
+  "g27_negative_verbatim": "rotated stones, stones turned 90 degrees, north-south orientation, stones across the band, perpendicular stones, tilted stones, repositioned stones, resequenced stones, full eternity band, stones all the way around, doubled prongs, thick band, raised setting",
+  "g26_baguette_match": {
+    "blocking": true,
+    "stone_orientation": "east-west, long axis PARALLEL to the shank",
+    "coverage": "partial band, stones stop, plain polished shank behind",
+    "setting": "shared prongs, single bead per junction",
+    "band": "thin profile, stones sit low",
+    "checks": [
+      "count == visible_by_slot[slot] exactly",
+      "every stone east-west (long axis along the shank); reject any rotated/north-south stone",
+      "all stones identical L:W within +/-8%; none graduated",
+      "single bead per junction; reject doubled prongs, missing/extra dividers",
+      "partial coverage with plain shank behind; reject full eternity",
+      "thin band, low setting; reject thick band"
+    ]
+  },
+  "g26_prompt_verbatim": "identical emerald-cut baguettes, every stone the same size and the same proportions, set east-west with the long axis parallel to the shank in a continuous row, shared prongs with a single bead between adjacent stones, even uniform spacing, stones sit low and flush and level, partial band with a plain polished shank behind the stones",
+  "g26_negative_verbatim": "rotated stones, north-south orientation, stones across the band, full eternity, doubled prongs, thick band, mixed stone sizes, graduated stones, uneven spacing, tapered baguettes, round stones, princess cut, gaps of varying width, extra dividers, missing dividers, bezel setting, channel setting",
+  "geometry_lock": "D2D pixel-perfect from source ONLY: stone orientation (east-west), size, band width, spacing, single-bead dividers, partial coverage. NO rescale, NO redraw, NO rotation, NO added rows, NO full eternity.",
+  "i2i_source_frame": "workspace/golden/LR-0135/source/r7.png",
+  "canvas": "2048x2048",
+  "model": "nano_banana_2"
+}

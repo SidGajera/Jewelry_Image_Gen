@@ -11,6 +11,10 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 4. Write `LR-XXXX_SOURCE_SPEC.md` from source pixels only — full field list per docs/13 §6b. Zero inference, zero category priors.
 5. Append SKU Failure Memory section (carry forward all prior global rules).
 
+## P1.5 — VERIFY THE SPEC (BLOCKING, new — user-locked 2026-08-02, cause of LR-0135)
+5b. Re-open the source views and check EACH recorded field against the image, one at a time: stone orientation (long axis PARALLEL or PERPENDICULAR to the shank — per stone), tilt, clock position, sequence, coverage arc (where the row STOPS), plain-shank arc, counts (total/by-shape/per-junction), setting type, divider count, band profile. Name the view each field was read from and whether it shows the feature unambiguously.
+5c. Confidence enforced: every field carries certain/inferred/missing. Generation is BLOCKED if ANY field is inferred or missing. Orientation read from a three-quarter is inferred, never certain — read it from a straight FRONT view. Any field that does not match the image = STOP, correct, re-verify. Record the per-field result in specs/<SKU>.json (phase_1_5_verification). This costs no credits and is the ONLY check that catches a wrong spec — G26/G27 compare renders to the spec, so a wrong spec passes them.
+
 ## P2 — PROMPT
 6. Build master prompt: full geometry lock + explicit NEGATIVES from Failure Memory (NO hidden halo, NO added diamonds, NO double prongs, NO extra jewelry piece, exact scale).
 7. Attach format lock: 1:1, 2K min, native, tack-sharp, sRGB, no watermark.
