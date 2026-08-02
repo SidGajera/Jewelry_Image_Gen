@@ -30,6 +30,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · 1:1 square lock (2048x2048).
 13b. ANGLE VALIDATION GATE (docs/12 A-MATRIX): read each render's ACTUAL azimuth/elevation from the image (not the filename); reject any slot that mismatches its declared numbers; compare all 10 pairwise, reject the later slot of any pair within 20° azimuth AND 15° elevation, regenerate azimuth +30° / elevation re-forced; repeat until all 10 distinct. Never deliver a duplicate angle.
 13c. ACCENT/PAVÉ COUNT GATE (docs/13 §6c, validate_render G2, MANDATORY every render): detect accent stones per run; reject if outside spec count ± tolerance; re-fire the SAME frozen call with the failed constraint appended to negatives (max 5). Diffusion cannot count — never deliver an unchecked render.
+13d. ONE-RING GATE (BLOCKING, user-locked 2026-08-02, every lifestyle/on-hand render): exactly ONE ring in the image, on the ring finger ONLY; every other finger bare; NO duplicate/second ring anywhere; NO other jewelry (bracelet, watch, earrings, necklace). Any violation = auto-regenerate that slot before continuing. See [[feedback_one_ring_only]].
 14. Any fail = auto-regenerate that slot with a tightened negative. Never deliver a fail.
 
 ## P5 — DOWNLOAD

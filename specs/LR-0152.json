@@ -1,0 +1,23 @@
+{
+  "sku": "LR-0152",
+  "category": "ring",
+  "subtype": "round_solitaire",
+  "run_scope": "lifestyle_only_5",
+  "note": "Studio skipped (previously generated — prior 0X_office/life PNGs exist in Drive). 5 lifestyle close-ups. Source '(Round)'.",
+  "metal": { "value": "yellow", "karat": "18K", "confidence": "certain", "basis": "source renders yellow gold + gold.mp4" },
+  "stones": {
+    "centre": { "shape": "round brilliant", "count": 1, "confidence": "certain" },
+    "halo": "NONE",
+    "accents": "NONE (plain solitaire, no pave, no side stones)",
+    "setting": "4-prong cathedral head with a small trellis / crossover under-gallery",
+    "prong_count": { "value": 4, "confidence": "inferred", "basis": "s7 front + s8 3/4; read as compass-set 4-prong" },
+    "confidence": { "centre": "certain", "halo": "certain", "accents": "certain", "setting": "certain" }
+  },
+  "band": { "profile": "plain polished, tapering, cathedral shoulders that rise to the head; thin", "confidence": "certain" },
+  "embellishment_lock": "PLAIN SOLITAIRE. NO halo, NO pave, NO accent stones, NO side stones, NO split/double prongs, NO extra rows. Keep the band plain polished. (project_plain_solitaire_embellishment_drift)",
+  "one_ring_lock": "exactly one ring, ring finger only, all other fingers bare, no duplicate ring, no other jewelry (feedback_one_ring_only)",
+  "geometry_lock": "i2i with yellow-gold source frame s8 as ground truth. Single round brilliant, 4-prong cathedral, plain band, yellow gold.",
+  "i2i_source_frame": "workspace/golden/LR-0152/source/s8.jpg",
+  "canvas": "2048x2048",
+  "model": "nano_banana_2"
+}
