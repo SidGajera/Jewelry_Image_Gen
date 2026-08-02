@@ -15,6 +15,7 @@
   },
   "band": { "profile": "plain polished, tapering, cathedral shoulders that rise to the head; thin", "confidence": "certain" },
   "embellishment_lock": "PLAIN SOLITAIRE. NO halo, NO pave, NO accent stones, NO side stones, NO split/double prongs, NO extra rows. Keep the band plain polished. (project_plain_solitaire_embellishment_drift)",
+  "under_stone_area_lock": "CRITICAL: the setting beneath the centre diamond is PLAIN POLISHED GOLD ONLY, exactly as the reference. Smooth clean metal basket, open airy gallery, the band sweeps up and splits into the four prongs with nothing added. NO hidden halo, NO pave under the stone, NO small diamonds on the basket or bridge, NO milgrain, NO texture, NO engraving anywhere under or around the centre stone. The centre diamond is the ONLY stone in the entire ring — total stone count: 1. Slim delicate head profile as reference, NOT bulky. Cause: model 'upgrades' plain baskets to hidden-halo baskets (everywhere in training data). Verification: zoom the under-stone gallery — must be smooth polished metal with zero small diamonds or texture; auto-regenerate on failure.",
   "one_ring_lock": "exactly one ring, ring finger only, all other fingers bare, no duplicate ring, no other jewelry (feedback_one_ring_only)",
   "geometry_lock": "i2i with yellow-gold source frame s8 as ground truth. Single round brilliant, 4-prong cathedral, plain band, yellow gold.",
   "i2i_source_frame": "workspace/golden/LR-0152/source/s8.jpg",
