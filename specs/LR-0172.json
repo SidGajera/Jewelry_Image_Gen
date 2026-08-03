@@ -1,0 +1,18 @@
+{
+  "sku": "LR-0172",
+  "category": "ring",
+  "subtype": "round_solitaire_twisted_infinity_shank",
+  "status": "REJECTED / BLOCKED 2026-08-03. Source read confirmed by user; renders rejected. Redraw engine (flash) cannot reproduce the twisted band faithfully. Needs true nano_banana_2/inpaint or pixel-composite (both currently unavailable/disallowed).",
+  "metal": { "value": "yellow", "karat": "18K", "confidence": "certain" },
+  "stones": {
+    "centre": { "shape": "round brilliant", "count": 1, "confidence": "certain" },
+    "setting": "4 slender claw prongs, compass-set",
+    "accents": "NONE (plain band, no pave)",
+    "confidence": { "centre": "certain", "setting": "certain" }
+  },
+  "band_structure": { "value": "TWISTED / BRAIDED INFINITY SHANK — two polished gold strands twisting/wrapping around each other along the whole band; plain polished, no pave/diamonds; strands rise into a small plain gold gallery under the stone", "confidence": "certain", "basis": "gold.mp4 spin frames v02-v09 (profile/3-4)" },
+  "surface_finish": "high polish",
+  "source": { "spin_video": "Copy of gold.mp4 (600 frames)", "stills": ["Copy of 1.jpg", "Copy of 5.jpg", "Copy of 8.jpg"], "method": "spin-video frames (feedback_spin_video_source_frames)" },
+  "i2i_reference_frame": "workspace/golden/LR-0172/source/vframe_03.png",
+  "model": "nano_banana_2"
+}

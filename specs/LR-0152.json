@@ -3,6 +3,7 @@
   "category": "ring",
   "subtype": "round_solitaire",
   "run_scope": "lifestyle_only_5",
+  "status": "REJECTED 100% (user 2026-08-03). Repeated under-stone/bottom misreads: plain solitaire -> hidden-halo basket -> dropped split-shank -> split-shank not matching source trellis. Root cause = redraw engine (flash) cannot reproduce the exact delicate under-head trellis/split geometry; needs real-pixel composite (policy point 8) or true nb2, neither available on this integration. Do NOT re-run on i2i redraw. All 5 deliveries void.",
   "note": "Studio skipped (previously generated — prior 0X_office/life PNGs exist in Drive). 5 lifestyle close-ups. Source '(Round)'.",
   "metal": { "value": "yellow", "karat": "18K", "confidence": "certain", "basis": "source renders yellow gold + gold.mp4" },
   "stones": {
