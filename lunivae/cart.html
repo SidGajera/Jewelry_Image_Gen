@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Collection — Lunivae Jewels</title>
-<meta name="description" content="Browse the Lunivae Jewels collection — solitaire, pavé, bridal and heritage fine jewelry, crafted in-house in Surat, India." />
+<title>Your Bag — Lunivae Jewels</title>
 <meta name="theme-color" content="#F4EFE4" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,15 +14,13 @@
 
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-<!-- HEADER -->
 <header class="header" id="header">
   <div class="header__inner">
     <a href="index.html" class="brand" aria-label="Lunivae Jewels — home">
-      <span class="brand__name">LUNIV<em>ae</em></span>
-      <span class="brand__sub">JEWELS</span>
+      <span class="brand__name">LUNIV<em>ae</em></span><span class="brand__sub">JEWELS</span>
     </a>
     <nav class="nav" aria-label="Primary">
-      <a href="shop.html" class="nav__link is-active">Collection</a>
+      <a href="shop.html" class="nav__link">Collection</a>
       <a href="index.html#craft" class="nav__link">The Standard</a>
       <a href="index.html#bespoke" class="nav__link">Bespoke</a>
       <a href="index.html#trade" class="nav__link">For Business</a>
@@ -47,62 +44,23 @@
     <a href="index.html#bespoke" class="mobile-menu__link">Bespoke</a>
     <a href="index.html#trade" class="mobile-menu__link">For Business</a>
     <a href="index.html#heritage" class="mobile-menu__link">Heritage</a>
-    <a href="index.html#contact" class="btn btn--gold mobile-menu__cta">Book a Consultation</a>
   </nav>
-  <p class="mobile-menu__foot">Surat, India · Worldwide Delivery</p>
 </div>
 
 <main>
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a><span>/</span><span>Collection</span>
-      </nav>
-      <p class="eyebrow">The Collection</p>
-      <h1 class="page-hero__title">Chosen for the moments<br />that deserve forever.</h1>
-      <p class="page-hero__lede">Every piece is made in our own ateliers in Surat and can be tailored to your stone, metal and specification. Explore the house silhouettes below.</p>
+      <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Your Bag</span></nav>
+      <p class="eyebrow">Your Bag</p>
+      <h1 class="page-hero__title">The bag.</h1>
     </div>
   </section>
 
-  <!-- TOOLBAR -->
-  <section class="shop container">
-    <div class="shop__toolbar">
-      <div class="filters" id="filters" role="group" aria-label="Filter by category">
-        <button class="chip is-active" data-filter="all">All</button>
-        <button class="chip" data-filter="solitaire">Solitaire</button>
-        <button class="chip" data-filter="pave">Pavé</button>
-        <button class="chip" data-filter="bridal">Bridal</button>
-        <button class="chip" data-filter="heritage">Heritage</button>
-      </div>
-      <div class="shop__sort">
-        <label for="sort">Sort</label>
-        <select id="sort">
-          <option value="featured">Featured</option>
-          <option value="price-asc">Price · Low to High</option>
-          <option value="price-desc">Price · High to Low</option>
-          <option value="name">Name · A–Z</option>
-        </select>
-      </div>
-    </div>
-
-    <p class="shop__count" id="count"></p>
-    <div class="product-grid" id="grid"><!-- rendered by shop.js --></div>
-  </section>
-
-  <!-- BESPOKE STRIP -->
-  <section class="cta-band">
-    <div class="container cta-band__inner">
-      <div>
-        <p class="eyebrow eyebrow--gold">Can't find it?</p>
-        <h2 class="cta-band__title">Every Lunivae piece can be made bespoke.</h2>
-      </div>
-      <a href="index.html#bespoke" class="btn btn--gold">Start a Commission</a>
-    </div>
+  <section class="cartpage container section--tight">
+    <div class="cartpage__grid" id="cartLayout"><!-- rendered by cartpage.js --></div>
   </section>
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
@@ -116,39 +74,22 @@
     </div>
     <nav class="footer__col" aria-label="Explore">
       <h4 class="footer__title">Explore</h4>
-      <a href="shop.html">Collection</a>
-      <a href="index.html#craft">The Standard</a>
-      <a href="index.html#bespoke">Bespoke</a>
-      <a href="index.html#heritage">Heritage</a>
+      <a href="shop.html">Collection</a><a href="index.html#craft">The Standard</a>
+      <a href="index.html#bespoke">Bespoke</a><a href="index.html#heritage">Heritage</a>
     </nav>
     <nav class="footer__col" aria-label="Company">
       <h4 class="footer__title">Company</h4>
-      <a href="index.html#trade">For Business</a>
-      <a href="index.html#contact">Consultation</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html#trade">For Business</a><a href="index.html#contact">Consultation</a><a href="index.html#contact">Contact</a>
     </nav>
     <div class="footer__col">
       <h4 class="footer__title">Newsletter</h4>
       <p class="footer__sub">Private previews and new commissions.</p>
-      <form class="footer__news" id="newsForm">
-        <input type="email" placeholder="Your email" aria-label="Email for newsletter" required />
-        <button type="submit" aria-label="Subscribe">→</button>
-      </form>
-      <div class="footer__social">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Pinterest">Pinterest</a>
-      </div>
+      <form class="footer__news" id="newsForm"><input type="email" placeholder="Your email" aria-label="Email" required /><button type="submit" aria-label="Subscribe">→</button></form>
     </div>
   </div>
-  <div class="footer__bar">
-    <div class="container footer__bar-inner">
-      <p>© <span id="year">2026</span> Lunivae Jewels · Surat, India</p>
-      <p>Crafted with intention.</p>
-    </div>
-  </div>
+  <div class="footer__bar"><div class="container footer__bar-inner"><p>© <span id="year">2026</span> Lunivae Jewels · Surat, India</p><p>Crafted with intention.</p></div></div>
 </footer>
 
-<!-- Cart drawer -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping bag">
   <div class="cart-drawer__head"><h3>Your Bag</h3><button id="drawerClose" aria-label="Close bag">✕</button></div>
@@ -158,7 +99,7 @@
 
 <script src="products.js"></script>
 <script src="cart.js"></script>
-<script src="shop.js"></script>
+<script src="cartpage.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

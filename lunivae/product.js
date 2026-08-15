@@ -59,9 +59,23 @@
           '<h1 class="pdp__title">' + p.name + '</h1>' +
           '<p class="pdp__price">' + window.LUNIVAE.formatPrice(p.price) + '<span class="pdp__price-note"> · indicative</span></p>' +
           '<p class="pdp__blurb">' + p.blurb + '</p>' +
+          '<div class="pdp__options">' +
+            '<div class="pdp__field"><label for="sizeSel">Ring size (US)</label>' +
+              '<select id="sizeSel">' +
+                ['4','4.5','5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10'].map(function (s) {
+                  return '<option value="' + s + '"' + (s === '6.5' ? ' selected' : '') + '>' + s + '</option>';
+                }).join('') +
+              '</select></div>' +
+            '<div class="pdp__field"><label>Quantity</label>' +
+              '<div class="qty qty--lg" id="qtyCtl"><button class="qty__btn" data-act="dec" aria-label="Decrease">–</button>' +
+              '<span class="qty__n" id="qtyN">1</span><button class="qty__btn" data-act="inc" aria-label="Increase">+</button></div></div>' +
+          '</div>' +
           '<div class="pdp__actions">' +
-            '<a class="btn btn--gold btn--block" id="enquireBtn" href="index.html#contact">Enquire About This Piece</a>' +
-            '<button class="btn btn--ghost btn--block" id="wishBtn">Save to Wishlist</button>' +
+            '<button class="btn btn--gold btn--block" id="addBtn">Add to Bag · ' + window.LUNIVAE.formatPrice(p.price) + '</button>' +
+            '<div class="pdp__actions-row">' +
+              '<a class="btn btn--ghost" id="enquireBtn" href="index.html#contact">Enquire</a>' +
+              '<button class="btn btn--ghost" id="wishBtn">Save</button>' +
+            '</div>' +
           '</div>' +
           '<p class="pdp__reassure">Made to order in 3–4 weeks · Certified &amp; insured worldwide shipping · Lifetime care</p>' +
           '<div class="pdp__specs">' + specs + '</div>' +
@@ -84,6 +98,28 @@
       root.querySelectorAll('.pdp__thumb').forEach(function (o) { o.classList.remove('is-active'); });
       t.classList.add('is-active');
     });
+  });
+
+  // Quantity stepper
+  var qty = 1;
+  var qtyN = document.getElementById('qtyN');
+  var qtyCtl = document.getElementById('qtyCtl');
+  if (qtyCtl) qtyCtl.addEventListener('click', function (e) {
+    var b = e.target.closest('.qty__btn'); if (!b) return;
+    qty = Math.max(1, qty + (b.getAttribute('data-act') === 'inc' ? 1 : -1));
+    qtyN.textContent = qty;
+  });
+
+  // Add to Bag
+  var addBtn = document.getElementById('addBtn');
+  if (addBtn) addBtn.addEventListener('click', function () {
+    var size = (document.getElementById('sizeSel') || {}).value || '';
+    if (window.LunivaeCart) {
+      window.LunivaeCart.add(p.id, qty, size);
+      window.LunivaeCart.openDrawer();
+    }
+    addBtn.textContent = 'Added to Bag ✓';
+    setTimeout(function () { addBtn.textContent = 'Add to Bag · ' + window.LUNIVAE.formatPrice(p.price); }, 1600);
   });
 
   // Enquire → remember which piece, deep link to contact
