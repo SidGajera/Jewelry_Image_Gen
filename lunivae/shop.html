@@ -65,29 +65,77 @@
     </div>
   </section>
 
-  <!-- TOOLBAR -->
+  <!-- LISTING with left filter sidebar -->
   <section class="shop container">
-    <div class="shop__toolbar">
-      <div class="filters" id="filters" role="group" aria-label="Filter by category">
-        <button class="chip is-active" data-filter="all">All</button>
-        <button class="chip" data-filter="solitaire">Solitaire</button>
-        <button class="chip" data-filter="pave">Pavé</button>
-        <button class="chip" data-filter="bridal">Bridal</button>
-        <button class="chip" data-filter="heritage">Heritage</button>
-      </div>
-      <div class="shop__sort">
-        <label for="sort">Sort</label>
-        <select id="sort">
-          <option value="featured">Featured</option>
-          <option value="price-asc">Price · Low to High</option>
-          <option value="price-desc">Price · High to Low</option>
-          <option value="name">Name · A–Z</option>
-        </select>
+    <button class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filterSidebar">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
+      Filter
+    </button>
+
+    <div class="shop__layout">
+      <aside class="filter-sidebar" id="filterSidebar" aria-label="Filters">
+        <div class="filter-sidebar__head">
+          <h2 class="filter-sidebar__title">Filter</h2>
+          <button class="filter-clear" id="filterClear">Clear all</button>
+        </div>
+
+        <div class="facet">
+          <h3 class="facet__title">Category</h3>
+          <ul class="facet__list" data-facet="category">
+            <li><label class="facet__opt"><input type="radio" name="category" value="all" checked /><span>All</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="category" value="solitaire" /><span>Solitaire</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="category" value="pave" /><span>Pavé</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="category" value="bridal" /><span>Bridal</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="category" value="heritage" /><span>Heritage</span></label></li>
+          </ul>
+        </div>
+
+        <div class="facet">
+          <h3 class="facet__title">Stone</h3>
+          <ul class="facet__list" data-facet="stone">
+            <li><label class="facet__opt"><input type="checkbox" value="Lab-Grown Diamond" /><span>Lab-Grown Diamond</span></label></li>
+            <li><label class="facet__opt"><input type="checkbox" value="Natural Diamond" /><span>Natural Diamond</span></label></li>
+          </ul>
+        </div>
+
+        <div class="facet">
+          <h3 class="facet__title">Price</h3>
+          <ul class="facet__list" data-facet="price">
+            <li><label class="facet__opt"><input type="radio" name="price" value="any" checked /><span>Any price</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="price" value="0-4000" /><span>Under $4,000</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="price" value="4000-5000" /><span>$4,000 – $5,000</span></label></li>
+            <li><label class="facet__opt"><input type="radio" name="price" value="5000-999999" /><span>$5,000 &amp; above</span></label></li>
+          </ul>
+        </div>
+
+        <div class="facet">
+          <h3 class="facet__title">Metal</h3>
+          <ul class="facet__list" data-facet="metal">
+            <li><label class="facet__opt"><input type="checkbox" value="18K Yellow Gold" /><span>18K Yellow Gold</span></label></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="shop__results">
+        <div class="shop__resbar">
+          <p class="shop__count" id="count"></p>
+          <div class="shop__sort">
+            <label for="sort">Sort</label>
+            <select id="sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price · Low to High</option>
+              <option value="price-desc">Price · High to Low</option>
+              <option value="name">Name · A–Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="product-grid" id="grid"><!-- rendered by shop.js --></div>
+        <div class="shop__none" id="shopNone" hidden>
+          <p>No pieces match these filters.</p>
+          <button class="btn btn--ghost btn--sm" id="resetFilters">Clear filters</button>
+        </div>
       </div>
     </div>
-
-    <p class="shop__count" id="count"></p>
-    <div class="product-grid" id="grid"><!-- rendered by shop.js --></div>
   </section>
 
   <!-- BESPOKE STRIP -->
