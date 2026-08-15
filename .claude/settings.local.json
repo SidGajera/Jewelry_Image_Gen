@@ -102,7 +102,10 @@
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);print\\('ok'\\)\")",
       "Bash(python -c \"import json;json.load\\(open\\('config/QUALITY_MEMORY.json'\\)\\);json.load\\(open\\('config/VERSION.json'\\)\\);json.load\\(open\\('config/project_manifest.json'\\)\\);print\\('JSON all valid'\\)\")",
       "Bash(git commit -q -m 'Consolidate token rules into single Master Token Optimization Policy \\(docs/17\\) *)",
-      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)"
+      "Bash(git commit -q -m 'Master Token Policy: zero-internal-monologue + visible-output enforcement + silent policy-maintenance *)",
+      "mcp__Claude_Code_Remote__list_repos",
+      "mcp__Claude_Code_Remote__add_repo",
+      "mcp__Claude_Code_Remote__register_repo_root"
     ]
   }
 }
