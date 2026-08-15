@@ -27,25 +27,34 @@
   function initPreloader() {
     const pre = $('#preloader');
     if (!pre) return;
+    let hidden = false;
     const done = () => {
+      if (hidden) return;
+      hidden = true;
       pre.classList.add('is-done');
       document.body.classList.add('is-loaded');
-      setTimeout(() => (pre.style.display = 'none'), 900);
+      setTimeout(() => (pre.style.display = 'none'), 700);
     };
-    const min = prefersReduced ? 0 : 1500;
-    const start = performance.now();
-    window.addEventListener('load', () => {
-      const wait = Math.max(0, min - (performance.now() - start));
-      setTimeout(done, wait);
-    });
-    // Safety fallback
-    setTimeout(done, 4000);
+    const min = prefersReduced ? 0 : 900;
+    // Fire whether or not the load event has already happened.
+    if (document.readyState === 'complete') {
+      setTimeout(done, min);
+    } else {
+      window.addEventListener('load', () => setTimeout(done, min), { once: true });
+    }
+    // Safety net — always clears the veil quickly.
+    setTimeout(done, 2400);
   }
 
   /* ---------- Header scroll state ---------- */
   function initHeader() {
     const header = $('#header');
     if (!header) return;
+    // Inner pages (shop/product) use a permanently solid header.
+    if (document.body.hasAttribute('data-solid-nav')) {
+      header.classList.add('is-scrolled', 'is-solid');
+      return;
+    }
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -70,9 +79,9 @@
   }
 
   /* ---------- Reveal on scroll ---------- */
-  function initReveal() {
-    const items = $$('[data-reveal], [data-reveal-lines]');
-    // Dev aid: ?reveal=off renders everything visible (for static capture)
+  let revealIO = null;
+  function observeReveals() {
+    const items = $$('[data-reveal]:not(.is-in), [data-reveal-lines]:not(.is-in)');
     if (location.search.indexOf('reveal=off') !== -1) {
       items.forEach((el) => { el.classList.add('is-in'); el.style.transitionDelay = '0ms'; });
       const pre = $('#preloader'); if (pre) pre.style.display = 'none';
@@ -82,25 +91,25 @@
       items.forEach((el) => el.classList.add('is-in'));
       return;
     }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-in');
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
-    // stagger siblings that share a parent grid
+    if (!revealIO) {
+      revealIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('is-in'); revealIO.unobserve(e.target); }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+    }
     items.forEach((el) => {
       const sibs = el.parentElement ? $$('[data-reveal]', el.parentElement) : [];
       const idx = sibs.indexOf(el);
-      if (idx > 0) el.style.transitionDelay = Math.min(idx * 90, 450) + 'ms';
-      io.observe(el);
+      if (idx > 0) el.style.transitionDelay = Math.min(idx * 80, 400) + 'ms';
+      revealIO.observe(el);
     });
   }
+  // Exposed so dynamically rendered pages (shop/product) can register new nodes.
+  window.LUNIVAE_REVEAL = observeReveals;
 
   /* ---------- Number counters ---------- */
   function initCounters() {
@@ -236,6 +245,23 @@
     }
   }
 
+  /* ---------- Enquiry prefill (arriving from a product page) ---------- */
+  function initEnquiryPrefill() {
+    let piece = null;
+    try { piece = sessionStorage.getItem('lunivae_enquiry'); } catch (e) {}
+    if (!piece) return;
+    const msg = $('#message');
+    const interest = $('#interest');
+    if (interest) interest.value = 'collection';
+    if (msg && !msg.value) msg.value = "I'm interested in the " + piece + '. Please share availability and options.';
+    try { sessionStorage.removeItem('lunivae_enquiry'); } catch (e) {}
+    // If deep-linked to #contact, gently focus the name field
+    if (location.hash === '#contact') {
+      const name = $('#name');
+      if (name) setTimeout(() => name.focus(), 400);
+    }
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     const y = $('#year');
@@ -248,7 +274,8 @@
     initPreloader();
     initHeader();
     initMenu();
-    initReveal();
+    observeReveals();
+    initEnquiryPrefill();
     initCounters();
     initCursor();
     initParallax();

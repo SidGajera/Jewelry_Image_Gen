@@ -1,22 +1,39 @@
 # Lunivae Jewels — Website
 
-A premium, luxury-minimal marketing site for **Lunivae Jewels** — custom fine
-jewelry from Surat, India. *Inspired by Royal Heritage. Crafted for Modern Love.*
+A premium, luxury-minimal site for **Lunivae Jewels** — custom fine jewelry from
+Surat, India. *Inspired by Royal Heritage. Crafted for Modern Love.*
 
 ## Run locally
-Just open `index.html` in a browser, or serve the folder:
+The site is plain HTML/CSS/JS — no build step.
+
+**Easiest:** open `index.html` in your browser (double-click it). All pages link
+to each other and work.
+
+**Recommended (cleanest asset loading):** serve the folder, then browse:
 ```
-python3 -m http.server 8080   # then visit http://localhost:8080
+python3 -m http.server 8080      # → http://localhost:8080
+# or:  npx serve .
 ```
 
-## Structure
-- `index.html` — all page markup (single-page scroll experience)
-- `styles.css` — design system + layout + motion
-- `main.js` — scroll reveals, nav state, counters, form UX
-- `assets/` — photography + logo
+## Pages
+| File | Purpose |
+|------|---------|
+| `index.html`   | Home — hero, collections, story, bespoke, B2B, contact |
+| `shop.html`    | **Product listing** — filter by category, sort, product grid |
+| `product.html` | **Product details** — gallery, specs, enquire, wishlist (`?id=<product>`) |
 
-## Brand logo
-The logo is rendered as a live typographic lockup (crisp at any size, adapts to
-light/dark). To use the exact raster logo instead, save it as
-`assets/logo.png` and set `data-logo="image"` on the `<body>` tag — the script
-will swap every lockup for the image automatically.
+## Files
+- `styles.css` — design system + all page layouts + motion
+- `main.js` — shared behavior (nav, reveals, counters, cursor, forms)
+- `products.js` — the product catalog (edit this to add/remove pieces)
+- `shop.js` — renders + filters/sorts the listing
+- `product.js` — renders the details page from `products.js`
+- `assets/` — photography
+
+## Editing products
+Add or change entries in `products.js` — both the listing and details pages read
+from it automatically. Drop new photos in `assets/` and reference them by filename.
+
+## Logo
+Rendered as a live typographic monogram (crisp at any size, matches the brand
+mark). No image file required.
