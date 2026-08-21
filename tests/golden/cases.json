@@ -1,0 +1,18 @@
+{
+  "_note": "Regression cases. Each maps a recorded failure id to the gate that must catch it, an expected outcome, and a sample image. image=null => PENDING: a real approved/rejected sample must be dropped in tests/golden/ and wired here (run_gates.py lists these). Cases WITH an image are asserted every CI run; a gate that stops catching one fails the build.",
+  "cases": [
+    {"id": "portrait_output",          "sku": "LR-0203", "slot": "02", "gate": "G1_FORMAT",      "image": "bad_portrait.png",              "expect": "fail"},
+    {"id": "duplicate_piece_in_frame", "sku": "LR-0203", "slot": "01", "gate": "G9_PIECE_COUNT", "image": "fixture_two_pieces.png",        "expect": "fail"},
+    {"id": "hidden_halo_added",        "sku": "LR-0203", "slot": "03", "gate": "G8_UNAUTHORIZED", "image": "fixture_hidden_halo.png",       "expect": "fail"},
+    {"id": "format_ok_square",         "sku": "LR-0203", "slot": "02", "gate": "G1_FORMAT",      "image": "fixture_square_blank.png",      "expect": "pass"},
+
+    {"id": "accent_count_short",               "sku": "LR-0203", "slot": "02", "gate": "G2_ACCENT_COUNT",  "image": null, "expect": "fail"},
+    {"id": "accent_stones_oversized",          "sku": "LR-0203", "slot": "02", "gate": "G3_ACCENT_SIZE",   "image": null, "expect": "fail"},
+    {"id": "accent_run_too_short",             "sku": "LR-0203", "slot": "02", "gate": "G4_ACCENT_RUN",    "image": null, "expect": "fail"},
+    {"id": "raised_rail_when_flush_specified", "sku": "LR-0203", "slot": "02", "gate": "G5_SETTING_STYLE", "image": null, "expect": "fail"},
+    {"id": "unauthorized_accents",             "sku": "LR-0203", "slot": "03", "gate": "G8_UNAUTHORIZED",  "image": null, "expect": "fail"},
+    {"id": "split_or_double_setting_elements", "sku": "LR-0203", "slot": "04", "gate": "G7_SETTING_COUNT", "image": null, "expect": "fail"},
+    {"id": "primary_stone_ratio_drift",        "sku": "LR-0203", "slot": "03", "gate": "G6_STONE_RATIO",   "image": null, "expect": "fail"},
+    {"id": "piece_scale_drift",                "sku": "LR-0203", "slot": "05", "gate": "G9_PIECE_COUNT",   "image": null, "expect": "fail"}
+  ]
+}

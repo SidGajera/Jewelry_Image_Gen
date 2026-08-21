@@ -1,0 +1,45 @@
+{
+  "sku": "LR-0209",
+  "category": "ring",
+  "title": "Marquise 6-claw hidden-halo solitaire, plain tapered band, 18k yellow gold",
+  "note_source_vs_listing": "Etsy 'Zariyah': 2ct marquise 6-claw solitaire with hidden halo, 18k Yellow Gold; 16 hidden-halo side stones (0.07ct total), 1.8mm plain band, 13x6.5mm marquise. CAD renders confirm marquise (pointed both ends, V-tip prongs), full hidden halo under the girdle, plain unaccented band. Pixels and listing agree (D2D).",
+  "primary_stones": [
+    {
+      "id": "center",
+      "shape": "marquise",
+      "cut": "marquise_brilliant",
+      "orientation": "north_south",
+      "lw_ratio": 2.0,
+      "tolerance": 0.15,
+      "count": 1,
+      "scale_ratio_to_structure": 3.0
+    }
+  ],
+  "setting_elements": {
+    "type": "claw",
+    "count": 6,
+    "form": "plain_slender",
+    "layout": "marquise_tip_and_side"
+  },
+  "accent_runs": [],
+  "halo": "hidden",
+  "halo_count": 16,
+  "under_head": "pave",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "source_media_id": "45e3e4e6-6f10-4ff9-ae5f-00ca2330d5b4"
+}

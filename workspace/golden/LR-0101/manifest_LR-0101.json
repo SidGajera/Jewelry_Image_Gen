@@ -1,0 +1,31 @@
+{
+  "sku": "LR-0101",
+  "title": "Dutch-marquise three-stone ring — hand-engraved scroll shoulders, 18K yellow gold",
+  "model_string_submitted": "nano_banana_2",
+  "engine_actually_run": "nano_banana_flash",
+  "engine_note": "Higgsfield maps the API id 'nano_banana_2' to the flash engine (inverted labels). User was shown this and chose to KEEP the literal string 'nano_banana_2'. Engine recorded per rule 5; nano_banana_flash here is the ACCEPTED result of that choice, not a lock violation.",
+  "pipeline": "i2i preserve from a single clean product view (media 4909b297-48f2-49ec-8123-0adf2b811fd1 = gloves_0101_1.jpg)",
+  "aspect_ratio": "1:1",
+  "resolution": "2k",
+  "deliverables": "5 LIFESTYLE close-ups ONLY (user override — no studio/velvet this catalog)",
+  "metal": "18K yellow gold",
+  "theme": "sunlit tropical garden, warm golden-hour, lush green foliage bokeh; jewellery is the hero; real hand/skin (no display gloves)",
+  "geometry_locked": "3 stones: 1 Dutch-marquise centre + 2 step-cut emerald/trapezoid sides; open basket, NO halo; hand-engraved scroll/vine + milgrain shoulders; plain shank",
+  "slots": [
+    {"slot": "01_life_hand_raised_garden", "job": "9ff87415-9c65-4eb0-b567-62bf3ec906ab", "kind": "lifestyle_macro"},
+    {"slot": "02_life_monstera_leaf",      "job": "63a1b197-f6f5-4751-b0c0-ce32789bc0ae", "kind": "lifestyle_macro"},
+    {"slot": "03_life_collarbone_backlit", "job": "857a4304-c984-4a2e-be1a-ca4f2fc3c078", "kind": "lifestyle_macro"},
+    {"slot": "04_life_wooden_railing",     "job": "6b89c1e8-6071-479f-90e5-9b17507bf4ba", "kind": "lifestyle_macro"},
+    {"slot": "05_life_dew_droplets",       "job": "b5e70c13-6203-4b17-84d8-5045b2ae2915", "kind": "lifestyle_macro"}
+  ],
+  "gate_report": {
+    "G1_FORMAT (SIZE_CHECK)": "1:1 2k",
+    "G14_CONTENT (ETSY_SAFE)": "jewellery is subject; no kissing/embrace; faces cropped/soft",
+    "G20_MIN_SUBJECT_SCALE (BIG_ENOUGH)": "all 5 tight macro, ring >=35% target",
+    "G12_MARKS (NO_MARKS)": "source clean; watermark/gloves negatives applied",
+    "G24_CLARITY_CHECK": "tightened clarity block early + full negative; verify on QC",
+    "G25_GOLD_CHECK": "spec 18K yellow gold; verify metal reads yellow",
+    "G_INVENT": "N/A — lifestyle exempt"
+  },
+  "status": "GENERATED (5/5 lifestyle, pending render). PENDING user visual QC. Geometry carried by i2i from the real source pixels."
+}

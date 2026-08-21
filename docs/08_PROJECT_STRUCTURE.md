@@ -55,7 +55,7 @@ Lucent (parent)
 ```
 
 ## EXTERNAL SERVICES
-- **Higgsfield MCP** — image generation (`generate_image`, `media_import_url`, `balance`, `transactions`). Model `nano_banana_2`, 2 credits / 2K image.
+- **Higgsfield MCP** — image generation (`generate_image`, `media_import_url`, `balance`, `transactions`). The production model (`config/project_manifest.json`), 2 credits / 2K image.
 - **Google Drive MCP** — `search_files`, `download_file_content`, `read_file_content`, `create_file` (READ/SEARCH/CREATE only; cannot edit/delete).
 - **GitHub MCP / git** — repo `SidGajera/Claude_Lucent_Image_Gen` (private).
 

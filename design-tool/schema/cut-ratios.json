@@ -1,0 +1,16 @@
+{
+  "note": "Standard length:width ratio ranges per diamond cut. The SOURCE stone's actual measured ratio always governs; these are for generation defaults + QA drift detection. Mirrors docs/13 §3b of the image-gen repo.",
+  "cuts": {
+    "round":    { "min": 1.00, "max": 1.00, "ideal": 1.00, "note": "perfect circle" },
+    "oval":     { "min": 1.33, "max": 1.66, "ideal": 1.45, "note": "elegant elongated" },
+    "emerald":  { "min": 1.30, "max": 1.60, "ideal": 1.40, "note": "classic rectangular step-cut" },
+    "pear":     { "min": 1.45, "max": 1.75, "ideal": 1.55, "note": "teardrop" },
+    "marquise": { "min": 1.75, "max": 2.25, "ideal": 2.00, "note": "sharp pointed ends" },
+    "cushion":  { "min": 1.00, "max": 1.30, "ideal": 1.10, "note": "1.00-1.20 square / 1.15-1.30 rectangular" },
+    "princess": { "min": 1.00, "max": 1.05, "ideal": 1.00, "note": "near-perfect square" },
+    "radiant":  { "min": 1.00, "max": 1.40, "ideal": 1.25, "note": "1.00-1.05 square / 1.20-1.40 rectangular" },
+    "asscher":  { "min": 1.00, "max": 1.05, "ideal": 1.00, "note": "octagonal square" },
+    "heart":    { "min": 0.90, "max": 1.10, "ideal": 1.00, "note": "symmetrical lobes" },
+    "hexagon":  { "min": 1.30, "max": 2.10, "ideal": 1.60, "note": "elongated step-cut hexagon; source measurement wins" }
+  }
+}

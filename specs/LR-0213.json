@@ -1,0 +1,118 @@
+{
+  "sku": "LR-0213",
+  "category": "ring",
+  "title": "East-west marquise half-eternity band, shared single-prong, yellow gold",
+  "note_source_vs_listing": "Source = vendor CAD renders, yellow gold. CONFIRMED design (user ground-truth 2026-07-31): a HALF-ETERNITY BAND of exactly 6 MARQUISE-cut diamonds set EAST-WEST (each marquise lengthwise along the band, tip-to-tip), EVENLY SPACED with open gaps, each adjacent pair joined by a single SHARED V-PRONG (gold chevron; NO round accents between them, they are prongs not stones). Thin round yellow-gold shank runs plain around the rear. No centre stone, no halo, no pav\u00e9, no bezel. Marquise are open/airy in spacing -- NOT packed/clustered. Supplied CAD angles: front (through-ring, az0), 3/4 side (~az50), low 3/4 front (back_gallery), low rear 3/4 (top.jpg). NOT supplied: pure top-down plan, pure 90-deg side profile.",
+  "stone_count": {
+    "_phase1_source_read": "read s2_front (through-ring front) + s1_3q_left (low 3/4 front); both agree. certain.",
+    "total_stones": 6,
+    "stones_by_shape": {
+      "marquise": 6,
+      "round": 0,
+      "pear": 0,
+      "oval": 0,
+      "baguette": 0
+    },
+    "feature_at_12": "PRONG (shared single V-prong). NO stone at 12 o'clock; two marquise flank it.",
+    "stone_positions_clock": [
+      "9:30",
+      "10:30",
+      "11:30",
+      "12:30",
+      "1:30",
+      "2:30"
+    ],
+    "stone_size_ratios": "all 6 marquise equal size (1.00 : 1.00 each); L:W approx 2:1",
+    "stone_orientation": "all east-west (long axis along the band, tip-to-tip); none north-south, none tilted/radial",
+    "prong_count_per_stone": "shared: each internal junction is ONE shared V-prong holding two adjacent marquise tips; end stones held by 1 additional end prong each",
+    "prong_type": "shared_single_v (gold chevron)",
+    "prong_elements_total": 7,
+    "bridge_gallery_elements": 0,
+    "band": {
+      "profile": "round (D)",
+      "uniform_width": true,
+      "taper": false,
+      "contour": "flat/straight shank, no contour rise",
+      "width": "thin, ~1.6-1.8mm equivalent",
+      "note": "plain smooth around the rear, no engraving"
+    },
+    "arrangement": "half-eternity front row across the top ~180deg, symmetric about a PRONG at 12 o'clock",
+    "certainty": "certain for count/shape/orientation; a true top-down plan is NOT supplied (front view establishes the 6)"
+  },
+  "phase2_360_model": {
+    "covered_slots": {
+      "02_true_side_profile": "3/4 side source s3 (az50) within 45deg of az90? |90-50|=40 -> COVERED",
+      "03_front_elevation": "front source s2 (az0) -> COVERED",
+      "05_low_hero": "low 3/4 front s1 (az25) -> COVERED",
+      "06_reach_to_camera": "rear 3/4 s4 (az190) |135-190|=55 -> borderline; treat via 3/4 -> review",
+      "07_hands_held": "front s2 -> COVERED",
+      "08_hands_stacked_editorial": "3/4 side s3 (az50) -> COVERED",
+      "09_beauty_closeup": "3/4 side s3 (az50) |90-50|=40 -> COVERED",
+      "10_sunset_raised_hand": "rear 3/4 s4 (az190) -> COVERED"
+    },
+    "blocked_slots": {
+      "01_top_down_flatlay": "az0 el90 PLAN \u2014 NO source at el90. G22 FAIL. Needs a true top-down CAD render before it can be generated.",
+      "04_gallery_back": "az135 el20 \u2014 nearest source rear 3/4 s4 az190 is 55deg away (>45). G22 borderline FAIL; realign to az190 (matches source rear) or request a rear view at az135."
+    },
+    "visible_by_slot": {
+      "01_top_down_flatlay": "6 (plan sees all) \u2014 BLOCKED, do not generate until top-down supplied",
+      "02_true_side_profile": 3,
+      "03_front_elevation": 6,
+      "04_gallery_back": "2 \u2014 BLOCKED/realign",
+      "05_low_hero": 6,
+      "06_reach_to_camera": 5,
+      "07_hands_held": 6,
+      "08_hands_stacked_editorial": 5,
+      "09_beauty_closeup": 4,
+      "10_sunset_raised_hand": 5
+    }
+  },
+  "primary_stones": [],
+  "setting_elements": {
+    "type": "prong",
+    "count": 7,
+    "form": "shared_single_v",
+    "layout": "between_adjacent_stones"
+  },
+  "accent_runs": [
+    {
+      "id": "marquise_run",
+      "shape": "marquise",
+      "cut": "marquise_brilliant",
+      "arrangement": "east_west_marquise_shared_prong",
+      "setting": "shared_prong",
+      "rows": 1,
+      "count": 6,
+      "coverage_fraction": 0.55,
+      "spacing": "evenly_spaced_open_gaps",
+      "tolerance": 0
+    }
+  ],
+  "halo": "none",
+  "halo_count": null,
+  "under_head": "plain",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "source_media_id": "21ba10c3-dc39-4bd6-8532-3acda956da49",
+  "source_media_all": {
+    "s1_3q_left": "21ba10c3-dc39-4bd6-8532-3acda956da49",
+    "s2_front": "7b32a7a4-d985-4b33-a44a-a142e9819cc0",
+    "s3_3q_side": "14101593-06c1-448c-bb0b-2ca71d6a437c",
+    "s4_angled": "b3a5564d-0675-4ba9-bcb6-9a02c99d03ae",
+    "s5_3q_right": "8b33b3fc-2dc7-411d-a71f-f4086f7b665b"
+  }
+}

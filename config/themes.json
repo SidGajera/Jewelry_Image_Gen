@@ -1,0 +1,98 @@
+[
+  {
+    "id": "golden_coastal",
+    "location": "beach, dunes, shoreline at golden hour",
+    "palette": "warm sand, cream, pale blue",
+    "light": "low sun, long shadows, warm rim",
+    "wardrobe": "linen, soft cotton, bare arms",
+    "mood": "open, unhurried"
+  },
+  {
+    "id": "urban_rooftop",
+    "location": "city rooftop, railings, skyline",
+    "palette": "steel grey, glass blue, concrete",
+    "light": "hard midday or blue hour",
+    "wardrobe": "leather, tailored, structured",
+    "mood": "confident, modern"
+  },
+  {
+    "id": "morning_kitchen",
+    "location": "home kitchen, coffee, window",
+    "palette": "warm white, oak, pale ceramic",
+    "light": "soft directional window light",
+    "wardrobe": "knit (NOT beige/oatmeal), simple shirt",
+    "mood": "intimate, ordinary"
+  },
+  {
+    "id": "garden_conservatory",
+    "location": "greenhouse, foliage, stone paths",
+    "palette": "deep green, terracotta, glass",
+    "light": "dappled through leaves",
+    "wardrobe": "floral, cotton, earth tones",
+    "mood": "lush, quiet"
+  },
+  {
+    "id": "winter_window",
+    "location": "cold window, frost, wool throws",
+    "palette": "slate, ivory, deep navy",
+    "light": "flat overcast, cool",
+    "wardrobe": "ONE locked family across all 6 slots: deep-navy wool knit sweater (no green, no charcoal, no grey, oatmeal, cream or beige) — same wardrobe family every slot, vary only skin tone/age",
+    "mood": "still, contemplative"
+  },
+  {
+    "id": "desert_dusk",
+    "location": "open desert, rock, scrub",
+    "palette": "ochre, rust, dusty violet",
+    "light": "last light, deep warm shadow",
+    "wardrobe": "suede, denim, neutral",
+    "mood": "wide, cinematic"
+  },
+  {
+    "id": "studio_editorial",
+    "location": "draped fabric, plaster wall, textiles",
+    "palette": "bone, taupe, warm shadow",
+    "light": "single soft source, deep falloff",
+    "wardrobe": "minimal, sculptural",
+    "mood": "still-life, precise"
+  },
+  {
+    "id": "evening_city",
+    "location": "street at night, bokeh signage, car light",
+    "palette": "amber, deep teal, black",
+    "light": "mixed practicals, warm/cool split",
+    "wardrobe": "silk, dark tailoring",
+    "mood": "cinematic, alive"
+  },
+  {
+    "id": "lakeside_mist",
+    "location": "lake edge, wooden dock, early fog",
+    "palette": "soft grey-green, driftwood, pale sky",
+    "light": "diffuse dawn",
+    "wardrobe": "oversized shirt, raw cotton",
+    "mood": "calm, private"
+  },
+  {
+    "id": "library_warm",
+    "location": "old books, wood desk, reading lamp",
+    "palette": "oxblood, brass, aged paper",
+    "light": "warm pool light, dark surround",
+    "wardrobe": "cashmere, corduroy",
+    "mood": "considered, timeless"
+  },
+  {
+    "id": "market_daylight",
+    "location": "open-air market, flowers, produce",
+    "palette": "fresh green, coral, canvas white",
+    "light": "bright open shade",
+    "wardrobe": "casual daywear, sunglasses",
+    "mood": "candid, busy"
+  },
+  {
+    "id": "coastal_overcast",
+    "location": "rocky shore, tide pools, grey sea",
+    "palette": "slate blue, wet stone, foam white",
+    "light": "flat even overcast",
+    "wardrobe": "waxed cotton, chunky knit (not beige)",
+    "mood": "raw, elemental"
+  }
+]

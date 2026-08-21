@@ -1,0 +1,34 @@
+{
+  "_note": "Shared reading library (Continuous Learning #2). Load before reading any new source. Patterns compound: a tell learned on one SKU should speed the next.",
+  "step_cut_baguette": {
+    "orientation_tell": "State the long axis relative to the SHANK, never the ambiguous word 'horizontal'. EAST-WEST = long axis PARALLEL to the shank (runs along the finger / circumference). NORTH-SOUTH = long axis ACROSS the band width. Read this on a STRAIGHT FRONT view where the band runs left-right: if each stone is wider along the band than across it, it is east-west.",
+    "which_view": "Front/straight-on view reads orientation and coverage with certainty. A watermarked or 3/4 macro can hide the true divider and rotation — do NOT mark orientation 'certain' from a 3/4 alone.",
+    "divider_types": "single shared bead per junction (one small bead) vs French V-pave cutwork (V-notches) vs shared claw. Confirm on a clean front crop; a watermark overlay reads as V-notches falsely.",
+    "coverage": "partial band (stones stop, plain polished shank behind) vs full eternity (stones all the way around). Enforce as blocking — i2i tends to extend partial rows into full eternity."
+  },
+  "anchor_stones_prevent_rotation": {
+    "insight": "LR-0135 2026-08-02 (user): the stone section alternates emerald-cut(EW) -> vertical PAIR of small round brilliants -> emerald-cut. When the round pairs are omitted from the spec/prompt, the model has no anchor and freely spaces AND rotates the rectangles to fill the band. Missing the accents is the ROOT CAUSE of the orientation failure, not a separate bug.",
+    "rule": "Always capture EVERY stone in the repeating unit (main + accent). If a design has accent stones between the main stones, they are mandatory in the prompt — they lock spacing and angle of the main stones. Never describe a mixed section as a plain row of one cut.",
+    "pin_the_accents": "CRITICAL (L2 regression 2026-08-02): naming the accents without PINNING their location lets the model push them to the band EDGES as multi-row border pave — and once it commits to that wider layout it rotates the mains to fit. Always state: SINGLE row only; accents sit IN THE SAME ROW, filling the gap BETWEEN the mains; NO pave borders / edge rows / triple-row / halo edging; slim band NOT wide/chunky. This is what flipped an approved L1 into a wrong L2.",
+    "setting_tell": "French pave = triangular V-cut notches along the band edge (visible from the side). Do not call it 'generic shared prongs' — the V-cut changes the band character."
+  },
+  "worn_hand_frame_of_reference": {
+    "critical": true,
+    "rule": "Orientation is defined RELATIVE TO THE BAND, not the frame. 'East-west / long axis parallel to the band' = the long axis follows the band's wrap around the finger. On a WORN HAND this correctly appears as the stones lying ACROSS the finger (ladder-rung look) at the finger top — that is CORRECT east-west. WRONG (north-south) = stones pointing toward the fingertip / along the finger. On a flat product shot the same setting reads as long-axis horizontal along the band. Do NOT apply flat product-shot appearance to an on-hand shot: rotate the frame of reference first.",
+    "qc_note": "When validating a lifestyle/on-hand render, 'stones across the finger like rungs' is a PASS for an east-west band, not a fail. G27's circle-fit + tangent test already handles this (tangent is measured in the band's own frame); on a shallow on-hand arc it usually returns unmeasurable, so defer to this rule for human QC.",
+    "source": "user 2026-08-02, after LR-0135 kitchen render was wrongly critiqued as rotated"
+  },
+  "orientation_misread": {
+    "repeat_class": true,
+    "first_seen": "LR-0135 2026-08-02",
+    "symptom": "stone long-axis orientation recorded wrong (across-band) because it was read from a near-top/three-quarter/watermarked view, then marked 'certain'.",
+    "rule": "Before writing orientation for ANY SKU, state EXPLICITLY which view it was read from and whether that view shows the long axis unambiguously. Orientation from a three-quarter = 'inferred', never 'certain'. Read it only from a straight FRONT view where the band runs left-right and the stone faces the camera.",
+    "phase_1_5": "After writing the spec, re-open the source and verify every field against the pixels (orientation, coverage arc, counts, sequence/clock positions, setting, divider count, band profile). Any mismatch = STOP, correct, re-verify. Generation blocked while any field is 'inferred' or 'missing'. Costs no credits and is the only check that catches a wrong spec (G26/G27 compare renders to the spec, so a wrong spec passes them)."
+  },
+  "occlusion_rules": {
+    "eternity_on_hand": "back-of-hand and collarbone poses show a front arc only; near-top poses show the fuller row. visible_by_slot must be set per pose."
+  },
+  "failures_seen": {
+    "LR-0135": "emerald-cut ~3/4 eternity, EAST-WEST (long axis parallel to shank), single shared bead per junction, thin low band. Prior render rotated stones + made full eternity — corrected 2026-08-02."
+  }
+}

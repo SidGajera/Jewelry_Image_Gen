@@ -1,0 +1,63 @@
+{
+  "sku": "LR-0203",
+  "category": "ring",
+  "title": "Oval solitaire, micro French pave shoulders (plain, no halo)",
+  "primary_stones": [
+    {
+      "id": "center",
+      "shape": "oval",
+      "cut": "oval_brilliant",
+      "orientation": "north_south",
+      "lw_ratio": 1.45,
+      "tolerance": 0.05,
+      "count": 1,
+      "scale_ratio_to_structure": 4.5
+    }
+  ],
+  "setting_elements": {
+    "type": "claw",
+    "count": 4,
+    "form": "plain_slender",
+    "layout": "compass"
+  },
+  "accent_runs": [
+    {
+      "id": "shoulder_left",
+      "rows": 1,
+      "count": 19,
+      "tolerance": 1,
+      "stone_dia_ratio_to_structure": 0.1,
+      "size_tolerance": 0.15,
+      "coverage_fraction": 0.66,
+      "setting": "flush_french_micro"
+    },
+    {
+      "id": "shoulder_right",
+      "rows": 1,
+      "count": 19,
+      "tolerance": 1,
+      "stone_dia_ratio_to_structure": 0.1,
+      "size_tolerance": 0.15,
+      "coverage_fraction": 0.66,
+      "setting": "flush_french_micro"
+    }
+  ],
+  "halo": "none",
+  "under_head": "plain",
+  "structure": {
+    "profile": "knife_edge",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "white_gold",
+  "finish": "high_polish",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "source_media_id": "40b43a28-fc80-4b6e-a8a8-ffbee455240e",
+  "model": "nano_banana_2",
+  "resolution": "2k"
+}

@@ -1,0 +1,85 @@
+{
+  "sku": "LR-0214",
+  "category": "ring",
+  "title": "Bella \u2014 2ct oval claw solitaire with clustered round shoulder stones, 18k yellow gold",
+  "note_source_vs_listing": "Listing 'Bella': 2ct oval (7x5mm) claw solitaire, framed by 'ten round cut side stones set low in a basket setting', 18k yellow gold, band 1.8mm. Source = 5 vendor CAD renders (Drive 1pjAHi5qbd73Mgwj2tOUgJyy6aSjLMfLT). SOURCE is authoritative over listing; but the exact round count could NOT be established from the supplied views (see stone_count.certainty=false).",
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "primary_stones": [
+    {
+      "shape": "oval",
+      "cut": "oval_brilliant",
+      "count": 1,
+      "lw_ratio": 1.4,
+      "size_mm": "7x5",
+      "carat": 2.0,
+      "setting": "double_claw_basket"
+    }
+  ],
+  "setting_elements": {
+    "type": "prong",
+    "form": "double_claw",
+    "count": 4,
+    "layout": "corners_of_oval",
+    "note": "4 double-claw prong positions holding the oval; open basket gallery underneath"
+  },
+  "under_head": "open_basket",
+  "halo": "none",
+  "accent_runs": [
+    {
+      "id": "scattered_shoulder_cluster",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "arrangement": "scattered_cluster_shoulder",
+      "setting": "prong",
+      "rows": null,
+      "count": null,
+      "spacing": "organic scattered cluster on each shoulder (varying sizes) + small trailing accents down each band",
+      "note": "COUNT NOT ESTABLISHED \u2014 no true top-down view; per-side reads 5-7 depending on angle. Listing claims 10 total."
+    }
+  ],
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "width_mm": 1.8
+  },
+  "stone_count": {
+    "_phase1": "read listing + s1(top-front 3/4) + s2(through-ring) + s3(rear 3/4) + s4(rear) + s5(macro left shoulder)",
+    "total_stones": 15,
+    "stones_by_shape": {
+      "oval": 1,
+      "round": 14,
+      "marquise": 0,
+      "pear": 0
+    },
+    "feature_at_12": "oval centre stone (long axis N-S); no accent at 12",
+    "certainty": true,
+    "certain_basis": "SOURCE-verified: clean studio renders 01 + 03 (faithful i2i of the source) both show 7 round per shoulder, matching the source clusters. Supersedes the vendor listing's '10' (marketing average) \u2014 count is taken from the SOURCE, not the listing.",
+    "layout": "1 oval centre (double-claw, open basket) + 7 round scattered-cluster accents on EACH shoulder (2 large near oval + 3-small trefoil + 2 trailing band) = 14 round total",
+    "count_correction_note": "Spec originally locked 10 from the listing (rule violation: inferred from listing not source). Corrected to 14 round after P5 read of source-faithful renders.",
+    "stone_orientation": "oval long axis along the finger (N-S up the ring); round accents scattered organically on the shoulders",
+    "prong_count_per_stone": "oval: 4 double-claw prongs; each round accent: shared/mini prongs within the scattered cluster",
+    "visible_by_slot": {
+      "01_top_down_flatlay": 11,
+      "02_true_side_profile": 5,
+      "03_front_elevation": 11,
+      "04_gallery_back": 3,
+      "05_low_hero": 11,
+      "06_reach_to_camera": 9,
+      "07_hands_held": 11,
+      "08_hands_stacked_editorial": 8,
+      "09_beauty_closeup": 7,
+      "10_sunset_raised_hand": 9
+    }
+  },
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "one theme per catalog (to be assigned via theme_ledger); jewellery is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "source_media_id": null,
+  "status": "BLOCKED \u2014 P1 (READ_SOURCE) incomplete / G22 (HAVE_THE_VIEW): needs true top-down before P3 gate can pass"
+}

@@ -1,0 +1,16 @@
+{
+  "sku": "LR-0203",
+  "name": "Aurora",
+  "piece_type": "ring",
+  "metal": "18k_yellow_gold",
+  "centre": {
+    "cut": "marquise", "carat": 1.2, "lw": 2.0, "lab_grown": true,
+    "orientation": "north_south", "setting": "prong", "prongs": 6, "prong_dia_mm": 1.1
+  },
+  "composition": "three_stone",
+  "accents": [
+    { "role": "side", "cut": "round", "carat": 0.3, "count": 2, "setting": "prong" }
+  ],
+  "band": { "profile": "knife_edge", "width_mm": 1.6, "finger_size": 7 },
+  "provenance": { "source": "human", "trend_tags": ["marquise", "three_stone", "celestial"] }
+}

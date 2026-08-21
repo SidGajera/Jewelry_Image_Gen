@@ -1,0 +1,66 @@
+{
+  "sku": "LR-0208",
+  "category": "ring",
+  "title": "Round-brilliant solitaire, 6-prong, scrolling-vine shoulders with 4 round accents, yellow gold",
+  "note_source_vs_listing": "Source = seller product photos (no CAD): 08_1copy (clean top 3/4) + 08_2 side & 08_4 back (both 'DIAMONDS BY UK' watermark) read for geometry; watermarked images excluded from generation, used only for reading. Piece: round-brilliant center solitaire in a 6-prong head; each shoulder is a small gold S-scroll / vine holding 2 tiny round accents (4 accents total); thin plain round yellow-gold shank. No halo.",
+  "primary_stones": [
+    {
+      "id": "center",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "orientation": null,
+      "lw_ratio": 1.0,
+      "tolerance": 0.1,
+      "count": 1,
+      "scale_ratio_to_structure": 2.5
+    }
+  ],
+  "setting_elements": {
+    "type": "prong",
+    "count": 6,
+    "form": "plain_slender",
+    "layout": "evenly_around_round"
+  },
+  "accent_runs": [
+    {
+      "id": "shoulders_left",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "arrangement": "vine_scroll_shoulder",
+      "setting": "bead",
+      "rows": 1,
+      "count": 2,
+      "tolerance": 1
+    },
+    {
+      "id": "shoulders_right",
+      "shape": "round",
+      "cut": "round_brilliant",
+      "arrangement": "vine_scroll_shoulder",
+      "setting": "bead",
+      "rows": 1,
+      "count": 2,
+      "tolerance": 1
+    }
+  ],
+  "halo": "none",
+  "halo_count": null,
+  "under_head": "plain",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "source_media_id": "c9518e88-5ce3-4c7f-aa03-3e14944bebe8"
+}

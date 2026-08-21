@@ -1,0 +1,23 @@
+{
+  "sku": "LR-0150",
+  "category": "ring",
+  "subtype": "round_halo_twisted_pave_shank",
+  "run_scope": "lifestyle_only_5",
+  "note": "Un-parked 2026-08-02 (was paused for geometry drift). Studio skipped. 5 lifestyle close-ups. Source '(Round)'.",
+  "metal": { "value": "yellow", "karat": "18K", "confidence": "certain", "basis": "18K lock default yellow; source has yellow render (r1) + white/rose; use yellow" },
+  "stones": {
+    "centre": { "shape": "round brilliant", "mm": "6.50 x 6.50", "carat": "1.0", "confidence": "supplied", "basis": "spec sheet 91.png" },
+    "halo": "round pave halo of small rounds encircling the centre stone",
+    "shank": "twisted / criss-cross infinity pave band (two braided strands, pave-set small rounds), ~1.70mm",
+    "accents": { "total": 78, "detail": "60 x 1.00mm + 18 x 1.30mm", "carat": "0.48", "confidence": "supplied" },
+    "shape_all": "round brilliant (centre + halo + shank pave)",
+    "orientation": "N/A - round stones rotationally symmetric",
+    "confidence": { "halo": "certain", "shank": "certain", "layout": "certain" }
+  },
+  "band": { "profile": "twisted infinity pave shank, tapering; open cathedral gallery under the halo", "width_mm": 1.70, "confidence": "certain" },
+  "dims": { "halo_width_mm": 9.10, "height_mm": 7.60, "band_mm": 1.70, "gallery_mm": 4.60, "confidence": "supplied" },
+  "geometry_lock": "i2i with yellow-gold source frame r1 as ground truth. Keep: single round centre + round halo + TWISTED infinity pave shank, yellow gold. Do NOT straighten the shank into a plain band, do NOT drop the halo, do NOT add side stones (this is a solitaire-halo, NOT three-stone).",
+  "i2i_source_frame": "workspace/golden/LR-0150/source/r1.jpg",
+  "canvas": "2048x2048",
+  "model": "nano_banana_2"
+}

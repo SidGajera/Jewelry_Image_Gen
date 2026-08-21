@@ -1,0 +1,26 @@
+{
+  "sku": "LR-0152",
+  "category": "ring",
+  "subtype": "round_solitaire",
+  "run_scope": "lifestyle_only_5",
+  "status": "REJECTED 100% (user 2026-08-03). Repeated under-stone/bottom misreads: plain solitaire -> hidden-halo basket -> dropped split-shank -> split-shank not matching source trellis. Root cause = redraw engine (flash) cannot reproduce the exact delicate under-head trellis/split geometry; needs real-pixel composite (policy point 8) or true nb2, neither available on this integration. Do NOT re-run on i2i redraw. All 5 deliveries void.",
+  "note": "Studio skipped (previously generated — prior 0X_office/life PNGs exist in Drive). 5 lifestyle close-ups. Source '(Round)'.",
+  "metal": { "value": "yellow", "karat": "18K", "confidence": "certain", "basis": "source renders yellow gold + gold.mp4" },
+  "stones": {
+    "centre": { "shape": "round brilliant", "count": 1, "confidence": "certain" },
+    "halo": "NONE",
+    "accents": "NONE (plain solitaire, no pave, no side stones)",
+    "setting": "4-prong cathedral head with a small trellis / crossover under-gallery",
+    "prong_count": { "value": 4, "confidence": "inferred", "basis": "s7 front + s8 3/4; read as compass-set 4-prong" },
+    "confidence": { "centre": "certain", "halo": "certain", "accents": "certain", "setting": "certain" }
+  },
+  "band": { "profile": "plain polished, tapering, cathedral shoulders that rise to the head; thin", "confidence": "certain" },
+  "embellishment_lock": "PLAIN SOLITAIRE. NO halo, NO pave, NO accent stones, NO side stones, NO split/double prongs, NO extra rows. Keep the band plain polished. (project_plain_solitaire_embellishment_drift)",
+  "under_stone_area_lock": "CRITICAL: the setting beneath the centre diamond is PLAIN POLISHED GOLD ONLY (no diamonds), but it is a SPLIT/TRELLIS structure, not a solid sweep. NO hidden halo, NO pave under the stone, NO small diamonds, NO milgrain, NO texture. The centre diamond is the ONLY stone — total stone count: 1. Slim head, NOT bulky.",
+  "band_structure_lock": "CRITICAL (user 2026-08-02): this is a SPLIT-SHANK / TRELLIS head, NOT a plain cathedral band. Right under the centre stone the slim band FORKS into two separate thin strands that cross/weave (trellis) as they rise to meet the four prongs, leaving OPEN TRIANGULAR NEGATIVE-SPACE WINDOWS beneath the head (visible in both the front view s7 and the profile s3). Do NOT render a single solid unsplit shank sweeping into the head. The split/crossover under the gallery is a mandatory, clearly visible STRUCTURAL feature (open metalwork), not a texture. Lower band is a single slim strand; the fork/crossover is localized under the head. Verification: zoom directly under the stone — must show two distinct strands crossing/forking with visible negative space between them; auto-regenerate if it reads as one solid piece.",
+  "one_ring_lock": "exactly one ring, ring finger only, all other fingers bare, no duplicate ring, no other jewelry (feedback_one_ring_only)",
+  "geometry_lock": "i2i with yellow-gold source frame s8 as ground truth. Single round brilliant, 4-prong cathedral, plain band, yellow gold.",
+  "i2i_source_frame": "workspace/golden/LR-0152/source/s8.jpg",
+  "canvas": "2048x2048",
+  "model": "nano_banana_2"
+}

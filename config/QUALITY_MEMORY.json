@@ -2,6 +2,34 @@
   "purpose": "Verified problems, root causes, and permanent fixes. Load at session start; apply all fixes automatically before generating. Never reintroduce a solved problem.",
   "fixes": [
     {
+      "id": "jewelry-hero-logo-soft-secondary",
+      "problem": "On studio shots the printed cloth logo can highlight as strongly as the ring and compete for attention, pulling the eye off the product. User (2026-07-21, LR-0179): the jewelry must ALWAYS be the sole focus; when the logo sits at the same prominence/position as the ring, the logo must be blurred/softened so the ring stands out - but the blurred logo must remain identical to the preserved logo (design, colour, typography, tagline, everything).",
+      "root_cause": "In-model studio logo is rendered sharp and bright, at the same focal plane as the ring, so it competes with the jewelry for the viewer's attention.",
+      "fix": "JEWELRY-HERO + STUDIO LOGO SOFT/SECONDARY (user-locked 2026-07-21). On every studio/packaging shot (slots 1,2,3,10) the jewelry is the SINGLE tack-sharp hero and sole focal point; the printed Lucent Carat Lab logo must stay the EXACT preserved logo - identical design, colours, two-tone typography and the FUTURE OF FINE JEWELRY tagline, never altered/recoloured/miswritten/single-line-sans-serif - but rendered SOFT and OUT OF FOCUS in the shallow macro depth of field, dimmer and clearly less sharp than the ring, never competing. Where the logo falls near the ring it is blurred by the DoF so the ring alone stays the focal point. The logo is understated by FOCUS and BRIGHTNESS only, NEVER by changing its design/colour/typography/tagline. Lifestyle/close-up/macro shots carry no logo. Applies to all future catalogs.",
+      "refs": [
+        "config/QUALITY_MEMORY.json jewelry-is-always-the-hero",
+        "config/QUALITY_MEMORY.json logo-tagline-color-drift",
+        "config/QUALITY_MEMORY.json printed-logo-fabric-realism",
+        "docs/04"
+      ]
+    },
+    {
+      "id": "composite-v1-production-lock",
+      "problem": "RECURRING across many catalogs (user report 2026-07-20): ~50% wrong/pasted logo on the cloth; plain/simple or colored/yellowish cloth instead of premium PURE-WHITE; color-cast image instead of neutral natural; wrong or too-many prongs; ring drawn 'out of source' (design not in the CAD); band width too large; the width-bend added when the source has none and omitted when the source has one; extra designs/gold invented in the head of the ring. The user demanded these NEVER recur.",
+      "root_cause": "The production pipeline was `legacy` - Higgsfield draws BOTH the scene AND the ring. Prompt-based diffusion CANNOT lock CAD geometry (prong count, band width, head/gallery, no-invention, stone orientation): confirmed across 10+ attempts with the preservation rule restated ever more strongly each time - 'the rule is not the variable; only compositing the source pixels can' (see lr0151-inmodel-geometry-drift). Likewise the logo and the cloth-white/neutral-color can only be guaranteed locally, never by AI drawing/grading. So on `legacy` every one of these mistakes is a PREDICTED consequence, not a fixable prompt problem.",
+      "fix": "PERMANENT FIX (user-instructed 2026-07-20, supersedes the 2026-07-16 'use Higgsfield-only legacy / do not swap to composite' instruction). Production pipeline = composite-v1 (config/pipeline_versions.json active=composite-v1). MECHANISM, each mapped to a user complaint: (1) RING GEOMETRY - the ring is the REAL source-CAD pixels composited into a Higgsfield-rendered scene; the AI never draws the ring, so wrong/too-many prongs, band width, width-bend present/absent, and any head invention (extra designs/gold, added gallery/support/bridge) are IMPOSSIBLE BY CONSTRUCTION, not merely discouraged. (2) LOGO - always composited locally from the pixel-exact two-tone asset via scripts/print_logo_on_cloth.py (docs/04 P0); AI never draws it, so the 'wrong/pasted/overlay logo' failure cannot occur. (3) CLOTH + COLOR - premium neutral pure-white cotton enforced locally (whiten_cloth.py, 0 credits) with the neutral-white-balance color-fidelity lock (color-fidelity, yellowish-simple-cloth, fake-gem-and-moody-lighting); no AI color grading, so 'plain/colored/yellowish cloth' and 'colored image' cannot occur. ENGINE UNCHANGED: Higgsfield remains the sole generation engine and renders the scene (docs/21); compositing preserved pixels is not generation (docs/21 §2), so this is a pipeline-VERSION change, not an engine swap. TRADE-OFF (accepted by the user 2026-07-20): for a worn lifestyle/close-up angle the source cannot cover faithfully, composite-v1 SKIPS the shot or requests more source rather than let AI redraw the ring - missing is preferable to incorrect (docs/15 §5, hybrid-composite-default). UPDATE 2026-07-21 (supersedes the production choice above): the user explicitly and repeatedly instructed 'use only Higgsfield' and 'do not ask again'. Production is therefore REVERTED to `legacy` (Higgsfield generates every frame, including worn lifestyle/close-up shots that composite-v1 cannot produce). The mistake-prevention mechanism under legacy is NOT construction but: (a) the strong approved geometry-lock prompt block reused verbatim on every shot ('RAISED CENTRE STONE above the flower plate; FLOWER PLATE = 8 lobes, pave INSIDE lobes ONLY; EXACTLY 4 claw prongs at 4 of 8 petal points, four not eight - count them; gallery/arms PLAIN POLISHED GOLD'), (b) local logo composite (print_logo_on_cloth.py) + local cloth whitening (whiten_cloth.py), (c) neutral-colour/no-HDR tail, (d) per-shot QC + iteration. composite-v1 stays retained for optional studio geometry-guarantee. LOCK: production = legacy (Higgsfield-only); do NOT switch pipelines or re-raise the pipeline choice with the user without a new explicit instruction.",
+      "refs": [
+        "config/pipeline_versions.json (active=composite-v1)",
+        "config/QUALITY_MEMORY.json hybrid-composite-default",
+        "config/QUALITY_MEMORY.json lr0151-inmodel-geometry-drift",
+        "docs/15 SAFE PIPELINE VERSIONING",
+        "docs/21 §2 (composite is not generation)",
+        "scripts/composite_ring_into_scene.py",
+        "scripts/print_logo_on_cloth.py",
+        "whiten_cloth.py"
+      ]
+    },
+    {
       "id": "logo-white-halo-artifact",
       "problem": "LR-0135 (2026-07-15): across multiple studio renders (with the rescaled/repositioned logo already fixed for size), the printed logo showed fuzzy/vector-sharp-inconsistent edges, uneven line thickness, a bright WHITE HALO/glow patch on the cloth directly behind the logo separating it from the fabric, evenly-bright gold that ignores the cloth's directional lighting, and no visible weave/fold distortion through the ink - reads as an AI-painted graphic pasted on top, not ink printed into the fabric during the same photoshoot. User: this is exactly what makes AI catalog images look artificial.",
       "root_cause": "the model renders the logo as a separate bright asset composited onto the cloth (adding contrast via a light halo to make it legible) instead of treating it as ink absorbed into the same material already lit by the scene.",
@@ -369,7 +397,12 @@
       "id": "logo-tagline-color-drift",
       "problem": "in-scene (in-model) logo renders the whole logo in GOLD, recoloring the tagline 'FUTURE OF FINE JEWELRY' to gold. On the official artwork that tagline is BLACK/dark - only the diamond emblem + 'LUCENT CARAT LAB' are gold. Observed across a full catalog's studio shots.",
       "root_cause": "the diffusion model reproduces the logo as a single-color gold hot-foil and cannot reliably hold the official two-tone (gold emblem/wordmark + dark tagline).",
-      "fix": "The logo is TWO-TONE and must stay exact: diamond emblem + 'LUCENT CARAT LAB' = metallic GOLD; 'FUTURE OF FINE JEWELRY' tagline = BLACK/dark (as in assets/logo/logo_official.png). NEVER recolor the tagline to gold. In-model prompts must state the tagline color explicitly; VERIFY it on every studio render. If the model still gold-ifies the tagline (it usually will), that is a logo-fidelity failure -> fall through to the exact-logo LOCAL COMPOSITE (scripts/print_logo_on_cloth.py from the pixel-exact two-tone asset), which preserves the black tagline. Exact logo color/typography > in-model convenience.",
+      "fix": "The logo is TWO-TONE and must stay exact: diamond emblem + 'LUCENT CARAT LAB' = metallic GOLD; 'FUTURE OF FINE JEWELRY' tagline = BLACK/dark (as in assets/logo/logo_official.png). NEVER recolor the tagline to gold. In-model prompts must state the tagline color explicitly; VERIFY it on every studio render. If the model still gold-ifies the tagline (it usually will), that is a logo-fidelity failure -> fall through to the exact-logo LOCAL COMPOSITE (scripts/print_logo_on_cloth.py from the pixel-exact two-tone asset), which preserves the black tagline. Exact logo color/typography > in-model convenience. STANDING DECISION (reinforced 2026-07-21, LR-0182): an in-model studio logo is NO LONGER attempted as a deliverable because it recolors the two-tone logo to a single gold tone every time. Generate studio frames on CLEAN pure-white cloth (NO logo) and print the exact two-tone asset with the LOCAL composite; a clean-cloth render awaiting the local logo is deliverable, an AI-gold-ified logo is NOT.",
+      "repeat_count": 1,
+      "occurrences": [
+        "First observed across a full catalog's studio shots (2026-07-20).",
+        "LR-0182 (Round), 2026-07-21: hero + studio slots 2/3/4/5/10 in-model logo rendered the whole lockup gold, tagline 'FUTURE OF FINE JEWELRY' gold instead of BLACK, emblem as gold line-art. Prompt explicitly said tagline BLACK and 'one complete logo' - model still gold-ified it, exactly as this record predicts. Remedy: regenerate the 6 studio frames on clean cloth, composite the exact logo locally."
+      ],
       "refs": [
         "docs/04",
         "scripts/print_logo_on_cloth.py"
@@ -491,6 +524,420 @@
         "scripts/rollback-pipeline.ps1",
         "config/learning_candidates.json"
       ]
+    },
+    {
+      "id": "higgsfield-production-generator-lock",
+      "superseded_by": "registry:MODEL_LOCK (user 2026-08-01)",
+      "note_2026_08_01": "SUPERSEDED by registry MODEL_LOCK. Engine is still Higgsfield Nano Banana 2 — but the current API call is params.model='nano_banana_pro' which RESOLVES to engine nano_banana_2 at 2k. The 2026-07-16 phrasing 'must NOT switch to Nano Banana Pro' referred to the Pro *engine/behaviour*, NOT this api-id; do not read it as forbidding the nano_banana_pro model id. MODEL_LOCK also accepts that this model class redraws geometry (G2/G7/G21 now blocking with auto-retry).",
+      "problem": "Standing user lock (2026-07-16): the production image ENGINE is Higgsfield (nano_banana_2, resolution 2k, aspect 1:1). It must NOT be redesigned, replaced, migrated, or switched to Nano Banana Pro or any other generator. Visual generation behavior (prompt quality, source fidelity, provider, settings, QC depth, output quality) must never change.",
+      "root_cause": "Provider/engine drift risk when a session lacks the Higgsfield tool or experiments with alternatives.",
+      "fix": "Higgsfield remains the sole production ENGINE - UNCHANGED by the 2026-07-20 pipeline-version switch. The production PIPELINE is now composite-v1 (user-instructed 2026-07-20): Higgsfield still renders the scene; the real source-CAD ring is composited in. This is NOT an engine swap - compositing preserved pixels is not generation (docs/21 §2), and the ring composite (scripts/composite_ring_into_scene.py) is exactly the geometry-preservation mechanism this record always allowed. Pipeline changes remain permitted ONLY for token efficiency, output QC, caching, and failure prevention, and must not alter the Higgsfield engine. No-regression: keep a change only if output is equal/better vs baseline, else revert while keeping validated learning.",
+      "refs": [
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "docs/14_NO_REGRESSION_POLICY.md",
+        "docs/15_SAFE_PIPELINE_VERSIONING.md",
+        "prompts/07_PROMPTS.md"
+      ]
+    },
+    {
+      "id": "lr0151-side-angle-v-gallery-fix",
+      "problem": "LR-0151 (round solitaire pave YG), side-angle studio shots: AI output INVENTED a triangular/V-shaped gallery + support arms under the center stone. Source is an open low basket, 4 thin claw prongs, thin single-row micro-pave, NO gallery/under-gallery, clean open side profile. Failure category: head/gallery invention (added metal absent from source).",
+      "root_cause": "AI generator (side angle) added structural metal not present in the source; text-prompt geometry lock biases toward CAD but cannot guarantee <1% drift for the open basket.",
+      "fix": "Rejected the drifted render (no redesign shipped). Applied docs/12 A3 Fallback 1: clean re-cut of the exact source ring from CAD renders (r97_8 true side, r97_4 45deg; exterior + finger-hole + CAD drop-shadow removed, diamond preserved), rebuilt a ring-free branded-cloth plate (oval-halo sample ring removed via diffusion fill, logo protected), composited the real ring pixels centered with contact shadow + neutral white-match. Geometry then = source pixels (invention impossible). Corrective rule (block on all future SKUs): never add a V-shaped gallery, support rails/arms, under-gallery, or any metal under an open-basket stone; open negative space stays open. VALIDATED=yes (delivered 2048x2048, geometry/head/invention checks pass). Model/prompt version: Higgsfield nano_banana_2 2k 1:1; corrective path = composite fallback.",
+      "refs": [
+        "docs/16_ZERO_JEWELRY_INVENTION.md",
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "scripts/_recut_and_composite_0151.py",
+        "workspace/output/LR-0151_studio_side_profile.png"
+      ]
+    },
+    {
+      "id": "lr0151-higgsfield-render-geometry-drift",
+      "problem": "LR-0151 true-side Higgsfield render (nano_banana_2/flash, 2k, full geometry-lock prompt + source + logo refs) drifted geometry vs source: basket thicker, gallery shape changed, support bars changed, shoulder angle changed, prong thickness changed, diamond pavilion angle changed, overall proportions changed, camera not exactly 90deg. User rejected. Confirms prompt-based diffusion cannot lock CAD geometry — 'do not change' prose has diminishing returns; the model synthesizes a NEW ring conditioned on refs.",
+      "root_cause": "Diffusion image models generate a new image conditioned on prompt+refs; they do not truly lock object geometry. More prose does not fix it.",
+      "fix": "Recorded Higgsfield limitation: prompt-based diffusion cannot lock CAD geometry. RESOLVED 2026-07-20 by explicit user instruction: the production pipeline is now composite-v1 (Higgsfield renders the scene; the real source-CAD ring is composited in), which eliminates this drift by construction. The user explicitly authorised the switch (reversing the 2026-07-16 'use Higgsfield only, don't swap to composite' instruction) after confirming that only compositing the source pixels can stop the recurring prong/band/head/invention mistakes. Higgsfield remains the sole ENGINE (renders the scene). See composite-v1-production-lock.",
+      "refs": [
+        "docs/12_STUDIO_ANGLES_STANDARD.md#A3",
+        "scripts/composite_ring_into_scene.py",
+        "scripts/_recut_and_composite_0151.py",
+        "config/QUALITY_MEMORY.json#higgsfield-production-generator-lock"
+      ]
+    },
+    {
+      "id": "zero-tolerance-qc-inspector",
+      "problem": "Agent drifted toward 'being helpful' (accepting/softening a changed ring) instead of rejecting geometry drift.",
+      "root_cause": "No explicit review-first gate; relied on prompt wording alone to preserve geometry.",
+      "fix": "Adopt docs/18 ZERO-TOLERANCE QC POLICY: behave as a QC inspector who REJECTS any generation that changes the jewelry. Every request follows the review-first workflow (analyze source -> list critical geometry -> lock it with short measurable OBJECT-LOCK constraints -> generate scene only -> compare output vs source on every locked item -> deliver ONLY if it passes, else regenerate). Camera lock (match reference angle exactly, never rotate unless requested) + structural lock (ring rigid; only background/cloth/lighting/reflection/contact-shadow/environment/DoF may change). Verification runs via the Drive read-back loop or user approval (sandbox can't fetch Higgsfield CDN, 403) — never mark 'passed' without an actual comparison. Regenerate on any drift; a rejected image is acceptable, a redesigned ring is not.",
+      "refs": [
+        "docs/18_ZERO_TOLERANCE_QC_POLICY.md",
+        "docs/13_JEWELRY_PRESERVATION_SPEC.md",
+        "docs/16_ZERO_JEWELRY_INVENTION.md",
+        "config/QUALITY_MEMORY.json#drive-readback-verify-loop"
+      ]
+    },
+    {
+      "id": "lr0151-inmodel-geometry-drift",
+      "problem": "In-model generation with medias [4-view source CAD, official logo] reproduces the logo far better than a text-only prompt, but still RECONSTRUCTS the ring. Verified drift on LR-0151 side profile: the open cathedral/V gallery was replaced with a different under-gallery, prongs thickened and re-angled, centre-stone crown/pavilion proportions changed, and the ring floated centred over the logo instead of resting on the cloth. RECURRED 2026-07-17 on the 45-right render with every geometry sub-check failing at once - head/gallery, cathedral profile, prongs, centre stone, pave, band, overall proportions.",
+      "root_cause": "A diffusion model re-synthesises the ring on every render; it cannot copy CAD pixels. Prompt strength does not fix this - five prompt variants were tried on LR-0151 in one session and each drifted somewhere different (gallery/head, prong angle, stone proportions, pave size, band thickness).",
+      "fix": "For 'geometry identical to source / never reconstruct any part of the ring' (docs/14 regression checklist), composite the source-CAD pixels - composite-v1, scripts/composite_ring_into_scene.py. Generation is acceptable only where geometry tolerance is loose. NEVER claim byte-identical geometry from a generated ring. CONFIRMED ACROSS 10 ATTEMPTS with the preservation rule stated ever more explicitly each time - the rule is not the variable. Restating it a further time cannot change the outcome; only compositing the source pixels can.",
+      "refs": [
+        "docs/14 REGRESSION PREVENTION",
+        "docs/15",
+        "scripts/composite_ring_into_scene.py"
+      ],
+      "sku": "LR-0151",
+      "image_number": 4,
+      "camera_angle": "side-profile",
+      "source_files": "97.png (4-view CAD, Drive 1sJB95ohfZI3JLUfftNgUdiu8KXbz5nlt) + logo_official.png",
+      "affected_area": "jewelry, gallery, prong, diamond",
+      "correct_result": "Ring geometry identical to the source CAD: open cathedral/V gallery, 4 slim compass-set claws at source angles, unchanged crown/pavilion proportions, ring resting naturally on cloth.",
+      "rejected_output_ref": "LR-0151 side profile, in-model generation, rejected by user 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "resolved",
+      "resolved_2026-07-20": "Eliminated by construction: production pipeline switched to composite-v1 (ring = real source pixels, never AI-synthesised). See composite-v1-production-lock.",
+      "scope": "global",
+      "repeat_count": 7,
+      "occurrences": [
+        "LR-0151 hero front x3",
+        "LR-0151 side profile",
+        "LR-0141 8-prong crown vs source 4 claws",
+        "LR-0151 45-right, 2026-07-17: head/gallery geometry, cathedral profile, prong thickness+angle, centre-stone proportions, pave spacing/count, band thickness/profile, overall ring proportions ALL changed vs 97.png",
+        "LR-0151 side profile, 2026-07-17 (10th in-model attempt): gallery/basket structure, centre-stone profile, prongs, shoulder thickness, pave layout and proportions all differ from 97.png"
+      ]
+    },
+    {
+      "id": "lr0151-inmodel-logo-flat-overlay",
+      "problem": "Logo generated in-model (official logo passed as 2nd reference) reads as a flat graphic layered ABOVE the fabric: cloth weave does not continue through the ink, the print does not deform with folds, edges are too clean and uniform, the gold has a different lighting response from the cloth, and the icon stays fully visible where the ring should occlude it. It also came out oversized, dominating the frame instead of acting as secondary branding. RECURRED 2026-07-17: icon geometry distorted in addition to the flat-overlay behaviour.",
+      "root_cause": "The model paints the logo as a separate bright asset instead of modulating it by local cloth luminance and warping it along the cloth's fold map.",
+      "fix": "Composite the logo locally with scripts/print_logo_on_cloth.py. Its six-point standard - fabric interaction via displacement, soft edges, weave-through, embedded depth, matched lighting with a brighter-than-cloth clamp, ink diffusion - is exactly the user's stated target, item for item. Never AI-render the logo (docs/04 P0).",
+      "refs": [
+        "docs/04 P0",
+        "docs/04 8",
+        "docs/14 REGRESSION PREVENTION - CLOTH"
+      ],
+      "sku": "LR-0151",
+      "image_number": 4,
+      "camera_angle": "side-profile",
+      "source_files": "97.png (4-view CAD) + logo_official.png as 2nd reference",
+      "affected_area": "logo, cloth",
+      "correct_result": "Logo printed INTO the fibres: weave visible through the ink, print deforms with folds and perspective, edges not uniform, lighting/shadow inherited from the cloth, naturally occluded where the ring covers it, secondary in the frame.",
+      "rejected_output_ref": "LR-0151 side profile + hero front, in-model logo, rejected by user 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "resolved",
+      "resolved_2026-07-20": "Logo is now ALWAYS composited locally in production (print_logo_on_cloth.py) - never AI-drawn - under composite-v1. See composite-v1-production-lock.",
+      "scope": "global",
+      "repeat_count": 3,
+      "occurrences": [
+        "LR-0151 in-model wrapper v2 (icon overlapped LUCENT)",
+        "LR-0151 side profile (flat overlay, oversized)",
+        "LR-0151 45-right, 2026-07-17: logo oversized, diamond icon distorted, print over the fabric not inside it, does not follow folds, ring overlaps logo unnaturally"
+      ]
+    },
+    {
+      "id": "lr0151-source-file-selection",
+      "problem": "Auto-selecting the SKU source by file size picked 97 Model G.jpg (1.8MB) - a hand-model lifestyle photograph, not a CAD render. The single-view CAD JPGs give the model too little geometry to reproduce the ring.",
+      "root_cause": "Rank-by-size is a tie-breaker, not a content test. 'Model G' names a model wearing the ring, not a master CAD model.",
+      "fix": "LR-0151 source = 97.png, Drive id 1sJB95ohfZI3JLUfftNgUdiu8KXbz5nlt, in 'LR- 0151 (Round)/photo and video'. It is a SINGLE sheet holding FOUR views of the ring. Prefer a multi-view CAD sheet as reference image 1. Verify content, never filename or file size.",
+      "refs": [
+        "docs/19 2",
+        "docs/06_CACHE.md"
+      ],
+      "sku": "LR-0151",
+      "image_number": 1,
+      "camera_angle": "n/a",
+      "source_files": "incorrectly selected: 97 Model G.jpg",
+      "affected_area": "pipeline",
+      "correct_result": "Source = 97.png, the single sheet of four CAD views.",
+      "rejected_output_ref": "LR-0151 source selection, 2026-07-16",
+      "date_recorded": "2026-07-16",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151"
+      ]
+    },
+    {
+      "id": "lr0151-design-profile",
+      "problem": "Prompts described LR-0151 as a thin tapering band with pave stopping short of the head. Wrong - the shoulders are CATHEDRAL. Mis-described geometry invites drift.",
+      "root_cause": "The design profile was inferred from a single view instead of the 4-view CAD sheet.",
+      "fix": "LR-0151 (r97) DESIGN PROFILE - round brilliant colorless centre (~2ct); EXACTLY 4 slim claw prongs, compass-set; single-row micro-pave round accents down BOTH CATHEDRAL shoulders, front ~two-thirds, plain at back; thin 18K yellow-gold band; open cathedral/V gallery; NO halo; no side stones beyond the shoulder pave; colorless diamonds, single true facet pattern. Reuse this profile; do not re-derive it.",
+      "refs": [
+        "docs/06_CACHE.md",
+        "prompts/07_PROMPTS.md"
+      ],
+      "sku": "LR-0151",
+      "image_number": null,
+      "camera_angle": "n/a",
+      "source_files": "97.png (4-view CAD)",
+      "affected_area": "jewelry, band",
+      "correct_result": "Cathedral shoulders with single-row micro-pave front ~two-thirds, plain at back; open cathedral/V gallery.",
+      "rejected_output_ref": "LR-0151 prompts describing a plain tapering band",
+      "date_recorded": "2026-07-16",
+      "status": "corrected",
+      "scope": "catalog-specific",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151"
+      ]
+    },
+    {
+      "id": "lr0151-inmodel-composition-drift",
+      "sku": "LR-0151",
+      "image_number": 3,
+      "camera_angle": "45R",
+      "source_files": "97.png (4-view CAD) + logo_official.png",
+      "problem": "In-model render changed the SCENE as well as the ring: camera angle differs from the source, ring orientation changed, scale changed, cloth fold pattern differs from the approved catalog style, and the cloth perspective does not support the ring naturally.",
+      "affected_area": "composition, cloth, scale",
+      "root_cause": "With the ring generated rather than composited, the model re-stages the whole scene; camera, orientation, scale and drape are re-invented per render, so nothing is stable across a catalog.",
+      "correct_result": "Camera per the requested angle only; ring orientation and scale constant across the catalog; cloth folds in the approved style with perspective that physically supports the ring.",
+      "rejected_output_ref": "LR-0151 45-right, rejected by user 2026-07-17",
+      "fix": "Compositing the source ring at a fixed scale/orientation onto a generated cloth plate is the only way to hold scale and orientation constant across a 12-image catalog. Generation cannot.",
+      "date_recorded": "2026-07-17",
+      "status": "resolved",
+      "resolved_2026-07-20": "Compositing the source ring at fixed scale/orientation onto the generated cloth plate is now the production default (composite-v1); scale and orientation are held constant across the catalog by construction. See composite-v1-production-lock.",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0151 45R"
+      ],
+      "refs": [
+        "docs/14 REGRESSION PREVENTION - SCENE",
+        "docs/12"
+      ]
+    },
+    {
+      "id": "approved-logo-treatment-standard",
+      "sku": "reference (emerald eternity band catalog)",
+      "image_number": null,
+      "camera_angle": "studio - all",
+      "source_files": "approved catalog example supplied by user 2026-07-17",
+      "problem": "APPROVED PATTERN, not a failure. Recorded per the learning rule: save the successful correction pattern and reuse it.",
+      "affected_area": "logo",
+      "root_cause": "n/a",
+      "correct_result": "Lockup ~a quarter to a third of frame width, lower area offset from centre and clear of the ring, full lockup readable (icon, LUCENT/CARAT/LAB, stars, rules, tagline), soft muted tone-on-tone gold never brighter than the cloth, ink following fold contours and sharing the scene depth of field. Hierarchy: jewelry, cloth, logo.",
+      "rejected_output_ref": "n/a - approved reference",
+      "fix": "Match this treatment on every studio/office image. Local composite: --scale 0.28-0.34, --pos lower-right/lower-centre, --opacity 0.45-0.6, --displace 6-8, --soften 1.0, --grain 0.06.",
+      "date_recorded": "2026-07-17",
+      "status": "validated",
+      "scope": "global",
+      "repeat_count": 0,
+      "occurrences": [],
+      "refs": [
+        "docs/04 9"
+      ]
+    },
+    {
+      "id": "office-photoshoot-background-must-be-velvet",
+      "sku": "LR-0189",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "source 3.png (Drive 1SS_pV_6arnKLHzTBWmTJbJ-xgoi0xjPF); studio ref Offie_photoshoot (1); official logo asset",
+      "problem": "Office/studio photoshoot prompt specified 'premium pure-white cotton cloth' as the background. Office photoshoot backgrounds must be premium white plush VELVET only; no other material, surface or texture is permitted.",
+      "affected_area": "cloth",
+      "root_cause": "Prompt was built from the pre-2026-07-24 wording, which allowed cotton as an acceptable alternate to velvet. No prompt-build gate existed to block a non-velvet material before submission.",
+      "correct_result": "Every office/studio photoshoot image is shot on premium pure-white plush VELVET (soft dense pile, gentle sheen, elegant soft folds), neutral pure-white balance, natural soft draping, with the preserved official logo printed into the pile.",
+      "rejected_output_ref": "job 5f0e3049-bb0b-46c3-a849-77a947b0e3a0 (LR-0189 Image 1, 2026-07-24)",
+      "fix": "TWO MANDATORY GATES. (1) PROMPT-BUILD GATE: before submitting any office-photoshoot generation, confirm the prompt names VELVET and names no other fabric; a prompt containing 'cotton' or any non-velvet material must be corrected before submission. (2) PRE-DELIVERY GATE: validate the rendered background reads as velvet; a non-velvet background is an automatic REJECT and is recorded here. Cotton is revoked as an alternate.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0189 image 1 (job 5f0e3049-bb0b-46c3-a849-77a947b0e3a0)"
+      ],
+      "refs": "docs/11_BACKGROUND_STANDARD.md (CLOTH MATERIAL - VELVET ONLY); prompts/07_PROMPTS.md (CLOTH P3, STUDIO WRAPPER, STUDIO WRAPPER v2); BACKGROUND_RULES.md"
+    },
+    {
+      "id": "stone-shape-must-match-source-exactly",
+      "sku": "LR-0194",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "LR-0194 source CAD",
+      "problem": "TWO defects in the LR-0194 catalog. (1) SHAPE: centre rendered as an EMERALD cut instead of the 2ct ELONGATED HEXAGON. (2) ADDED STONES: a halo / surrounding pave was invented around the centre. LR-0194 is a PLAIN SOLITAIRE - no halo, no surrounding pave, no accent stones of any kind.",
+      "affected_area": "diamond",
+      "root_cause": "Stone shape was left to the model's prior rather than pinned to the source. Elongated hexagons sit close to emerald cuts in latent space, so any slack in the prompt collapses hexagon -> emerald. No pre-delivery shape check existed to catch it.",
+      "correct_result": "LR-0194: 2ct elongated hexagon (six straight sides, step facets), PLAIN SOLITAIRE, no halo, no surrounding pave, no accent stones. Generally: every stone matches the source in shape, count, size and placement - never add a halo, pave or accent that is not in the source, never remove one that is.",
+      "rejected_output_ref": "LR-0194 delivered set (user-supplied contact sheets, 2026-07-24)",
+      "fix": "(1) SOURCE LOCKING: always pass the source CAD as a locked visual reference (image-to-image); never build the ring from text alone. (2) PROMPT: name the exact cut, spell out its outline, and name the shapes it must not become. (3) State explicitly whether accents exist - for a plain solitaire say NO halo / NO pave / NO accent stones. (4) PRE-DELIVERY: compare side-by-side with the source; any shape, count or placement mismatch = REJECT.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 2,
+      "occurrences": [
+        "LR-0194 catalog (2026-07-21 set)",
+        "LR-0194 slot 1 job d0b68cb3-d9ff-4924-ad0b-b7b59e94df40 (2026-07-24) - hidden halo specified in error"
+      ],
+      "refs": "prompts/07_PROMPTS.md (STONE SHAPE LOCK); docs/13_JEWELRY_PRESERVATION_SPEC.md"
+    },
+    {
+      "id": "hexagon-centre-orientation-verify-against-worn-photos",
+      "sku": "LR-0193 / LR-0195 / LR-0196 / LR-0197",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "each SKU's source CAD renders",
+      "problem": "Assistant first specified the hexagon centre as EAST-WEST, then self-corrected to NORTH-SOUTH on a misapplied heuristic ('side stones always sit along the finger, so a horizontal long axis in a front elevation means along the finger'). Re-checked against the delivered LR-0194 worn photos: the band runs horizontally and the centre stone stands TALL, perpendicular to the band. The ORIGINAL east-west reading was correct; the self-correction was the error.",
+      "affected_area": "jewelry",
+      "root_cause": "The heuristic fails on east-west three-stone designs. In these rings the centre's long axis is perpendicular to the finger WHILE the side stones still sit along the finger on the shoulders - both are true at once, so side-stone placement does not determine centre orientation.",
+      "correct_result": "Centre elongated hexagon is set EAST-WEST: its long axis runs ACROSS the finger, perpendicular to the band. Side stones sit on the shoulders ALONG the finger. Confirmed by the LR-0194 worn photos (band horizontal, stone standing tall).",
+      "rejected_output_ref": "No renders rejected on this basis - LR-0193/0195/0196/0197 were generated with the ORIGINAL east-west wording, which this record confirms is correct.",
+      "fix": "Determine centre-stone orientation from a WORN photo or an axial CAD view (band seen as a full circle), never from side-stone placement. In an axial view the in-image horizontal is ACROSS the finger. State the orientation explicitly in the prompt and re-verify before delivery.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "assistant reasoning error 2026-07-24; no output affected"
+      ],
+      "refs": "config/deliveries/LR-0193/0195/0196/0197.plan.json"
+    },
+    {
+      "id": "lr-0194-is-a-plain-solitaire-no-accents",
+      "sku": "LR-0194",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "LR-0194 CAD 4.png + 2.png",
+      "problem": "Assistant specified a HIDDEN HALO (row of round pave under the girdle) in the LR-0194 slot-1 prompt. The user has confirmed LR-0194 is a PLAIN SOLITAIRE with no halo and no surrounding pave.",
+      "affected_area": "diamond",
+      "root_cause": "Assistant read small round forms beneath the girdle in the CAD as a hidden halo and wrote them into the prompt. Where the source reading and the user's stated design disagree, the user's stated design governs - the assistant should not add accents on its own reading.",
+      "correct_result": "LR-0194 renders as a plain solitaire: one elongated hexagon, four double-claw prongs, open basket, thin plain round band. NO halo, NO pave, NO accent stones anywhere.",
+      "rejected_output_ref": "job d0b68cb3-d9ff-4924-ad0b-b7b59e94df40 - REJECTED, not for delivery",
+      "fix": "Every LR-0194 prompt states NO halo, NO surrounding pave, NO accent stones, plus the shapes the centre must not become. Where a CAD reading would ADD a component, confirm before generating rather than writing it into the prompt.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "catalog-specific",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0194 slot 1, 2026-07-24"
+      ],
+      "refs": "prompts/07_PROMPTS.md (STONE SHAPE LOCK, SOURCE LOCKING); config/deliveries/LR-0194.plan.json"
+    },
+    {
+      "id": "never-describe-the-setting-in-words-copy-it-from-the-cad",
+      "sku": "LR-0194",
+      "image_number": 1,
+      "camera_angle": "hero-front",
+      "source_files": "LR-0194 CAD 4.png + 2.png",
+      "problem": "Prongs came out wrong. The assistant had written a TEXTUAL prong spec into the prompt ('FOUR DOUBLE-CLAW prongs, one at each of the four long-side corners, each splitting into a doubled claw'). That description was the assistant's own reading of the CAD, not the CAD, and it overrode the reference image - the model built prongs from the words instead of copying the source.",
+      "affected_area": "prong",
+      "root_cause": "Describing the setting in prose competes with the locked source image. Where a written spec and a reference image disagree, the model follows the words. Any prong count/shape/style stated in text is a guess unless it is measured, and a guess in the prompt is stronger than the truth in the image.",
+      "correct_result": "Prong count, shape, style, thickness and position exactly as the source CAD - copied from the image, not restyled. Same for gallery, basket and band. Only the camera angle changes.",
+      "rejected_output_ref": "job a7750c48-5372-444b-a82b-7aa201243b6b - REJECTED on prongs (centre stone shape was correct and is retained)",
+      "fix": "DO NOT describe the setting in words. For prongs, gallery, basket and band the prompt says only: reproduce them EXACTLY as in the reference CAD - do not add, remove, split, double, restyle, thicken, thin or reposition. Never state a prong count or prong style in text unless the user has given it. Reserve prose for what the image cannot carry (scene, background, lighting, camera) and for explicit exclusions the user has stated.",
+      "date_recorded": "2026-07-24",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0194 slot 1 (2026-07-24)"
+      ],
+      "refs": "prompts/07_PROMPTS.md (SOURCE LOCKING)"
+    },
+    {
+      "id": "shoulder-pave-count-size-coverage-setting-must-match-source",
+      "sku": "LR-0203",
+      "image_number": 3,
+      "camera_angle": "velvet-upper-3q",
+      "source_files": "LR-0203 user-supplied authoritative source photo (oval solitaire, micro French pave)",
+      "problem": "7 deviations on the pave/band. (1) PAVE COUNT: ~10 stones/side vs source ~18-20/side. (2) PAVE SIZE: oversized + widely spaced vs micro tightly-packed. (3) PAVE COVERAGE: stopped at shoulder vs running past shoulder down the shank. (4) PAVE SETTING: raised channel with thick beads + flat metal edge vs flush French/micro-set with minimal metal. (5) BAND PROFILE: wider/flatter/tapered vs thin uniform round/knife-edge. (6) STONE:BAND SCALE: centre oversized vs source proportional to thin band. (7) FORMAT: delivered PORTRAIT vs 1:1 square lock.",
+      "affected_area": "band",
+      "root_cause": "The model chose its own pave count, stone size, coverage length and setting style instead of matching the source pixels, and re-styled the band profile + centre scale. Pave parameters were not count-locked in the prompt, so generation defaulted to a sparse, oversized, channel-look shank. Format was not gated before visual review, so a non-square render reached QC.",
+      "correct_result": "Shoulder pave = SINGLE row, EXACTLY 18-20 micro stones/side (each ~1/10 band width), tightly packed near-touching, uniform, minimal metal between, flush French/micro-bead (level with band, no channel/thick beads/metal rail), coverage running head -> DOWN PAST SHOULDER (front ~2/3 of shank). Band thin uniform round/knife-edge, no taper/flat/widening/cathedral. Centre width ~4.5x band width at shoulder (never enlarged vs band). Output 1:1 exactly 2048x2048.",
+      "rejected_output_ref": "LR-0203 slot 03 (03_velvet_upper_3q) - REJECTED, 2026-07-30",
+      "fix": "(1) COUNT-LOCK pave in every prompt: state exact per-side stone count from source (never 'pave' unqualified) and forbid the model choosing. (2) SIZE-LOCK: micro, each ~1/10 band width, tightly packed; NEGATIVES: large pave stones, widely spaced pave. (3) COVERAGE-LOCK: pave runs past shoulder down the shank; NEGATIVE: pave stopping at shoulder. (4) SETTING-LOCK: flush French/micro-bead; NEGATIVES: channel set, thick bead setting, metal rail under pave. (5) BAND-LOCK: thin uniform round/knife-edge; NEGATIVES: tapered/wide/flat band, cathedral shoulders. (6) SCALE-LOCK: centre ~4.5x band width; do not enlarge centre vs band. (7) FORMAT GATE: check 1:1 2048x2048 BEFORE visual review; any portrait/landscape/non-square = discard + regenerate, do not review. Applies to ALL catalogs: match source pave count/size/coverage/setting + band profile + centre:band scale exactly; never let the model pick them.",
+      "date_recorded": "2026-07-30",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0203 slot 03 (2026-07-30)"
+      ],
+      "refs": "workspace/golden/LR-0203/SOURCE-SPEC.md (MANDATORY PROMPT LOCKS); docs/13_JEWELRY_PRESERVATION_SPEC.md §6b; docs/22_CATALOG_PIPELINE_SOP.md P4"
+    },
+    {
+      "id": "studio-slots-must-be-distinct-numeric-angles",
+      "sku": "LR-0203",
+      "image_number": null,
+      "camera_angle": "office slots 01/02/03",
+      "source_files": "LR-0203 delivered set (user contact sheet, 2026-07-30)",
+      "problem": "Office slots 01/02/03 were delivered as three near-identical front-ish three-quarter views of the ring standing on velvet — effectively the same camera angle three times. Not resolved by prior verbal 'angle distinctness' guidance; it recurred.",
+      "affected_area": "composition",
+      "root_cause": "Angles were driven by filename LABELS (hero_3q / side_profile / upper_3q) instead of explicit camera NUMBERS. Labels carry no geometry, so the model defaulted all three to its favored 3/4 front pose. No numeric azimuth/elevation per slot and no pairwise separation gate existed to catch the collision.",
+      "correct_result": "Camera is defined by NUMBERS per slot (azimuth around ring, elevation above table, distance/crop) per the LOCKED ANGLE MATRIX (docs/12 A-MATRIX). Office 4 = top_down_flatlay (elev90/azim0), true_side_profile (elev3/azim90), front_elevation (elev15/azim0), macro_head (elev30/azim45). Lifestyle 6 = low_hero (10/30), back_three_quarter (25/135), hand_top_down (85), hand_45_three_quarter (40/45), hand_side_macro (5/90), hand_tilted_POV (20/210). No two slots within 20deg azimuth AND 15deg elevation; elevated 3/4 only in slot 04.",
+      "rejected_output_ref": "LR-0203 office slots 01/02/03 - REJECTED as duplicate angles, 2026-07-30",
+      "fix": "(1) Every prompt states azimuth + elevation + distance/crop as NUMBERS; never rely on the filename/label. (2) Use the locked ANGLE MATRIX (docs/12 A-MATRIX) for all 10 slots, every catalog. (3) VALIDATION GATE before delivery: read each render's actual camera azimuth/elevation from the image, compare to the slot's declared numbers (mismatch = reject), then compare all 10 pairwise - any pair within 20deg azimuth AND 15deg elevation = reject the later slot and regenerate with azimuth pushed 30deg further + elevation re-forced; repeat until all 10 pass. Never deliver a duplicate angle. Applies to ALL catalogs.",
+      "date_recorded": "2026-07-30",
+      "status": "corrected",
+      "scope": "global",
+      "repeat_count": 1,
+      "occurrences": [
+        "LR-0203 office slots 01/02/03 (2026-07-30)"
+      ],
+      "refs": "docs/12_STUDIO_ANGLES_STANDARD.md (A-MATRIX + SEPARATION RULE + VALIDATION GATE); docs/22_CATALOG_PIPELINE_SOP.md P2 step 8 / P4"
+    },
+    {
+      "id": "pave-is-uncountable-by-diffusion-enforce-like-the-logo",
+      "sku": "LR-0203",
+      "image_number": null,
+      "camera_angle": "all",
+      "source_files": "LR-0203 source (oval solitaire, micro French pave)",
+      "problem": "Shoulder pave count keeps landing near-but-wrong even with the count stated in the prompt: run 1 = ~10/side, run 2 = ~14-15/side (source 18-20/side). Same render also collapsed the centre oval toward ROUND (L:W ~1.45 read as near-round), rendered a raised rail/flat-metal-edge setting instead of flush French, oversized the pave stones, and split/doubled the 4 claws.",
+      "affected_area": "pipeline",
+      "root_cause": "Diffusion models cannot reliably reproduce a COUNT of discrete repeated elements (pave stones) from text — the same reason the pipeline composites the logo instead of generating it. Prompt text alone has failed twice; a third restatement will not fix it. Pave is the same class of problem as the logo: it must be ENFORCED, not generated.",
+      "correct_result": "Pave stone count/size/spacing/setting are COPIED from the source, not invented. Centre reads clearly elongated oval L:W 1.45:1. Prongs 4 thin single rounded claws. Setting flush French/micro-bead, no raised rail.",
+      "rejected_output_ref": "LR-0203 side-profile + front-elevation renders (jobs cc73e83d / ede8309d), REJECTED 2026-07-30",
+      "fix": "PAVE COUNT — DETERMINISTIC ENFORCEMENT (ALL SKUs, user-locked 2026-07-30). Treat pave like the logo: enforce, do not generate. PRIMARY (required once a clean CAD side view is available): generate img2img with the real CAD side view as structural reference, denoise capped so shoulder geometry + stone run are preserved; the pave row is COPIED, never re-invented. Alt primary (b): composite the shoulder pave from the CAD render onto the generated scene, same layer approach as the logo. FALLBACK GATE (c) — MANDATORY on EVERY render until (a)/(b) is live: detect pave stones per shoulder on the rendered image, compare to SOURCE_SPEC count, outside source +/-1 = auto-reject and auto-regenerate with count restated + denoise lowered; never deliver an unchecked render. Also state LR-0203 numeric locks every prompt: centre elongated OVAL L:W 1.45:1 (not round/near-round/1.2); prongs exactly 4 thin single rounded claws (not broad/split/double/fluted/flared); shoulder pave single row 18-20/side, each dia = 1/10 band width, near-touching uniform, coverage front two-thirds past shoulder toward base; setting flush French/micro-bead level with band (no raised rail/channel/metal edge below); band thin uniform round/knife-edge no taper/widening.",
+      "date_recorded": "2026-07-30",
+      "status": "resolution-approved-pending-source",
+      "resolution": "User decision 2026-07-30 (option 4 then 1): (4) ROOT CAUSE = the source set is 2 watermarked retail photos (one hand-held); provide the 4 clean CAD views (top/front/true_side/back_gallery) so validate_source passes and even the frozen call improves. (1) ACCENT-RUN COMPOSITE = keep the Higgsfield call FROZEN; composite the accent/pave run post-render in local Python from the clean CAD view (scripts/composite_accent_run.py), same layer mechanism as the logo, so count is correct by construction. APPROVED EXCEPTION to 'do not composite the jewelry', scoped to accent runs only; jewelry body + scene stay generated. NOT option 2 (would unfreeze the call) and NOT option 3 (best-effort never converges). See docs/21 §2, docs/13 §6c.",
+      "scope": "global",
+      "repeat_count": 3,
+      "occurrences": [
+        "LR-0203 slot 03 (2026-07-30, ~10/side)",
+        "LR-0203 side+front re-gen (2026-07-30, ~14-15/side, L:W collapse, split claws, raised rail)",
+        "LR-0203 job 440a2dfa (2026-07-30, frozen text-to-image slot 02: ~9-10/side vs 19, camera ignored declared side-profile -> 3/4 front, coverage stops mid-shank). Confirms frozen plain t2i cannot hit exact count/angle; same-call retry cannot converge; every copy mechanism (img2img/composite) is frozen off -> exact accent count NOT achievable under current constraints."
+      ],
+      "refs": "docs/13_JEWELRY_PRESERVATION_SPEC.md §6c; docs/22_CATALOG_PIPELINE_SOP.md P3/P4; docs/04_LOGO_WORKFLOW.md (logo-layer analogue); workspace/golden/LR-0203/SOURCE-SPEC.md"
     }
-  ]
+  ],
+  "failure_memory": {
+    "status": "ACTIVE — permanent production dependency (user-locked 2026-07-16)",
+    "store": "This file. There is exactly ONE Failure Memory. Never create a second store.",
+    "record_automatically": "When the user rejects an image or points out a mistake, record it here immediately. Never ask whether to save it.",
+    "schema": {
+      "id": "stable kebab-case slug",
+      "sku": "catalog / SKU, e.g. LR-0151",
+      "image_number": "image number in the catalog, or null",
+      "camera_angle": "hero-front | 45L | 45R | side-profile | three-quarter | lifestyle-* | closeup-* | n/a",
+      "source_files": "source/reference files used for the rejected render",
+      "problem": "the exact mistake, as observed",
+      "affected_area": "jewelry | diamond | prong | gallery | band | logo | cloth | lighting | composition | hand | scale | pipeline",
+      "root_cause": "why it happened",
+      "correct_result": "what the correct result should be",
+      "rejected_output_ref": "reference to the rejected output",
+      "fix": "corrective instruction to apply to future prompts/pipeline",
+      "date_recorded": "YYYY-MM-DD",
+      "status": "unresolved | corrected | validated",
+      "scope": "global | catalog-specific",
+      "repeat_count": "integer; increment on recurrence, never duplicate the record",
+      "occurrences": "array of catalog/image references where it recurred",
+      "refs": "owning docs"
+    },
+    "protocol_before_every_generation": [
+      "1. Load the Failure Memory once per session (it is part of the runtime trio; do not reload unchanged).",
+      "2. Check all failures whose scope is global, plus any whose sku matches the current catalog.",
+      "3. Add the applicable corrective instructions to the generation prompt.",
+      "4. Block any output that repeats a recorded mistake.",
+      "5. Do not deliver until all applicable regression checks pass (docs/14)."
+    ],
+    "protocol_on_approval": [
+      "Mark the failure validated.",
+      "Save the successful correction pattern in `fix`.",
+      "Reuse that pattern for future images.",
+      "NEVER delete the original failure record."
+    ],
+    "no_duplicates": "Never create a second record for the same mistake. Increment repeat_count and append the new catalog/image reference to occurrences.",
+    "historical_records": "The `fixes` array below is the pre-existing failure record and remains authoritative for every mistake logged before 2026-07-16 — logo pasted/floating, white patch behind logo, AI-drawn logo, cloth yellowish/flat, prong count drift, stone orientation, added gallery/halo/supports, masking remnants, and the rest. Do NOT re-record those under the new schema; that would duplicate. New failures use the schema above.",
+    "priority": "A previously rejected mistake is never new, forgotten, optional, or acceptable. On detection: reject internally, correct, regenerate. Regression prevention outranks prompt execution (docs/14)."
+  }
 }

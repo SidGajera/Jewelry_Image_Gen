@@ -1,0 +1,36 @@
+{
+  "sku": "BR-0110",
+  "category": "bracelet",
+  "title": "MoonlitCharms — flower-station cable-chain bracelet, 14k yellow gold",
+  "model": "nano_banana_pro (engine nano_banana_2)",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "img2img_source_preserve",
+  "source": "2 vendor product photos (user-directed), pulled via authenticated Drive connector: s1_flowers.jpg + s2_clasp.jpg",
+  "source_media": {"s1_flowers": "da933991-8286-4073-bdd2-65c3c1415020", "s2_clasp": "7d20633a-d7fa-4adc-8c6e-1b983cc68e43"},
+  "design_lock": "delicate 14k YELLOW GOLD fine rolo/cable chain; 5 FLOWER stations, each a quatrefoil of 4 round diamonds + 1 gold centre bead (20 accent rounds); lobster clasp + adjustable extender",
+  "theme": "golden_hour_cafe (warm caramel/cream, cozy cafe/reading, golden-hour light) — distinct from LR-0213 winter_window and LR-0214 summer_linen",
+  "composition": "4 studio velvet (loop/flat/macro/clasp) + 6 lifestyle (wrist)",
+  "renders_dir": "deliveries/BR-0110",
+  "count_caveat": "flower-station total = 5 is best-read from 2 partial vendor photos (no full lay-flat supplied); user directed to use only these 2 images. Motif (4 petals + centre) certain.",
+  "jobs": {
+    "01_velvet_loop": "410c2ed2-4757-45bb-a367-c7bd2d7d3821",
+    "02_velvet_flat": "d0cedbe9-7fd5-495b-9cf5-1ce7ccf90e55",
+    "03_velvet_macro": "5033e80c-6956-4291-a9b0-336371d30e51",
+    "04_velvet_clasp": "ef436806-3b63-4da4-9257-937889994e44",
+    "05_life_collarbone": "f784d06c-35dd-4eea-ad86-f78f3d167ff2",
+    "06_life_forearm": "86aa1e18-77e7-42f0-b051-2335a8957822",
+    "07_life_coffee": "f83e5cf1-1d90-4d5f-925c-d868f002b8bb",
+    "08_life_hair": "899f2795-2725-4f0b-97fd-38e101a7eaf3",
+    "09_life_book": "bd4b76e3-cb3c-4f39-b68d-76aecd9e6d70",
+    "10_life_wrist_macro": "3aa70eb6-f3a4-43e1-93d2-1cd6c2e72d7b"
+  },
+  "p5_validate": {
+    "G21_STONE_MATCH": "PASS — slot 02 shows 5 flower stations; slot 03 macro confirms each flower = 4 round petals + gold centre. Matches locked design.",
+    "G24_CLARITY_CHECK": "PASS — stones water-clear, glass-bright, crisp facets on 02/03.",
+    "minor_flag": "slot 02 (and 01 loop) rendered a lobster clasp on BOTH ends. FIXED: reshot 01+02 with G23 single-clasp lock (single lobster one end + jump-ring/extender other end). Old jobs superseded: 01=7cf85eb9, 02=a1a997cb.",
+    "G23_MAKES_SENSE": "PASS — new 02 verified: single lobster clasp one end + jump-ring/extender-with-drop other end. 01 reshot likewise. Both OLD (two-clasp) and NEW (single-clasp) kept on disk per user (deliveries/BR-0110/*_OLD_twoclasp.png)."
+  },
+  "status": "generated_validated — G21 + G23 + G24 PASS; single-clasp fix applied and verified; old+new versions both retained; lifestyle await user visual QC"
+}

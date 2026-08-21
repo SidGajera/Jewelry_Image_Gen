@@ -1,0 +1,30 @@
+{
+  "sku": "LR-0212",
+  "category": "ring",
+  "title": "Marquise solitaire, 6-prong, hidden halo, micro-pavé shoulders, white gold (~3ct)",
+  "model": "seedream_v5_pro",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "frozen_text_to_image",
+  "engine": "HIGGSFIELD_ONLY",
+  "geometry": "approximate — generated, not source-matched",
+  "source": "vendor CAD (Drive folder 1HC3xULaK9BpCZiDRXddxJg_j5SEyaXA9): top + 2 side views; front/back mapped best-effort",
+  "source_media_id": "4d1bd776-5aac-4f46-a9fd-6bda0350ac13",
+  "theme": "emerald_study",
+  "composition": "4 studio velvet + 6 lifestyle",
+  "notes": "lifestyle slots regenerated with RING SCALE lock (centre stone within finger width) + G22 gate, superseding an oversized first pass",
+  "jobs": {
+    "01_top_down_flatlay": "25101b30-3b69-4490-8b39-d8f91be9eaf5",
+    "02_true_side_profile": "ca3a36a5-9367-4031-895e-c9d035efb3ec",
+    "03_front_elevation": "e8d6df01-f0fd-4d53-a6de-949a69b50117",
+    "04_gallery_back": "08978016-1f0c-4ea6-bb28-d5ddde74abec",
+    "05_low_hero": "39417d82-8c7a-4a4b-9535-4e0cd212d1bd",
+    "06_reach_to_camera": "5af484dc-4fae-485d-9323-92e666692fb0",
+    "07_hands_held": "7591dafc-3921-4f0f-9564-ad04e9c6a6e6",
+    "08_hands_stacked_editorial": "ec71adbb-f31c-4166-8d86-35fac8b36cf2",
+    "09_beauty_closeup": "73f94f44-2f93-4ee0-b185-36ca01c9f3ff",
+    "10_sunset_raised_hand": "fe766e18-fce1-4d7d-922c-79728dd7ded7"
+  },
+  "status": "generated_geometry_approximate_pending_user_qc"
+}

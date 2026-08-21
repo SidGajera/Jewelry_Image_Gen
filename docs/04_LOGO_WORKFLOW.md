@@ -2,8 +2,39 @@
 
 The single most important workflow in the project. Priority **P0** — overrides everything.
 
+## 0. LUXURY CLOTH & EMBLEM INTEGRATION POLICY (P0, user-locked 2026-07-21)
+The official Lucent Carat Lab logo is a PRESERVED MASTER ASSET (`assets/logo/logo_official.png`) — the complete lockup (diamond emblem + typography + decorative lines + BLACK tagline). It must **NEVER** appear as digital artwork placed over the image; it must exist **as part of the physical cloth itself**, permanently printed into the premium white cloth *before* the photo is taken.
+
+**Emblem printing (like luxury textile ink):** penetrates the fibres · follows every thread · bends with every fold · stretches with fabric deformation · compresses where cloth compresses · disappears slightly into the weave · stays physically attached to the cloth. Never render the logo independently of the cloth — it must look impossible to separate from it.
+
+**No digital look — reject:** vector artwork · watermark · overlay · pasted/floating/hovering logo · emboss · glossy logo · AI-generated typography · isolated emblem.
+
+**Focus priority:** 1 Jewelry · 2 Diamond · 3 Metal · 4 Cloth · 5 Logo. Jewelry always the hero with perfect focus; if logo and jewelry share depth, the logo is physically correct but naturally softer ONLY from optical DoF — never blur/sharpen the logo independently.
+
+**Premium white cloth:** pure neutral white, elegant folds, realistic micro-texture, premium definition. Never flat/plastic/CGI/synthetic/repeating-weave cloth, never coloured/cream/grey/blue. **VELVET IS THE PREFERRED PREMIUM CLOTH (user-locked 2026-07-21, LR-0183):** premium pure-white plush jewelry-box VELVET — soft dense pile, gentle natural sheen, elegant soft folds, rich/expensive look — reads more premium than cotton and is the default studio cloth; the logo prints as matte foil/ink pressed INTO the velvet pile (following the nap), never glossy/sticker/overlay. Fine cotton remains acceptable, but prefer velvet for the premium look. The logo is composited as ONE complete print onto the cloth; natural partial occlusion by the ring, folds or crop is fine and preferred for authenticity (see §4 NATURAL PHOTOGRAPHY LOGO VISIBILITY).
+
+**Colour + typography LOCK:** the preserved logo colours/gradient/metallic appearance/typography/emblem/spacing/decorative lines/tagline are LOCKED — never recreate/recolour/brighten/darken/modify anything. Use the preserved asset exactly.
+
+**Single logo:** exactly ONE complete logo — never duplicate/partially-duplicate/crop/add-extra-emblem/add-typography.
+
+**Camera realism:** the result must read as *"a photographer placed a real ring on an expensive branded cloth and photographed it,"* never *"an AI generated a ring and added a logo afterwards."* Nothing may reveal AI generation; cloth + logo + jewelry are one physically consistent scene.
+
+**FINAL VALIDATION — reject immediately if:** logo looks pasted / too sharp / floats / doesn't follow folds · cloth looks AI-generated or not premium white · jewelry not dominant · logo competes with jewelry · multiple/partial logo · wrong colours/typography/emblem/tagline · any part of the preserved logo modified.
+
+**COLOUR & PRINT LOCK (user-locked 2026-07-21 — explicit reinforcement, merged here).** The supplied logo is the SINGLE MASTER LOGO and a LOCKED asset: never recreate/redraw/reinterpret/restyle any part.
+- **Gold lock:** match the preserved gold EXACTLY — hue, brightness, saturation, gradient, opacity, metallic appearance. Never brighten, darken, boost saturation, or shift it toward orange / yellow / bronze; never make it glossy or shiny.
+- **Tagline lock:** "FUTURE OF FINE JEWELRY" stays BLACK exactly as supplied — never gold, never grey, never faded; font/spacing/thickness/opacity unchanged. Black decorative elements stay black.
+- **Material lock (refines the §4 foil framing):** the print is **matte textile ink absorbed into the fibres** — never glossy, reflective, metallic-coating, laminate, embossed, sticker, or vector overlay. Where §4 says "hot-foil," it means flat/matte-into-the-weave, never a shiny raised foil.
+- **Texture lock:** the cloth weave/fibre/thread pattern must continue visibly THROUGH the logo; the print is never smoother than the cloth around it.
+- **Consistency lock:** every catalog image uses the IDENTICAL logo — same colour, typography, emblem, spacing, tagline, decorative lines, proportions. No per-image variation.
+- **Instruction wording (reduces model redraw tendency):** never ask the model to "generate the logo." State: *"The attached preserved logo is the only valid logo. Use it unchanged. Do not recreate or reinterpret any part of it. Treat it as an existing physical textile print already embedded into the premium white cloth."* In practice this is guaranteed only by the local composite (below) or by omitting the logo on the render — an AI-drawn logo recolours the two-tone lockup to single-tone gold every time (see `config/QUALITY_MEMORY.json#logo-tagline-color-drift`).
+
+**PERMANENT LOGO PRINTING POLICY (P0, user-locked 2026-07-21 — merged, overrides every prompt/style/preference).** The uploaded Lucent Carat Lab logo is the ONLY approved logo and a LOCKED MASTER ASSET. NEVER recreate / redraw / vectorize / regenerate / stylize / approximate / replace typography or the diamond emblem / modify spacing, kerning, proportions, line thickness, colours, the black tagline or the gold tone / crop / partially hide / generate a similar logo. **The uploaded logo ITSELF must be transferred onto the cloth** (i.e. the preserved PNG's own pixels), so the ONLY compliant method is the local composite — the AI never draws it. The print must read as real luxury textile printing: ink absorbed into the velvet fibres, following every fold/wrinkle/compression/stretch/angle and the scene lighting, inheriting the cloth texture, with the tiny imperfections of premium textile printing — NEVER perfectly-smooth edges, digital sharpness, glowing edges, floating/detached/sticker/overlay/watermark/decal/emboss/fake-metallic look. **Cloth:** premium pure-white plush VELVET only (soft dense pile, neutral white — never grey/cream/yellow/blue, never cotton weave/linen/paper/synthetic). **Focus:** jewelry always the critically-sharp hero; the logo may soften ONLY from optical depth of field, never lose its shape/typography/emblem/tagline. **Reject + regenerate** if: logo recreated/redrawn, wrong emblem/typography/spacing/kerning/gold tone, tagline changed, partial/cropped/multiple/floating logo, sticker/overlay look, logo not following the velvet folds or not embedded, cloth not premium white velvet or texture artificial, or jewelry loses focus to the logo. Done ONLY when the logo is visually indistinguishable from a real logo physically printed into premium white velvet. Reference benchmark: §9 VELVET BENCHMARK (the user's "exactly like this" image).
+
+*Method note:* pixel-exact printed-into-cloth is achieved by the local composite `scripts/print_logo_on_cloth.py` from the preserved asset (runs where the render is downloadable). This §0 defines the appearance every studio/office image must satisfy.
+
 ## 1. WHY
-Higgsfield `nano_banana_2` CANNOT reproduce the fine logo typography. Whenever it tries, it hallucinates a fake logo (observed: "ELLYREID" with a crown, garbled tagline). Therefore the AI must NEVER render the logo. The logo is a **locked graphic asset** that is **composited locally** after generation, so it stays pixel-identical.
+the Higgsfield production model CANNOT reproduce the fine logo typography. Whenever it tries, it hallucinates a fake logo (observed: "ELLYREID" with a crown, garbled tagline). Therefore the AI must NEVER render the logo. The logo is a **locked graphic asset** that is **composited locally** after generation, so it stays pixel-identical.
 
 ## 2. LOCKED ASSET POLICY
 - Source of truth: `assets/logo/logo_official.png` (repo root) — byte-for-byte copy of the user's official upload (1,079,081 bytes). Drive origin: `Lucent Carat Lab Logo.png`, file id `1QZgjplaFWenZHt048tzQntk-L-Ezy_qH`.
@@ -31,7 +62,7 @@ The logo must look **physically printed onto the fabric**, not a floating overla
 
 **FLAT HOT-FOIL FINISH (locked 2026-07-12).** The result must look like a flat metallic **gold-foil** print **professionally hot-foil stamped** into premium fabric — the foil is integrated into the textile, not a flat graphic sitting on it. The foil follows every fold, wrinkle and curvature (via displacement, macro deformation) but stays **FLAT**: explicitly **NO** floating/sticker effect, **NO** embossing, **NO** 3D extrusion, **NO** bevel or raised relief, **NO** independent light source on the logo. Point 4's edge treatment is darken-only ink absorption and must never become a 3D emboss.
 
-Plus placement rules: natural and OFF-CENTER (typically lower / lower-center / lower-right), never perfectly centered; partial visibility preferred (~60–90 % — cropped by frame, hidden behind the jewelry, or interrupted by a fold); and logo pixels remain identical (only blended into the cloth lighting, never repainted).
+Plus placement rules: natural, lower area of the frame (lower-centre / lower-right), never dead-centre under the ring. **NATURAL PHOTOGRAPHY LOGO VISIBILITY (user-locked 2026-07-21 — supersedes the interim "complete & readable, never cropped" note):** the goal is a real luxury-jewelry studio photograph, NOT showing the whole logo in every frame. The logo is composited as ONE complete physical print onto the cloth FIRST; then it is completely natural — and preferred for authenticity — for it to be partially hidden by cloth folds, jewelry placement, camera composition, depth of field, image crop, perspective or framing. Acceptable: the ring covers part of it, a fold hides part, the crop cuts part away, only the emblem or only part of the wordmark/tagline shows, one side exits the frame. The hidden portion still exists physically beneath the fold / outside the frame — it is NEVER AI-reconstructed, re-drawn, or altered. NEVER allowed (unchanged): regenerating/reconstructing any part of the logo, changing emblem geometry/typography/kerning/spacing/proportions/gold tone/black tagline, AI-replacement logo, overlay/sticker/watermark/floating/digital-looking/embossed-fake logo, or multiple logos. Never compose the shot just to fit the whole logo; prioritise the natural photograph. Jewelry is always the hero; the logo is supporting branding. Logo pixels remain identical to the master (only blended into the cloth lighting and naturally occluded, never repainted).
 
 **USER MANDATE (2026-07-12) — LOGO IS A REQUIRED PART OF THE SCENE.** Every studio shot MUST contain the Lucent Carat Lab logo physically printed on the white fabric beneath the ring. Never remove, fade, blur, crop or replace it. A clean-cloth-only studio shot is INVALID. If the logo cannot be reproduced correctly, **reject the generation** — never remove or alter it.
 
@@ -120,3 +151,68 @@ The logo MUST:
 
 ## 13. FAILURE POLICY & ASSET CACHING (user-locked 2026-07-11)
 **Reject the image** if the logo design differs from the preserved asset, the logo looks AI-generated, the logo does not merge naturally (floating/pasted/flat), the cloth material changes, the cloth becomes yellowish/non-white, or the cloth looks flat/cheap/artificial/overly simple. Full policy + remedies in `docs/11_BACKGROUND_STANDARD.md` (FAILURE POLICY). **Caching:** cache and reuse the locked logo + premium cotton cloth assets across devices/sessions; caching is byte-preserving only and must never alter image quality or asset fidelity — verify against `config/project_manifest.json` `locked_asset_checksums` before use.
+
+## 8. COMPOSITING IS A MANDATORY, RETRYABLE STAGE — THE RENDER IS IMMUTABLE (user-locked 2026-07-16)
+
+**Higgsfield returning a clean-cloth render is SUCCESS, not failure.** The studio render is a logo-free intermediate by design (§4, `CLAUDE_SETUP.md` §72). A render with no logo has not failed — it has not yet been composited.
+
+Post-render sequence, every studio/office image:
+1. Detect the white cloth.
+2. Print the preserved logo physically onto it (`scripts/print_logo_on_cloth.py`).
+3. Preserve the original logo asset exactly — pixel-identical.
+4. Never redraw or regenerate the logo with AI (P0).
+5. Never overlay it as a watermark.
+6. **Never finish the pipeline until compositing succeeds.**
+
+**If the composite step fails or the result fails the §7 gate:**
+- Retry automatically.
+- Repair the compositing script if needed.
+- **Resume from the failed step only.**
+- **Do NOT regenerate the Higgsfield image. Do NOT ask the user to regenerate it.**
+
+**The Higgsfield render is IMMUTABLE.** Only the compositing stage is retried. A logo fault is never grounds for spending credits on a new render — the fault is downstream of generation, and re-rendering also risks fresh geometry drift under the `legacy` production pipeline (`docs/15` §0).
+
+**Never mark the job complete until the final image contains the preserved printed logo on the cloth.** Compositing is not optional post-processing; it is a production stage, and the deliverable does not exist until it has run.
+
+**Known composite failure modes and their fixes** (all resolved by parameters, never by re-rendering):
+- *White box / patch behind the logo* → the opaque `logo_official.png` was used. Use `logo_official_transparent.png`.
+- *Ink dissolves, tagline vanishes* → `--soften` too high and/or `--opacity` too low. The script's documented defaults (`--scale 0.42 --opacity 0.9 --displace 6 --soften 1.0 --grain 0.06`) are tuned; deviate deliberately, not by habit.
+- *Bright halo / emboss ring around strokes* → `--soften` above ~2. Reduce it.
+- *Logo cropped by the frame* → reduce `--scale` or move `--pos` so `x+lw <= W` and `y+lh <= H`. Partial crop is permitted by §7 but never accidental.
+
+## 9. APPROVED LOGO TREATMENT — REFERENCE STANDARD (user-approved 2026-07-17)
+
+The user approved this treatment from an existing catalog (emerald-cut eternity band, white metal, white cotton). **This is the benchmark every studio/office logo must match.** Observed properties:
+
+- **Scale:** the lockup spans roughly a quarter to a third of the frame width. Present and legible, never the subject.
+- **Placement:** lower area of the frame, offset from centre, clear of the ring. The ring occupies the upper/middle; the logo sits below and behind it in the visual hierarchy.
+- **Completeness:** the full lockup is readable — diamond icon, LUCENT / CARAT / LAB, both stars, both decorative rules, FUTURE OF FINE JEWELRY tagline. Not cropped, not truncated.
+- **Tone:** soft muted gold, tone-on-tone against the white cloth. Clearly visible but never bright, never competing with the metal or the diamonds. It reads as ink, not as foil.
+- **Integration:** the ink follows the fold contours; the cloth's own soft shading passes across it; it shares the scene's depth of field rather than being uniformly sharp against a soft background.
+- **Hierarchy:** jewelry first, cloth second, logo last. In a close-crop the logo may be the only element visible and that is still acceptable — the rule is that it never *competes* when the ring is in frame.
+
+**Contrast with what was rejected (2026-07-16/17):** oversized and centred, ring overlapping it unnaturally, icon distorted, flat and uniformly sharp over the fabric, brighter than the cloth around it. See `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`.
+
+**Local composite parameters that reproduce this standard:** `--scale 0.28-0.34`, `--pos` lower-right or lower-centre, `--opacity 0.45-0.6`, `--displace 6-8`, `--soften 1.0`, `--grain 0.06`. (20% opacity was too faint and read as a ghost; 90% too assertive.)
+
+**VELVET BENCHMARK (user-locked 2026-07-21, "exactly like this", LR-0194):** the user supplied a definitive reference of the preserved logo printed on premium white plush VELVET — gold emblem line-art and gold LUCENT CARAT LAB wordmark with the BLACK tagline, the velvet pile/fibres visibly crossing the gold strokes, matte (no foil-shine), the emblem's fine lines softly absorbed into the nap, sitting in the lower frame below/behind the ring. This embedded-into-velvet look is the PERMANENT standard for every office/studio shot. **It is produced by the local composite (`print_logo_on_cloth.py`) stamping the preserved PNG onto a clean velvet plate — that is what the reference itself is.** An in-model (AI-drawn) logo only ever approximates it and must not be treated as matching this benchmark. Production flow for office/velvet shots: render a CLEAN velvet plate (ring upper, clean velvet lower half) → composite the preserved logo locally (velvet-tuned: `--pos lower-centre --scale ~0.4-0.5 --opacity ~0.5 --displace 9 --soften 1.2 --grain 0.08`). The composite runs where the render is downloadable (desktop, or pull the plate via Google Drive).
+
+## 10. OFFICIAL LOGO PRINTING POLICY (mandatory, user-locked 2026-07-17)
+
+Print the official preserved logo as a **real physical print on premium plain white cotton** — never a digital overlay, watermark, sticker, emboss, engraving, projection or AI recreation.
+
+**The logo remains 100% identical to the official asset.** Never modify: shape · typography · diamond icon · colors · metallic gold finish · gradient · stroke thickness · letter spacing · alignment · opacity · texture. Print it exactly as a professional textile printer would onto white fabric.
+
+It must follow the cloth's folds, wrinkles, weave, perspective, lighting, shadows and depth naturally, without looking artificial. The print appears slightly **absorbed into the cotton fibres** with realistic ink interaction, while staying crisp and fully legible.
+
+Do not increase brightness, saturation, contrast, sharpness, metallic effect or gloss beyond the original asset. The cloth stays pure white. **Only the cloth may deform — the logo artwork itself is never redesigned or distorted.**
+
+> **STOP CONDITION (binding): if the logo cannot be reproduced pixel-identically, STOP GENERATION rather than approximate it.**
+
+### WHAT "ONLY THE CLOTH MAY DEFORM" MEANS
+The artwork is never *redesigned* — no re-lettering, no redrawn icon, no restyled strokes. It does *displace* with the substrate it is printed on, exactly as real ink on real fabric does. Warping along the fold map is the cloth deforming and carrying the ink with it; redrawing the letterforms is not. `scripts/print_logo_on_cloth.py` implements precisely this distinction: the asset's pixels are never repainted, only displaced, blended and modulated by the cloth beneath them.
+
+### THE STOP CONDITION IS ACTIVE FOR IN-MODEL GENERATION (recorded 2026-07-17)
+A generative model **cannot** reproduce the logo pixel-identically — it re-synthesises the artwork. Verified twice this session: the icon overlapped the wordmark and the layout changed; then the icon was distorted and the print sat flat on the fabric. `docs/04` §1 records the same failure from before ("ELLYREID" with a crown). `QUALITY_MEMORY` → `lr0151-inmodel-logo-flat-overlay`, repeat_count 3.
+
+Therefore, **under this policy, generating the logo in-model is a stop condition, not a retry condition.** Pixel-identity is available from exactly one source: the preserved asset, composited (§4, §8, §9). The stop condition does not forbid delivering images — it forbids asking the model to draw the logo.

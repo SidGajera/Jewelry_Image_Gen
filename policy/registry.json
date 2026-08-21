@@ -1,0 +1,734 @@
+{
+  "_note": "Single source of truth for RULES (as specs/ is for geometry). Every rule is one entry, never restated in prose. Precedence: higher wins; the loser gets status 'superseded' + superseded_by and is NEVER deleted. 'key' identifies the decision a rule governs; two ACTIVE rules on the same key with different statements = conflict (policy/check.py STOPs). Docs reference IDs, never values.",
+  "precedence_levels": {
+    "source_fidelity": 100,
+    "safety_platform": 90,
+    "physical_plausibility": 80,
+    "user_preference": 50,
+    "document_default": 10
+  },
+  "rules": [
+    {
+      "id": "FORMAT_ASPECT",
+      "key": "format.aspect",
+      "statement": "1:1 square, 2048x2048 minimum, native, no upscale",
+      "scope": "global",
+      "precedence": 50,
+      "supersedes": [
+        "FORMAT_PORTRAIT"
+      ],
+      "enforced_by": [
+        "G1_FORMAT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "portrait_output"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "FORMAT_PORTRAIT",
+      "key": "format.aspect",
+      "statement": "all images portrait",
+      "scope": "global",
+      "precedence": 10,
+      "enforced_by": [],
+      "origin": "docs 2026-07-28",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "FORMAT_ASPECT"
+    },
+    {
+      "id": "METAL_SOURCE_GOVERNED",
+      "key": "metal.value",
+      "statement": "metal read from source into specs/<SKU>.json; no document-level default; 14K only a tiebreaker when source ambiguous AND Etsy title says 14K",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "METAL_DEFAULT_18K"
+      ],
+      "enforced_by": [
+        "spec_source_read"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "metal_wrong_vs_source"
+      ],
+      "status": "active",
+      "literal_banned_in_prose": [
+        "default 18K",
+        "Default 18K NATURAL YELLOW GOLD"
+      ]
+    },
+    {
+      "id": "METAL_DEFAULT_18K",
+      "key": "metal.value",
+      "statement": "default 18K natural yellow gold unless source otherwise",
+      "scope": "global",
+      "precedence": 10,
+      "enforced_by": [],
+      "origin": "docs 2026-07-16",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "METAL_SOURCE_GOVERNED"
+    },
+    {
+      "id": "SOURCE_FIDELITY",
+      "key": "geometry.source",
+      "statement": "the source CAD is the only truth; AI redraw disabled; geometry from source pixels only",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G2_ACCENT_COUNT",
+        "G3_ACCENT_SIZE",
+        "G4_ACCENT_RUN",
+        "G5_SETTING_STYLE",
+        "G6_STONE_RATIO",
+        "G7_SETTING_COUNT",
+        "G8_UNAUTHORIZED",
+        "G9_PIECE_COUNT"
+      ],
+      "origin": "user 2026-07-17",
+      "failure_cases": [
+        "accent_count_short",
+        "accent_run_too_short",
+        "accent_stones_oversized",
+        "duplicate_piece_in_frame",
+        "hidden_halo_added",
+        "piece_scale_drift",
+        "primary_stone_ratio_drift",
+        "raised_rail_when_flush_specified",
+        "split_or_double_setting_elements",
+        "structure_taper_drift",
+        "unauthorized_accents"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "COUNTS_4_6",
+      "key": "deliverables.counts",
+      "statement": "exactly 4 studio (white velvet) + 6 lifestyle; one image per angle/pose",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "slot_manifest"
+      ],
+      "origin": "user 2026-07-28",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_NUMERIC_MATRIX",
+      "key": "angle.matrix",
+      "statement": "camera defined by numeric azimuth/elevation/crop per slot; filenames carry no geometry; within-group pairwise separation 20az/15el",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G10_ANGLE",
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "repeated_camera_angle"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_STUDIO_SLOTS",
+      "key": "angle.studio_slots",
+      "statement": "ring studio 4 = top_down, true_side (edge-on stone), front_elevation, gallery_back (rear 3/4, filigree gallery + back of shank); gallery_back replaces macro_head",
+      "scope": "category:ring",
+      "precedence": 50,
+      "supersedes": [
+        "ANGLE_STUDIO_MACRO_HEAD"
+      ],
+      "enforced_by": [
+        "G10_ANGLE"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "wrong_angle_front_not_rear"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ANGLE_STUDIO_MACRO_HEAD",
+      "key": "angle.studio_slots",
+      "statement": "studio slot 04 = macro_head",
+      "scope": "category:ring",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "docs 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "ANGLE_STUDIO_SLOTS"
+    },
+    {
+      "id": "CONTENT_ETSY",
+      "key": "content.compliance",
+      "statement": "jewellery is the subject; no kissing/faces-in-contact/embrace/suggestive; couple never outweighs the ring",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G14_CONTENT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "face_sharper_than_ring",
+        "couple_is_subject"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "MARKS_EXCLUDE",
+      "key": "marks.exclude",
+      "statement": "exclude any source watermark/hallmark/vendor/engraved mark; inner shank plain; only the official Lucent logo permitted",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G12_MARKS"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "vendor_watermark",
+        "engraved_maker_mark"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L1_CONTINUITY",
+      "key": "plausibility.worn_continuity",
+      "statement": "band arms both terminate on the same finger/wrist; band crossing an inter-finger gap = FAIL; bracelet must close",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "ring_spans_two_fingers"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L2_PLACEMENT",
+      "key": "plausibility.placement",
+      "statement": "ring centre between MCP and PIP of one finger; webbing/over-knuckle/past-fingertip = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "ring_at_webbing"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L3_ANATOMY",
+      "key": "plausibility.anatomy",
+      "statement": "MediaPipe: 5 digits, correct joints, detection confidence >0.8; fused/extra/missing digits or impossible thumb = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G15_HAND_ANATOMY"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "malformed_hand"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "PLAUSIBILITY_L4_L8_VISUAL",
+      "key": "plausibility.visual",
+      "statement": "support/gravity, occlusion, light consistency, scale, reflection sanity \u00e2\u20ac\u201d mandatory visual checklist on EVERY render until automated",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "visual_checklist"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "SKIN_REALISM",
+      "key": "realism.skin",
+      "statement": "exposure-normalized skin high-frequency energy above threshold; plastic/over-smoothed skin = FAIL",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G16_SKIN_REALISM"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "REFS_PER_SLOT",
+      "key": "refs.per_slot",
+      "statement": "medias[0] is a distinct per-slot reference from refs/<SKU>/; --stage prompts hard-fails if any missing",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "REFS_REAL_PHOTO",
+      "key": "refs.quality",
+      "statement": "every lifestyle reference is a real camera photograph (no AI/render), unambiguous one-finger placement, real skin detail",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "refs_preflight"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "synthetic_reference_propagates_plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "FROZEN_CALL",
+      "key": "generation.call",
+      "statement": "Higgsfield generation call frozen: text-to-image, 2k/1:1/count1/one batch, medias [pose/studio ref, SOURCE piece]; no img2img/denoise/compositing of jewelry (accent-run composite exception approved)",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "SOURCE_REF_CALL"
+    },
+    {
+      "id": "SOURCE_REF_CALL",
+      "key": "generation.call",
+      "statement": "Higgsfield call feeds the matching source-CAD angle as a structure-lock REFERENCE (image-to-image / subject-preserve) so the exact ring geometry is held while only the scene changes; medias [pose/studio ref, SOURCE piece]; 2k/1:1/count1/one batch. Per HIGGSFIELD_ONLY, all delivered pixels come from Higgsfield and Python never composites/writes delivered pixels. Supersedes the earlier text-to-image/no-img2img call.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "FROZEN_CALL"
+      ],
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "text_to_image_no_source_reference",
+        "source_media_not_fed_to_call"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "SUBAGENT_BAN",
+      "key": "process.subagents",
+      "statement": "never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "PROCESS_NO_WIDGETS"
+    },
+    {
+      "id": "PROCESS_NO_WIDGETS",
+      "key": "process.subagents",
+      "statement": "never spawn subagent/background-task/agent; read source in-thread once. NO Higgsfield widgets/galleries of any kind, INCLUDING job_display, show_generations, show_marketing_studio_generations, media_upload_widget or any gallery/grid/preview/widget tool. Take a generation's URL/ID only from its own result already in hand; the user previews results in Higgsfield. Silent operation: one short final status line, no in-chat image previews.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "SUBAGENT_BAN"
+      ],
+      "enforced_by": [
+        "preflight"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "opened_higgsfield_widget",
+        "job_display_used_for_retrieval"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "LOGO_LOCKED",
+      "key": "logo.render",
+      "statement": "the Lucent logo is only the locked composited asset on studio cloth; AI never draws a logo; no AI text on studio renders",
+      "scope": "global",
+      "precedence": 90,
+      "enforced_by": [
+        "G11_LOGO"
+      ],
+      "origin": "user 2026-07-16",
+      "failure_cases": [
+        "ai_drawn_logo"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "TOKEN_BUDGET",
+      "key": "process.token_budget",
+      "statement": "<=15k tokens per catalog; savings come only from what is displayed, never from source fidelity, prompt detail, or validation",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog.budget_check"
+      ],
+      "origin": "user (05+17)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "BACKGROUND_VELVET",
+      "key": "background.studio",
+      "statement": "studio background is premium plain pure-white velvet only (low saturation, high luminance, fine fabric texture); reject coloured backgrounds, seamless paper, hard gradients, props",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G18_BACKGROUND"
+      ],
+      "origin": "docs 11",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "AUTONOMY_RUN",
+      "key": "process.autonomy",
+      "statement": "permissions granted once; run every catalog end-to-end with no check-ins; internal output only; user reviews after completion",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (19+20)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "REGRESSION_NO_REGRESS",
+      "key": "process.regression",
+      "statement": "quality only ratchets up; a gate that stops catching a past failure fails the build; goldens are permanent",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "regression_suite"
+      ],
+      "origin": "user (14+15)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "GEN_ENGINE_LOCK",
+      "key": "generation.engine",
+      "statement": "Higgsfield MCP is the only production image-generation engine; never swap providers",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (21)",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "GEN_COMPOSITE_V2"
+    },
+    {
+      "id": "PIPELINE_SOP",
+      "key": "process.pipeline",
+      "statement": "per-catalog order P0-P9: source gate -> spec -> prompts -> frozen batch -> validate -> retry -> download(deliveries/) -> manifest -> failure memory -> commit+push",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user (22)",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "THEME_PER_CATALOG",
+      "key": "deliverables.theme",
+      "statement": "one coherent theme within a catalog; a different theme per catalog rotated by SKU hash",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G17_THEME"
+      ],
+      "origin": "user (24 P5)",
+      "failure_cases": [
+        "mixed_themes_in_one_catalog",
+        "theme_repeat_across_catalogs"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "REALISM_ANTI_AI",
+      "key": "realism.anti_ai",
+      "statement": "genuine photography, varied non-generic models/wardrobe; banned beige/cream/oatmeal knit, neutral couch, seamless backdrop in a lifestyle frame",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G16_SKIN_REALISM"
+      ],
+      "origin": "user (24 P6)",
+      "failure_cases": [
+        "plastic_skin"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "OUTPUT_STORE",
+      "key": "process.output_store",
+      "statement": "all render outputs live in the single store deliveries/<SKU>/ (gitignored); images never committed",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [],
+      "status": "active"
+    },
+    {
+      "id": "SOURCE_COVERAGE_REQUIRED",
+      "key": "geometry.no_invention",
+      "statement": "every item a studio slot reveals must be established by a supplied source view (config/view_coverage.json); + azimuth within 45deg; else block. No inference, no category priors, no defaults",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G_INVENT"
+      ],
+      "origin": "user 2026-07-30",
+      "failure_cases": [
+        "invented_full_circumference_pave",
+        "invented_split_prongs_from_front_view",
+        "invented_hidden_halo_from_front_view"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "GEN_COMPOSITE_V2",
+      "key": "generation.engine",
+      "statement": "Jewellery is composited from source CAD cutouts (whole-asset affine transform only); Higgsfield generates BACKGROUND PLATES ONLY (call shape unchanged: 2k,1:1,count1,one batch); no jewellery word or geometry in any prompt.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "GEN_ENGINE_LOCK"
+      ],
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_generated_not_composited",
+        "geometry_drift_from_text_to_image"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "G19_COMPOSITE_PROVENANCE",
+      "key": "generation.provenance",
+      "statement": "every delivery carries its source cutout name + sha256 and asserts whole-asset affine only; no sidecar or hash mismatch = no ship. Pixel-counters G2-G9 retired for composites; geometry verified by cutout hash.",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "missing_provenance",
+        "cutout_hash_mismatch"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "HIGGSFIELD_ONLY",
+      "key": "generation.engine",
+      "statement": "ALL delivered pixels come from Higgsfield generate_image. Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write). Python allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "GEN_COMPOSITE_V2",
+        "G19_COMPOSITE_PROVENANCE"
+      ],
+      "enforced_by": [
+        "run_catalog"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "python_wrote_delivered_pixels",
+        "silent_delivery_on_geometry_fail"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "SUBJECT_SCALE_MIN",
+      "key": "deliverables.subject_scale",
+      "statement": "lifestyle jewellery bounding box >= 12% of frame area (>= 25% on the two macro lifestyle slots); below threshold the model cannot resolve real geometry and substitutes a generic piece -> FAIL, regenerate with tighter framing.",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G20_MIN_SUBJECT_SCALE"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "ring_too_small_generic_substitute"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "STONE_EQUALITY_LOCK",
+      "key": "geometry.stone_equality",
+      "statement": "every stone in the output equals its source counterpart: count, shape per stone, cut/facet pattern, absolute size, size RELATIVE to every other stone, orientation/tilt, setting/prong style, spacing/arrangement. Band profile/width/contour/silhouette/taper/metal identical. Only camera angle and scene may change. Locked numeric ratios live in specs/<SKU>.json.stone_equality and are stated in every prompt.",
+      "scope": "global",
+      "precedence": 100,
+      "enforced_by": [
+        "G21_STONE_RATIO"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "centre_stone_at_flanker_size",
+        "stone_count_wrong",
+        "relative_size_drift"
+      ],
+      "status": "aspirational"
+    },
+    {
+      "id": "GEOMETRY_FROM_SOURCE",
+      "key": "generation.engine",
+      "precedence": 100,
+      "statement": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) \u2014 never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+      "scope": "global",
+      "supersedes": [
+        "HIGGSFIELD_ONLY"
+      ],
+      "enforced_by": [
+        "G19_composite_provenance"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_generated_not_placed",
+        "stone_ratio_drift"
+      ],
+      "status": "superseded",
+      "superseded_by": "HIGGSFIELD_ONLY"
+    },
+    {
+      "id": "RING_SCALE_ON_HAND",
+      "key": "plausibility.ring_scale",
+      "precedence": 80,
+      "statement": "on every on-hand/lifestyle image the ring is at true real-life scale: the centre stone sits WITHIN the finger's width (stone width <= finger width), never wider/oversized/cocktail-huge; an elongated stone spans ALONG the finger but must not overhang the finger sides. Reject if the diamond looks oversized for the hand.",
+      "scope": "global",
+      "enforced_by": [
+        "G22_STONE_WITHIN_FINGER"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "diamond_oversized_on_hand",
+        "stone_wider_than_finger"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "JEWELRY_PRESERVATION",
+      "key": "geometry.preservation",
+      "precedence": 100,
+      "statement": "Jewellery redesign/redraw PROHIBITED: diamond shape/size/cut/facet/count/placement, prongs/setting/gallery/band and metalwork come ONLY from the source CAD, unchanged (target: D2D pixel-perfect), on EVERY image including lifestyle. Only the camera angle may change. Read ALL source angles before generating; never generate an angle without a source view. Materials must look 100% real (no plastic/CZ/CGI). Aspirational under HIGGSFIELD_ONLY (text-to-image cannot guarantee D2D); kept as the locked target and enforced where measurable (G22 scale, G20 framing, G12 marks, G-INVENT coverage).",
+      "scope": "global",
+      "enforced_by": [
+        "G_INVENT",
+        "G20_MIN_SUBJECT_SCALE",
+        "G22_STONE_WITHIN_FINGER"
+      ],
+      "origin": "user 2026-07-31",
+      "failure_cases": [
+        "jewellery_redrawn",
+        "diamond_shape_changed",
+        "stone_added_or_removed"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "MODEL_ENGINE_PRIOR_LOCK",
+      "key": "generation.model",
+      "statement": "engine frozen to Higgsfield nano_banana_2 (2k, 1:1); never switch/redesign/migrate to Nano Banana Pro or any other generator; visual-generation behaviour must not change",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [],
+      "origin": "user 2026-07-16",
+      "failure_cases": [],
+      "status": "superseded",
+      "superseded_by": "MODEL_LOCK"
+    },
+    {
+      "id": "MODEL_LOCK",
+      "key": "generation.model",
+      "statement": "Nano Banana 2 is the ONLY image-generation model — every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry — count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [
+        "MODEL_ENGINE_PRIOR_LOCK"
+      ],
+      "enforced_by": [
+        "run_catalog",
+        "G2_ACCENT_COUNT",
+        "G7_SETTING_COUNT",
+        "G21_STONE_RATIO"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "wrong_model_used",
+        "flash_edit_path_used",
+        "geometry_drift_shipped_without_label"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "DIAMOND_CLARITY",
+      "key": "realism.clarity",
+      "statement": "Every stone crystal/water-clear on every slot: colourless, fully transparent, glass-bright, flawless, crisp sharply-defined facet edges, true white brilliance with sharp fire and defined scintillation, clean bright table/crown, crisp pavilion reflections, every stone equally clean and bright. Verbatim positive clause + verbatim banned-terms in every prompt. G24 checks (a) per-stone luminance, (b) facet-edge sharpness, (c) colour neutrality, (d) consistency; any fail auto-regenerates. Lifestyle: piece must sit in direct light, not hand shadow (shadowed stone fails regardless of prompt). Thresholds calibrated against tests/golden clarity goldens (FP=0).",
+      "scope": "global",
+      "precedence": 80,
+      "enforced_by": [
+        "G24_CLARITY_CHECK"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "cloudy_or_milky_stone",
+        "yellow_or_grey_cast",
+        "soft_smeared_facets",
+        "stone_dulled_in_hand_shadow",
+        "unevenly_lit_stones"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "METAL_KARAT_18K",
+      "key": "metal.karat",
+      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render — STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
+      "scope": "global",
+      "precedence": 50,
+      "enforced_by": [
+        "G25_GOLD_CHECK",
+        "spec_source_read"
+      ],
+      "origin": "user 2026-08-01",
+      "failure_cases": [
+        "karat_not_18k",
+        "metal_colour_mismatch_vs_source",
+        "listing_metal_mismatch",
+        "white_gold_source_generated_without_decision"
+      ],
+      "status": "active"
+    }
+  ]
+}

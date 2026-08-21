@@ -1,6 +1,6 @@
 {
   "project_name": "Lucent Carat Lab — Claude Catalog Image Generation Automation",
-  "current_version": "1.4.0",
+  "current_version": "1.3.23",
   "latest_commit_hash": "see git log on main",
   "latest_commit_date": "2026-07-13T00:00:00+00:00",
   "repository_name": "Claude_Lucent_Image_Gen",
@@ -19,7 +19,6 @@
     "docs/02_SYSTEM_RULES.md",
     "docs/03_IMAGE_GENERATION_RULES.md",
     "docs/04_LOGO_WORKFLOW.md",
-    "docs/05_TOKEN_OPTIMIZATION.md",
     "docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md",
     "docs/06_CACHE.md",
     "docs/10_CURRENT_STATE.md",
@@ -35,5 +34,6 @@
   "backup_type": "Full Portable Backup",
   "compatibility": "Claude Code",
   "notes": "Self-describing recovery: Git tags cannot be pushed from the generating environment (proxy denies refs/tags/* with 403). Do NOT rely on tags. Recover using this file: read CLAUDE_SETUP.md -> config/VERSION.json -> the documented file order. The repository is the single source of truth. Image-generation, logo (locked, printed-on-cloth), background (locked white cloth), and token-optimization rules are unchanged.",
-  "last_synced": "2026-07-12T05:45:00Z"
+  "last_synced": "2026-07-12T05:45:00Z",
+  "version_authority": "docs/09_CHANGELOG.md is the authoritative version history; config/project_manifest.json current_version must match it. VERSION.md is a historical milestone record, not the current version."
 }

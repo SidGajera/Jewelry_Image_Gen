@@ -16,8 +16,8 @@ Portable, reproducible system for generating **12 marketing catalog photos per j
 Locate source in Drive → **study the ring once** (cache the design profile) → import source + branded cloth + logo + rotated poses → **generate 12** with the strict locked-geometry prompts → **auto-QC vs source** → **auto-fallback on any drift** → user approves → deliver + record. Full loop in [`docs/10_CURRENT_STATE.md`](docs/10_CURRENT_STATE.md); five studio angles + rotation in [`docs/12_STUDIO_ANGLES_STANDARD.md`](docs/12_STUDIO_ANGLES_STANDARD.md).
 
 ### Generation
-- **Model** `nano_banana_2`, `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, 2 credits/image. Medias: source CAD views **first** (max geometry weight), then optional branded cloth + official logo, then the pose reference.
-- Server may label the multi-image edit path `nano_banana_flash` — expected; `resolution:"2k"` governs quality.
+- **Model** the production model (`config/project_manifest.json`), `resolution:"2k"`, `aspect_ratio:"1:1"`, `count:1`, 2 credits/image. Medias: source CAD views **first** (max geometry weight), then optional branded cloth + official logo, then the pose reference.
+- The server may label the multi-image edit path with an internal routing alias — expected; `resolution:"2k"` governs quality.
 
 ## Geometry-immutable auto-fallback (the core guarantee, v1.4.0)
 Jewelry geometry is **immutable**; only camera/composition/cloth/background/lighting/DoF may change. Per shot, automatically (never asking which method):
@@ -25,7 +25,7 @@ Jewelry geometry is **immutable**; only camera/composition/cloth/background/ligh
 2. **Auto-QC vs source** — head, halo diameter + rim, center-to-halo ratio, prong count/positions, shank, gallery, metal thickness, silhouette; lighting; logo.
 3. On **any** drift → do NOT deliver; fall through: **(1)** composite the *real source-ring pixels* into the AI scene ([`scripts/composite_ring_into_scene.py`](scripts/composite_ring_into_scene.py)); **(2)** if the angle is unreachable, render it from the CAD file, then composite.
 
-Honest limit: `nano_banana` biases toward the CAD but cannot guarantee <1% geometry — that is *why* the fallback ladder exists. Details in [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (`geometry-immutable-auto-fallback`) and [`docs/12`](docs/12_STUDIO_ANGLES_STANDARD.md) §A3.
+Honest limit: the production model biases toward the CAD but cannot guarantee <1% geometry — that is *why* the fallback ladder exists. Details in [`config/QUALITY_MEMORY.json`](config/QUALITY_MEMORY.json) (`geometry-immutable-auto-fallback`) and [`docs/12`](docs/12_STUDIO_ANGLES_STANDARD.md) §A3.
 
 ## Locked standards (this repo enforces, auto-applied from `QUALITY_MEMORY.json`)
 - **Logo — required, in-scene, two-tone:** every studio shot carries the logo, hot-foil printed *into* the fabric (follows folds, weave shows through, matched lighting, no float/emboss). It is **two-tone**: emblem + "LUCENT CARAT LAB" gold, **"FUTURE OF FINE JEWELRY" black** — never gold-ified. Exact-typography fallback = local composite ([`scripts/print_logo_on_cloth.py`](scripts/print_logo_on_cloth.py)).

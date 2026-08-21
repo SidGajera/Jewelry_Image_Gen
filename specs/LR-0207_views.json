@@ -1,0 +1,46 @@
+{
+  "_note": "Supplied source view coverage for LR-0207 'Bella' (5 CAD renders). Flat keys (top/front/true_side/back_gallery -> filename) feed validate_source; the 'views' list (type+azimuth) feeds G-INVENT/SOURCE_COVERAGE_REQUIRED. Types assigned to the view whose pixels directly establish that type's attributes.",
+  "top": "v1.jpg",
+  "front": "v3.jpg",
+  "true_side": "v4.jpg",
+  "back_gallery": "v2.jpg",
+  "views": [
+    {
+      "name": "front_three_quarter_elevated",
+      "file": "v1.jpg",
+      "type": "top",
+      "azimuth": 15,
+      "elevation": 40,
+      "establishes_note": "4 double claws, oval L/W, both shoulder clusters (symmetry), head accent layout all directly visible"
+    },
+    {
+      "name": "front_shoulder_macro",
+      "file": "v3.jpg",
+      "type": "front",
+      "azimuth": 20,
+      "elevation": 20
+    },
+    {
+      "name": "true_side_profile",
+      "file": "v4.jpg",
+      "type": "true_side",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "name": "back_gallery",
+      "file": "v2.jpg",
+      "type": "back_gallery",
+      "azimuth": 200,
+      "elevation": 20
+    },
+    {
+      "name": "rear_three_quarter",
+      "file": "v5.jpg",
+      "type": "back_gallery",
+      "azimuth": 235,
+      "elevation": 20
+    }
+  ],
+  "model": "nano_banana_2"
+}

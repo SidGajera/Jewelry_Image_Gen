@@ -1,0 +1,18 @@
+{
+  "_note": "supplied source view types (G-INVENT). LR-0205 = front + angled 3/4 only. MISSING: top, true_side, back_gallery.",
+  "views": [
+    {
+      "name": "front",
+      "type": "front",
+      "azimuth": 0,
+      "elevation": 15
+    },
+    {
+      "name": "three_quarter",
+      "type": null,
+      "azimuth": 30,
+      "elevation": 25
+    }
+  ],
+  "model": "nano_banana_2"
+}

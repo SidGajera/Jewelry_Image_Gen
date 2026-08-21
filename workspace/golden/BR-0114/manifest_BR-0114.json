@@ -1,0 +1,30 @@
+{
+  "sku": "BR-0114",
+  "category": "bracelet",
+  "title": "CRYSTALIGHT floral-vine bracelet — round-diamond flowers + marquise leaves, yellow gold",
+  "model": "nano_banana_pro (engine nano_banana_2)",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "img2img_source_preserve",
+  "source": "4 Etsy photos (il_794xN...) pulled via authenticated Drive connector; not link-shared",
+  "source_media": {"s1_macro": "87503672-3912-41cb-bbcc-e125ba5e697e", "s2_front": "4af8c006-21e8-4f5e-85cd-ccbb9bd7e834", "s3_clasp": "1152e4ad-120f-42a0-a2d6-02b7dd980c50", "s4_wrist": "52bfe54a-42bd-48a3-a49c-b64481b3c94d"},
+  "design_lock": "yellow-gold floral VINE: round-diamond flowers (best-read 6 round each: 5 petals + centre) alternating with marquise leaf-pairs (best-read ~4 flowers + 3 leaf-pairs); fine cable chain; SINGLE clasp (G23)",
+  "theme": "garden_botanical (sage/ivory/blush, greenery) — distinct from LR-0213 winter, LR-0214 summer_linen, BR-0110 golden_hour_cafe",
+  "composition": "4 studio velvet (loop/flat/macro/clasp) + 6 lifestyle (wrist)",
+  "renders_dir": "deliveries/BR-0114",
+  "count_caveat": "counts are BEST-READ from 4 wrist close-ups (no clean full lay-flat). Motif certain (round flowers + marquise leaf-pairs, single clasp); flower/petal/leaf totals approximate. User said go.",
+  "jobs": {
+    "01_velvet_loop": "4f9fa1f0-a845-476b-b394-beafc28c1991",
+    "02_velvet_flat": "ab041dad-0731-4e9c-8027-2deee5e14a34",
+    "03_velvet_macro": "56771345-4fe3-4ee7-938c-11bc0432b793",
+    "04_velvet_clasp": "27c8b215-7a69-4d40-9281-5280770ea9fe",
+    "05_life_wrist": "0c45514d-b8b2-41cc-b900-6a131b425ed5",
+    "06_life_forearm": "9453cf05-343d-4881-968e-12c289fc6a95",
+    "07_life_garden_macro": "476dd718-f7b3-4fa9-bc6f-81c46da1ff80",
+    "08_life_raised": "6740c857-2d59-4d15-bf02-ca7793d90e75",
+    "09_life_desk_macro": "f57fbb51-678b-4358-bc81-e750524ffe3d",
+    "10_life_wrist_macro": "2281c4ee-8e53-4e75-af96-4b6b43ab20bc"
+  },
+  "status": "generated_pending_P5_validate (G21 flower/petal + G23 single clasp + G24 clarity)"
+}

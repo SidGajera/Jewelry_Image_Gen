@@ -1,0 +1,35 @@
+{
+  "sku": "LR-0214",
+  "category": "ring",
+  "title": "Bella — 2ct oval claw solitaire with clustered round shoulder stones, 18k yellow gold",
+  "model": "nano_banana_pro (engine nano_banana_2)",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "img2img_source_preserve",
+  "source": "5 CAD renders, Drive 1pjAHi5qbd73Mgwj2tOUgJyy6aSjLMfLT",
+  "source_media": {"s1": "6dc16843-e75a-43b9-8e44-6511a1895aa2", "s2": "e16c1d63-d8c0-44cf-b02a-25688ff254a6", "s3": "5614dc68-ede7-42df-aa56-ebf6222b66ae", "s4": "e58d1286-d522-4a8d-a77d-a455b37900cb", "s5": "2cbd23b1-4a8c-48a7-b051-839a94e7ed94"},
+  "stone_lock": "1 oval centre (double-claw, open basket) + 14 round scattered shoulder accents (7/side) = 15 total; 18k yellow gold (count corrected from listing's 10 to source-true 14 during P5)",
+  "p5_validate": {
+    "G24_CLARITY_CHECK": "PASS — studio 01/03 stones water-clear, bright, crisp facets, colourless",
+    "G21_STONE_MATCH": "PASS vs source — studio 01 and 03 both show 7 round/shoulder (14 round + 1 oval), consistent, matching the source; spec corrected 10->14 (listing figure was wrong)",
+    "note": "renders are source-faithful and clean; no regeneration needed. Lifestyle 05-10 await user visual QC."
+  },
+  "theme": "summer_linen (warm sand/cream/pale blue, linen wardrobe) — distinct from LR-0213 winter_window",
+  "composition": "4 studio velvet + 6 lifestyle (3 tight macro: 05/07/09)",
+  "renders_dir": "deliveries/LR-0214",
+  "jobs": {
+    "01_top_down_flatlay": "4cb0fe94-e2e0-4a77-9022-6e32379648f0",
+    "02_true_side_profile": "2909d890-4c15-43a0-bd3e-9d9b48bbaeba",
+    "03_front_elevation": "585b3d27-a1b4-44d4-9b2f-57e33c3664e7",
+    "04_gallery_back": "9d10be0f-c9c1-46dc-ae2b-b19dd5db01fa",
+    "05_low_hero": "0e6af8bb-2acc-4621-bae8-ac28528aad02",
+    "06_reach_to_camera": "bb3bd7c2-9996-4908-a9ae-5ced68bc5cce",
+    "07_hands_held": "50f819c2-af8b-473f-8b13-f77543177185",
+    "08_hands_stacked_editorial": "dfd0d92c-ba1e-48a3-9600-9d4430c9deb7",
+    "09_beauty_closeup": "06f8216d-71c9-4567-9e8a-8d249ff0a24b",
+    "10_sunset_raised_hand": "21afb61c-0b25-4bc9-8998-fd56949812b0"
+  },
+  "discarded": {"01_first_attempt_wrong_model": "a25be1bb-995a-443c-8382-002ce34a9338 (ran nano_banana_flash, not nano_banana_2)"},
+  "status": "generated_pending_P5_validate (G21 STONE_MATCH + G24 CLARITY_CHECK on renders)"
+}

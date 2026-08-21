@@ -1,0 +1,47 @@
+{
+  "sku": "LR-0101",
+  "category": "ring",
+  "title": "Dutch-marquise three-stone ring — hand-engraved scroll shoulders, 18K yellow gold",
+  "source": "8 Etsy product photos (GLOVES-0101 x6 product views + ON HAND-0101 x2), main folder, via authenticated Drive connector. Yellow gold, clean (no watermark in main-folder views).",
+  "source_watermarked": false,
+  "metal": "yellow_gold",
+  "karat": "18k",
+  "finish": "high_polish",
+  "structure": "three-stone: one elongated Dutch-marquise centre flanked by two step-cut side stones; cathedral shoulders rising to an open basket; hand-engraved scroll/vine filigree with milgrain edges along both shoulders; plain polished rounded shank underside",
+  "stone_count": {
+    "_phase1": "read gloves_0101_1..5 (product views); on_hand x2 = worn refs",
+    "total_stones": 3,
+    "by_shape": {"dutch_marquise": 1, "emerald_cut_trapezoid_side": 2},
+    "feature_at_12": "point of the Dutch-marquise centre stone (double-claw prong)",
+    "positions": {
+      "centre": "elongated Dutch-marquise (hexagonal marquise), long axis vertical, sharp points at 12 and 6 o'clock",
+      "3_oclock": "emerald-cut / trapezoid step-cut side stone",
+      "9_oclock": "emerald-cut / trapezoid step-cut side stone"
+    },
+    "centre_lw_ratio": "~1.9 (best-read; elongated)",
+    "prongs": {
+      "centre": "6 claws best-read: double-claw at the 12 point + double-claw at the 6 point + one prong at each side vertex (3 & 9)",
+      "side_stones": "4-prong each (claw at each corner)"
+    },
+    "halo": "none",
+    "hidden_halo": "none",
+    "basket": "open (marquise-shaped negative space under the crown; no metal/accents under the stone)",
+    "band": {"pave": "none", "shoulder": "hand-engraved scroll/vine filigree + milgrain edges", "profile": "thin-to-medium rounded, cathedral rise", "underside": "plain polished"},
+    "certainty": true,
+    "notes_measured_vs_supplied": "MEASURED: 3 stones (1 marquise + 2 step-cut sides), yellow gold, engraved scroll shoulders, open basket, no halo. Side-stone exact shape (emerald rectangle vs trapezoid) reads slightly trapezoidal face-on, rectangular at angle -> recorded as emerald-cut/trapezoid step-cut. SUPPLIED (not visually measurable, not written): carat, mm, ring size, karat grade, clarity/colour grade."
+  },
+  "deliverables_override": "USER 2026-08-01: LR-0101 = 5 LIFESTYLE close-up images ONLY. No studio/velvet slots this catalog.",
+  "scene": {
+    "lifestyle": "ONE theme: sunlit tropical garden, warm golden-hour light, lush green foliage bokeh (echoes the source setting), real hand/skin; jewellery is the hero, tight macro"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "source_media_id": "4909b297-48f2-49ec-8123-0adf2b811fd1",
+  "field_provenance": {
+    "measured_from_image": ["metal colour = yellow_gold", "3 stones (1 dutch-marquise + 2 step-cut sides)", "open basket / no halo", "engraved scroll shoulders + milgrain", "no band pave"],
+    "supplied_required_not_written": ["carat", "mm", "ring size", "karat grade", "clarity/colour grade"]
+  },
+  "scale_reference": null,
+  "status": "STUDIED (P1 complete, geometry certain). Deliverables = 5 lifestyle macro only (user override)."
+}

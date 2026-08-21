@@ -40,7 +40,7 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 
 ### P5 — OUTPUT FORMAT
 - ALL images 1:1 aspect and 2K resolution. Ring tack-sharp; only background blurs.
-- Model: Higgsfield `nano_banana_2`, `resolution:"2k"`. (Server may label the multi-image edit path `nano_banana_flash` internally; the controllable that matters is `resolution:"2k"`.)
+- Model: the Higgsfield production model, `resolution:"2k"`. (Server may label the multi-image edit path `an internal routing alias` internally; the controllable that matters is `resolution:"2k"`.)
 
 ### P6 — LIFESTYLE THEME
 - Cozy warm US-home; consistent theme; different pose each shot; natural hand with exactly five fingers, natural skin, neutral manicure. NO laptops/desks/offices. No invented logo in lifestyle/closeups.
@@ -66,6 +66,6 @@ Zero AI generation is permitted on the jewelry. The jewelry in the source image 
 - Model garbles any logo it tries to render → "ELLYREID". Never let it render the logo.
 - Doubled center diamond appears on large worn/lifestyle angles → enforce single facet pattern.
 - Wrong lifestyle theme (hand on laptop) → force cozy home, forbid desks/laptops.
-- `generate_image` needs explicit `resolution:"2k"` (default is 1k) and `params.model:"nano_banana_2"`.
+- `generate_image` needs explicit `resolution:"2k"` (default is 1k) and `params.model` set from `config/project_manifest.json`.
 - Higgsfield `media_id`s expire across sessions → durable cache is the Drive file IDs (re-import when a call rejects an id).
 - Use the correct source file; ignore strays (LR-0167 "Copy of 7/4" were from another ring).

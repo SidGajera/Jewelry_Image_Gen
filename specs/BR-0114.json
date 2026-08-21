@@ -1,0 +1,71 @@
+{
+  "sku": "BR-0114",
+  "category": "bracelet",
+  "title": "CRYSTALIGHT floral-vine bracelet \u2014 round-diamond flowers + marquise leaves, yellow gold",
+  "source": "4 Etsy product photos (il_794xN...), pulled via authenticated Drive connector. All are wrist/close-up shots; no clean full lay-flat.",
+  "source_watermarked": true,
+  "watermark_note": "source carries a semi-transparent 'CRYSTALIGHT' vendor watermark (G12 zero-tolerance). It bled into the first render pass via i2i; full negative block now applied. If it persists, a clean unwatermarked source is required.",
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "structure": "front decorative VINE (curved gold branch) carrying alternating flower + leaf-pair motifs; back is a fine plain cable chain to a single clasp",
+  "chain": {
+    "type": "fine_cable"
+  },
+  "clasp": {
+    "type": "lobster_or_spring_ring",
+    "count": 1,
+    "note": "single clasp on the back chain (G23 ok)"
+  },
+  "motifs": {
+    "flower": {
+      "petals": {
+        "shape": "round",
+        "count_per_flower": "5 petals + 1 centre = 6 round (best read)"
+      }
+    },
+    "leaf_pair": {
+      "shape": "marquise",
+      "count_per_pair": 2,
+      "arrangement": "V-pair leaves along the vine between flowers"
+    }
+  },
+  "stone_count": {
+    "_phase1": "read s1+s2+s4 (front vine close-ups) + s3 (back chain/clasp)",
+    "certain": {
+      "design": "floral vine: round flowers alternating with marquise leaf-pairs on a gold vine; single clasp; yellow gold"
+    },
+    "uncertain": "EXACT counts not certain from wrist close-ups: (a) number of flowers on the front vine (best read ~4), (b) petals per flower (5+1 centre vs 6), (c) number of marquise leaf-pairs (~3-4). No full lay-flat supplied.",
+    "certainty": false,
+    "blocked_reason": "COUNT_FROM_SOURCE: flower/petal/leaf counts not establishable with certainty from the 4 close-up photos.",
+    "missing_view_requested": "a clean full lay-flat of the front vine (whole decorative section flat) to count flowers, petals-per-flower, and leaf-pairs exactly"
+  },
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft folds, bright neutral-white daylight, no logo",
+    "lifestyle": "one theme per catalog; bracelet on wrist, jewellery is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "source_media_id": null,
+  "field_provenance": {
+    "measured_from_image": [
+      "metal colour = yellow_gold",
+      "structure = floral vine",
+      "motif shapes = round flowers + marquise leaf-pairs",
+      "clasp = single lobster/spring",
+      "chain = fine cable"
+    ],
+    "supplied_required_not_written": [
+      "metal karat (14K vs 18K indistinguishable by eye \u2014 not written)",
+      "carat weight",
+      "mm dimensions",
+      "clarity/colour grade"
+    ],
+    "measured_but_uncertain": [
+      "flower total, petals-per-flower, leaf-pair count \u2014 best-read only, no full lay-flat"
+    ]
+  },
+  "scale_reference": null,
+  "scale_note": "no mm dimension supplied and no scale reference in the photos -> mm/size NOT written. Supply centre-flower diameter or chain gauge mm to unlock dimensions.",
+  "status": "generated (best-read counts, user said go); PENDING P5 validate + optional count/scale confirm"
+}

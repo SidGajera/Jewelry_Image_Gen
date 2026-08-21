@@ -1,0 +1,23 @@
+{
+  "sku": "LR-0143",
+  "category": "ring",
+  "subtype": "three_stone_halo",
+  "run_scope": "lifestyle_only_5",
+  "note": "Studio skipped (previously generated). 5 lifestyle only. Source '(Round)'.",
+  "metal": { "value": "yellow", "karat": "18K", "confidence": "certain", "basis": "user-specified 18K gold; source shown in white/yellow/rose, use yellow frames" },
+  "stones": {
+    "layout": "three-stone: 1 large round-brilliant centre + 2 smaller round-brilliant sides, all in a row across the top",
+    "halo": "each of the 3 stones has its own round pave halo of small round accents",
+    "shape": "round brilliant (centre + sides + halo accents)",
+    "orientation": "N/A — round stones are rotationally symmetric (no east-west/north-south)",
+    "setting": "prong-set centre + sides; shared pave halos; cathedral / open-gallery shank",
+    "confidence": { "layout": "certain", "halo": "certain", "shape": "certain", "setting": "certain" }
+  },
+  "band": { "profile": "plain rounded shank, tapering, cathedral rise to the haloed heads", "confidence": "certain" },
+  "counts_note": "3 main round stones (certain). Exact halo accent counts not individually tallied; i2i preserves them from the source frame. Round halo has no baguette/orientation failure mode (G26/G27 N/A).",
+  "supplied_fields": { "carat": "not supplied", "mm": "not supplied", "ring_size": "not supplied", "karat": "18K (user)" },
+  "geometry_lock": "i2i with the yellow-gold source frame as ground truth; keep 3-stone halo layout, round stones, yellow metal; no redraw of design; no extra stones/halos.",
+  "i2i_source_frame": "workspace/golden/LR-0143/source/r9.jpg",
+  "canvas": "2048x2048",
+  "model": "nano_banana_2"
+}

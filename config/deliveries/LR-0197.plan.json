@@ -1,0 +1,42 @@
+{
+  "sku": "LR-0197",
+  "name": "Hexagon (bezel + hidden halo)",
+  "created": "2026-07-24",
+  "composition": "3 velvet studio + 7 closed-hand (4 close-up + 3 wider), docs/10",
+  "source_folder": "18O3Rtj7cjdX-65MGbzrwNtpFNelM2VbJ",
+  "source_refs": ["1.png head detail (1DiuXYDSXzgOHQ7myJfWeJmwP-Ns8yxbe)", "2.png side profile (15Ue6zAgYtdFFyDhYkJuC9ZjpT2qUVB6Z)"],
+  "design_profile": "BEZEL-SET SOLITAIRE, yellow gold. CENTRE: one elongated HEXAGON step-cut diamond, six-sided outline, two long parallel sides, angled clipped corners, set EAST-WEST (long axis across the finger), FULLY BEZEL-SET in a continuous smooth polished rim following every angle of the hexagon. NO prongs or claws anywhere. HIDDEN HALO: single row of small round brilliant pave around the UNDERSIDE of the bezel, following the hexagonal outline, visible only from side/three-quarter angles - never a halo on the top face. SHANK: thin plain polished ROUND band with a small open shoulder void at the head. No side stones, top halo, shoulder pave or milgrain.",
+  "hexagon_family_disambiguation": {
+    "LR-0193": "THREE-STONE - trapezoid/shield sides, thin round tapering shank, V-trellis cathedral gallery, prong-set",
+    "LR-0195": "THREE-STONE - tapered baguette sides, FLAT squared shank, hexagonal openwork basket, prong-set",
+    "LR-0196": "SOLITAIRE - no side stones, FOUR double-claw prongs, compact open basket, thin round band",
+    "LR-0197": "BEZEL solitaire - NO prongs at all, continuous gold rim, HIDDEN HALO pave under the bezel, thin round band"
+  },
+  "provider": { "model": "nano_banana_2", "resolution": "2k", "method": "Higgsfield image-to-image, source-locked to matching CAD angle (no AI redraw, no local compositing)" },
+  "source_media": {
+    "view1_hero3q": "b7765417-9b38-4bfb-a034-eadb980d4852",
+    "view2_side":   "ca7d0e63-8754-4772-ae33-97224899fbcc",
+    "view3_back3q": "5f446050-2e8e-456b-a026-cc4ea982e20f",
+    "view4_front":  "88894bc0-70cf-43ed-8905-fef0008b8c1a"
+  },
+  "regenerated_2026-07-27": "Superseded the 2026-07-24 batch. Only 4 source CAD angles exist -> only 4 studio angles produced. Ring corrected to POINTED elongated hexagon (was mis-specced clipped). Lifestyle reframed jewelry-first (ring hero, people soft).",
+  "slots": [
+    { "n": 1,  "group": "office-velvet", "angle": "hero-3q",       "ref": "view1", "job": "c0c32da8-0053-46c7-a0e4-05f59a23f871" },
+    { "n": 2,  "group": "office-velvet", "angle": "side-profile",  "ref": "view2", "job": "df3600e5-52bc-40fe-9b28-3035990bee11" },
+    { "n": 3,  "group": "office-velvet", "angle": "back-3q",       "ref": "view3", "job": "3e9759ce-2e45-4b60-958f-69a00d59ac70" },
+    { "n": 4,  "group": "office-velvet", "angle": "front-upright", "ref": "view4", "job": "5f1a0816-5335-4a87-8d0e-646313e08b79" },
+    { "n": 5,  "group": "lifestyle", "pose": "macro back-of-hand raised",   "ref": "view1", "job": "122625fc-8e52-4fab-a126-f31f61c0f0f9" },
+    { "n": 6,  "group": "lifestyle", "pose": "macro hand-on-shoulder",      "ref": "view1", "job": "cfdb22f2-5d60-4f62-b4f3-928b78620ce8" },
+    { "n": 7,  "group": "lifestyle", "pose": "macro hand-near-face",        "ref": "view1", "job": "49c7d3a4-141c-4814-a90a-598a8b7f3b6b" },
+    { "n": 8,  "group": "lifestyle", "pose": "macro side-profile (halo)",   "ref": "view2", "job": "9e63c75a-fe31-4543-b834-d3fa8e380876" },
+    { "n": 9,  "group": "lifestyle", "pose": "ring-hero hand at rest",      "ref": "view1", "job": "61cd6fca-a04f-48da-89ef-0a4ec8e2ce26" },
+    { "n": 10, "group": "lifestyle", "pose": "ring-hero hands clasped",     "ref": "view1", "job": "02511031-ee40-4cd3-a644-8108fdab1992" }
+  ],
+  "guards": [
+    "This ring has NO prongs - continuous bezel; reject any prong/claw.",
+    "Hidden halo sits UNDER the bezel (side view only) - never a top-face halo.",
+    "Centre = POINTED elongated hexagon, slim; reject emerald/cushion/flat-top.",
+    "Lifestyle = jewelry photography: ring is hero and sharpest; people/scene soft."
+  ],
+  "status": "Delivered 2026-07-27 for review (10 images: 4 office velvet + 6 lifestyle). Higgsfield source-locked i2i."
+}

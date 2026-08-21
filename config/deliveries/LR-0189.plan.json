@@ -1,0 +1,192 @@
+{
+  "_note": "Batch shot plan for LR-0189. Slot 1 is the approval image; slots 2-10 are fired in one unattended run once slot 1 is approved (docs/10 STEP 3). Prompts are assembled as: GEOMETRY LOCK header + slot angle/scene tag + wrapper + design_string, per prompts/07.",
+  "sku": "LR-0189",
+  "created": "2026-07-24",
+  "composition_ref": "docs/10 DEFAULT CATALOG COMPOSITION (user-locked 2026-07-21) - 10 per catalog",
+  "provider": {
+    "route": "mcp:higgsfield",
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "count": 1,
+    "credits_per_image": 2
+  },
+  "media_ids_session": {
+    "_warning": "media_ids are session-ephemeral - re-import from the Drive IDs in docs/06_CACHE.md when a call rejects one with 'Media input not found'",
+    "studio_reference": "a9f44b45-ac4f-4fa2-a8d5-b4a296b0e391",
+    "source_ring": "44bf13c0-35d1-44ec-9e45-deebdc9c47a5",
+    "official_logo": "64989b9f-044b-4d78-b577-1bf01da34414"
+  },
+  "source_drive_ids": {
+    "studio_reference": "1orscL2F2NYpyPb7jA70CqSboqBYqrCvH",
+    "source_ring": "1SS_pV_6arnKLHzTBWmTJbJ-xgoi0xjPF",
+    "official_logo": "1QZgjplaFWenZHt048tzQntk-L-Ezy_qH"
+  },
+  "design_string": "half-eternity BAND - NO center stone, NO head, NO basket, NO gallery, NO halo. Thin 14K yellow-gold band. Front half carries an alternating run of STEP-CUT BAGUETTE diamonds and ROUND BRILLIANT diamonds: each single baguette is BAR-SET lengthwise ALONG the band between two flat polished gold bars, separated by groups of THREE round brilliants in shared/common two-prong settings. Centre front reads exactly BAGUETTE, ROUND, ROUND, ROUND, BAGUETTE, round groups continuing outward onto both shoulders. Rear half of the shank is plain polished yellow gold, thin round comfort profile. No pave, no milgrain, no channel, no bezel.",
+  "geometry_signature": {
+    "front_elevation_pattern": "RRBRRRBRR",
+    "derived_from": "3.png (Drive 1SS_pV_6arnKLHzTBWmTJbJ-xgoi0xjPF) via scripts/validate_render.py stone_signature",
+    "note": "8.png/9.png read only 2 rounds between baguettes and are treated as prior output with drift - not geometry sources"
+  },
+  "slots": [
+    {
+      "n": 1,
+      "group": "velvet",
+      "angle": "hero-front",
+      "tag": "Hero front straight-on studio product view, camera at ring height.",
+      "wrapper": "studio_v2_velvet",
+      "status": "awaiting_approval",
+      "job_ids": [
+        "5f0e3049-bb0b-46c3-a849-77a947b0e3a0 (REJECTED - cotton background, docs/11 velvet-only)",
+        "542cc94b-58bd-41da-9331-197725197878 (SUPERSEDED - velvet but in-model logo; docs/04 P0 requires local composite, and the logo cannot be kept subtle in-model)",
+        "b74bd449-b939-4f62-9e82-9c428bcd79f0 (CLEAN velvet plate, no logo - current candidate; logo to be composited locally)"
+      ],
+      "pipeline": "render CLEAN velvet plate -> local logo composite (scripts/print_logo_on_cloth.py --fabric velvet) -> validate -> approval"
+    },
+    {
+      "n": 2,
+      "group": "velvet",
+      "angle": "45-left",
+      "tag": "45 degrees left front view, camera raised ~30-35 degrees.",
+      "wrapper": "studio_v2_velvet",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "bb0cf6e4-5ae5-4f41-9220-8a4b9c4d5e76"
+      ]
+    },
+    {
+      "n": 3,
+      "group": "velvet",
+      "angle": "top-down",
+      "tag": "High three-quarter top-down view (~60 degrees above, ~30 degrees yaw), showing the full stone run along the band.",
+      "wrapper": "studio_v2_velvet",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "cfc1bdc1-a9db-4636-ab7b-c99aa010c9b7"
+      ]
+    },
+    {
+      "n": 4,
+      "group": "closed-hand",
+      "angle": "back-of-hand",
+      "tag": "Back of a natural hand, five fingers, natural skin, ring worn.",
+      "wrapper": "lifestyle",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "61f27f97-f932-4107-b275-ff948b216c0e"
+      ],
+      "pose_reference": "Reference_US_Ring (2)"
+    },
+    {
+      "n": 5,
+      "group": "closed-hand",
+      "angle": "hand-near-face",
+      "tag": "Hand raised softly near the face.",
+      "wrapper": "lifestyle",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "de7a3b3a-2cbe-4eec-b88d-a0b7e116e274"
+      ],
+      "pose_reference": "Reference_US_Ring (6)"
+    },
+    {
+      "n": 6,
+      "group": "closed-hand",
+      "angle": "side-of-finger",
+      "tag": "Side of the finger, showing the band profile as worn.",
+      "wrapper": "lifestyle",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "66413206-4e69-49ac-a8b2-20f6dcdcb742"
+      ],
+      "pose_reference": "Reference_US_Ring (8) Copy"
+    },
+    {
+      "n": 7,
+      "group": "closed-hand",
+      "angle": "on-cream-knit",
+      "tag": "Hand resting on a cozy cream knit.",
+      "wrapper": "lifestyle",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "6f7dbd9a-81d1-444f-b62c-fb5a79bb3cc6"
+      ],
+      "pose_reference": "Reference_US_Ring (2)"
+    },
+    {
+      "n": 8,
+      "group": "closed-hand",
+      "angle": "on-marble",
+      "tag": "Hand resting on a light marble surface.",
+      "wrapper": "lifestyle",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "94b01466-792d-448a-bcad-8d252030345c"
+      ],
+      "pose_reference": "Reference_US_Ring (6)"
+    },
+    {
+      "n": 9,
+      "group": "closed-hand",
+      "angle": "closeup-top-down",
+      "tag": "Macro close-up, top-down detail of the worn band.",
+      "wrapper": "closeup",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "d5b9b89a-f839-4ca1-a0b5-725f2fcdb77b"
+      ],
+      "pose_reference": "Reference_US_Ring (8) Copy"
+    },
+    {
+      "n": 10,
+      "group": "closed-hand",
+      "angle": "closeup-fingertips",
+      "tag": "Macro close-up, band held in fingertips.",
+      "wrapper": "closeup",
+      "status": "rendered_awaiting_validation",
+      "job_ids": [
+        "8d9ccadc-7216-4a01-8baf-e604d8e1ad22"
+      ],
+      "pose_reference": "Reference_US_Ring (2)"
+    }
+  ],
+  "validation": {
+    "script": "scripts/validate_render.py",
+    "gates_all_slots": [
+      "jewelry_hero",
+      "exposure",
+      "centered"
+    ],
+    "gates_velvet_slots": [
+      "velvet",
+      "logo_natural",
+      "logo_subtle",
+      "whitebal"
+    ],
+    "gates_front_elevation_only": [
+      "geometry"
+    ],
+    "geometry_gate_scope": "front-elevation views only - tilted/worn views merge stones under perspective and cannot be signature-matched",
+    "on_fail": "reject the slot, regenerate that slot only, record in config/QUALITY_MEMORY.json; never deliver a failed frame",
+    "logo_fallback": "if logo_natural or logo_subtle FAILS, ship the slot as PLAIN velvet with no logo rather than a pasted-looking or over-prominent one (docs/11)",
+    "logo_composite": {
+      "method": "local composite, 0 credits - AI never renders the logo (docs/04 P0, docs/21 s2)",
+      "command": "python scripts/print_logo_on_cloth.py --image <clean_velvet_plate>.png --logo assets/logo/logo_official_transparent.png --fabric velvet",
+      "defaults": {
+        "scale": 0.24,
+        "pos": "edge-lower-right",
+        "opacity": 0.68,
+        "displace": 9,
+        "soften": 1.6,
+        "grain": 0.09
+      },
+      "intent": "~90% of the lockup hidden by frame crop and velvet folds; jewelry stays the hero"
+    }
+  },
+  "run_note": "Slots 2-10 were generated on user instruction BEFORE slot 1 approval, which deviates from docs/10 STEP 1. Recorded here so the deviation is visible if any slot later disagrees with the approved Image 1. Velvet slots 2-3 are CLEAN plates - logo still to be composited locally per docs/04 P0.",
+  "credits_used": {
+    "renders": 12,
+    "credits": 24,
+    "note": "12 renders x 2 credits (incl. 2 rejected/superseded slot-1 attempts)"
+  }
+}

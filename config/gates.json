@@ -1,0 +1,188 @@
+{
+  "_note": "Per-gate blocking flag. A gate BLOCKS completion only when blocking=true. Promote a heuristic gate to blocking ONLY after scripts/calibrate.py shows, over the full golden set (PASS + FAIL): false_positives=0, catches all its FAIL cases, low_confidence<10%. Promote per gate, never as a group. Robust gates ship blocking; pixel-geometry heuristics start advisory. Pairwise angle separation (docs/12) is always enforced separately in run_catalog, independent of the single-shot G10_ANGLE flag below.",
+  "gates": {
+    "G1_FORMAT": {
+      "blocking": true,
+      "kind": "robust",
+      "measures": "1:1 2048 PNG"
+    },
+    "G2_ACCENT_COUNT": {
+      "blocking": true,
+      "kind": "heuristic",
+      "plain_name": "STONE_COUNT",
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
+      "measures": "total stone count per shape class == source; accent stones/run",
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws geometry so count can drift; every render gated, any miss auto-regenerates up to 5 rounds. A slot that never converges is delivered labelled GEOMETRY APPROXIMATE, not silently shipped."
+    },
+    "G3_ACCENT_SIZE": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "accent dia / structure",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G4_ACCENT_RUN": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "accent run coverage",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G5_SETTING_STYLE": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "raised rail vs flush",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G6_STONE_RATIO": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "primary L:W ellipse",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G7_SETTING_COUNT": {
+      "blocking": true,
+      "kind": "heuristic",
+      "plain_name": "PRONG_CHECK",
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
+      "measures": "prong count/width per stone == source setting",
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 can split/drop prongs; every render gated, prong-count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE."
+    },
+    "G8_UNAUTHORIZED": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "unauthorized clusters",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G9_PIECE_COUNT": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "one piece + scale",
+      "note": "ADVISORY: the engine cannot hold stone ratios; logs to file, does not gate."
+    },
+    "G10_ANGLE": {
+      "blocking": true,
+      "kind": "heuristic",
+      "plain_name": "ANGLE_CHECK",
+      "measures": "every slot a genuinely different camera angle; NO duplicate angles delivered. A retry REPLACES its slot, never ships alongside it (e.g. never 04_gallery_back AND 04_gallery_back_2).",
+      "note": "Blocking 2026-08-01 (CATALOG STANDARD). Pairwise angle separation also enforced in run_catalog."
+    },
+    "G11_LOGO": {
+      "blocking": true,
+      "kind": "robust",
+      "measures": "no AI text on studio"
+    },
+    "G12_MARKS": {
+      "blocking": true,
+      "scope": "catalog",
+      "kind": "robust",
+      "plain_name": "NO_MARKS",
+      "measures": "ZERO TOLERANCE for third-party/vendor watermark and any burned-in mark. Scan every render for: semi-transparent glyph clusters anywhere in frame, low-contrast repeated text, engraved marks/hallmark/karat-stamp/initials on metal surfaces, corner logo/badge. Any hit = FAIL -> auto-regenerate. A watermarked render is NEVER delivered.",
+      "note": "CATALOG-BLOCKING (raised 2026-08-01). Vendor source watermark (e.g. CRYSTALIGHT, MoonlitCharms) must never appear on jewellery/skin/background, not faint/partial/stylised. Only permitted mark = official Lucent logo printed into studio cloth from the locked asset (never on metal/skin/lifestyle). Full negative block wired into build_prompts."
+    },
+    "G14_CONTENT": {
+      "blocking": true,
+      "kind": "robust",
+      "measures": "jewellery is the subject"
+    },
+    "G15_HAND_ANATOMY": {
+      "blocking": false,
+      "kind": "heuristic",
+      "measures": "ring on ONE finger; band continuity; position",
+      "note": "OBSERVED (demoted from blocking 2026-07-30): false-rejected verified-good LR-0205 slot07 (two clasped hands read as one -> mis-assigned finger). MediaPipe finger assignment unreliable on overlapping/partial hands. Re-promote only after FP=0 on the LR-0205/0206 golden set. Single-hand placement still measured + reported."
+    },
+    "G16_SKIN_REALISM": {
+      "blocking": false,
+      "kind": "heuristic",
+      "threshold": 45,
+      "measures": "exposure-normalized skin HF energy",
+      "note": "OBSERVED (demoted from blocking 2026-07-30): false-rejected verified-good soft beauty-crop skin (LR-0205 slot09=64); normalized-HF cannot cleanly separate soft-focus from waxy. Threshold 45 for advisory signal. Re-promote only after FP=0 on a labelled soft-vs-waxy golden set."
+    },
+    "G_INVENT": {
+      "blocking": true,
+      "kind": "robust",
+      "measures": "studio angle traces to a source view within 45deg",
+      "note": "No source view within 45deg (az+el) of a studio slot = invention, blocked. Source angles in specs/<SKU>_views.json. Lifestyle exempt."
+    },
+    "G17_THEME": {
+      "blocking": true,
+      "kind": "heuristic",
+      "measures": "lifestyle theme consistency + cross-catalog distinctness",
+      "note": "Catalog-level: 6 lifestyle renders cluster in hue+luma (a=consistency); catalog palette differs from last 6 (b=distinctness); banned wardrobe prompt-enforced (c)."
+    },
+    "G18_BACKGROUND": {
+      "blocking": true,
+      "kind": "studio_background",
+      "thresholds": {
+        "sat_max": 14.0,
+        "lum_min": 210.0,
+        "gradient_max": 0.22,
+        "chan_spread_max": 0.04,
+        "texture_min": 0.3,
+        "texture_max": 5.0,
+        "min_bg_frac": 0.15
+      },
+      "measures": "studio background is plain pure-white velvet (low sat, high lum, fine mid-freq fabric texture)",
+      "note": "Studio slots only. Rejects coloured backgrounds (sat/chan), seamless paper (texture<min), hard gradients/sweeps (gradient), busy props (texture>max). Calibrated on 7 approved velvet renders (sat<=6.1, lum>=227, grad<=0.144, tex 0.76-1.64, chan<=0.022) -> FP=0 with wide margin. Golden: LR-0205 studio."
+    },
+    "G20_MIN_SUBJECT_SCALE": {
+      "blocking": true,
+      "kind": "subject_scale",
+      "plain_name": "BIG_ENOUGH",
+      "lifestyle_min": 0.2,
+      "macro_min": 0.35,
+      "min_macro_slots": 3,
+      "measures": "jewellery bbox area fraction: lifestyle >=20%, macro >=35%; below = auto-reject before geometry. Min 3 of 6 lifestyle slots must be tight macro (ring dominates, hand cropped, pure bokeh).",
+      "note": "Raised 2026-08-01 (CATALOG STANDARD). Faces not required \u2014 crop a face that pulls attention. Banned framings: full hand at arm's length, both hands wide, torso, environment establishing, ring as a sliver."
+    },
+    "G21_STONE_RATIO": {
+      "blocking": true,
+      "kind": "stone_ratio",
+      "plain_name": "STONE_MATCH",
+      "ratio_tol": 0.1,
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "GEOMETRY APPROXIMATE",
+      "measures": "per-stone areas -> centre:flanker size ratio within +/-10% of spec, and stone COUNT per shape class == spec",
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws size ratios; every render gated, ratio/count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE. Was advisory (engine can't hold ratios) \u2014 user accepted the tradeoff to keep this model."
+    },
+    "G22_STONE_WITHIN_FINGER": {
+      "blocking": true,
+      "kind": "ring_scale_on_hand",
+      "tol": 1.05,
+      "measures": "lifestyle: centre-stone width <= finger width (\u00d7 tol); rejects oversized 'cocktail-huge' diamonds on the hand"
+    },
+    "G23_MAKES_SENSE": {
+      "blocking": true,
+      "kind": "physical_plausibility",
+      "plain_name": "MAKES_SENSE",
+      "measures": "jewellery is wearable as rendered. Bracelet/necklace/anklet: exactly ONE clasp (one lobster/spring-ring/toggle-bar at one end; opposite end = jump ring / closed loop / extender ending in a drop, never a second claw). Two identical fastening mechanisms = FAIL 'unfastenable, two claws' -> auto-regenerate. Rings: closed single shank. Earrings: one post/hook each. Pendants: one bail, chain passes through.",
+      "note": "PERMANENT (CATALOG STANDARD). BR-0110 rendered a lobster claw on both ends. Positive+negative clasp clauses wired into build_prompts for bracelet/necklace."
+    },
+    "G24_CLARITY_CHECK": {
+      "blocking": true,
+      "kind": "stone_clarity",
+      "plain_name": "CLARITY_CHECK",
+      "dark_speck_max_frac": 0.02,
+      "dark_speck_rel_luma": 0.32,
+      "measures": "every stone crystal/water-clear: (a) per-stone mean luminance above threshold; (b) facet-edge sharpness = high-frequency energy inside each stone above threshold (soft/smeared = FAIL); (c) colour neutrality within a narrow neutral-white band (no yellow/grey cast); (d) DARK SPECK DETECTION = any dark blob inside a stone boundary (pixels below dark_speck_rel_luma x stone-mean, connected area > dark_speck_max_frac x stone area) = FAIL 'inclusion or dust on stone'; (e) consistency = no stone materially duller than its neighbours",
+      "note": "PERMANENT all catalogs (TIGHTENED 2026-08-01 \u2014 user: stones must be crystal-clear like water, no milkiness, no dots/specks/dust). Any fail = auto-regenerate. Clarity block moved EARLY in the prompt (after geometry lock, before scene) so it keeps weight; verbatim positive + tightened verbatim negative wired into build_prompts (all slots). LIGHTING every slot: piece in direct light, no stone in hand/fabric shadow (a shadowed stone reads milky regardless of prompt). Root-cause note: clarity drop coincided with wrong-model runs (nano_banana_pro) \u2014 MODEL_LOCK now forces nano_banana_2 (verify: preflight --check-model). CALIBRATION: implemented in validate_render.g24_clarity + _cv_lib.stone_clarity_stats; tuned FP=0 against tests/golden pass goldens (LR-0205 05/06/08/09/10, LR-0206 10). Drop milky/specky renders into tests/golden/fail_clarity_* (G24 FAIL) to tune catch-sensitivity."
+    },
+    "G25_GOLD_CHECK": {
+      "blocking": true,
+      "kind": "metal_colour",
+      "plain_name": "GOLD_CHECK",
+      "measures": "rendered metal reads as GOLD of the spec's locked colour: yellow gold hue ~15-40, rose gold hue ~3-18, white gold = low-saturation neutral. A render whose metal colour disagrees with the spec (e.g. silver/steel where gold expected, or yellow where rose specified) = FAIL. Karat (18K) is not visually measurable \u2014 enforced by prompt + audited against the Etsy listing, not by pixels.",
+      "note": "PERMANENT (METAL LOCK 2026-08-01). Karat always 18K; default colour yellow gold; one colour across all 10 slots. White-gold/platinum SOURCES are BLOCKED until the user ticks 18K-YELLOW-override or 18K-WHITE (registry METAL_KARAT_18K). Detector: _cv_lib.metal_hue_peak vs spec.metal."
+    },
+    "G27_ORIENTATION_CHECK": {
+      "blocking": true,
+      "description": "Each stone long-axis vs local shank tangent must match spec g27.axis (parallel<=15deg / perpendicular 75-105deg); partial band must show a plain-shank gap (no full eternity). Needs >=5 resolved stones else unmeasurable.",
+      "parallel_tol_deg": 15,
+      "min_stones": 5,
+      "offender_frac_max": 0.15
+    }
+  }
+}

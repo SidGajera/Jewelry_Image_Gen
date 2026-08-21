@@ -1,0 +1,56 @@
+{
+  "sku": "LR-0213",
+  "category": "ring",
+  "title": "East-west marquise half-eternity band, shared single V-prong, yellow gold",
+  "model": "nano_banana_pro",
+  "engine": "HIGGSFIELD nano_banana_2 (image-to-image preserve)",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "count_per_slot": 1,
+  "mode": "img2img_source_preserve",
+  "geometry": "source-locked — each slot generated i2i from the nearest-angle CAD render (fixes prior null-source text-to-image approximate geometry)",
+  "source": "5 CAD renders, Drive folder 1r_PeSZNjAwazOiQQtDCwUswgOIqYq2B5 (Ledis ring / LR-0213)",
+  "source_media_id": "21ba10c3-dc39-4bd6-8532-3acda956da49",
+  "theme": "winter_window",
+  "composition": "4 studio velvet + 6 lifestyle",
+  "renders_dir": "deliveries/LR-0213",
+  "regen_note": "Full 10/10 regeneration 2026-08-01: prior pass was seedream_v5_pro frozen text-to-image with source_media_id=null (geometry invented, whole catalog wrong per user). Now source uploaded + i2i preserve on nano_banana_pro, per-slot nearest-angle reference.",
+  "slot_source_ref": {
+    "01_top_down_flatlay": "21ba10c3-dc39-4bd6-8532-3acda956da49",
+    "02_true_side_profile": "14101593-06c1-448c-bb0b-2ca71d6a437c",
+    "03_front_elevation": "7b32a7a4-d985-4b33-a44a-a142e9819cc0",
+    "04_gallery_back": "b3a5564d-0675-4ba9-bcb6-9a02c99d03ae",
+    "05_low_hero": "21ba10c3-dc39-4bd6-8532-3acda956da49",
+    "06_reach_to_camera": "b3a5564d-0675-4ba9-bcb6-9a02c99d03ae",
+    "07_hands_held": "7b32a7a4-d985-4b33-a44a-a142e9819cc0",
+    "08_hands_stacked_editorial": "14101593-06c1-448c-bb0b-2ca71d6a437c",
+    "09_beauty_closeup": "14101593-06c1-448c-bb0b-2ca71d6a437c",
+    "10_sunset_raised_hand": "b3a5564d-0675-4ba9-bcb6-9a02c99d03ae"
+  },
+  "jobs": {
+    "01_top_down_flatlay": "6013b644-b95c-4660-b292-b5f1f95629f0",
+    "02_true_side_profile": "138c0b44-3abc-4db4-b9d6-d4d38021ea3a",
+    "03_front_elevation": "0c41b0b9-0ed7-41e5-8630-2562b4aed7d6",
+    "04_gallery_back": "7f19b9c9-3003-44d7-9696-ad5a7920bc57",
+    "05_low_hero": "0122d4a5-fca3-4192-b6fc-7767186a8274",
+    "06_reach_to_camera": "3d90075a-0b10-47dd-88cd-22c61f6c6092",
+    "07_hands_held": "3c5a54d6-0bd2-48c7-bca1-28b770018625",
+    "08_hands_stacked_editorial": "425a039d-af3a-4411-a8e7-4e22b3018628",
+    "09_beauty_closeup": "d0c68518-a33c-45fd-8db3-1bcda455605e",
+    "10_sunset_raised_hand": "86fef0f9-f8d9-44a9-84e4-199fd5d0753c"
+  },
+  "gate_report_2026-08-01": {
+    "result": "LR-0213: BLOCKED — G2 (STONE_COUNT), G21 (STONE_MATCH), G22 (HAVE_THE_VIEW), G10 (ANGLE_CHECK)",
+    "source_count": {"total_stones": 6, "marquise": 6, "prong_at_12_oclock": true},
+    "studio_g21": {
+      "01_top_down_flatlay": {"expected": 6, "detected": 7, "verdict": "FAIL — stone at 12 o'clock (source has a prong there)"},
+      "02_true_side_profile": {"expected": 3, "detected": 5, "verdict": "FAIL — count wrong AND angle reads as front row, not 90-degree side"},
+      "03_front_elevation": {"expected": 6, "detected": 6, "verdict": "PASS (count)"},
+      "04_gallery_back": {"expected": 2, "detected": 7, "verdict": "FAIL — whole front row visible, not a rear/gallery view"}
+    },
+    "g22_have_the_view": "FAIL — source has NO true top-down (el90) and NO pure 90-degree side; slots 01 and 02 were generated from angles the source never showed (invention).",
+    "root_cause": "AI i2i redraw (nano_banana_pro) cannot hold a fixed count; redraw is banned. Must composite real source pixels.",
+    "action": "CATALOG FAIL — regenerate all via real-pixel composite; STOP on slots 01/02 until true top-down + true side CAD views are supplied (G22)."
+  },
+  "status": "BLOCKED — G2 (STONE_COUNT), G21 (STONE_MATCH), G22 (HAVE_THE_VIEW), G10 (ANGLE_CHECK); GEOMETRY UNVERIFIED->now VERIFIED as MISMATCH"
+}

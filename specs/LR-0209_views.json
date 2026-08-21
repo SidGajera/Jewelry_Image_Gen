@@ -1,0 +1,47 @@
+{
+  "_note": "Supplied source view coverage for LR-0209 'Zariyah' (5 CAD renders). Flat keys feed validate_source; the 'views' list (type+azimuth) feeds G-INVENT. Marquise 6-claw hidden-halo solitaire.",
+  "top": "v2.jpg",
+  "front": "v3.jpg",
+  "true_side": "v5.jpg",
+  "back_gallery": "v1.jpg",
+  "views": [
+    {
+      "name": "front_top_face",
+      "file": "v2.jpg",
+      "type": "top",
+      "azimuth": 0,
+      "elevation": 75,
+      "establishes_note": "marquise L/W (pointed both ends), 6 claws (V-tips + side pairs), symmetry"
+    },
+    {
+      "name": "front_macro_three_qtr",
+      "file": "v3.jpg",
+      "type": "front",
+      "azimuth": 25,
+      "elevation": 20,
+      "establishes_note": "hidden halo under the girdle, front prongs, plain band shoulder"
+    },
+    {
+      "name": "true_side_profile",
+      "file": "v5.jpg",
+      "type": "true_side",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "name": "back_gallery",
+      "file": "v1.jpg",
+      "type": "back_gallery",
+      "azimuth": 200,
+      "elevation": 15
+    },
+    {
+      "name": "rear_side",
+      "file": "v4.jpg",
+      "type": "back_gallery",
+      "azimuth": 215,
+      "elevation": 20
+    }
+  ],
+  "model": "nano_banana_2"
+}

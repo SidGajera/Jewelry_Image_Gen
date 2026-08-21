@@ -1,0 +1,46 @@
+{
+  "_note": "Supplied source view coverage for LR-0213. CORRECTED after careful re-read (2026-07-31): the piece is a half-eternity band of EXACTLY 6 east-west marquise, evenly spaced, joined by a shared single V-prong at each junction (NO round accents, NO bezel). The 4 supplied CAD renders are all FRONT/SIDE/REAR 3-quarter angles; there is NO pure top-down plan and NO pure 90-degree side profile in the source. Azimuths corrected to the true camera angle of each file. Flat keys feed validate_source; the 'views' list feeds G-INVENT.",
+  "top": "s4_angled.jpg",
+  "front": "s2_front.jpg",
+  "true_side": "s3_3q_side.jpg",
+  "back_gallery": "s1_3q_left.jpg",
+  "views": [
+    {
+      "name": "through_ring_front",
+      "file": "s2_front.jpg",
+      "type": "front",
+      "azimuth": 0,
+      "elevation": 3,
+      "establishes_note": "ring upright, viewed down the finger axis THROUGH the ring: shared single V-prong shape at each junction, marquise height/profile, band thickness, top-arc stone count"
+    },
+    {
+      "name": "three_qtr_side",
+      "file": "s3_3q_side.jpg",
+      "type": "true_side",
+      "azimuth": 50,
+      "elevation": 22,
+      "establishes_note": "3/4-to-side view (~50deg): marquise east-west, open even spacing, shared V-prong junctions, thin round band profile"
+    },
+    {
+      "name": "low_three_qtr_front",
+      "file": "s1_3q_left.jpg",
+      "type": "back_gallery",
+      "azimuth": 25,
+      "elevation": 10,
+      "establishes_note": "low 3/4 FRONT: marquise tops face-on, shared V-prongs clearly, plain rear shank; clearest read of stone shape + spacing"
+    },
+    {
+      "name": "low_rear_three_qtr",
+      "file": "s4_angled.jpg",
+      "type": "top",
+      "azimuth": 190,
+      "elevation": 12,
+      "establishes_note": "low REAR 3/4 (NOT a top-down): rear/underside of the shank, undersides of the marquise settings, back of the plain shank"
+    }
+  ],
+  "_angles_not_supplied": [
+    "pure top-down plan (elevation 90)",
+    "pure 90-degree side profile (azimuth 90, elevation ~0)"
+  ],
+  "model": "nano_banana_2"
+}

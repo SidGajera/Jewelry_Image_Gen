@@ -1,0 +1,42 @@
+{
+  "sku": "LR-0210",
+  "category": "ring",
+  "title": "East-west baguette bar-set half-eternity band, thin round shank, yellow gold",
+  "note_source_vs_listing": "Source = Etsy listing photos only (no CAD). 4 worn/product webp: r3l7 (clean 3/4 side) + oz08 (top, AVIDERI watermark) read for geometry; bn7v/65v0 same piece. User authorized best-effort from listing photos (2026-07-31); watermarked image excluded from generation, used only for reading. Piece: thin yellow-gold HALF-ETERNITY band, one straight row of step-cut BAGUETTE diamonds set EAST-WEST, BAR-SET (thin gold bar between each stone), plain polished lower shank. No center stone, no halo, no prongs.",
+  "primary_stones": [],
+  "setting_elements": {},
+  "accent_runs": [
+    {
+      "id": "center_row",
+      "shape": "baguette",
+      "cut": "step_cut",
+      "arrangement": "bar_set_baguette",
+      "orientation": "east_west",
+      "setting": "bar_set",
+      "rows": 1,
+      "count": 10,
+      "tolerance": 2,
+      "coverage_fraction": 0.5
+    }
+  ],
+  "halo": "none",
+  "halo_count": null,
+  "under_head": "none",
+  "structure": {
+    "profile": "round",
+    "uniform_width": true,
+    "taper": false,
+    "link_count": null,
+    "link_form": null
+  },
+  "metal": "yellow_gold",
+  "finish": "high_polish",
+  "inner_shank": "plain_polished_no_mark",
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo overlay",
+    "lifestyle": "worn on a real hand, natural skin, real environment per catalog theme, the piece is the hero"
+  },
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "source_media_id": "e854d2be-cb1f-406a-90f6-e661545dd7c6"
+}

@@ -1,0 +1,13 @@
+{
+  "sku": "LR-0201",
+  "name": "Solstice",
+  "piece_type": "ring",
+  "metal": "18k_yellow_gold",
+  "centre": {
+    "cut": "oval", "carat": 1.5, "lw": 1.35, "lab_grown": true,
+    "orientation": "east_west", "setting": "bezel", "prongs": null, "bezel_wall_mm": 0.8
+  },
+  "composition": "solitaire",
+  "band": { "profile": "knife_edge", "width_mm": 1.7, "finger_size": 7 },
+  "provenance": { "source": "human", "trend_tags": ["east_west", "oval", "bezel"] }
+}

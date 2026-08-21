@@ -1,0 +1,42 @@
+{
+  "sku": "BR-0119",
+  "title": "Mixed-shape scattered fancy-cut diamond bracelet — rose gold, double-row cable chain",
+  "model": "nano_banana_pro",
+  "model_lock_status": "FAIL — ran nano_banana_pro; MODEL_LOCK (2026-08-01) requires nano_banana_2. These renders must be REGENERATED on nano_banana_2 (config/model.json). Kept only pending regen.",
+  "pipeline": "i2i preserve from single source lay-flat (media de7c02d8-4042-4a3e-842e-d996a22cb31c)",
+  "aspect_ratio": "1:1",
+  "resolution": "2k",
+  "source_single_view_note": "only ONE clean front lay-flat available (s1.jpg 794x446). Per G_INVENT / no-AI-redraw, studio slots are front-view framings only (hero + slight tilt + macros) — NO fabricated back/side angles. Lifestyle is G_INVENT-exempt (on-wrist).",
+  "theme": "warm champagne / golden-hour, cream styling, jewellery is the hero",
+  "clarity_refire_note": "Re-fired 2026-08-01 with the FULL restored verbatim G24 clarity positive + negative block (earlier batch carried only a light clarity clause). These are the CURRENT catalog. Old jobs superseded.",
+  "slots": [
+    {"slot": "01_studio_hero_front",      "job": "47a6b47c-a402-47ec-9218-e33ac57b99ab", "kind": "studio"},
+    {"slot": "02_studio_slight_tilt",     "job": "f79e09fe-11ac-46c2-af0a-b03113b43625", "kind": "studio"},
+    {"slot": "03_studio_macro_centre",    "job": "f6ca6117-2a8a-422a-9780-7be5f459ec5b", "kind": "studio_macro"},
+    {"slot": "04_studio_macro_clasp",     "job": "712b4e8e-5e05-45ea-87b4-7f8bd9d42c30", "kind": "studio_macro"},
+    {"slot": "05_life_wrist_raised",      "job": "c57d1eaf-e41f-4659-b870-39d5cde8f704", "kind": "lifestyle_macro"},
+    {"slot": "06_life_lap_cashmere",      "job": "24d05adb-cd6d-4a4f-8384-11380a76ba4f", "kind": "lifestyle_macro"},
+    {"slot": "07_life_coffee_cup",        "job": "e85b0f5f-c54b-421b-83b8-67aca9f3f5b8", "kind": "lifestyle"},
+    {"slot": "08_life_hand_to_neck",      "job": "b1c3db24-41a2-4769-a863-82de7e36130d", "kind": "lifestyle_macro"},
+    {"slot": "09_life_open_book",         "job": "2ffa31b4-6e8c-4890-b057-13d1482c0a84", "kind": "lifestyle"},
+    {"slot": "10_life_garden",            "job": "b8f03854-cbc1-4cf4-9cd0-0403e4634b29", "kind": "lifestyle"}
+  ],
+  "superseded_jobs": {
+    "note": "first batch (light clarity clause) — superseded by the clarity re-fire above",
+    "jobs": ["5ef5b8a0","9a621662","521c454c","5db61076","f7d24a42","ac87fff5","9668efe7","f9289af4","d88b9d1f","95206972","a2e68ac8"]
+  },
+  "gate_report": {
+    "G1_FORMAT": "PASS (1:1 2k)",
+    "G10_ANGLE (ANGLE_CHECK)": "PASS — 4 distinct studio framings (hero/tilt/centre-macro/clasp-macro), 6 distinct lifestyle poses; no duplicate angle delivered",
+    "G11_LOGO": "prompt-clean (no AI text)",
+    "G12_MARKS (NO_MARKS)": "source is CLEAN (no vendor watermark); full negative block applied every slot — PASS expected",
+    "G14_CONTENT": "PASS — jewellery is the subject, no kissing/embrace",
+    "G17_THEME": "single warm-champagne theme across 6 lifestyle",
+    "G20_BIG_ENOUGH": "macro framing on 5+ slots (hero/centre/clasp/raised/lap/neck) — jewellery dominates",
+    "G23_MAKES_SENSE": "single lobster clasp enforced positive+negative every slot",
+    "G24_CLARITY_CHECK": "water-clear clarity clause + banned-dull-terms every slot",
+    "G_INVENT": "PASS — studio slots trace to the single front source view; no fabricated angle. Lifestyle exempt."
+  },
+  "count_caveat": "COUNT_FROM_SOURCE: exact per-shape stone totals were not lockable from the one low-res view; geometry is carried by i2i from the real source pixels, so output should replicate the true stones. Validate counts against s1.jpg on QC.",
+  "status": "GENERATED (10 primary + 1 alt, pending). PENDING P5 visual QC by user."
+}

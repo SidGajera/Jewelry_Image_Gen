@@ -38,3 +38,34 @@ Unchanged from the locked catalog-approval workflow (`docs/10`, CLAUDE_SETUP §2
 
 ## 8. RELATED
 `docs/13_JEWELRY_PRESERVATION_SPEC.md` (geometry + QA checklist) · `config/QUALITY_MEMORY.json` (`no-regression-policy`, `geometry-immutable-auto-fallback`, `catalog-approval-workflow`) · `tool/backend/lib/pipeline/` (composite pipeline + regression harness) · `config/golden_catalog.json`.
+
+## REGRESSION PREVENTION (PERMANENT, user-locked 2026-07-16)
+
+**A previously rejected mistake must NEVER reappear in any future catalog.** Every rejected image becomes a permanent regression test. Before approving or delivering any image, compare it against the checklist below. If ANY previous failure is detected: reject internally, fix, regenerate, never deliver the known failure again.
+
+**Regression prevention outranks prompt execution.** A prompt that produces a known failure is not "executed correctly" — it has regressed.
+
+### CHECKLIST
+
+**JEWELRY** — geometry identical to source · no AI redesign · no gallery changes · no prong changes · no band changes · no stone-proportion changes · no added/removed diamonds · camera change only.
+
+**LOGO** — official preserved logo only · never AI-generated · never recreated · never redrawn · never vectorized · never approximated · never simplified.
+
+**CLOTH** — logo physically printed · cloth weave visible through the print · print follows fabric folds, perspective, lighting and cloth deformation · no floating overlay · no sticker effect · no watermark effect · no artificial opacity · no incorrect metallic finish · no isolated logo layer.
+
+**SCENE** — ring naturally contacts the cloth · logo naturally occluded where the ring covers it · shadows consistent · lighting consistent · perspective consistent.
+
+**OUTPUT** — compare against every previously rejected image; the same mistake reappearing is an automatic reject.
+
+### LEARNING RULE
+Once rejected, a mistake becomes a permanent production rule. That exact failure must never appear again in the current catalog, future catalogs, future sessions, or future pipeline revisions. The system must actively verify every known failure has been eliminated before delivering any image.
+
+### RELATIONSHIP TO THE QC SUSPENSION (docs/18)
+`docs/18` currently suspends automated QC at the user's instruction. **This policy requires automated verification before delivery, so for the regression checklist above, verification is ACTIVE.** The suspension covers discretionary QC judgement; it does not license shipping a known, previously-rejected failure. Where the two conflict, this policy wins.
+
+### STRUCTURAL FINDING (verified 2026-07-16, LR-0151)
+Two checklist items **cannot be satisfied by generation**, no matter the prompt:
+- *"Geometry identical to source / no AI redesign"* — a diffusion model re-synthesises the ring on every render. Five prompt variants were tried on LR-0151; each drifted somewhere different (gallery/head, prong angle, stone proportions, pavé size, band thickness). Only compositing the source-CAD pixels satisfies it.
+- *"Logo physically printed / weave visible through print / follows folds"* — the model paints a flat logo on top of the cloth. Only the local composite (`scripts/print_logo_on_cloth.py`, whose six-point fabric-print standard is this checklist's CLOTH section verbatim) satisfies it.
+
+Any pipeline where Higgsfield draws the ring or the logo will fail this checklist by construction. Recorded so no future session rediscovers it by burning credits.

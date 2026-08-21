@@ -1,5 +1,5 @@
 {
-  "purpose": "SINGLE startup file. On a new session read ONLY this file, then reply 'READY — 0 ACTIVE PROCESSES'. Do not scan/preload the repo; load another file only when a task needs it.",
+  "purpose": "Machine-readable runtime configuration only. NOT the startup file and NOT a policy document: the runtime entry point is CLAUDE_SETUP.md (see pointers.rules_entry), which owns startup order, loading order, agent execution rules and token policy. This file holds machine-readable runtime state/config consumed alongside it.",
   "clean_session_start": {
     "cancel_previous": "cancel/ignore all prior image-gen jobs, retries, polling/verify loops, downloads, uploads, background tasks",
     "do_not_resume": true,
@@ -29,7 +29,8 @@
     "never_reload_unchanged_tool_schemas": true,
     "github_only_after_catalog_approval": true,
     "permanent_permission_policy": "Permissions granted once are valid for the whole session; reuse them and never re-ask. Covered: GitHub repo + main push + commits/pulls/merges, Google Drive read/write, Higgsfield gen/download/media-import, image upload/download, Figma, local files, runtime cache, repo config, catalog generation, image verification, logo/source/reference reading. Ask only for a genuinely NEW service never authorized. On real auth/session expiry state 'Authentication expired for <service>. Please reconnect.' and stop - do not re-request everything. NOTE: mid-turn 'Stream closed'/'Denied by user' from MCP are TRANSPORT DISCONNECTS, not permission prompts; auto-reconnect and retry the interrupted call, do not treat as a permission request.",
-    "token_safety_policy": "Prevent token/context exhaustion at all costs. Continuously watch the remaining budget; when it is critically low (before the session risks stopping) do NOT start any new operation - stop launching image generations, edits, searches, file scans, polling, commits, or background tasks, and cancel/avoid any non-essential not-yet-started work. Finish only the current atomic operation if already running and safe to complete; otherwise stop immediately. Never begin another catalog/image/workflow when the budget is low. Instead return a concise status summary: completed work, pending work, current checkpoint, and files/commits/outputs already saved."
+    "token_safety_policy": "Prevent token/context exhaustion at all costs. Continuously watch the remaining budget; when it is critically low (before the session risks stopping) do NOT start any new operation - stop launching image generations, edits, searches, file scans, polling, commits, or background tasks, and cancel/avoid any non-essential not-yet-started work. Finish only the current atomic operation if already running and safe to complete; otherwise stop immediately. Never begin another catalog/image/workflow when the budget is low. Instead return a concise status summary: completed work, pending work, current checkpoint, and files/commits/outputs already saved.",
+    "permanent_token_optimization": "SESSION: load+cache all policies/CADs/logo/cloth/design-profile/failure-memory once; never reload unchanged files or reread past catalogs. REASONING: think silently; never explain reasoning/plans/validation/tool-usage/uploads/decisions. OUTPUT: only final status, max 3 lines; no paragraphs; never summarize completed work. IMAGE: upload CAD/cloth/logo once; reuse uploaded assets; only upload changed files. VALIDATION: validate only changed geometry; skip unchanged checks; reject internally; never report internal failures. TOKENS: target <3000 tokens/image; stop if estimate exceeds target; compress prompts before generation; incremental context only. Overridden only by output_must_not_change (never trade output/geometry/QC-depth/resolution for tokens)."
   },
   "commit_policy": {
     "during_generation": "no commits",
@@ -41,9 +42,14 @@
   "output_lock": "token optimization must never alter jewelry geometry, diamonds, prongs, settings, lighting, logo, cloth, physics, or image quality",
   "pointers": {
     "rules_entry": "CLAUDE_SETUP.md",
-    "runtime_trio": ["config/project_manifest.json", "prompts/07_PROMPTS.md", "config/QUALITY_MEMORY.json"],
+    "runtime_trio": [
+      "config/project_manifest.json",
+      "prompts/07_PROMPTS.md",
+      "config/QUALITY_MEMORY.json"
+    ],
     "verify_inbox_drive_id": "1idwSM7EvXY7MijTZr-5FQ5sZmCnIQaX0",
     "repository": "https://github.com/SidGajera/Claude_Lucent_Image_Gen"
   },
-  "load_rule": "Load a file only when runtime.json or the current task explicitly requires it. Reuse asset paths/checksums without opening assets until needed."
+  "load_rule": "Load a file only when runtime.json or the current task explicitly requires it. Reuse asset paths/checksums without opening assets until needed.",
+  "ownership": "CLAUDE_SETUP.md = AI runtime, startup + loading order, agent execution rules, token policy. LUCENT_MASTER.md = project architecture, business rules, folder structure, high-level overview. config/runtime.json = machine-readable runtime configuration only. docs/17 = token optimization policy. The repository as a whole is the single source of truth; no individual file is."
 }

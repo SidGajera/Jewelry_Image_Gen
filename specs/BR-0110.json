@@ -1,0 +1,51 @@
+{
+  "sku": "BR-0110",
+  "category": "bracelet",
+  "title": "MoonlitCharms \u2014 flower-station cable-chain bracelet, 14k yellow gold",
+  "source": "2 vendor product photos only (user-directed): s1_flowers.jpg (draped, flower stations), s2_clasp.jpg (lobster clasp + extender). Watermark 'MoonlitCharms' on s1.",
+  "metal": "yellow_gold",
+  "karat": "14k",
+  "finish": "high_polish",
+  "chain": {
+    "type": "rolo_cable",
+    "gauge": "fine/delicate"
+  },
+  "clasp": {
+    "type": "lobster",
+    "extender": "adjustable chain ~5 open links + small drop charm at end",
+    "stamp": "14K"
+  },
+  "station_motif": {
+    "shape": "quatrefoil_flower",
+    "petals": {
+      "shape": "round",
+      "cut": "round_brilliant",
+      "count_per_flower": 4
+    },
+    "center": "single small gold bead",
+    "stones_per_flower": 4
+  },
+  "stone_count": {
+    "_phase1": "read s1_flowers + s2_clasp (the only 2 supplied images)",
+    "flower_stations": 5,
+    "stones_per_flower": 4,
+    "total_accent_rounds": 20,
+    "certainty": "motif CERTAIN (4 round + gold center); station TOTAL is best-read = 5 visible in s1 (draped) \u2014 a true full lay-flat was not supplied, so total could be 5-7 depending on length. FLAGGED for user confirm before P4.",
+    "certain": {
+      "petals_per_flower": 4,
+      "center_bead": 1,
+      "clasp": "lobster+extender",
+      "metal": "14k_yellow_gold"
+    }
+  },
+  "scene": {
+    "studio": "premium plain pure-white velvet, soft natural folds, bright neutral-white daylight, no logo",
+    "lifestyle": "one theme per catalog; bracelet on wrist/forearm, jewellery is the hero"
+  },
+  "composition": "4 studio (loop/flat/macro/clasp) + 6 lifestyle (wrist/forearm/collarbone/etc)",
+  "model": "nano_banana_2",
+  "resolution": "2k",
+  "aspect_ratio": "1:1",
+  "source_media_id": null,
+  "status": "P1 done; PENDING station-count confirm (5?) before P4 GENERATE"
+}
