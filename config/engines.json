@@ -1,0 +1,89 @@
+{
+  "_note": "ENGINE REGISTRY — single source of truth for WHICH generation engine may be called, and for what. Engine 1 (higgsfield) is the production default and the only catalog-approved stills engine (docs/21 engine lock, user 2026-07-16/2026-07-21). Engine 2 (openflow) is declared here so it can be used deliberately; it is NEVER auto-selected, NEVER a fallback, and NEVER produces catalog stills. Read this file — do not hard-code engine ids, endpoints or tool names anywhere in scripts/.",
+  "default": "higgsfield",
+  "auto_fallback": false,
+  "auto_fallback_note": "On ANY engine-1 failure (generation, timeout, API, connector, quality, geometry) the engine does NOT change. Retry inside engine 1. docs/21 §1a.",
+  "engines": {
+    "higgsfield": {
+      "rank": 1,
+      "role": "production_default",
+      "status": "active",
+      "transport": "mcp",
+      "server": "higgsfield",
+      "backend": "Higgsfield MCP",
+      "model_source": "config/model.json",
+      "tools": {
+        "image": "generate_image",
+        "image_batch": "generate_image_batch",
+        "video": "generate_video",
+        "video_batch": "generate_video_batch",
+        "upscale_image": "upscale_image",
+        "upscale_video": "upscale_video"
+      },
+      "call_constraints": {
+        "resolution": "2k",
+        "aspect_ratio": "1:1",
+        "count": 1,
+        "one_batch": true,
+        "medias_order": ["pose_studio_ref", "SOURCE_piece"],
+        "no_img2img": true,
+        "no_denoise": true,
+        "no_compositing": true
+      },
+      "catalog_approved": true,
+      "allowed_for": ["catalog_stills", "macro", "lifestyle", "video", "upscale"],
+      "blocked_for": []
+    },
+    "openflow": {
+      "rank": 2,
+      "role": "secondary_optin",
+      "status": "declared_not_connected",
+      "transport": "http",
+      "endpoint": "https://openflowmcp.com/mcp",
+      "repo": "https://github.com/molkex/mcp-flow-google",
+      "install": "claude mcp add --transport http openflow https://openflowmcp.com/mcp",
+      "backend": "Google Flow via unofficial bridge (Veo video; Nano Banana 2 / Pro / Lite images). Google publishes no API for Flow; this server drives a real Google account session.",
+      "model_source": "engine_native",
+      "tools": {
+        "image": "generate_image",
+        "video": "generate_video",
+        "video_from_image": "generate_video_from_image",
+        "video_between_frames": "generate_video_between_frames",
+        "video_with_reference": "generate_video_with_reference",
+        "extend_video": "extend_video",
+        "edit_video": "edit_video",
+        "upscale_image": "upscale_image",
+        "upscale_video": "upscale_video",
+        "check_credits": "check_credits",
+        "check_job": "check_job"
+      },
+      "native_output": {
+        "max_resolution": "1376x768",
+        "aspect": "16:9",
+        "video_durations_sec": [4, 6, 8, 10],
+        "video_credits": {"4": 7, "6": 10, "8": 12, "10": 15}
+      },
+      "catalog_approved": false,
+      "catalog_block_reason": "Native 1376x768 / 16:9 is below the locked 1:1 2048x2048 catalog format (FORMAT_ASPECT, no upscale). Using it for stills would degrade delivered output.",
+      "allowed_for": ["video", "video_from_approved_still", "exploration_moodboard_non_delivery"],
+      "blocked_for": ["catalog_stills", "macro", "lifestyle_stills", "any_delivered_image"],
+      "requires": [
+        "explicit --engine openflow on the command (never implicit, never a fallback)",
+        "per-request user permission for video (feedback_ask_before_video)",
+        "MCP server installed and Google account connected by the user"
+      ],
+      "security_note": "Third-party hosted bridge. The user's Google password is entered on Google's own page, but the resulting session is exercised by openflowmcp.com. Do not connect an account the user has not explicitly chosen to expose."
+    }
+  },
+  "selection_rules": {
+    "catalog_stills": "higgsfield ONLY. Any other engine id is a hard STOP.",
+    "video": "higgsfield by default; openflow permitted when the user names it AND grants per-request video permission.",
+    "never": [
+      "auto-select engine 2",
+      "fall back to engine 2 on an engine-1 failure",
+      "mix engines inside one catalog",
+      "let engine 2 write into deliveries/ or workspace/golden/<SKU>/ render slots"
+    ],
+    "authorization_phrase_to_change_production_engine": "Change the image generation pipeline."
+  }
+}

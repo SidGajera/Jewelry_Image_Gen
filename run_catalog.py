@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import build_prompts as bp          # noqa: E402
 import validate_render as vr        # noqa: E402
+import engine as eng                # noqa: E402
 
 MAX_RETRIES = 2   # HIGGSFIELD_ONLY: max 2 advisory-geometry rounds, then deliver best
 
@@ -102,17 +103,25 @@ def source_gate(sku, source_dir=None):
         sys.exit(f"STOP: source gate failed for {sku} (rc={rc}). Catalog not started.")
 
 
-def emit_plan(sku, pose_refs=None):
+def emit_plan(sku, pose_refs=None, engine=None):
     """Emit the per-slot generation plan for the FROZEN Higgsfield call.
     The call is unchanged: same tool/model, resolution 2k, aspect_ratio 1:1,
     count 1, ALL slots in one batch, medias order [pose/studio ref, SOURCE piece].
     No img2img, no denoise/strength, no compositing. pose_refs maps slot -> media
     id for the pose/studio reference (first media); fill before firing."""
+    # ENGINE GATE: catalog stills are engine 1 (Higgsfield) only. Naming any
+    # other engine here is a hard STOP - see config/engines.json + docs/26.
+    try:
+        e = eng.assert_catalog_engine(engine)
+    except eng.EngineViolation as exc:
+        sys.exit(f"STOP: {exc}")
     spec, prompts = bp.build_all(sku)
     src = spec.get("source_media_id")
     pose_refs = pose_refs or {}
     plan = {
-        "sku": sku, "category": spec["category"], "model": spec.get("model", "seedream_v5_pro"),
+        "sku": sku, "category": spec["category"],
+        "engine": e["id"], "engine_tool": e["tools"]["image"],
+        "model": spec.get("model", e["model"]),
         "source_media_id": src, "mode": "frozen_text_to_image",
         "call_constraints": {"resolution": "2k", "aspect_ratio": "1:1", "count": 1,
                              "one_batch": True, "medias_order": ["pose_studio_ref", "SOURCE_piece"],
@@ -173,7 +182,9 @@ def gate_catalog(sku, renders_dir):
 def write_manifest(sku, renders_dir, jobs=None):
     mp = ROOT / "workspace" / "golden" / sku / f"manifest_{sku}.json"
     spec = json.loads((ROOT / "specs" / f"{sku}.json").read_text(encoding="utf-8"))
-    man = {"sku": sku, "category": spec["category"], "model": spec.get("model"),
+    e = eng.assert_catalog_engine()
+    man = {"sku": sku, "category": spec["category"],
+           "engine": e["id"], "model": spec.get("model", e["model"]),
            "source_media_id": spec.get("source_media_id"),
            "aspect_ratio": "1:1", "resolution": spec.get("resolution", "2k"),
            "mode": "frozen_text_to_image", "geometry": "approximate — generated, not source-matched",
@@ -183,6 +194,9 @@ def write_manifest(sku, renders_dir, jobs=None):
 
 
 def regression():
+    rc = _run([sys.executable, "scripts/engine.py", "--check"])
+    if rc != 0:
+        sys.exit("STOP: engine lock invariants failed (config/engines.json).")
     rc = _run([sys.executable, "tests/run_gates.py"])
     if rc != 0:
         sys.exit("STOP: regression suite failed (a gate stopped catching a past failure).")
@@ -320,6 +334,9 @@ def main():
     ap.add_argument("sku")
     ap.add_argument("--source-dir")
     ap.add_argument("--emit-plan", action="store_true")
+    ap.add_argument("--engine", default=None,
+                    help="generation engine id (config/engines.json). Default and only "
+                         "catalog-approved engine: higgsfield. Never auto-selected.")
     ap.add_argument("--renders-dir")
     ap.add_argument("--commit", action="store_true")
     ap.add_argument("--stage")
@@ -384,7 +401,7 @@ def main():
     source_gate(args.sku, args.source_dir)
 
     if args.emit_plan:
-        emit_plan(args.sku)
+        emit_plan(args.sku, engine=args.engine)
         if not args.renders_dir:
             print("next: agent fires the FROZEN Higgsfield batch from the gen plan (medias [pose_ref, SOURCE]), "
                   "saves NN_name.png into a renders dir, then re-run with --renders-dir")

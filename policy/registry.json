@@ -672,7 +672,7 @@
     {
       "id": "MODEL_LOCK",
       "key": "generation.model",
-      "statement": "Nano Banana 2 is the ONLY image-generation model — every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry — count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
+      "statement": "Nano Banana 2 is the ONLY image-generation model \u2014 every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry \u2014 count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
       "scope": "global",
       "precedence": 100,
       "supersedes": [
@@ -714,7 +714,7 @@
     {
       "id": "METAL_KARAT_18K",
       "key": "metal.karat",
-      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render — STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
+      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render \u2014 STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
       "scope": "global",
       "precedence": 50,
       "enforced_by": [
@@ -727,6 +727,23 @@
         "metal_colour_mismatch_vs_source",
         "listing_metal_mismatch",
         "white_gold_source_generated_without_decision"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ENGINE_ORDER",
+      "key": "engine.order",
+      "statement": "Engine 1 higgsfield is the production default and the ONLY catalog-approved stills engine; engine 2 openflow is opt-in for video/exploration, never auto-selected, never a fallback, never writes a delivered image",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [],
+      "enforced_by": [
+        "ENGINE_LOCK_CHECK"
+      ],
+      "origin": "user 2026-08-21",
+      "failure_cases": [
+        "engine2_catalog_still",
+        "engine2_autofallback"
       ],
       "status": "active"
     }
