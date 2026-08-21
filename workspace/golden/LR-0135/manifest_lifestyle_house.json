@@ -1,0 +1,22 @@
+{
+  "sku": "LR-0135",
+  "run": "lifestyle_house_5",
+  "status": "QUARANTINED — DISCARDED. Ran on banned flash; orientation wrong on the last 4. Not delivered. MODEL_LOCK break. Regen on true nano_banana_2 only.",
+  "date": "2026-08-02",
+  "spec": "specs/LR-0135.json (Phase 1.5 verified; G27 east-west lock)",
+  "model_requested": "nano_banana_2",
+  "model_actual": "nano_banana_flash",
+  "model_note": "nb2 unconditionally routed to nano_banana_flash on this account. Ran under EXPLICIT one-time user waiver ('generate all images', 2026-08-02). Per MODEL_LOCK manifest-honesty rule this records the model ACTUALLY used; regen on true nano_banana_2 if/when it is served.",
+  "canvas": "1:1 2k",
+  "theme": "house/home lifestyle — warm modern interior, natural window light, silk/linen, no beige knit",
+  "geometry": "15 emerald-cut, east-west (long axis parallel to shank), partial ~3/4 band, single bead per junction, thin low band, white metal",
+  "slots": [
+    { "slot": "L1", "pose": "hand on sunlit windowsill", "job_id": "55d4786b-c692-424d-9ca0-67cac5b8f29c" },
+    { "slot": "L2", "pose": "hand around coffee mug, kitchen", "job_id": "002a087f-d18e-4c1f-8c2a-6962a2e4ded9" },
+    { "slot": "L3", "pose": "hand on open book, sofa", "job_id": "f260ece1-f4f1-4c3e-98c3-077498ed821c" },
+    { "slot": "L4", "pose": "hand touching houseplant by window", "job_id": "f9bf94c2-55db-427a-a0bf-62861a5dbad3" },
+    { "slot": "L5", "pose": "hand at collarbone, sofa", "job_id": "ff057ade-4eb3-448a-b293-fd1def132877" }
+  ],
+  "quarantined_prior_jobs": "earlier editorial-theme + probe jobs (wrong orientation / pre-correction) — do not use",
+  "post_gen": "G27 ORIENTATION_CHECK + G26 must be applied before delivery: verify east-west, partial coverage, single bead, count 15"
+}
