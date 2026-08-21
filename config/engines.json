@@ -46,7 +46,7 @@
     "openflow": {
       "rank": 2,
       "role": "secondary_optin",
-      "status": "mcp_connected_google_pending",
+      "status": "active",
       "transport": "http",
       "endpoint": "https://openflowmcp.com/mcp",
       "repo": "https://github.com/molkex/mcp-flow-google",
@@ -108,9 +108,19 @@
       ],
       "auth": {
         "transport_auth": "HTTP bearer header, stored in the user's ~/.claude.json (project scope). NEVER stored in this repo, never in .claude/settings.local.json, never printed.",
-        "google_account": "not yet connected - run 'connect my Google account to openflow' in an interactive session; the user signs in on Google's own page.",
-        "connected_on": "2026-08-21 (MCP transport only)"
-      }
+        "google_account": "gajerasiddharth10@gmail.com",
+        "owner_key": "gh-sidgajera-3dc9 (GitHub identity SidGajera)",
+        "connected_on": "2026-08-21",
+        "revoke_at": "https://myaccount.google.com/device-activity - the grant appears as a DEVICE session, not as an app under 'Apps with access'.",
+        "token_note": "Onboarding used a single-use oauth2_4/ code from accounts.google.com/EmbeddedSetup, exchanged server-side for a Google master token. That master token lives on openflowmcp.com, not here."
+      },
+      "capabilities_observed": {
+        "checked_on": "2026-08-21",
+        "images": "available (free image quota 25, no hard limit reported)",
+        "video": "NOT available - requires a paid subscription at https://openflowmcp.com/account",
+        "note": "Engine 2 was added mainly for video, and video is exactly what the free tier withholds. Until a subscription exists, engine 2 can only do non-delivery image exploration - which it is already blocked from delivering."
+      },
+      "support": "https://t.me/mxmtkchk (operator Telegram; the only support channel for a self-registered key)"
     }
   },
   "selection_rules": {
