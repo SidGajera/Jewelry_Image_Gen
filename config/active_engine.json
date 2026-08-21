@@ -1,0 +1,4 @@
+{
+  "active": "higgsfield",
+  "_note": "Active engine for exploration/video ONLY. Catalog stills always use config/engines.json 'default' (higgsfield) regardless of this file. Set with: python scripts/engine.py --use <id>"
+}

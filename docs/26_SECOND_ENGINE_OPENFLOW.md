@@ -42,9 +42,38 @@ exploration only**, and their output must never be written into `deliveries/` or
 Engine 1 also generates video and remains the default for it. Engine 2 is used only when the
 user names it. Video of any kind still needs **per-request permission** before generating.
 
+## 3a. Switching engines (one command)
+
+```bash
+python scripts/engine.py --use openflow      # exploration / video work
+python scripts/engine.py --use higgsfield    # back to engine 1
+python scripts/engine.py --show              # what is active right now
+```
+
+The selection is stored in `config/active_engine.json` and read by
+`engine.resolve()` whenever no engine is named explicitly.
+
+**The switch only moves switchable work.** `catalog_stills`, `macro`,
+`lifestyle_stills` and `any_delivered_image` are in `engine.LOCKED_PURPOSES`:
+they resolve to engine 1 no matter what is active. Verified behaviour with
+`--use openflow` selected:
+
+| call | resolves to |
+|---|---|
+| `run_catalog.py <SKU> --emit-plan` | `higgsfield`, model `nano_banana_2` |
+| `resolve(purpose="video")` | `openflow` |
+
+That is why the switch can stay cheap: flipping it cannot degrade a delivered
+image, so nobody has to remember to flip it back before a catalog. `--check`
+asserts this by switching to every non-default engine in turn and confirming a
+`catalog_stills` resolve still returns engine 1.
+
+To point a *delivered* catalog at another engine you still need the
+authorization phrase in §4.5 — that is a policy change, not a switch.
+
 ## 4. Hard rules
 
-1. **Never auto-selected.** Engine 2 runs only on an explicit `--engine openflow`.
+1. **Never auto-selected.** Engine 2 runs only when named — `--engine openflow` on a command, or selected with `--use openflow` (§3a). Nothing selects it implicitly.
 2. **Never a fallback.** On any engine-1 failure — generation, timeout, API, connector,
    quality, geometry — the engine does not change. Retry inside engine 1 (`docs/21` §1a).
 3. **Never mixed inside one catalog.**
@@ -59,9 +88,21 @@ user names it. Video of any kind still needs **per-request permission** before g
 claude mcp add --transport http openflow https://openflowmcp.com/mcp
 ```
 
-Then connect the Google account through the server's local login script. Status in
-`config/engines.json` stays `declared_not_connected` until that is done; flip it to `active`
-only after the connection is verified.
+Then connect the Google account through the server's local login script (`onboard_local.js`
+— upstream ships mac/linux Chrome paths only, so Windows needs the `ONBOARD_CHROME` override
+or a patched `findChrome()`), and hand the printed `{email, oauth_token}` to
+`add_account_token`.
+
+**Done on 2026-08-21** for `gajerasiddharth10@gmail.com` (owner key `gh-sidgajera-3dc9`),
+so `config/engines.json` status is now `active`. Observed capability at that point:
+images unmetered; **video refused** (`can_generate_video: false`) pending a paid openflow
+subscription, and thereafter costing 7–15 Google credits per clip against a 50-credit
+monthly tier. Revoke the grant at `myaccount.google.com/device-activity` — it appears as a
+device session, not an app.
+
+**The service's `visible_watermark: false` flag is unreliable.** Every image generated on
+2026-08-21 carried Google's sparkle mark in the bottom-right despite that flag. Check the
+corner of a render before trusting it.
 
 **Security note.** Google publishes no API for Flow, so this is an unofficial hosted bridge.
 The password is typed into Google's own page, but the resulting session is exercised by

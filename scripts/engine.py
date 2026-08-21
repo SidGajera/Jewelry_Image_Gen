@@ -8,6 +8,15 @@ the same frozen Higgsfield constraints the pipeline has always used. The module
 exists so a second engine can be named explicitly and refused where it would
 degrade delivered output.
 
+Switching engines is one command:
+  python scripts/engine.py --use openflow           # exploration/video work
+  python scripts/engine.py --use higgsfield         # back to engine 1
+  python scripts/engine.py --show                   # what is active right now
+
+The active engine applies to exploration and video ONLY. Catalog stills always
+resolve to engine 1 no matter what is active - switching cannot degrade a
+delivered image, which is the whole point of keeping the switch cheap.
+
 Usage:
   python scripts/engine.py --list
   python scripts/engine.py --check                 # invariants (used by tests)
@@ -20,6 +29,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ENGINES = ROOT / "config" / "engines.json"
 MODEL_CFG = ROOT / "config" / "model.json"
+ACTIVE = ROOT / "config" / "active_engine.json"
+
+# Purposes that may NEVER follow the active-engine switch. A delivered still is
+# always engine 1; the switch exists for work that never ships.
+LOCKED_PURPOSES = {"catalog_stills", "macro", "lifestyle_stills", "any_delivered_image"}
 
 
 class EngineViolation(RuntimeError):
@@ -34,6 +48,36 @@ def default_engine():
     return _cfg()["default"]
 
 
+def active_engine():
+    """The engine currently selected for switchable (non-delivery) work.
+    Falls back to engine 1 when nothing was ever selected."""
+    if ACTIVE.exists():
+        try:
+            eid = json.loads(ACTIVE.read_text(encoding="utf-8")).get("active")
+            if eid in _cfg()["engines"]:
+                return eid
+        except (ValueError, OSError):
+            pass
+    return default_engine()
+
+
+def use(engine):
+    """Select the engine for switchable work. Refuses an unknown id so a typo
+    cannot silently leave the previous engine selected."""
+    cfg = _cfg()
+    if engine not in cfg["engines"]:
+        raise EngineViolation(
+            f"unknown engine '{engine}'. Declared: {', '.join(sorted(cfg['engines']))}.")
+    rec = cfg["engines"][engine]
+    ACTIVE.write_text(json.dumps({
+        "active": engine,
+        "_note": "Active engine for exploration/video ONLY. Catalog stills always use "
+                 "config/engines.json 'default' (higgsfield) regardless of this file. "
+                 "Set with: python scripts/engine.py --use <id>",
+    }, indent=2) + "\n", encoding="utf-8")
+    return engine, rec["status"]
+
+
 def list_engines():
     return {k: {"rank": v["rank"], "role": v["role"], "status": v["status"],
                 "catalog_approved": v["catalog_approved"]}
@@ -44,7 +88,11 @@ def resolve(engine=None, purpose="catalog_stills"):
     """Return the engine record for `engine` (default: engine 1) after checking
     that it is allowed for `purpose`. Raises EngineViolation otherwise."""
     cfg = _cfg()
-    eid = engine or cfg["default"]
+    # Locked purposes ignore the switch entirely; everything else follows it.
+    if engine is None:
+        eid = cfg["default"] if purpose in LOCKED_PURPOSES else active_engine()
+    else:
+        eid = engine
     if eid not in cfg["engines"]:
         raise EngineViolation(
             f"unknown engine '{eid}'. Declared engines: {', '.join(sorted(cfg['engines']))}.")
@@ -92,6 +140,22 @@ def check():
             continue
         if "catalog_stills" not in rec.get("blocked_for", []):
             problems.append(f"engine '{eid}' does not block catalog_stills")
+    # the active-engine switch must never reach a locked purpose
+    saved = active_engine()
+    try:
+        for eid in cfg["engines"]:
+            if eid == cfg["default"]:
+                continue
+            use(eid)
+            got = resolve(purpose="catalog_stills")["id"]
+            if got != cfg["default"]:
+                problems.append(
+                    f"active='{eid}' leaked into catalog_stills (resolved '{got}')")
+    except EngineViolation as exc:
+        problems.append(f"catalog_stills raised while switched: {exc}")
+    finally:
+        use(saved)
+
     # engine 2 must actually refuse a stills call
     for eid in cfg["engines"]:
         if eid == cfg["default"]:
@@ -105,6 +169,20 @@ def check():
 
 
 if __name__ == "__main__":
+    if "--use" in sys.argv:
+        try:
+            eid, status = use(sys.argv[sys.argv.index("--use") + 1])
+        except EngineViolation as exc:
+            sys.exit(f"STOP: {exc}")
+        locked = _cfg()["default"]
+        print(f"active engine -> {eid} ({status})")
+        print(f"catalog stills remain {locked} (switch does not apply to delivered images)")
+        sys.exit(0)
+    if "--show" in sys.argv:
+        cfg = _cfg()
+        print(f"active (exploration/video): {active_engine()}")
+        print(f"catalog stills (locked)   : {cfg['default']}")
+        sys.exit(0)
     if "--list" in sys.argv:
         for eid, rec in list_engines().items():
             print(f"{rec['rank']}. {eid:<12} {rec['role']:<20} {rec['status']:<24} "
