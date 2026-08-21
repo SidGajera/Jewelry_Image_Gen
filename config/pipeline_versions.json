@@ -71,12 +71,30 @@
         "enabled": false
       },
       "aka": "Original Higgsfield lifecycle (production baseline)"
+    },
+    "gflow-nb2": {
+      "name": "gflow-nb2",
+      "display": "Google Flow \u00b7 Nano Banana 2",
+      "description": "NON-PRODUCTION, engine 2. Nano Banana 2 reached DIRECTLY through Google Flow via the openflow MCP bridge, not through Higgsfield. Named 2026-08-21 at user request. Generates 768x1376 portrait natively (1376x768 landscape), upscalable to 2K (1536x2752) / 4K through Flow's own download panel. Used for video and for non-delivery exploration only.",
+      "engine": "openflow",
+      "model_id_in_this_pipeline": "NARWHAL",
+      "status": "non_production",
+      "selectable_as_active": false,
+      "why_not_production": "Native 768x1376 cannot meet the locked 1:1 2048x2048 delivery format (FORMAT_ASPECT/G1), and its generate_image runs outside Higgsfield, which ENGINE_ORDER reserves for every delivered pixel. Setting `active` to this value must be refused.",
+      "allowed_for": [
+        "video",
+        "video_from_approved_still",
+        "exploration_moodboard_non_delivery"
+      ],
+      "added": "2026-08-21"
     }
   },
   "terminology": {
-    "Higgsfield": "The only production image generation engine (docs/21) - unchanged by the 2026-07-20 switch. Higgsfield renders the scene in BOTH versions; compositing preserved pixels is not generation (docs/21 §2).",
+    "Higgsfield": "The only production image generation engine (docs/21) - unchanged by the 2026-07-20 switch. Higgsfield renders the scene in BOTH versions; compositing preserved pixels is not generation (docs/21 \u00a72).",
     "Composite-first": "`composite-v1`. Higgsfield renders only the scene; the real source-CAD ring is composited in - geometry identical by construction, but studio angles only. RETAINED, not production (user-instructed 2026-07-21).",
     "Logo compositing": "NOT a pipeline. The preserved logo is composited locally in BOTH versions - required by docs/04 P0 in all cases and unaffected by this switch.",
-    "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = legacy = Higgsfield generates every frame including the ring (user-instructed 2026-07-21: 'use only Higgsfield'); fidelity held by locked prompts + QC + local logo/cloth, not by construction."
+    "note": "Both versions call Higgsfield. The distinction is whether Higgsfield draws the RING. Production = legacy = Higgsfield generates every frame including the ring (user-instructed 2026-07-21: 'use only Higgsfield'); fidelity held by locked prompts + QC + local logo/cloth, not by construction.",
+    "gflow-nb2": "The Google Flow route to Nano Banana 2 (engine 2). NOT a second Higgsfield pipeline and NOT a replacement for `legacy`.",
+    "Nano Banana 2 - two routes, do not confuse": "The SAME model is reachable two ways and the ids differ. Route 1 (production): Higgsfield MCP, model string `nano_banana_2` from config/model.json, governed by MODEL_LOCK. Route 2 (engine 2, non-production): Google Flow, model id `NARWHAL`, governed by this entry. A `NARWHAL` render is NOT a MODEL_LOCK-compliant render - MODEL_LOCK is about the Higgsfield call, and engine 2 output may never be delivered regardless."
   }
 }

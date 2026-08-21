@@ -41,7 +41,11 @@
         "video",
         "upscale"
       ],
-      "blocked_for": []
+      "blocked_for": [],
+      "pipeline": {
+        "name": "legacy",
+        "owner": "config/pipeline_versions.json (docs/15)"
+      }
     },
     "openflow": {
       "rank": 2,
@@ -120,7 +124,12 @@
         "video": "NOT available - requires a paid subscription at https://openflowmcp.com/account",
         "note": "Engine 2 was added mainly for video, and video is exactly what the free tier withholds. Until a subscription exists, engine 2 can only do non-delivery image exploration - which it is already blocked from delivering."
       },
-      "support": "https://t.me/mxmtkchk (operator Telegram; the only support channel for a self-registered key)"
+      "support": "https://t.me/mxmtkchk (operator Telegram; the only support channel for a self-registered key)",
+      "pipeline": {
+        "name": "gflow-nb2",
+        "display": "Google Flow \u00b7 Nano Banana 2",
+        "owner": "config/pipeline_versions.json (docs/15)"
+      }
     }
   },
   "selection_rules": {

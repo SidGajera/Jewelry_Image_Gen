@@ -19,6 +19,29 @@ medias `[pose_studio_ref, SOURCE_piece]`, no img2img, no denoise, no compositing
 recorded verbatim in `config/engines.json` and is what `run_catalog.py --emit-plan` emits
 when no `--engine` is given.
 
+## 1a. Pipeline name
+
+Engine 2's pipeline is named **`gflow-nb2`** — *"Google Flow · Nano Banana 2"* (named
+2026-08-21). Registered in [`config/pipeline_versions.json`](../config/pipeline_versions.json),
+which owns pipeline names and versions (`docs/15`); `config/engines.json` only points at it.
+
+| | engine 1 | engine 2 |
+|---|---|---|
+| pipeline | `legacy` | **`gflow-nb2`** |
+| route | Higgsfield MCP | Google Flow (openflow bridge) |
+| model id | `nano_banana_2` (from `config/model.json`) | `NARWHAL` |
+| native output | 2K, 1:1 | 768×1376, upscalable to 1536×2752 |
+| production | **yes** | no — `selectable_as_active: false` |
+
+**The same model, two routes — do not confuse the ids.** Nano Banana 2 is reachable both
+ways. Through Higgsfield it is the string `nano_banana_2` and MODEL_LOCK governs it; through
+Google Flow it is `NARWHAL` and this document governs it. A `NARWHAL` render is **not** a
+MODEL_LOCK-compliant render — MODEL_LOCK is about the Higgsfield call — and engine 2 output
+may never be delivered regardless of which id produced it.
+
+Setting `active` to `gflow-nb2` must be refused: its native format cannot meet the locked
+1:1 2048² delivery format.
+
 ## 2. Why engine 2 cannot produce catalog stills
 
 Its native output is **1376×768 / 16:9**. The locked delivery format is **1:1, 2048×2048,
