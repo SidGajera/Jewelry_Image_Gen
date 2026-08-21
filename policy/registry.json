@@ -24,7 +24,10 @@
       "failure_cases": [
         "portrait_output"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "FORMAT_PORTRAIT": "all images portrait"
+      }
     },
     {
       "id": "FORMAT_PORTRAIT",
@@ -58,7 +61,10 @@
       "literal_banned_in_prose": [
         "default 18K",
         "Default 18K NATURAL YELLOW GOLD"
-      ]
+      ],
+      "superseded_learning": {
+        "METAL_DEFAULT_18K": "default 18K natural yellow gold unless source otherwise"
+      }
     },
     {
       "id": "METAL_DEFAULT_18K",
@@ -149,7 +155,10 @@
       "failure_cases": [
         "wrong_angle_front_not_rear"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "ANGLE_STUDIO_MACRO_HEAD": "studio slot 04 = macro_head"
+      }
     },
     {
       "id": "ANGLE_STUDIO_MACRO_HEAD",
@@ -325,7 +334,10 @@
         "text_to_image_no_source_reference",
         "source_media_not_fed_to_call"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "FROZEN_CALL": "Higgsfield generation call frozen: text-to-image, 2k/1:1/count1/one batch, medias [pose/studio ref, SOURCE piece]; no img2img/denoise/compositing of jewelry (accent-run composite exception approved)"
+      }
     },
     {
       "id": "SUBAGENT_BAN",
@@ -356,7 +368,10 @@
         "opened_higgsfield_widget",
         "job_display_used_for_retrieval"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "SUBAGENT_BAN": "never spawn subagent/background-task/agent; read source in-thread once; no gallery-display widgets; job_display retrieval only, one pass per catalog"
+      }
     },
     {
       "id": "LOGO_LOCKED",
@@ -690,7 +705,10 @@
         "flash_edit_path_used",
         "geometry_drift_shipped_without_label"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "MODEL_ENGINE_PRIOR_LOCK": "engine frozen to Higgsfield nano_banana_2 (2k, 1:1); never switch/redesign/migrate to Nano Banana Pro or any other generator; visual-generation behaviour must not change"
+      }
     },
     {
       "id": "DIAMOND_CLARITY",
@@ -746,12 +764,24 @@
       ],
       "origin": "user 2026-08-21",
       "failure_cases": [
-        "engine2_autofallback",
+        "cutout_hash_mismatch",
         "engine2_catalog_still",
+        "geometry_drift_from_text_to_image",
+        "jewellery_generated_not_composited",
+        "jewellery_generated_not_placed",
+        "missing_provenance",
         "python_wrote_delivered_pixels",
-        "silent_delivery_on_geometry_fail"
+        "silent_delivery_on_geometry_fail",
+        "stone_ratio_drift"
       ],
-      "status": "active"
+      "status": "active",
+      "superseded_learning": {
+        "G19_COMPOSITE_PROVENANCE": "every delivery carries its source cutout name + sha256 and asserts whole-asset affine only; no sidecar or hash mismatch = no ship. Pixel-counters G2-G9 retired for composites; geometry verified by cutout hash.",
+        "GEN_COMPOSITE_V2": "Jewellery is composited from source CAD cutouts (whole-asset affine transform only); Higgsfield generates BACKGROUND PLATES ONLY (call shape unchanged: 2k,1:1,count1,one batch); no jewellery word or geometry in any prompt.",
+        "GEN_ENGINE_LOCK": "Higgsfield MCP is the only production image-generation engine; never swap providers",
+        "GEOMETRY_FROM_SOURCE": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) \u2014 never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+        "HIGGSFIELD_ONLY": "ALL delivered pixels come from Higgsfield generate_image. Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write). Python allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report."
+      }
     },
     {
       "id": "POLICY_SUPREMACY",

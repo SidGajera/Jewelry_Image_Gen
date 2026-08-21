@@ -9,6 +9,8 @@ Checks:
   1b. Supersession chain broken (superseded-by-nobody, or a non-active rule claiming to
       supersede the active owner) -> STOP. One topic, one owner, one intact chain.
   1c. A topic key left with no active/aspirational owner -> STOP.
+  1d. An active rule dropping a superseded ancestor's failure_cases or statement -> STOP.
+      Merging consolidates policy; it must never lose learning.
   2. A rule with no enforced_by -> WARN "unenforced, advisory only".
   3. A gate (config/gates.json) with no rule -> WARN "orphan gate".
   4. A failure_case (memory/failures.json) with no rule -> WARN "failure with no policy".
@@ -103,6 +105,39 @@ def main():
             if unretired:
                 stops.append(
                     f"ORPHAN TOPIC '{key}': no active owner and {unretired} superseded by nobody.")
+
+    # 1d. NO LEARNING LOST ON MERGE (user 2026-08-21)
+    #     Superseding a rule retires its TEXT, never its lessons. The active owner
+    #     must carry every ancestor's failure_cases and keep their statements in
+    #     `superseded_learning`, so a merge can never quietly drop a past rejection.
+    def _ancestors(rid, seen=None):
+        seen = seen if seen is not None else set()
+        for sid in (byid.get(rid, {}).get("supersedes") or []):
+            if sid in byid and sid not in seen:
+                seen.add(sid)
+                _ancestors(sid, seen)
+        return seen
+
+    for r in reg:
+        if r.get("status") != "active":
+            continue
+        anc = _ancestors(r["id"])
+        if not anc:
+            continue
+        missing = set()
+        for a in anc:
+            missing |= set(byid[a].get("failure_cases") or [])
+        missing -= set(r.get("failure_cases") or [])
+        if missing:
+            stops.append(
+                f"LEARNING LOST: {r['id']} supersedes {sorted(anc)} but drops their "
+                f"failure_cases {sorted(missing)}. Merge them in - retiring a rule must "
+                f"never retire what it learned.")
+        lost = [a for a in sorted(anc) if a not in (r.get("superseded_learning") or {})]
+        if lost:
+            stops.append(
+                f"LEARNING LOST: {r['id']} does not carry the statements of {lost} in "
+                f"`superseded_learning`.")
 
     # 2. unenforced active rules
     for r in active:
