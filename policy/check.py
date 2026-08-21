@@ -6,6 +6,9 @@ gates and goldens.
 
 Checks:
   1. Two ACTIVE rules on the same key with different statements -> STOP (print both).
+  1b. Supersession chain broken (superseded-by-nobody, or a non-active rule claiming to
+      supersede the active owner) -> STOP. One topic, one owner, one intact chain.
+  1c. A topic key left with no active/aspirational owner -> STOP.
   2. A rule with no enforced_by -> WARN "unenforced, advisory only".
   3. A gate (config/gates.json) with no rule -> WARN "orphan gate".
   4. A failure_case (memory/failures.json) with no rule -> WARN "failure with no policy".
@@ -71,6 +74,35 @@ def main():
         stmts = {r["statement"] for r in rs}
         if len(stmts) > 1:
             stops.append(f"CONFLICT on key '{key}': " + " || ".join(f"{r['id']}=\"{r['statement']}\"" for r in rs))
+
+    # 1b. supersession-chain integrity (ONE POLICY PER RULE, user 2026-08-21)
+    #     A topic may have exactly one active owner, and the chain that got it there
+    #     must be intact: a superseded rule is superseded BY someone, and only an
+    #     active rule may claim to supersede the current owner.
+    byid = {r["id"]: r for r in reg}
+    claimed = {s for r in reg for s in (r.get("supersedes") or [])}
+    for r in reg:
+        for sid in (r.get("supersedes") or []):
+            if sid in byid and byid[sid].get("status") == "active" and r.get("status") != "active":
+                stops.append(
+                    f"BROKEN CHAIN: {r['id']} (status {r.get('status')}) claims to supersede "
+                    f"ACTIVE {sid}. Exactly one rule owns a topic - promote one or fix supersedes.")
+        if r.get("status") == "superseded" and r["id"] not in claimed:
+            stops.append(
+                f"BROKEN CHAIN: {r['id']} is marked superseded but no rule supersedes it. "
+                f"Name it in the successor's `supersedes`, or restore its status.")
+
+    # 1c. a topic key must not be silently abandoned
+    allkeys = {}
+    for r in reg:
+        allkeys.setdefault(r.get("key"), []).append(r)
+    for key, rs in allkeys.items():
+        statuses = {r.get("status") for r in rs}
+        if "active" not in statuses and "aspirational" not in statuses:
+            unretired = [r["id"] for r in rs if r["id"] not in claimed]
+            if unretired:
+                stops.append(
+                    f"ORPHAN TOPIC '{key}': no active owner and {unretired} superseded by nobody.")
 
     # 2. unenforced active rules
     for r in active:

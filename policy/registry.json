@@ -568,7 +568,7 @@
         "python_wrote_delivered_pixels",
         "silent_delivery_on_geometry_fail"
       ],
-      "status": "active"
+      "status": "superseded"
     },
     {
       "id": "SUBJECT_SCALE_MIN",
@@ -732,18 +732,24 @@
     },
     {
       "id": "ENGINE_ORDER",
-      "key": "engine.order",
-      "statement": "Engine 1 higgsfield is the production default and the ONLY catalog-approved stills engine; engine 2 openflow is opt-in for video/exploration, never auto-selected, never a fallback, never writes a delivered image",
+      "key": "generation.engine",
+      "statement": "ALL delivered pixels come from Higgsfield generate_image (engine 1, the production default and the ONLY catalog-approved stills engine). Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write); Python is allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report. Engine 2 (openflow / Google Flow) is opt-in for video and non-delivery exploration only: never auto-selected, never a fallback on an engine-1 failure, never mixed inside one catalog, and never writes a delivered image.",
       "scope": "global",
       "precedence": 100,
-      "supersedes": [],
+      "supersedes": [
+        "HIGGSFIELD_ONLY",
+        "GEOMETRY_FROM_SOURCE"
+      ],
       "enforced_by": [
+        "run_catalog",
         "ENGINE_LOCK_CHECK"
       ],
       "origin": "user 2026-08-21",
       "failure_cases": [
+        "engine2_autofallback",
         "engine2_catalog_still",
-        "engine2_autofallback"
+        "python_wrote_delivered_pixels",
+        "silent_delivery_on_geometry_fail"
       ],
       "status": "active"
     },

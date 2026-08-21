@@ -135,20 +135,58 @@
     "authorization_phrase_to_change_production_engine": "Change the image generation pipeline."
   },
   "universal_policy": {
-    "_note": "POLICY SUPREMACY (user 2026-08-21): project policy outranks every engine, mode, model and tool. Whatever generates the pixels, these rules still apply. No engine record may declare an exemption; scripts/engine.py --check enforces that and attaches this block to every resolve() result.",
+    "_note": "POLICY SUPREMACY (user 2026-08-21): project policy outranks every engine, mode, model and tool. Whatever generates the pixels, these rules still apply. This block does NOT restate the rules - each entry POINTS AT its single owner so there is one source of truth and nothing can drift. No engine record may declare an exemption; scripts/engine.py --check enforces that and attaches this block to every resolve().",
     "applies_to": "every engine in this file, present and future, and every generation mode (text-to-image, image-to-image, video, upscale, exploration)",
     "precedence": "policy > engine capability > convenience > tokens",
     "blocking_rules": [
-      "SOURCE FIDELITY \u2014 geometry traces to a supplied source view; no invention, no redraw (docs/13, docs/16)",
-      "WATERMARK \u2014 no third-party or generator watermark may survive into output; verify the corner, never trust a visible_watermark flag (docs/24 P7, G12)",
-      "NATURAL/ORIGINAL \u2014 real skin, light, fabric and anatomy; anything reading as AI is rejected and redone",
-      "ONE IMAGE PER ANGLE/POSE \u2014 no duplicate angles inside a catalog (G10)",
-      "CLARITY \u2014 every stone water-clear and glass-bright (G24)",
-      "JEWELLERY IS THE SUBJECT \u2014 people and scene are set dressing (docs/23, G14)",
-      "FORMAT \u2014 the catalog's locked aspect/resolution; upscale is allowed, downgrade is not (G1)",
-      "COUNT FROM SOURCE \u2014 stone/prong counts recorded before prompting and matched after (G21)"
+      {
+        "topic": "source fidelity",
+        "owner": "docs/13 + docs/16",
+        "gate": "validate_source"
+      },
+      {
+        "topic": "watermark",
+        "owner": "docs/24 P7",
+        "gate": "G12"
+      },
+      {
+        "topic": "natural / original",
+        "owner": "docs/24 P6 + docs/23",
+        "gate": "G9 (advisory) + review"
+      },
+      {
+        "topic": "one image per angle/pose",
+        "owner": "docs/12 A-MATRIX + docs/24 P3/P4",
+        "gate": "G10"
+      },
+      {
+        "topic": "clarity",
+        "owner": "docs/24",
+        "gate": "G24"
+      },
+      {
+        "topic": "jewellery is the subject",
+        "owner": "docs/23",
+        "gate": "G14"
+      },
+      {
+        "topic": "format",
+        "owner": "registry FORMAT_ASPECT",
+        "gate": "G1"
+      },
+      {
+        "topic": "count from source",
+        "owner": "registry STONE_EQUALITY_LOCK",
+        "gate": "G21"
+      },
+      {
+        "topic": "which engine may render",
+        "owner": "registry ENGINE_ORDER + docs/21 + docs/26",
+        "gate": "ENGINE_LOCK_CHECK"
+      }
     ],
     "on_conflict": "If an engine cannot satisfy a blocking rule, the engine loses: do not relax the rule, do not deliver, report the limit and stop.",
-    "no_exemptions": true
+    "no_exemptions": true,
+    "single_source_rule": "One topic, one owner. A new rule must extend the EXISTING owner (superseding it on the same registry key), never open a second rule on a parallel key. policy/check.py STOPs on two active rules sharing a key and on a broken supersession chain."
   }
 }
