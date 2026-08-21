@@ -113,6 +113,9 @@ def resolve(engine=None, purpose="catalog_stills"):
                               f"'{cfg['default']}' only (docs/21, docs/26).")
     if rec["model_source"] == "config/model.json":
         rec["model"] = json.loads(MODEL_CFG.read_text(encoding="utf-8"))["model"]
+    # POLICY SUPREMACY: every engine, every mode, inherits the same blocking rules.
+    # Attached here so no caller can obtain an engine record without them.
+    rec["policy"] = cfg["universal_policy"]
     return rec
 
 
@@ -140,6 +143,28 @@ def check():
             continue
         if "catalog_stills" not in rec.get("blocked_for", []):
             problems.append(f"engine '{eid}' does not block catalog_stills")
+    # POLICY SUPREMACY: the universal block must exist and bind every engine
+    up = cfg.get("universal_policy")
+    if not up:
+        problems.append("config/engines.json has no universal_policy block (POLICY_SUPREMACY)")
+    else:
+        if up.get("no_exemptions") is not True:
+            problems.append("universal_policy.no_exemptions must be true")
+        if not up.get("blocking_rules"):
+            problems.append("universal_policy.blocking_rules is empty")
+        for eid, rec in cfg["engines"].items():
+            for k in ("policy_exempt", "skip_policy", "exemptions"):
+                if k in rec:
+                    problems.append(f"engine '{eid}' declares '{k}' - no engine may opt out")
+        for eid in cfg["engines"]:
+            for purpose in ("video", "exploration_moodboard_non_delivery", "catalog_stills"):
+                try:
+                    got = resolve(eid, purpose=purpose)
+                except EngineViolation:
+                    continue
+                if got.get("policy") != up:
+                    problems.append(f"resolve({eid}, {purpose}) returned no universal_policy")
+
     # the active-engine switch must never reach a locked purpose
     saved = active_engine()
     try:

@@ -746,6 +746,20 @@
         "engine2_autofallback"
       ],
       "status": "active"
+    },
+    {
+      "id": "POLICY_SUPREMACY",
+      "key": "policy.supremacy",
+      "statement": "Project policy outranks every engine, mode, model and tool; whatever mode is used in future must still run through these policies, and an engine that cannot satisfy a blocking rule is refused, never the rule",
+      "scope": "global",
+      "precedence": 100,
+      "supersedes": [],
+      "enforced_by": [
+        "ENGINE_LOCK_CHECK"
+      ],
+      "origin": "user 2026-08-21",
+      "failure_cases": [],
+      "status": "active"
     }
   ]
 }

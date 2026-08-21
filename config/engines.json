@@ -133,5 +133,22 @@
       "let engine 2 write into deliveries/ or workspace/golden/<SKU>/ render slots"
     ],
     "authorization_phrase_to_change_production_engine": "Change the image generation pipeline."
+  },
+  "universal_policy": {
+    "_note": "POLICY SUPREMACY (user 2026-08-21): project policy outranks every engine, mode, model and tool. Whatever generates the pixels, these rules still apply. No engine record may declare an exemption; scripts/engine.py --check enforces that and attaches this block to every resolve() result.",
+    "applies_to": "every engine in this file, present and future, and every generation mode (text-to-image, image-to-image, video, upscale, exploration)",
+    "precedence": "policy > engine capability > convenience > tokens",
+    "blocking_rules": [
+      "SOURCE FIDELITY \u2014 geometry traces to a supplied source view; no invention, no redraw (docs/13, docs/16)",
+      "WATERMARK \u2014 no third-party or generator watermark may survive into output; verify the corner, never trust a visible_watermark flag (docs/24 P7, G12)",
+      "NATURAL/ORIGINAL \u2014 real skin, light, fabric and anatomy; anything reading as AI is rejected and redone",
+      "ONE IMAGE PER ANGLE/POSE \u2014 no duplicate angles inside a catalog (G10)",
+      "CLARITY \u2014 every stone water-clear and glass-bright (G24)",
+      "JEWELLERY IS THE SUBJECT \u2014 people and scene are set dressing (docs/23, G14)",
+      "FORMAT \u2014 the catalog's locked aspect/resolution; upscale is allowed, downgrade is not (G1)",
+      "COUNT FROM SOURCE \u2014 stone/prong counts recorded before prompting and matched after (G21)"
+    ],
+    "on_conflict": "If an engine cannot satisfy a blocking rule, the engine loses: do not relax the rule, do not deliver, report the limit and stop.",
+    "no_exemptions": true
   }
 }
