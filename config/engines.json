@@ -1,8 +1,8 @@
 {
-  "_note": "ENGINE REGISTRY — single source of truth for WHICH generation engine may be called, and for what. Engine 1 (higgsfield) is the production default and the only catalog-approved stills engine (docs/21 engine lock, user 2026-07-16/2026-07-21). Engine 2 (openflow) is declared here so it can be used deliberately; it is NEVER auto-selected, NEVER a fallback, and NEVER produces catalog stills. Read this file — do not hard-code engine ids, endpoints or tool names anywhere in scripts/.",
+  "_note": "ENGINE REGISTRY \u2014 single source of truth for WHICH generation engine may be called, and for what. Engine 1 (higgsfield) is the production default and the only catalog-approved stills engine (docs/21 engine lock, user 2026-07-16/2026-07-21). Engine 2 (openflow) is declared here so it can be used deliberately; it is NEVER auto-selected, NEVER a fallback, and NEVER produces catalog stills. Read this file \u2014 do not hard-code engine ids, endpoints or tool names anywhere in scripts/.",
   "default": "higgsfield",
   "auto_fallback": false,
-  "auto_fallback_note": "On ANY engine-1 failure (generation, timeout, API, connector, quality, geometry) the engine does NOT change. Retry inside engine 1. docs/21 §1a.",
+  "auto_fallback_note": "On ANY engine-1 failure (generation, timeout, API, connector, quality, geometry) the engine does NOT change. Retry inside engine 1. docs/21 \u00a71a.",
   "engines": {
     "higgsfield": {
       "rank": 1,
@@ -25,19 +25,28 @@
         "aspect_ratio": "1:1",
         "count": 1,
         "one_batch": true,
-        "medias_order": ["pose_studio_ref", "SOURCE_piece"],
+        "medias_order": [
+          "pose_studio_ref",
+          "SOURCE_piece"
+        ],
         "no_img2img": true,
         "no_denoise": true,
         "no_compositing": true
       },
       "catalog_approved": true,
-      "allowed_for": ["catalog_stills", "macro", "lifestyle", "video", "upscale"],
+      "allowed_for": [
+        "catalog_stills",
+        "macro",
+        "lifestyle",
+        "video",
+        "upscale"
+      ],
       "blocked_for": []
     },
     "openflow": {
       "rank": 2,
       "role": "secondary_optin",
-      "status": "declared_not_connected",
+      "status": "mcp_connected_google_pending",
       "transport": "http",
       "endpoint": "https://openflowmcp.com/mcp",
       "repo": "https://github.com/molkex/mcp-flow-google",
@@ -60,19 +69,48 @@
       "native_output": {
         "max_resolution": "1376x768",
         "aspect": "16:9",
-        "video_durations_sec": [4, 6, 8, 10],
-        "video_credits": {"4": 7, "6": 10, "8": 12, "10": 15}
+        "video_durations_sec": [
+          4,
+          6,
+          8,
+          10
+        ],
+        "video_credits": {
+          "4": 7,
+          "6": 10,
+          "8": 12,
+          "10": 15
+        }
       },
       "catalog_approved": false,
       "catalog_block_reason": "Native 1376x768 / 16:9 is below the locked 1:1 2048x2048 catalog format (FORMAT_ASPECT, no upscale). Using it for stills would degrade delivered output.",
-      "allowed_for": ["video", "video_from_approved_still", "exploration_moodboard_non_delivery"],
-      "blocked_for": ["catalog_stills", "macro", "lifestyle_stills", "any_delivered_image"],
+      "allowed_for": [
+        "video",
+        "video_from_approved_still",
+        "exploration_moodboard_non_delivery"
+      ],
+      "blocked_for": [
+        "catalog_stills",
+        "macro",
+        "lifestyle_stills",
+        "any_delivered_image"
+      ],
       "requires": [
         "explicit --engine openflow on the command (never implicit, never a fallback)",
         "per-request user permission for video (feedback_ask_before_video)",
         "MCP server installed and Google account connected by the user"
       ],
-      "security_note": "Third-party hosted bridge. The user's Google password is entered on Google's own page, but the resulting session is exercised by openflowmcp.com. Do not connect an account the user has not explicitly chosen to expose."
+      "security_note": "Third-party hosted bridge. The user's Google password is entered on Google's own page, but the resulting session is exercised by openflowmcp.com. Do not connect an account the user has not explicitly chosen to expose.",
+      "status_values": [
+        "declared_not_connected",
+        "mcp_connected_google_pending",
+        "active"
+      ],
+      "auth": {
+        "transport_auth": "HTTP bearer header, stored in the user's ~/.claude.json (project scope). NEVER stored in this repo, never in .claude/settings.local.json, never printed.",
+        "google_account": "not yet connected - run 'connect my Google account to openflow' in an interactive session; the user signs in on Google's own page.",
+        "connected_on": "2026-08-21 (MCP transport only)"
+      }
     }
   },
   "selection_rules": {
