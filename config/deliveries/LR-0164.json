@@ -1,0 +1,32 @@
+{
+  "sku": "LR-0164",
+  "status": "delivered",
+  "delivered_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
+  "design": {
+    "type": "round-brilliant solitaire with decorative pave under-gallery collar",
+    "center": "one round brilliant, FOUR slender claw prongs",
+    "accent": "curved pave arcs hugging the girdle sides meeting in a V-shaped pave gallery beneath the stone (hidden-halo style collar)",
+    "band": "plain tapered polished round shank, no pave on shank",
+    "metal": "18K yellow gold"
+  },
+  "workflow": "HIGGSFIELD-ONLY (docs/15). Office medias [CAD front, CAD profile, locked cloth+logo, locked logo].",
+  "source": {
+    "folder_id": "10iZQ-_kqbqQ-jprYiwGYSuoa07M9-Ek1",
+    "main_folder_only": true,
+    "note": "main-folder stills are watermarked; prompt instructs ignore/never reproduce watermark; NO-TEXT + FM-0163 OCR gate applies"
+  },
+  "higgsfield_media_ids": {
+    "cad_front": "e62fe4e9-0dfe-4b94-bcbc-6c4c7b68bbd6",
+    "cad_profile": "a390508b-ebfb-44ee-9fdb-63b71db67fdf",
+    "locked_cloth_logo": "475f812e-4dd3-4fc5-bd42-c19592307514",
+    "locked_logo": "fe0a012a-e177-4722-b761-f52007df5cc0"
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "notes": "Marked done by user 2026-07-18. Hero approved. Output PNGs in workspace/output/LR-0164 (gitignored -> Drive)."
+}

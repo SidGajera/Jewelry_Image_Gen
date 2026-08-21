@@ -1,0 +1,60 @@
+{
+  "sku": "LR-0159",
+  "status": "delivered",
+  "delivered_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
+  "design": {
+    "type": "round-brilliant solitaire with pave shoulders",
+    "center": "one round brilliant, FOUR double-claw prongs (two rounded bead tips per corner, 8 tips total)",
+    "shoulders": "both shoulders bead-set with a single tapering row of small round pave to the head",
+    "lower_shank": "plain polished gold",
+    "gallery": "open cathedral trellis gallery",
+    "band": "one continuous slim tapering round shank",
+    "metal": "18K yellow gold",
+    "accents": "no halo, no side stones, no second pave row"
+  },
+  "workflow": "HIGGSFIELD-ONLY (docs/15 s0). Studio medias [CAD ref(s), locked cloth+logo, locked logo]; lifestyle medias [CAD front, CAD three-quarter].",
+  "source": {
+    "folder_id": "1zIQB8qxuMhcV_KG8EFG-3q2lReIhSDo_",
+    "main_folder_only": true,
+    "cad_stills": {
+      "front": "cad_2.jpg (drive 1g8kAGTYqkATgE8Wr2Vu5wlKJEqB4xpu0)",
+      "three_quarter": "cad_4.jpg (drive 1tFqCCFAW-1yz1Xy6H5Izzl1Gw1fsIypV)",
+      "profile": "cad_7.jpg (drive 1E8ZtRazs4Ec5Py2MPFjzM6SjsMHrYitI)"
+    }
+  },
+  "higgsfield_media_ids": {
+    "cad_front": "859245cb-8a9c-4551-979a-9f64104ee868",
+    "cad_three_quarter": "8de49e08-4da7-425d-9ac2-5ed02d9a2386",
+    "cad_profile": "e92f78b5-398c-49d6-a42e-4147bca84c6e",
+    "locked_cloth_logo": "475f812e-4dd3-4fc5-bd42-c19592307514",
+    "locked_logo": "fe0a012a-e177-4722-b761-f52007df5cc0"
+  },
+  "catalog": {
+    "office": [
+      "01_office_hero (face-down, embedded-print pass)",
+      "02_office_lowangle (low-angle front, looking up)",
+      "03_office_highmacro (high ~60 three-quarter macro)",
+      "04_office_side (true 90 left profile)",
+      "05_office_rear (true rear gallery)"
+    ],
+    "closeup": [
+      "06_closeup1",
+      "07_closeup2",
+      "08_closeup3"
+    ],
+    "lifestyle": [
+      "09_life_mug",
+      "10_life_book",
+      "11_life_sofa",
+      "12_life_window"
+    ]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "notes": "Output PNGs live in workspace/output/LR-0159 (gitignored per repo policy -> Drive Output). Recurring open item: in-model logo reads as overlay and cloth/photorealism ceiling; logo-embed method decision pending (local composite vs in-model)."
+}

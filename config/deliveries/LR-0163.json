@@ -1,0 +1,50 @@
+{
+  "sku": "LR-0163",
+  "status": "approved",
+  "approved_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
+  "design": {
+    "type": "round-brilliant three-stone with pear sides",
+    "center": "round brilliant colorless diamond, 4 double-claw prongs",
+    "sides": "TWO pear-cut colorless brilliant diamonds, tips pointing outward, 3 prongs each with a V-tip",
+    "band": "plain thin tapering 18K natural warm yellow gold",
+    "gallery": "open cathedral trellis gallery",
+    "accents": "none — no halo, no pave, no gallery stones"
+  },
+  "studio_logo": "in-model Higgsfield render driven by the official-logo reference (3rd media); validated pixel-match against assets/logo/logo_official.png before acceptance",
+  "workflow": "HIGGSFIELD-ONLY (no Python compositing, no CAD). Studio medias [branded cloth, source ring, official logo]; lifestyle/closeup medias [pose, source ring].",
+  "catalog": {
+    "studio": {
+      "hero_topdown": "a9a3216e-3704-4949-b801-334668b605dc",
+      "yaw_45_left": "cd7ccfb8-f38e-4d62-9a0d-1d0618395867",
+      "yaw_45_right": "995dae60-1116-4f3f-8a4c-46f7ca56237b",
+      "side_profile": "5ca933d3-864c-438f-9b72-df0d4c6d4e8d",
+      "three_quarter": "ce888122-b954-47e0-9a17-ecfd39958822"
+    },
+    "lifestyle": [
+      "7fb4e694-51e3-48b7-96b1-27b32c16bc8a",
+      "113571ed-3ddd-44d2-9ba1-8391317360ea",
+      "118045bb-894c-4b59-bb7d-64fb74ac869c",
+      "4e5373dd-e31d-42a9-9ca1-2887c4caa8fc"
+    ],
+    "closeup": [
+      "3b0cf706-a1df-4a35-8913-b2ff34c59884",
+      "5ba4da07-a343-4110-8522-835c7a52fd86",
+      "e6e15364-242d-45dd-bed4-a3e02ba70a18"
+    ]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1",
+    "source_folder_id": "1xJYQ1Pu7bLOMNXw6Msoy-0KWIDsB4iZG",
+    "source_ring_drive_id": "13x0K_oMGRGOEk-_JsEUurIAMNk5u7iUP",
+    "source_media_id": "4f322b5f-bb3b-47f1-9a83-c5e68770e299",
+    "cloth_ref_drive_id": "1orscL2F2NYpyPb7jA70CqSboqBYqrCvH",
+    "logo_ref_drive_id": "1QZgjplaFWenZHt048tzQntk-L-Ezy_qH"
+  },
+  "model_notes": {
+    "geometry_critical_angles": "gpt_image_2 (OpenAI) � validated for side/rear/elevation; nano_banana_2 for face-on + scene"
+  }
+}

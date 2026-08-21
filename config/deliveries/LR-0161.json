@@ -1,0 +1,53 @@
+{
+  "sku": "LR-0161",
+  "status": "delivered",
+  "delivered_date": "2026-07-18",
+  "metal": "18K yellow",
+  "category": "ring",
+  "design": {
+    "type": "round-brilliant solitaire with twisted vine pave shank",
+    "center": "one round brilliant, FOUR double-claw prongs",
+    "band": "two-strand twisted rope shank (one fine-pave rail + one plain gold rail) fused in continuous contact, twist on upper shoulders, plain smooth bottom shank",
+    "gallery": "open cathedral",
+    "metal": "18K yellow gold",
+    "accents": "no halo, no side stones"
+  },
+  "workflow": "HIGGSFIELD-ONLY (docs/15). Office medias [CAD refs, locked cloth+logo, locked logo]; lifestyle [CAD front, CAD three-quarter].",
+  "source": {
+    "folder_id": "1ZJHAjKlQIqWQRoCUo4_E0fNGkITzEm53",
+    "main_folder_only": true
+  },
+  "higgsfield_media_ids": {
+    "cad_front": "c5fc1a84-7eb4-49eb-babe-9d39e4bd0fd1",
+    "cad_three_quarter": "aa69a552-335d-4b41-9598-2f0aa8f3e44a",
+    "cad_profile": "2eee27d8-bf4c-4a86-963e-40fc58e46e05",
+    "locked_cloth_logo": "475f812e-4dd3-4fc5-bd42-c19592307514",
+    "locked_logo": "fe0a012a-e177-4722-b761-f52007df5cc0"
+  },
+  "catalog": {
+    "office": [
+      "01_office_hero",
+      "02_office_lowangle",
+      "03_office_highmacro",
+      "04_office_side",
+      "05_office_rear"
+    ],
+    "closeup": [
+      "06_closeup1",
+      "07_closeup2",
+      "08_closeup3"
+    ],
+    "lifestyle": [
+      "09_life_mug",
+      "10_life_book",
+      "11_life_sofa",
+      "12_life_window"
+    ]
+  },
+  "generation": {
+    "model": "nano_banana_2",
+    "resolution": "2k",
+    "aspect_ratio": "1:1"
+  },
+  "notes": "Twist band = fused two-rail rope, zero gap; heavily iterated for rail-contact + shoulder + no-V-gap. Output PNGs in workspace/output/LR-0161 (gitignored -> Drive)."
+}
