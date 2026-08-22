@@ -1,0 +1,106 @@
+{
+  "sku": "UKRG0365",
+  "category": "ring",
+  "subtype": "marquise_cluster_solitaire",
+  "status": "P1 SOURCE READ COMPLETE from video — BLOCKED at P1.5 (SOP 5c): accent counts + metal colour are INFERRED, not certain. Generation blocked until a CAD/still source resolves them.",
+  "source": {
+    "type": "vendor_video",
+    "file": "UKRG0365_uqwrue.mp4",
+    "spec_from": "720x1280 @ 60fps, 15s; 3 segments (held face-on, side profile, worn top-down)",
+    "frames_extracted": "workspace/golden/UKRG0365/source/ (7 frames, gitignored)",
+    "is_cad": false,
+    "cad_note": "NOT a CAD render. docs/22 P0 gate 2 wants source CAD views; this is compressed 720p handheld video, which caps how certain any count can be."
+  },
+  "watermark": {
+    "source_watermarked": true,
+    "text": "DIAMONDS BY UK",
+    "position": "top-left, all frames",
+    "overlay_text": [
+      "Available in real solid gold (white, yellow, rose), platinum, silver.",
+      "Possible with any size and shape of diamond.",
+      "Contact us for any custom ring or question."
+    ],
+    "action": "scrub_G12 — third-party mark and all overlay text must never reach a render"
+  },
+  "metal": {
+    "value": "yellow_gold",
+    "karat": null,
+    "finish": "high polish",
+    "confidence": "inferred",
+    "read_note": "Warm gold throughout; reads yellow in the worn top-down frames and rose-leaning in the side frames under warm window light. The overlay states the design is offered in white/yellow/rose/platinum/silver, so the filmed metal is one option, not the design. NEEDS USER CONFIRMATION."
+  },
+  "primary_stones": {
+    "centre": {
+      "shape": "marquise_brilliant",
+      "count": 1,
+      "orientation": "north-south — long axis PERPENDICULAR to the shank (points along the finger, tip toward the knuckle)",
+      "orientation_confidence": "certain",
+      "orientation_read_from": "worn_topdown f0700 + f0870 — straight-on worn view, band horizontal, marquise long axis across it",
+      "setting": "prong_set",
+      "prongs": {
+        "value": "6 — V-prong at each tip + 2 claws per side at the widest point",
+        "confidence": "inferred",
+        "read_note": "Tip prongs certain in f0700; the mid-side claws are readable but never all visible in one frame."
+      },
+      "carat": null,
+      "confidence": "certain (shape, count, orientation)"
+    }
+  },
+  "accent_runs": {
+    "flanking_pears": {
+      "shape": "pear_brilliant",
+      "count_per_side": 1,
+      "orientation": "point outward, away from the centre stone, tucked against the marquise girdle",
+      "confidence": "inferred",
+      "read_note": "Clearly a non-round elongated stone flanking the marquise in held_faceon f0240 and f0045; pear vs marquise cannot be separated at this resolution."
+    },
+    "shoulder_clusters": {
+      "arrangement": "organic / floral scattered cluster of round brilliants on each shoulder, tapering down the shank — NOT a uniform pave row, NOT a channel, NOT eternity",
+      "count_per_side": "5-7",
+      "size_grading": "mixed — 2-3 larger rounds nearest the head, smaller rounds trailing down the shank",
+      "setting": "individual prong / claw set, raised, with visible metal between stones",
+      "confidence": "inferred",
+      "read_note": "BLOCKING for P1.5. 720p video compression merges adjacent accents into one sparkle mass; counts are not separable at any zoom. Needs a CAD top view or a vendor stone list."
+    }
+  },
+  "under_head": {
+    "gallery": "open plain polished basket — smooth metal bridge under the centre stone",
+    "hidden_halo": false,
+    "confidence": "certain",
+    "read_from": "side_profile f0495 + f0300 — the under-head is unobstructed and carries ZERO small stones",
+    "gate_note": "Satisfies docs/22 13e. Renderers add a hidden halo here by default; NEGATIVE must be explicit."
+  },
+  "band": {
+    "profile": "thin round/half-round plain polished shank, tapering from the head",
+    "coverage": "partial — accents stop on the shoulders, plain polished metal around the rest of the shank",
+    "width_mm": null,
+    "confidence": "certain (profile + partial coverage); width not measurable from video"
+  },
+  "phase_1_5_verification": {
+    "performed": "2026-08-22",
+    "method": "frame-by-frame read of 7 extracted frames at 3-8x upscale, per SOP 5b",
+    "result": "BLOCKED — SOP 5c requires every field certain before generation.",
+    "certain": [
+      "centre stone shape (marquise brilliant)",
+      "centre stone count (1)",
+      "centre orientation (north-south, long axis perpendicular to shank)",
+      "under-head is a plain open basket, no hidden halo",
+      "shoulder accents are a scattered organic cluster, not a pave row / not eternity",
+      "band is a thin plain polished tapering shank with partial accent coverage"
+    ],
+    "inferred_blocking": [
+      "shoulder accent count per side (5-7)",
+      "flanking stone shape (pear vs marquise)",
+      "centre prong count (6?)",
+      "metal colour (yellow vs rose) and karat"
+    ],
+    "resolution_required": "A CAD top/front view, a vendor stone list, or the user stating the counts and metal directly."
+  },
+  "failure_memory_carry_forward": [
+    "hidden_halo_basket_under_solitaire — renderers upgrade plain baskets; NEGATIVE 'no hidden halo, no stones under the centre stone' is mandatory",
+    "partial_band_became_full_eternity — accents must STOP on the shoulders; plain shank behind",
+    "shared_bead_became_double_prong — accent setting must stay individual claws",
+    "generated_on_banned_flash_model — MODEL_LOCK: nano_banana_2 only (config/model.json)",
+    "baguette_orientation_rotated — verify centre orientation on every render (G27)"
+  ]
+}
