@@ -38,7 +38,6 @@
 │       └── README.md                     # pose/source reference index (Drive IDs)
 ├── config/
 │   └── project_manifest.json     # machine-readable manifest (version, files, assets, checksums, setup order)
-├── index.html / app.js / styles.css / hero_jewelry.png  # (pre-existing website files; not part of the image pipeline)
 └── .gitignore
 ```
 > The website files (`index.html`, `app.js`, `styles.css`, `hero_jewelry.png`) were the initial checkpoint content and are unrelated to the image-generation workflow.
