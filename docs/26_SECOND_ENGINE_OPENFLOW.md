@@ -143,3 +143,44 @@ python scripts/engine.py --check
 is exactly `['higgsfield']`, engine 1's constraints are still 2K / 1:1 / count 1, and every
 other engine actually refuses a `catalog_stills` resolve. It runs inside `run_catalog.py`'s
 regression step, so a catalog cannot complete with the engine lock broken.
+
+## 6. PENDING REQUEST — engine 2 for delivery (recorded 2026-08-22, NOT applied)
+
+The user asked to "use nano banana pipeline" and, when the two routes were put to them,
+chose **route 2 — `gflow-nb2` (Google Flow · Nano Banana 2) for the actual photoshoot**,
+not route 1 and not exploration-only.
+
+**Nothing in the locks has been changed.** This section records the request so it survives
+the session; applying it needs the two items below resolved first.
+
+### 6a. Blocker — engine 2 is not reachable
+The `openflow` MCP server is not connected in this session (no engine-2 tools present), so
+no engine-2 pixel can be produced here regardless of policy. Reconnect with:
+
+```bash
+claude mcp add --transport http openflow https://openflowmcp.com/mcp
+```
+
+The Google account (`gajerasiddharth10@gmail.com`) is already granted per `config/engines.json`.
+
+### 6b. Blocker — the format gap is arithmetic, not preference
+`FORMAT_ASPECT` locks delivery at 1:1, **2048×2048**, native, no upscale. Engine 2 renders
+768×1376 natively and upscales only to 1536×2752. A square crop from that tops out at
+**1536×1536 — a 43.75 % drop in pixel area** against the locked format. There is no path to
+2048² through engine 2. Delivering through it therefore *requires* accepting a lower
+delivered resolution; it is not a flag that can be flipped without that cost.
+
+### 6c. What applying it would take
+Two rules in `policy/registry.json` own the relevant keys and would each need an explicit
+superseding rule (never a parallel key — `policy/check.py` STOPs on two active rules per key):
+
+| key | current owner | precedence |
+|---|---|---|
+| `generation.engine` | `ENGINE_ORDER` — all delivered pixels from Higgsfield | 100 |
+| `format.aspect` | `FORMAT_ASPECT` — 1:1 2048² native, no upscale | 50 |
+
+Plus `config/engines.json` (`openflow.catalog_approved`, `blocked_for`) and
+`config/pipeline_versions.json` (`gflow-nb2.selectable_as_active`).
+
+Per `config/engines.json`, changing the production engine carries the authorization phrase
+**"Change the image generation pipeline."**
