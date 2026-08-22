@@ -104,13 +104,14 @@ def source_gate(sku, source_dir=None):
 
 
 def emit_plan(sku, pose_refs=None, engine=None):
-    """Emit the per-slot generation plan for the FROZEN Higgsfield call.
-    The call is unchanged: same tool/model, resolution 2k, aspect_ratio 1:1,
-    count 1, ALL slots in one batch, medias order [pose/studio ref, SOURCE piece].
-    No img2img, no denoise/strength, no compositing. pose_refs maps slot -> media
-    id for the pose/studio reference (first media); fill before firing."""
-    # ENGINE GATE: catalog stills are engine 1 (Higgsfield) only. Naming any
-    # other engine here is a hard STOP - see config/engines.json + docs/26.
+    """Emit the per-slot generation plan for the FROZEN call of the LIVE pipeline
+    (scripts/pipeline.py --status). The call shape is unchanged within a pipeline:
+    same tool/model, the profile's format, count 1, ALL slots in one batch, medias
+    order [pose/studio ref, SOURCE piece]. No img2img, no denoise/strength, no
+    compositing. pose_refs maps slot -> media id for the pose/studio reference
+    (first media); fill before firing."""
+    # ENGINE GATE: catalog stills run on the engine the delivery profile names.
+    # Naming any other engine here is a hard STOP - config/engines.json + docs/26.
     try:
         e = eng.assert_catalog_engine(engine)
     except eng.EngineViolation as exc:
@@ -118,18 +119,24 @@ def emit_plan(sku, pose_refs=None, engine=None):
     spec, prompts = bp.build_all(sku)
     src = spec.get("source_media_id")
     pose_refs = pose_refs or {}
+    import pipeline as pl
+    prof = pl.active_profile()
+    fmt = prof["format"]
     plan = {
         "sku": sku, "category": spec["category"],
+        "pipeline": pl.active_id(), "pipeline_display": prof["display"],
         "engine": e["id"], "engine_tool": e["tools"]["image"],
         "model": spec.get("model", e["model"]),
         "source_media_id": src, "mode": "frozen_text_to_image",
-        "call_constraints": {"resolution": "2k", "aspect_ratio": "1:1", "count": 1,
+        "call_constraints": {"resolution": f"{fmt['width']}x{fmt['height']}",
+                             "aspect_ratio": fmt["aspect_ratio"], "count": 1,
+                             "upscale_allowed": fmt["upscale_allowed"],
                              "one_batch": True, "medias_order": ["pose_studio_ref", "SOURCE_piece"],
                              "no_img2img": True, "no_denoise": True, "no_compositing": True},
         "slots": [{
             "slot": p["slot"], "name": p["name"], "group": p["group"],
             "azimuth": p["azimuth"], "elevation": p["elevation"],
-            "aspect_ratio": "1:1", "resolution": p["resolution"], "count": 1,
+            "aspect_ratio": fmt["aspect_ratio"], "resolution": p["resolution"], "count": 1,
             "medias": [
                 {"value": pose_refs.get(p["slot"]), "role": "pose_studio_ref"},
                 {"value": src, "role": "SOURCE_piece"},
@@ -271,7 +278,9 @@ def finish(sku):
         hits = sorted(rdir.glob(f"{sl}_*.png")) if rdir.exists() else []
         renders[sl] = hits[0] if hits else None
     have = [sl for sl, p in renders.items() if p]
-    sized = [sl for sl, p in renders.items() if p and Image.open(p).size == (2048, 2048)]
+    _f = __import__("pipeline").get_format()
+    _want = (_f["width"], _f["height"])
+    sized = [sl for sl, p in renders.items() if p and Image.open(p).size == _want]
     box1 = len(sized) == 10
 
     enforced = _enforced()
@@ -309,7 +318,7 @@ def finish(sku):
     box4 = (not dirty) and (ahead in ("", "0"))
 
     boxes = [
-        (box1, f"all 10 renders downloaded + 2048^2 ({len(sized)}/10)"),
+        (box1, f"all 10 renders downloaded + {_want[0]}^2 ({len(sized)}/10)"),
         (box2, "validate_render ENFORCED gates PASS on all 10" +
                (f" -- FAIL {enforced_fail}" if enforced_fail else "")),
         (box3, "failures auto-retried and re-gated"),
@@ -336,7 +345,7 @@ def main():
     ap.add_argument("--emit-plan", action="store_true")
     ap.add_argument("--engine", default=None,
                     help="generation engine id (config/engines.json). Default and only "
-                         "catalog-approved engine: higgsfield. Never auto-selected.")
+                         "catalog-approved engine comes from scripts/pipeline.py. Never auto-selected.")
     ap.add_argument("--renders-dir")
     ap.add_argument("--commit", action="store_true")
     ap.add_argument("--stage")

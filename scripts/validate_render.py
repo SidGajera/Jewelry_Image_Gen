@@ -38,13 +38,18 @@ def _g(gate, status, measured=None, expected=None, detail=""):
 
 
 def g1_format(path):
+    """Delivered format comes from the LIVE pipeline profile (scripts/pipeline.py), never
+    from a literal here — engine 1 delivers 2048x2048 native, engine 2 1536x1536."""
+    import pipeline as pl
+    fmt = pl.get_format()
+    want = f"{fmt['width']}x{fmt['height']}"
     im = Image.open(path)
     w, h = im.size
-    if not (w == 2048 and h == 2048):
-        return _g("G1_FORMAT", "fail", f"{w}x{h}", "2048x2048", "non-square/size -> discard before all else")
+    if not (w == fmt["width"] and h == fmt["height"]):
+        return _g("G1_FORMAT", "fail", f"{w}x{h}", want, "non-square/size -> discard before all else")
     if im.format != "PNG":
         return _g("G1_FORMAT", "fail", im.format, "PNG", "not PNG")
-    return _g("G1_FORMAT", "pass", f"{w}x{h} {im.format}", "2048x2048 PNG")
+    return _g("G1_FORMAT", "pass", f"{w}x{h} {im.format}", f"{want} PNG")
 
 
 def _run_roi(run_id, rois):

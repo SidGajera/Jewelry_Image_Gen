@@ -8,14 +8,15 @@ the same frozen Higgsfield constraints the pipeline has always used. The module
 exists so a second engine can be named explicitly and refused where it would
 degrade delivered output.
 
-Switching engines is one command:
-  python scripts/engine.py --use openflow           # exploration/video work
-  python scripts/engine.py --use higgsfield         # back to engine 1
-  python scripts/engine.py --show                   # what is active right now
+Which engine DELIVERS is owned by the delivery-pipeline switch, not by this file:
 
-The active engine applies to exploration and video ONLY. Catalog stills always
-resolve to engine 1 no matter what is active - switching cannot degrade a
-delivered image, which is the whole point of keeping the switch cheap.
+  python scripts/pipeline.py --status               # which pipeline is live
+  python scripts/pipeline.py --on                   # Google Flow - Nano Banana 2
+  python scripts/pipeline.py --off                  # back to Higgsfield
+
+This module still owns per-call resolution and refusal. `--use` below selects the
+engine for exploration/video work only; delivered stills always resolve to the engine
+the delivery profile names, so a stray --use can never redirect a delivered pixel.
 
 Usage:
   python scripts/engine.py --list
@@ -31,8 +32,8 @@ ENGINES = ROOT / "config" / "engines.json"
 MODEL_CFG = ROOT / "config" / "model.json"
 ACTIVE = ROOT / "config" / "active_engine.json"
 
-# Purposes that may NEVER follow the active-engine switch. A delivered still is
-# always engine 1; the switch exists for work that never ships.
+# Purposes that may NEVER follow the exploration --use switch. A delivered still always
+# resolves to the engine named by the delivery profile (scripts/pipeline.py).
 LOCKED_PURPOSES = {"catalog_stills", "macro", "lifestyle_stills", "any_delivered_image"}
 
 
@@ -113,6 +114,11 @@ def resolve(engine=None, purpose="catalog_stills"):
                               f"'{cfg['default']}' only (docs/21, docs/26).")
     if rec["model_source"] == "config/model.json":
         rec["model"] = json.loads(MODEL_CFG.read_text(encoding="utf-8"))["model"]
+    else:
+        # engine-native model id (e.g. Google Flow's NARWHAL) comes from the delivery profile
+        import pipeline as pl
+        prof = pl.profiles()["profiles"]
+        rec["model"] = next((v["model"] for v in prof.values() if v["engine"] == eid), None)
     # POLICY SUPREMACY: every engine, every mode, inherits the same blocking rules.
     # Attached here so no caller can obtain an engine record without them.
     rec["policy"] = cfg["universal_policy"]
@@ -124,22 +130,35 @@ def assert_catalog_engine(engine=None):
     return resolve(engine, purpose="catalog_stills")
 
 
+def live_engine():
+    """The engine the delivery-pipeline switch has selected (scripts/pipeline.py).
+    The engine lock is enforced against THIS, not against a literal 'higgsfield' —
+    which engine delivers is the user's switch to throw, one engine at a time."""
+    import pipeline as pl
+    return pl.active_profile()["engine"]
+
+
 def check():
-    """Invariants that must hold for the engine lock to mean anything."""
+    """Invariants that must hold for the engine lock to mean anything. The identity of
+    the delivering engine comes from the switch; the lock is that exactly ONE engine
+    delivers and every other engine is blocked from every delivered pixel."""
     cfg = _cfg()
     problems = []
-    if cfg["default"] != "higgsfield":
-        problems.append(f"default engine is '{cfg['default']}', must be 'higgsfield' (docs/21)")
+    live = live_engine()
+    if cfg["default"] != live:
+        problems.append(
+            f"default engine is '{cfg['default']}', but the delivery profile selects '{live}'. "
+            f"Run: python scripts/pipeline.py --use <profile>")
     if cfg.get("auto_fallback") is not False:
         problems.append("auto_fallback must be false (docs/21 §1a)")
     approved = [k for k, v in cfg["engines"].items() if v["catalog_approved"]]
-    if approved != ["higgsfield"]:
-        problems.append(f"catalog-approved engines = {approved}, must be exactly ['higgsfield']")
+    if approved != [live]:
+        problems.append(f"catalog-approved engines = {approved}, must be exactly ['{live}']")
     hf = cfg["engines"]["higgsfield"]["call_constraints"]
     if hf["resolution"] != "2k" or hf["aspect_ratio"] != "1:1" or hf["count"] != 1:
         problems.append("engine 1 call constraints drifted from 2k / 1:1 / count 1")
     for eid, rec in cfg["engines"].items():
-        if eid == "higgsfield":
+        if eid == live:
             continue
         if "catalog_stills" not in rec.get("blocked_for", []):
             problems.append(f"engine '{eid}' does not block catalog_stills")

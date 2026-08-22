@@ -1,12 +1,12 @@
 {
-  "_note": "ENGINE REGISTRY \u2014 single source of truth for WHICH generation engine may be called, and for what. Engine 1 (higgsfield) is the production default and the only catalog-approved stills engine (docs/21 engine lock, user 2026-07-16/2026-07-21). Engine 2 (openflow) is declared here so it can be used deliberately; it is NEVER auto-selected, NEVER a fallback, and NEVER produces catalog stills. Read this file \u2014 do not hard-code engine ids, endpoints or tool names anywhere in scripts/.",
-  "default": "higgsfield",
+  "_note": "ENGINE REGISTRY - which engine may be called, and for what. WHICH ENGINE DELIVERS IS DERIVED: it comes from config/delivery_profiles.json via scripts/pipeline.py, which rewrites `default`, `catalog_approved`, `allowed_for` and `blocked_for` in this file. Do not hand-edit those. Exactly one engine delivers at a time and every other engine is blocked from every delivered pixel - that invariant is asserted by scripts/engine.py --check in both states. Read this file; never hard-code engine ids, endpoints or tool names in scripts/.",
+  "default": "openflow",
   "auto_fallback": false,
-  "auto_fallback_note": "On ANY engine-1 failure (generation, timeout, API, connector, quality, geometry) the engine does NOT change. Retry inside engine 1. docs/21 \u00a71a.",
+  "auto_fallback_note": "On ANY failure of the live engine (generation, timeout, API, connector, quality, geometry) the engine does NOT change. Retry inside the live engine. Changing engines is always a deliberate switch: python scripts/pipeline.py --use <profile>. docs/21 §1a.",
   "engines": {
     "higgsfield": {
       "rank": 1,
-      "role": "production_default",
+      "role": "secondary_optin",
       "status": "active",
       "transport": "mcp",
       "server": "higgsfield",
@@ -33,23 +33,27 @@
         "no_denoise": true,
         "no_compositing": true
       },
-      "catalog_approved": true,
+      "catalog_approved": false,
       "allowed_for": [
-        "catalog_stills",
-        "macro",
         "lifestyle",
         "video",
         "upscale"
       ],
-      "blocked_for": [],
+      "blocked_for": [
+        "catalog_stills",
+        "macro",
+        "lifestyle_stills",
+        "any_delivered_image"
+      ],
       "pipeline": {
         "name": "legacy",
         "owner": "config/pipeline_versions.json (docs/15)"
-      }
+      },
+      "catalog_block_reason": "Delivery runs on 'openflow' while config/delivery_profiles.json active = 'gflow-nb2'. Switch with: python scripts/pipeline.py --use <profile>."
     },
     "openflow": {
       "rank": 2,
-      "role": "secondary_optin",
+      "role": "production_default",
       "status": "active",
       "transport": "http",
       "endpoint": "https://openflowmcp.com/mcp",
@@ -86,19 +90,17 @@
           "10": 15
         }
       },
-      "catalog_approved": false,
-      "catalog_block_reason": "Native 1376x768 / 16:9 is below the locked 1:1 2048x2048 catalog format (FORMAT_ASPECT, no upscale). Using it for stills would degrade delivered output.",
+      "catalog_approved": true,
       "allowed_for": [
+        "catalog_stills",
+        "macro",
+        "lifestyle_stills",
+        "any_delivered_image",
         "video",
         "video_from_approved_still",
         "exploration_moodboard_non_delivery"
       ],
-      "blocked_for": [
-        "catalog_stills",
-        "macro",
-        "lifestyle_stills",
-        "any_delivered_image"
-      ],
+      "blocked_for": [],
       "requires": [
         "explicit --engine openflow on the command (never implicit, never a fallback)",
         "per-request user permission for video (feedback_ask_before_video)",
@@ -127,21 +129,22 @@
       "support": "https://t.me/mxmtkchk (operator Telegram; the only support channel for a self-registered key)",
       "pipeline": {
         "name": "gflow-nb2",
-        "display": "Google Flow \u00b7 Nano Banana 2",
+        "display": "Google Flow · Nano Banana 2",
         "owner": "config/pipeline_versions.json (docs/15)"
-      }
+      },
+      "catalog_block_reason": "Delivery runs on 'higgsfield' while config/delivery_profiles.json active = 'legacy'. Switch with: python scripts/pipeline.py --use <profile>."
     }
   },
   "selection_rules": {
-    "catalog_stills": "higgsfield ONLY. Any other engine id is a hard STOP.",
+    "catalog_stills": "'openflow' ONLY (delivery profile 'gflow-nb2'). Any other engine id is a hard STOP. Change it with scripts/pipeline.py, never by editing this file.",
     "video": "higgsfield by default; openflow permitted when the user names it AND grants per-request video permission.",
     "never": [
-      "auto-select engine 2",
-      "fall back to engine 2 on an engine-1 failure",
+      "auto-select an engine",
+      "fall back to another engine on a failure",
       "mix engines inside one catalog",
-      "let engine 2 write into deliveries/ or workspace/golden/<SKU>/ render slots"
+      "let a non-delivering engine write into deliveries/ or workspace/golden/<SKU>/ render slots"
     ],
-    "authorization_phrase_to_change_production_engine": "Change the image generation pipeline."
+    "authorization_phrase_to_change_production_engine": "Superseded 2026-08-22: the switch is now an explicit command (scripts/pipeline.py --on/--off) run only on direct user instruction. No phrase is required; no automatic switch is permitted."
   },
   "universal_policy": {
     "_note": "POLICY SUPREMACY (user 2026-08-21): project policy outranks every engine, mode, model and tool. Whatever generates the pixels, these rules still apply. This block does NOT restate the rules - each entry POINTS AT its single owner so there is one source of truth and nothing can drift. No engine record may declare an exemption; scripts/engine.py --check enforces that and attaches this block to every resolve().",
@@ -197,5 +200,6 @@
     "on_conflict": "If an engine cannot satisfy a blocking rule, the engine loses: do not relax the rule, do not deliver, report the limit and stop.",
     "no_exemptions": true,
     "single_source_rule": "One topic, one owner. A new rule must extend the EXISTING owner (superseding it on the same registry key), never open a second rule on a parallel key. policy/check.py STOPs on two active rules sharing a key and on a broken supersession chain."
-  }
+  },
+  "_switched_by": "scripts/pipeline.py — derived, do not hand-edit catalog_approved/blocked_for"
 }

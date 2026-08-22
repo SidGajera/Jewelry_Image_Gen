@@ -24,10 +24,11 @@
       "failure_cases": [
         "portrait_output"
       ],
-      "status": "active",
+      "status": "inactive",
       "superseded_learning": {
         "FORMAT_PORTRAIT": "all images portrait"
-      }
+      },
+      "superseded_by": "FORMAT_GFLOW_SQUARE"
     },
     {
       "id": "FORMAT_PORTRAIT",
@@ -39,7 +40,8 @@
       "origin": "docs 2026-07-28",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "FORMAT_ASPECT"
+      "superseded_by": "FORMAT_ASPECT",
+      "supersedes": []
     },
     {
       "id": "METAL_SOURCE_GOVERNED",
@@ -76,7 +78,8 @@
       "origin": "docs 2026-07-16",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "METAL_SOURCE_GOVERNED"
+      "superseded_by": "METAL_SOURCE_GOVERNED",
+      "supersedes": []
     },
     {
       "id": "SOURCE_FIDELITY",
@@ -108,7 +111,8 @@
         "structure_taper_drift",
         "unauthorized_accents"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "COUNTS_4_6",
@@ -121,7 +125,8 @@
       ],
       "origin": "user 2026-07-28",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "ANGLE_NUMERIC_MATRIX",
@@ -137,7 +142,8 @@
       "failure_cases": [
         "repeated_camera_angle"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "ANGLE_STUDIO_SLOTS",
@@ -170,7 +176,8 @@
       "origin": "docs 2026-07-30",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "ANGLE_STUDIO_SLOTS"
+      "superseded_by": "ANGLE_STUDIO_SLOTS",
+      "supersedes": []
     },
     {
       "id": "CONTENT_ETSY",
@@ -186,7 +193,8 @@
         "face_sharper_than_ring",
         "couple_is_subject"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "MARKS_EXCLUDE",
@@ -202,7 +210,8 @@
         "vendor_watermark",
         "engraved_maker_mark"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "PLAUSIBILITY_L1_CONTINUITY",
@@ -217,7 +226,8 @@
       "failure_cases": [
         "ring_spans_two_fingers"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "PLAUSIBILITY_L2_PLACEMENT",
@@ -232,7 +242,8 @@
       "failure_cases": [
         "ring_at_webbing"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "PLAUSIBILITY_L3_ANATOMY",
@@ -247,12 +258,13 @@
       "failure_cases": [
         "malformed_hand"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "PLAUSIBILITY_L4_L8_VISUAL",
       "key": "plausibility.visual",
-      "statement": "support/gravity, occlusion, light consistency, scale, reflection sanity \u00e2\u20ac\u201d mandatory visual checklist on EVERY render until automated",
+      "statement": "support/gravity, occlusion, light consistency, scale, reflection sanity â€” mandatory visual checklist on EVERY render until automated",
       "scope": "global",
       "precedence": 80,
       "enforced_by": [
@@ -260,7 +272,8 @@
       ],
       "origin": "user 2026-07-30",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "SKIN_REALISM",
@@ -275,7 +288,8 @@
       "failure_cases": [
         "plastic_skin"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "REFS_PER_SLOT",
@@ -288,7 +302,8 @@
       ],
       "origin": "user 2026-07-30",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "REFS_REAL_PHOTO",
@@ -303,7 +318,8 @@
       "failure_cases": [
         "synthetic_reference_propagates_plastic_skin"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "FROZEN_CALL",
@@ -315,7 +331,8 @@
       "origin": "user 2026-07-30",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "SOURCE_REF_CALL"
+      "superseded_by": "SOURCE_REF_CALL",
+      "supersedes": []
     },
     {
       "id": "SOURCE_REF_CALL",
@@ -349,7 +366,8 @@
       "origin": "user 2026-07-30",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "PROCESS_NO_WIDGETS"
+      "superseded_by": "PROCESS_NO_WIDGETS",
+      "supersedes": []
     },
     {
       "id": "PROCESS_NO_WIDGETS",
@@ -386,7 +404,8 @@
       "failure_cases": [
         "ai_drawn_logo"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "TOKEN_BUDGET",
@@ -399,7 +418,8 @@
       ],
       "origin": "user (05+17)",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "BACKGROUND_VELVET",
@@ -412,7 +432,8 @@
       ],
       "origin": "docs 11",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "AUTONOMY_RUN",
@@ -425,7 +446,8 @@
       ],
       "origin": "user (19+20)",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "REGRESSION_NO_REGRESS",
@@ -438,7 +460,8 @@
       ],
       "origin": "user (14+15)",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "GEN_ENGINE_LOCK",
@@ -452,7 +475,8 @@
       "origin": "user (21)",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "GEN_COMPOSITE_V2"
+      "superseded_by": "GEN_COMPOSITE_V2",
+      "supersedes": []
     },
     {
       "id": "PIPELINE_SOP",
@@ -465,7 +489,8 @@
       ],
       "origin": "user (22)",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "THEME_PER_CATALOG",
@@ -481,7 +506,8 @@
         "mixed_themes_in_one_catalog",
         "theme_repeat_across_catalogs"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "REALISM_ANTI_AI",
@@ -496,7 +522,8 @@
       "failure_cases": [
         "plastic_skin"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "OUTPUT_STORE",
@@ -509,7 +536,8 @@
       ],
       "origin": "user 2026-07-30",
       "failure_cases": [],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "SOURCE_COVERAGE_REQUIRED",
@@ -526,7 +554,8 @@
         "invented_split_prongs_from_front_view",
         "invented_hidden_halo_from_front_view"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "GEN_COMPOSITE_V2",
@@ -563,7 +592,8 @@
         "cutout_hash_mismatch"
       ],
       "status": "superseded",
-      "superseded_by": "HIGGSFIELD_ONLY"
+      "superseded_by": "HIGGSFIELD_ONLY",
+      "supersedes": []
     },
     {
       "id": "HIGGSFIELD_ONLY",
@@ -598,7 +628,8 @@
       "failure_cases": [
         "ring_too_small_generic_substitute"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "STONE_EQUALITY_LOCK",
@@ -615,13 +646,14 @@
         "stone_count_wrong",
         "relative_size_drift"
       ],
-      "status": "aspirational"
+      "status": "aspirational",
+      "supersedes": []
     },
     {
       "id": "GEOMETRY_FROM_SOURCE",
       "key": "generation.engine",
       "precedence": 100,
-      "statement": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) \u2014 never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+      "statement": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) — never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
       "scope": "global",
       "supersedes": [
         "HIGGSFIELD_ONLY"
@@ -651,7 +683,8 @@
         "diamond_oversized_on_hand",
         "stone_wider_than_finger"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "JEWELRY_PRESERVATION",
@@ -670,7 +703,8 @@
         "diamond_shape_changed",
         "stone_added_or_removed"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "MODEL_ENGINE_PRIOR_LOCK",
@@ -682,12 +716,13 @@
       "origin": "user 2026-07-16",
       "failure_cases": [],
       "status": "superseded",
-      "superseded_by": "MODEL_LOCK"
+      "superseded_by": "MODEL_LOCK",
+      "supersedes": []
     },
     {
       "id": "MODEL_LOCK",
       "key": "generation.model",
-      "statement": "Nano Banana 2 is the ONLY image-generation model \u2014 every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry \u2014 count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
+      "statement": "Nano Banana 2 is the ONLY image-generation model — every image, every catalog, every slot, no exception. The model string is params.model='nano_banana_2' (verified against the Higgsfield catalog: id 'nano_banana_2' = 'Nano Banana 2', Google). BANNED, reject the call: nano_banana_pro, nano_banana_flash, nano_banana_2_lite, nano_banana_2_shots, seedream_v5_pro, or any string that is not nano_banana_2. ENFORCED IN CODE not prose: config/model.json holds the one string; build_prompts.locked_model() and preflight.assert_model() read it; preflight raises on mismatch before the call; `python scripts/preflight.py --check-model` prints it. Every manifest records the model actually used; a manifest showing any other model = catalog FAIL, regenerate. Call shape: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch. ACKNOWLEDGED TRADEOFF: this model redraws geometry — count/prong/size ratios can drift; G21 (STONE_MATCH), G2 (STONE_COUNT), G7 (PRONG_CHECK) run BLOCKING with auto-retry (max 5 rounds); a slot that does not converge is delivered labelled GEOMETRY APPROXIMATE. CORRECTION 2026-08-01: an earlier same-day entry wrongly said use 'nano_banana_pro' (that is Nano Banana PRO, a different, banned model); recorded, not deleted.",
       "scope": "global",
       "precedence": 100,
       "supersedes": [
@@ -727,12 +762,13 @@
         "stone_dulled_in_hand_shadow",
         "unevenly_lit_stones"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "METAL_KARAT_18K",
       "key": "metal.karat",
-      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render \u2014 STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
+      "statement": "Karat is ALWAYS 18K (solid gold). Colour: yellow or rose source -> that colour wins at 18K; anything not clearly white -> 18K yellow (pure) gold by default. One colour across all 10 slots. DECISION (user 2026-08-01): when the SOURCE is WHITE GOLD or PLATINUM, do NOT auto-render — STOP and CONFIRM with the user per catalog whether to render 18K WHITE (source colour) or 18K YELLOW; wait for the answer, spend nothing until confirmed. Karat is not visually measurable -> enforced by prompt (build_prompts states '18K') and AUDITED against the Etsy listing (flag mismatches), NOT by pixels. Enforced by G25 (GOLD_CHECK): rendered metal colour must match the confirmed spec gold colour (cross-family fail on studio slots; white-spec reading coloured fails anywhere). Coexists with METAL_SOURCE_GOVERNED (colour measured from source); this rule sets karat=18K, the yellow default, and the white-gold confirm-first gate.",
       "scope": "global",
       "precedence": 50,
       "enforced_by": [
@@ -746,7 +782,8 @@
         "listing_metal_mismatch",
         "white_gold_source_generated_without_decision"
       ],
-      "status": "active"
+      "status": "active",
+      "supersedes": []
     },
     {
       "id": "ENGINE_ORDER",
@@ -774,14 +811,15 @@
         "silent_delivery_on_geometry_fail",
         "stone_ratio_drift"
       ],
-      "status": "active",
+      "status": "inactive",
       "superseded_learning": {
         "G19_COMPOSITE_PROVENANCE": "every delivery carries its source cutout name + sha256 and asserts whole-asset affine only; no sidecar or hash mismatch = no ship. Pixel-counters G2-G9 retired for composites; geometry verified by cutout hash.",
         "GEN_COMPOSITE_V2": "Jewellery is composited from source CAD cutouts (whole-asset affine transform only); Higgsfield generates BACKGROUND PLATES ONLY (call shape unchanged: 2k,1:1,count1,one batch); no jewellery word or geometry in any prompt.",
         "GEN_ENGINE_LOCK": "Higgsfield MCP is the only production image-generation engine; never swap providers",
-        "GEOMETRY_FROM_SOURCE": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) \u2014 never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+        "GEOMETRY_FROM_SOURCE": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) — never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
         "HIGGSFIELD_ONLY": "ALL delivered pixels come from Higgsfield generate_image. Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write). Python allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report."
-      }
+      },
+      "superseded_by": "ENGINE_ORDER_GFLOW"
     },
     {
       "id": "POLICY_SUPREMACY",
@@ -796,6 +834,65 @@
       "origin": "user 2026-08-21",
       "failure_cases": [],
       "status": "active"
+    },
+    {
+      "id": "ENGINE_ORDER_GFLOW",
+      "key": "generation.engine",
+      "precedence": 100,
+      "statement": "ALL delivered pixels come from Google Flow Nano Banana 2 (engine 2 `openflow`, model id NARWHAL) via the gflow-nb2 pipeline. Higgsfield is OFF for delivery. Call shape: medias [pose/studio ref, SOURCE piece], one batch per catalog, delivered square per FORMAT_GFLOW_SQUARE. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write) EXCEPT the declared upscale+centre-crop that produces the delivered square; Python is otherwise allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report.",
+      "scope": "global",
+      "enforced_by": [
+        "run_catalog",
+        "ENGINE_LOCK_CHECK"
+      ],
+      "origin": "user 2026-08-22 ('Use google nano banana 2 pipeline do not use higgsfield now')",
+      "failure_cases": [
+        "cutout_hash_mismatch",
+        "engine2_catalog_still",
+        "geometry_drift_from_text_to_image",
+        "jewellery_generated_not_composited",
+        "jewellery_generated_not_placed",
+        "missing_provenance",
+        "python_wrote_delivered_pixels",
+        "silent_delivery_on_geometry_fail",
+        "stone_ratio_drift"
+      ],
+      "status": "active",
+      "superseded_learning": {
+        "GEOMETRY_FROM_SOURCE": "Higgsfield generates 100% of every scene (velvet, cloth, hands, skin, wardrobe, environment, light, shadow). The jewellery layer is PLACED from the source CAD cutout by affine transform only (scale/rotate/translate) — never redrawn, never generatively filled inside the jewellery bounds. Text-to-image cannot hold stone-size ratios (proven LR-0203/0206/0211, 3%-53% framing); this path makes geometry exact by construction.",
+        "GEN_ENGINE_LOCK": "Higgsfield MCP is the only production image-generation engine; never swap providers",
+        "ENGINE_ORDER": "ALL delivered pixels come from Higgsfield generate_image (engine 1, the production default and the ONLY catalog-approved stills engine). Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write); Python is allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report. Engine 2 (openflow / Google Flow) is opt-in for video and non-delivery exploration only: never auto-selected, never a fallback on an engine-1 failure, never mixed inside one catalog, and never writes a delivered image.",
+        "G19_COMPOSITE_PROVENANCE": "every delivery carries its source cutout name + sha256 and asserts whole-asset affine only; no sidecar or hash mismatch = no ship. Pixel-counters G2-G9 retired for composites; geometry verified by cutout hash.",
+        "GEN_COMPOSITE_V2": "Jewellery is composited from source CAD cutouts (whole-asset affine transform only); Higgsfield generates BACKGROUND PLATES ONLY (call shape unchanged: 2k,1:1,count1,one batch); no jewellery word or geometry in any prompt.",
+        "HIGGSFIELD_ONLY": "ALL delivered pixels come from Higgsfield generate_image. Call shape frozen: medias [reference, SOURCE piece], 2k, 1:1, count 1, one batch per catalog. Python may NOT create or alter delivered pixels (no compositing, cutout-into-output, PIL paste, affine placement, relight, shadow synthesis, any pixel write). Python allowed only for read-only gates, spec/prompt building, download, manifests, failure memory, hashing, hygiene. Geometry enforcement = catch-and-retry: every render gated, any geometry fail auto-regenerates, max 5 rounds, then STOP and report."
+      },
+      "_switch": "Owned by scripts/pipeline.py. Active only while config/delivery_profiles.json active = gflow-nb2.",
+      "supersedes": [
+        "ENGINE_ORDER"
+      ]
+    },
+    {
+      "id": "FORMAT_GFLOW_SQUARE",
+      "key": "format.aspect",
+      "precedence": 50,
+      "statement": "1:1 square, 1536x1536, produced by upscaling the Flow render to 1536x2752 and centre-cropping; upscale is permitted on this pipeline because 768x1376 is the engine's native output. This is the largest square engine 2 can deliver.",
+      "scope": "global",
+      "enforced_by": [
+        "G1_FORMAT"
+      ],
+      "origin": "user 2026-08-22 (accepted the 43.75% pixel-area drop vs 2048x2048 to move off Higgsfield)",
+      "failure_cases": [
+        "portrait_output"
+      ],
+      "status": "active",
+      "superseded_learning": {
+        "FORMAT_ASPECT": "1:1 square, 2048x2048 minimum, native, no upscale",
+        "FORMAT_PORTRAIT": "all images portrait"
+      },
+      "_switch": "Owned by scripts/pipeline.py. Active only while config/delivery_profiles.json active = gflow-nb2.",
+      "supersedes": [
+        "FORMAT_ASPECT"
+      ]
     }
   ]
 }

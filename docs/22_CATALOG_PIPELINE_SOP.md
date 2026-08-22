@@ -3,6 +3,7 @@
 The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Detail for each topic lives in its owner doc (linked); this file owns only the ORDER and the gates. Runs under docs/19 §5b (no-permission full run) and docs/13 §6b (D2D pixel-perfect source read).
 
 ## P0 — GATES (fail = STOP, never proceed)
+0. **Confirm the live delivery pipeline: `python scripts/pipeline.py --status`.** Every format, model and engine below follows it. Mismatch between the switch and the derived configs (`--check`) = STOP.
 1. Load: `docs/13` JEWELRY_PRESERVATION · `docs/03` IMAGE_GENERATION_RULES · `docs/04` LOGO · `docs/11` BACKGROUND · `docs/19` APPROVAL_GATE · `docs/17` TOKEN · DELIVERABLES · ROMANTIC_POSES · `config/QUALITY_MEMORY.json` (Failure Memory + Approved Benchmarks). Any fails to load = STOP.
 2. Read source CAD — every view, once, in-thread, D2D pixel-perfect. Missing / conflicting / non-CAD (model photo) view = STOP and ask.
 3. Confirm one SKU, one ring. Two designs in source = STOP.
@@ -26,7 +27,7 @@ The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Deta
 11. Auto-retry concurrency caps / failures until all 10 land.
 
 ## P4 — VALIDATE
-12. Script check: exists · size>0 · 2048×2048 · 1:1 · PNG.
+12. Script check: exists · size>0 · the live profile's WxH · 1:1 · PNG (G1 reads it from the switch; no literal size anywhere).
 13. Visual check vs SOURCE_SPEC (spot-check within budget): prong count/type · halo present/absent · pavé rows · facet pattern · band profile · one piece only · true-to-finger scale · logo integrity · no watermark · 1:1 square lock (2048x2048).
 13b. ANGLE VALIDATION GATE (docs/12 A-MATRIX): read each render's ACTUAL azimuth/elevation from the image (not the filename); reject any slot that mismatches its declared numbers; compare all 10 pairwise, reject the later slot of any pair within 20° azimuth AND 15° elevation, regenerate azimuth +30° / elevation re-forced; repeat until all 10 distinct. Never deliver a duplicate angle.
 13c. ACCENT/PAVÉ COUNT GATE (docs/13 §6c, validate_render G2, MANDATORY every render): detect accent stones per run; reject if outside spec count ± tolerance; re-fire the SAME frozen call with the failed constraint appended to negatives (max 5). Diffusion cannot count — never deliver an unchecked render.

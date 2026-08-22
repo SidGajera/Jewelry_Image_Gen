@@ -33,6 +33,7 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 | Token / preview / commit / reasoning / response-length precedence (governs all) | `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` |
 | Confirmation / auto-selection / when to ask the user | `docs/19_ZERO_CONFIRMATION_POLICY.md` |
 | Production output / silence / no preview (governs all output) | `docs/20_ZERO_INTERNAL_OUTPUT_POLICY.md` |
+| **Which pipeline delivers / switching Higgsfield <-> Google Flow** | `config/delivery_profiles.json` + `scripts/pipeline.py --status` |
 | Image generation ENGINE lock / provider policy / source loading / retry | `docs/21_HIGGSFIELD_ENGINE_LOCK.md` |
 | Jewelry QC / reject-on-drift / zero-tolerance review | `docs/18_ZERO_TOLERANCE_QC_POLICY.md` |
 | Background/cloth question | `docs/11_BACKGROUND_STANDARD.md` |
@@ -62,11 +63,25 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 - **P2 Diamonds:** single real facet pattern, natural bright+dark mix, no doubling/CGI; gems keep exact color/cut.
 - **P3 Background:** never AI-invent the cloth — locked premium white COTTON with natural soft draping, pure neutral white (never yellowish/flat/simple); consistent every image.
 - **P4 Light:** natural/realistic only; no over-lighting/CGI glow/starburst.
-- **P5 Output:** always 1:1 and 2K.
+- **P5 Output:** always 1:1, at the live profile's size (`scripts/pipeline.py --status`) - 2048^2 on Higgsfield, 1536^2 on gflow-nb2.
 - **P6 Lifestyle:** cozy warm US-home; five-finger natural hand; no laptop/desk; no invented logo.
 - **P7 Tokens / P8 Communication:** as in `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md`; fix our own mistakes locally (0 credits), never burn credits on them.
 
 ## 4. ENVIRONMENT
+
+**Check which pipeline is live before generating: `python scripts/pipeline.py --status`.**
+Two delivery profiles, one live at a time (`config/delivery_profiles.json`):
+
+| profile | engine | model | delivered | credits |
+|---|---|---|---|---|
+| `gflow-nb2` **(live)** | Google Flow via openflow MCP | `NARWHAL` | 1536x1536 (upscale+crop) | 0 |
+| `higgsfield` | Higgsfield MCP | `nano_banana_2` | 2048x2048 native | 2 |
+
+Switch with `python scripts/pipeline.py --on` / `--off` — one command rewrites every derived
+config. Never hand-edit `config/engines.json`, `config/pipeline_versions.json`,
+`config/active_engine.json` or the engine/format rules in `policy/registry.json`; they are derived.
+Switching is manual in both directions and never automatic, including on a failure (docs/21 §1a).
+
 - Higgsfield MCP: the production model (`config/project_manifest.json` -> `generation_settings.model`), `resolution:"2k"`, `aspect_ratio:"1:1"`, 2 credits/image. medias `[reference, SOURCE]`.
 - Google Drive MCP: READ/SEARCH/CREATE. Operate ONLY as `lucentcaratlab@gmail.com`.
 - Local Python (Pillow+NumPy) for 0-credit post: `scripts/print_logo_on_cloth.py` (print logo) and `whiten_cloth.py` (neutral-white cloth).

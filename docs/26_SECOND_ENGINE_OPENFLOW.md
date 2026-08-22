@@ -144,18 +144,37 @@ is exactly `['higgsfield']`, engine 1's constraints are still 2K / 1:1 / count 1
 other engine actually refuses a `catalog_stills` resolve. It runs inside `run_catalog.py`'s
 regression step, so a catalog cannot complete with the engine lock broken.
 
-## 6. PENDING REQUEST — engine 2 for delivery (recorded 2026-08-22, NOT applied)
+## 6. APPLIED 2026-08-22 — engine 2 IS the delivery pipeline
 
-The user asked to "use nano banana pipeline" and, when the two routes were put to them,
-chose **route 2 — `gflow-nb2` (Google Flow · Nano Banana 2) for the actual photoshoot**,
-not route 1 and not exploration-only.
+On explicit, repeated user instruction — *"Use google nano banana 2 pipeline do not use
+higgsfield now"* — **`gflow-nb2` is live and Higgsfield is off for delivery.**
 
-**Nothing in the locks has been changed.** This section records the request so it survives
-the session; applying it needs the two items below resolved first.
+Sections 1–5 above describe the pre-2026-08-22 arrangement, in which engine 2 was blocked
+from every delivered pixel. That block is now a *switch position*, not a permanent law:
+either engine can deliver, one at a time, and the repo enforces whichever is live.
 
-### 6a. Blocker — engine 2 is not reachable
-The `openflow` MCP server is not connected in this session (no engine-2 tools present), so
-no engine-2 pixel can be produced here regardless of policy. Reconnect with:
+**The switch owns it. Do not hand-edit the flags.**
+
+```bash
+python scripts/pipeline.py --status     # what is live
+python scripts/pipeline.py --on         # Google Flow · Nano Banana 2   (live now)
+python scripts/pipeline.py --off        # back to Higgsfield
+python scripts/pipeline.py --check      # every derived file agrees with the switch
+```
+
+One value — `active` in `config/delivery_profiles.json` — decides. `scripts/pipeline.py`
+rewrites all four derived files in one pass (`config/active_engine.json`,
+`config/engines.json`, `config/pipeline_versions.json`, `policy/registry.json`), so the
+repo can never sit half-switched. `policy/check.py` reports 0 STOP and
+`scripts/engine.py --check` passes in **both** positions; the round trip is verified.
+
+The engine lock did not weaken. It still says *exactly one engine delivers and every other
+engine is blocked from every delivered pixel* — it now reads the identity of that engine
+from the switch instead of hard-coding `higgsfield`.
+
+### 6a. Remaining blocker — the openflow MCP server must be connected
+The switch is thrown, but the `openflow` MCP server is not connected in this session, so no
+engine-2 pixel can be produced until it is. Connect with:
 
 ```bash
 claude mcp add --transport http openflow https://openflowmcp.com/mcp
@@ -163,24 +182,26 @@ claude mcp add --transport http openflow https://openflowmcp.com/mcp
 
 The Google account (`gajerasiddharth10@gmail.com`) is already granted per `config/engines.json`.
 
-### 6b. Blocker — the format gap is arithmetic, not preference
-`FORMAT_ASPECT` locks delivery at 1:1, **2048×2048**, native, no upscale. Engine 2 renders
-768×1376 natively and upscales only to 1536×2752. A square crop from that tops out at
-**1536×1536 — a 43.75 % drop in pixel area** against the locked format. There is no path to
-2048² through engine 2. Delivering through it therefore *requires* accepting a lower
-delivered resolution; it is not a flag that can be flipped without that cost.
+### 6b. Accepted cost — the delivered square is smaller
+Engine 2 renders 768×1376 natively and upscales only to 1536×2752, so the delivered square
+is a **1536×1536** centre crop — **43.75 % less pixel area** than the 2048×2048 engine 1
+delivers. There is no path to 2048² through Google Flow. The user was told this twice and
+chose engine 2 anyway; the cost is recorded in the profile's `format.note`, not hidden.
 
-### 6c. What applying it would take
-Two rules in `policy/registry.json` own the relevant keys and would each need an explicit
-superseding rule (never a parallel key — `policy/check.py` STOPs on two active rules per key):
+### 6c. What the switch rewrites
+Each profile names the rule that owns each policy key. Switching promotes that rule to
+`active` and drops the other to `inactive`:
 
-| key | current owner | precedence |
+| key | Higgsfield profile | gflow-nb2 profile |
 |---|---|---|
-| `generation.engine` | `ENGINE_ORDER` — all delivered pixels from Higgsfield | 100 |
-| `format.aspect` | `FORMAT_ASPECT` — 1:1 2048² native, no upscale | 50 |
+| `generation.engine` | `ENGINE_ORDER` (prec 100) | `ENGINE_ORDER_GFLOW` (prec 100) |
+| `format.aspect` | `FORMAT_ASPECT` — 2048² native | `FORMAT_GFLOW_SQUARE` — 1536² upscale+crop |
 
-Plus `config/engines.json` (`openflow.catalog_approved`, `blocked_for`) and
-`config/pipeline_versions.json` (`gflow-nb2.selectable_as_active`).
+A rule may claim `supersedes` on an active rule only while it is itself active
+(`policy/check.py` rule 1b), so an inactive rule's claims are parked in
+`_supersedes_when_active` and restored on promotion. Superseded ancestors' `failure_cases`
+and statements travel with the successor, so no learning is lost in either direction
+(`policy/check.py` rule 1d).
 
-Per `config/engines.json`, changing the production engine carries the authorization phrase
-**"Change the image generation pipeline."**
+`G1_FORMAT` and `run_catalog.py` read the delivered format from the live profile — the
+2048 literal is gone from both.

@@ -1,0 +1,59 @@
+{
+  "_note": "DELIVERY PIPELINE SWITCH — the ONE value that decides which pipeline produces delivered pixels. Change it with `python scripts/pipeline.py --use <id>` (or --on/--off); never by hand-editing the derived flags in config/engines.json, config/pipeline_versions.json or policy/registry.json. The switch rewrites those from the profile below so the whole repo moves together and policy/check.py stays clean in either state. `python scripts/pipeline.py --status` shows what is live.",
+  "active": "gflow-nb2",
+  "switch_owner": "scripts/pipeline.py",
+  "derived_files": [
+    "config/active_engine.json",
+    "config/engines.json",
+    "config/pipeline_versions.json",
+    "policy/registry.json"
+  ],
+  "profiles": {
+    "higgsfield": {
+      "display": "Higgsfield · Nano Banana 2",
+      "aka": "engine 1 / legacy — the original production pipeline",
+      "engine": "higgsfield",
+      "pipeline": "legacy",
+      "route": "mcp:higgsfield",
+      "model": "nano_banana_2",
+      "model_source": "config/model.json",
+      "format": {
+        "aspect_ratio": "1:1",
+        "width": 2048,
+        "height": 2048,
+        "native": true,
+        "upscale_allowed": false,
+        "note": "Native 2K square straight out of the engine."
+      },
+      "registry_owner": {
+        "generation.engine": "ENGINE_ORDER",
+        "format.aspect": "FORMAT_ASPECT"
+      },
+      "credits_per_image": 2
+    },
+    "gflow-nb2": {
+      "display": "Google Flow · Nano Banana 2",
+      "aka": "engine 2 / gflow-nb2 — Nano Banana 2 reached directly through Google Flow",
+      "engine": "openflow",
+      "pipeline": "gflow-nb2",
+      "route": "http:openflowmcp.com/mcp",
+      "model": "NARWHAL",
+      "model_source": "engine_native",
+      "format": {
+        "aspect_ratio": "1:1",
+        "width": 1536,
+        "height": 1536,
+        "native": false,
+        "upscale_allowed": true,
+        "note": "Flow renders 768x1376 portrait natively and upscales to 1536x2752; the delivered square is a 1536x1536 centre crop of that upscale. This is the largest square engine 2 can produce — 43.75% less pixel area than the 2048x2048 engine 1 delivers. Accepted by explicit, repeated user instruction 2026-08-22 ('Use google nano banana 2 pipeline do not use higgsfield now')."
+      },
+      "registry_owner": {
+        "generation.engine": "ENGINE_ORDER_GFLOW",
+        "format.aspect": "FORMAT_GFLOW_SQUARE"
+      },
+      "requires_mcp": "openflow",
+      "install": "claude mcp add --transport http openflow https://openflowmcp.com/mcp",
+      "credits_per_image": 0
+    }
+  }
+}

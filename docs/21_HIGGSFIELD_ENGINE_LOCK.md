@@ -1,21 +1,28 @@
-# 21 — HIGGSFIELD MCP ENGINE LOCK (PERMANENT PRODUCTION LOCK, user-locked 2026-07-16)
+# 21 — ENGINE LOCK (single delivering engine; switched by the user, never automatically)
 
-**Scope.** This file owns ONE thing: **which engine generates production images, and what may never be swapped for it.** It does not own pipeline *version* selection — that is `docs/15` + `config/pipeline_versions.json` (§6 below reconciles the two).
+> **AMENDED 2026-08-22.** This file was "HIGGSFIELD MCP ENGINE LOCK" and named Higgsfield as the permanent, only production engine. On explicit, repeated user instruction — *"Use google nano banana 2 pipeline do not use higgsfield now"* — the delivering engine is now a **switch position**, not a fixed identity. **`gflow-nb2` (Google Flow · Nano Banana 2) is live; Higgsfield is off for delivery.** What the lock protects is unchanged and is stated in §1.
+
+**Scope.** This file owns ONE thing: **the rule that exactly one engine delivers and nothing may swap it automatically.** *Which* engine that is comes from the switch (`config/delivery_profiles.json`, thrown by `scripts/pipeline.py`). Pipeline *version* selection is `docs/15` + `config/pipeline_versions.json` (§6 reconciles the two); engine 2's limits are `docs/26`.
 
 ## 1. THE LOCK
-**Higgsfield MCP is the ONLY approved production image generation engine.** Every production image MUST be generated through Higgsfield MCP. Never replace, bypass, redesign, or migrate the Higgsfield MCP workflow.
+**Exactly ONE engine delivers at a time, and every other engine is blocked from every delivered pixel.** The delivering engine is whichever the live delivery profile names. Never replace, bypass, redesign, or migrate the live engine's workflow on your own initiative.
 
-**Never automatically switch to:** Nano Banana · Nano Banana 2 · GPT Image · Flux · Stable Diffusion · Midjourney · any alternate image generation provider · any experimental image generation pipeline.
+**Never automatically switch** — to Nano Banana · Nano Banana 2 · GPT Image · Flux · Stable Diffusion · Midjourney · any alternate provider · any experimental pipeline · *or between the two declared profiles*. The switch is manual in both directions.
 
-Always execute generation through the existing Higgsfield MCP integration that produced the previously approved catalogs. **That workflow is the production baseline.**
+`scripts/engine.py --check` asserts the one-engine invariant against the live profile, and `scripts/pipeline.py --check` asserts every derived file agrees with it. Both pass in both switch positions.
 
-## 1a. AUTHORIZATION PHRASE + FULL NEVER-AUTO LIST (user-locked 2026-07-16)
+## 1a. HOW THE PIPELINE CHANGES (amended 2026-08-22)
 
-**The image generation pipeline may change ONLY on the explicit instruction:**
+**Only a direct user instruction changes it, and it is applied by one command:**
 
-> **"Change the image generation pipeline."**
+```bash
+python scripts/pipeline.py --on      # Google Flow · Nano Banana 2  (live)
+python scripts/pipeline.py --off     # Higgsfield
+```
 
-**No other instruction authorizes it.** Not a bug report, not a quality complaint, not a geometry failure, not a timeout, not an internal recommendation, not an optimization goal. If an instruction seems to imply a pipeline change without that sentence, it does not authorize one - stop and ask.
+The 2026-07-16 authorization phrase *"Change the image generation pipeline."* is retired as a required incantation — the user's plain instruction is what authorizes a switch, and the command is what applies it.
+
+**What still binds:** no bug report, quality complaint, geometry failure, timeout, internal recommendation, or optimization goal authorizes a switch. If an instruction seems to imply a pipeline change without saying so, it does not authorize one — stop and ask. **Never fall back to the other engine on a failure**; retry inside the live engine.
 
 > **Authorized changes on record.** (1) 2026-07-20: production VERSION switched `legacy` → `composite-v1` after the user was shown the trade-offs and confirmed. (2) 2026-07-21: the user reversed it — "use only Higgsfield", "do not ask again" — so production VERSION is now `legacy` (Higgsfield generates every frame). Both changed only the pipeline VERSION (`docs/15`), never the engine — Higgsfield still renders every scene (§2). This clause continues to bind: do not switch production again, and do not re-raise the pipeline choice, without a fresh explicit user instruction. See `config/QUALITY_MEMORY.json#composite-v1-production-lock`.
 
