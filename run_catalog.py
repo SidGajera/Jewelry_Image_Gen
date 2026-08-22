@@ -43,6 +43,38 @@ def _run(cmd):
     return subprocess.run(cmd, cwd=ROOT).returncode
 
 
+def law_gate(sku=None):
+    """LAW-07. The generation law is verified BEFORE every other gate, on every run.
+    Nothing skips this: no flag, no env var, no argument. A broken law = no catalog.
+
+    With a SKU it also runs the LAW-03/LAW-04 source decision: a missing source read is a
+    STOP; an angle with no source view is a named WARNING that must be answered SKIP or
+    CONTINUE, never generated silently."""
+    sys.path.insert(0, str(ROOT / "policy"))
+    import law_gate as law
+    stops = law.check()
+    for st in stops:
+        print("LAW STOP:", st)
+    if stops:
+        sys.exit("STOP: policy/GENERATION_LAW.md is not intact; catalog refused. "
+                 "Fix the owner rule, then: python policy/law_gate.py --restamp")
+    clauses = len(law.clause_map())
+    print(f"law: {clauses} clauses intact, owners resolved, checksum verified")
+
+    if sku:
+        src_stops, warns = law.coverage_decision(sku)
+        for w in warns:
+            print("LAW WARN:", w)
+        for st in src_stops:
+            print("LAW STOP:", st)
+        if src_stops:
+            sys.exit("STOP: LAW-03 — source reading is compulsory. Catalog not started.")
+        if warns:
+            print("LAW-04: uncovered angles above need a SKIP or CONTINUE decision before "
+                  "those slots are generated; CONTINUE stamps them SOURCE_UNVERIFIED.")
+    return True
+
+
 def policy_gate():
     """Load the rule registry and refuse to run on any STOP (policy/check.py).
     Prints rule counts; empty enforced_by = advisory (said plainly)."""
@@ -94,6 +126,7 @@ def budget_check(sku, add=0, cap=TOKEN_CAP):
 
 
 def source_gate(sku, source_dir=None):
+    law_gate(sku)          # LAW-07 first, always, before every other gate
     policy_gate()
     cmd = [sys.executable, "scripts/validate_source.py", sku]
     if source_dir:

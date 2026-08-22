@@ -135,7 +135,7 @@
       "macro_min": 0.35,
       "min_macro_slots": 3,
       "measures": "jewellery bbox area fraction: lifestyle >=20%, macro >=35%; below = auto-reject before geometry. Min 3 of 6 lifestyle slots must be tight macro (ring dominates, hand cropped, pure bokeh).",
-      "note": "Raised 2026-08-01 (CATALOG STANDARD). Faces not required \u2014 crop a face that pulls attention. Banned framings: full hand at arm's length, both hands wide, torso, environment establishing, ring as a sliver."
+      "note": "Raised 2026-08-01 (CATALOG STANDARD). Faces not required — crop a face that pulls attention. Banned framings: full hand at arm's length, both hands wide, torso, environment establishing, ring as a sliver."
     },
     "G21_STONE_RATIO": {
       "blocking": true,
@@ -146,13 +146,13 @@
       "max_retry_rounds": 5,
       "on_non_converge": "GEOMETRY APPROXIMATE",
       "measures": "per-stone areas -> centre:flanker size ratio within +/-10% of spec, and stone COUNT per shape class == spec",
-      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws size ratios; every render gated, ratio/count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE. Was advisory (engine can't hold ratios) \u2014 user accepted the tradeoff to keep this model."
+      "note": "BLOCKING with auto-retry (MODEL_LOCK 2026-08-01). Nano Banana 2 redraws size ratios; every render gated, ratio/count miss auto-regenerates up to 5 rounds; non-converging slot delivered labelled GEOMETRY APPROXIMATE. Was advisory (engine can't hold ratios) — user accepted the tradeoff to keep this model."
     },
     "G22_STONE_WITHIN_FINGER": {
       "blocking": true,
       "kind": "ring_scale_on_hand",
       "tol": 1.05,
-      "measures": "lifestyle: centre-stone width <= finger width (\u00d7 tol); rejects oversized 'cocktail-huge' diamonds on the hand"
+      "measures": "lifestyle: centre-stone width <= finger width (× tol); rejects oversized 'cocktail-huge' diamonds on the hand"
     },
     "G23_MAKES_SENSE": {
       "blocking": true,
@@ -168,13 +168,13 @@
       "dark_speck_max_frac": 0.02,
       "dark_speck_rel_luma": 0.32,
       "measures": "every stone crystal/water-clear: (a) per-stone mean luminance above threshold; (b) facet-edge sharpness = high-frequency energy inside each stone above threshold (soft/smeared = FAIL); (c) colour neutrality within a narrow neutral-white band (no yellow/grey cast); (d) DARK SPECK DETECTION = any dark blob inside a stone boundary (pixels below dark_speck_rel_luma x stone-mean, connected area > dark_speck_max_frac x stone area) = FAIL 'inclusion or dust on stone'; (e) consistency = no stone materially duller than its neighbours",
-      "note": "PERMANENT all catalogs (TIGHTENED 2026-08-01 \u2014 user: stones must be crystal-clear like water, no milkiness, no dots/specks/dust). Any fail = auto-regenerate. Clarity block moved EARLY in the prompt (after geometry lock, before scene) so it keeps weight; verbatim positive + tightened verbatim negative wired into build_prompts (all slots). LIGHTING every slot: piece in direct light, no stone in hand/fabric shadow (a shadowed stone reads milky regardless of prompt). Root-cause note: clarity drop coincided with wrong-model runs (nano_banana_pro) \u2014 MODEL_LOCK now forces nano_banana_2 (verify: preflight --check-model). CALIBRATION: implemented in validate_render.g24_clarity + _cv_lib.stone_clarity_stats; tuned FP=0 against tests/golden pass goldens (LR-0205 05/06/08/09/10, LR-0206 10). Drop milky/specky renders into tests/golden/fail_clarity_* (G24 FAIL) to tune catch-sensitivity."
+      "note": "PERMANENT all catalogs (TIGHTENED 2026-08-01 — user: stones must be crystal-clear like water, no milkiness, no dots/specks/dust). Any fail = auto-regenerate. Clarity block moved EARLY in the prompt (after geometry lock, before scene) so it keeps weight; verbatim positive + tightened verbatim negative wired into build_prompts (all slots). LIGHTING every slot: piece in direct light, no stone in hand/fabric shadow (a shadowed stone reads milky regardless of prompt). Root-cause note: clarity drop coincided with wrong-model runs (nano_banana_pro) — MODEL_LOCK now forces nano_banana_2 (verify: preflight --check-model). CALIBRATION: implemented in validate_render.g24_clarity + _cv_lib.stone_clarity_stats; tuned FP=0 against tests/golden pass goldens (LR-0205 05/06/08/09/10, LR-0206 10). Drop milky/specky renders into tests/golden/fail_clarity_* (G24 FAIL) to tune catch-sensitivity."
     },
     "G25_GOLD_CHECK": {
       "blocking": true,
       "kind": "metal_colour",
       "plain_name": "GOLD_CHECK",
-      "measures": "rendered metal reads as GOLD of the spec's locked colour: yellow gold hue ~15-40, rose gold hue ~3-18, white gold = low-saturation neutral. A render whose metal colour disagrees with the spec (e.g. silver/steel where gold expected, or yellow where rose specified) = FAIL. Karat (18K) is not visually measurable \u2014 enforced by prompt + audited against the Etsy listing, not by pixels.",
+      "measures": "rendered metal reads as GOLD of the spec's locked colour: yellow gold hue ~15-40, rose gold hue ~3-18, white gold = low-saturation neutral. A render whose metal colour disagrees with the spec (e.g. silver/steel where gold expected, or yellow where rose specified) = FAIL. Karat (18K) is not visually measurable — enforced by prompt + audited against the Etsy listing, not by pixels.",
       "note": "PERMANENT (METAL LOCK 2026-08-01). Karat always 18K; default colour yellow gold; one colour across all 10 slots. White-gold/platinum SOURCES are BLOCKED until the user ticks 18K-YELLOW-override or 18K-WHITE (registry METAL_KARAT_18K). Detector: _cv_lib.metal_hue_peak vs spec.metal."
     },
     "G27_ORIENTATION_CHECK": {
@@ -183,6 +183,16 @@
       "parallel_tol_deg": 15,
       "min_stones": 5,
       "offender_frac_max": 0.15
+    },
+    "G28_CATALOG_CONSISTENCY": {
+      "blocking": false,
+      "kind": "heuristic",
+      "plain_name": "SAME_PIECE_ALL_SLOTS",
+      "auto_retry": true,
+      "max_retry_rounds": 5,
+      "on_non_converge": "STOP and report the drifted slot",
+      "measures": "per-slot metal hue + stone luminance + piece scale vs the catalog reference slot",
+      "note": "LAW-05 owner gate. ADVISORY until scripts/calibrate.py shows FP=0 over tests/golden, per this file's own promotion rule - a cross-slot heuristic that blocks on a false positive would stall whole catalogs. The STRUCTURAL half of LAW-05 (one reference slot exists, every slot compared, drift recorded) is blocking in law_gate and is not heuristic."
     }
   }
 }

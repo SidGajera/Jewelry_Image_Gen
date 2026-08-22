@@ -19,9 +19,25 @@ This is the permanent Git workflow. It overrides any prior branch instruction.
 - **Remote:** `origin` = `https://github.com/SidGajera/Claude_Lucent_Image_Gen.git`. The GitHub rename redirect can rewrite origin to `Jewelery-Website`; if a push 404s, run `git remote set-url origin https://github.com/SidGajera/Claude_Lucent_Image_Gen.git` and retry.
 - Commit trailers (Co-Authored-By + Claude-Session) still apply. Nothing is git-ignored (per user request; still never commit real secrets/.env).
 
+## 0.6 THE GENERATION LAW (permanent, binding — read before any generation task)
+`policy/GENERATION_LAW.md` is the **boundary** of image generation: design supremacy, no AI
+redraw, source-before-generation, per-angle source warning, catalog consistency, diamond purity,
+one-rule-per-topic. It is verified by `policy/law_gate.py` and `run_catalog.py` runs that gate
+**first, before every other gate** — a broken law refuses the catalog. Nothing skips it.
+
+```bash
+python policy/law_gate.py --check          # must print: generation law OK
+python policy/law_gate.py --show           # clause -> owner rule -> gate
+python policy/law_gate.py --coverage SKU   # LAW-03/04 source decision for one SKU
+```
+
+The law never restates a rule: each clause points at **one owner rule** in `policy/registry.json`.
+To change a requirement, supersede its owner rule, then `--restamp`. Never write a second copy.
+
 ## 1. LAZY-LOADING MAP (load only what the current task needs; unload after extracting the rules)
 | Task | Load ONLY |
 |---|---|
+| **The generation law (binding boundary — governs everything below)** | `policy/GENERATION_LAW.md` |
 | **Normal image generation** | `config/project_manifest.json` + `prompts/07_PROMPTS.md` + `config/QUALITY_MEMORY.json` (the runtime trio — self-sufficient for generation) |
 | Image-generation rule detail | `docs/03_IMAGE_GENERATION_RULES.md` |
 | Logo issue | `docs/04_LOGO_WORKFLOW.md` |
@@ -58,6 +74,9 @@ Rules: never load the whole repository; load the **smallest** relevant file; aft
 6. **Silent, low-token execution.** No preview tools (`show_generations`/`job_display`), no narration per image, compact full-quality prompts, reuse cached assets, batch generations, report count only. Governed by `docs/17_MASTER_TOKEN_OPTIMIZATION_POLICY.md` (the single token-optimization policy).
 
 ## 3. HARD RULES (never break — priority order in `docs/02_SYSTEM_RULES.md`)
+- **LAW (above all of P0-P8):** `policy/GENERATION_LAW.md` — jewellery design outranks everything;
+  AI never redraws the piece; no source = no generation; an uncovered angle warns SKIP/CONTINUE;
+  one catalog = one piece; stones always crystal-clear and natural; one rule per topic.
 - **P0 Logo:** locked asset; never regenerate/redraw/verify-read/recolor; always composited to look printed on cloth (never a floating overlay/sticker; partial crop/occlusion OK; off-center).
 - **P1 Jewelry:** 100% identical to the correct source; never add/remove/resize/recolor stones or alter setting/band/metal.
 - **P2 Diamonds:** single real facet pattern, natural bright+dark mix, no doubling/CGI; gems keep exact color/cut.

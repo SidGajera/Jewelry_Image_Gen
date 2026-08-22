@@ -3,7 +3,7 @@
 The authoritative end-to-end sequence for EVERY catalog. Gates fail = STOP. Detail for each topic lives in its owner doc (linked); this file owns only the ORDER and the gates. Runs under docs/19 §5b (no-permission full run) and docs/13 §6b (D2D pixel-perfect source read).
 
 ## P0 — GATES (fail = STOP, never proceed)
-0. **Confirm the live delivery pipeline: `python scripts/pipeline.py --status`.** Every format, model and engine below follows it. Mismatch between the switch and the derived configs (`--check`) = STOP.
+0. **LAW GATE (first, always): `python policy/law_gate.py --check`.** `policy/GENERATION_LAW.md` is the binding boundary — LAW-01 design supremacy · LAW-02 no AI redraw · LAW-03 source compulsory · LAW-04 per-angle warn SKIP/CONTINUE · LAW-05 catalog consistency · LAW-06 diamond purity · LAW-07 one rule per topic. `run_catalog.py` runs it before anything else; any failure = STOP, no catalog. Then confirm the live delivery pipeline: `python scripts/pipeline.py --status`. Every format, model and engine below follows it. Mismatch between the switch and the derived configs (`--check`) = STOP.
 1. Load: `docs/13` JEWELRY_PRESERVATION · `docs/03` IMAGE_GENERATION_RULES · `docs/04` LOGO · `docs/11` BACKGROUND · `docs/19` APPROVAL_GATE · `docs/17` TOKEN · DELIVERABLES · ROMANTIC_POSES · `config/QUALITY_MEMORY.json` (Failure Memory + Approved Benchmarks). Any fails to load = STOP.
 2. Read source CAD — every view, once, in-thread, D2D pixel-perfect. Missing / conflicting / non-CAD (model photo) view = STOP and ask.
 3. Confirm one SKU, one ring. Two designs in source = STOP.

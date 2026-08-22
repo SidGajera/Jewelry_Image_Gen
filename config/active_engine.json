@@ -1,4 +1,4 @@
 {
   "active": "openflow",
-  "_note": "Active engine for exploration/video ONLY. Catalog stills always use config/engines.json 'default' (higgsfield) regardless of this file. Set with: python scripts/engine.py --use <id>"
+  "_note": "DERIVED from config/delivery_profiles.json by scripts/pipeline.py. Change the pipeline with: python scripts/pipeline.py --use <profile>."
 }

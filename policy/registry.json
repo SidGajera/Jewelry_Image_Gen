@@ -554,8 +554,9 @@
         "invented_split_prongs_from_front_view",
         "invented_hidden_halo_from_front_view"
       ],
-      "status": "active",
-      "supersedes": []
+      "status": "superseded",
+      "supersedes": [],
+      "superseded_by": "SOURCE_COVERAGE_GATE"
     },
     {
       "id": "GEN_COMPOSITE_V2",
@@ -703,8 +704,9 @@
         "diamond_shape_changed",
         "stone_added_or_removed"
       ],
-      "status": "active",
-      "supersedes": []
+      "status": "superseded",
+      "supersedes": [],
+      "superseded_by": "JEWELRY_PRESERVATION_ABSOLUTE"
     },
     {
       "id": "MODEL_ENGINE_PRIOR_LOCK",
@@ -762,8 +764,9 @@
         "stone_dulled_in_hand_shadow",
         "unevenly_lit_stones"
       ],
-      "status": "active",
-      "supersedes": []
+      "status": "superseded",
+      "supersedes": [],
+      "superseded_by": "DIAMOND_CLARITY_ABSOLUTE"
     },
     {
       "id": "METAL_KARAT_18K",
@@ -892,6 +895,142 @@
       "_switch": "Owned by scripts/pipeline.py. Active only while config/delivery_profiles.json active = gflow-nb2.",
       "supersedes": [
         "FORMAT_ASPECT"
+      ]
+    },
+    {
+      "id": "JEWELRY_PRESERVATION_ABSOLUTE",
+      "key": "geometry.preservation",
+      "precedence": 100,
+      "statement": "LAW-01/LAW-02. The jewellery design outranks EVERYTHING - scene, styling, theme, pose, lighting, composition, aesthetics, tokens, schedule; on any conflict the design wins and the other thing changes. Jewellery redesign/redraw/regeneration by AI is STRICTLY PROHIBITED: diamond shape/size/cut/facet/count/placement, prongs/setting/gallery/band, metalwork and metal colour come ONLY from the source, unchanged, on EVERY image including lifestyle. Target D2D pixel-perfect. The model's job is the PHOTOGRAPH (scene, hand, skin, cloth, light, shadow), never the piece; it may not improve, complete, clean up or reinterpret the jewellery. Only camera angle, scene and light may change. Materials must look 100% real (no plastic/CZ/CGI). ENFORCED BY REJECTION, not by promise: a generative call cannot guarantee D2D by construction, so every render is gated against source and a drifted render is REFUSED - max 5 rounds, then STOP. Never claim D2D is guaranteed; it is enforced.",
+      "scope": "global",
+      "supersedes": [
+        "JEWELRY_PRESERVATION"
+      ],
+      "enforced_by": [
+        "G_INVENT",
+        "G20_MIN_SUBJECT_SCALE",
+        "G22_STONE_WITHIN_FINGER",
+        "law_gate"
+      ],
+      "origin": "user 2026-08-22 (permanent hardcoding: 'Jewelry design is top of everything', 'Regenerate/redesign/redraw jewelry with ai is strictly restricted')",
+      "failure_cases": [
+        "design_traded_for_a_nicer_photo",
+        "diamond_shape_changed",
+        "jewellery_redrawn",
+        "jewellery_redrawn_by_ai",
+        "stone_added_or_removed"
+      ],
+      "status": "active",
+      "superseded_learning": {
+        "JEWELRY_PRESERVATION": "Jewellery redesign/redraw PROHIBITED: diamond shape/size/cut/facet/count/placement, prongs/setting/gallery/band and metalwork come ONLY from the source CAD, unchanged (target: D2D pixel-perfect), on EVERY image including lifestyle. Only the camera angle may change. Read ALL source angles before generating; never generate an angle without a source view. Materials must look 100% real (no plastic/CZ/CGI). Aspirational under HIGGSFIELD_ONLY (text-to-image cannot guarantee D2D); kept as the locked target and enforced where measurable (G22 scale, G20 framing, G12 marks, G-INVENT coverage)."
+      },
+      "law_clause": [
+        "LAW-01",
+        "LAW-02"
+      ]
+    },
+    {
+      "id": "SOURCE_COVERAGE_GATE",
+      "key": "geometry.no_invention",
+      "precedence": 100,
+      "statement": "LAW-03/LAW-04. Source reading is COMPULSORY before any generation - no source, no pixels; a run without a verified source read is prohibited outright. Every item a slot reveals must be established by a supplied source view (config/view_coverage.json) with azimuth within 45deg. When an angle has NO source reference the pipeline MUST WARN BY NAME - 'SOURCE NOT IDENTIFIED FOR THIS ANGLE: <slot> (<azimuth>/<elevation>) - SKIP or CONTINUE?' - and wait for that decision; it must never silently invent the unseen side. SKIP drops the slot and records why; CONTINUE generates it and stamps the slot SOURCE_UNVERIFIED in the manifest so it is never later mistaken for verified. No inference, no category priors, no defaults.",
+      "scope": "global",
+      "supersedes": [
+        "SOURCE_COVERAGE_REQUIRED"
+      ],
+      "enforced_by": [
+        "G_INVENT",
+        "validate_source",
+        "law_gate"
+      ],
+      "origin": "user 2026-08-22 ('source reading is must and compulsory', 'give warning that source not identified for this particular angle skip or continue')",
+      "failure_cases": [
+        "generated_without_source_read",
+        "invented_full_circumference_pave",
+        "invented_hidden_halo_from_front_view",
+        "invented_split_prongs_from_front_view",
+        "uncovered_angle_generated_silently"
+      ],
+      "status": "active",
+      "superseded_learning": {
+        "SOURCE_COVERAGE_REQUIRED": "every item a studio slot reveals must be established by a supplied source view (config/view_coverage.json); + azimuth within 45deg; else block. No inference, no category priors, no defaults"
+      },
+      "law_clause": [
+        "LAW-03",
+        "LAW-04"
+      ]
+    },
+    {
+      "id": "DIAMOND_CLARITY_ABSOLUTE",
+      "key": "realism.clarity",
+      "precedence": 80,
+      "statement": "LAW-06. EVERY stone in EVERY image reads crystal clear, NATURAL and PURE: colourless, fully transparent, glass-bright, flawless, crisp sharply-defined facet edges, true white brilliance with sharp fire and defined scintillation, clean bright table/crown, crisp pavilion reflections, every stone equally clean and bright, and natural rather than synthetic-looking. Never cloudy, milky, grey, yellow-cast, plastic, CZ-like, or dulled in hand shadow. Verbatim positive clause + verbatim banned-terms in every prompt. G24 checks (a) per-stone luminance, (b) facet-edge sharpness, (c) colour neutrality, (d) consistency; any fail auto-regenerates. Lifestyle: the piece must sit in direct light, not hand shadow. Thresholds calibrated against tests/golden clarity goldens (FP=0).",
+      "scope": "global",
+      "supersedes": [
+        "DIAMOND_CLARITY"
+      ],
+      "enforced_by": [
+        "G24_CLARITY_CHECK"
+      ],
+      "origin": "user 2026-08-22 ('Every time diamond must be crystal clear, natural and pure')",
+      "failure_cases": [
+        "cloudy_or_milky_stone",
+        "soft_smeared_facets",
+        "stone_dulled_in_hand_shadow",
+        "stone_not_natural_looking",
+        "unevenly_lit_stones",
+        "yellow_or_grey_cast"
+      ],
+      "status": "active",
+      "superseded_learning": {
+        "DIAMOND_CLARITY": "Every stone crystal/water-clear on every slot: colourless, fully transparent, glass-bright, flawless, crisp sharply-defined facet edges, true white brilliance with sharp fire and defined scintillation, clean bright table/crown, crisp pavilion reflections, every stone equally clean and bright. Verbatim positive clause + verbatim banned-terms in every prompt. G24 checks (a) per-stone luminance, (b) facet-edge sharpness, (c) colour neutrality, (d) consistency; any fail auto-regenerates. Lifestyle: piece must sit in direct light, not hand shadow (shadowed stone fails regardless of prompt). Thresholds calibrated against tests/golden clarity goldens (FP=0)."
+      },
+      "law_clause": [
+        "LAW-06"
+      ]
+    },
+    {
+      "id": "CATALOG_CONSISTENCY",
+      "key": "geometry.catalog_consistency",
+      "precedence": 100,
+      "statement": "LAW-05. Every image in one catalog shows the SAME piece: same design, same stone clarity and purity, same metal colour, same jewellery shape, same jewellery size and same diamond size. Nothing about the piece may drift between the first slot and the last. Only camera, scene and light change across a catalog. The first passing render is the catalog reference; every later slot is compared against it AND against source, and a drifted slot - not the catalog - is rejected and regenerated.",
+      "scope": "global",
+      "supersedes": [],
+      "enforced_by": [
+        "G28_CATALOG_CONSISTENCY",
+        "law_gate"
+      ],
+      "origin": "user 2026-08-22 ('Must be same throughout the catalog design, stone clarity and purity, jewelry color, Jewelry shape, jewelry and diamond size')",
+      "failure_cases": [
+        "metal_colour_drift_across_catalog",
+        "stone_size_drift_across_catalog",
+        "design_drift_across_catalog"
+      ],
+      "status": "active",
+      "law_clause": [
+        "LAW-05"
+      ]
+    },
+    {
+      "id": "GENERATION_LAW_BINDING",
+      "key": "policy.generation_law",
+      "precedence": 100,
+      "statement": "LAW-07. policy/GENERATION_LAW.md is the permanent boundary of image generation; no catalog, SKU, engine, model, pipeline, mode or session may generate outside it. Every topic has EXACTLY ONE active owner rule - a second rule on the same topic is a hard STOP, not a preference. A new requirement SUPERSEDES the existing owner and carries its failure_cases and statement forward; it never opens a parallel rule and is never written as doc prose instead of a rule. The law states clauses and POINTS AT owners - it never restates rule text, so there is exactly one source of truth per requirement. policy/law_gate.py verifies the law's checksum, that every clause resolves to exactly one ACTIVE owner, and that each owner's gates exist; run_catalog.py runs it FIRST and refuses to start on any failure.",
+      "scope": "global",
+      "supersedes": [],
+      "enforced_by": [
+        "law_gate",
+        "ENGINE_LOCK_CHECK"
+      ],
+      "origin": "user 2026-08-22 ('make this hardcoding permanent', 'One policy one rule one instruction')",
+      "failure_cases": [
+        "law_file_tampered",
+        "law_clause_without_owner",
+        "duplicate_rule_same_topic"
+      ],
+      "status": "active",
+      "law_clause": [
+        "LAW-07"
       ]
     }
   ]

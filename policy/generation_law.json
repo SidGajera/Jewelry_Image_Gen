@@ -1,0 +1,76 @@
+{
+  "_note": "MACHINE-READABLE INDEX of policy/GENERATION_LAW.md. It POINTS AT owners; it never restates rule text - the rule in policy/registry.json is the single source of truth for every requirement. Verified by policy/law_gate.py, which run_catalog.py runs before anything else.",
+  "version": "1.0.0",
+  "locked": "2026-08-22",
+  "origin": "user instruction: permanent hardcoding of design supremacy, source-before-generation, per-angle source warning, no AI redraw, catalog consistency, diamond purity, and one-rule-per-topic",
+  "law_file": "policy/GENERATION_LAW.md",
+  "law_sha256": "f82a0cdd7eb96bfa9b572725740c9d1e47858b47af8781c1f8fc936cb81edfea",
+  "binding": true,
+  "bypassable": false,
+  "enforced_first_by": "run_catalog.py -> policy/law_gate.py check() before every catalog",
+  "clauses": [
+    {
+      "id": "LAW-01",
+      "title": "Jewellery design is above everything",
+      "owner_rule": "JEWELRY_PRESERVATION_ABSOLUTE",
+      "key": "geometry.preservation"
+    },
+    {
+      "id": "LAW-02",
+      "title": "No AI redraw of the jewellery - ever",
+      "owner_rule": "JEWELRY_PRESERVATION_ABSOLUTE",
+      "key": "geometry.preservation"
+    },
+    {
+      "id": "LAW-03",
+      "title": "Source reading is compulsory before generation",
+      "owner_rule": "SOURCE_COVERAGE_GATE",
+      "key": "geometry.no_invention"
+    },
+    {
+      "id": "LAW-04",
+      "title": "Per-angle source coverage - warn, then skip or continue",
+      "owner_rule": "SOURCE_COVERAGE_GATE",
+      "key": "geometry.no_invention"
+    },
+    {
+      "id": "LAW-05",
+      "title": "One catalog, one piece - consistent throughout",
+      "owner_rule": "CATALOG_CONSISTENCY",
+      "key": "geometry.catalog_consistency"
+    },
+    {
+      "id": "LAW-06",
+      "title": "Diamonds: crystal clear, natural, pure - every image",
+      "owner_rule": "DIAMOND_CLARITY_ABSOLUTE",
+      "key": "realism.clarity"
+    },
+    {
+      "id": "LAW-07",
+      "title": "The law is the boundary - one rule per topic",
+      "owner_rule": "GENERATION_LAW_BINDING",
+      "key": "policy.generation_law"
+    }
+  ],
+  "supremacy": {
+    "top_precedence_rules": [
+      "JEWELRY_PRESERVATION_ABSOLUTE",
+      "GENERATION_LAW_BINDING",
+      "CATALOG_CONSISTENCY",
+      "SOURCE_COVERAGE_GATE"
+    ],
+    "below_the_law": [
+      "engine",
+      "model",
+      "pipeline",
+      "resolution",
+      "credits",
+      "speed",
+      "token budget",
+      "theme",
+      "styling"
+    ],
+    "on_conflict": "the law wins; an engine or mode that cannot satisfy a clause is refused, never the clause relaxed"
+  },
+  "change_procedure": "Edit the OWNER RULE in policy/registry.json via a supersession that carries the old rule's failure_cases and statement, then: python policy/law_gate.py --restamp && python policy/law_gate.py --check"
+}

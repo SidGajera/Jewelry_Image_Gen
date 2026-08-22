@@ -1,3 +1,9 @@
+> **OWNERSHIP (2026-08-22).** The binding requirement lives in ONE place: rule
+> `JEWELRY_PRESERVATION_ABSOLUTE` (key `geometry.preservation`) in `policy/registry.json`,
+> stated as LAW-01/LAW-02 in `policy/GENERATION_LAW.md`. This document explains and works
+> that rule; it does not define it. On any difference, the rule wins — and the fix is to
+> supersede the rule, never to edit prose here into a second source of truth.
+
 # 13 — JEWELRY PRESERVATION SPECIFICATION (single source for CAD-fidelity generation + QA)
 
 > **SINGLE AUTHORITY — MASTER JEWELRY PRESERVATION POLICY (user-locked 2026-07-17).**
