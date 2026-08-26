@@ -56,6 +56,31 @@ breach both `docs/21` and MODEL_LOCK. Engine 2 image tools are for **non-deliver
 exploration only**, and their output must never be written into `deliveries/` or a
 `workspace/golden/<SKU>/` render slot.
 
+## 2a. Engine 2 CANNOT edit an existing image — text-to-image only
+
+**Verified 2026-08-26 against the upstream server (`molkex/mcp-flow-google`).** Engine 2's
+`generate_image` takes a **text prompt only**. It has no `image_inputs`, no reference-image
+role and no img2img or edit tool. Reference media exist on this bridge only for the *video*
+tools (`generate_video_from_image`, `generate_video_with_reference`, ...). The tool table in
+`config/engines.json` reflects this: every image entry is `generate_image` or
+`upscale_image`, and there is no edit entry to call.
+
+**The consequence, stated plainly.** Engine 2 cannot receive a photograph and return a
+cleaned, retouched or corrected version of it. Asked to "clean this image" it can only
+synthesise a *new* piece from a description — which is a different piece, and therefore a
+LAW-01/LAW-02 violation by construction, not by drift. Any request of the form *edit / clean /
+retouch / fix / remove something from THIS photo* is **out of scope for engine 2 regardless of
+where it runs**; running it on a local machine does not change what the tool accepts.
+
+Reaching Nano Banana 2 with an input image needs the Higgsfield route, where the model
+exposes an `image_references` media role. That is a property of the route, not of the model —
+the same model is image-to-image capable through one bridge and text-only through the other.
+
+For cleaning an existing photograph without any engine at all, see
+[`scripts/clean_photo.py`](../scripts/clean_photo.py): a deterministic retouch whose output
+pixels are all functions of the source photograph, gated by
+[`scripts/verify_drift.py`](../scripts/verify_drift.py).
+
 ## 3. What engine 2 is for
 
 * **Video** — Veo clips at 4 / 6 / 8 / 10 s (7 / 10 / 12 / 15 credits), including
