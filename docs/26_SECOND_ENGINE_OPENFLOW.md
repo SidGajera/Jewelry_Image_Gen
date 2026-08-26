@@ -56,30 +56,46 @@ breach both `docs/21` and MODEL_LOCK. Engine 2 image tools are for **non-deliver
 exploration only**, and their output must never be written into `deliveries/` or a
 `workspace/golden/<SKU>/` render slot.
 
-## 2a. Engine 2 CANNOT edit an existing image — text-to-image only
+## 2a. Engine 2 takes references, but it RE-ROLLS the whole frame every call
 
-**Verified 2026-08-26 against the upstream server (`molkex/mcp-flow-google`).** Engine 2's
-`generate_image` takes a **text prompt only**. It has no `image_inputs`, no reference-image
-role and no img2img or edit tool. Reference media exist on this bridge only for the *video*
-tools (`generate_video_from_image`, `generate_video_with_reference`, ...). The tool table in
-`config/engines.json` reflects this: every image entry is `generate_image` or
-`upscale_image`, and there is no edit entry to call.
+**Corrected 2026-08-26.** An earlier version of this section claimed engine 2's
+`generate_image` was text-to-image only and could not accept an image at all. **That was
+wrong**, and it was wrong in the worst way — it read the absence of a documented parameter
+list as proof of absence. The upstream README documents the opposite: references are passed
+as `media_id`s in **`image_inputs`**, and `generate_scene` takes `image_inputs` too. The
+character tools (`create_character_from_photo`, `generate_with_face`) also start from a
+photo. The tool table in `config/engines.json` is incomplete — it lists neither
+`generate_scene` nor the character, music and `fetch_media` tools the server actually
+exposes.
 
-**The consequence, stated plainly.** Engine 2 cannot receive a photograph and return a
-cleaned, retouched or corrected version of it. Asked to "clean this image" it can only
-synthesise a *new* piece from a description — which is a different piece, and therefore a
-LAW-01/LAW-02 violation by construction, not by drift. Any request of the form *edit / clean /
-retouch / fix / remove something from THIS photo* is **out of scope for engine 2 regardless of
-where it runs**; running it on a local machine does not change what the tool accepts.
+**The real limitation, in the upstream's own measured words (2026-08-23):**
 
-Reaching Nano Banana 2 with an input image needs the Higgsfield route, where the model
-exposes an `image_references` media role. That is a property of the route, not of the model —
-the same model is image-to-image capable through one bridge and text-only through the other.
+> "One call re-rolls everything at once: fix the focus and the freckles change, fix the
+> freckles and the bottle changes size."
 
-For cleaning an existing photograph without any engine at all, see
+That is the constraint that matters here. Engine 2 accepts a reference and then **rebuilds
+the frame around it**; it does not carry the reference's pixels through. Its recommended
+workflow is explicitly to generate an approved frame per element and re-combine them — a
+re-synthesis loop, not an edit. Its own note on video says the same in the other direction:
+`generate_video_with_reference` "treats your frame as an example and rebuilds the scene, so
+faces survive but small things drift — a hair strand lying across a cheek was present at two
+seconds and gone by six."
+
+**Consequence for a retouch request** (*clean / remove dust / remove a fingerprint from THIS
+photo*): engine 2 can be handed the photo, but what comes back is a re-rolled piece, not the
+photographed one. Small things drift, and on a solitaire the small things ARE the design —
+facet pattern, prong tips, girdle. So the request is servable in form and fails LAW-01/LAW-02
+in substance, by drift rather than by construction. Gate any such render with
+[`scripts/verify_drift.py`](../scripts/verify_drift.py) before believing it; do not accept a
+render because the photograph looks good.
+
+For cleaning an existing photograph with the piece held fixed, see
 [`scripts/clean_photo.py`](../scripts/clean_photo.py): a deterministic retouch whose output
-pixels are all functions of the source photograph, gated by
-[`scripts/verify_drift.py`](../scripts/verify_drift.py).
+pixels are all functions of the source photograph, so there is no re-roll to drift.
+
+**Not reachable from Claude Code on the web.** The egress policy denies `openflowmcp.com:443`
+(gateway 403 to CONNECT), and no `openflow` MCP server is attached to a web session. Engine 2
+runs from a local machine only, until the host is allowed in the environment's network policy.
 
 ## 3. What engine 2 is for
 
