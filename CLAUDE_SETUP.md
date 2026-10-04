@@ -93,7 +93,7 @@ Two delivery profiles, one live at a time (`config/delivery_profiles.json`):
 
 | profile | engine | model | delivered | credits |
 |---|---|---|---|---|
-| `gflow-nb2` **(live)** | Google Flow via openflow MCP | `NARWHAL` | 1536x1536 (upscale+crop) | 0 |
+| `gflow-nb2` **(live, PERMANENT per user 2026-10-04: openflowmcp.com)** | Google Flow via openflow MCP | `NARWHAL` | 1536x1536 (upscale+crop) | 0 |
 | `higgsfield` | Higgsfield MCP | `nano_banana_2` | 2048x2048 native | 2 |
 
 Switch with `python scripts/pipeline.py --on` / `--off` — one command rewrites every derived

@@ -1,6 +1,7 @@
 {
   "_note": "DELIVERY PIPELINE SWITCH — the ONE value that decides which pipeline produces delivered pixels. Change it with `python scripts/pipeline.py --use <id>` (or --on/--off); never by hand-editing the derived flags in config/engines.json, config/pipeline_versions.json or policy/registry.json. The switch rewrites those from the profile below so the whole repo moves together and policy/check.py stays clean in either state. `python scripts/pipeline.py --status` shows what is live.",
   "active": "gflow-nb2",
+  "permanent_instruction": "2026-10-04 user: 'permenant use openflowmcp.com for image generation'. openflow (https://openflowmcp.com/mcp) is the PERMANENT image generation engine. Do not switch to or fall back on another engine unless the user explicitly says so in that session; if the openflow MCP is unavailable, STOP and report - never silently substitute.",
   "switch_owner": "scripts/pipeline.py",
   "derived_files": [
     "config/active_engine.json",

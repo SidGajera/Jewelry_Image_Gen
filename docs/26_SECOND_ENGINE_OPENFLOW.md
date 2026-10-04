@@ -12,7 +12,7 @@ Added on user instruction 2026-08-21: *"Make 2nd image generation pipeline with 
 | # | id | role | backend | catalog stills |
 |---|---|---|---|---|
 | 1 | `higgsfield` | production default | Higgsfield MCP, model locked in `config/model.json` | **yes — only engine allowed** |
-| 2 | `openflow` | secondary, opt-in | Google Flow via [molkex/mcp-flow-google](https://github.com/molkex/mcp-flow-google) (Veo video, Nano Banana images) | **no** |
+| 2 | `openflow` | **PERMANENT production engine (user 2026-10-04)** | Google Flow via [molkex/mcp-flow-google](https://github.com/molkex/mcp-flow-google) (Veo video, Nano Banana images) | **yes** |
 
 Engine 1 is unchanged by this document. Its frozen call — 2K, 1:1, `count: 1`, one batch,
 medias `[pose_studio_ref, SOURCE_piece]`, no img2img, no denoise, no compositing — is
